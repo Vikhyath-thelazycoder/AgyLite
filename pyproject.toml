@@ -13,7 +13,7 @@ authors = [{name = "Vikhyath", email = "vikhyathmgowda007@gmail.com"}]
 dependencies = ["PyYAML>=6"]
 
 [project.urls]
-Repository = "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os"
+Repository = "https://github.com/Vikhyath-thelazycoder/AgyLite"
 
 [project.scripts]
 agylite = "agylite.cli:main"

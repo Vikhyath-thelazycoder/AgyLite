@@ -5,8 +5,8 @@ status; they contain no routing or state logic.
 
 | Host | Packaging | Install |
 |---|---|---|
-| Claude Code | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `skills/`, `agents/`, `hooks/hooks.json` (SessionStart → `bin/agylite bootstrap --host claude-code`, nothing else) | `claude plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os` then `claude plugin install agylite@agylite-marketplace` |
-| Codex | `.codex-plugin/plugin.json` (`skills: ./skills/`), `.agents/plugins/marketplace.json` | `codex plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os` then `codex plugin add agylite@agylite-marketplace` (older CLIs: `codex plugin install`) |
+| Claude Code | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `skills/`, `agents/`, `hooks/hooks.json` (SessionStart → `bin/agylite bootstrap --host claude-code`, nothing else) | `claude plugin marketplace add Vikhyath-thelazycoder/AgyLite` then `claude plugin install agylite@agylite-marketplace` |
+| Codex | `.codex-plugin/plugin.json` (`skills: ./skills/`), `.agents/plugins/marketplace.json` | `codex plugin marketplace add Vikhyath-thelazycoder/AgyLite` then `codex plugin add agylite@agylite-marketplace` (older CLIs: `codex plugin install`) |
 | Cursor | user-level skills | `agylite adapters install --host cursor` → `~/.cursor/skills/agylite-*` |
 | Antigravity | `.agents/skills/agylite/SKILL.md` (generated) + user-level skills | `agylite adapters install --host antigravity` → `~/.gemini/config/skills/agylite-*` |
 

@@ -31,7 +31,7 @@ The architecture of Agylite is locked to ensure stability, portability, and cont
 ### Setup
 
 ```bash
-git clone https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os.git
+git clone https://github.com/Vikhyath-thelazycoder/AgyLite.git
 cd agylite
 pip install pyyaml
 ```

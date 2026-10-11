@@ -1,18 +1,29 @@
 #!/usr/bin/env bash
 # Agylite launcher for host plugins (P19, D-042): hooks and skills call this when `agylite` is not on PATH.
-# Order: the central install ($AGYLITE_HOME/core), else `agylite` on PATH, else this plugin's own source.
+# Order: the central install ($AGYLITE_HOME/core), else `agylite` on PATH, else this plugin's own source (only when a
+# Python >= 3.10 with PyYAML and a built bundle exist). Otherwise it says how to finish setup — never a traceback.
 set -euo pipefail
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 HOME_DIR="${AGYLITE_HOME:-$HOME/.agylite}"
+SETUP='curl -fsSL https://raw.githubusercontent.com/Vikhyath-thelazycoder/AgyLite/main/install.sh | bash'
 export AGYLITE_CLI="${BASH_SOURCE[0]}"
 if [ -x "$HOME_DIR/core/bin/agylite" ]; then
   exec "$HOME_DIR/core/bin/agylite" "$@"
 elif command -v agylite >/dev/null 2>&1 && [ "$(command -v agylite)" != "${BASH_SOURCE[0]}" ]; then
   exec agylite "$@"
 fi
-PY="${AGYLITE_PYTHON:-python3}"
-if "$PY" -c 'import yaml' 2>/dev/null; then
-  PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$PY" -m agylite "$@"
+for PY in "${AGYLITE_PYTHON:-}" python3.15 python3.14 python3.13 python3.12 python3.11 python3.10 python3; do
+  [ -n "$PY" ] && command -v "$PY" >/dev/null 2>&1 || continue
+  if "$PY" -c 'import sys, yaml; sys.exit(0 if sys.version_info >= (3, 10) else 1)' 2>/dev/null \
+      && [ -e "$HOME_DIR/bundles/current" ]; then
+    PYTHONPATH="$HERE${PYTHONPATH:+:$PYTHONPATH}" exec "$PY" -m agylite "$@"
+  fi
+done
+MSG="Agylite plugin is installed but not set up yet. Finish setup once (needs git and Python 3.10+), then start a new session:
+  $SETUP"
+if [ "${1:-}" = "bootstrap" ]; then
+  echo "$MSG"   # session start: shown to the agent, which can tell the user; never fails the session
+  exit 0
 fi
-echo "Agylite is not installed: run \"$HERE/scripts/install\" (central install into $HOME_DIR)." >&2
-exit 0   # never fail a host session start
+echo "$MSG" >&2
+exit 1

@@ -6,8 +6,8 @@ a working local OS: one CLI, one bundle built from pinned upstream commits, one 
 ## Install
 
 ```bash
-git clone https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os.git
-cd vikhyath-ai-engineering-os
+git clone https://github.com/Vikhyath-thelazycoder/AgyLite.git
+cd AgyLite
 scripts/install                      # central install into ~/.agylite and the local bundle (network once)
 export PATH="$HOME/.agylite/core/bin:$PATH"
 agylite doctor

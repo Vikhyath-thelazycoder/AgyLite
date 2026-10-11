@@ -5,7 +5,7 @@ from .. import __version__
 from .base import DESCRIPTION, Adapter, entry_skills
 
 AUTHOR = {"name": "Vikhyath", "url": "https://github.com/Vikhyath-thelazycoder"}
-REPO = "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os"
+REPO = "https://github.com/Vikhyath-thelazycoder/AgyLite"
 NAME = "agylite"
 
 
@@ -29,7 +29,7 @@ class ClaudeCode(Adapter):
                     "homepage": REPO, "repository": REPO, "license": "MIT"}),
                 "hooks/hooks.json": hooks}
 
-    HOW = ("claude plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os && "
+    HOW = ("claude plugin marketplace add Vikhyath-thelazycoder/AgyLite && "
            "claude plugin install agylite@agylite-marketplace")
 
     def installed(self):
@@ -71,7 +71,7 @@ class Codex(Adapter):
         cache = self.user_home / ".codex" / "plugins" / "cache"
         hits = sorted(str(p) for p in cache.glob(f"*/{NAME}*")) if cache.is_dir() else []
         return {"installed": bool(hits), "where": str(cache), "entries": hits,
-                "how": "codex plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os && "
+                "how": "codex plugin marketplace add Vikhyath-thelazycoder/AgyLite && "
                        "codex plugin add agylite@agylite-marketplace"}
 
 

@@ -2,6 +2,19 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [2.1.4] - 2026-10-11
+
+### Added
+- One-line installer: `curl -fsSL https://raw.githubusercontent.com/Vikhyath-thelazycoder/AgyLite/main/install.sh | bash`
+  (clones Agylite, runs the central install, adds `agylite` to PATH).
+- New README and banner; repository renamed to `Vikhyath-thelazycoder/AgyLite` in every install command and manifest.
+
+### Fixed
+- Plugin without the engine: session start now prints how to finish setup instead of a Python traceback; other
+  commands exit 1 with the same message. The plugin-source fallback runs only with Python ≥ 3.10 and a built bundle.
+- `scripts/install` finds a Python ≥ 3.10 by itself (python3.15 … python3.10) when `python3` is older, as on stock macOS,
+  and checks for rsync.
+
 ## [2.1.3] - 2026-10-11
 
 From the second hands-on trial (passed with no failures).

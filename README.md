@@ -1,112 +1,246 @@
-# Agylite
+<p align="center">
+  <img src="docs/assets/banner.svg" alt="Agylite — the light engineering OS for coding agents" width="100%">
+</p>
 
-[![CI](https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os/actions/workflows/ci.yml/badge.svg)](https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os/actions/workflows/ci.yml)
+<p align="center">
+  <b>Route every request to the few skills it needs. Keep one living plan. Call it done only when the tests pass.</b>
+</p>
 
-**A light engineering OS for coding agents.** Agylite routes every request to the few capabilities it needs, loads only
-their relevant sections, keeps one living plan per project, and verifies work with local tests instead of screenshots.
-It runs the same way in Claude Code, Codex, Cursor and Antigravity, and uses no MCP servers.
+<p align="center">
+  <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/releases"><img alt="Version" src="https://img.shields.io/badge/version-2.1.4-5b8cff"></a>
+  <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Vikhyath-thelazycoder/AgyLite/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-7cf2c4"></a>
+  <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
+  <img alt="No MCP" src="https://img.shields.io/badge/MCP-none-lightgrey">
+  <img alt="Hosts" src="https://img.shields.io/badge/hosts-Claude%20Code%20%C2%B7%20Codex%20%C2%B7%20Cursor%20%C2%B7%20Antigravity-6fd0dc">
+</p>
 
-It is built from a curated, pinned bundle of 15 open-source projects — ECC, Addy Agent Skills, Agency Agents, gstack,
-Graphify, Unlazy, Ponytail, Karpathy Skills, Open Design, Taste, UI/UX Pro Max, Appllama, BeyondSEO, Brag and Beacon —
-so you get their knowledge and engines without installing them as separate plugins.
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#why-agylite">Why</a> ·
+  <a href="#how-it-works">How it works</a> ·
+  <a href="#whats-inside">What's inside</a> ·
+  <a href="#commands">Commands</a> ·
+  <a href="#faq">FAQ</a> ·
+  <a href="docs/architecture/TARGET_ARCHITECTURE.md">Docs</a>
+</p>
 
-## Why
+---
 
-Measured on the development machine (`agylite benchmark --compare`, [results](docs/benchmarks/RESULTS.md); tokens are
-bytes ÷ 4 estimates):
+Agylite is a local engineering OS for coding agents. It bundles the best parts of 15 open-source agent projects (ECC,
+gstack, Graphify, UI/UX Pro Max, Open Design, Karpathy Skills and more) into **one plugin and one CLI**. Each request
+loads only the few capabilities it needs, the agent follows one planned lifecycle, and work counts as done only when
+local tests, types and builds pass and the evidence is recorded.
 
-| | Upstream plugins installed directly | Agylite |
-|---|---:|---:|
-| Loaded on every turn | ~31,800 tokens (ECC, Open Design, UI/UX Pro Max descriptions) | ~900 tokens |
-| 22 spec tasks, total context | ~1,020,000 tokens | ~176,000 tokens (83 % less) |
-| Routing | the model chooses among all descriptions | deterministic, 22/22 scenarios correct, p95 0.34 ms |
+## Quick start
 
-## Install
+**1. Add the plugin** (in Claude Code)
 
-```bash
-git clone https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os.git
-cd vikhyath-ai-engineering-os
-scripts/install                                   # Python ≥ 3.10, git; builds the bundle into ~/.agylite (network once)
-export PATH="$HOME/.agylite/core/bin:$PATH"
-agylite doctor
+```text
+/plugin marketplace add Vikhyath-thelazycoder/AgyLite
+/plugin install agylite@agylite-marketplace
 ```
 
-Then add it to your host:
+**2. Install the engine** (once, in a terminal)
 
-| Host | Command |
+```bash
+curl -fsSL https://raw.githubusercontent.com/Vikhyath-thelazycoder/AgyLite/main/install.sh | bash
+```
+
+This needs macOS or Linux, `git` and Python 3.10 or newer (on macOS: `brew install python@3.12`). It downloads the 15
+pinned upstream projects once (about 2 minutes), builds the capability bundle in `~/.agylite`, and puts `agylite` on
+your PATH. After that Agylite works offline. You never clone the upstream projects yourself.
+
+**3. Start a new session and work as usual.** Ask for something like *"Build a small Python CLI todo app with tests"*:
+the agent routes the request, writes a plan task, implements it test-first and verifies it before calling it done.
+Run `agylite doctor` at any time to check the install.
+
+<details>
+<summary>Other hosts</summary>
+
+| Host | Add Agylite |
 |---|---|
-| Claude Code | `claude plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os` · `claude plugin install agylite@agylite-marketplace` |
-| Codex | `codex plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os` · `codex plugin add agylite@agylite-marketplace` |
+| Codex | `codex plugin marketplace add Vikhyath-thelazycoder/AgyLite` then `codex plugin add agylite@agylite-marketplace` |
 | Cursor | `agylite adapters install --host cursor` |
 | Antigravity | `agylite adapters install --host antigravity` |
 
-`agylite adapters status` shows each host as FILES_PRESENT, INSTALLED or RUNTIME_VERIFIED (only after the host has
-actually run Agylite).
+`agylite adapters status` shows each host as `FILES_PRESENT`, `INSTALLED` or `RUNTIME_VERIFIED` (only after the host
+has actually run Agylite).
+</details>
 
-## Use
+## Why Agylite
 
-Agents follow the entry skills (`skills/agylite-*`); you can run the same commands yourself:
+Installing agent plugins one by one loads every plugin's descriptions on every turn and leaves the model to guess which
+one applies. Agylite routes deterministically and loads sections on demand.
+
+| | Upstream plugins installed directly | **Agylite** |
+|---|---:|---:|
+| Context loaded on every turn | ~31,800 tokens | **~900 tokens** |
+| 22 benchmark tasks, total context | ~1,020,000 tokens | **~176,000 tokens (83 % less)** |
+| Choosing what applies | the model picks among all descriptions | **rules: 22/22 scenarios correct, p95 0.34 ms** |
+| "Done" means | the agent says so | **tests, types and build passed, evidence on file** |
+
+Measured with `agylite benchmark --compare` on the development machine; tokens are bytes ÷ 4 estimates.
+[Full results](docs/benchmarks/RESULTS.md).
+
+## How it works
+
+```mermaid
+flowchart LR
+    R["Your request"] --> RT["Route<br/>deterministic rules"]
+    RT --> C["Context<br/>only the routed sections"]
+    C --> U["Understand<br/>questions · impact"]
+    U --> P["Plan<br/>one living plan"]
+    P --> I["Implement<br/>test-first"]
+    I --> V["Verify<br/>local tests, evidence"]
+    V --> RC["Reconcile<br/>task → VERIFIED"]
+```
+
+- **Route.** `agylite route` matches the request against rules and capability tags. *"Fix the payment webhook
+  security"* gets security, impact analysis and security tests; *"make a launch video"* gets the video workflow and
+  nothing else.
+- **Context.** `agylite context` loads short capability cards first and the relevant skill sections only when needed,
+  within a token budget.
+- **Plan.** Every project has one plan (`docs/IMPLEMENTATION_PLAN.md`). Blocking requirement questions must be
+  answered before a task starts, and task status rolls up into its phase.
+- **Verify.** `agylite verify` runs the tests, type checks, lint and build that the change reaches, and records
+  machine-readable evidence. Browser and screenshot "verification" is turned off by policy.
+- **Watch it.** `agylite dashboard --open` shows the Agent Office: one agent per capability, lighting up as it works.
+
+## What's inside
+
+63 capabilities in 7 domains, each with recorded provenance (upstream, commit, path, hash, license):
+
+| Domain | Capabilities | Highlights |
+|---|---:|---|
+| Engineering | 17 | planning, architecture, implementation, debugging, security, performance, migration, release, review |
+| Testing | 9 | test strategy, local verification, regression, security and accessibility testing, evidence |
+| Codebase | 3 | repository understanding, code search, impact analysis (Graphify code graph) |
+| Design | 10 | design direction, design systems, typography, motion, accessibility, UI/UX Pro Max engine |
+| SEO | 16 | technical and on-page audits, AI-search readiness, research, reporting (BeyondSEO runtime) |
+| Media | 4 | launch videos, demos, presentations, showcases (Brag) |
+| Observability | 4 | events, sessions, token metrics, risk detection (Beacon rules) |
+
+## Commands
 
 ```bash
-agylite route "Fix the payment webhook security." --brief
-agylite context engineering/security testing/security
-agylite codebase affected                    # files and tests your current change reaches (≤ 12 files)
-agylite verify --plan && agylite verify      # impacted tests + typecheck/lint/build, evidence recorded
-agylite dashboard --open                     # the Agent Office
+agylite route "Fix the payment webhook security." --brief   # what this request needs
+agylite context engineering/security testing/security        # load just that guidance
+agylite codebase affected                                    # files and tests the current change reaches
+agylite verify                                               # run the impacted checks, record evidence
+agylite dashboard --open                                     # the Agent Office
 ```
+
+<details>
+<summary>All commands</summary>
 
 | Area | Commands |
 |---|---|
-| Routing & context | `route`, `context`, `bootstrap` |
-| Project | `project init`, `state`, `plan …`, `decide …` |
-| Codebase | `codebase affected\|update\|query\|path\|explain` (Graphify) |
-| Engineering | `gates …` (Unlazy acceptance gates) |
+| Routing and context | `route`, `context`, `bootstrap` |
+| Project | `project init\|status\|questions\|answer`, `state`, `plan index\|show\|add-task\|set-status\|reconcile`, `decide` |
+| Codebase | `codebase affected\|update\|query\|path\|explain` |
+| Engineering | `gates` (acceptance gates) |
 | Testing | `verify`, `test`, `verify exception --reason` |
-| Design | `design search\|system\|check` (UI/UX Pro Max, design-token checks) |
-| SEO | `seo run\|evidence\|authorize` (BeyondSEO) |
-| Media | `media plan\|music-cues` (Brag) |
-| Operations | `dashboard`, `events …`, `runtime status\|install`, `update`, `rollback`, `gc`, `bundle …`, `registry …`, `adapters …`, `doctor`, `validate`, `benchmark` |
-
-## The Agent Office
-
-`agylite dashboard` opens a pixel office where every capability is an agent at a desk — engineering floor, design
-studio, QA lab, SEO & media, mentors & watch. Agents light up when a request routes to them, wait on dependencies, say
-why they are blocked, and go idle again. It is read-only, local (127.0.0.1) and stops when idle.
+| Design | `design search\|system\|check` |
+| SEO | `seo run\|evidence\|authorize` |
+| Media | `media plan\|music-cues` |
+| Operations | `dashboard`, `events`, `runtime status\|install`, `update`, `rollback`, `gc`, `bundle`, `registry`, `adapters`, `doctor`, `validate`, `benchmark` |
+</details>
 
 ## Staying current
 
-Upstreams are pinned, never pulled blindly. `agylite update --check` shows which have new commits;
-`agylite update --latest` applies them through every check (only new commits are downloaded) and switches only if all
-pass; `agylite rollback` undoes it. A GitHub Action checks daily and opens a weekly pull request with checked updates;
-`agylite update --schedule install` adds an optional weekly job on your Mac.
+Upstreams are pinned, never pulled blindly. `agylite update --check` lists new upstream commits, `agylite update
+--latest` applies them through every check and switches only when all pass, and `agylite rollback` undoes it. A GitHub
+Action checks daily and opens a weekly pull request with checked updates.
 
 ## Principles
 
-- **Light:** a few short entry skills on every turn; everything else routed and loaded in budgeted sections.
-- **Deterministic:** routing is rules, not a model call.
-- **Local test-first:** done means recorded evidence from tests, types, lint and build. Browser, Chrome DevTools and
-  screenshot verification are disabled ([policy](docs/architecture/VERIFICATION_POLICY.md)).
-- **Nothing always-on:** no daemons, no upstream hooks; engines start per command in isolated environments.
-- **Isolated projects** and **traceable files:** every bundled file records its upstream, commit, path, hash and license.
+- **Light.** A few short entry skills on every turn; everything else is routed and loaded in budgeted sections.
+- **Deterministic.** Routing is rules, not a model call.
+- **Local and test-first.** Done means recorded evidence from tests, types, lint and build.
+- **Nothing always-on.** No daemons and no MCP servers; engines start per command in isolated environments.
+- **Traceable.** Every bundled file records where it came from and under which license.
+
+## Built on
+
+Agylite stands on the work of these projects. Their content keeps its original license; see
+[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+
+| Project | Used for | License |
+|---|---|---|
+| [ECC](https://github.com/affaan-m/ECC) | engineering workflows, review, security | MIT |
+| [Addy Osmani's agent skills](https://github.com/addyosmani/agent-skills) | production engineering practices | MIT |
+| [gstack](https://github.com/garrytan/gstack) | review and release workflows | MIT |
+| [Karpathy Skills](https://github.com/multica-ai/andrej-karpathy-skills) | coding principles | MIT |
+| [Unlazy](https://github.com/Leonxlnx/unlazy) | completion gates | MIT |
+| [Ponytail](https://github.com/DietrichGebert/ponytail) | simplicity reviews | MIT |
+| [Graphify](https://github.com/Graphify-Labs/graphify) | code graph and impact analysis | Apache-2.0 |
+| [UI/UX Pro Max](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | design search engine and rules | MIT |
+| [Open Design](https://github.com/nexu-io/open-design) | design systems and direction | Apache-2.0 |
+| [Taste](https://github.com/Leonxlnx/taste-skill) | visual quality | MIT |
+| [Appllama](https://github.com/Appllama/appllama-skills) | native mobile rules | MIT |
+| [Agency Agents](https://github.com/msitarzewski/agency-agents) | specialist perspectives | MIT |
+| [BeyondSEO](https://github.com/beyondtahir/beyondseo) | SEO crawler and audits | MIT |
+| [Brag](https://github.com/latent-spaces/brag) | launch videos and showcases | MIT |
+| [Agent Beacon](https://github.com/Asymptote-Labs/agent-beacon) | risk-detection rules | MIT |
+
+## FAQ
+
+<details>
+<summary><b>Do I need to install ECC, UI/UX Pro Max or the other projects separately?</b></summary>
+
+No. The installer fetches the parts Agylite uses at pinned commits and builds them into one local bundle. If you
+already have some of them installed as separate plugins, `agylite doctor` shows how many tokens they add per turn, so
+you can decide whether to remove them.
+</details>
+
+<details>
+<summary><b>Is the plugin alone enough?</b></summary>
+
+The plugin is the host integration; the engine is installed once with the one-line installer above. Without the engine,
+the plugin tells you how to finish setup at session start instead of failing.
+</details>
+
+<details>
+<summary><b>Does my code leave my machine?</b></summary>
+
+No. Routing, context, planning, verification and the dashboard run locally. The network is used to fetch upstreams
+during install or update, and by SEO commands you run against a live site.
+</details>
+
+<details>
+<summary><b>Does it use MCP servers or browser automation?</b></summary>
+
+No MCP servers. Browser, Chrome DevTools and screenshot verification are disabled by policy; work is verified with
+local tests ([policy](docs/architecture/VERIFICATION_POLICY.md)).
+</details>
+
+<details>
+<summary><b>How do I update or uninstall?</b></summary>
+
+Update the engine by running the installer again (or `agylite update --latest` for upstreams), and the plugin with
+`/plugin update agylite@agylite-marketplace`. To uninstall: `/plugin uninstall agylite@agylite-marketplace`, then
+`rm -rf ~/.agylite` and remove the `# Agylite` PATH line from your shell profile.
+</details>
 
 ## Documentation
 
-- [Architecture](docs/architecture/TARGET_ARCHITECTURE.md) and component docs in `docs/architecture/`
-- [Migrating from v1.0.1](docs/migration/V1_TO_V2.md)
-- [Benchmarks](docs/benchmarks/RESULTS.md)
-- Plan and decisions: `docs/plan/IMPLEMENTATION_PLAN.md`, `docs/audit/21_AUDIT_DECISIONS.md`
+- [Architecture](docs/architecture/TARGET_ARCHITECTURE.md) and the component docs in [`docs/architecture/`](docs/architecture/)
+- [Try it on a real build](docs/TRY_AGYLITE.md): a hands-on trial an agent runs and reports on
+- [Benchmarks](docs/benchmarks/RESULTS.md) · [Changelog](CHANGELOG.md) · [Migrating from v1](docs/migration/V1_TO_V2.md)
 
-## Development
+## Contributing
 
 ```bash
-python -m venv .venv && .venv/bin/pip install -e .
+git clone https://github.com/Vikhyath-thelazycoder/AgyLite.git && cd AgyLite
+python3 -m venv .venv && .venv/bin/pip install -e .
 .venv/bin/python -m unittest discover -s tests
 .venv/bin/agylite doctor && .venv/bin/agylite validate
 ```
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md) and the [Code of Conduct](CODE_OF_CONDUCT.md). Security issues:
+[SECURITY.md](SECURITY.md).
 
 ## License
 
-MIT for Agylite itself ([LICENSE](LICENSE)). Bundled upstream files keep their own licenses (13 MIT, 2 Apache-2.0);
-see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) and each bundle's `third_party/` directory.
+Agylite is [MIT](LICENSE) licensed. Bundled upstream files keep their own licenses (13 MIT, 2 Apache-2.0).

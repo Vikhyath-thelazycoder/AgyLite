@@ -11,8 +11,12 @@ This repository is Agylite, a local engineering OS for coding agents (one CLI, o
 
 ## Install
 
+```text
+/plugin marketplace add Vikhyath-thelazycoder/AgyLite
+/plugin install agylite@agylite-marketplace
+```
+
 ```bash
-claude plugin marketplace add Vikhyath-thelazycoder/vikhyath-ai-engineering-os
-claude plugin install agylite@agylite-marketplace
-scripts/install          # central install into ~/.agylite and the local bundle
+curl -fsSL https://raw.githubusercontent.com/Vikhyath-thelazycoder/AgyLite/main/install.sh | bash   # engine, once
+scripts/install          # from a checkout: central install into ~/.agylite and the local bundle
 ```

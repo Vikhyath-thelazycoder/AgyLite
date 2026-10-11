@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="320" viewBox="0 0 1280 320" role="img" aria-labelledby="t d">
+  <title id="t">Agylite</title>
+  <desc id="d">Agylite — the light engineering OS for coding agents.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1020"/>
+      <stop offset="1" stop-color="#141c33"/>
+    </linearGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7cf2c4"/>
+      <stop offset="1" stop-color="#5b8cff"/>
+    </linearGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="#ffffff" stroke-opacity="0.04"/>
+    </pattern>
+  </defs>
+  <rect width="1280" height="320" rx="20" fill="url(#bg)"/>
+  <rect width="1280" height="320" rx="20" fill="url(#grid)"/>
+
+  <!-- mark: a request fanning out to a few routed capabilities -->
+  <g transform="translate(120 104)" fill="none" stroke-linecap="round">
+    <circle cx="16" cy="56" r="14" fill="url(#mark)" stroke="none"/>
+    <path d="M30 56 C70 56 70 12 112 12" stroke="#7cf2c4" stroke-width="4"/>
+    <path d="M30 56 H112" stroke="#6fd0dc" stroke-width="4"/>
+    <path d="M30 56 C70 56 70 100 112 100" stroke="#5b8cff" stroke-width="4"/>
+    <circle cx="120" cy="12" r="8" fill="#7cf2c4" stroke="none"/>
+    <circle cx="120" cy="56" r="8" fill="#6fd0dc" stroke="none"/>
+    <circle cx="120" cy="100" r="8" fill="#5b8cff" stroke="none"/>
+  </g>
+
+  <text x="292" y="150" fill="#f4f6fb" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="-1.5">Agylite</text>
+  <text x="294" y="196" fill="#aab4cf" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, Helvetica, Arial, sans-serif" font-size="26">The light engineering OS for coding agents</text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="17" fill="#cfe9ff">
+    <g transform="translate(294 228)">
+      <rect width="240" height="34" rx="17" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+      <text x="120" y="23" text-anchor="middle">route → only what fits</text>
+    </g>
+    <g transform="translate(548 228)">
+      <rect width="172" height="34" rx="17" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+      <text x="86" y="23" text-anchor="middle">one living plan</text>
+    </g>
+    <g transform="translate(734 228)">
+      <rect width="214" height="34" rx="17" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+      <text x="107" y="23" text-anchor="middle">done = tests passed</text>
+    </g>
+    <g transform="translate(962 228)">
+      <rect width="92" height="34" rx="17" fill="#ffffff" fill-opacity="0.07" stroke="#ffffff" stroke-opacity="0.12"/>
+      <text x="46" y="23" text-anchor="middle">no MCP</text>
+    </g>
+  </g>
+
+  <text x="1160" y="290" text-anchor="end" fill="#6c7896" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="15">Claude Code · Codex · Cursor · Antigravity</text>
+</svg>

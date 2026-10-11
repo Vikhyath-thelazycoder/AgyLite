@@ -44,7 +44,7 @@ Capability activations provide instructional routing guidance to the hosting env
 If you discover a potential security vulnerability in Agylite:
 
 1. **Do NOT disclose it publicly** in an open issue or discussion.
-2. Please submit a **Private Security Advisory** on GitHub via the [Advisories tab](https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os/security/advisories/new).
+2. Please submit a **Private Security Advisory** on GitHub via the [Advisories tab](https://github.com/Vikhyath-thelazycoder/AgyLite/security/advisories/new).
 3. If GitHub Advisories are unavailable, contact the project maintainer directly via GitHub profile: [Vikhyath-thelazycoder](https://github.com/Vikhyath-thelazycoder).
 
 ### What to Include in Your Report

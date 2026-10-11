@@ -1,12 +1,12 @@
 {
   "name": "agylite",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "description": "Agylite: one deterministic router, budgeted context, project state and local test-first verification over a curated bundle of engineering, codebase, design, testing, SEO and media capabilities. No MCP.",
   "author": {
     "name": "Vikhyath",
     "url": "https://github.com/Vikhyath-thelazycoder"
   },
-  "homepage": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
-  "repository": "https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os",
+  "homepage": "https://github.com/Vikhyath-thelazycoder/AgyLite",
+  "repository": "https://github.com/Vikhyath-thelazycoder/AgyLite",
   "license": "MIT"
 }
