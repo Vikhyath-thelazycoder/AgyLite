@@ -394,6 +394,29 @@ class TestTrialFixes(ProjectEnv):
         self.assertEqual(code, 0, err)
         self.assertEqual(state.require_state(self.project)["pending_questions"], [])
 
+    def test_setting_the_same_status_changes_nothing(self):
+        p = ("--project", str(self.root))
+        for item, status, *ev in (("T-3.1", "READY_FOR_VERIFICATION"), ("T-3.1", "VERIFIED", "e1.json"),
+                                  ("T-3.2", "IN_PROGRESS"), ("T-3.2", "READY_FOR_VERIFICATION"),
+                                  ("T-3.2", "VERIFIED", "e2.json")):
+            run_cli("plan", "set-status", item, status, *(["--evidence", ev[0]] if ev else []), *p)
+        events, plan = len(event_log.read(self.project)), self.plan_text()
+        code, out, _ = run_cli("plan", "set-status", "P3", "VERIFIED", "--evidence", "e9.json", *p)   # rolled up already
+        self.assertEqual((code, out.strip()), (0, "P3: already VERIFIED (unchanged)"))
+        self.assertEqual(len(event_log.read(self.project)), events)
+        self.assertEqual(self.plan_text(), plan)
+        self.assertEqual(state.require_state(self.project)["verification"]["last_task"]["task"], "T-3.2")
+
+    def test_events_list_says_what_each_state_update_was(self):
+        p = ("--project", str(self.root))
+        run_cli("plan", "add-task", "P1", "Skeleton", *p)
+        run_cli("project", "answer", "auth", "email", *p)
+        run_cli("plan", "set-status", "T-1.1", "IN_PROGRESS", *p)
+        out = run_cli("events", "list", *p)[1]
+        self.assertIn("task T-1.1 added to P1", out)
+        self.assertIn("answered auth", out)
+        self.assertIn("P1 PLANNED → IN_PROGRESS (roll-up from T-1.1)", out)
+
     def test_verify_ties_a_run_to_the_single_active_task(self):
         from agylite.verify.engine import active_task
         self.assertEqual(active_task(self.project), "T-3.1")

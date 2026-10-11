@@ -170,6 +170,23 @@ def _route(args):
     return 0
 
 
+def _event_summary(d):
+    """A few words saying what an event was about (`events list`), from its details."""
+    if d.get("change") == "task_added":
+        return f"task {d.get('task')} added to {d.get('phase')}"
+    if d.get("change") == "question_answered":
+        return f"answered {d.get('question')}"
+    if d.get("change") == "decision_recorded":
+        return f"decision {d.get('decision')}"
+    if d.get("change") == "project_initialised":
+        return "project initialised"
+    if d.get("item") and d.get("to"):
+        return f"{d['item']} {d.get('from') or '?'} → {d['to']}" + (f" ({d['reason']})" if d.get("reason") else "")
+    if d.get("change"):
+        return str(d["change"])
+    return ""
+
+
 def _session_id(args, create=False):
     import os
     import secrets
@@ -347,6 +364,8 @@ def _project_cmd(args):
             s["answers"][args.question] = " ".join(args.answer)
             s["pending_questions"] = [q for q in s.get("pending_questions") or [] if q != args.question]
         pstate.update_state(project, record)
+        from .events import emit
+        emit(project, "STATE_UPDATED", details={"change": "question_answered", "question": args.question})
         print(f"recorded {args.question}")
         return 0
     if cmd == "relink":
@@ -432,7 +451,8 @@ def _plan_cmd(args):
             return 3
         old = reconcile.set_status(project, st, index, args.item, args.status.upper(), args.evidence)
         plan_index.load_index(project, st, rebuild=True)
-        print(f"{args.item}: {old} → {args.status.upper()}")
+        print(f"{args.item}: already {old} (unchanged)" if old == args.status.upper()
+              else f"{args.item}: {old} → {args.status.upper()}")
         return 0
     if cmd == "reconcile":
         from .routing import Router
@@ -482,7 +502,9 @@ def _events_cmd(args):
         else:
             for r in rows:
                 caps = f" [{', '.join(r['capabilities'][:3])}{'…' if len(r['capabilities']) > 3 else ''}]" if r["capabilities"] else ""
-                print(f"{r['ts']}  {r['event']:28} {r['severity']:8} {r.get('session_id') or '-':22}{caps}")
+                what = _event_summary(r.get("details") or {})
+                print(f"{r['ts']}  {r['event']:28} {r['severity']:8} {r.get('session_id') or '-':22}{caps}"
+                      + (f"  {what}" if what else ""))
         return 0
     rules_dir = rules_cel.rules_dir_for(current_bundle())
     if rules_dir is None:

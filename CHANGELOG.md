@@ -2,6 +2,16 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [2.1.3] - 2026-10-11
+
+From the second hands-on trial (passed with no failures).
+
+### Fixed
+- Setting a task or phase to the status it already has (e.g. a phase that already rolled up) changes nothing: no plan
+  history row, no event, and the last verified task is kept (`plan set-status` says "already … (unchanged)").
+- `agylite events list` says what each state update was (task added, question answered, decision, status change);
+  answering a requirements question is logged as its own state update.
+
 ## [2.1.2] - 2026-10-11
 
 Fixes from the first hands-on trial (`docs/TRY_AGYLITE.md`).

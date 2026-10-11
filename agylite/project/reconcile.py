@@ -137,6 +137,8 @@ def set_status(project, state, index, item_id, status, evidence=None):
     from ..events.log import emit
     with project_lock(project, "plan"):
         old, rollup = _set_status_locked(project, state, item_id, status, evidence)
+    if old == status:      # already there (e.g. a phase that rolled up): nothing changes, nothing is recorded
+        return old
     if status in DONE_STATES:
         record_verification(project, item_id, status, evidence)
     details = {"item": item_id, "from": old, "to": status, "evidence": evidence}
@@ -175,6 +177,10 @@ def _set_phase_meta(section, status, evidence=None):
 
 def _set_status_locked(project, state, item_id, status, evidence):
     index = plan_index.load_index(project, state)
+    current = (plan_index.phase(index, item_id)["status"] if PHASE_ID.match(item_id) else
+               next((t["status"] for p in index["phases"] for t in p["tasks"] if t["id"] == item_id), None))
+    if current == status:
+        return current, None
     text = _read_plan(project, state)
     rollup = None
     if PHASE_ID.match(item_id):
