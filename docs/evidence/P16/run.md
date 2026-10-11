@@ -13,3 +13,9 @@ This machine's DNS was unavailable (`curl https://example.com` → resolving tim
 - JavaScript shell (200, 12 words, 4 scripts) → presence **OBSERVATION**, absence **UNKNOWN** "could not be inspected completely: Possible JavaScript shell…"
 - failed page (timeout) → **UNKNOWN** "could not be inspected: No successful usable page capture."
 A live public crawl remains to be re-run once DNS works (`vikhyath seo run crawl https://example.com/`).
+
+## Live crawl retry (2026-10-11, after the v2.1.1 install)
+`agylite runtime install seo` (2.2 s) then `agylite seo run crawl https://example.com/ --max-pages 5` → exit 1:
+1 attempted, 0 inspected, 1 blocked_or_failed (`gaierror: nodename nor servname provided`, `robots_unavailable`).
+On this machine `github.com` and `google.com` resolve but `example.com` does not (`dscacheutil`, `curl` timeout), so
+the live crawl, and the 6 Graphify `test_security` tests that fetch example.com, stay open until it resolves.

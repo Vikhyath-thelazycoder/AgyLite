@@ -456,11 +456,14 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 
 ## Resume here (next session)
 
-1. Branch `feat/v2-os-transformation` (M0–M6 committed, not pushed; `main` has A-1 only).
-2. **All phases complete (M0–M7).** Next: the release steps in `docs/FINAL_REPORT.md` (merge to main, tag v2.0.0, reinstall in hosts) — only with the user's go-ahead. Earlier order was P25 diagnostics + measured OLD vs NEW benchmarks (tokens, speed, routing accuracy; the user's Claude has ECC, UI/UX Pro Max and Open Design installed directly — use them as the OLD baseline) → P26 docs/README rewrite → P27 integration + final report.
-3. Test setup used so far: scratch venv with `pip install -e .`, scratch `VIKHYATH_HOME` with bundle `495f026f381e`; `python -m unittest discover -s tests` (228 OK, 3 opt-in skipped). Rebuild a bundle with `vikhyath bundle build --self-test` (needs `.staging/upstream`).
-4. **Rename to Agylite in P26 (D-044)**: CLI `agylite` (+ `vikhyath` alias), package, `~/.agylite`, plugin/marketplace, skills, adapters, docs — before the v2.0.0 release.
-5. Open items carried forward: Claude Code RUNTIME_VERIFIED (install the plugin from this branch, start one session); live SEO crawl once this machine's DNS works (`vikhyath seo run crawl https://example.com/`); Graphify upstream suite per-file failure breakdown (P25); closure trace should follow absolute intra-package imports (P25, D-037).
+1. `main` is released (v2.0.0 → v2.1.1); all phases M0–M7 and P28 are complete. No build work remains.
+2. Central install done on this machine (2026-10-11): `~/.agylite`, bundle `2502140a790a` known-good, 0 errors; doctor 50/0.
+   Add `export PATH="$HOME/.agylite/core/bin:$PATH"` to the shell profile.
+3. Claude Code plugin `agylite@agylite-marketplace` v2.1.1 installed; **RUNTIME_VERIFIED** (SessionStart hook ran
+   2026-10-11T08:34:45Z). The v1 plugin is removed.
+4. Still open: live SEO crawl and the 6 Graphify network tests — retried 2026-10-11, `example.com` still does not
+   resolve on this machine (other hosts do); see docs/evidence/P16/run.md. Codex/Cursor/Antigravity runtime checks only
+   if those hosts get installed. Tests: `python -m unittest discover -s tests`.
 
 ## Change history
 
