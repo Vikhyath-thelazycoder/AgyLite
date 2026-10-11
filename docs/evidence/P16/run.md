@@ -19,3 +19,11 @@ A live public crawl remains to be re-run once DNS works (`vikhyath seo run crawl
 1 attempted, 0 inspected, 1 blocked_or_failed (`gaierror: nodename nor servname provided`, `robots_unavailable`).
 On this machine `github.com` and `google.com` resolve but `example.com` does not (`dscacheutil`, `curl` timeout), so
 the live crawl, and the 6 Graphify `test_security` tests that fetch example.com, stay open until it resolves.
+
+## Live public crawl — success path (2026-10-11)
+`example.com` is unresolvable on this network only (router 192.168.1.1 and direct UDP 53 to 1.1.1.1 time out; DNS over
+HTTPS returns its A records), so the live crawl ran against the owner's public repo page instead:
+`agylite seo run crawl https://github.com/Vikhyath-thelazycoder/vikhyath-ai-engineering-os --max-pages 3` → exit 0;
+3 attempted, 2 inspected, 1 skipped by robots.txt (`robots_rule_disallowed`, correct). `agylite seo evidence <run>`:
+complete captures labelled [FACT], the disallowed page [UNKNOWN]. **Live crawl: VERIFIED.** The 6 Graphify
+`test_security` tests stay open (they need `example.com`; running the upstream suite also needs the owner's permission).
