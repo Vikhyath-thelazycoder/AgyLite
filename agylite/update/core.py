@@ -141,9 +141,11 @@ def update(home: Path, repo: str, sha: str, *, source: Path | None = None, stagi
     cand_ev, cand_stage = work / "evidence", work / "staging"
     shutil.copytree(evidence, cand_ev)
     cand_stage.mkdir(parents=True)
-    for name in pins:   # every other upstream: the existing staged snapshot, unchanged
-        if name != repo and (staging / name).exists():
-            (cand_stage / name).symlink_to((staging / name).resolve())
+    trees = home / "staging-current"   # trees of upstreams already moved by earlier updates (match their pins)
+    for name in pins:   # every other upstream: the tree that matches its current pin
+        src = trees / name if (trees / name).exists() else staging / name
+        if name != repo and src.exists():
+            (cand_stage / name).symlink_to(src.resolve())
     if source is not None:
         shutil.copytree(source, cand_stage / repo, symlinks=False)
         rows = inventory_from_dir(cand_stage / repo)
@@ -184,6 +186,11 @@ def update(home: Path, repo: str, sha: str, *, source: Path | None = None, stagi
                   status="activated" if not problems else "failed")
     if not problems:
         bundle_build.activate(home, info["bundle_id"])
+        trees.mkdir(parents=True, exist_ok=True)   # later updates build with this upstream's new tree
+        link = trees / repo
+        if link.is_symlink() or link.exists():
+            link.unlink()
+        link.symlink_to((cand_stage / repo).resolve())
     _log(home, report)
     return report
 

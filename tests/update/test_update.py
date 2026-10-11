@@ -119,3 +119,53 @@ class TestRollbackAndGc(Base):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TestSequentialUpdatesAcrossUpstreams(unittest.TestCase):
+    """P28 live finding: after upstream A is updated, building B must use A's NEW tree (its pin moved), not the
+    original staging snapshot."""
+
+    def test_second_upstream_builds_with_first_upstreams_new_tree(self):
+        import json
+        from tests.bundle.test_build import SHA
+        from agylite.bundle.store import git_blob_sha1
+        with tempfile.TemporaryDirectory() as t:
+            tmp = Path(t)
+            staging, evidence, home = tmp / "staging", tmp / "evidence", tmp / "home"
+            (evidence / "upstream-file-hashes").mkdir(parents=True)
+            rules = "version: 1\nrepos:\n"
+            licenses, snaps = {}, []
+            for name in ("alpha", "beta"):
+                for path, text in FILES.items():
+                    (staging / name / path).parent.mkdir(parents=True, exist_ok=True)
+                    (staging / name / path).write_text(text, encoding="utf-8")
+                rows = [f"{git_blob_sha1(x.encode())}\t{len(x.encode())}\t{p}" for p, x in sorted(FILES.items())]
+                (evidence / "upstream-file-hashes" / f"{name}.tsv").write_text(
+                    f"# {name} @ {SHA}\nblob_sha1\tbytes\tpath\n" + "\n".join(rows) + "\n", encoding="utf-8")
+                rules += (f"  {name}:\n    default: {{decision: EXCLUDE, reason: OUT_OF_DOMAIN}}\n    rules:\n"
+                          f"      - {{paths: [\"LICENSE\"], decision: COPY, capability: engineering/planning, reason: LICENSE}}\n"
+                          f"      - {{paths: [\"skills/**\"], decision: ADAPT, capability: engineering/planning, reason: demo}}\n")
+                licenses[name] = {"license": "MIT", "attribution": "x", "license_files": ["LICENSE"], "note": None,
+                                  "repository": f"demo/{name}", "commit_sha": SHA, "bundled_files": 3}
+                snaps.append(f"  {name}: {{repo: demo/{name}, head: {SHA}}}")
+            (evidence / "upstream-staging-snapshot.yaml").write_text("snapshots:\n" + "\n".join(snaps) + "\n",
+                                                                     encoding="utf-8")
+            (tmp / "rules.yaml").write_text(rules, encoding="utf-8")
+            (tmp / "licenses.json").write_text(json.dumps(licenses), encoding="utf-8")
+            kw = dict(staging=staging, rules_path=tmp / "rules.yaml", licenses_path=tmp / "licenses.json",
+                      check_registry=False, log=lambda *_: None)
+            bundle_build.build(home, staging, rules_path=tmp / "rules.yaml", evidence=evidence,
+                               licenses_path=tmp / "licenses.json", log=lambda *_: None)
+            for name, sha in (("alpha", "b" * 40), ("beta", "c" * 40)):
+                files = dict(FILES)
+                files["skills/x/SKILL.md"] += f"{name} v2\n"
+                src = tmp / f"src-{name}"
+                for path, text in files.items():
+                    (src / path).parent.mkdir(parents=True, exist_ok=True)
+                    (src / path).write_text(text, encoding="utf-8")
+                ev = home / "bundles" / "current" / "evidence"
+                r = update(home, name, sha, source=src, evidence=ev if ev.is_dir() else evidence, **kw)
+                self.assertEqual(r["status"], "activated", r.get("errors"))
+            pins = (home / "bundles" / "current" / "evidence" / "upstream-staging-snapshot.yaml").read_text(encoding="utf-8")
+            self.assertIn("b" * 40, pins)
+            self.assertIn("c" * 40, pins)
