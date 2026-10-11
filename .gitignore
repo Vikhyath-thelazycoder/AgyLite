@@ -28,3 +28,6 @@ coverage/
 
 # Python packaging build artefacts
 *.egg-info/
+
+# Agylite local verification evidence
+.agylite/
