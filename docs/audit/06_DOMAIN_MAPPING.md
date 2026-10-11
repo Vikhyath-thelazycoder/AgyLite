@@ -11,22 +11,22 @@ Plan, build, review and ship software with completion discipline.
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
 | `engineering/principles` | Think-before-coding, simplicity-first, surgical changes, goal-driven execution | ecc, karpathy | 4 | 37.5 | 9,608 | L1 | none | False | none | bundled | — |
-| `engineering/planning` | Requirements intake, specs, task breakdown, plan reviews, living implementation plan | addy, agency, ecc, gstack | 37 | 422.1 | 108,046 | L2 | none | False | none | mixed | — |
-| `engineering/architecture` | System/interface design, boundaries, ADRs, TRD/ARCHITECTURE docs | addy, agency, ecc | 14 | 119.9 | 30,698 | L2 | none | False | none | bundled | — |
-| `engineering/implementation` | Incremental, source-grounded, constraint-respecting implementation | addy, agency | 6 | 81.5 | 20,873 | L2 | none | False | none | bundled | — |
-| `engineering/backend` | Backend patterns, data layer, error handling, payments/realtime specialists | agency, ecc | 9 | 109.6 | 28,053 | L2 | none | False | none | bundled | — |
-| `engineering/frontend` | Frontend engineering: components, state, accessibility in code, responsiveness | addy, agency, ecc | 5 | 65.4 | 16,746 | L2 | none | False | none | bundled | design/frontend |
-| `engineering/security` | Threat-aware hardening, security review, CSO audit, guardrails | addy, agency, ecc, gstack | 33 | 422.0 | 108,035 | L2 | none | False | none | bundled | — |
+| `engineering/planning` | Requirements intake, specs, task breakdown, plan reviews, living implementation plan | addy, agency, ecc, gstack | 41 | 439.9 | 112,618 | L2 | none | False | none | mixed | — |
+| `engineering/architecture` | System/interface design, boundaries, ADRs, TRD/ARCHITECTURE docs | addy, agency, ecc | 14 | 121.3 | 31,045 | L2 | none | False | none | bundled | — |
+| `engineering/implementation` | Incremental, source-grounded, constraint-respecting implementation | addy, agency | 6 | 81.8 | 20,951 | L2 | none | False | none | bundled | — |
+| `engineering/backend` | Backend patterns, data layer, error handling, payments/realtime specialists | agency, ecc | 9 | 110.3 | 28,244 | L2 | none | False | none | bundled | — |
+| `engineering/frontend` | Frontend engineering: components, state, accessibility in code, responsiveness | addy, agency, ecc | 5 | 66.0 | 16,896 | L2 | none | False | none | bundled | design/frontend |
+| `engineering/security` | Threat-aware hardening, security review, CSO audit, guardrails | addy, agency, ecc, gstack | 33 | 436.6 | 111,765 | L2 | none | False | none | bundled | — |
 | `engineering/performance` | Measured performance optimization | addy, ecc | 4 | 51.7 | 13,240 | L2 | none | False | none | bundled | — |
-| `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack | 29 | 161.0 | 41,212 | L2 | none | False | none | bundled | — |
-| `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack | 5 | 36.0 | 9,215 | L2 | none | False | none | bundled | — |
-| `engineering/simplicity` | YAGNI and minimality review (explicit or plan-review time; never always-on) | addy, agency, ecc, gstack, ponytail | 23 | 90.8 | 23,245 | L2 | none | False | none | bundled | — |
+| `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack | 30 | 185.5 | 47,495 | L2 | none | False | none | bundled | — |
+| `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack | 11 | 48.5 | 12,405 | L2 | none | False | none | bundled | — |
+| `engineering/simplicity` | YAGNI and minimality review (explicit or plan-review time; never always-on) | addy, agency, ecc, gstack, ponytail | 23 | 94.1 | 24,080 | L2 | none | False | none | bundled | — |
 | `engineering/completion` | Acceptance gates, evidence-backed completion states, no-placeholder output | addy, taste, unlazy | 33 | 416.5 | 106,614 | L2 | node | False | none | bundled | — |
-| `engineering/release` | CI/CD, git workflow, shipping, canary, observability-in-app, retros | addy, agency, ecc, gstack | 35 | 330.6 | 84,643 | L2 | none | False | none | bundled | — |
+| `engineering/release` | CI/CD, git workflow, shipping, canary, observability-in-app, retros | addy, agency, ecc, gstack | 38 | 356.6 | 91,294 | L2 | none | False | none | bundled | — |
 | `engineering/migration` | Deprecations, schema/data migrations | addy, ecc | 2 | 24.1 | 6,169 | L2 | none | False | none | bundled | — |
-| `engineering/documentation` | Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs | agency, ecc, gstack | 8 | 100.7 | 25,776 | L2 | none | False | none | mixed | — |
-| `engineering/ai-systems` | LLM/RAG/agent system design, cost-aware pipelines, prompt and AI security | agency, ecc | 12 | 138.3 | 35,403 | L2 | none | False | none | bundled | — |
-| `engineering/stack-packs` | Language/framework rules, patterns, reviewers; selected by detected stack | ecc | 250 | 1424.7 | 364,717 | L3 | none | False | none | bundled | — |
+| `engineering/documentation` | Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs | agency, ecc, gstack | 8 | 102.1 | 26,144 | L2 | none | False | none | mixed | — |
+| `engineering/ai-systems` | LLM/RAG/agent system design, cost-aware pipelines, prompt and AI security | agency, ecc | 12 | 140.0 | 35,842 | L2 | none | False | none | bundled | — |
+| `engineering/stack-packs` | Language/framework rules, patterns, reviewers; selected by detected stack | ecc | 253 | 1451.7 | 371,626 | L3 | none | False | none | bundled | — |
 
 ## codebase
 
@@ -34,7 +34,7 @@ Understand an existing project before changing it; narrow the code surface.
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `codebase/repository-understanding` | Build/refresh the code graph; structure, entry points, modules, communities | agency, ecc, graphify | 556 | 8738.7 | 2,237,103 | L2 | python-isolated | False | none | bundled | — |
+| `codebase/repository-understanding` | Build/refresh the code graph; structure, entry points, modules, communities | agency, ecc, graphify | 602 | 9489.0 | 2,429,176 | L2 | python-isolated | False | none | bundled | — |
 | `codebase/impact-analysis` | Affected-file and dependency impact of a change (graph reverse traversal) | — | 0 | 0.0 | 0 | L2 | python-isolated | False | none | mixed | codebase/repository-understanding |
 | `codebase/code-search` | Scoped subgraph query/path/explain instead of raw file dumps | — | 0 | 0.0 | 0 | L1 | python-isolated | False | none | mixed | codebase/repository-understanding |
 
@@ -44,16 +44,16 @@ Product-appropriate, non-generic, accessible interfaces with justified decisions
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `design/design-direction` | Design read, dials, aesthetic direction, redesign (preserve/overhaul) | ecc, opendesign, taste | 12 | 82.9 | 21,234 | L2 | none | False | none | bundled | — |
+| `design/design-direction` | Design read, dials, aesthetic direction, redesign (preserve/overhaul) | ecc, opendesign, taste | 13 | 90.9 | 23,278 | L2 | none | False | none | bundled | — |
 | `design/visual-quality` | Inspectable anti-slop criteria and polish | ecc, gstack, opendesign, taste | 7 | 154.8 | 39,623 | L2 | none | False | none | bundled | — |
-| `design/design-system` | Tokens, components, reference systems, design-system recommendation engine | ecc, opendesign, taste, uiuxpromax | 571 | 9314.9 | 2,384,622 | L2 | python-stdlib | False | none | bundled | — |
+| `design/design-system` | Tokens, components, reference systems, design-system recommendation engine | ecc, opendesign, taste, uiuxpromax | 572 | 9316.8 | 2,385,092 | L2 | python-stdlib | False | none | bundled | — |
 | `design/typography` | Type scale, hierarchy, color systems | opendesign | 5 | 24.8 | 6,346 | L2 | none | False | none | bundled | — |
 | `design/ux` | UX laws, flows, forms, state coverage | opendesign | 2 | 33.7 | 8,631 | L2 | none | False | none | bundled | — |
 | `design/accessibility` | Accessible design baseline and checklist | addy, ecc, opendesign | 6 | 55.7 | 14,251 | L2 | none | False | none | bundled | — |
 | `design/motion` | Purposeful motion, animation discipline, reduced motion (web and React Native gesture/spring motion) | appllama, ecc, opendesign | 16 | 177.9 | 45,541 | L2 | none | False | none | bundled | — |
 | `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics, image-to-code) | appllama, opendesign, taste, uiuxpromax | 147 | 6045.3 | 1,547,589 | L2 | none | False | none | bundled | — |
-| `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 24 | 222.8 | 57,045 | L2 | none | False | none | bundled | design/visual-quality |
-| `design/brand` | Brand identity, voice, kits | ecc, opendesign, taste, uiuxpromax | 36 | 226.1 | 57,881 | L2 | none | False | none | bundled | — |
+| `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 228.7 | 58,542 | L2 | none | False | none | bundled | design/visual-quality |
+| `design/brand` | Brand identity, voice, kits | ecc, opendesign, taste, uiuxpromax | 36 | 229.0 | 58,614 | L2 | none | False | none | bundled | — |
 
 ## testing
 
@@ -61,13 +61,13 @@ Evidence that implementation meets acceptance criteria — local and scripted fi
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `testing/strategy` | Test strategy, TDD, test value audit (QA: CORE) | addy, agency, ecc, gstack | 15 | 175.1 | 44,822 | L2 | none | False | none | bundled | — |
-| `testing/local-verification` | Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns (QA: CORE) | agency, ecc, gstack | 10 | 41.1 | 10,531 | L2 | os-native | local-only | none | mixed | testing/evidence |
+| `testing/strategy` | Test strategy, TDD, test value audit (QA: CORE) | addy, agency, ecc, gstack | 15 | 177.5 | 45,450 | L2 | none | False | none | bundled | — |
+| `testing/local-verification` | Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns (QA: CORE) | agency, ecc, gstack | 10 | 41.2 | 10,557 | L2 | os-native | local-only | none | mixed | testing/evidence |
 | `testing/security` | Authn/authz, input validation, request and dependency checks (QA: CORE) | — | 0 | 0.0 | 0 | L2 | os-native | local-only | none | mixed | engineering/security |
 | `testing/accessibility` | Automated a11y checks (evidence, not WCAG proof) (QA: CORE) | agency | 1 | 15.8 | 4,057 | L2 | os-native | False | none | mixed | design/accessibility |
-| `testing/performance` | Measured latency, sizes, timings, benchmarks (QA: CORE) | addy, agency, ecc | 4 | 37.0 | 9,467 | L2 | os-native | local-only | none | mixed | — |
+| `testing/performance` | Measured latency, sizes, timings, benchmarks (QA: CORE) | addy, agency, ecc | 4 | 37.1 | 9,508 | L2 | os-native | local-only | none | mixed | — |
 | `testing/regression` | Regression and AI/eval regression harnesses (QA: CORE) | ecc | 14 | 103.7 | 26,548 | L2 | none | False | none | bundled | — |
-| `testing/release-verification` | Re-verify gates and evidence before claiming completion (QA: CORE) | agency, ecc | 4 | 31.0 | 7,943 | L2 | node | False | none | bundled | engineering/completion |
+| `testing/release-verification` | Re-verify gates and evidence before claiming completion (QA: CORE) | agency, ecc | 4 | 31.3 | 8,011 | L2 | node | False | none | bundled | engineering/completion |
 | `testing/evidence` | Machine-readable verification evidence (command, suite, counts, result, artifact hash) written to the project's verification state (QA: CORE) | — | 0 | 0.0 | 0 | L1 | os-native | False | none | os-native | — |
 | `testing/browser-exception` | Browser/visual verification is disabled by policy; an explicit user request is recorded as a logged per-project exception instead (QA: DISABLED_BY_POLICY) | — | 0 | 0.0 | 0 | L1 | os-native | False | none | os-native | — |
 
@@ -100,7 +100,7 @@ Launch and showcase artifacts — never activates backend capabilities.
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `media/launch-video` | Launch video from project or URL (brag-slim default; full brag when Hyperframes is present) | agency, brag | 294 | 16241.8 | 4,157,894 | L2 | python-uv | optional | required-for-output | bundled | — |
+| `media/launch-video` | Launch video from project or URL (brag-slim default; full brag when Hyperframes is present) | agency, brag | 294 | 16241.8 | 4,157,895 | L2 | python-uv | optional | required-for-output | bundled | — |
 | `media/demo` | UI demo recording and video editing | ecc | 46 | 120.8 | 30,932 | L2 | playwright-optional | False | required-for-output | bundled | — |
 | `media/presentation` | Decks, one-pagers, slides | ecc, opendesign, uiuxpromax | 23 | 124.0 | 31,743 | L2 | none | False | none | bundled | — |
 | `media/showcase` | Launch copy and storytelling | opendesign | 2 | 2.4 | 614 | L2 | none | False | none | bundled | — |
@@ -114,4 +114,4 @@ Structured, redacted events about OS activity; data source for the dashboard.
 | `observability/events` | Event model and append-only per-project event log | — | 0 | 0.0 | 0 | L1 | os-native | False | none | os-native | — |
 | `observability/sessions` | Session/agent state model (SLEEPING…FAILED) | — | 0 | 0.0 | 0 | L1 | os-native | False | none | os-native | — |
 | `observability/token-metrics` | Bytes/token estimates and usage per routing decision | — | 0 | 0.0 | 0 | L1 | os-native | False | none | os-native | — |
-| `observability/risk-detection` | Declarative risky-command/injection/exfiltration rules over OS events | beacon | 78 | 223.4 | 57,191 | L1 | os-native | False | none | mixed | — |
+| `observability/risk-detection` | Declarative risky-command/injection/exfiltration rules over OS events | beacon | 78 | 232.7 | 59,569 | L1 | os-native | False | none | mixed | — |

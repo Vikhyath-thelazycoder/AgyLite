@@ -1,4 +1,4 @@
-# brag @ cb89b9f44309b0bf4e3cb89e685fadf80c7999ed
+# brag @ 8531ccb9f471ef5099abf930079e47b55c55bb21
 blob_sha1	bytes	path
 60a9535c63f54b12842db6194be8211736c6004e	17	.agents/skills/brag
 ab2a17354c0c09681482846cecfbd663fff13075	22	.agents/skills/brag-slim
@@ -8,6 +8,7 @@ ab2a17354c0c09681482846cecfbd663fff13075	22	.agents/skills/brag-slim
 ab2a17354c0c09681482846cecfbd663fff13075	22	.claude/skills/brag-slim
 465a03bb6b60fb6c30aadd46f330ca084b4936d2	1164	.codex-plugin/plugin.json
 6e8ddd8588bfc3bff43081cd36f6c8c517b4480c	135	.gitattributes
+500c45618d968b1c99cf17e923a06a03e9d4d232	933	.github/FUNDING.yml
 3999a27711fc664721184a6396fc6e7738cf2a6c	354	.gitignore
 60a9535c63f54b12842db6194be8211736c6004e	17	.opencode/skills/brag
 ab2a17354c0c09681482846cecfbd663fff13075	22	.opencode/skills/brag-slim
@@ -362,7 +363,7 @@ f5b3d9b0e9317e5308641ee9518bbab32b434ad3	18208	skills/brag/references/audio.md
 d3ba5a780fd29c149520b26c7bb43186af9ab376	6049	skills/brag/references/step-1-inspect.md
 0651283a541e88b1ff1fa3b13544c314b10d9b5c	13151	skills/brag/references/step-2-plan.md
 0829d87156a5f6fb55750275104e29bdd90de7d7	14780	skills/brag/references/step-3-compose.md
-bd836220fe41090f7f5a53c5a816f6c933c529cd	6228	skills/brag/references/step-4-deliver.md
+33dd445f89521b667ed0194384f65a6ba147df1e	6230	skills/brag/references/step-4-deliver.md
 5d28b746cf3b50c0fcd261109eee7c69bd1dd444	6677	skills/brag/references/tones.md
 a9bbe865ea3a7d8c6c11d923ce7b610ccab765e8	10751	skills/brag/scripts/analyze_music_cues.py
 5adfcdbd1b8d713e9723e0bd9493caeef0070f18	248	skills/brag/scripts/pyproject.toml

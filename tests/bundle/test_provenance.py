@@ -7,7 +7,16 @@ sys.path.insert(0, ROOT_DIR)
 
 from agylite.bundle import provenance, rules  # noqa: E402
 
-EXPECTED_BUNDLED_FILES = 2582  # P6: 36 generated gstack sections rendered from .tmpl; Angular mcp.md and 13 UI/UX tooling tests excluded; D-034/D-035: −15 browser/visual files, +4 Appllama; D-037: +graphify serve.py; D-038: −laravel-plugin-discovery (MCP); P25: −graphify tests/test_skillgen.py
+def _expected_bundled_files():
+    """Bundled files per the generated extraction summary (COPY + ADAPT + PRESERVE). Upstream updates (P28) change the
+    number; these tests check that provenance, registry and licenses all agree with the audited extraction matrix."""
+    import json as _json
+    with open(os.path.join(ROOT_DIR, "docs", "audit", "evidence", "extraction-summary.json"), encoding="utf-8") as f:
+        repos = _json.load(f)["repos"]
+    return sum(d.get(k, {}).get("files", 0) for d in repos.values() for k in ("COPY", "ADAPT", "PRESERVE"))
+
+
+EXPECTED_BUNDLED_FILES = _expected_bundled_files()
 
 
 class TestPlannedProvenance(unittest.TestCase):

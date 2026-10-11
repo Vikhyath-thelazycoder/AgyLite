@@ -235,7 +235,7 @@ repos:
     default: {decision: EXCLUDE, reason: UPSTREAM_DEV}
     rules:
       - {paths: ["LICENSE", "LICENSE-MIT", "NOTICE"], decision: COPY, capability: codebase/repository-understanding, reason: LICENSE}
-      - {paths: ["tests/test_skillgen.py"], decision: EXCLUDE, reason: "Tests the excluded skill generator tools/skillgen (found by the absolute-import closure trace, P25)"}
+      - {paths: ["tests/test_skill*.py"], decision: EXCLUDE, reason: "Tests of the excluded skill generator tools/skillgen (closure trace P25; upstream added more in the first P28 update)"}
       - {paths: ["graphify/serve.py"], decision: PRESERVE, capability: codebase/repository-understanding, reason: "EXCEPTION to MCP exclusion (D-037): query/path/explain import its graph search helpers; mcp/starlette are imported only inside serve()/serve_http(), the mcp extra is never installed and the OS wrapper blocks `serve`"}
       - {paths: ["graphify/mcp_ingest.py"], decision: PRESERVE, capability: codebase/repository-understanding, reason: "EXCEPTION to MCP exclusion: unconditionally imported by extract.py; parses MCP config files as graph data; no server/client/config/runtime (§2.1 satisfied)"}
       - {paths: ["graphify/always_on/**", "graphify/skill-*.md", "graphify/command-kilo.md"], decision: EXCLUDE, reason: HOST_PORT}
@@ -386,6 +386,9 @@ accepted_gaps:
   - {repo: beyondseo, target: docs/lovable.md, reason: "Host-installation text removed by SKILL.md ADAPT"}
   - {repo: ecc, target: install.sh, reason: "rules/README install instructions replaced by OS stack-pack activation in ADAPT"}
   - {repo: gstack, target: docs/designs/v2_PLAN.md, reason: "Provenance mention in section manifests"}
+  - {repo: gstack, target: docs/ship-policy.md, reason: "Policy-document mention in ship (upstream 5cb5e1c); the skill text is self-contained, the doc chains into gstack build tooling"}
+  - {repo: gstack, target: docs/designs/HONEST_WORK_GATE_INTEGRITY.md, reason: "Design-rationale mention in review/gate-integrity (upstream 5cb5e1c); chains into gstack TypeScript resolvers"}
+  - {repo: gstack, target: scripts/ship-measure.ts, reason: "gstack runtime measurement script named in investigate/sections/flake (upstream 5cb5e1c); gstack runtime is not part of the OS (D-038)"}
   - {repo: gstack, target: docs/state-root.md, reason: "Comment mention in hook-extract.sh"}
   - {repo: gstack, target: docs/test-value-bar.md, reason: "Mention inside a REFERENCE resolver"}
   - {repo: gstack, target: document-generate/SKILL.md, reason: "Template self-reference to its generated output"}

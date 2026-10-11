@@ -7,6 +7,7 @@ EXCLUDE	DOC_ASSET		17	.claude/skills/brag
 EXCLUDE	DOC_ASSET		22	.claude/skills/brag-slim
 EXCLUDE	DOC_ASSET		1164	.codex-plugin/plugin.json
 EXCLUDE	DOC_ASSET		135	.gitattributes
+EXCLUDE	DOC_ASSET		933	.github/FUNDING.yml
 EXCLUDE	DOC_ASSET		354	.gitignore
 EXCLUDE	DOC_ASSET		17	.opencode/skills/brag
 EXCLUDE	DOC_ASSET		22	.opencode/skills/brag-slim
@@ -361,7 +362,7 @@ PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6049	skills/brag/references/step-1-inspect.md
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	13151	skills/brag/references/step-2-plan.md
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	14780	skills/brag/references/step-3-compose.md
-PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6228	skills/brag/references/step-4-deliver.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6230	skills/brag/references/step-4-deliver.md
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	6677	skills/brag/references/tones.md
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10751	skills/brag/scripts/analyze_music_cues.py
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	248	skills/brag/scripts/pyproject.toml

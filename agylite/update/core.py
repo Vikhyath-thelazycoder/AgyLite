@@ -90,7 +90,8 @@ def fetch_commit(repo: str, sha: str, target: Path, rules_repo, log=print, mirro
                         url_for(repo), str(target)], check=True, capture_output=True)
     subprocess.run(["git", "fetch", "--quiet", "origin", sha], cwd=target, check=False)
     rows = inventory_from_git(target, sha, repo)
-    needed = [p for p, _s, _b in rows if classify(rules_repo, p)["decision"] in BUNDLED or p.startswith(("LICENSE", "NOTICE"))]
+    needed = [p for p, _s, _b in rows if classify(rules_repo, p)["decision"] in BUNDLED
+              or p.startswith(("LICENSE", "NOTICE", "licenses/")) or p == ".claude-plugin/plugin.json"]
     needed += [p[:-5] for p in needed if p.endswith(".tmpl")]
     subprocess.run(["git", "sparse-checkout", "set", "--no-cone", "--stdin"], cwd=target, check=True,
                    input="".join(f"/{p}\n" for p in needed), text=True)
@@ -202,7 +203,11 @@ def update(home: Path, repo: str, sha: str, *, source: Path | None = None, stagi
         problems += bundle_build.verify(bundle)
         if check_registry:
             from ..registry.generate import check as registry_check
-            problems += registry_check(bundle_dir=bundle)
+            reg = registry_check(bundle_dir=bundle)
+            # CARD.md shows bundled-file counts; new upstream files make it stale until `registry cards` regenerates
+            # it in the same change (CI does), so that alone is a warning, not a failure.
+            report["warnings"] = [p for p in reg if "CARD.md is stale" in p]
+            problems += [p for p in reg if "CARD.md is stale" not in p]
     shutil.copytree(cand_ev, bundle / "evidence", dirs_exist_ok=True)
     report.update(bundle_id=info["bundle_id"], counts=info["counts"], errors=problems[:50],
                   status="activated" if not problems else "failed")

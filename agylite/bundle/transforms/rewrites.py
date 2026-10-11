@@ -87,8 +87,9 @@ REWRITES = {
     # D-035: gstack review embeds browser exploratory QA in its critical pass; point it at local verification instead.
     ("gstack", "review/SKILL.md"): [
         (re.compile(r"From the installed /review SKILL\.md's directory, choose one path:\n.*?"
-                    r"Resolve QA's `sections/\.\.\.` and `templates/\.\.\.` paths from that installed QA SKILL\.md "
-                    r"directory, not the caller or product directory\.\n", re.S),
+                    r"(?:Resolve QA's `sections/\.\.\.` and `templates/\.\.\.` paths from that installed QA SKILL\.md "
+                    r"directory|QA's `sections/\.\.\.` and `templates/\.\.\.` paths resolve from installed QA SKILL\.md), "
+                    r"not the caller or product directory\.\n", re.S),   # second form: upstream wording since 5cb5e1c
          "Exploratory browser QA is disabled by the Agylite verification policy (D-035, config/verification.yaml). "
          "Verify the changed area with the project's own tests, types, lint and build (`testing/local-verification`) "
          "and record the results as evidence; never open a browser or inspect screenshots.\n"),

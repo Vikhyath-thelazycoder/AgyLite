@@ -109,6 +109,21 @@ read `DESIGN.md` if present, cover information hierarchy and the loading/empty/e
 self-contained `sketch.html` (system fonts, grey borders, inline CSS, realistic content) in a temporary directory.
 Give the user its path; do not render, screenshot or inspect it in a browser (config/verification.yaml).
 """,
+    "DESIGN_OUTSIDE_VOICES": """## Outside design opinion
+
+gstack asks an external model service for a second design review here; Agylite does not call outside model services.
+For a second opinion, review the plan against the design capabilities' criteria (`agylite context design/design-review`)
+and run `agylite design check`; ask the user before involving anyone or anything else.
+""",
+    "DESIGN_SHOTGUN_LOOP": """## Variant comparison
+
+gstack's comparison board needs its design daemon, which is not part of the OS. Present two or three directions as
+short written descriptions (or rough sketches the user opens themselves), let the user choose, and record the choice
+with `agylite decide add --kind design …`. Never infer approval from silence.
+""",
+    "TEST_VALUE_MESSAGE": """Test value: judge every new test by the behaviour it protects. A test that cannot fail without the change
+adds no value. List the changed behaviours that remain untested instead of claiming coverage.
+""",
     "DESIGN_MOCKUP": """## Visual design exploration
 
 Visual mockup generation needs gstack's design binary, which is not part of the OS. Use the design domain

@@ -17,8 +17,8 @@ ADAPT	Brand and banners	design/brand	1884	.claude/skills/brand/references/visual
 ADAPT	Brand and banners	design/brand	1997	.claude/skills/brand/references/voice-framework.md
 ADAPT	Brand and banners	design/brand	9182	.claude/skills/brand/scripts/extract-colors.cjs
 ADAPT	Brand and banners	design/brand	9677	.claude/skills/brand/scripts/inject-brand-context.cjs
-ADAPT	Brand and banners	design/brand	14209	.claude/skills/brand/scripts/sync-brand-to-tokens.cjs
-ADAPT	Brand and banners	design/brand	12460	.claude/skills/brand/scripts/tests/test_sync_brand_to_tokens.py
+ADAPT	Brand and banners	design/brand	15233	.claude/skills/brand/scripts/sync-brand-to-tokens.cjs
+ADAPT	Brand and banners	design/brand	14370	.claude/skills/brand/scripts/tests/test_sync_brand_to_tokens.py
 ADAPT	Brand and banners	design/brand	10173	.claude/skills/brand/scripts/validate-asset.cjs
 ADAPT	Brand and banners	design/brand	6638	.claude/skills/brand/templates/brand-guidelines-starter.md
 ADAPT	Token architecture	design/design-system	7458	.claude/skills/design-system/SKILL.md
@@ -279,13 +279,13 @@ EXCLUDE	REPO_META		5403	CONTRIBUTING.md
 COPY	LICENSE	design/design-system	1075	LICENSE
 EXCLUDE	REPO_META		35313	README.id.md
 EXCLUDE	REPO_META		33248	README.ko.md
-EXCLUDE	REPO_META		37133	README.md
+EXCLUDE	REPO_META		37857	README.md
 EXCLUDE	REPO_META		40937	README.vi.md
 EXCLUDE	REPO_META		34114	README.zh.md
 EXCLUDE	REPO_META		1499	SECURITY.md
 EXCLUDE	INSTALLER		36	cli/.gitignore
 EXCLUDE	INSTALLER		39	cli/.npmignore
-EXCLUDE	INSTALLER		3371	cli/README.md
+EXCLUDE	INSTALLER		3420	cli/README.md
 EXCLUDE	INSTALLER		11046	cli/assets/data/app-interface.csv
 EXCLUDE	INSTALLER		2392	cli/assets/data/catalog-summary.json
 EXCLUDE	INSTALLER		23365	cli/assets/data/charts.csv
@@ -372,8 +372,8 @@ EXCLUDE	INSTALLER		1884	cli/assets/skills/brand/references/visual-identity.md
 EXCLUDE	INSTALLER		1997	cli/assets/skills/brand/references/voice-framework.md
 EXCLUDE	INSTALLER		9182	cli/assets/skills/brand/scripts/extract-colors.cjs
 EXCLUDE	INSTALLER		9677	cli/assets/skills/brand/scripts/inject-brand-context.cjs
-EXCLUDE	INSTALLER		14209	cli/assets/skills/brand/scripts/sync-brand-to-tokens.cjs
-EXCLUDE	INSTALLER		12460	cli/assets/skills/brand/scripts/tests/test_sync_brand_to_tokens.py
+EXCLUDE	INSTALLER		15233	cli/assets/skills/brand/scripts/sync-brand-to-tokens.cjs
+EXCLUDE	INSTALLER		14370	cli/assets/skills/brand/scripts/tests/test_sync_brand_to_tokens.py
 EXCLUDE	INSTALLER		10173	cli/assets/skills/brand/scripts/validate-asset.cjs
 EXCLUDE	INSTALLER		6638	cli/assets/skills/brand/templates/brand-guidelines-starter.md
 EXCLUDE	INSTALLER		7458	cli/assets/skills/design-system/SKILL.md
@@ -462,8 +462,9 @@ EXCLUDE	INSTALLER		52	cli/assets/skills/ui-styling/scripts/tests/requirements.tx
 EXCLUDE	INSTALLER		9919	cli/assets/skills/ui-styling/scripts/tests/test_shadcn_add.py
 EXCLUDE	INSTALLER		19154	cli/assets/skills/ui-styling/scripts/tests/test_tailwind_config_gen.py
 EXCLUDE	INSTALLER		27418	cli/assets/templates/base/quick-reference.md
-EXCLUDE	INSTALLER		26501	cli/assets/templates/base/skill-content.md
+EXCLUDE	INSTALLER		27433	cli/assets/templates/base/skill-content.md
 EXCLUDE	INSTALLER		1475	cli/assets/templates/platforms/agent.json
+EXCLUDE	INSTALLER		949	cli/assets/templates/platforms/amazonq.json
 EXCLUDE	INSTALLER		905	cli/assets/templates/platforms/augment.json
 EXCLUDE	INSTALLER		1475	cli/assets/templates/platforms/claude.json
 EXCLUDE	INSTALLER		1458	cli/assets/templates/platforms/codebuddy.json
@@ -496,23 +497,23 @@ EXCLUDE	INSTALLER		5565	cli/src/commands/uninstall.ts
 EXCLUDE	INSTALLER		3910	cli/src/commands/update.ts
 EXCLUDE	INSTALLER		1322	cli/src/commands/versions.ts
 EXCLUDE	INSTALLER		3390	cli/src/index.ts
-EXCLUDE	INSTALLER		2360	cli/src/types/index.ts
-EXCLUDE	INSTALLER		4028	cli/src/utils/detect.ts
+EXCLUDE	INSTALLER		2419	cli/src/types/index.ts
+EXCLUDE	INSTALLER		4178	cli/src/utils/detect.ts
 EXCLUDE	INSTALLER		4144	cli/src/utils/extract.ts
 EXCLUDE	INSTALLER		4000	cli/src/utils/github.ts
 EXCLUDE	INSTALLER		441	cli/src/utils/logger.ts
-EXCLUDE	INSTALLER		13215	cli/src/utils/template.ts
-EXCLUDE	INSTALLER		3292	cli/tests/e2e/agent-query-contract.spec.ts
+EXCLUDE	INSTALLER		13904	cli/src/utils/template.ts
+EXCLUDE	INSTALLER		5205	cli/tests/e2e/agent-query-contract.spec.ts
 EXCLUDE	INSTALLER		2243	cli/tests/e2e/banner-design-path-contract.spec.ts
-EXCLUDE	INSTALLER		1901	cli/tests/e2e/dry-run.spec.ts
+EXCLUDE	INSTALLER		2525	cli/tests/e2e/dry-run.spec.ts
 EXCLUDE	INSTALLER		1240	cli/tests/e2e/preview.spec.ts
-EXCLUDE	INSTALLER		1541	cli/tests/e2e/template-script-paths.spec.ts
+EXCLUDE	INSTALLER		1607	cli/tests/e2e/template-script-paths.spec.ts
 EXCLUDE	INSTALLER		396	cli/tsconfig.json
 EXCLUDE	REPO_META		3307	docs/journals/260812-1844-search-data-quality-planning.md
 EXCLUDE	REPO_META		2913	docs/journals/260813-0816-phase-6-accessibility-refresh.md
 EXCLUDE	REPO_META		3263	docs/journals/260813-1622-phase-7-web-stack-freshness.md
 EXCLUDE	REPO_META		3245	docs/journals/260813-1800-search-data-overhaul-completion.md
-EXCLUDE	REPO_META		1774	"docs/\344\270\211\344\270\252 data-scripts-templates \347\232\204\345\214\272\345\210\253.md"
+EXCLUDE	REPO_META		0	"docs/\344\270\211\344\270\252 data-scripts-templates \347\232\204\345\214\272\345\210\253.md"
 EXCLUDE	PRODUCT_RUNTIME		52	gallery/.gitignore
 EXCLUDE	PRODUCT_RUNTIME		414	gallery/app/globals.css
 EXCLUDE	PRODUCT_RUNTIME		572	gallery/app/layout.tsx
@@ -635,8 +636,9 @@ PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/de
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	7701	src/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	52230	src/ui-ux-pro-max/scripts/validate_data.py
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	27418	src/ui-ux-pro-max/templates/base/quick-reference.md
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	26501	src/ui-ux-pro-max/templates/base/skill-content.md
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	27433	src/ui-ux-pro-max/templates/base/skill-content.md
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1475	src/ui-ux-pro-max/templates/platforms/agent.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	949	src/ui-ux-pro-max/templates/platforms/amazonq.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	905	src/ui-ux-pro-max/templates/platforms/augment.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1475	src/ui-ux-pro-max/templates/platforms/claude.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1458	src/ui-ux-pro-max/templates/platforms/codebuddy.json
@@ -665,9 +667,9 @@ EXCLUDE	PRODUCT_RUNTIME		1368	stack/.github/workflows/design-review.yml
 EXCLUDE	PRODUCT_RUNTIME		390	stack/.gitignore
 EXCLUDE	MCP		376	stack/.mcp.json
 EXCLUDE	PRODUCT_RUNTIME		4350	stack/CLAUDE.md
-EXCLUDE	PRODUCT_RUNTIME		4508	stack/README.md
+EXCLUDE	PRODUCT_RUNTIME		4520	stack/README.md
 EXCLUDE	PRODUCT_RUNTIME		2674	stack/docs/SETUP.md
-EXCLUDE	PRODUCT_RUNTIME		3730	stack/docs/STACK.md
+EXCLUDE	PRODUCT_RUNTIME		3742	stack/docs/STACK.md
 EXCLUDE	PRODUCT_RUNTIME		3370	stack/docs/WORKFLOW.md
 EXCLUDE	PRODUCT_RUNTIME		2932	stack/examples/juniper-audit/README.md
 EXCLUDE	PRODUCT_RUNTIME		1215	stack/examples/juniper-audit/report.json

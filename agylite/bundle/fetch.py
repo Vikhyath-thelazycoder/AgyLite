@@ -28,6 +28,7 @@ def needed_paths(evidence: Path):
         if repo == "gstack":  # generated SKILL.md / sections next to bundled templates are renderer inputs
             paths |= {p[: -len(".tmpl")] for p in paths if p.endswith(".tmpl") and p[: -len(".tmpl")] in inventory}
         paths |= set(licenses.get(repo, {}).get("license_files", []))
+        paths |= {p for p in (".claude-plugin/plugin.json",) if p in inventory}   # license metadata (no LICENSE file)
         needed[repo] = sorted(paths)
     return needed
 

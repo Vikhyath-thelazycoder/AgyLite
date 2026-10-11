@@ -1,47 +1,46 @@
 decision	reason	capability	bytes	path
 EXCLUDE	HOST_PORT		410	.agents/plugins/marketplace.json
-EXCLUDE	HOST_PORT		2495	.agents/rules/ponytail.md
+EXCLUDE	HOST_PORT		2623	.agents/rules/ponytail.md
 EXCLUDE	HOST_PORT		513	.claude-plugin/marketplace.json
-EXCLUDE	HOST_PORT		343	.claude-plugin/plugin.json
-EXCLUDE	HOST_PORT		2495	.clinerules/ponytail.md
-EXCLUDE	HOST_PORT		1281	.codex-plugin/plugin.json
-EXCLUDE	HOST_PORT		2620	.cursor/rules/ponytail.mdc
-EXCLUDE	HOST_PORT		509	.devin-plugin/plugin.json
-EXCLUDE	HOST_PORT		106	.env.example
+EXCLUDE	HOST_PORT		342	.claude-plugin/plugin.json
+EXCLUDE	HOST_PORT		2623	.clinerules/ponytail.md
+EXCLUDE	HOST_PORT		1280	.codex-plugin/plugin.json
+EXCLUDE	HOST_PORT		2748	.cursor/rules/ponytail.mdc
+EXCLUDE	HOST_PORT		508	.devin-plugin/plugin.json
+EXCLUDE	HOST_PORT		2940	.github/CONTRIBUTING.md
 EXCLUDE	HOST_PORT		25	.github/FUNDING.yml
-EXCLUDE	HOST_PORT		2495	.github/copilot-instructions.md
+EXCLUDE	HOST_PORT		2623	.github/copilot-instructions.md
 EXCLUDE	HOST_PORT		610	.github/plugin/marketplace.json
-EXCLUDE	HOST_PORT		598	.github/plugin/plugin.json
+EXCLUDE	HOST_PORT		597	.github/plugin/plugin.json
 EXCLUDE	HOST_PORT		775	.github/workflows/publish.yml
-EXCLUDE	HOST_PORT		884	.github/workflows/test.yml
-EXCLUDE	HOST_PORT		506	.gitignore
-EXCLUDE	HOST_PORT		439	.grok-plugin/marketplace.json
-EXCLUDE	HOST_PORT		2560	.kiro/steering/ponytail.md
-EXCLUDE	HOST_PORT		1708	.openclaw/skills/ponytail-audit/SKILL.md
-EXCLUDE	HOST_PORT		1589	.openclaw/skills/ponytail-debt/SKILL.md
-EXCLUDE	HOST_PORT		1853	.openclaw/skills/ponytail-gain/SKILL.md
-EXCLUDE	HOST_PORT		2776	.openclaw/skills/ponytail-help/SKILL.md
-EXCLUDE	HOST_PORT		2312	.openclaw/skills/ponytail-review/SKILL.md
-EXCLUDE	HOST_PORT		5957	.openclaw/skills/ponytail/SKILL.md
-EXCLUDE	HOST_PORT		757	.opencode/command/ponytail-audit.md
-EXCLUDE	HOST_PORT		779	.opencode/command/ponytail-debt.md
-EXCLUDE	HOST_PORT		897	.opencode/command/ponytail-gain.md
+EXCLUDE	HOST_PORT		805	.github/workflows/test.yml
+EXCLUDE	HOST_PORT		495	.gitignore
+EXCLUDE	HOST_PORT		445	.grok-plugin/marketplace.json
+EXCLUDE	HOST_PORT		565	.kimi-plugin/plugin.json
+EXCLUDE	HOST_PORT		2688	.kiro/steering/ponytail.md
+EXCLUDE	HOST_PORT		5250	.openclaw/skills/ponytail-audit/SKILL.md
+EXCLUDE	HOST_PORT		1786	.openclaw/skills/ponytail-debt/SKILL.md
+EXCLUDE	HOST_PORT		2241	.openclaw/skills/ponytail-gain/SKILL.md
+EXCLUDE	HOST_PORT		2899	.openclaw/skills/ponytail-help/SKILL.md
+EXCLUDE	HOST_PORT		4976	.openclaw/skills/ponytail-review/SKILL.md
+EXCLUDE	HOST_PORT		3267	.openclaw/skills/ponytail/SKILL.md
+EXCLUDE	HOST_PORT		1680	.opencode/command/ponytail-audit.md
+EXCLUDE	HOST_PORT		948	.opencode/command/ponytail-debt.md
+EXCLUDE	HOST_PORT		1252	.opencode/command/ponytail-gain.md
 EXCLUDE	HOST_PORT		1141	.opencode/command/ponytail-help.md
-EXCLUDE	HOST_PORT		560	.opencode/command/ponytail-review.md
+EXCLUDE	HOST_PORT		2064	.opencode/command/ponytail-review.md
 EXCLUDE	HOST_PORT		608	.opencode/command/ponytail.md
 EXCLUDE	HOST_PORT		274	.opencode/plugins/index.js
 EXCLUDE	HOST_PORT		2848	.opencode/plugins/ponytail-frontmatter.cjs
-EXCLUDE	HOST_PORT		6379	.opencode/plugins/ponytail.mjs
-EXCLUDE	HOST_PORT		603	.qoder-plugin/plugin.json
-EXCLUDE	HOST_PORT		2495	.qoder/rules/ponytail.md
-EXCLUDE	HOST_PORT		2495	.windsurf/rules/ponytail.md
-EXCLUDE	HOST_PORT		2593	AGENTS.md
-EXCLUDE	HOST_PORT		2156	CONTRIBUTING.md
+EXCLUDE	HOST_PORT		6404	.opencode/plugins/ponytail.mjs
+EXCLUDE	HOST_PORT		602	.qoder-plugin/plugin.json
+EXCLUDE	HOST_PORT		2623	.qoder/rules/ponytail.md
+EXCLUDE	HOST_PORT		2623	.windsurf/rules/ponytail.md
+EXCLUDE	HOST_PORT		2721	AGENTS.md
+EXCLUDE	HOST_PORT		15329	INSTALL.md
 COPY	LICENSE	engineering/simplicity	1071	LICENSE
-EXCLUDE	HOST_PORT		19723	README.es.md
-EXCLUDE	HOST_PORT		21926	README.ko.md
-EXCLUDE	HOST_PORT		24109	README.md
-EXCLUDE	ALWAYS_ON		9419	__init__.py
+EXCLUDE	HOST_PORT		12638	README.md
+EXCLUDE	ALWAYS_ON		9487	__init__.py
 EXCLUDE	HOST_PORT		662	after-install.md
 EXCLUDE	HOST_PORT		2753	assets/benchmark-3model.svg
 EXCLUDE	HOST_PORT		6295	assets/benchmark-agentic.svg
@@ -50,57 +49,87 @@ EXCLUDE	HOST_PORT		86402	assets/logo-dark.svg
 EXCLUDE	HOST_PORT		5851	assets/logo-greenpt-dark.svg
 EXCLUDE	HOST_PORT		5851	assets/logo-greenpt.svg
 EXCLUDE	HOST_PORT		567655	assets/logo.png
-EXCLUDE	HOST_PORT		21565	assets/retriever-icon.png
 EXCLUDE	HOST_PORT		29153	assets/retriever-logo-dark.svg
 EXCLUDE	HOST_PORT		29153	assets/retriever-logo-light.svg
-EXCLUDE	HOST_PORT		59380	assets/social-preview.png
-EXCLUDE	HOST_PORT		70620	assets/waitlist-banner-es.png
-EXCLUDE	HOST_PORT		67380	assets/waitlist-banner-ko.png
-EXCLUDE	HOST_PORT		69148	assets/waitlist-banner.png
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		6202	benchmarks/README.md
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		10395	benchmarks/agentic/README.md
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		7944	benchmarks/agentic/complete.py
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		9987	benchmarks/agentic/judge.py
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		27460	benchmarks/agentic/run.py
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		50643	benchmarks/agentic/tasks.py
+EXCLUDE	HOST_PORT		28932	assets/stories-banner.png
+EXCLUDE	HOST_PORT		147060	assets/v5/audit-es.png
+EXCLUDE	HOST_PORT		169722	assets/v5/audit-ja.png
+EXCLUDE	HOST_PORT		150452	assets/v5/audit-ko.png
+EXCLUDE	HOST_PORT		164006	assets/v5/audit-zh-CN.png
+EXCLUDE	HOST_PORT		142222	assets/v5/audit.png
+EXCLUDE	HOST_PORT		245819	assets/v5/beforeafter-es.png
+EXCLUDE	HOST_PORT		274306	assets/v5/beforeafter-ja.png
+EXCLUDE	HOST_PORT		243996	assets/v5/beforeafter-ko.png
+EXCLUDE	HOST_PORT		254731	assets/v5/beforeafter-zh-CN.png
+EXCLUDE	HOST_PORT		244808	assets/v5/beforeafter.png
+EXCLUDE	HOST_PORT		166440	assets/v5/chart-es.png
+EXCLUDE	HOST_PORT		188367	assets/v5/chart-ja.png
+EXCLUDE	HOST_PORT		162653	assets/v5/chart-ko.png
+EXCLUDE	HOST_PORT		176352	assets/v5/chart-zh-CN.png
+EXCLUDE	HOST_PORT		159248	assets/v5/chart.png
+EXCLUDE	HOST_PORT		221653	assets/v5/hero-es.jpg
+EXCLUDE	HOST_PORT		219038	assets/v5/hero-ja.jpg
+EXCLUDE	HOST_PORT		216131	assets/v5/hero-ko.jpg
+EXCLUDE	HOST_PORT		217223	assets/v5/hero-zh-CN.jpg
+EXCLUDE	HOST_PORT		220313	assets/v5/hero.jpg
+EXCLUDE	HOST_PORT		135131	assets/v5/ladder-es.png
+EXCLUDE	HOST_PORT		175476	assets/v5/ladder-ja.png
+EXCLUDE	HOST_PORT		106462	assets/v5/ladder-ko.png
+EXCLUDE	HOST_PORT		134965	assets/v5/ladder-zh-CN.png
+EXCLUDE	HOST_PORT		123673	assets/v5/ladder.png
+EXCLUDE	HOST_PORT		330567	assets/v5/review-es.png
+EXCLUDE	HOST_PORT		354815	assets/v5/review-ja.png
+EXCLUDE	HOST_PORT		324465	assets/v5/review-ko.png
+EXCLUDE	HOST_PORT		355326	assets/v5/review-zh-CN.png
+EXCLUDE	HOST_PORT		323702	assets/v5/review.png
+EXCLUDE	HOST_PORT		127660	assets/v5/tests-es.png
+EXCLUDE	HOST_PORT		177053	assets/v5/tests-ja.png
+EXCLUDE	HOST_PORT		125215	assets/v5/tests-ko.png
+EXCLUDE	HOST_PORT		154350	assets/v5/tests-zh-CN.png
+EXCLUDE	HOST_PORT		124552	assets/v5/tests.png
+EXCLUDE	HOST_PORT		370321	assets/waitlist-banner-es.png
+EXCLUDE	HOST_PORT		381100	assets/waitlist-banner-ja.png
+EXCLUDE	HOST_PORT		363152	assets/waitlist-banner-ko.png
+EXCLUDE	HOST_PORT		369274	assets/waitlist-banner-zh-CN.png
+EXCLUDE	HOST_PORT		369929	assets/waitlist-banner.png
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		106	benchmarks/.env.example
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		6637	benchmarks/README.md
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		12226	benchmarks/agentic/README.md
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		18071	benchmarks/agentic/answer.py
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		4623	benchmarks/agentic/compare.py
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		9704	benchmarks/agentic/complete.py
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		11004	benchmarks/agentic/judge.py
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		31419	benchmarks/agentic/run.py
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		73747	benchmarks/agentic/tasks.py
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		113	benchmarks/arms/baseline.js
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		3654	benchmarks/arms/caveman-SKILL.md
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		315	benchmarks/arms/caveman.js
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		373	benchmarks/arms/ponytail.js
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		2785	benchmarks/behavior.js
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1685	benchmarks/behavior.yaml
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		6173	benchmarks/benchmark-local.py
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1952	benchmarks/claude-email.js
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		10553	benchmarks/correctness.js
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1583	benchmarks/correctness.test.js
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		2566	benchmarks/generate-examples.mjs
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		10748	benchmarks/correctness.js
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		935	benchmarks/loc.js
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1203	benchmarks/loc.test.js
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1924	benchmarks/model-email.js
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1400	benchmarks/promptfooconfig.gemini.yaml
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1399	benchmarks/promptfooconfig.gpt-newest.yaml
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1390	benchmarks/promptfooconfig.gpt.yaml
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1815	benchmarks/promptfooconfig.yaml
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		1029	benchmarks/prompts.json
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		3658	benchmarks/results/2026-06-12-caveman-vs-ponytail.md
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		6758	benchmarks/results/2026-06-12-v4-hardening-vs-caveman.md
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		3167	benchmarks/results/2026-06-15-llama3.2-local.md
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		5284	benchmarks/results/2026-06-16-correctness-gate-fix.md
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		6509	benchmarks/results/2026-06-16-robustness-audit.md
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		3361	benchmarks/results/2026-06-15-llama3.2-local.md
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		5484	benchmarks/results/2026-06-16-correctness-gate-fix.md
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		6747	benchmarks/results/2026-06-16-robustness-audit.md
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		8109	benchmarks/results/2026-06-17-agentic-safety.md
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		4849	benchmarks/results/2026-06-17-cost-verification.md
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		12226	benchmarks/results/2026-06-18-agentic.md
 REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		5566	benchmarks/results/2026-06-22-issue-245-217-comprehension.md
-REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		14150	benchmarks/robustness-audit.js
-EXCLUDE	HOST_PORT		762	commands/ponytail-audit.toml
-EXCLUDE	HOST_PORT		785	commands/ponytail-debt.toml
-EXCLUDE	HOST_PORT		902	commands/ponytail-gain.toml
+REFERENCE	Benchmark methodology for P25 (calls remote LLMs; never bundled)		11079	benchmarks/results/2026-10-07-agentic.md
+EXCLUDE	HOST_PORT		1685	commands/ponytail-audit.toml
+EXCLUDE	HOST_PORT		954	commands/ponytail-debt.toml
+EXCLUDE	HOST_PORT		1257	commands/ponytail-gain.toml
 EXCLUDE	HOST_PORT		1152	commands/ponytail-help.toml
-EXCLUDE	HOST_PORT		565	commands/ponytail-review.toml
+EXCLUDE	HOST_PORT		2069	commands/ponytail-review.toml
 EXCLUDE	HOST_PORT		611	commands/ponytail.toml
-EXCLUDE	HOST_PORT		7635	docs/agent-portability.md
+EXCLUDE	HOST_PORT		11954	docs/agent-portability.md
 EXCLUDE	HOST_PORT		13264	docs/cursor-hooks.md
-EXCLUDE	HOST_PORT		9434	docs/platform-native.md
 COPY	Worked examples (Level 3)	engineering/simplicity	771	examples/README.md
 COPY	Worked examples (Level 3)	engineering/simplicity	1742	examples/csv-sum.md
 COPY	Worked examples (Level 3)	engineering/simplicity	5109	examples/debounce.md
@@ -108,63 +137,65 @@ COPY	Worked examples (Level 3)	engineering/simplicity	783	examples/deep-clone.md
 COPY	Worked examples (Level 3)	engineering/simplicity	4621	examples/email-validation.md
 COPY	Worked examples (Level 3)	engineering/simplicity	937	examples/group-by.md
 COPY	Worked examples (Level 3)	engineering/simplicity	1498	examples/infinite-scroll.md
-COPY	Worked examples (Level 3)	engineering/simplicity	1962	examples/modal-dialog.md
+COPY	Worked examples (Level 3)	engineering/simplicity	2027	examples/modal-dialog.md
 COPY	Worked examples (Level 3)	engineering/simplicity	1049	examples/number-formatting.md
 COPY	Worked examples (Level 3)	engineering/simplicity	7055	examples/rate-limit.md
 COPY	Worked examples (Level 3)	engineering/simplicity	8998	examples/react-countdown.md
 COPY	Worked examples (Level 3)	engineering/simplicity	1057	examples/url-params.md
-EXCLUDE	ALWAYS_ON		234	gemini-extension.json
+EXCLUDE	ALWAYS_ON		233	gemini-extension.json
 EXCLUDE	ALWAYS_ON		1242	hooks/claude-codex-hooks.json
 EXCLUDE	ALWAYS_ON		1035	hooks/copilot-hooks.json
 EXCLUDE	ALWAYS_ON		320	hooks/cursor-hooks.json
-EXCLUDE	ALWAYS_ON		4785	hooks/ponytail-activate.js
-EXCLUDE	ALWAYS_ON		5881	hooks/ponytail-config.js
-REFERENCE	Ruleset text source for lite/full/ultra levels		5487	hooks/ponytail-instructions.js
-EXCLUDE	ALWAYS_ON		7116	hooks/ponytail-mode-tracker.js
-EXCLUDE	ALWAYS_ON		7387	hooks/ponytail-runtime.js
+EXCLUDE	ALWAYS_ON		7605	hooks/ponytail-activate.js
+EXCLUDE	ALWAYS_ON		5792	hooks/ponytail-config.js
+REFERENCE	Ruleset text source for lite/full/ultra levels		5565	hooks/ponytail-instructions.js
+EXCLUDE	ALWAYS_ON		4924	hooks/ponytail-map.js
+EXCLUDE	ALWAYS_ON		7431	hooks/ponytail-mode-tracker.js
+EXCLUDE	ALWAYS_ON		7635	hooks/ponytail-runtime.js
 EXCLUDE	ALWAYS_ON		885	hooks/ponytail-statusline.ps1
 EXCLUDE	ALWAYS_ON		696	hooks/ponytail-statusline.sh
 EXCLUDE	ALWAYS_ON		3462	hooks/ponytail-subagent.js
-EXCLUDE	ALWAYS_ON		704	hooks/qoder-hooks.json
+EXCLUDE	ALWAYS_ON		718	hooks/qoder-hooks.json
+EXCLUDE	HOST_PORT		13773	i18n/README.es.md
+EXCLUDE	HOST_PORT		15978	i18n/README.ja.md
+EXCLUDE	HOST_PORT		14665	i18n/README.ko.md
+EXCLUDE	HOST_PORT		13360	i18n/README.zh-CN.md
 EXCLUDE	ALWAYS_ON		51	opencode.json
-EXCLUDE	ALWAYS_ON		1283	package.json
-EXCLUDE	UPSTREAM_DEV		8209	pi-extension/index.js
+EXCLUDE	ALWAYS_ON		1260	package.json
+EXCLUDE	UPSTREAM_DEV		8674	pi-extension/index.js
 EXCLUDE	UPSTREAM_DEV		144	pi-extension/package.json
-EXCLUDE	UPSTREAM_DEV		11152	pi-extension/test/extension.test.js
-EXCLUDE	UPSTREAM_DEV		7488	pi-extension/test/helpers.test.js
-EXCLUDE	ALWAYS_ON		100	plugin.json
-EXCLUDE	ALWAYS_ON		468	plugin.yaml
-EXCLUDE	MCP		1507	ponytail-mcp/README.md
-EXCLUDE	MCP		1921	ponytail-mcp/index.js
-EXCLUDE	MCP		1181	ponytail-mcp/instructions.js
-EXCLUDE	MCP		365	ponytail-mcp/package.json
-EXCLUDE	MCP		909	ponytail-mcp/test/instructions.test.js
-EXCLUDE	MCP		571	ponytail-mcp/test/server.test.js
-EXCLUDE	ALWAYS_ON		2873	scripts/build-openclaw-skills.js
-EXCLUDE	ALWAYS_ON		2981	scripts/check-rule-copies.js
-EXCLUDE	ALWAYS_ON		3310	scripts/check-versions.js
+EXCLUDE	UPSTREAM_DEV		14413	pi-extension/test/extension.test.js
+EXCLUDE	UPSTREAM_DEV		8628	pi-extension/test/helpers.test.js
+EXCLUDE	ALWAYS_ON		25	plugin.json
+EXCLUDE	ALWAYS_ON		467	plugin.yaml
+EXCLUDE	ALWAYS_ON		2858	scripts/build-openclaw-skills.js
+EXCLUDE	ALWAYS_ON		2845	scripts/check-rule-copies.js
+EXCLUDE	ALWAYS_ON		3238	scripts/check-versions.js
 EXCLUDE	ALWAYS_ON		5090	scripts/cursor-hooks.js
 EXCLUDE	ALWAYS_ON		3088	scripts/publish-openclaw-skills.js
-EXCLUDE	ALWAYS_ON		3519	scripts/uninstall.js
-ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	1926	skills/ponytail-audit/SKILL.md
-ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	1793	skills/ponytail-debt/SKILL.md
-ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	1973	skills/ponytail-gain/SKILL.md
-EXCLUDE	SUPERSEDED		2839	skills/ponytail-help/SKILL.md
-ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	2577	skills/ponytail-review/SKILL.md
-ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	6637	skills/ponytail/SKILL.md
+EXCLUDE	ALWAYS_ON		4248	scripts/uninstall.js
+EXCLUDE	HOST_PORT		167	skills/plugin.json
+ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	5417	skills/ponytail-audit/SKILL.md
+ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	1810	skills/ponytail-debt/SKILL.md
+ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	2206	skills/ponytail-gain/SKILL.md
+EXCLUDE	SUPERSEDED		2901	skills/ponytail-help/SKILL.md
+ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	5143	skills/ponytail-review/SKILL.md
+ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	3492	skills/ponytail/SKILL.md
 EXCLUDE	UPSTREAM_DEV		3196	tests/behavior.test.js
 EXCLUDE	UPSTREAM_DEV		4315	tests/commands.test.js
 EXCLUDE	UPSTREAM_DEV		1049	tests/copilot-plugin.test.js
-EXCLUDE	UPSTREAM_DEV		6382	tests/correctness.test.js
-EXCLUDE	UPSTREAM_DEV		15639	tests/cursor-hooks.test.js
-EXCLUDE	UPSTREAM_DEV		3748	tests/gemini-extension.test.js
-EXCLUDE	UPSTREAM_DEV		1198	tests/grok-plugin.test.js
-EXCLUDE	UPSTREAM_DEV		14179	tests/hermes-plugin.test.js
+EXCLUDE	UPSTREAM_DEV		7408	tests/correctness.test.js
+EXCLUDE	UPSTREAM_DEV		15663	tests/cursor-hooks.test.js
+EXCLUDE	UPSTREAM_DEV		3767	tests/gemini-extension.test.js
+EXCLUDE	UPSTREAM_DEV		2003	tests/grok-plugin.test.js
+EXCLUDE	UPSTREAM_DEV		16592	tests/hermes-plugin.test.js
 EXCLUDE	UPSTREAM_DEV		9640	tests/hooks-windows.test.js
-EXCLUDE	UPSTREAM_DEV		32694	tests/hooks.test.js
+EXCLUDE	UPSTREAM_DEV		42852	tests/hooks.test.js
+EXCLUDE	UPSTREAM_DEV		1292	tests/kimi-plugin.test.js
+EXCLUDE	UPSTREAM_DEV		1087	tests/loc.test.js
 EXCLUDE	UPSTREAM_DEV		1219	tests/openclaw-skills.test.js
-EXCLUDE	UPSTREAM_DEV		13021	tests/opencode-plugin.test.js
-EXCLUDE	UPSTREAM_DEV		2074	tests/package-scripts.test.js
+EXCLUDE	UPSTREAM_DEV		13035	tests/opencode-plugin.test.js
+EXCLUDE	UPSTREAM_DEV		1582	tests/package-scripts.test.js
 EXCLUDE	UPSTREAM_DEV		863	tests/package.test.js
 EXCLUDE	UPSTREAM_DEV		3698	tests/qoder-plugin.test.js
-EXCLUDE	UPSTREAM_DEV		5519	tests/uninstall.test.js
+EXCLUDE	UPSTREAM_DEV		7210	tests/uninstall.test.js

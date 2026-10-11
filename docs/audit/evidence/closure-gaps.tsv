@@ -21,6 +21,8 @@ ecc	skills/react-testing/SKILL.md	../e2e-testing/SKILL.md	skills/e2e-testing/SKI
 gstack	NOTICE.md	scripts/resolvers/design.ts	scripts/resolvers/design.ts	REFERENCE	ACCEPTED: TS import/notice mention; catalogue converted to data at bundle build
 gstack	careful/bin/hook-extract.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh
 gstack	freeze/bin/freeze-state.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh
+gstack	investigate/sections/flake.md.tmpl	scripts/ship-measure.ts	scripts/ship-measure.ts	EXCLUDE	ACCEPTED: gstack runtime measurement script named in investigate/sections/flake (upstream 5cb5e1c); gstack runtime is not part of the OS (D-038)
+gstack	investigate/sections/polluter.md.tmpl	scripts/ship-measure.ts	scripts/ship-measure.ts	EXCLUDE	ACCEPTED: gstack runtime measurement script named in investigate/sections/flake (upstream 5cb5e1c); gstack runtime is not part of the OS (D-038)
 gstack	lib/design-catalog.ts	scripts/resolvers/constants.ts	scripts/resolvers/constants.ts	REFERENCE	ACCEPTED: TS import; catalogue converted to data at bundle build
 gstack	lib/design-catalog.ts	scripts/resolvers/design-checklist.ts	scripts/resolvers/design-checklist.ts	REFERENCE	ACCEPTED: TS import/mention; resolved at bundle build
 gstack	lib/design-catalog.ts	scripts/resolvers/design.ts	scripts/resolvers/design.ts	REFERENCE	ACCEPTED: TS import/notice mention; catalogue converted to data at bundle build
@@ -30,8 +32,10 @@ gstack	plan-design-review/sections/manifest.json	docs/designs/v2_PLAN.md	docs/de
 gstack	plan-eng-review/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
 gstack	qa/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
 gstack	review/design-checklist.md	scripts/resolvers/design-checklist.ts	scripts/resolvers/design-checklist.ts	REFERENCE	ACCEPTED: TS import/mention; resolved at bundle build
+gstack	review/gate-integrity.md	docs/designs/HONEST_WORK_GATE_INTEGRITY.md	docs/designs/HONEST_WORK_GATE_INTEGRITY.md	EXCLUDE	ACCEPTED: Design-rationale mention in review/gate-integrity (upstream 5cb5e1c); chains into gstack TypeScript resolvers
 gstack	review/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
 gstack	ship/SKILL.md.tmpl	./package.json	package.json	EXCLUDE	ACCEPTED: Version-bump example in ship template
+gstack	ship/SKILL.md.tmpl	docs/ship-policy.md	docs/ship-policy.md	EXCLUDE	ACCEPTED: Policy-document mention in ship (upstream 5cb5e1c); the skill text is self-contained, the doc chains into gstack build tooling
 gstack	ship/SKILL.md.tmpl	scripts/gen-agents-digest.ts	scripts/gen-agents-digest.ts	EXCLUDE	ACCEPTED: Upstream build-step mention in ship template; removed in ADAPT
 gstack	ship/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests
 gstack	spec/sections/manifest.json	docs/designs/v2_PLAN.md	docs/designs/v2_PLAN.md	EXCLUDE	ACCEPTED: Provenance mention in section manifests

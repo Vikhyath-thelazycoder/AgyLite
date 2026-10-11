@@ -7,18 +7,21 @@ EXCLUDE	PRODUCT_RUNTIME		2851	.cursor/hooks.json
 EXCLUDE	PRODUCT_RUNTIME		3136	.cursor/install.sh
 EXCLUDE	PRODUCT_RUNTIME		1476	.cursor/start.sh
 EXCLUDE	PRODUCT_RUNTIME		3061	.github/actions/setup-go/action.yml
-EXCLUDE	PRODUCT_RUNTIME		44761	.github/workflows/ci.yml
+EXCLUDE	PRODUCT_RUNTIME		1593	.github/dependabot.yml
+EXCLUDE	PRODUCT_RUNTIME		46588	.github/workflows/ci.yml
+EXCLUDE	PRODUCT_RUNTIME		3506	.github/workflows/claude-code-review.yml
+EXCLUDE	PRODUCT_RUNTIME		1370	.github/workflows/claude-security-review.yml
 EXCLUDE	PRODUCT_RUNTIME		2093	.github/workflows/npm-publish-sdk.yml
 EXCLUDE	PRODUCT_RUNTIME		4471	.github/workflows/release-check.yml
-EXCLUDE	PRODUCT_RUNTIME		16010	.github/workflows/release-extension.yml
+EXCLUDE	PRODUCT_RUNTIME		16261	.github/workflows/release-extension.yml
 EXCLUDE	PRODUCT_RUNTIME		19312	.github/workflows/release.yml
 EXCLUDE	PRODUCT_RUNTIME		28637	.github/workflows/windows-sandbox.yml
 EXCLUDE	PRODUCT_RUNTIME		1723	.gitignore
 EXCLUDE	PRODUCT_RUNTIME		2463	AGENTS.md
-EXCLUDE	PRODUCT_RUNTIME		54874	CLAUDE.md
+EXCLUDE	PRODUCT_RUNTIME		67574	CLAUDE.md
 EXCLUDE	PRODUCT_RUNTIME		10390	CONTRIBUTING.md
 COPY	LICENSE	observability/risk-detection	1071	LICENSE
-EXCLUDE	PRODUCT_RUNTIME		18020	README.md
+EXCLUDE	PRODUCT_RUNTIME		19412	README.md
 EXCLUDE	PRODUCT_RUNTIME		5359	SECURITY.md
 EXCLUDE	PRODUCT_RUNTIME		10694	action.yml
 EXCLUDE	PRODUCT_RUNTIME		576	agent-skills/.claude-plugin/plugin.json
@@ -30,6 +33,7 @@ EXCLUDE	PRODUCT_RUNTIME		323	agent-skills/gemini-extension.json
 EXCLUDE	PRODUCT_RUNTIME		405	agent-skills/kimi.plugin.json
 EXCLUDE	PRODUCT_RUNTIME		201	agent-skills/mcp.json
 EXCLUDE	PRODUCT_RUNTIME		617	agent-skills/plugin.json
+EXCLUDE	PRODUCT_RUNTIME		13004	agent-skills/skills/beacon-lens-create/SKILL.md
 EXCLUDE	PRODUCT_RUNTIME		11908	agent-skills/skills/beacon-memory-distill/SKILL.md
 EXCLUDE	PRODUCT_RUNTIME		2855	agent-skills/skills/beacon-memory-distill/references/lesson-quality.md
 EXCLUDE	PRODUCT_RUNTIME		3708	agent-skills/skills/beacon-memory-promote/SKILL.md
@@ -44,7 +48,7 @@ EXCLUDE	PRODUCT_RUNTIME		10467	beacon-sandbox/check/expect.go
 EXCLUDE	PRODUCT_RUNTIME		7435	beacon-sandbox/check/fingerprint.go
 EXCLUDE	PRODUCT_RUNTIME		9638	beacon-sandbox/check/forwarding.go
 EXCLUDE	PRODUCT_RUNTIME		6685	beacon-sandbox/check/forwarding_test.go
-EXCLUDE	PRODUCT_RUNTIME		17230	beacon-sandbox/check/invariants.go
+EXCLUDE	PRODUCT_RUNTIME		17278	beacon-sandbox/check/invariants.go
 EXCLUDE	PRODUCT_RUNTIME		7692	beacon-sandbox/check/lifecycle.go
 EXCLUDE	PRODUCT_RUNTIME		4627	beacon-sandbox/check/ordering_test.go
 EXCLUDE	PRODUCT_RUNTIME		5689	beacon-sandbox/check/safety_test.go
@@ -103,7 +107,7 @@ EXCLUDE	PRODUCT_RUNTIME		1680	beacon-sandbox/scenarios/w02-install-supervised.ya
 EXCLUDE	PRODUCT_RUNTIME		3950	beacon-sandbox/scenarios/w03-hook-capture.yaml
 EXCLUDE	PRODUCT_RUNTIME		2202	beacon-sandbox/scenarios/w04-denied-tool.yaml
 EXCLUDE	PRODUCT_RUNTIME		1923	browser-extension/.gitignore
-EXCLUDE	PRODUCT_RUNTIME		19335	browser-extension/README.md
+EXCLUDE	PRODUCT_RUNTIME		19338	browser-extension/README.md
 EXCLUDE	PRODUCT_RUNTIME		2400	browser-extension/e2e/browser-identity.spec.ts
 EXCLUDE	PRODUCT_RUNTIME		2537	browser-extension/e2e/browser-target.ts
 EXCLUDE	PRODUCT_RUNTIME		2263	browser-extension/e2e/chatgpt.replay.spec.ts
@@ -119,14 +123,15 @@ EXCLUDE	PRODUCT_RUNTIME		3221	browser-extension/esbuild.config.mjs
 EXCLUDE	PRODUCT_RUNTIME		1313	browser-extension/fixtures/chatgpt/simple-turn.sse
 EXCLUDE	PRODUCT_RUNTIME		511	browser-extension/fixtures/claude/aborted.sse
 EXCLUDE	PRODUCT_RUNTIME		755	browser-extension/fixtures/claude/simple-turn.sse
+EXCLUDE	PRODUCT_RUNTIME		1038	browser-extension/fixtures/claude/with-cache-ttl.sse
 EXCLUDE	PRODUCT_RUNTIME		1251	browser-extension/fixtures/claude/with-tool-call.sse
 EXCLUDE	PRODUCT_RUNTIME		834	browser-extension/fixtures/claude/with-usage.sse
-EXCLUDE	PRODUCT_RUNTIME		203283	browser-extension/package-lock.json
-EXCLUDE	PRODUCT_RUNTIME		1290	browser-extension/package.json
+EXCLUDE	PRODUCT_RUNTIME		142554	browser-extension/package-lock.json
+EXCLUDE	PRODUCT_RUNTIME		1284	browser-extension/package.json
 EXCLUDE	PRODUCT_RUNTIME		780	browser-extension/playwright.config.ts
 EXCLUDE	PRODUCT_RUNTIME		1857	browser-extension/src/adapters/adapter.ts
 EXCLUDE	PRODUCT_RUNTIME		9160	browser-extension/src/adapters/chatgpt.ts
-EXCLUDE	PRODUCT_RUNTIME		9732	browser-extension/src/adapters/claude.ts
+EXCLUDE	PRODUCT_RUNTIME		10303	browser-extension/src/adapters/claude.ts
 EXCLUDE	PRODUCT_RUNTIME		1995	browser-extension/src/adapters/sse.ts
 EXCLUDE	PRODUCT_RUNTIME		1845	browser-extension/src/background/assembler.ts
 EXCLUDE	PRODUCT_RUNTIME		4067	browser-extension/src/background/delivery.ts
@@ -142,26 +147,26 @@ EXCLUDE	PRODUCT_RUNTIME		1333	browser-extension/src/popup/popup.ts
 EXCLUDE	PRODUCT_RUNTIME		5118	browser-extension/src/shared/browser-identity.ts
 EXCLUDE	PRODUCT_RUNTIME		2332	browser-extension/src/shared/browser.ts
 EXCLUDE	PRODUCT_RUNTIME		619	browser-extension/src/shared/ids.ts
-EXCLUDE	PRODUCT_RUNTIME		9346	browser-extension/src/shared/normalize.ts
+EXCLUDE	PRODUCT_RUNTIME		10764	browser-extension/src/shared/normalize.ts
 EXCLUDE	PRODUCT_RUNTIME		2817	browser-extension/src/shared/otlp.ts
 EXCLUDE	PRODUCT_RUNTIME		4996	browser-extension/src/shared/permissions.ts
-EXCLUDE	PRODUCT_RUNTIME		3061	browser-extension/src/shared/types.ts
+EXCLUDE	PRODUCT_RUNTIME		3278	browser-extension/src/shared/types.ts
 EXCLUDE	PRODUCT_RUNTIME		1796	browser-extension/src/shared/vocab.ts
 EXCLUDE	PRODUCT_RUNTIME		7376	browser-extension/test/unit/browser-identity.test.ts
 EXCLUDE	PRODUCT_RUNTIME		1874	browser-extension/test/unit/browser-shim.test.ts
 EXCLUDE	PRODUCT_RUNTIME		2101	browser-extension/test/unit/browser-target.test.ts
 EXCLUDE	PRODUCT_RUNTIME		3535	browser-extension/test/unit/build.test.ts
 EXCLUDE	PRODUCT_RUNTIME		2998	browser-extension/test/unit/chatgpt.adapter.test.ts
-EXCLUDE	PRODUCT_RUNTIME		5547	browser-extension/test/unit/claude.adapter.test.ts
+EXCLUDE	PRODUCT_RUNTIME		6951	browser-extension/test/unit/claude.adapter.test.ts
 EXCLUDE	PRODUCT_RUNTIME		1604	browser-extension/test/unit/no-direct-chrome.test.ts
-EXCLUDE	PRODUCT_RUNTIME		10567	browser-extension/test/unit/normalize.test.ts
+EXCLUDE	PRODUCT_RUNTIME		14069	browser-extension/test/unit/normalize.test.ts
 EXCLUDE	PRODUCT_RUNTIME		563	browser-extension/test/unit/options.test.ts
 EXCLUDE	PRODUCT_RUNTIME		6688	browser-extension/test/unit/permissions.test.ts
 EXCLUDE	PRODUCT_RUNTIME		6431	browser-extension/test/unit/targets.test.ts
 EXCLUDE	PRODUCT_RUNTIME		873	browser-extension/tools/integration-otelcol/README.md
 EXCLUDE	PRODUCT_RUNTIME		5188	browser-extension/tools/record-fixtures.ts
 EXCLUDE	PRODUCT_RUNTIME		1010	browser-extension/tools/targets.d.mts
-EXCLUDE	PRODUCT_RUNTIME		6920	browser-extension/tools/targets.mjs
+EXCLUDE	PRODUCT_RUNTIME		6921	browser-extension/tools/targets.mjs
 EXCLUDE	PRODUCT_RUNTIME		465	browser-extension/tsconfig.json
 EXCLUDE	PRODUCT_RUNTIME		335	browser-extension/vitest.config.ts
 EXCLUDE	PRODUCT_RUNTIME		2242	cli/beacon-hooks/Makefile
@@ -169,7 +174,7 @@ REFERENCE	Per-host hook payload knowledge for adapters/events		2972	cli/beacon-h
 REFERENCE	Per-host hook payload knowledge for adapters/events		5653	cli/beacon-hooks/cmd/agent_thought_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		5110	cli/beacon-hooks/cmd/cascade.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		36823	cli/beacon-hooks/cmd/cline_event.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		37548	cli/beacon-hooks/cmd/cline_event_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		37157	cli/beacon-hooks/cmd/cline_event_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		1028	cli/beacon-hooks/cmd/codex_session_context.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		2129	cli/beacon-hooks/cmd/codex_session_context_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		1930	cli/beacon-hooks/cmd/compaction.go
@@ -177,7 +182,7 @@ REFERENCE	Per-host hook payload knowledge for adapters/events		7158	cli/beacon-h
 REFERENCE	Per-host hook payload knowledge for adapters/events		948	cli/beacon-hooks/cmd/cursor_event.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		27313	cli/beacon-hooks/cmd/dsh.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		38349	cli/beacon-hooks/cmd/dsh_hooks_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		40637	cli/beacon-hooks/cmd/endpoint_events.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		46185	cli/beacon-hooks/cmd/endpoint_events.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		13502	cli/beacon-hooks/cmd/endpoint_events_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		21445	cli/beacon-hooks/cmd/goose.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		28859	cli/beacon-hooks/cmd/goose_hooks_test.go
@@ -193,36 +198,43 @@ REFERENCE	Per-host hook payload knowledge for adapters/events		30316	cli/beacon-
 REFERENCE	Per-host hook payload knowledge for adapters/events		37193	cli/beacon-hooks/cmd/kimi_hooks_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		30525	cli/beacon-hooks/cmd/kiro.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		45558	cli/beacon-hooks/cmd/kiro_hooks_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		21041	cli/beacon-hooks/cmd/muse_hooks_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		21126	cli/beacon-hooks/cmd/muse_hooks_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		2869	cli/beacon-hooks/cmd/omo_event.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		14171	cli/beacon-hooks/cmd/omo_event_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		14395	cli/beacon-hooks/cmd/omp_approval_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		2987	cli/beacon-hooks/cmd/omp_event.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		20561	cli/beacon-hooks/cmd/omp_event_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		15692	cli/beacon-hooks/cmd/omp_approval_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		7057	cli/beacon-hooks/cmd/omp_device_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		3381	cli/beacon-hooks/cmd/omp_event.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		35953	cli/beacon-hooks/cmd/omp_event_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		10628	cli/beacon-hooks/cmd/omp_paths_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		36367	cli/beacon-hooks/cmd/openclaw_event.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		26643	cli/beacon-hooks/cmd/openclaw_event_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		23625	cli/beacon-hooks/cmd/opencode_event.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		23826	cli/beacon-hooks/cmd/opencode_event_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		25658	cli/beacon-hooks/cmd/opencode_event.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		26627	cli/beacon-hooks/cmd/opencode_event_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		20032	cli/beacon-hooks/cmd/openhands.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		47431	cli/beacon-hooks/cmd/openhands_hooks_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		3642	cli/beacon-hooks/cmd/permission_request.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		2351	cli/beacon-hooks/cmd/pi_event.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		18028	cli/beacon-hooks/cmd/pi_event_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		35859	cli/beacon-hooks/cmd/pi_family.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		3012	cli/beacon-hooks/cmd/pi_event.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		21419	cli/beacon-hooks/cmd/pi_event_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		65149	cli/beacon-hooks/cmd/pi_family.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		4265	cli/beacon-hooks/cmd/pi_family_subscription_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		6993	cli/beacon-hooks/cmd/pi_family_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		9691	cli/beacon-hooks/cmd/pi_family_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		17662	cli/beacon-hooks/cmd/policy.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		5375	cli/beacon-hooks/cmd/policy_test.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		30517	cli/beacon-hooks/cmd/post_tool.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		32020	cli/beacon-hooks/cmd/post_tool.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		9850	cli/beacon-hooks/cmd/post_tool_claude_bash_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		3058	cli/beacon-hooks/cmd/post_tool_claude_mcp_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		12704	cli/beacon-hooks/cmd/post_tool_ingested_result_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		24920	cli/beacon-hooks/cmd/post_tool_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		15203	cli/beacon-hooks/cmd/pre_tool.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		44817	cli/beacon-hooks/cmd/pre_tool_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		45337	cli/beacon-hooks/cmd/pre_tool_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		2828	cli/beacon-hooks/cmd/prime_event.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		18063	cli/beacon-hooks/cmd/prime_event_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		5730	cli/beacon-hooks/cmd/prompt_id.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		15121	cli/beacon-hooks/cmd/prompt_id_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		2691	cli/beacon-hooks/cmd/prompt_submit.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		3035	cli/beacon-hooks/cmd/prompt_submit_cloud_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		5101	cli/beacon-hooks/cmd/qwen_event.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		28207	cli/beacon-hooks/cmd/qwen_event_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		27910	cli/beacon-hooks/cmd/qwen_event_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		7359	cli/beacon-hooks/cmd/qwen_hooks_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		5018	cli/beacon-hooks/cmd/root.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		5039	cli/beacon-hooks/cmd/root_endpoint_flags_test.go
@@ -231,7 +243,7 @@ REFERENCE	Per-host hook payload knowledge for adapters/events		2471	cli/beacon-h
 REFERENCE	Per-host hook payload knowledge for adapters/events		13446	cli/beacon-hooks/cmd/stop.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		9489	cli/beacon-hooks/cmd/stop_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		4055	cli/beacon-hooks/cmd/subagent.go
-REFERENCE	Per-host hook payload knowledge for adapters/events		8901	cli/beacon-hooks/cmd/tool_call_id_test.go
+REFERENCE	Per-host hook payload knowledge for adapters/events		8909	cli/beacon-hooks/cmd/tool_call_id_test.go
 REFERENCE	Per-host hook payload knowledge for adapters/events		364	cli/beacon-hooks/cmd/version.go
 EXCLUDE	PRODUCT_RUNTIME		436	cli/beacon-hooks/go.mod
 EXCLUDE	PRODUCT_RUNTIME		1049	cli/beacon-hooks/go.sum
@@ -251,13 +263,16 @@ EXCLUDE	PRODUCT_RUNTIME		1391	cli/beacon-hooks/internal/logging/endpoint_event_u
 EXCLUDE	PRODUCT_RUNTIME		5805	cli/beacon-hooks/internal/logging/endpoint_write_failure_test.go
 EXCLUDE	PRODUCT_RUNTIME		1059	cli/beacon-hooks/internal/logging/extract.go
 EXCLUDE	PRODUCT_RUNTIME		4301	cli/beacon-hooks/internal/logging/extract_test.go
-EXCLUDE	PRODUCT_RUNTIME		23434	cli/beacon-hooks/internal/logging/logging.go
+EXCLUDE	PRODUCT_RUNTIME		23751	cli/beacon-hooks/internal/logging/logging.go
 EXCLUDE	PRODUCT_RUNTIME		2652	cli/beacon-hooks/internal/policy/policy.go
 EXCLUDE	PRODUCT_RUNTIME		3673	cli/beacon-hooks/internal/policy/policy_test.go
 EXCLUDE	PRODUCT_RUNTIME		7367	cli/beacon-hooks/internal/state/state.go
 EXCLUDE	PRODUCT_RUNTIME		2682	cli/beacon-hooks/internal/state/state_test.go
 EXCLUDE	PRODUCT_RUNTIME		81	cli/beacon-hooks/internal/version/version.go
 EXCLUDE	PRODUCT_RUNTIME		115	cli/beacon-hooks/main.go
+EXCLUDE	PRODUCT_RUNTIME		1145	cli/beacon-hooks/testdata/claude/README.md
+EXCLUDE	PRODUCT_RUNTIME		607	cli/beacon-hooks/testdata/claude/post_tool_use_mcp_empty.json
+EXCLUDE	PRODUCT_RUNTIME		2104	cli/beacon-hooks/testdata/claude/post_tool_use_mcp_media.json
 EXCLUDE	PRODUCT_RUNTIME		1503	cli/beacon-hooks/testdata/cline/README.md
 EXCLUDE	PRODUCT_RUNTIME		357	cli/beacon-hooks/testdata/cline/run_end_usage.json
 EXCLUDE	PRODUCT_RUNTIME		370	cli/beacon-hooks/testdata/cline/task_start.json
@@ -287,6 +302,8 @@ EXCLUDE	PRODUCT_RUNTIME		16293651	cli/beacon/beacon.zip
 EXCLUDE	PRODUCT_RUNTIME		6105	cli/beacon/cmd/account.go
 EXCLUDE	PRODUCT_RUNTIME		4529	cli/beacon/cmd/account_test.go
 EXCLUDE	PRODUCT_RUNTIME		9223	cli/beacon/cmd/agent_skills_test.go
+EXCLUDE	PRODUCT_RUNTIME		6098	cli/beacon/cmd/agent_tools.go
+EXCLUDE	PRODUCT_RUNTIME		9187	cli/beacon/cmd/agent_tools_test.go
 EXCLUDE	PRODUCT_RUNTIME		13109	cli/beacon/cmd/ci.go
 EXCLUDE	PRODUCT_RUNTIME		1914	cli/beacon/cmd/ci_test.go
 EXCLUDE	PRODUCT_RUNTIME		18507	cli/beacon/cmd/cloud.go
@@ -296,20 +313,24 @@ EXCLUDE	PRODUCT_RUNTIME		7684	cli/beacon/cmd/cloud_test.go
 EXCLUDE	PRODUCT_RUNTIME		366	cli/beacon/cmd/console_user_other.go
 EXCLUDE	PRODUCT_RUNTIME		5726	cli/beacon/cmd/console_user_windows.go
 EXCLUDE	PRODUCT_RUNTIME		8778	cli/beacon/cmd/dsh_target_test.go
-EXCLUDE	PRODUCT_RUNTIME		44599	cli/beacon/cmd/endpoint.go
+EXCLUDE	PRODUCT_RUNTIME		45550	cli/beacon/cmd/endpoint.go
+EXCLUDE	PRODUCT_RUNTIME		14483	cli/beacon/cmd/endpoint_backfill.go
+EXCLUDE	PRODUCT_RUNTIME		10383	cli/beacon/cmd/endpoint_backfill_test.go
 EXCLUDE	PRODUCT_RUNTIME		10121	cli/beacon/cmd/endpoint_claude.go
 EXCLUDE	PRODUCT_RUNTIME		5510	cli/beacon/cmd/endpoint_claude_test.go
 EXCLUDE	PRODUCT_RUNTIME		7569	cli/beacon/cmd/endpoint_cline.go
 EXCLUDE	PRODUCT_RUNTIME		7683	cli/beacon/cmd/endpoint_codex.go
 EXCLUDE	PRODUCT_RUNTIME		1760	cli/beacon/cmd/endpoint_codex_usage_diagnostics_test.go
-EXCLUDE	PRODUCT_RUNTIME		12541	cli/beacon/cmd/endpoint_connect.go
-EXCLUDE	PRODUCT_RUNTIME		9210	cli/beacon/cmd/endpoint_connect_test.go
+EXCLUDE	PRODUCT_RUNTIME		13318	cli/beacon/cmd/endpoint_connect.go
+EXCLUDE	PRODUCT_RUNTIME		9224	cli/beacon/cmd/endpoint_connect_test.go
 EXCLUDE	PRODUCT_RUNTIME		6883	cli/beacon/cmd/endpoint_console_user_config_test.go
 EXCLUDE	PRODUCT_RUNTIME		11380	cli/beacon/cmd/endpoint_console_user_test.go
 EXCLUDE	PRODUCT_RUNTIME		8824	cli/beacon/cmd/endpoint_copilot.go
 EXCLUDE	PRODUCT_RUNTIME		6987	cli/beacon/cmd/endpoint_copilot_test.go
 EXCLUDE	PRODUCT_RUNTIME		8074	cli/beacon/cmd/endpoint_cowork.go
-EXCLUDE	PRODUCT_RUNTIME		7890	cli/beacon/cmd/endpoint_cursor.go
+EXCLUDE	PRODUCT_RUNTIME		8105	cli/beacon/cmd/endpoint_cursor.go
+EXCLUDE	PRODUCT_RUNTIME		13914	cli/beacon/cmd/endpoint_cursor_usage.go
+EXCLUDE	PRODUCT_RUNTIME		12588	cli/beacon/cmd/endpoint_cursor_usage_test.go
 EXCLUDE	PRODUCT_RUNTIME		20475	cli/beacon/cmd/endpoint_destinations.go
 EXCLUDE	PRODUCT_RUNTIME		8709	cli/beacon/cmd/endpoint_destinations_characterization_test.go
 EXCLUDE	PRODUCT_RUNTIME		75462	cli/beacon/cmd/endpoint_diagnostics.go
@@ -328,12 +349,12 @@ EXCLUDE	PRODUCT_RUNTIME		1435	cli/beacon/cmd/endpoint_hermes_test.go
 EXCLUDE	PRODUCT_RUNTIME		31643	cli/beacon/cmd/endpoint_hooks.go
 EXCLUDE	PRODUCT_RUNTIME		17385	cli/beacon/cmd/endpoint_hooks_repair.go
 EXCLUDE	PRODUCT_RUNTIME		3656	cli/beacon/cmd/endpoint_hooks_test.go
-EXCLUDE	PRODUCT_RUNTIME		15483	cli/beacon/cmd/endpoint_install.go
-EXCLUDE	PRODUCT_RUNTIME		7061	cli/beacon/cmd/endpoint_install_harness_test.go
+EXCLUDE	PRODUCT_RUNTIME		17124	cli/beacon/cmd/endpoint_install.go
+EXCLUDE	PRODUCT_RUNTIME		7968	cli/beacon/cmd/endpoint_install_harness_test.go
 EXCLUDE	PRODUCT_RUNTIME		3978	cli/beacon/cmd/endpoint_install_linger_test.go
 EXCLUDE	PRODUCT_RUNTIME		2397	cli/beacon/cmd/endpoint_inventory_service.go
 EXCLUDE	PRODUCT_RUNTIME		2698	cli/beacon/cmd/endpoint_inventory_service_test.go
-EXCLUDE	PRODUCT_RUNTIME		23407	cli/beacon/cmd/endpoint_onboarding.go
+EXCLUDE	PRODUCT_RUNTIME		24884	cli/beacon/cmd/endpoint_onboarding.go
 EXCLUDE	PRODUCT_RUNTIME		1974	cli/beacon/cmd/endpoint_onboarding_display_test.go
 EXCLUDE	PRODUCT_RUNTIME		36867	cli/beacon/cmd/endpoint_onboarding_test.go
 EXCLUDE	PRODUCT_RUNTIME		8122	cli/beacon/cmd/endpoint_openclaw_sessions.go
@@ -350,7 +371,7 @@ EXCLUDE	PRODUCT_RUNTIME		5683	cli/beacon/cmd/endpoint_traces_history_test.go
 EXCLUDE	PRODUCT_RUNTIME		1134	cli/beacon/cmd/endpoint_traces_tui_test.go
 EXCLUDE	PRODUCT_RUNTIME		8840	cli/beacon/cmd/endpoint_update.go
 EXCLUDE	PRODUCT_RUNTIME		10005	cli/beacon/cmd/endpoint_update_service.go
-EXCLUDE	PRODUCT_RUNTIME		7092	cli/beacon/cmd/endpoint_user_config.go
+EXCLUDE	PRODUCT_RUNTIME		7144	cli/beacon/cmd/endpoint_user_config.go
 EXCLUDE	PRODUCT_RUNTIME		1923	cli/beacon/cmd/endpoint_user_config_unix.go
 EXCLUDE	PRODUCT_RUNTIME		951	cli/beacon/cmd/endpoint_user_config_windows.go
 EXCLUDE	PRODUCT_RUNTIME		7454	cli/beacon/cmd/git.go
@@ -363,37 +384,45 @@ EXCLUDE	PRODUCT_RUNTIME		14014	cli/beacon/cmd/handoff.go
 EXCLUDE	PRODUCT_RUNTIME		6862	cli/beacon/cmd/handoff_resume.go
 EXCLUDE	PRODUCT_RUNTIME		14712	cli/beacon/cmd/handoff_resume_test.go
 EXCLUDE	PRODUCT_RUNTIME		22831	cli/beacon/cmd/handoff_test.go
-EXCLUDE	PRODUCT_RUNTIME		647	cli/beacon/cmd/history_env_test.go
+EXCLUDE	PRODUCT_RUNTIME		871	cli/beacon/cmd/history_env_test.go
 EXCLUDE	PRODUCT_RUNTIME		8835	cli/beacon/cmd/kimi_target_test.go
 EXCLUDE	PRODUCT_RUNTIME		9274	cli/beacon/cmd/kiro_target_test.go
+EXCLUDE	PRODUCT_RUNTIME		5697	cli/beacon/cmd/lenses.go
+EXCLUDE	PRODUCT_RUNTIME		4632	cli/beacon/cmd/lenses_test.go
+EXCLUDE	PRODUCT_RUNTIME		9104	cli/beacon/cmd/lenses_tools.go
+EXCLUDE	PRODUCT_RUNTIME		6724	cli/beacon/cmd/lenses_tools_test.go
 EXCLUDE	PRODUCT_RUNTIME		6303	cli/beacon/cmd/mcp.go
-EXCLUDE	PRODUCT_RUNTIME		19291	cli/beacon/cmd/mcp_connect.go
-EXCLUDE	PRODUCT_RUNTIME		7147	cli/beacon/cmd/mcp_connect_e2e_test.go
-EXCLUDE	PRODUCT_RUNTIME		22087	cli/beacon/cmd/mcp_connect_test.go
+EXCLUDE	PRODUCT_RUNTIME		20212	cli/beacon/cmd/mcp_connect.go
+EXCLUDE	PRODUCT_RUNTIME		8508	cli/beacon/cmd/mcp_connect_e2e_test.go
+EXCLUDE	PRODUCT_RUNTIME		22209	cli/beacon/cmd/mcp_connect_test.go
 EXCLUDE	PRODUCT_RUNTIME		1114	cli/beacon/cmd/mcp_test.go
 EXCLUDE	PRODUCT_RUNTIME		3946	cli/beacon/cmd/mcp_token.go
 EXCLUDE	PRODUCT_RUNTIME		3999	cli/beacon/cmd/mcp_token_test.go
 EXCLUDE	PRODUCT_RUNTIME		26860	cli/beacon/cmd/memory.go
 EXCLUDE	PRODUCT_RUNTIME		28448	cli/beacon/cmd/memory_test.go
 EXCLUDE	PRODUCT_RUNTIME		6440	cli/beacon/cmd/muse_target_test.go
-EXCLUDE	PRODUCT_RUNTIME		4243	cli/beacon/cmd/omp_target_test.go
+EXCLUDE	PRODUCT_RUNTIME		4301	cli/beacon/cmd/omp_target_test.go
 EXCLUDE	PRODUCT_RUNTIME		7914	cli/beacon/cmd/openhands_target_test.go
+EXCLUDE	PRODUCT_RUNTIME		18664	cli/beacon/cmd/pricing.go
+EXCLUDE	PRODUCT_RUNTIME		16758	cli/beacon/cmd/pricing_test.go
 EXCLUDE	PRODUCT_RUNTIME		4511	cli/beacon/cmd/prime_target_test.go
-EXCLUDE	PRODUCT_RUNTIME		4887	cli/beacon/cmd/root.go
-EXCLUDE	PRODUCT_RUNTIME		2162	cli/beacon/cmd/root_test.go
+EXCLUDE	PRODUCT_RUNTIME		8456	cli/beacon/cmd/root.go
+EXCLUDE	PRODUCT_RUNTIME		8344	cli/beacon/cmd/root_test.go
 EXCLUDE	PRODUCT_RUNTIME		11807	cli/beacon/cmd/rules.go
 EXCLUDE	PRODUCT_RUNTIME		9875	cli/beacon/cmd/rules_test.go
 EXCLUDE	PRODUCT_RUNTIME		7601	cli/beacon/cmd/scan.go
+EXCLUDE	PRODUCT_RUNTIME		10124	cli/beacon/cmd/scan_live_hook_tool_result_test.go
 EXCLUDE	PRODUCT_RUNTIME		3581	cli/beacon/cmd/scan_ordering_test.go
 EXCLUDE	PRODUCT_RUNTIME		8926	cli/beacon/cmd/scan_test.go
 EXCLUDE	PRODUCT_RUNTIME		4577	cli/beacon/cmd/scan_tool_result_test.go
-EXCLUDE	PRODUCT_RUNTIME		7774	cli/beacon/cmd/token_usage.go
+EXCLUDE	PRODUCT_RUNTIME		8900	cli/beacon/cmd/token_usage.go
+EXCLUDE	PRODUCT_RUNTIME		4834	cli/beacon/cmd/token_usage_cost_test.go
 EXCLUDE	PRODUCT_RUNTIME		17857	cli/beacon/cmd/token_usage_test.go
 EXCLUDE	PRODUCT_RUNTIME		761	cli/beacon/cmd/version.go
-EXCLUDE	PRODUCT_RUNTIME		1848	cli/beacon/cmd/version_check.go
-EXCLUDE	PRODUCT_RUNTIME		6009	cli/beacon/cmd/version_check_test.go
+EXCLUDE	PRODUCT_RUNTIME		3128	cli/beacon/cmd/version_check.go
+EXCLUDE	PRODUCT_RUNTIME		8339	cli/beacon/cmd/version_check_test.go
 EXCLUDE	PRODUCT_RUNTIME		2534	cli/beacon/go.mod
-EXCLUDE	PRODUCT_RUNTIME		11119	cli/beacon/go.sum
+EXCLUDE	PRODUCT_RUNTIME		11453	cli/beacon/go.sum
 EXCLUDE	PRODUCT_RUNTIME		6224	cli/beacon/goreleaser_brew_test.go
 EXCLUDE	PRODUCT_RUNTIME		14297	cli/beacon/internal/account/login.go
 EXCLUDE	PRODUCT_RUNTIME		2044	cli/beacon/internal/account/login_display_test.go
@@ -404,32 +433,43 @@ EXCLUDE	PRODUCT_RUNTIME		145	cli/beacon/internal/account/replace_other.go
 EXCLUDE	PRODUCT_RUNTIME		441	cli/beacon/internal/account/replace_windows.go
 EXCLUDE	PRODUCT_RUNTIME		5304	cli/beacon/internal/account/store.go
 EXCLUDE	PRODUCT_RUNTIME		2982	cli/beacon/internal/account/store_test.go
-EXCLUDE	PRODUCT_RUNTIME		11299	cli/beacon/internal/auth/auth_test.go
+EXCLUDE	PRODUCT_RUNTIME		7235	cli/beacon/internal/agentskills/agentskills.go
+EXCLUDE	PRODUCT_RUNTIME		5022	cli/beacon/internal/agentskills/agentskills_test.go
+EXCLUDE	PRODUCT_RUNTIME		13004	cli/beacon/internal/agentskills/skills/beacon-lens-create/SKILL.md
+EXCLUDE	PRODUCT_RUNTIME		11908	cli/beacon/internal/agentskills/skills/beacon-memory-distill/SKILL.md
+EXCLUDE	PRODUCT_RUNTIME		2855	cli/beacon/internal/agentskills/skills/beacon-memory-distill/references/lesson-quality.md
+EXCLUDE	PRODUCT_RUNTIME		3708	cli/beacon/internal/agentskills/skills/beacon-memory-promote/SKILL.md
+EXCLUDE	PRODUCT_RUNTIME		4822	cli/beacon/internal/agentskills/skills/beacon-memory-recall/SKILL.md
+EXCLUDE	PRODUCT_RUNTIME		11358	cli/beacon/internal/auth/auth_test.go
 EXCLUDE	PRODUCT_RUNTIME		2601	cli/beacon/internal/auth/browser.go
 EXCLUDE	PRODUCT_RUNTIME		3234	cli/beacon/internal/auth/browser_test.go
 EXCLUDE	PRODUCT_RUNTIME		3463	cli/beacon/internal/auth/dashboard.go
 EXCLUDE	PRODUCT_RUNTIME		870	cli/beacon/internal/auth/pkce.go
-EXCLUDE	PRODUCT_RUNTIME		11064	cli/beacon/internal/auth/server.go
+EXCLUDE	PRODUCT_RUNTIME		11980	cli/beacon/internal/auth/server.go
 EXCLUDE	PRODUCT_RUNTIME		967	cli/beacon/internal/brewpath/brewpath.go
 EXCLUDE	PRODUCT_RUNTIME		845	cli/beacon/internal/brewpath/brewpath_test.go
 EXCLUDE	PRODUCT_RUNTIME		4849	cli/beacon/internal/ci/forward.go
 EXCLUDE	PRODUCT_RUNTIME		2979	cli/beacon/internal/ci/forward_test.go
-EXCLUDE	PRODUCT_RUNTIME		7527	cli/beacon/internal/ci/harness.go
-EXCLUDE	PRODUCT_RUNTIME		3838	cli/beacon/internal/ci/harness_test.go
+EXCLUDE	PRODUCT_RUNTIME		8502	cli/beacon/internal/ci/harness.go
+EXCLUDE	PRODUCT_RUNTIME		5073	cli/beacon/internal/ci/harness_test.go
 EXCLUDE	PRODUCT_RUNTIME		1213	cli/beacon/internal/ci/healthport_test.go
-EXCLUDE	PRODUCT_RUNTIME		16787	cli/beacon/internal/ci/session.go
-EXCLUDE	PRODUCT_RUNTIME		17711	cli/beacon/internal/ci/session_test.go
+EXCLUDE	PRODUCT_RUNTIME		17130	cli/beacon/internal/ci/session.go
+EXCLUDE	PRODUCT_RUNTIME		20069	cli/beacon/internal/ci/session_test.go
 EXCLUDE	PRODUCT_RUNTIME		6993	cli/beacon/internal/ci/upload.go
 EXCLUDE	PRODUCT_RUNTIME		6084	cli/beacon/internal/ci/upload_test.go
 EXCLUDE	PRODUCT_RUNTIME		6100	cli/beacon/internal/ci/validate.go
 EXCLUDE	PRODUCT_RUNTIME		4605	cli/beacon/internal/ci/validate_test.go
-EXCLUDE	PRODUCT_RUNTIME		7842	cli/beacon/internal/claudesession/claudesession_test.go
-EXCLUDE	PRODUCT_RUNTIME		8430	cli/beacon/internal/claudesession/collect.go
-EXCLUDE	PRODUCT_RUNTIME		17520	cli/beacon/internal/claudesession/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		5419	cli/beacon/internal/claudesession/cache1h_test.go
+EXCLUDE	PRODUCT_RUNTIME		13158	cli/beacon/internal/claudesession/claudesession_test.go
+EXCLUDE	PRODUCT_RUNTIME		9883	cli/beacon/internal/claudesession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		20704	cli/beacon/internal/claudesession/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		2587	cli/beacon/internal/claudesession/prompt_id_test.go
 EXCLUDE	PRODUCT_RUNTIME		7498	cli/beacon/internal/claudesession/retention_test.go
 EXCLUDE	PRODUCT_RUNTIME		6390	cli/beacon/internal/claudesession/store.go
 EXCLUDE	PRODUCT_RUNTIME		3023	cli/beacon/internal/claudesession/types.go
-EXCLUDE	PRODUCT_RUNTIME		6453	cli/beacon/internal/clinesession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		7901	cli/beacon/internal/claudesession/usage.go
+EXCLUDE	PRODUCT_RUNTIME		17593	cli/beacon/internal/claudesession/usage_test.go
+EXCLUDE	PRODUCT_RUNTIME		7453	cli/beacon/internal/clinesession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		12407	cli/beacon/internal/clinesession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		13223	cli/beacon/internal/clinesession/helpers.go
 EXCLUDE	PRODUCT_RUNTIME		12129	cli/beacon/internal/clinesession/mapper.go
@@ -437,19 +477,25 @@ EXCLUDE	PRODUCT_RUNTIME		7108	cli/beacon/internal/clinesession/mapper_test.go
 EXCLUDE	PRODUCT_RUNTIME		3281	cli/beacon/internal/clinesession/partial_test.go
 EXCLUDE	PRODUCT_RUNTIME		17813	cli/beacon/internal/clinesession/store.go
 EXCLUDE	PRODUCT_RUNTIME		3030	cli/beacon/internal/clinesession/types.go
+EXCLUDE	PRODUCT_RUNTIME		4356	cli/beacon/internal/codexsession/backfill_test.go
 EXCLUDE	PRODUCT_RUNTIME		14173	cli/beacon/internal/codexsession/codexsession_test.go
-EXCLUDE	PRODUCT_RUNTIME		5778	cli/beacon/internal/codexsession/collect.go
-EXCLUDE	PRODUCT_RUNTIME		19990	cli/beacon/internal/codexsession/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		6780	cli/beacon/internal/codexsession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		20261	cli/beacon/internal/codexsession/mapper.go
 EXCLUDE	PRODUCT_RUNTIME		2614	cli/beacon/internal/codexsession/partial_test.go
+EXCLUDE	PRODUCT_RUNTIME		2133	cli/beacon/internal/codexsession/prompt_id_test.go
 EXCLUDE	PRODUCT_RUNTIME		6301	cli/beacon/internal/codexsession/store.go
 EXCLUDE	PRODUCT_RUNTIME		5845	cli/beacon/internal/codexsession/types.go
-EXCLUDE	PRODUCT_RUNTIME		6871	cli/beacon/internal/copilotsession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		7873	cli/beacon/internal/copilotsession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		11538	cli/beacon/internal/copilotsession/copilotsession_test.go
+EXCLUDE	PRODUCT_RUNTIME		3734	cli/beacon/internal/copilotsession/cost.go
+EXCLUDE	PRODUCT_RUNTIME		12800	cli/beacon/internal/copilotsession/cost_test.go
 EXCLUDE	PRODUCT_RUNTIME		2265	cli/beacon/internal/copilotsession/handoff_test.go
-EXCLUDE	PRODUCT_RUNTIME		25262	cli/beacon/internal/copilotsession/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		27085	cli/beacon/internal/copilotsession/mapper.go
 EXCLUDE	PRODUCT_RUNTIME		4798	cli/beacon/internal/copilotsession/store.go
 EXCLUDE	PRODUCT_RUNTIME		1486	cli/beacon/internal/copilotsession/types.go
-EXCLUDE	PRODUCT_RUNTIME		5664	cli/beacon/internal/cursorsession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		1781	cli/beacon/internal/cursorsession/account.go
+EXCLUDE	PRODUCT_RUNTIME		2135	cli/beacon/internal/cursorsession/account_test.go
+EXCLUDE	PRODUCT_RUNTIME		6664	cli/beacon/internal/cursorsession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		5269	cli/beacon/internal/cursorsession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		2643	cli/beacon/internal/cursorsession/handoff_test.go
 EXCLUDE	PRODUCT_RUNTIME		11463	cli/beacon/internal/cursorsession/mapper.go
@@ -457,6 +503,12 @@ EXCLUDE	PRODUCT_RUNTIME		22947	cli/beacon/internal/cursorsession/parse.go
 EXCLUDE	PRODUCT_RUNTIME		993	cli/beacon/internal/cursorsession/partial_test.go
 EXCLUDE	PRODUCT_RUNTIME		15145	cli/beacon/internal/cursorsession/store.go
 EXCLUDE	PRODUCT_RUNTIME		5818	cli/beacon/internal/cursorsession/types.go
+EXCLUDE	PRODUCT_RUNTIME		18912	cli/beacon/internal/cursorusage/client.go
+EXCLUDE	PRODUCT_RUNTIME		15362	cli/beacon/internal/cursorusage/client_test.go
+EXCLUDE	PRODUCT_RUNTIME		13084	cli/beacon/internal/cursorusage/collect.go
+EXCLUDE	PRODUCT_RUNTIME		20123	cli/beacon/internal/cursorusage/collect_test.go
+EXCLUDE	PRODUCT_RUNTIME		5771	cli/beacon/internal/cursorusage/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		1479	cli/beacon/internal/cursorusage/testdata/filtered_usage_events.json
 EXCLUDE	PRODUCT_RUNTIME		6767	cli/beacon/internal/devincloud/client.go
 EXCLUDE	PRODUCT_RUNTIME		4397	cli/beacon/internal/devincloud/client_test.go
 EXCLUDE	PRODUCT_RUNTIME		8782	cli/beacon/internal/devincloud/mapper.go
@@ -466,7 +518,7 @@ EXCLUDE	PRODUCT_RUNTIME		14705	cli/beacon/internal/devincloud/pull_test.go
 EXCLUDE	PRODUCT_RUNTIME		2252	cli/beacon/internal/devincloud/state.go
 EXCLUDE	PRODUCT_RUNTIME		7023	cli/beacon/internal/devincloud/upload.go
 EXCLUDE	PRODUCT_RUNTIME		2997	cli/beacon/internal/devincloud/upload_test.go
-EXCLUDE	PRODUCT_RUNTIME		7324	cli/beacon/internal/dshsession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		8326	cli/beacon/internal/dshsession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		8337	cli/beacon/internal/dshsession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		2214	cli/beacon/internal/dshsession/handoff_test.go
 EXCLUDE	PRODUCT_RUNTIME		20987	cli/beacon/internal/dshsession/mapper.go
@@ -482,18 +534,20 @@ EXCLUDE	PRODUCT_RUNTIME		15957	cli/beacon/internal/endpoint/activity/activity.go
 EXCLUDE	PRODUCT_RUNTIME		5647	cli/beacon/internal/endpoint/activity/activity_test.go
 EXCLUDE	PRODUCT_RUNTIME		2769	cli/beacon/internal/endpoint/asymptote/account_enroll.go
 EXCLUDE	PRODUCT_RUNTIME		3320	cli/beacon/internal/endpoint/asymptote/account_enroll_test.go
-EXCLUDE	PRODUCT_RUNTIME		7879	cli/beacon/internal/endpoint/asymptote/asymptote.go
-EXCLUDE	PRODUCT_RUNTIME		10337	cli/beacon/internal/endpoint/asymptote/asymptote_test.go
-EXCLUDE	PRODUCT_RUNTIME		16384	cli/beacon/internal/endpoint/asymptote/connect.go
-EXCLUDE	PRODUCT_RUNTIME		26853	cli/beacon/internal/endpoint/asymptote/connect_test.go
+EXCLUDE	PRODUCT_RUNTIME		7900	cli/beacon/internal/endpoint/asymptote/asymptote.go
+EXCLUDE	PRODUCT_RUNTIME		13428	cli/beacon/internal/endpoint/asymptote/asymptote_test.go
+EXCLUDE	PRODUCT_RUNTIME		4926	cli/beacon/internal/endpoint/asymptote/backfill.go
+EXCLUDE	PRODUCT_RUNTIME		9975	cli/beacon/internal/endpoint/asymptote/backfill_test.go
+EXCLUDE	PRODUCT_RUNTIME		19109	cli/beacon/internal/endpoint/asymptote/connect.go
+EXCLUDE	PRODUCT_RUNTIME		26908	cli/beacon/internal/endpoint/asymptote/connect_test.go
 EXCLUDE	PRODUCT_RUNTIME		7196	cli/beacon/internal/endpoint/asymptote/enroll.go
 EXCLUDE	PRODUCT_RUNTIME		8396	cli/beacon/internal/endpoint/asymptote/enroll_test.go
 EXCLUDE	PRODUCT_RUNTIME		9943	cli/beacon/internal/endpoint/asymptote/enrollment.go
-EXCLUDE	PRODUCT_RUNTIME		4746	cli/beacon/internal/endpoint/asymptote/pack/README.md
+EXCLUDE	PRODUCT_RUNTIME		5146	cli/beacon/internal/endpoint/asymptote/pack/README.md
 EXCLUDE	PRODUCT_RUNTIME		3396	cli/beacon/internal/endpoint/asymptote/pack/asymptote-ingest-smoke-test.sh.tmpl
-EXCLUDE	PRODUCT_RUNTIME		1345	cli/beacon/internal/endpoint/asymptote/pack/metadata-transforms.toml
-REFERENCE	Event schema reference (P18)		1974	cli/beacon/internal/endpoint/asymptote/pack/sample-event.jsonl
-EXCLUDE	PRODUCT_RUNTIME		3230	cli/beacon/internal/endpoint/asymptote/pack/vector.toml.tmpl
+EXCLUDE	PRODUCT_RUNTIME		2053	cli/beacon/internal/endpoint/asymptote/pack/metadata-transforms.toml
+REFERENCE	Event schema reference (P18)		3562	cli/beacon/internal/endpoint/asymptote/pack/sample-event.jsonl
+EXCLUDE	PRODUCT_RUNTIME		3854	cli/beacon/internal/endpoint/asymptote/pack/vector.toml.tmpl
 EXCLUDE	PRODUCT_RUNTIME		16327	cli/beacon/internal/endpoint/asymptote/reconnect_test.go
 EXCLUDE	PRODUCT_RUNTIME		6887	cli/beacon/internal/endpoint/asymptote/status.go
 EXCLUDE	PRODUCT_RUNTIME		12016	cli/beacon/internal/endpoint/asymptote/vector.go
@@ -506,51 +560,71 @@ EXCLUDE	PRODUCT_RUNTIME		1107	cli/beacon/internal/endpoint/cloudwatch/pack/vecto
 EXCLUDE	PRODUCT_RUNTIME		657	cli/beacon/internal/endpoint/collector/candidates_other.go
 EXCLUDE	PRODUCT_RUNTIME		4559	cli/beacon/internal/endpoint/collector/candidates_test.go
 EXCLUDE	PRODUCT_RUNTIME		2125	cli/beacon/internal/endpoint/collector/candidates_windows.go
-EXCLUDE	PRODUCT_RUNTIME		11405	cli/beacon/internal/endpoint/collector/collector.go
-EXCLUDE	PRODUCT_RUNTIME		13858	cli/beacon/internal/endpoint/collector/collector_test.go
+EXCLUDE	PRODUCT_RUNTIME		12326	cli/beacon/internal/endpoint/collector/collector.go
+EXCLUDE	PRODUCT_RUNTIME		15936	cli/beacon/internal/endpoint/collector/collector_test.go
+EXCLUDE	PRODUCT_RUNTIME		2167	cli/beacon/internal/endpoint/collector/components.go
+EXCLUDE	PRODUCT_RUNTIME		2213	cli/beacon/internal/endpoint/collector/components_test.go
 EXCLUDE	PRODUCT_RUNTIME		219	cli/beacon/internal/endpoint/collector/executable_unix.go
 EXCLUDE	PRODUCT_RUNTIME		878	cli/beacon/internal/endpoint/collector/executable_windows.go
 EXCLUDE	PRODUCT_RUNTIME		4474	cli/beacon/internal/endpoint/collector/healthport_test.go
 EXCLUDE	PRODUCT_RUNTIME		2948	cli/beacon/internal/endpoint/collector/startlog.go
 EXCLUDE	PRODUCT_RUNTIME		2827	cli/beacon/internal/endpoint/collector/startlog_test.go
-EXCLUDE	PRODUCT_RUNTIME		16192	cli/beacon/internal/endpoint/config/config.go
-EXCLUDE	PRODUCT_RUNTIME		8150	cli/beacon/internal/endpoint/config/config_test.go
+EXCLUDE	PRODUCT_RUNTIME		16471	cli/beacon/internal/endpoint/config/config.go
+EXCLUDE	PRODUCT_RUNTIME		8289	cli/beacon/internal/endpoint/config/config_test.go
 EXCLUDE	PRODUCT_RUNTIME		4392	cli/beacon/internal/endpoint/config/healthport_test.go
 EXCLUDE	PRODUCT_RUNTIME		1993	cli/beacon/internal/endpoint/config/systemlog_test.go
-EXCLUDE	PRODUCT_RUNTIME		5646	cli/beacon/internal/endpoint/dashboard/detections.go
+EXCLUDE	PRODUCT_RUNTIME		6060	cli/beacon/internal/endpoint/dashboard/detections.go
 EXCLUDE	PRODUCT_RUNTIME		1516	cli/beacon/internal/endpoint/dashboard/dsh_test.go
-EXCLUDE	PRODUCT_RUNTIME		25403	cli/beacon/internal/endpoint/dashboard/events.go
-EXCLUDE	PRODUCT_RUNTIME		28132	cli/beacon/internal/endpoint/dashboard/events_test.go
+EXCLUDE	PRODUCT_RUNTIME		1029	cli/beacon/internal/endpoint/dashboard/e2eserver/main.go
+EXCLUDE	PRODUCT_RUNTIME		29678	cli/beacon/internal/endpoint/dashboard/events.go
+EXCLUDE	PRODUCT_RUNTIME		37092	cli/beacon/internal/endpoint/dashboard/events_test.go
 EXCLUDE	PRODUCT_RUNTIME		4354	cli/beacon/internal/endpoint/dashboard/findings_skipped_test.go
 EXCLUDE	PRODUCT_RUNTIME		577	cli/beacon/internal/endpoint/dashboard/history_file_unix.go
 EXCLUDE	PRODUCT_RUNTIME		1289	cli/beacon/internal/endpoint/dashboard/history_file_windows.go
 EXCLUDE	PRODUCT_RUNTIME		37971	cli/beacon/internal/endpoint/dashboard/history_ingest.go
 EXCLUDE	PRODUCT_RUNTIME		7135	cli/beacon/internal/endpoint/dashboard/history_line.go
 EXCLUDE	PRODUCT_RUNTIME		15577	cli/beacon/internal/endpoint/dashboard/history_query.go
-EXCLUDE	PRODUCT_RUNTIME		19125	cli/beacon/internal/endpoint/dashboard/history_store.go
-EXCLUDE	PRODUCT_RUNTIME		40457	cli/beacon/internal/endpoint/dashboard/history_test.go
+EXCLUDE	PRODUCT_RUNTIME		19232	cli/beacon/internal/endpoint/dashboard/history_store.go
+EXCLUDE	PRODUCT_RUNTIME		43237	cli/beacon/internal/endpoint/dashboard/history_test.go
 EXCLUDE	PRODUCT_RUNTIME		3024	cli/beacon/internal/endpoint/dashboard/hooks_status_test.go
 EXCLUDE	PRODUCT_RUNTIME		1764	cli/beacon/internal/endpoint/dashboard/kimi_test.go
 EXCLUDE	PRODUCT_RUNTIME		1897	cli/beacon/internal/endpoint/dashboard/kiro_test.go
+EXCLUDE	PRODUCT_RUNTIME		9565	cli/beacon/internal/endpoint/dashboard/lens_data.go
+EXCLUDE	PRODUCT_RUNTIME		15352	cli/beacon/internal/endpoint/dashboard/lens_data_test.go
+EXCLUDE	PRODUCT_RUNTIME		9838	cli/beacon/internal/endpoint/dashboard/lenses.go
+EXCLUDE	PRODUCT_RUNTIME		12177	cli/beacon/internal/endpoint/dashboard/lenses/SPEC.md
+EXCLUDE	PRODUCT_RUNTIME		4804	cli/beacon/internal/endpoint/dashboard/lenses/activity.lens.html
+EXCLUDE	PRODUCT_RUNTIME		7126	cli/beacon/internal/endpoint/dashboard/lenses/approvals.lens.html
+EXCLUDE	PRODUCT_RUNTIME		11267	cli/beacon/internal/endpoint/dashboard/lenses/files-changed.lens.html
+EXCLUDE	PRODUCT_RUNTIME		15117	cli/beacon/internal/endpoint/dashboard/lenses/mcp.lens.html
+EXCLUDE	PRODUCT_RUNTIME		4084	cli/beacon/internal/endpoint/dashboard/lenses/prelude.js
+EXCLUDE	PRODUCT_RUNTIME		8350	cli/beacon/internal/endpoint/dashboard/lenses/security-review.lens.html
+EXCLUDE	PRODUCT_RUNTIME		16747	cli/beacon/internal/endpoint/dashboard/lenses/skills.lens.html
+EXCLUDE	PRODUCT_RUNTIME		11115	cli/beacon/internal/endpoint/dashboard/lenses/token-usage.lens.html
+EXCLUDE	PRODUCT_RUNTIME		439	cli/beacon/internal/endpoint/dashboard/lenses/tokens.css
+EXCLUDE	PRODUCT_RUNTIME		15923	cli/beacon/internal/endpoint/dashboard/lenses_test.go
 EXCLUDE	PRODUCT_RUNTIME		1232	cli/beacon/internal/endpoint/dashboard/memory.go
 EXCLUDE	PRODUCT_RUNTIME		1997	cli/beacon/internal/endpoint/dashboard/openhands_test.go
 EXCLUDE	PRODUCT_RUNTIME		5477	cli/beacon/internal/endpoint/dashboard/ordering_test.go
-EXCLUDE	PRODUCT_RUNTIME		19853	cli/beacon/internal/endpoint/dashboard/server.go
-EXCLUDE	PRODUCT_RUNTIME		30345	cli/beacon/internal/endpoint/dashboard/server_test.go
-EXCLUDE	PRODUCT_RUNTIME		7753	cli/beacon/internal/endpoint/dashboard/sessions.go
-EXCLUDE	PRODUCT_RUNTIME		135220	cli/beacon/internal/endpoint/dashboard/static/app.js
-EXCLUDE	PRODUCT_RUNTIME		1937	cli/beacon/internal/endpoint/dashboard/static/detections.html
-EXCLUDE	PRODUCT_RUNTIME		2386	cli/beacon/internal/endpoint/dashboard/static/findings.html
+EXCLUDE	PRODUCT_RUNTIME		2164	cli/beacon/internal/endpoint/dashboard/prompt_id_test.go
+EXCLUDE	PRODUCT_RUNTIME		22343	cli/beacon/internal/endpoint/dashboard/server.go
+EXCLUDE	PRODUCT_RUNTIME		34994	cli/beacon/internal/endpoint/dashboard/server_test.go
+EXCLUDE	PRODUCT_RUNTIME		8439	cli/beacon/internal/endpoint/dashboard/sessions.go
+EXCLUDE	PRODUCT_RUNTIME		147266	cli/beacon/internal/endpoint/dashboard/static/app.js
+EXCLUDE	PRODUCT_RUNTIME		1964	cli/beacon/internal/endpoint/dashboard/static/detections.html
+EXCLUDE	PRODUCT_RUNTIME		730	cli/beacon/internal/endpoint/dashboard/static/favicon.svg
+EXCLUDE	PRODUCT_RUNTIME		2415	cli/beacon/internal/endpoint/dashboard/static/findings.html
 EXCLUDE	PRODUCT_RUNTIME		4546	cli/beacon/internal/endpoint/dashboard/static/fonts/FAMILJEN-GROTESK-LICENSE.txt
 EXCLUDE	PRODUCT_RUNTIME		20512	cli/beacon/internal/endpoint/dashboard/static/fonts/familjen-grotesk-latin-wght-italic.woff2
 EXCLUDE	PRODUCT_RUNTIME		18916	cli/beacon/internal/endpoint/dashboard/static/fonts/familjen-grotesk-latin-wght-normal.woff2
-EXCLUDE	PRODUCT_RUNTIME		8238	cli/beacon/internal/endpoint/dashboard/static/index.html
-EXCLUDE	PRODUCT_RUNTIME		3940	cli/beacon/internal/endpoint/dashboard/static/inventory-hooks.html
-EXCLUDE	PRODUCT_RUNTIME		3196	cli/beacon/internal/endpoint/dashboard/static/inventory.html
-EXCLUDE	PRODUCT_RUNTIME		922	cli/beacon/internal/endpoint/dashboard/static/logo.svg
-EXCLUDE	PRODUCT_RUNTIME		3195	cli/beacon/internal/endpoint/dashboard/static/memory.html
-EXCLUDE	PRODUCT_RUNTIME		3278	cli/beacon/internal/endpoint/dashboard/static/overview.html
+EXCLUDE	PRODUCT_RUNTIME		8530	cli/beacon/internal/endpoint/dashboard/static/index.html
+EXCLUDE	PRODUCT_RUNTIME		3962	cli/beacon/internal/endpoint/dashboard/static/inventory-hooks.html
+EXCLUDE	PRODUCT_RUNTIME		3218	cli/beacon/internal/endpoint/dashboard/static/inventory.html
+EXCLUDE	PRODUCT_RUNTIME		733	cli/beacon/internal/endpoint/dashboard/static/logo.svg
+EXCLUDE	PRODUCT_RUNTIME		3235	cli/beacon/internal/endpoint/dashboard/static/memory.html
+EXCLUDE	PRODUCT_RUNTIME		3301	cli/beacon/internal/endpoint/dashboard/static/overview.html
 EXCLUDE	PRODUCT_RUNTIME		22314	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/antigravity.png
+EXCLUDE	PRODUCT_RUNTIME		855	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/chatgpt.svg
 EXCLUDE	PRODUCT_RUNTIME		14038	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/claude-code.png
 EXCLUDE	PRODUCT_RUNTIME		26347	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/cline.png
 EXCLUDE	PRODUCT_RUNTIME		23757	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/codex.png
@@ -571,14 +645,33 @@ EXCLUDE	PRODUCT_RUNTIME		15901	cli/beacon/internal/endpoint/dashboard/static/run
 EXCLUDE	PRODUCT_RUNTIME		149804	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/qwen-code.png
 EXCLUDE	PRODUCT_RUNTIME		20716	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/vercel-fx.png
 EXCLUDE	PRODUCT_RUNTIME		57385	cli/beacon/internal/endpoint/dashboard/static/runtime-logos/visual-studio-code.png
-EXCLUDE	PRODUCT_RUNTIME		6165	cli/beacon/internal/endpoint/dashboard/static/session.html
-EXCLUDE	PRODUCT_RUNTIME		60197	cli/beacon/internal/endpoint/dashboard/static/styles.css
-EXCLUDE	PRODUCT_RUNTIME		6243	cli/beacon/internal/endpoint/dashboard/static/tokens.html
+EXCLUDE	PRODUCT_RUNTIME		6909	cli/beacon/internal/endpoint/dashboard/static/session.html
+EXCLUDE	PRODUCT_RUNTIME		62992	cli/beacon/internal/endpoint/dashboard/static/styles.css
+EXCLUDE	PRODUCT_RUNTIME		6970	cli/beacon/internal/endpoint/dashboard/static/tokens.html
 EXCLUDE	PRODUCT_RUNTIME		7250	cli/beacon/internal/endpoint/dashboard/summary.go
 EXCLUDE	PRODUCT_RUNTIME		993	cli/beacon/internal/endpoint/dashboard/summary_test.go
+EXCLUDE	PRODUCT_RUNTIME		147	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/.gitignore
+EXCLUDE	PRODUCT_RUNTIME		399	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/fixtures/navigator.lens.html
+EXCLUDE	PRODUCT_RUNTIME		4397	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/fixtures/probe.lens.html
+EXCLUDE	PRODUCT_RUNTIME		26249	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/fixtures/runtime.jsonl
+EXCLUDE	PRODUCT_RUNTIME		260	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/fixtures/staller.lens.html
+EXCLUDE	PRODUCT_RUNTIME		383	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/fixtures/tall.lens.html
+EXCLUDE	PRODUCT_RUNTIME		275	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/fixtures/thrower.lens.html
+EXCLUDE	PRODUCT_RUNTIME		1647	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/package-lock.json
+EXCLUDE	PRODUCT_RUNTIME		253	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/package.json
+EXCLUDE	PRODUCT_RUNTIME		2369	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/playwright.config.ts
+EXCLUDE	PRODUCT_RUNTIME		1544	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/tests/builtin-approvals.spec.ts
+EXCLUDE	PRODUCT_RUNTIME		3540	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/tests/builtin-files-changed.spec.ts
+EXCLUDE	PRODUCT_RUNTIME		4288	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/tests/builtin-mcp.spec.ts
+EXCLUDE	PRODUCT_RUNTIME		1908	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/tests/builtin-security-review.spec.ts
+EXCLUDE	PRODUCT_RUNTIME		3817	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/tests/builtin-skills.spec.ts
+EXCLUDE	PRODUCT_RUNTIME		4738	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/tests/builtin-token-usage.spec.ts
+EXCLUDE	PRODUCT_RUNTIME		7780	cli/beacon/internal/endpoint/dashboard/testdata/lens-e2e/tests/lenses.spec.ts
 EXCLUDE	PRODUCT_RUNTIME		2704	cli/beacon/internal/endpoint/dashboard/tokencoverage.go
 EXCLUDE	PRODUCT_RUNTIME		6666	cli/beacon/internal/endpoint/dashboard/tokencoverage_test.go
-EXCLUDE	PRODUCT_RUNTIME		36763	cli/beacon/internal/endpoint/dashboard/traces.go
+EXCLUDE	PRODUCT_RUNTIME		5017	cli/beacon/internal/endpoint/dashboard/tokens_pricing_test.go
+EXCLUDE	PRODUCT_RUNTIME		1634	cli/beacon/internal/endpoint/dashboard/trace_usage_cache1h_test.go
+EXCLUDE	PRODUCT_RUNTIME		35586	cli/beacon/internal/endpoint/dashboard/traces.go
 EXCLUDE	PRODUCT_RUNTIME		13121	cli/beacon/internal/endpoint/dashboard/traces_content_test.go
 EXCLUDE	PRODUCT_RUNTIME		17293	cli/beacon/internal/endpoint/dashboard/traces_test.go
 EXCLUDE	PRODUCT_RUNTIME		2239	cli/beacon/internal/endpoint/datadog/datadog.go
@@ -593,16 +686,16 @@ EXCLUDE	PRODUCT_RUNTIME		9038	cli/beacon/internal/endpoint/diagnostics/diagnosti
 EXCLUDE	PRODUCT_RUNTIME		1245	cli/beacon/internal/endpoint/diagnostics/healthport_test.go
 EXCLUDE	PRODUCT_RUNTIME		2698	cli/beacon/internal/endpoint/diagnostics/logperm_test.go
 EXCLUDE	PRODUCT_RUNTIME		5608	cli/beacon/internal/endpoint/elastic/elastic.go
-EXCLUDE	PRODUCT_RUNTIME		10058	cli/beacon/internal/endpoint/elastic/elastic_test.go
+EXCLUDE	PRODUCT_RUNTIME		13942	cli/beacon/internal/endpoint/elastic/elastic_test.go
 EXCLUDE	PRODUCT_RUNTIME		3498	cli/beacon/internal/endpoint/elastic/pack/README.md
-EXCLUDE	PRODUCT_RUNTIME		7937	cli/beacon/internal/endpoint/elastic/pack/component-template-mappings.json
+EXCLUDE	PRODUCT_RUNTIME		8591	cli/beacon/internal/endpoint/elastic/pack/component-template-mappings.json
 EXCLUDE	PRODUCT_RUNTIME		282	cli/beacon/internal/endpoint/elastic/pack/component-template-settings.json
 EXCLUDE	PRODUCT_RUNTIME		2694	cli/beacon/internal/endpoint/elastic/pack/docker-compose.yml
 EXCLUDE	PRODUCT_RUNTIME		721	cli/beacon/internal/endpoint/elastic/pack/elastic-agent-standalone.yml.tmpl
 EXCLUDE	PRODUCT_RUNTIME		754	cli/beacon/internal/endpoint/elastic/pack/filebeat.yml.tmpl
 EXCLUDE	PRODUCT_RUNTIME		316	cli/beacon/internal/endpoint/elastic/pack/ilm-policy.json
 EXCLUDE	PRODUCT_RUNTIME		392	cli/beacon/internal/endpoint/elastic/pack/index-template.json
-EXCLUDE	PRODUCT_RUNTIME		10255	cli/beacon/internal/endpoint/elastic/pack/ingest-pipeline.json
+EXCLUDE	PRODUCT_RUNTIME		10452	cli/beacon/internal/endpoint/elastic/pack/ingest-pipeline.json
 EXCLUDE	PRODUCT_RUNTIME		925	cli/beacon/internal/endpoint/elastic/pack/kibana-assets.ndjson
 EXCLUDE	PRODUCT_RUNTIME		2210	cli/beacon/internal/endpoint/elastic/pack/sample-event.jsonl
 EXCLUDE	PRODUCT_RUNTIME		2610	cli/beacon/internal/endpoint/falcon/falcon.go
@@ -624,15 +717,15 @@ EXCLUDE	PRODUCT_RUNTIME		6892	cli/beacon/internal/endpoint/harness/fx_test.go
 EXCLUDE	PRODUCT_RUNTIME		3541	cli/beacon/internal/endpoint/harness/gemini.go
 EXCLUDE	PRODUCT_RUNTIME		5675	cli/beacon/internal/endpoint/harness/grok.go
 EXCLUDE	PRODUCT_RUNTIME		6995	cli/beacon/internal/endpoint/harness/grok_test.go
-EXCLUDE	PRODUCT_RUNTIME		25757	cli/beacon/internal/endpoint/harness/harness.go
-EXCLUDE	PRODUCT_RUNTIME		33500	cli/beacon/internal/endpoint/harness/harness_test.go
+EXCLUDE	PRODUCT_RUNTIME		28155	cli/beacon/internal/endpoint/harness/harness.go
+EXCLUDE	PRODUCT_RUNTIME		38286	cli/beacon/internal/endpoint/harness/harness_test.go
 EXCLUDE	PRODUCT_RUNTIME		2874	cli/beacon/internal/endpoint/harness/hook_only.go
 EXCLUDE	PRODUCT_RUNTIME		1422	cli/beacon/internal/endpoint/harness/hook_only_test.go
 EXCLUDE	PRODUCT_RUNTIME		4079	cli/beacon/internal/endpoint/harness/kimi.go
 EXCLUDE	PRODUCT_RUNTIME		3860	cli/beacon/internal/endpoint/harness/omo.go
 EXCLUDE	PRODUCT_RUNTIME		6644	cli/beacon/internal/endpoint/harness/omo_test.go
 EXCLUDE	PRODUCT_RUNTIME		3369	cli/beacon/internal/endpoint/harness/omp.go
-EXCLUDE	PRODUCT_RUNTIME		6346	cli/beacon/internal/endpoint/harness/omp_test.go
+EXCLUDE	PRODUCT_RUNTIME		6400	cli/beacon/internal/endpoint/harness/omp_test.go
 EXCLUDE	PRODUCT_RUNTIME		4477	cli/beacon/internal/endpoint/harness/openclaw.go
 EXCLUDE	PRODUCT_RUNTIME		4878	cli/beacon/internal/endpoint/harness/openclaw_test.go
 EXCLUDE	PRODUCT_RUNTIME		2774	cli/beacon/internal/endpoint/harness/pi.go
@@ -649,7 +742,7 @@ EXCLUDE	PRODUCT_RUNTIME		9156	cli/beacon/internal/endpoint/hooks/assets/cline/be
 EXCLUDE	PRODUCT_RUNTIME		258	cli/beacon/internal/endpoint/hooks/assets/cline/embed.go
 EXCLUDE	PRODUCT_RUNTIME		12868	cli/beacon/internal/endpoint/hooks/assets/omo/beacon.ts
 EXCLUDE	PRODUCT_RUNTIME		248	cli/beacon/internal/endpoint/hooks/assets/omo/embed.go
-EXCLUDE	PRODUCT_RUNTIME		15558	cli/beacon/internal/endpoint/hooks/assets/omp/beacon.ts
+EXCLUDE	PRODUCT_RUNTIME		27180	cli/beacon/internal/endpoint/hooks/assets/omp/beacon.ts
 EXCLUDE	PRODUCT_RUNTIME		257	cli/beacon/internal/endpoint/hooks/assets/omp/embed.go
 EXCLUDE	PRODUCT_RUNTIME		17550	cli/beacon/internal/endpoint/hooks/assets/openclaw/beacon.js
 EXCLUDE	PRODUCT_RUNTIME		1681	cli/beacon/internal/endpoint/hooks/assets/openclaw/embed.go
@@ -691,9 +784,9 @@ EXCLUDE	PRODUCT_RUNTIME		10507	cli/beacon/internal/endpoint/hooks/managed_extens
 EXCLUDE	PRODUCT_RUNTIME		16159	cli/beacon/internal/endpoint/hooks/muse.go
 EXCLUDE	PRODUCT_RUNTIME		23218	cli/beacon/internal/endpoint/hooks/muse_test.go
 EXCLUDE	PRODUCT_RUNTIME		10444	cli/beacon/internal/endpoint/hooks/omo.go
-EXCLUDE	PRODUCT_RUNTIME		14679	cli/beacon/internal/endpoint/hooks/omo_test.go
-EXCLUDE	PRODUCT_RUNTIME		7544	cli/beacon/internal/endpoint/hooks/omp.go
-EXCLUDE	PRODUCT_RUNTIME		10289	cli/beacon/internal/endpoint/hooks/omp_test.go
+EXCLUDE	PRODUCT_RUNTIME		14634	cli/beacon/internal/endpoint/hooks/omo_test.go
+EXCLUDE	PRODUCT_RUNTIME		9773	cli/beacon/internal/endpoint/hooks/omp.go
+EXCLUDE	PRODUCT_RUNTIME		13937	cli/beacon/internal/endpoint/hooks/omp_test.go
 EXCLUDE	PRODUCT_RUNTIME		19612	cli/beacon/internal/endpoint/hooks/openclaw.go
 EXCLUDE	PRODUCT_RUNTIME		18137	cli/beacon/internal/endpoint/hooks/openclaw_test.go
 EXCLUDE	PRODUCT_RUNTIME		5103	cli/beacon/internal/endpoint/hooks/opencode.go
@@ -703,7 +796,7 @@ EXCLUDE	PRODUCT_RUNTIME		21557	cli/beacon/internal/endpoint/hooks/openhands_test
 EXCLUDE	PRODUCT_RUNTIME		4539	cli/beacon/internal/endpoint/hooks/pi.go
 EXCLUDE	PRODUCT_RUNTIME		11862	cli/beacon/internal/endpoint/hooks/pi_test.go
 EXCLUDE	PRODUCT_RUNTIME		8400	cli/beacon/internal/endpoint/hooks/prime.go
-EXCLUDE	PRODUCT_RUNTIME		12991	cli/beacon/internal/endpoint/hooks/prime_test.go
+EXCLUDE	PRODUCT_RUNTIME		12946	cli/beacon/internal/endpoint/hooks/prime_test.go
 EXCLUDE	PRODUCT_RUNTIME		10285	cli/beacon/internal/endpoint/hooks/qwen.go
 EXCLUDE	PRODUCT_RUNTIME		19512	cli/beacon/internal/endpoint/hooks/qwen_test.go
 EXCLUDE	PRODUCT_RUNTIME		14309	cli/beacon/internal/endpoint/hooks/runtime.go
@@ -726,15 +819,19 @@ EXCLUDE	PRODUCT_RUNTIME		7185	cli/beacon/internal/endpoint/inventory/content.go
 EXCLUDE	PRODUCT_RUNTIME		5214	cli/beacon/internal/endpoint/inventory/dsh_test.go
 EXCLUDE	PRODUCT_RUNTIME		6937	cli/beacon/internal/endpoint/inventory/heartbeat.go
 EXCLUDE	PRODUCT_RUNTIME		50019	cli/beacon/internal/endpoint/inventory/inventory.go
-EXCLUDE	PRODUCT_RUNTIME		53028	cli/beacon/internal/endpoint/inventory/inventory_test.go
+EXCLUDE	PRODUCT_RUNTIME		53466	cli/beacon/internal/endpoint/inventory/inventory_test.go
 EXCLUDE	PRODUCT_RUNTIME		5182	cli/beacon/internal/endpoint/inventory/kimi_test.go
 EXCLUDE	PRODUCT_RUNTIME		4693	cli/beacon/internal/endpoint/inventory/kiro_test.go
 EXCLUDE	PRODUCT_RUNTIME		4207	cli/beacon/internal/endpoint/inventory/openhands_test.go
-EXCLUDE	PRODUCT_RUNTIME		6544	cli/beacon/internal/endpoint/inventory/skills.go
-EXCLUDE	PRODUCT_RUNTIME		3259	cli/beacon/internal/endpoint/lifecycle/harness_selection_test.go
+EXCLUDE	PRODUCT_RUNTIME		6628	cli/beacon/internal/endpoint/inventory/skills.go
+EXCLUDE	PRODUCT_RUNTIME		5974	cli/beacon/internal/endpoint/lensstore/lensstore.go
+EXCLUDE	PRODUCT_RUNTIME		5726	cli/beacon/internal/endpoint/lensstore/lensstore_test.go
+EXCLUDE	PRODUCT_RUNTIME		3809	cli/beacon/internal/endpoint/lensstore/lint.go
+EXCLUDE	PRODUCT_RUNTIME		3993	cli/beacon/internal/endpoint/lensstore/lint_test.go
+EXCLUDE	PRODUCT_RUNTIME		5805	cli/beacon/internal/endpoint/lifecycle/harness_selection_test.go
 EXCLUDE	PRODUCT_RUNTIME		10585	cli/beacon/internal/endpoint/lifecycle/healthport_test.go
 EXCLUDE	PRODUCT_RUNTIME		13290	cli/beacon/internal/endpoint/lifecycle/inventory_job_test.go
-EXCLUDE	PRODUCT_RUNTIME		50726	cli/beacon/internal/endpoint/lifecycle/lifecycle.go
+EXCLUDE	PRODUCT_RUNTIME		51011	cli/beacon/internal/endpoint/lifecycle/lifecycle.go
 EXCLUDE	PRODUCT_RUNTIME		34492	cli/beacon/internal/endpoint/lifecycle/lifecycle_test.go
 EXCLUDE	PRODUCT_RUNTIME		2696	cli/beacon/internal/endpoint/lifecycle/main_test.go
 EXCLUDE	PRODUCT_RUNTIME		398	cli/beacon/internal/endpoint/lifecycle/privilege_other.go
@@ -753,7 +850,7 @@ EXCLUDE	PRODUCT_RUNTIME		1755	cli/beacon/internal/endpoint/s3/pack/sample-event.
 EXCLUDE	PRODUCT_RUNTIME		3179	cli/beacon/internal/endpoint/s3/pack/vector.toml.tmpl
 EXCLUDE	PRODUCT_RUNTIME		2194	cli/beacon/internal/endpoint/s3/s3.go
 EXCLUDE	PRODUCT_RUNTIME		8081	cli/beacon/internal/endpoint/s3/s3_test.go
-EXCLUDE	PRODUCT_RUNTIME		6309	cli/beacon/internal/endpoint/schema/event.go
+EXCLUDE	PRODUCT_RUNTIME		6664	cli/beacon/internal/endpoint/schema/event.go
 EXCLUDE	PRODUCT_RUNTIME		3046	cli/beacon/internal/endpoint/schema/event_test.go
 EXCLUDE	PRODUCT_RUNTIME		24394	cli/beacon/internal/endpoint/selfupdate/apply.go
 EXCLUDE	PRODUCT_RUNTIME		30427	cli/beacon/internal/endpoint/selfupdate/apply_test.go
@@ -791,7 +888,7 @@ EXCLUDE	PRODUCT_RUNTIME		3282	cli/beacon/internal/endpoint/service/script_forwar
 EXCLUDE	PRODUCT_RUNTIME		3807	cli/beacon/internal/endpoint/service/script_forwarders_test.go
 EXCLUDE	PRODUCT_RUNTIME		13182	cli/beacon/internal/endpoint/service/service.go
 EXCLUDE	PRODUCT_RUNTIME		26151	cli/beacon/internal/endpoint/service/service_test.go
-EXCLUDE	PRODUCT_RUNTIME		9953	cli/beacon/internal/endpoint/service/supervised.go
+EXCLUDE	PRODUCT_RUNTIME		10258	cli/beacon/internal/endpoint/service/supervised.go
 EXCLUDE	PRODUCT_RUNTIME		2819	cli/beacon/internal/endpoint/service/supervised_unix.go
 EXCLUDE	PRODUCT_RUNTIME		6980	cli/beacon/internal/endpoint/service/supervised_unix_test.go
 EXCLUDE	PRODUCT_RUNTIME		3957	cli/beacon/internal/endpoint/service/supervised_windows.go
@@ -807,7 +904,7 @@ EXCLUDE	PRODUCT_RUNTIME		10470	cli/beacon/internal/endpoint/service/windows_scm.
 EXCLUDE	PRODUCT_RUNTIME		2094	cli/beacon/internal/endpoint/service/windows_scm_test.go
 EXCLUDE	PRODUCT_RUNTIME		6407	cli/beacon/internal/endpoint/service/windows_test.go
 EXCLUDE	PRODUCT_RUNTIME		3208	cli/beacon/internal/endpoint/siempack/pack_test.go
-EXCLUDE	PRODUCT_RUNTIME		4645	cli/beacon/internal/endpoint/siempack/siempack.go
+EXCLUDE	PRODUCT_RUNTIME		5283	cli/beacon/internal/endpoint/siempack/siempack.go
 EXCLUDE	PRODUCT_RUNTIME		2153	cli/beacon/internal/endpoint/siempack/siempack_test.go
 EXCLUDE	PRODUCT_RUNTIME		5157	cli/beacon/internal/endpoint/sumo/pack/README.md
 EXCLUDE	PRODUCT_RUNTIME		1764	cli/beacon/internal/endpoint/sumo/pack/sample-event.jsonl
@@ -827,22 +924,25 @@ EXCLUDE	PRODUCT_RUNTIME		2063	cli/beacon/internal/endpoint/wazuh/wazuh_test.go
 EXCLUDE	PRODUCT_RUNTIME		954	cli/beacon/internal/endpoint/writer/acl_other.go
 EXCLUDE	PRODUCT_RUNTIME		9099	cli/beacon/internal/endpoint/writer/acl_windows.go
 EXCLUDE	PRODUCT_RUNTIME		8118	cli/beacon/internal/endpoint/writer/acl_windows_test.go
+EXCLUDE	PRODUCT_RUNTIME		2416	cli/beacon/internal/endpoint/writer/budget.go
+EXCLUDE	PRODUCT_RUNTIME		2275	cli/beacon/internal/endpoint/writer/budget_test.go
 EXCLUDE	PRODUCT_RUNTIME		1814	cli/beacon/internal/endpoint/writer/ensure_test.go
 EXCLUDE	PRODUCT_RUNTIME		2192	cli/beacon/internal/endpoint/writer/logdir_perm_test.go
 EXCLUDE	PRODUCT_RUNTIME		6394	cli/beacon/internal/endpoint/writer/retention.go
 EXCLUDE	PRODUCT_RUNTIME		9004	cli/beacon/internal/endpoint/writer/retention_test.go
-EXCLUDE	PRODUCT_RUNTIME		10811	cli/beacon/internal/endpoint/writer/writer.go
+EXCLUDE	PRODUCT_RUNTIME		11149	cli/beacon/internal/endpoint/writer/writer.go
 EXCLUDE	PRODUCT_RUNTIME		14806	cli/beacon/internal/endpoint/writer/writer_test.go
 EXCLUDE	PRODUCT_RUNTIME		2205	cli/beacon/internal/endpoint/writer/writer_unix_test.go
-EXCLUDE	PRODUCT_RUNTIME		6571	cli/beacon/internal/factorysession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		9132	cli/beacon/internal/factorysession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		2656	cli/beacon/internal/factorysession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		2418	cli/beacon/internal/factorysession/handoff_test.go
-EXCLUDE	PRODUCT_RUNTIME		13143	cli/beacon/internal/factorysession/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		14421	cli/beacon/internal/factorysession/mapper.go
 EXCLUDE	PRODUCT_RUNTIME		3349	cli/beacon/internal/factorysession/mapper_test.go
 EXCLUDE	PRODUCT_RUNTIME		2800	cli/beacon/internal/factorysession/partial_test.go
 EXCLUDE	PRODUCT_RUNTIME		6232	cli/beacon/internal/factorysession/store.go
-EXCLUDE	PRODUCT_RUNTIME		3202	cli/beacon/internal/factorysession/types.go
-EXCLUDE	PRODUCT_RUNTIME		13381	cli/beacon/internal/fxsession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		6510	cli/beacon/internal/factorysession/types.go
+EXCLUDE	PRODUCT_RUNTIME		11720	cli/beacon/internal/factorysession/usage_test.go
+EXCLUDE	PRODUCT_RUNTIME		14383	cli/beacon/internal/fxsession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		19822	cli/beacon/internal/fxsession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		11062	cli/beacon/internal/fxsession/detection_test.go
 EXCLUDE	PRODUCT_RUNTIME		8542	cli/beacon/internal/fxsession/fixtures_test.go
@@ -877,7 +977,7 @@ EXCLUDE	PRODUCT_RUNTIME		8771	cli/beacon/internal/gitlink/share.go
 EXCLUDE	PRODUCT_RUNTIME		13782	cli/beacon/internal/gitlink/share_test.go
 EXCLUDE	PRODUCT_RUNTIME		7996	cli/beacon/internal/gitlink/shell.go
 EXCLUDE	PRODUCT_RUNTIME		3073	cli/beacon/internal/gitlink/shell_test.go
-EXCLUDE	PRODUCT_RUNTIME		8809	cli/beacon/internal/groksession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		9811	cli/beacon/internal/groksession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		24122	cli/beacon/internal/groksession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		4448	cli/beacon/internal/groksession/handoff_test.go
 EXCLUDE	PRODUCT_RUNTIME		15627	cli/beacon/internal/groksession/mapper.go
@@ -920,7 +1020,7 @@ EXCLUDE	PRODUCT_RUNTIME		13688	cli/beacon/internal/handoff/session_test.go
 EXCLUDE	PRODUCT_RUNTIME		5965	cli/beacon/internal/handoff/sources.go
 EXCLUDE	PRODUCT_RUNTIME		2114	cli/beacon/internal/handoff/write.go
 EXCLUDE	PRODUCT_RUNTIME		2595	cli/beacon/internal/handoff/write_test.go
-EXCLUDE	PRODUCT_RUNTIME		32460	cli/beacon/internal/hermessession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		33703	cli/beacon/internal/hermessession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		12514	cli/beacon/internal/hermessession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		2892	cli/beacon/internal/hermessession/handoff_test.go
 EXCLUDE	PRODUCT_RUNTIME		2796	cli/beacon/internal/learning/authored.go
@@ -938,15 +1038,15 @@ EXCLUDE	PRODUCT_RUNTIME		14580	cli/beacon/internal/learning/store_test.go
 EXCLUDE	PRODUCT_RUNTIME		596	cli/beacon/internal/managedprivacy/privacy.go
 EXCLUDE	PRODUCT_RUNTIME		517	cli/beacon/internal/managedprivacy/privacy_test.go
 EXCLUDE	PRODUCT_RUNTIME		9699	cli/beacon/internal/mcpconnect/cli_url_test.go
-EXCLUDE	PRODUCT_RUNTIME		27393	cli/beacon/internal/mcpconnect/engine.go
+EXCLUDE	PRODUCT_RUNTIME		28566	cli/beacon/internal/mcpconnect/engine.go
 EXCLUDE	PRODUCT_RUNTIME		3046	cli/beacon/internal/mcpconnect/files.go
-EXCLUDE	PRODUCT_RUNTIME		29715	cli/beacon/internal/mcpconnect/harness_test.go
+EXCLUDE	PRODUCT_RUNTIME		36268	cli/beacon/internal/mcpconnect/harness_test.go
 EXCLUDE	PRODUCT_RUNTIME		7962	cli/beacon/internal/mcpconnect/jsonc.go
 EXCLUDE	PRODUCT_RUNTIME		10940	cli/beacon/internal/mcpconnect/jsonc_test.go
 EXCLUDE	PRODUCT_RUNTIME		13022	cli/beacon/internal/mcpconnect/jsonedit.go
 EXCLUDE	PRODUCT_RUNTIME		4670	cli/beacon/internal/mcpconnect/manifest.go
-EXCLUDE	PRODUCT_RUNTIME		12927	cli/beacon/internal/mcpconnect/targets.go
-EXCLUDE	PRODUCT_RUNTIME		4111	cli/beacon/internal/mcpconnect/tomledit.go
+EXCLUDE	PRODUCT_RUNTIME		14907	cli/beacon/internal/mcpconnect/targets.go
+EXCLUDE	PRODUCT_RUNTIME		4299	cli/beacon/internal/mcpconnect/tomledit.go
 EXCLUDE	PRODUCT_RUNTIME		4761	cli/beacon/internal/mcpconnect/urlcheck.go
 EXCLUDE	PRODUCT_RUNTIME		1656	cli/beacon/internal/mcpserver/memory_cross_harness_test.go
 EXCLUDE	PRODUCT_RUNTIME		18807	cli/beacon/internal/mcpserver/server.go
@@ -954,7 +1054,7 @@ EXCLUDE	PRODUCT_RUNTIME		8247	cli/beacon/internal/mcpserver/server_test.go
 EXCLUDE	PRODUCT_RUNTIME		1976	cli/beacon/internal/onboarding/choose.go
 EXCLUDE	PRODUCT_RUNTIME		7924	cli/beacon/internal/onboarding/picker.go
 EXCLUDE	PRODUCT_RUNTIME		8542	cli/beacon/internal/onboarding/picker_test.go
-EXCLUDE	PRODUCT_RUNTIME		6384	cli/beacon/internal/onboarding/profile.go
+EXCLUDE	PRODUCT_RUNTIME		7024	cli/beacon/internal/onboarding/profile.go
 EXCLUDE	PRODUCT_RUNTIME		5915	cli/beacon/internal/onboarding/profile_test.go
 EXCLUDE	PRODUCT_RUNTIME		11164	cli/beacon/internal/onboarding/prompt.go
 EXCLUDE	PRODUCT_RUNTIME		10531	cli/beacon/internal/onboarding/prompt_test.go
@@ -964,10 +1064,10 @@ EXCLUDE	PRODUCT_RUNTIME		7026	cli/beacon/internal/onboarding/submit.go
 EXCLUDE	PRODUCT_RUNTIME		9399	cli/beacon/internal/onboarding/submit_test.go
 EXCLUDE	PRODUCT_RUNTIME		6729	cli/beacon/internal/onboarding/validate.go
 EXCLUDE	PRODUCT_RUNTIME		5539	cli/beacon/internal/onboarding/validate_test.go
-EXCLUDE	PRODUCT_RUNTIME		24966	cli/beacon/internal/onboarding/wizard.go
+EXCLUDE	PRODUCT_RUNTIME		29451	cli/beacon/internal/onboarding/wizard.go
 EXCLUDE	PRODUCT_RUNTIME		4983	cli/beacon/internal/onboarding/wizard_nodisplay_test.go
-EXCLUDE	PRODUCT_RUNTIME		25840	cli/beacon/internal/onboarding/wizard_test.go
-EXCLUDE	PRODUCT_RUNTIME		5492	cli/beacon/internal/openclawsession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		31889	cli/beacon/internal/onboarding/wizard_test.go
+EXCLUDE	PRODUCT_RUNTIME		6492	cli/beacon/internal/openclawsession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		4928	cli/beacon/internal/openclawsession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		2134	cli/beacon/internal/openclawsession/handoff_test.go
 EXCLUDE	PRODUCT_RUNTIME		13544	cli/beacon/internal/openclawsession/mapper.go
@@ -975,40 +1075,69 @@ EXCLUDE	PRODUCT_RUNTIME		995	cli/beacon/internal/openclawsession/partial_test.go
 EXCLUDE	PRODUCT_RUNTIME		8759	cli/beacon/internal/openclawsession/records.go
 EXCLUDE	PRODUCT_RUNTIME		7930	cli/beacon/internal/openclawsession/store.go
 EXCLUDE	PRODUCT_RUNTIME		3471	cli/beacon/internal/openclawsession/types.go
-EXCLUDE	PRODUCT_RUNTIME		6514	cli/beacon/internal/opencodesession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		7514	cli/beacon/internal/opencodesession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		5610	cli/beacon/internal/opencodesession/collect_test.go
-EXCLUDE	PRODUCT_RUNTIME		4303	cli/beacon/internal/opencodesession/helpers.go
-EXCLUDE	PRODUCT_RUNTIME		13463	cli/beacon/internal/opencodesession/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		4341	cli/beacon/internal/opencodesession/helpers.go
+EXCLUDE	PRODUCT_RUNTIME		15001	cli/beacon/internal/opencodesession/mapper.go
 EXCLUDE	PRODUCT_RUNTIME		4845	cli/beacon/internal/opencodesession/mapper_test.go
 EXCLUDE	PRODUCT_RUNTIME		23030	cli/beacon/internal/opencodesession/store.go
 EXCLUDE	PRODUCT_RUNTIME		5519	cli/beacon/internal/opencodesession/store_test.go
-EXCLUDE	PRODUCT_RUNTIME		879	cli/beacon/internal/opencodesession/types.go
+EXCLUDE	PRODUCT_RUNTIME		1103	cli/beacon/internal/opencodesession/types.go
+EXCLUDE	PRODUCT_RUNTIME		6750	cli/beacon/internal/opencodesession/usage_test.go
 EXCLUDE	PRODUCT_RUNTIME		6163	cli/beacon/internal/osuser/osuser.go
 EXCLUDE	PRODUCT_RUNTIME		4955	cli/beacon/internal/osuser/osuser_test.go
-EXCLUDE	PRODUCT_RUNTIME		3720	cli/beacon/internal/pisession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		1849	cli/beacon/internal/pisession/cache1h_test.go
+EXCLUDE	PRODUCT_RUNTIME		4718	cli/beacon/internal/pisession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		1683	cli/beacon/internal/pisession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		2325	cli/beacon/internal/pisession/handoff_test.go
-EXCLUDE	PRODUCT_RUNTIME		24678	cli/beacon/internal/pisession/mapper.go
-EXCLUDE	PRODUCT_RUNTIME		4509	cli/beacon/internal/pisession/mapper_test.go
+EXCLUDE	PRODUCT_RUNTIME		26047	cli/beacon/internal/pisession/mapper.go
+EXCLUDE	PRODUCT_RUNTIME		6248	cli/beacon/internal/pisession/mapper_test.go
 EXCLUDE	PRODUCT_RUNTIME		1995	cli/beacon/internal/pisession/state.go
 EXCLUDE	PRODUCT_RUNTIME		6254	cli/beacon/internal/pisession/store.go
 EXCLUDE	PRODUCT_RUNTIME		2166	cli/beacon/internal/pisession/store_test.go
-EXCLUDE	PRODUCT_RUNTIME		3989	cli/beacon/internal/primesession/collect.go
+EXCLUDE	PRODUCT_RUNTIME		1065	cli/beacon/internal/pricing/LICENSE.litellm
+EXCLUDE	PRODUCT_RUNTIME		4221	cli/beacon/internal/pricing/catalog.go
+EXCLUDE	PRODUCT_RUNTIME		86671	cli/beacon/internal/pricing/catalog.json
+EXCLUDE	PRODUCT_RUNTIME		3930	cli/beacon/internal/pricing/catalog_test.go
+EXCLUDE	PRODUCT_RUNTIME		5051	cli/beacon/internal/pricing/cost.go
+EXCLUDE	PRODUCT_RUNTIME		9486	cli/beacon/internal/pricing/cost_test.go
+EXCLUDE	PRODUCT_RUNTIME		5647	cli/beacon/internal/pricing/doc.go
+EXCLUDE	PRODUCT_RUNTIME		11593	cli/beacon/internal/pricing/internal/gen/generate.go
+EXCLUDE	PRODUCT_RUNTIME		6155	cli/beacon/internal/pricing/internal/gen/generate_test.go
+EXCLUDE	PRODUCT_RUNTIME		4025	cli/beacon/internal/pricing/internal/gen/main.go
+EXCLUDE	PRODUCT_RUNTIME		1877	cli/beacon/internal/pricing/internal/gen/testdata/catalog.golden.json
+EXCLUDE	PRODUCT_RUNTIME		6319	cli/beacon/internal/pricing/internal/gen/testdata/litellm_fixture.json
+EXCLUDE	PRODUCT_RUNTIME		9835	cli/beacon/internal/pricing/lookup.go
+EXCLUDE	PRODUCT_RUNTIME		11473	cli/beacon/internal/pricing/lookup_test.go
+EXCLUDE	PRODUCT_RUNTIME		2932	cli/beacon/internal/pricing/money.go
+EXCLUDE	PRODUCT_RUNTIME		1032	cli/beacon/internal/pricing/money_test.go
+EXCLUDE	PRODUCT_RUNTIME		18596	cli/beacon/internal/pricing/overrides.go
+EXCLUDE	PRODUCT_RUNTIME		17192	cli/beacon/internal/pricing/overrides_test.go
+EXCLUDE	PRODUCT_RUNTIME		3154	cli/beacon/internal/pricing/pricer.go
+EXCLUDE	PRODUCT_RUNTIME		4987	cli/beacon/internal/primesession/collect.go
 EXCLUDE	PRODUCT_RUNTIME		1808	cli/beacon/internal/primesession/collect_test.go
 EXCLUDE	PRODUCT_RUNTIME		2328	cli/beacon/internal/primesession/handoff_test.go
 EXCLUDE	PRODUCT_RUNTIME		15951	cli/beacon/internal/primesession/mapper.go
 EXCLUDE	PRODUCT_RUNTIME		4575	cli/beacon/internal/primesession/mapper_test.go
 EXCLUDE	PRODUCT_RUNTIME		2068	cli/beacon/internal/primesession/state.go
 EXCLUDE	PRODUCT_RUNTIME		5730	cli/beacon/internal/primesession/store.go
+EXCLUDE	PRODUCT_RUNTIME		1390	cli/beacon/internal/sessionwindow/sessionwindow.go
+EXCLUDE	PRODUCT_RUNTIME		1093	cli/beacon/internal/sessionwindow/sessionwindow_test.go
 EXCLUDE	PRODUCT_RUNTIME		4726	cli/beacon/internal/testenv/testenv.go
 EXCLUDE	PRODUCT_RUNTIME		1899	cli/beacon/internal/testenv/testenv_test.go
+EXCLUDE	PRODUCT_RUNTIME		8676	cli/beacon/internal/tokens/cache1h_test.go
 EXCLUDE	PRODUCT_RUNTIME		2898	cli/beacon/internal/tokens/contextwindow.go
 EXCLUDE	PRODUCT_RUNTIME		2634	cli/beacon/internal/tokens/contextwindow_test.go
-EXCLUDE	PRODUCT_RUNTIME		15858	cli/beacon/internal/tokens/coverage.go
-EXCLUDE	PRODUCT_RUNTIME		17995	cli/beacon/internal/tokens/coverage_test.go
-EXCLUDE	PRODUCT_RUNTIME		4899	cli/beacon/internal/tokens/report.go
-EXCLUDE	PRODUCT_RUNTIME		31965	cli/beacon/internal/tokens/tokens.go
-EXCLUDE	PRODUCT_RUNTIME		31666	cli/beacon/internal/tokens/tokens_test.go
+EXCLUDE	PRODUCT_RUNTIME		15814	cli/beacon/internal/tokens/cost.go
+EXCLUDE	PRODUCT_RUNTIME		6548	cli/beacon/internal/tokens/cost_overrides_test.go
+EXCLUDE	PRODUCT_RUNTIME		23694	cli/beacon/internal/tokens/cost_test.go
+EXCLUDE	PRODUCT_RUNTIME		18198	cli/beacon/internal/tokens/coverage.go
+EXCLUDE	PRODUCT_RUNTIME		23558	cli/beacon/internal/tokens/coverage_test.go
+EXCLUDE	PRODUCT_RUNTIME		8906	cli/beacon/internal/tokens/report.go
+EXCLUDE	PRODUCT_RUNTIME		46781	cli/beacon/internal/tokens/tokens.go
+EXCLUDE	PRODUCT_RUNTIME		55648	cli/beacon/internal/tokens/tokens_test.go
+EXCLUDE	PRODUCT_RUNTIME		3756	cli/beacon/internal/updatecheck/cache.go
+EXCLUDE	PRODUCT_RUNTIME		3581	cli/beacon/internal/updatecheck/cache_test.go
 EXCLUDE	PRODUCT_RUNTIME		1572	cli/beacon/internal/updatecheck/checker.go
 EXCLUDE	PRODUCT_RUNTIME		2129	cli/beacon/internal/updatecheck/checker_test.go
 EXCLUDE	PRODUCT_RUNTIME		1609	cli/beacon/internal/updatecheck/compare.go
@@ -1022,34 +1151,47 @@ EXCLUDE	PRODUCT_RUNTIME		528	cli/beacon/internal/version/version.go
 EXCLUDE	PRODUCT_RUNTIME		2839	cli/beacon/internal/version/version_test.go
 EXCLUDE	PRODUCT_RUNTIME		114	cli/beacon/main.go
 EXCLUDE	PRODUCT_RUNTIME		1841	collector-builder/build-release-collectors.sh
-EXCLUDE	PRODUCT_RUNTIME		1590	collector-builder/builder.yaml
-EXCLUDE	PRODUCT_RUNTIME		3698	collector-builder/exporter/beaconjsonexporter/README.md
-EXCLUDE	PRODUCT_RUNTIME		1210	collector-builder/exporter/beaconjsonexporter/config.go
+EXCLUDE	PRODUCT_RUNTIME		1853	collector-builder/builder.yaml
+EXCLUDE	PRODUCT_RUNTIME		4801	collector-builder/exporter/beaconjsonexporter/README.md
+EXCLUDE	PRODUCT_RUNTIME		2598	collector-builder/exporter/beaconjsonexporter/claudeapibodyprocessor/processor.go
+EXCLUDE	PRODUCT_RUNTIME		4403	collector-builder/exporter/beaconjsonexporter/claudeapibodyprocessor/processor_test.go
+EXCLUDE	PRODUCT_RUNTIME		1428	collector-builder/exporter/beaconjsonexporter/config.go
 EXCLUDE	PRODUCT_RUNTIME		983	collector-builder/exporter/beaconjsonexporter/event.go
-EXCLUDE	PRODUCT_RUNTIME		7390	collector-builder/exporter/beaconjsonexporter/exporter.go
-EXCLUDE	PRODUCT_RUNTIME		76332	collector-builder/exporter/beaconjsonexporter/exporter_test.go
+EXCLUDE	PRODUCT_RUNTIME		7763	collector-builder/exporter/beaconjsonexporter/exporter.go
+EXCLUDE	PRODUCT_RUNTIME		82423	collector-builder/exporter/beaconjsonexporter/exporter_test.go
 EXCLUDE	PRODUCT_RUNTIME		1586	collector-builder/exporter/beaconjsonexporter/factory.go
-EXCLUDE	PRODUCT_RUNTIME		2102	collector-builder/exporter/beaconjsonexporter/falconhecexporter/config.go
-EXCLUDE	PRODUCT_RUNTIME		5928	collector-builder/exporter/beaconjsonexporter/falconhecexporter/exporter.go
+EXCLUDE	PRODUCT_RUNTIME		2262	collector-builder/exporter/beaconjsonexporter/falconhecexporter/config.go
+EXCLUDE	PRODUCT_RUNTIME		6169	collector-builder/exporter/beaconjsonexporter/falconhecexporter/exporter.go
 EXCLUDE	PRODUCT_RUNTIME		6210	collector-builder/exporter/beaconjsonexporter/falconhecexporter/exporter_test.go
 EXCLUDE	PRODUCT_RUNTIME		1702	collector-builder/exporter/beaconjsonexporter/falconhecexporter/factory.go
-EXCLUDE	PRODUCT_RUNTIME		2308	collector-builder/exporter/beaconjsonexporter/go.mod
-EXCLUDE	PRODUCT_RUNTIME		15708	collector-builder/exporter/beaconjsonexporter/go.sum
-EXCLUDE	PRODUCT_RUNTIME		5628	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/content.go
-EXCLUDE	PRODUCT_RUNTIME		8249	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/content_test.go
-EXCLUDE	PRODUCT_RUNTIME		80418	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/converter.go
-EXCLUDE	PRODUCT_RUNTIME		82336	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/converter_test.go
+EXCLUDE	PRODUCT_RUNTIME		6894	collector-builder/exporter/beaconjsonexporter/gemini_usage_e2e_test.go
+EXCLUDE	PRODUCT_RUNTIME		3229	collector-builder/exporter/beaconjsonexporter/go.mod
+EXCLUDE	PRODUCT_RUNTIME		16867	collector-builder/exporter/beaconjsonexporter/go.sum
+EXCLUDE	PRODUCT_RUNTIME		13553	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/claude_api_body.go
+EXCLUDE	PRODUCT_RUNTIME		15202	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/claude_api_body_test.go
+EXCLUDE	PRODUCT_RUNTIME		5616	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/content.go
+EXCLUDE	PRODUCT_RUNTIME		9431	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/content_test.go
+EXCLUDE	PRODUCT_RUNTIME		85378	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/converter.go
+EXCLUDE	PRODUCT_RUNTIME		91101	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/converter_test.go
 EXCLUDE	PRODUCT_RUNTIME		7313	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/event.go
+EXCLUDE	PRODUCT_RUNTIME		7792	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/gemini_usage.go
+EXCLUDE	PRODUCT_RUNTIME		17198	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/gemini_usage_test.go
+EXCLUDE	PRODUCT_RUNTIME		7915	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/mcp_description.go
+EXCLUDE	PRODUCT_RUNTIME		8897	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/mcp_description_test.go
+EXCLUDE	PRODUCT_RUNTIME		3981	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/mcp_listings.go
+EXCLUDE	PRODUCT_RUNTIME		3673	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/mcp_listings_test.go
+EXCLUDE	PRODUCT_RUNTIME		2949	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/prompt_id_test.go
 EXCLUDE	PRODUCT_RUNTIME		2767	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/testdata/claude-code-2.1.220.json
 EXCLUDE	PRODUCT_RUNTIME		8873	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/testdata/claude-code-lifecycle-2.1.220.json
 EXCLUDE	PRODUCT_RUNTIME		4687	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/testdata/claude-cowork-2.1.251.json
 EXCLUDE	PRODUCT_RUNTIME		1024	collector-builder/exporter/beaconjsonexporter/internal/beaconevent/testdata/codex-0.142.4.json
 EXCLUDE	PRODUCT_RUNTIME		7823	collector-builder/exporter/beaconjsonexporter/ordering_test.go
-EXCLUDE	PRODUCT_RUNTIME		8824	collector-builder/exporter/beaconjsonexporter/writer.go
+EXCLUDE	PRODUCT_RUNTIME		2715	collector-builder/exporter/beaconjsonexporter/prompt_id_e2e_test.go
+EXCLUDE	PRODUCT_RUNTIME		9306	collector-builder/exporter/beaconjsonexporter/writer.go
 EXCLUDE	PRODUCT_RUNTIME		1214	collector-builder/exporter/beaconjsonexporter/writer_unix_test.go
 EXCLUDE	PRODUCT_RUNTIME		1064	docs/LICENSE
 EXCLUDE	PRODUCT_RUNTIME		1431	docs/README.md
-EXCLUDE	PRODUCT_RUNTIME		13450	docs/architecture/architecture.mdx
+EXCLUDE	PRODUCT_RUNTIME		14425	docs/architecture/architecture.mdx
 EXCLUDE	PRODUCT_RUNTIME		1893	docs/architecture/system-architecture.mdx
 EXCLUDE	DOC_ASSET		134	docs/blog/agent-visibility-beyond-the-endpoint.mdx
 EXCLUDE	DOC_ASSET		139	docs/blog/asymptote-achieves-soc-2-type-ii-compliance.mdx
@@ -1085,10 +1227,10 @@ EXCLUDE	DOC_ASSET		115	docs/blog/beacon-opencode-agent-traces.mdx
 EXCLUDE	DOC_ASSET		165	docs/blog/enterprises-are-counting-tokens-because.mdx
 EXCLUDE	DOC_ASSET		11087	docs/blog/index.mdx
 EXCLUDE	DOC_ASSET		151	docs/blog/introducing-beacon-endpoint-telemetry.mdx
-EXCLUDE	PRODUCT_RUNTIME		119979	docs/changelog/cli.mdx
+EXCLUDE	PRODUCT_RUNTIME		126036	docs/changelog/cli.mdx
 EXCLUDE	PRODUCT_RUNTIME		1298	docs/changelog/sdk.mdx
 EXCLUDE	PRODUCT_RUNTIME		5964	docs/cli/account-auth.mdx
-EXCLUDE	PRODUCT_RUNTIME		7137	docs/cli/asymptote.mdx
+EXCLUDE	PRODUCT_RUNTIME		7419	docs/cli/asymptote.mdx
 EXCLUDE	PRODUCT_RUNTIME		3890	docs/cli/ci-exec.mdx
 EXCLUDE	PRODUCT_RUNTIME		2248	docs/cli/ci-finish.mdx
 EXCLUDE	PRODUCT_RUNTIME		1982	docs/cli/ci-start.mdx
@@ -1103,24 +1245,24 @@ EXCLUDE	PRODUCT_RUNTIME		2142	docs/cli/cloud-gcs-setup.mdx
 EXCLUDE	PRODUCT_RUNTIME		2439	docs/cli/cloud-s3-setup.mdx
 EXCLUDE	PRODUCT_RUNTIME		3626	docs/cli/cloud.mdx
 EXCLUDE	PRODUCT_RUNTIME		6679	docs/cli/cloudwatch.mdx
-EXCLUDE	PRODUCT_RUNTIME		5070	docs/cli/dashboard.mdx
+EXCLUDE	PRODUCT_RUNTIME		6471	docs/cli/dashboard.mdx
 EXCLUDE	PRODUCT_RUNTIME		5914	docs/cli/datadog.mdx
 EXCLUDE	PRODUCT_RUNTIME		8055	docs/cli/elastic.mdx
 EXCLUDE	PRODUCT_RUNTIME		2850	docs/cli/endpoint-bundle-diagnostics.mdx
 EXCLUDE	PRODUCT_RUNTIME		3849	docs/cli/endpoint-config.mdx
-EXCLUDE	PRODUCT_RUNTIME		12409	docs/cli/endpoint-connect.mdx
+EXCLUDE	PRODUCT_RUNTIME		15126	docs/cli/endpoint-connect.mdx
 EXCLUDE	PRODUCT_RUNTIME		4535	docs/cli/endpoint-copilot.mdx
 EXCLUDE	PRODUCT_RUNTIME		6685	docs/cli/endpoint-discover.mdx
 EXCLUDE	PRODUCT_RUNTIME		6856	docs/cli/endpoint-doctor.mdx
 EXCLUDE	PRODUCT_RUNTIME		3328	docs/cli/endpoint-dsh.mdx
 EXCLUDE	PRODUCT_RUNTIME		5104	docs/cli/endpoint-fx.mdx
-EXCLUDE	PRODUCT_RUNTIME		13534	docs/cli/endpoint-install.mdx
+EXCLUDE	PRODUCT_RUNTIME		16311	docs/cli/endpoint-install.mdx
 EXCLUDE	PRODUCT_RUNTIME		9951	docs/cli/endpoint-inventory.mdx
-EXCLUDE	PRODUCT_RUNTIME		8187	docs/cli/endpoint-onboarding.mdx
+EXCLUDE	PRODUCT_RUNTIME		10907	docs/cli/endpoint-onboarding.mdx
 EXCLUDE	PRODUCT_RUNTIME		4123	docs/cli/endpoint-opencode.mdx
-EXCLUDE	PRODUCT_RUNTIME		7935	docs/cli/endpoint-paths.mdx
+EXCLUDE	PRODUCT_RUNTIME		8205	docs/cli/endpoint-paths.mdx
 EXCLUDE	PRODUCT_RUNTIME		3726	docs/cli/endpoint-pi.mdx
-EXCLUDE	PRODUCT_RUNTIME		6221	docs/cli/endpoint-repair.mdx
+EXCLUDE	PRODUCT_RUNTIME		6634	docs/cli/endpoint-repair.mdx
 EXCLUDE	PRODUCT_RUNTIME		4331	docs/cli/endpoint-status.mdx
 EXCLUDE	PRODUCT_RUNTIME		2335	docs/cli/endpoint-test-event.mdx
 EXCLUDE	PRODUCT_RUNTIME		6814	docs/cli/endpoint-traces.mdx
@@ -1132,16 +1274,18 @@ EXCLUDE	PRODUCT_RUNTIME		21610	docs/cli/handoff.mdx
 EXCLUDE	PRODUCT_RUNTIME		23547	docs/cli/hooks.mdx
 EXCLUDE	PRODUCT_RUNTIME		21697	docs/cli/index.mdx
 EXCLUDE	PRODUCT_RUNTIME		3213	docs/cli/install.mdx
+EXCLUDE	PRODUCT_RUNTIME		5734	docs/cli/lenses.mdx
 EXCLUDE	PRODUCT_RUNTIME		3416	docs/cli/manual-install.mdx
-EXCLUDE	PRODUCT_RUNTIME		14346	docs/cli/mcp-connect.mdx
+EXCLUDE	PRODUCT_RUNTIME		16232	docs/cli/mcp-connect.mdx
 EXCLUDE	PRODUCT_RUNTIME		3523	docs/cli/mcp-doctor.mdx
 EXCLUDE	PRODUCT_RUNTIME		2582	docs/cli/mcp-serve.mdx
-EXCLUDE	PRODUCT_RUNTIME		5708	docs/cli/mcp.mdx
+EXCLUDE	PRODUCT_RUNTIME		5752	docs/cli/mcp.mdx
 EXCLUDE	PRODUCT_RUNTIME		10572	docs/cli/memory.mdx
 EXCLUDE	PRODUCT_RUNTIME		6261	docs/cli/openclaw.mdx
+EXCLUDE	PRODUCT_RUNTIME		10813	docs/cli/pricing.mdx
 EXCLUDE	PRODUCT_RUNTIME		6182	docs/cli/rapid7.mdx
 EXCLUDE	PRODUCT_RUNTIME		1456	docs/cli/rules-add.mdx
-EXCLUDE	PRODUCT_RUNTIME		1688	docs/cli/rules-fields.mdx
+EXCLUDE	PRODUCT_RUNTIME		2074	docs/cli/rules-fields.mdx
 EXCLUDE	PRODUCT_RUNTIME		1930	docs/cli/rules-lint.mdx
 EXCLUDE	PRODUCT_RUNTIME		1102	docs/cli/rules-list.mdx
 EXCLUDE	PRODUCT_RUNTIME		2243	docs/cli/rules-pull.mdx
@@ -1152,29 +1296,37 @@ EXCLUDE	PRODUCT_RUNTIME		1729	docs/cli/scan-ci-gates.mdx
 EXCLUDE	PRODUCT_RUNTIME		1871	docs/cli/scan-local.mdx
 EXCLUDE	PRODUCT_RUNTIME		3254	docs/cli/scan.mdx
 EXCLUDE	PRODUCT_RUNTIME		6559	docs/cli/sentinel.mdx
+EXCLUDE	PRODUCT_RUNTIME		2110	docs/cli/skills.mdx
 EXCLUDE	PRODUCT_RUNTIME		6029	docs/cli/sumo.mdx
-EXCLUDE	PRODUCT_RUNTIME		15875	docs/cli/token-usage.mdx
-EXCLUDE	PRODUCT_RUNTIME		6639	docs/cli/upgrade.mdx
-EXCLUDE	PRODUCT_RUNTIME		2022	docs/cli/version.mdx
+EXCLUDE	PRODUCT_RUNTIME		26595	docs/cli/token-usage.mdx
+EXCLUDE	PRODUCT_RUNTIME		7100	docs/cli/upgrade.mdx
+EXCLUDE	PRODUCT_RUNTIME		3257	docs/cli/version.mdx
 EXCLUDE	PRODUCT_RUNTIME		5189	docs/cli/vscode.mdx
 EXCLUDE	PRODUCT_RUNTIME		7236	docs/cli/wazuh.mdx
-REFERENCE	Event schema reference (P18)		9730	docs/concepts/beacon-skills.mdx
+EXCLUDE	PRODUCT_RUNTIME		2535	docs/cloud/devices.mdx
+EXCLUDE	PRODUCT_RUNTIME		2845	docs/cloud/lenses/adding-lenses.mdx
+EXCLUDE	PRODUCT_RUNTIME		3492	docs/cloud/lenses/creating-lenses.mdx
+EXCLUDE	PRODUCT_RUNTIME		3819	docs/cloud/lenses/lenses-mcp.mdx
+EXCLUDE	PRODUCT_RUNTIME		3417	docs/cloud/lenses/managing-lenses.mdx
+EXCLUDE	PRODUCT_RUNTIME		2506	docs/cloud/sessions.mdx
+REFERENCE	Event schema reference (P18)		10238	docs/concepts/beacon-skills.mdx
 REFERENCE	Event schema reference (P18)		13689	docs/concepts/core-concepts.mdx
 REFERENCE	Event schema reference (P18)		5898	docs/concepts/cross-harness-memory.mdx
 REFERENCE	Event schema reference (P18)		11556	docs/concepts/faq.mdx
+REFERENCE	Event schema reference (P18)		7954	docs/concepts/lenses.mdx
 REFERENCE	Event schema reference (P18)		6795	docs/concepts/session-handoff.mdx
-REFERENCE	Event schema reference (P18)		15413	docs/concepts/vector-forwarding.mdx
+REFERENCE	Event schema reference (P18)		15963	docs/concepts/vector-forwarding.mdx
 EXCLUDE	PRODUCT_RUNTIME		20508	docs/contributing/beacon-sandbox.mdx
 EXCLUDE	PRODUCT_RUNTIME		2759	docs/contributing/development.mdx
 EXCLUDE	PRODUCT_RUNTIME		5284	docs/deployment/hosting-options.mdx
-EXCLUDE	PRODUCT_RUNTIME		5664	docs/deployment/managed-mcp.mdx
-EXCLUDE	PRODUCT_RUNTIME		2067	docs/deployment/managed.mdx
+EXCLUDE	PRODUCT_RUNTIME		9589	docs/deployment/managed-mcp.mdx
+EXCLUDE	PRODUCT_RUNTIME		3481	docs/deployment/managed.mdx
 EXCLUDE	PRODUCT_RUNTIME		5218	docs/deployment/open-source.mdx
 EXCLUDE	PRODUCT_RUNTIME		6478	docs/detections/engine.mdx
 EXCLUDE	PRODUCT_RUNTIME		13373	docs/detections/index.mdx
 EXCLUDE	PRODUCT_RUNTIME		5373	docs/detections/standard.mdx
-EXCLUDE	PRODUCT_RUNTIME		6922	docs/detections/yaml-schema.mdx
-EXCLUDE	PRODUCT_RUNTIME		42485	docs/docs.json
+EXCLUDE	PRODUCT_RUNTIME		7455	docs/detections/yaml-schema.mdx
+EXCLUDE	PRODUCT_RUNTIME		43001	docs/docs.json
 EXCLUDE	PRODUCT_RUNTIME		4165	docs/get-started/overview.mdx
 EXCLUDE	PRODUCT_RUNTIME		3191	docs/get-started/quickstart.mdx
 EXCLUDE	PRODUCT_RUNTIME		5643	docs/guides/agent-runtime-telemetry.mdx
@@ -1269,7 +1421,7 @@ EXCLUDE	PRODUCT_RUNTIME		2704	docs/index.mdx
 EXCLUDE	PRODUCT_RUNTIME		3694	docs/inventory/agent-harnesses.mdx
 EXCLUDE	PRODUCT_RUNTIME		4072	docs/inventory/mcp-servers.mdx
 EXCLUDE	PRODUCT_RUNTIME		3825	docs/inventory/skills.mdx
-EXCLUDE	PRODUCT_RUNTIME		6570	docs/log-forwarding/asymptote.mdx
+EXCLUDE	PRODUCT_RUNTIME		6825	docs/log-forwarding/asymptote.mdx
 EXCLUDE	PRODUCT_RUNTIME		11017	docs/log-forwarding/ci-telemetry-exports.mdx
 EXCLUDE	PRODUCT_RUNTIME		9382	docs/log-forwarding/cloudwatch.mdx
 EXCLUDE	PRODUCT_RUNTIME		3488	docs/log-forwarding/customer-managed.mdx
@@ -1280,7 +1432,7 @@ EXCLUDE	PRODUCT_RUNTIME		21156	docs/log-forwarding/index.mdx
 EXCLUDE	PRODUCT_RUNTIME		3093	docs/log-forwarding/local-jsonl.mdx
 EXCLUDE	PRODUCT_RUNTIME		14972	docs/log-forwarding/microsoft-sentinel.mdx
 EXCLUDE	PRODUCT_RUNTIME		8356	docs/log-forwarding/rapid7.mdx
-EXCLUDE	PRODUCT_RUNTIME		5105	docs/log-forwarding/splunk.mdx
+EXCLUDE	PRODUCT_RUNTIME		6013	docs/log-forwarding/splunk.mdx
 EXCLUDE	PRODUCT_RUNTIME		9946	docs/log-forwarding/sumo.mdx
 EXCLUDE	PRODUCT_RUNTIME		13209	docs/log-forwarding/wazuh.mdx
 EXCLUDE	DOC_ASSET		4093	docs/logo/apple-touch-icon.png
@@ -1297,6 +1449,7 @@ EXCLUDE	PRODUCT_RUNTIME		3881	docs/manage/configure-s3-data-connector.mdx
 EXCLUDE	PRODUCT_RUNTIME		1281	docs/manage/connect-okta.mdx
 EXCLUDE	PRODUCT_RUNTIME		2434	docs/manage/connect-slack.mdx
 EXCLUDE	PRODUCT_RUNTIME		523	docs/manage/onboarding.mdx
+EXCLUDE	PRODUCT_RUNTIME		3016	docs/manage/profile.mdx
 EXCLUDE	PRODUCT_RUNTIME		8548	docs/mdm/fleet.mdx
 EXCLUDE	PRODUCT_RUNTIME		7615	docs/mdm/index.mdx
 EXCLUDE	PRODUCT_RUNTIME		14618	docs/mdm/jamf.mdx
@@ -1308,40 +1461,40 @@ EXCLUDE	PRODUCT_RUNTIME		7733	docs/platforms/macos.mdx
 EXCLUDE	PRODUCT_RUNTIME		13020	docs/platforms/windows.mdx
 EXCLUDE	PRODUCT_RUNTIME		3347	docs/runtimes/antigravity-cli.mdx
 EXCLUDE	PRODUCT_RUNTIME		12040	docs/runtimes/browser-extension-chromium.mdx
-EXCLUDE	PRODUCT_RUNTIME		14089	docs/runtimes/browser-extension.mdx
+EXCLUDE	PRODUCT_RUNTIME		14203	docs/runtimes/browser-extension.mdx
 EXCLUDE	PRODUCT_RUNTIME		6152	docs/runtimes/chatgpt-web.mdx
 EXCLUDE	PRODUCT_RUNTIME		6256	docs/runtimes/claude-code-ci.mdx
 EXCLUDE	PRODUCT_RUNTIME		14716	docs/runtimes/claude-code-cloud-agents.mdx
-EXCLUDE	PRODUCT_RUNTIME		11511	docs/runtimes/claude-code.mdx
+EXCLUDE	PRODUCT_RUNTIME		20713	docs/runtimes/claude-code.mdx
 EXCLUDE	PRODUCT_RUNTIME		3894	docs/runtimes/claude-cowork.mdx
 EXCLUDE	PRODUCT_RUNTIME		6033	docs/runtimes/claude-web.mdx
-EXCLUDE	PRODUCT_RUNTIME		8652	docs/runtimes/cline.mdx
-EXCLUDE	PRODUCT_RUNTIME		8035	docs/runtimes/codex-cli.mdx
+EXCLUDE	PRODUCT_RUNTIME		8730	docs/runtimes/cline.mdx
+EXCLUDE	PRODUCT_RUNTIME		8198	docs/runtimes/codex-cli.mdx
 EXCLUDE	PRODUCT_RUNTIME		15043	docs/runtimes/cursor-cloud-agents.mdx
-EXCLUDE	PRODUCT_RUNTIME		5986	docs/runtimes/cursor.mdx
+EXCLUDE	PRODUCT_RUNTIME		6124	docs/runtimes/cursor.mdx
 EXCLUDE	PRODUCT_RUNTIME		23725	docs/runtimes/deepseek-harness.mdx
 EXCLUDE	PRODUCT_RUNTIME		8657	docs/runtimes/devin-cloud-agents.mdx
 EXCLUDE	PRODUCT_RUNTIME		3566	docs/runtimes/devin-desktop.mdx
 EXCLUDE	PRODUCT_RUNTIME		3003	docs/runtimes/devin.mdx
-EXCLUDE	PRODUCT_RUNTIME		3889	docs/runtimes/factory-droid.mdx
-EXCLUDE	PRODUCT_RUNTIME		3296	docs/runtimes/gemini-cli.mdx
-EXCLUDE	PRODUCT_RUNTIME		6060	docs/runtimes/github-copilot-cli.mdx
-EXCLUDE	PRODUCT_RUNTIME		23266	docs/runtimes/goose.mdx
+EXCLUDE	PRODUCT_RUNTIME		4527	docs/runtimes/factory-droid.mdx
+EXCLUDE	PRODUCT_RUNTIME		3676	docs/runtimes/gemini-cli.mdx
+EXCLUDE	PRODUCT_RUNTIME		6446	docs/runtimes/github-copilot-cli.mdx
+EXCLUDE	PRODUCT_RUNTIME		23436	docs/runtimes/goose.mdx
 EXCLUDE	PRODUCT_RUNTIME		4961	docs/runtimes/grok-build.mdx
 EXCLUDE	PRODUCT_RUNTIME		4669	docs/runtimes/hermes-agent.mdx
 EXCLUDE	PRODUCT_RUNTIME		22631	docs/runtimes/index.mdx
-EXCLUDE	PRODUCT_RUNTIME		25850	docs/runtimes/integration-model.mdx
-EXCLUDE	PRODUCT_RUNTIME		21238	docs/runtimes/kimi-code.mdx
+EXCLUDE	PRODUCT_RUNTIME		25982	docs/runtimes/integration-model.mdx
+EXCLUDE	PRODUCT_RUNTIME		21352	docs/runtimes/kimi-code.mdx
 EXCLUDE	PRODUCT_RUNTIME		18574	docs/runtimes/kiro.mdx
-EXCLUDE	PRODUCT_RUNTIME		16494	docs/runtimes/muse-code.mdx
-EXCLUDE	PRODUCT_RUNTIME		12397	docs/runtimes/oh-my-pi.mdx
+EXCLUDE	PRODUCT_RUNTIME		16602	docs/runtimes/muse-code.mdx
+EXCLUDE	PRODUCT_RUNTIME		22542	docs/runtimes/oh-my-pi.mdx
 EXCLUDE	PRODUCT_RUNTIME		23123	docs/runtimes/openclaw-gateway.mdx
-EXCLUDE	PRODUCT_RUNTIME		6795	docs/runtimes/opencode.mdx
+EXCLUDE	PRODUCT_RUNTIME		7104	docs/runtimes/opencode.mdx
 EXCLUDE	PRODUCT_RUNTIME		17449	docs/runtimes/openhands.mdx
-EXCLUDE	PRODUCT_RUNTIME		10232	docs/runtimes/pi.mdx
-EXCLUDE	PRODUCT_RUNTIME		15658	docs/runtimes/prime-agent.mdx
+EXCLUDE	PRODUCT_RUNTIME		10379	docs/runtimes/pi.mdx
+EXCLUDE	PRODUCT_RUNTIME		15709	docs/runtimes/prime-agent.mdx
 EXCLUDE	PRODUCT_RUNTIME		16526	docs/runtimes/qwen-code.mdx
-EXCLUDE	PRODUCT_RUNTIME		13610	docs/runtimes/senpi.mdx
+EXCLUDE	PRODUCT_RUNTIME		13757	docs/runtimes/senpi.mdx
 EXCLUDE	PRODUCT_RUNTIME		10625	docs/runtimes/vercel-fx.mdx
 EXCLUDE	PRODUCT_RUNTIME		4833	docs/runtimes/vscode.mdx
 EXCLUDE	PRODUCT_RUNTIME		4126	docs/sdk/index.mdx
@@ -1368,8 +1521,8 @@ EXCLUDE	PRODUCT_RUNTIME		268	docs/style.css
 EXCLUDE	PRODUCT_RUNTIME		3111	docs/support/troubleshooting.mdx
 EXCLUDE	PRODUCT_RUNTIME		10345	docs/telemetry-schema/event-schema.mdx
 EXCLUDE	PRODUCT_RUNTIME		4598	docs/telemetry-schema/examples.mdx
-EXCLUDE	PRODUCT_RUNTIME		8212	docs/telemetry-schema/fields.mdx
-EXCLUDE	PRODUCT_RUNTIME		18571	docs/telemetry-schema/normalization.mdx
+EXCLUDE	PRODUCT_RUNTIME		8846	docs/telemetry-schema/fields.mdx
+EXCLUDE	PRODUCT_RUNTIME		20373	docs/telemetry-schema/normalization.mdx
 EXCLUDE	PRODUCT_RUNTIME		50081	examples/fleet/configure-beacon-macos-s3.sh
 EXCLUDE	PRODUCT_RUNTIME		13906	examples/fleet/test/fake_fleet.py
 EXCLUDE	PRODUCT_RUNTIME		17625	examples/fleet/test/test-configure-beacon-macos-s3.sh
@@ -1475,14 +1628,15 @@ EXCLUDE	PRODUCT_RUNTIME		4285	packaging/windows/build-msi.ps1
 EXCLUDE	PRODUCT_RUNTIME		4089	packaging/windows/install-endpoint.ps1
 EXCLUDE	PRODUCT_RUNTIME		3288	packaging/windows/test-endpoint-scripts.ps1
 EXCLUDE	PRODUCT_RUNTIME		4536	packaging/windows/uninstall-endpoint.ps1
-EXCLUDE	PRODUCT_RUNTIME		4742	pkg/asymptoteobserve/content.go
+EXCLUDE	PRODUCT_RUNTIME		4822	pkg/asymptoteobserve/cache_creation_test.go
+EXCLUDE	PRODUCT_RUNTIME		8303	pkg/asymptoteobserve/content.go
 EXCLUDE	PRODUCT_RUNTIME		6658	pkg/asymptoteobserve/content_test.go
 EXCLUDE	PRODUCT_RUNTIME		2524	pkg/asymptoteobserve/contract_conformance_test.go
 EXCLUDE	PRODUCT_RUNTIME		9386	pkg/asymptoteobserve/dedupe.go
 EXCLUDE	PRODUCT_RUNTIME		11364	pkg/asymptoteobserve/dedupe_test.go
 EXCLUDE	PRODUCT_RUNTIME		2254	pkg/asymptoteobserve/envelope.go
 EXCLUDE	PRODUCT_RUNTIME		1715	pkg/asymptoteobserve/envelope_test.go
-EXCLUDE	PRODUCT_RUNTIME		23867	pkg/asymptoteobserve/event.go
+EXCLUDE	PRODUCT_RUNTIME		29473	pkg/asymptoteobserve/event.go
 EXCLUDE	PRODUCT_RUNTIME		478	pkg/asymptoteobserve/event_sink.go
 EXCLUDE	PRODUCT_RUNTIME		10192	pkg/asymptoteobserve/event_test.go
 EXCLUDE	PRODUCT_RUNTIME		2933	pkg/asymptoteobserve/filelock/filelock.go
@@ -1495,11 +1649,13 @@ EXCLUDE	PRODUCT_RUNTIME		1848	pkg/asymptoteobserve/handoff.go
 EXCLUDE	PRODUCT_RUNTIME		1911	pkg/asymptoteobserve/handoff_test.go
 EXCLUDE	PRODUCT_RUNTIME		28819	pkg/asymptoteobserve/harness.go
 EXCLUDE	PRODUCT_RUNTIME		43204	pkg/asymptoteobserve/harness_test.go
-EXCLUDE	PRODUCT_RUNTIME		10300	pkg/asymptoteobserve/identity.go
+EXCLUDE	PRODUCT_RUNTIME		13670	pkg/asymptoteobserve/identity.go
 EXCLUDE	PRODUCT_RUNTIME		7046	pkg/asymptoteobserve/identity_test.go
 EXCLUDE	PRODUCT_RUNTIME		1392	pkg/asymptoteobserve/jsonl_sink.go
 EXCLUDE	PRODUCT_RUNTIME		3601	pkg/asymptoteobserve/jsonl_sink_test.go
 EXCLUDE	PRODUCT_RUNTIME		5723	pkg/asymptoteobserve/learning.go
+EXCLUDE	PRODUCT_RUNTIME		9815	pkg/asymptoteobserve/lens.go
+EXCLUDE	PRODUCT_RUNTIME		11367	pkg/asymptoteobserve/lens_test.go
 EXCLUDE	PRODUCT_RUNTIME		3839	pkg/asymptoteobserve/model.go
 EXCLUDE	PRODUCT_RUNTIME		4011	pkg/asymptoteobserve/model_test.go
 EXCLUDE	PRODUCT_RUNTIME		1293	pkg/asymptoteobserve/normalizer.go
@@ -1512,30 +1668,35 @@ EXCLUDE	PRODUCT_RUNTIME		3169	pkg/asymptoteobserve/policycontract/policycontract
 EXCLUDE	PRODUCT_RUNTIME		1762	pkg/asymptoteobserve/policycontract/policycontract_test.go
 EXCLUDE	PRODUCT_RUNTIME		2170	pkg/asymptoteobserve/policycontract/refprovider/main.go
 EXCLUDE	PRODUCT_RUNTIME		2116	pkg/asymptoteobserve/policycontract/schema.json
-EXCLUDE	PRODUCT_RUNTIME		5429	pkg/asymptoteobserve/privacy.go
-EXCLUDE	PRODUCT_RUNTIME		2739	pkg/asymptoteobserve/privacy_test.go
+EXCLUDE	PRODUCT_RUNTIME		6066	pkg/asymptoteobserve/privacy.go
+EXCLUDE	PRODUCT_RUNTIME		4290	pkg/asymptoteobserve/privacy_test.go
 EXCLUDE	PRODUCT_RUNTIME		1121	pkg/asymptoteobserve/processor.go
+EXCLUDE	PRODUCT_RUNTIME		3295	pkg/asymptoteobserve/prompt_id_test.go
 EXCLUDE	PRODUCT_RUNTIME		5837	pkg/asymptoteobserve/provenance.go
 EXCLUDE	PRODUCT_RUNTIME		9383	pkg/asymptoteobserve/provenance_test.go
-EXCLUDE	PRODUCT_RUNTIME		1257	pkg/asymptoteobserve/rulestore/baseline/credentials-in-curl-data.rule.yaml
-EXCLUDE	PRODUCT_RUNTIME		1187	pkg/asymptoteobserve/rulestore/baseline/curl-pipe-to-shell.rule.yaml
-EXCLUDE	PRODUCT_RUNTIME		1297	pkg/asymptoteobserve/rulestore/baseline/exfiltrate-system-prompt.rule.yaml
-EXCLUDE	PRODUCT_RUNTIME		1301	pkg/asymptoteobserve/rulestore/baseline/ignore-previous-instructions.rule.yaml
-EXCLUDE	PRODUCT_RUNTIME		1085	pkg/asymptoteobserve/rulestore/baseline/recursive-root-delete.rule.yaml
-EXCLUDE	PRODUCT_RUNTIME		4870	pkg/asymptoteobserve/rulestore/baseline/secret-read-then-egress.rule.yaml
+EXCLUDE	PRODUCT_RUNTIME		1297	pkg/asymptoteobserve/rulestore/baseline/credentials-in-curl-data.rule.yaml
+EXCLUDE	PRODUCT_RUNTIME		1220	pkg/asymptoteobserve/rulestore/baseline/curl-pipe-to-shell.rule.yaml
+EXCLUDE	PRODUCT_RUNTIME		1333	pkg/asymptoteobserve/rulestore/baseline/exfiltrate-system-prompt.rule.yaml
+EXCLUDE	PRODUCT_RUNTIME		1337	pkg/asymptoteobserve/rulestore/baseline/ignore-previous-instructions.rule.yaml
+EXCLUDE	PRODUCT_RUNTIME		1118	pkg/asymptoteobserve/rulestore/baseline/recursive-root-delete.rule.yaml
+EXCLUDE	PRODUCT_RUNTIME		4910	pkg/asymptoteobserve/rulestore/baseline/secret-read-then-egress.rule.yaml
 EXCLUDE	PRODUCT_RUNTIME		11499	pkg/asymptoteobserve/rulestore/rulestore.go
 EXCLUDE	PRODUCT_RUNTIME		11638	pkg/asymptoteobserve/rulestore/rulestore_test.go
+EXCLUDE	PRODUCT_RUNTIME		6594	pkg/asymptoteobserve/skilllisting.go
+EXCLUDE	PRODUCT_RUNTIME		7485	pkg/asymptoteobserve/skilllisting_test.go
 EXCLUDE	PRODUCT_RUNTIME		1072	pkg/asymptoteobserve/source.go
-EXCLUDE	PRODUCT_RUNTIME		4721	pkg/asymptoteobserve/threatrules/cel.go
+EXCLUDE	PRODUCT_RUNTIME		4757	pkg/asymptoteobserve/threatrules/cel.go
 EXCLUDE	PRODUCT_RUNTIME		4432	pkg/asymptoteobserve/threatrules/cel_test.go
 EXCLUDE	PRODUCT_RUNTIME		1853	pkg/asymptoteobserve/threatrules/conformance.go
 EXCLUDE	PRODUCT_RUNTIME		1617	pkg/asymptoteobserve/threatrules/conformance_meta_test.go
-EXCLUDE	PRODUCT_RUNTIME		3144	pkg/asymptoteobserve/threatrules/conformance_test.go
+EXCLUDE	PRODUCT_RUNTIME		4864	pkg/asymptoteobserve/threatrules/conformance_test.go
 EXCLUDE	PRODUCT_RUNTIME		7935	pkg/asymptoteobserve/threatrules/correlation.go
 EXCLUDE	PRODUCT_RUNTIME		13109	pkg/asymptoteobserve/threatrules/correlation_test.go
-EXCLUDE	PRODUCT_RUNTIME		3767	pkg/asymptoteobserve/threatrules/evaluator.go
+EXCLUDE	PRODUCT_RUNTIME		2314	pkg/asymptoteobserve/threatrules/derived.go
+EXCLUDE	PRODUCT_RUNTIME		3029	pkg/asymptoteobserve/threatrules/derived_test.go
+EXCLUDE	PRODUCT_RUNTIME		3368	pkg/asymptoteobserve/threatrules/evaluator.go
 EXCLUDE	PRODUCT_RUNTIME		1522	pkg/asymptoteobserve/threatrules/evaluator_test.go
-EXCLUDE	PRODUCT_RUNTIME		4745	pkg/asymptoteobserve/threatrules/fields.go
+EXCLUDE	PRODUCT_RUNTIME		5578	pkg/asymptoteobserve/threatrules/fields.go
 EXCLUDE	PRODUCT_RUNTIME		2370	pkg/asymptoteobserve/threatrules/fields_test.go
 EXCLUDE	PRODUCT_RUNTIME		4329	pkg/asymptoteobserve/threatrules/findings.go
 EXCLUDE	PRODUCT_RUNTIME		4064	pkg/asymptoteobserve/threatrules/findings_test.go
@@ -1550,111 +1711,120 @@ EXCLUDE	PRODUCT_RUNTIME		5546	pkg/asymptoteobserve/threatrules/rule_test.go
 EXCLUDE	PRODUCT_RUNTIME		3562	pkg/asymptoteobserve/threatrules/schema_test.go
 EXCLUDE	PRODUCT_RUNTIME		2518	pkg/asymptoteobserve/threatrules/specversion.go
 EXCLUDE	PRODUCT_RUNTIME		4747	pkg/asymptoteobserve/threatrules/specversion_test.go
-EXCLUDE	PRODUCT_RUNTIME		6133	pkg/asymptoteobserve/threatrules/toolresult.go
-EXCLUDE	PRODUCT_RUNTIME		11886	pkg/asymptoteobserve/threatrules/toolresult_test.go
+EXCLUDE	PRODUCT_RUNTIME		2386	pkg/asymptoteobserve/threatrules/systeminstructions.go
+EXCLUDE	PRODUCT_RUNTIME		7950	pkg/asymptoteobserve/threatrules/systeminstructions_test.go
+EXCLUDE	PRODUCT_RUNTIME		5107	pkg/asymptoteobserve/threatrules/toolresult.go
+EXCLUDE	PRODUCT_RUNTIME		12848	pkg/asymptoteobserve/threatrules/toolresult_test.go
 EXCLUDE	PRODUCT_RUNTIME		496	pkg/asymptoteobserve/threatrules/verdict.go
-EXCLUDE	PRODUCT_RUNTIME		9331	pkg/asymptoteobserve/trace.go
-EXCLUDE	PRODUCT_RUNTIME		582	plugins/cline-beacon/package.json
+EXCLUDE	PRODUCT_RUNTIME		9102	pkg/asymptoteobserve/toolresult.go
+EXCLUDE	PRODUCT_RUNTIME		7597	pkg/asymptoteobserve/toolresult_test.go
+EXCLUDE	PRODUCT_RUNTIME		10443	pkg/asymptoteobserve/trace.go
+EXCLUDE	PRODUCT_RUNTIME		603	plugins/cline-beacon/package.json
 EXCLUDE	PRODUCT_RUNTIME		5562	plugins/cline-beacon/src/beacon.test.ts
 EXCLUDE	PRODUCT_RUNTIME		9156	plugins/cline-beacon/src/beacon.ts
-EXCLUDE	PRODUCT_RUNTIME		643	plugins/omo-beacon/package.json
+EXCLUDE	PRODUCT_RUNTIME		664	plugins/omo-beacon/package.json
 EXCLUDE	PRODUCT_RUNTIME		10631	plugins/omo-beacon/src/beacon.test.ts
 EXCLUDE	PRODUCT_RUNTIME		12868	plugins/omo-beacon/src/beacon.ts
-EXCLUDE	PRODUCT_RUNTIME		596	plugins/omp-beacon/package.json
-EXCLUDE	PRODUCT_RUNTIME		15703	plugins/omp-beacon/src/beacon.test.ts
-EXCLUDE	PRODUCT_RUNTIME		15558	plugins/omp-beacon/src/beacon.ts
-EXCLUDE	PRODUCT_RUNTIME		808	plugins/openclaw-beacon/package.json
+EXCLUDE	PRODUCT_RUNTIME		617	plugins/omp-beacon/package.json
+EXCLUDE	PRODUCT_RUNTIME		31750	plugins/omp-beacon/src/beacon.test.ts
+EXCLUDE	PRODUCT_RUNTIME		27180	plugins/omp-beacon/src/beacon.ts
+EXCLUDE	PRODUCT_RUNTIME		829	plugins/openclaw-beacon/package.json
 EXCLUDE	PRODUCT_RUNTIME		17550	plugins/openclaw-beacon/src/beacon.js
 EXCLUDE	PRODUCT_RUNTIME		13682	plugins/openclaw-beacon/src/beacon.test.ts
 EXCLUDE	PRODUCT_RUNTIME		292	plugins/openclaw-beacon/src/openclaw.plugin.json
 EXCLUDE	PRODUCT_RUNTIME		289	plugins/openclaw-beacon/src/plugin.package.json
-EXCLUDE	PRODUCT_RUNTIME		603	plugins/opencode-beacon/package.json
+EXCLUDE	PRODUCT_RUNTIME		624	plugins/opencode-beacon/package.json
 EXCLUDE	PRODUCT_RUNTIME		19534	plugins/opencode-beacon/src/beacon.test.ts
 EXCLUDE	PRODUCT_RUNTIME		22061	plugins/opencode-beacon/src/beacon.ts
-EXCLUDE	PRODUCT_RUNTIME		593	plugins/pi-beacon/package.json
+EXCLUDE	PRODUCT_RUNTIME		614	plugins/pi-beacon/package.json
 EXCLUDE	PRODUCT_RUNTIME		7946	plugins/pi-beacon/src/beacon.test.ts
 EXCLUDE	PRODUCT_RUNTIME		10720	plugins/pi-beacon/src/beacon.ts
-EXCLUDE	PRODUCT_RUNTIME		611	plugins/prime-beacon/package.json
+EXCLUDE	PRODUCT_RUNTIME		632	plugins/prime-beacon/package.json
 EXCLUDE	PRODUCT_RUNTIME		10532	plugins/prime-beacon/src/beacon.test.ts
 EXCLUDE	PRODUCT_RUNTIME		12613	plugins/prime-beacon/src/beacon.ts
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4083	rules/agent-control/agent-permission-bypass-spawn.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4270	rules/agent-control/handoff-to-second-agent-with-credentials.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3725	rules/agent-control/permission-scope-expansion-via-env.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	7588	rules/agent-control/sandbox-escape-attempt.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	8347	rules/approval-abuse/approval-bypass-via-renamed-binary.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4163	rules/approval-abuse/approval-denied-command-executed-anyway.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2791	rules/approval-abuse/high-risk-approval-allowed-without-reason.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3086	rules/context-exfiltration/archive-then-upload.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4512	rules/context-exfiltration/browser-session-read-then-egress.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2578	rules/context-exfiltration/cloud-metadata-then-egress.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1257	rules/context-exfiltration/credentials-in-curl-data.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1788	rules/context-exfiltration/dns-tunnel-exfiltration.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1838	rules/context-exfiltration/env-dump-piped-to-network.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2590	rules/context-exfiltration/git-bundle-then-egress.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	9433	rules/context-exfiltration/secret-read-then-destructive.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4870	rules/context-exfiltration/secret-read-then-egress.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3948	rules/context-exfiltration/secret-read-then-external-mcp.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4662	rules/context-exfiltration/secret-read-then-mcp-tool-handoff.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2937	rules/context-exfiltration/ssh-tunnel-egress.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2216	rules/context-exfiltration/upload-to-paste-transfer-site.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2268	rules/credential-access/browser-session-store-read.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2101	rules/credential-access/credential-file-read.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2029	rules/credential-access/env-secret-enumeration.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3218	rules/credential-access/gpg-keyring-access.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4582	rules/credential-access/kubernetes-secret-file-read.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2853	rules/credential-access/password-manager-db-read.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1923	rules/credential-access/process-table-secret-scrape.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2027	rules/credential-access/shell-history-secret-scan.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1722	rules/credential-access/ssh-agent-key-enumeration.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2106	rules/external-access/cloud-metadata-endpoint-access.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1573	rules/external-access/external-mcp-tool-call.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2823	rules/external-access/imds-access-via-noncurl-client.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2210	rules/external-access/imds-obfuscated-ip-fetch.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2039	rules/external-access/link-local-internal-target-fetch.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2208	rules/prompt-injection/covert-action-injection.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2084	rules/prompt-injection/decode-and-execute-injection.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2207	rules/prompt-injection/exfiltrate-context-secrets.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1941	rules/prompt-injection/exfiltrate-context-via-markdown-image.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1297	rules/prompt-injection/exfiltrate-system-prompt.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1301	rules/prompt-injection/ignore-previous-instructions.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	6412	rules/prompt-injection/indirect-injection-in-tool-result.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2330	rules/prompt-injection/indirect-injection-new-instructions-marker.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1972	rules/prompt-injection/invisible-character-prompt-injection.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3652	rules/prompt-injection/mcp-poisoned-tool-description.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2149	rules/prompt-injection/role-override-jailbreak.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4723	rules/resource-consumption/disk-fill-attempt.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1743	rules/resource-consumption/excessive-single-call-cost.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3395	rules/resource-consumption/fork-bomb-pattern.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1996	rules/risky-command/base64-decode-piped-to-shell.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3307	rules/risky-command/crontab-modification.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1187	rules/risky-command/curl-pipe-to-shell.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4097	rules/risky-command/kernel-module-load.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2769	rules/risky-command/path-injection-into-login-file.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2267	rules/risky-command/persistence-install-command.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3282	rules/risky-command/privileged-container-run.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1085	rules/risky-command/recursive-root-delete.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2512	rules/risky-command/root-equivalent-group-add.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2540	rules/risky-command/setuid-or-root-shell-escalation.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2697	rules/risky-command/shell-escape-via-interactive-tool.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2628	rules/risky-command/sudoers-nopasswd-tampering.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3307	rules/risky-command/world-writable-chmod.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1804	rules/sensitive-edit/agent-control-surface-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1774	rules/sensitive-edit/agent-instruction-surface-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3132	rules/sensitive-edit/auth-security-code-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2731	rules/sensitive-edit/autostart-unit-file-installed.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2208	rules/sensitive-edit/cicd-pipeline-file-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4245	rules/sensitive-edit/container-or-iac-file-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1939	rules/sensitive-edit/dependency-manifest-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1508	rules/sensitive-edit/direnv-envrc-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2127	rules/sensitive-edit/etc-hosts-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1771	rules/sensitive-edit/shell-login-dotfile-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2803	rules/sensitive-edit/ssh-authorized-keys-modified.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3750	rules/source-control/git-config-exec-injection.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3961	rules/source-control/git-force-push-to-protected.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3424	rules/source-control/git-history-rewrite.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1792	rules/source-control/git-hook-installed.rule.yaml
-ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3481	rules/source-control/git-remote-tampering.rule.yaml
-EXCLUDE	PRODUCT_RUNTIME		6261	spec/threat-rules/FIELDS.md
-EXCLUDE	PRODUCT_RUNTIME		10925	spec/threat-rules/SPEC.md
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4116	rules/agent-control/agent-permission-bypass-spawn.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4303	rules/agent-control/handoff-to-second-agent-with-credentials.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3758	rules/agent-control/permission-scope-expansion-via-env.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	7621	rules/agent-control/sandbox-escape-attempt.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	8381	rules/approval-abuse/approval-bypass-via-renamed-binary.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4197	rules/approval-abuse/approval-denied-command-executed-anyway.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2825	rules/approval-abuse/high-risk-approval-allowed-without-reason.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3126	rules/context-exfiltration/archive-then-upload.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4552	rules/context-exfiltration/browser-session-read-then-egress.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2618	rules/context-exfiltration/cloud-metadata-then-egress.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1297	rules/context-exfiltration/credentials-in-curl-data.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1828	rules/context-exfiltration/dns-tunnel-exfiltration.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1878	rules/context-exfiltration/env-dump-piped-to-network.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2630	rules/context-exfiltration/git-bundle-then-egress.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	9473	rules/context-exfiltration/secret-read-then-destructive.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4910	rules/context-exfiltration/secret-read-then-egress.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3988	rules/context-exfiltration/secret-read-then-external-mcp.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4702	rules/context-exfiltration/secret-read-then-mcp-tool-handoff.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2977	rules/context-exfiltration/ssh-tunnel-egress.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2256	rules/context-exfiltration/upload-to-paste-transfer-site.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2305	rules/credential-access/browser-session-store-read.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2138	rules/credential-access/credential-file-read.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2066	rules/credential-access/env-secret-enumeration.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3255	rules/credential-access/gpg-keyring-access.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4619	rules/credential-access/kubernetes-secret-file-read.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2890	rules/credential-access/password-manager-db-read.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1960	rules/credential-access/process-table-secret-scrape.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2064	rules/credential-access/shell-history-secret-scan.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1759	rules/credential-access/ssh-agent-key-enumeration.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2141	rules/external-access/cloud-metadata-endpoint-access.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1608	rules/external-access/external-mcp-tool-call.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2858	rules/external-access/imds-access-via-noncurl-client.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2245	rules/external-access/imds-obfuscated-ip-fetch.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2074	rules/external-access/link-local-internal-target-fetch.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2244	rules/prompt-injection/covert-action-injection.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2120	rules/prompt-injection/decode-and-execute-injection.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2243	rules/prompt-injection/exfiltrate-context-secrets.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1977	rules/prompt-injection/exfiltrate-context-via-markdown-image.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1333	rules/prompt-injection/exfiltrate-system-prompt.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1337	rules/prompt-injection/ignore-previous-instructions.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	12252	rules/prompt-injection/indirect-injection-in-tool-result.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2366	rules/prompt-injection/indirect-injection-new-instructions-marker.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2008	rules/prompt-injection/invisible-character-prompt-injection.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4646	rules/prompt-injection/mcp-poisoned-tool-description.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2185	rules/prompt-injection/role-override-jailbreak.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4763	rules/resource-consumption/disk-fill-attempt.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1783	rules/resource-consumption/excessive-single-call-cost.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3435	rules/resource-consumption/fork-bomb-pattern.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2029	rules/risky-command/base64-decode-piped-to-shell.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3340	rules/risky-command/crontab-modification.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1220	rules/risky-command/curl-pipe-to-shell.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4130	rules/risky-command/kernel-module-load.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2802	rules/risky-command/path-injection-into-login-file.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2300	rules/risky-command/persistence-install-command.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3315	rules/risky-command/privileged-container-run.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1118	rules/risky-command/recursive-root-delete.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2545	rules/risky-command/root-equivalent-group-add.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2573	rules/risky-command/setuid-or-root-shell-escalation.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2730	rules/risky-command/shell-escape-via-interactive-tool.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2661	rules/risky-command/sudoers-nopasswd-tampering.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3340	rules/risky-command/world-writable-chmod.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1838	rules/sensitive-edit/agent-control-surface-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1808	rules/sensitive-edit/agent-instruction-surface-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3166	rules/sensitive-edit/auth-security-code-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2765	rules/sensitive-edit/autostart-unit-file-installed.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2242	rules/sensitive-edit/cicd-pipeline-file-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	4279	rules/sensitive-edit/container-or-iac-file-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1973	rules/sensitive-edit/dependency-manifest-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1542	rules/sensitive-edit/direnv-envrc-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2161	rules/sensitive-edit/etc-hosts-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1805	rules/sensitive-edit/shell-login-dotfile-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	2837	rules/sensitive-edit/ssh-authorized-keys-modified.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3784	rules/source-control/git-config-exec-injection.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3995	rules/source-control/git-force-push-to-protected.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3458	rules/source-control/git-history-rewrite.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	1826	rules/source-control/git-hook-installed.rule.yaml
+ADAPT	77 YAML detection rules with tests; evaluated by an OS CEL-subset engine	observability/risk-detection	3515	rules/source-control/git-remote-tampering.rule.yaml
+EXCLUDE	PRODUCT_RUNTIME		12177	spec/lenses/SPEC.md
+EXCLUDE	PRODUCT_RUNTIME		10	spec/lenses/VERSION
+EXCLUDE	PRODUCT_RUNTIME		4804	spec/lenses/examples/activity.lens.html
+EXCLUDE	PRODUCT_RUNTIME		7251	spec/lenses/examples/lens-data.json
+EXCLUDE	PRODUCT_RUNTIME		1495	spec/lenses/manifest.schema.json
+EXCLUDE	PRODUCT_RUNTIME		7042	spec/threat-rules/FIELDS.md
+EXCLUDE	PRODUCT_RUNTIME		13025	spec/threat-rules/SPEC.md
 EXCLUDE	PRODUCT_RUNTIME		18	spec/threat-rules/VERSION
 EXCLUDE	PRODUCT_RUNTIME		3753	spec/threat-rules/schema.json

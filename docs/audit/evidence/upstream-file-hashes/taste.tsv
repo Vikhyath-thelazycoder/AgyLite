@@ -1,4 +1,4 @@
-# taste @ ce26fc25c0e5e8cab638f883de62d9a86ee5e45b
+# taste @ 717446e07a78d4e6d7918b1fde1a263378eebac9
 blob_sha1	bytes	path
 f47a6ac716aadb9a59f51247de5620e514a36e01	501	.claude-plugin/marketplace.json
 846009b299d5d95d4658dd4a4f19921f3695fdf3	447	.claude-plugin/plugin.json
@@ -6,15 +6,11 @@ f47a6ac716aadb9a59f51247de5620e514a36e01	501	.claude-plugin/marketplace.json
 c9ca993e9d93dfb759361158b2c41516f48e6378	959	.github/copilot-instructions.md
 f0ef4d4aac258b9605ac8c3d1432ef782e10127a	8272	CHANGELOG.md
 48a2f6640b81ff8eca9ce7f6a96337692713ef5b	1065	LICENSE
-0dcd0321c950dc75501db375c731a054beeeaabd	17499	README.md
+09024294e9b31c9305e9f40b82d35731943ccbd1	17846	README.md
 e69de29bb2d1d6434b8b29ae775ad8c2e48c5391	0	assets/.gitkeep
 983cdce1b604f294c5b0f277ca8327555eaaf3bc	99902	assets/readme-banner.webp
-c7eb5a5628f74a13a85626b55367fe7483d38129	17150	assets/readme-buttons/btn-agent-skills.webp
-19341b7b952ba85ae2836c0fab85d3c1bfac3f14	15476	assets/readme-buttons/btn-changelog.webp
-12c0c9fd53b0b31f1f77a00bd3a46525f831f635	12962	assets/readme-buttons/btn-mit.webp
-43b4c28c8ebb5b2e0fb4a95e67d9663234f96964	19080	assets/readme-buttons/btn-site.webp
-9b3fd23e3b6f946ad343764ddd9c3f4ed69e0f32	19698	assets/readme-buttons/btn-tools.webp
 c4499f62691db13fb206d13442d2026f35ee4933	4864	assets/readme-cta-tasteskill.svg
+bc29406b39913b4a39491b61cb0e67c1bceedcc0	32914	assets/readme-tastecode.webp
 c101842c7cd64964d8c22ca92f5b5f0ae181d2a8	16024	assets/sponsors/animations-dev.webp
 9ce57f969a1fc9b3004589d8de884b388c278ec8	39216	assets/sponsors/emil-animations-dev.webp
 8f72a484f506f3109188b549099b6544dd76a73c	1757134	assets/sponsors/fluxion-ai-banner.png
@@ -27,6 +23,8 @@ d6ba3062d24da4fdf2e4bdc01f49cec55c9d67f0	3937	assets/sponsors/reactbits-icon-lig
 9d6bc8aaeadd8e56d58f4780e0e1f7daed56ae6a	12502	assets/sponsors/reactbits-logo-dark.svg
 bf6b0c18e342b83eb8977ac24d6f40277faaf523	12536	assets/sponsors/reactbits-logo-light.svg
 f93b23958966bb3eb90880b7f984773feadd02a7	4382	assets/sponsors/sentdm.png
+29099f9c54e41ce50c9ba60675c643438dccd26d	1687265	assets/sponsors/sidrune-ai-banner.png
+6ce494dcabaa592247337a15f13bb825e5698915	21326	assets/sponsors/sidrune-ai.png
 34e3e5ec4ef089630d748f69b47674b3bec7edcc	242	assets/sponsors/vercel-logo.svg
 c5e8bd8130ed4abb4f0af104d182bd4bcf36993d	17279	assets/taste-skill-logo.png
 f1eb55cf7953abdabf9c412ef6f4b2e1f1b4a483	3280	assets/taste-skill-logo.webp

@@ -2,12 +2,12 @@
  "repos": {
   "addy": {
    "EXCLUDE": {
-    "files": 57,
-    "bytes": 441248
+    "files": 56,
+    "bytes": 457824
    },
    "REFERENCE": {
-    "files": 112,
-    "bytes": 148342
+    "files": 114,
+    "bytes": 151613
    },
    "COPY": {
     "files": 9,
@@ -15,13 +15,13 @@
    },
    "ADAPT": {
     "files": 33,
-    "bytes": 390007
+    "bytes": 391173
    }
   },
   "agency": {
    "EXCLUDE": {
-    "files": 304,
-    "bytes": 3731115
+    "files": 305,
+    "bytes": 3755225
    },
    "COPY": {
     "files": 1,
@@ -29,7 +29,7 @@
    },
    "ADAPT": {
     "files": 74,
-    "bytes": 1087377
+    "bytes": 1096993
    },
    "REFERENCE": {
     "files": 2,
@@ -52,20 +52,20 @@
   },
   "beacon": {
    "EXCLUDE": {
-    "files": 1506,
-    "bytes": 52203017
+    "files": 1668,
+    "bytes": 53674955
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "REFERENCE": {
-    "files": 75,
-    "bytes": 1116061
+    "files": 83,
+    "bytes": 1255742
    },
    "ADAPT": {
     "files": 77,
-    "bytes": 227694
+    "bytes": 237207
    }
   },
   "beyondseo": {
@@ -92,8 +92,8 @@
   },
   "brag": {
    "EXCLUDE": {
-    "files": 56,
-    "bytes": 33124079
+    "files": 57,
+    "bytes": 33125012
    },
    "COPY": {
     "files": 1,
@@ -105,69 +105,69 @@
    },
    "PRESERVE": {
     "files": 290,
-    "bytes": 16590338
+    "bytes": 16590340
    }
   },
   "ecc": {
    "EXCLUDE": {
-    "files": 3536,
-    "bytes": 54077779
+    "files": 3865,
+    "bytes": 57323177
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "ADAPT": {
-    "files": 385,
-    "bytes": 2238861
+    "files": 389,
+    "bytes": 2274941
    },
    "REFERENCE": {
-    "files": 272,
-    "bytes": 1243100
+    "files": 280,
+    "bytes": 1356528
    },
    "PRESERVE": {
     "files": 18,
-    "bytes": 146896
+    "bytes": 147392
    }
   },
   "graphify": {
    "EXCLUDE": {
-    "files": 371,
-    "bytes": 12353221
+    "files": 379,
+    "bytes": 13660094
    },
    "COPY": {
     "files": 3,
     "bytes": 12761
    },
    "PRESERVE": {
-    "files": 537,
-    "bytes": 8809036
+    "files": 583,
+    "bytes": 9577143
    },
    "REFERENCE": {
     "files": 37,
-    "bytes": 4405856
+    "bytes": 4406911
    },
    "ADAPT": {
     "files": 8,
-    "bytes": 44524
+    "bytes": 44710
    }
   },
   "gstack": {
    "EXCLUDE": {
-    "files": 2360,
-    "bytes": 47591812
+    "files": 3264,
+    "bytes": 59376625
    },
    "REFERENCE": {
-    "files": 229,
-    "bytes": 5116042
+    "files": 254,
+    "bytes": 5452730
    },
    "COPY": {
     "files": 3,
     "bytes": 14896
    },
    "ADAPT": {
-    "files": 85,
-    "bytes": 772628
+    "files": 100,
+    "bytes": 874231
    }
   },
   "karpathy": {
@@ -186,8 +186,8 @@
   },
   "opendesign": {
    "EXCLUDE": {
-    "files": 12418,
-    "bytes": 284420820
+    "files": 12451,
+    "bytes": 285331073
    },
    "COPY": {
     "files": 467,
@@ -204,26 +204,26 @@
   },
   "ponytail": {
    "EXCLUDE": {
-    "files": 115,
-    "bytes": 1536328
+    "files": 151,
+    "bytes": 10241478
    },
    "COPY": {
     "files": 13,
-    "bytes": 36653
+    "bytes": 36718
    },
    "REFERENCE": {
-    "files": 36,
-    "bytes": 231241
+    "files": 31,
+    "bytes": 266161
    },
    "ADAPT": {
     "files": 5,
-    "bytes": 14906
+    "bytes": 18068
    }
   },
   "taste": {
    "EXCLUDE": {
-    "files": 40,
-    "bytes": 4560923
+    "files": 38,
+    "bytes": 6218409
    },
    "COPY": {
     "files": 1,
@@ -240,20 +240,20 @@
   },
   "uiuxpromax": {
    "EXCLUDE": {
-    "files": 409,
-    "bytes": 11834954
+    "files": 410,
+    "bytes": 11842293
    },
    "ADAPT": {
     "files": 190,
-    "bytes": 6400434
+    "bytes": 6403368
    },
    "COPY": {
     "files": 1,
     "bytes": 1075
    },
    "PRESERVE": {
-    "files": 82,
-    "bytes": 3603847
+    "files": 83,
+    "bytes": 3605728
    }
   },
   "unlazy": {
@@ -281,9 +281,9 @@
  },
  "capabilities": {
   "codebase/repository-understanding": {
-   "files": 556,
-   "bytes": 8948412,
-   "est_tokens": 2237103,
+   "files": 602,
+   "bytes": 9716705,
+   "est_tokens": 2429176,
    "sources": [
     "agency",
     "ecc",
@@ -302,8 +302,8 @@
   },
   "design/brand": {
    "files": 36,
-   "bytes": 231524,
-   "est_tokens": 57881,
+   "bytes": 234458,
+   "est_tokens": 58614,
    "sources": [
     "ecc",
     "opendesign",
@@ -312,9 +312,9 @@
    ]
   },
   "design/design-direction": {
-   "files": 12,
-   "bytes": 84938,
-   "est_tokens": 21234,
+   "files": 13,
+   "bytes": 93113,
+   "est_tokens": 23278,
    "sources": [
     "ecc",
     "opendesign",
@@ -322,9 +322,9 @@
    ]
   },
   "design/design-review": {
-   "files": 24,
-   "bytes": 228182,
-   "est_tokens": 57045,
+   "files": 25,
+   "bytes": 234168,
+   "est_tokens": 58542,
    "sources": [
     "agency",
     "gstack",
@@ -332,9 +332,9 @@
    ]
   },
   "design/design-system": {
-   "files": 571,
-   "bytes": 9538489,
-   "est_tokens": 2384622,
+   "files": 572,
+   "bytes": 9540370,
+   "est_tokens": 2385092,
    "sources": [
     "ecc",
     "opendesign",
@@ -392,8 +392,8 @@
   },
   "engineering/ai-systems": {
    "files": 12,
-   "bytes": 141612,
-   "est_tokens": 35403,
+   "bytes": 143370,
+   "est_tokens": 35842,
    "sources": [
     "agency",
     "ecc"
@@ -401,8 +401,8 @@
   },
   "engineering/architecture": {
    "files": 14,
-   "bytes": 122794,
-   "est_tokens": 30698,
+   "bytes": 124180,
+   "est_tokens": 31045,
    "sources": [
     "addy",
     "agency",
@@ -411,8 +411,8 @@
   },
   "engineering/backend": {
    "files": 9,
-   "bytes": 112212,
-   "est_tokens": 28053,
+   "bytes": 112978,
+   "est_tokens": 28244,
    "sources": [
     "agency",
     "ecc"
@@ -429,9 +429,9 @@
    ]
   },
   "engineering/debugging": {
-   "files": 5,
-   "bytes": 36863,
-   "est_tokens": 9215,
+   "files": 11,
+   "bytes": 49621,
+   "est_tokens": 12405,
    "sources": [
     "addy",
     "ecc",
@@ -440,8 +440,8 @@
   },
   "engineering/documentation": {
    "files": 8,
-   "bytes": 103104,
-   "est_tokens": 25776,
+   "bytes": 104579,
+   "est_tokens": 26144,
    "sources": [
     "agency",
     "ecc",
@@ -450,8 +450,8 @@
   },
   "engineering/frontend": {
    "files": 5,
-   "bytes": 66984,
-   "est_tokens": 16746,
+   "bytes": 67584,
+   "est_tokens": 16896,
    "sources": [
     "addy",
     "agency",
@@ -460,8 +460,8 @@
   },
   "engineering/implementation": {
    "files": 6,
-   "bytes": 83495,
-   "est_tokens": 20873,
+   "bytes": 83807,
+   "est_tokens": 20951,
    "sources": [
     "addy",
     "agency"
@@ -486,9 +486,9 @@
    ]
   },
   "engineering/planning": {
-   "files": 37,
-   "bytes": 432184,
-   "est_tokens": 108046,
+   "files": 41,
+   "bytes": 450474,
+   "est_tokens": 112618,
    "sources": [
     "addy",
     "agency",
@@ -506,9 +506,9 @@
    ]
   },
   "engineering/release": {
-   "files": 35,
-   "bytes": 338574,
-   "est_tokens": 84643,
+   "files": 38,
+   "bytes": 365177,
+   "est_tokens": 91294,
    "sources": [
     "addy",
     "agency",
@@ -517,9 +517,9 @@
    ]
   },
   "engineering/review": {
-   "files": 29,
-   "bytes": 164848,
-   "est_tokens": 41212,
+   "files": 30,
+   "bytes": 189983,
+   "est_tokens": 47495,
    "sources": [
     "addy",
     "agency",
@@ -529,8 +529,8 @@
   },
   "engineering/security": {
    "files": 33,
-   "bytes": 432143,
-   "est_tokens": 108035,
+   "bytes": 447062,
+   "est_tokens": 111765,
    "sources": [
     "addy",
     "agency",
@@ -540,8 +540,8 @@
   },
   "engineering/simplicity": {
    "files": 23,
-   "bytes": 92983,
-   "est_tokens": 23245,
+   "bytes": 96321,
+   "est_tokens": 24080,
    "sources": [
     "addy",
     "agency",
@@ -551,9 +551,9 @@
    ]
   },
   "engineering/stack-packs": {
-   "files": 250,
-   "bytes": 1458871,
-   "est_tokens": 364717,
+   "files": 253,
+   "bytes": 1486504,
+   "est_tokens": 371626,
    "sources": [
     "ecc"
    ]
@@ -568,8 +568,8 @@
   },
   "media/launch-video": {
    "files": 294,
-   "bytes": 16631578,
-   "est_tokens": 4157894,
+   "bytes": 16631580,
+   "est_tokens": 4157895,
    "sources": [
     "agency",
     "brag"
@@ -595,8 +595,8 @@
   },
   "observability/risk-detection": {
    "files": 78,
-   "bytes": 228765,
-   "est_tokens": 57191,
+   "bytes": 238278,
+   "est_tokens": 59569,
    "sources": [
     "beacon"
    ]
@@ -740,8 +740,8 @@
   },
   "testing/local-verification": {
    "files": 10,
-   "bytes": 42125,
-   "est_tokens": 10531,
+   "bytes": 42231,
+   "est_tokens": 10557,
    "sources": [
     "agency",
     "ecc",
@@ -750,8 +750,8 @@
   },
   "testing/performance": {
    "files": 4,
-   "bytes": 37871,
-   "est_tokens": 9467,
+   "bytes": 38035,
+   "est_tokens": 9508,
    "sources": [
     "addy",
     "agency",
@@ -768,8 +768,8 @@
   },
   "testing/release-verification": {
    "files": 4,
-   "bytes": 31775,
-   "est_tokens": 7943,
+   "bytes": 32047,
+   "est_tokens": 8011,
    "sources": [
     "agency",
     "ecc"
@@ -777,8 +777,8 @@
   },
   "testing/strategy": {
    "files": 15,
-   "bytes": 179290,
-   "est_tokens": 44822,
+   "bytes": 181802,
+   "est_tokens": 45450,
    "sources": [
     "addy",
     "agency",

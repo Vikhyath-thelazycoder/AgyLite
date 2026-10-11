@@ -286,16 +286,53 @@ RESULT_TEXT_LIMIT = 4096
 _READ_TOOLS = {"webfetch", "websearch", "fetch", "fetchurl", "readurl"}
 
 
+CONTENT_BLOCK_TYPES = {"text", "image", "audio", "document", "resource", "resource_link"}
+
+
+def _skip_block_field(key, value) -> bool:
+    """Port of Beacon `skipContentBlockField` (upstream 2462839): metadata and encoded bytes of a content block are not
+    text the model reads, and base64 media would otherwise use up the result_text cap before a text block after it."""
+    if key in ("type", "mimeType", "annotations", "_meta", "sha256"):
+        return True
+    if key in ("data", "blob"):
+        return isinstance(value, str)
+    return key == "source" and isinstance(value, dict) and value.get("type") == "base64"
+
+
+def _collect_map(m, skip, out):
+    for key in sorted(m):
+        value = m[key]
+        if skip and skip(key, value):
+            continue
+        if skip and key == "resource" and isinstance(value, dict):
+            _collect_map(value, skip, out)
+            continue
+        _collect_strings(value, out)
+
+
 def _collect_strings(value, out):
+    """Port of Beacon `collectToolResultStrings`: strings in sorted key order; list elements that are content blocks
+    contribute their text without metadata or encoded bytes."""
     if isinstance(value, str):
         if value.strip():
             out.append(value)
     elif isinstance(value, dict):
-        for key in sorted(value):
-            _collect_strings(value[key], out)
+        _collect_map(value, None, out)
     elif isinstance(value, list):
         for item in value:
-            _collect_strings(item, out)
+            if isinstance(item, dict) and item.get("type") in CONTENT_BLOCK_TYPES:
+                _collect_map(item, _skip_block_field, out)
+            else:
+                _collect_strings(item, out)
+
+
+def _ingested_target(path) -> bool:
+    """Port of Beacon `IngestedContentTarget`: a tool whose target is an http(s) URL brought outside content in."""
+    from urllib.parse import urlparse
+    if not isinstance(path, str):
+        return False
+    parsed = urlparse(path.strip())
+    return bool(parsed.netloc) and parsed.scheme.lower() in ("http", "https")
 
 
 def tool_result_text(event: dict) -> str:
@@ -310,6 +347,7 @@ def tool_result_text(event: dict) -> str:
     names = [n for n in ((event.get("tool") or {}).get("name"), ((event.get("gen_ai") or {}).get("tool") or {}).get("name"))
              if n]
     ingested = (action in ("file.read", "mcp.tool_invoked") or bool(mcp.get("server") or mcp.get("tool"))
+                or _ingested_target((event.get("tool") or {}).get("path"))
                 or any(n.strip().lower().startswith(("mcp__", "mcp:")) or
                        n.strip().lower().replace("_", "").replace("-", "") in _READ_TOOLS for n in names))
     content = event.get("content")

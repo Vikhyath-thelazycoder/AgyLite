@@ -5,15 +5,11 @@ EXCLUDE	REPO_META		17	.github/FUNDING.yml
 EXCLUDE	REPO_META		959	.github/copilot-instructions.md
 EXCLUDE	DOC_ASSET		8272	CHANGELOG.md
 COPY	LICENSE	design/visual-quality	1065	LICENSE
-EXCLUDE	DOC_ASSET		17499	README.md
+EXCLUDE	DOC_ASSET		17846	README.md
 EXCLUDE	DOC_ASSET		0	assets/.gitkeep
 EXCLUDE	DOC_ASSET		99902	assets/readme-banner.webp
-EXCLUDE	DOC_ASSET		17150	assets/readme-buttons/btn-agent-skills.webp
-EXCLUDE	DOC_ASSET		15476	assets/readme-buttons/btn-changelog.webp
-EXCLUDE	DOC_ASSET		12962	assets/readme-buttons/btn-mit.webp
-EXCLUDE	DOC_ASSET		19080	assets/readme-buttons/btn-site.webp
-EXCLUDE	DOC_ASSET		19698	assets/readme-buttons/btn-tools.webp
 EXCLUDE	DOC_ASSET		4864	assets/readme-cta-tasteskill.svg
+EXCLUDE	DOC_ASSET		32914	assets/readme-tastecode.webp
 EXCLUDE	DOC_ASSET		16024	assets/sponsors/animations-dev.webp
 EXCLUDE	DOC_ASSET		39216	assets/sponsors/emil-animations-dev.webp
 EXCLUDE	DOC_ASSET		1757134	assets/sponsors/fluxion-ai-banner.png
@@ -26,6 +22,8 @@ EXCLUDE	DOC_ASSET		3937	assets/sponsors/reactbits-icon-light.svg
 EXCLUDE	DOC_ASSET		12502	assets/sponsors/reactbits-logo-dark.svg
 EXCLUDE	DOC_ASSET		12536	assets/sponsors/reactbits-logo-light.svg
 EXCLUDE	DOC_ASSET		4382	assets/sponsors/sentdm.png
+EXCLUDE	DOC_ASSET		1687265	assets/sponsors/sidrune-ai-banner.png
+EXCLUDE	DOC_ASSET		21326	assets/sponsors/sidrune-ai.png
 EXCLUDE	DOC_ASSET		242	assets/sponsors/vercel-logo.svg
 EXCLUDE	DOC_ASSET		17279	assets/taste-skill-logo.png
 EXCLUDE	DOC_ASSET		3280	assets/taste-skill-logo.webp

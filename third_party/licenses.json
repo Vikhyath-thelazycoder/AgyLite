@@ -2,7 +2,7 @@
  "addy": {
   "attribution": "Copyright (c) 2025 Addy Osmani",
   "bundled_files": 42,
-  "commit_sha": "a06bc63b3f8b829c14b0bbf53d99fefc39d58092",
+  "commit_sha": "1be8e34187e34647bb83adc3a1323b26ae6f6abe",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -13,7 +13,7 @@
  "agency": {
   "attribution": "Copyright (c) 2025 AgentLand Contributors",
   "bundled_files": 75,
-  "commit_sha": "d3f71c4bb8922d3eea7576237a870dd59b3cdd52",
+  "commit_sha": "f99f6aa910a442b0197b768ce0ea7751e35e2060",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -35,7 +35,7 @@
  "beacon": {
   "attribution": "Copyright (c) 2026 Asymptote Labs",
   "bundled_files": 78,
-  "commit_sha": "5937da1cd812660d256c367374b9752316f51cbc",
+  "commit_sha": "24628397aad97f178cf16a36184ac7537e8007de",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -58,7 +58,7 @@
  "brag": {
   "attribution": "Copyright (c) 2026 Shunit Haviv Hakimi",
   "bundled_files": 291,
-  "commit_sha": "cb89b9f44309b0bf4e3cb89e685fadf80c7999ed",
+  "commit_sha": "8531ccb9f471ef5099abf930079e47b55c55bb21",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -68,8 +68,8 @@
  },
  "ecc": {
   "attribution": "Copyright (c) 2026 Affaan Mustafa",
-  "bundled_files": 404,
-  "commit_sha": "ef648e01899ba3e8dc6371642deaaf64b4477775",
+  "bundled_files": 408,
+  "commit_sha": "2d515e4fc2ddef97354769812cf3f7b9ec4e5124",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -79,8 +79,8 @@
  },
  "graphify": {
   "attribution": "Copyright (c) 2026 Safi Shamsi",
-  "bundled_files": 548,
-  "commit_sha": "0b60d47e6cd9338c51143f39f35b6c45c8453385",
+  "bundled_files": 594,
+  "commit_sha": "b4e6307bf170f27e0cb888c03f4af9308d531a42",
   "license": "Apache-2.0",
   "license_files": [
    "LICENSE",
@@ -92,8 +92,8 @@
  },
  "gstack": {
   "attribution": "Copyright (c) 2026 Garry Tan",
-  "bundled_files": 88,
-  "commit_sha": "74512c20a7aca72e722d46bcc6b3954c1677d9ee",
+  "bundled_files": 103,
+  "commit_sha": "5cb5e1cfc115e82388df07896664640a1224fe5d",
   "license": "MIT",
   "license_files": [
    "LICENSE",
@@ -115,7 +115,7 @@
  "opendesign": {
   "attribution": "Copyright 2026 Open Design contributors",
   "bundled_files": 516,
-  "commit_sha": "53231d40b778d88eba23f35547bf99485d3ae9fc",
+  "commit_sha": "17e255959703a3fad7c8eb7f7b70dcafccc5629a",
   "license": "Apache-2.0",
   "license_files": [
    "LICENSE"
@@ -126,7 +126,7 @@
  "ponytail": {
   "attribution": "Copyright (c) 2026 DietrichGebert",
   "bundled_files": 18,
-  "commit_sha": "c982cd411abb53323c4baa1baa3c2f020b8d0b08",
+  "commit_sha": "9b58c1ffb790c075ca32e70a89cf1d80588f4abf",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -137,7 +137,7 @@
  "taste": {
   "attribution": "Copyright (c) 2026 Leonxlnx",
   "bundled_files": 13,
-  "commit_sha": "ce26fc25c0e5e8cab638f883de62d9a86ee5e45b",
+  "commit_sha": "717446e07a78d4e6d7918b1fde1a263378eebac9",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -147,8 +147,8 @@
  },
  "uiuxpromax": {
   "attribution": "Copyright (c) 2024 Next Level Builder",
-  "bundled_files": 273,
-  "commit_sha": "09170eec67eefd46a7ae85de61b40c194020f997",
+  "bundled_files": 274,
+  "commit_sha": "67803eac81607188194aea9842a723b89326d90d",
   "license": "MIT",
   "license_files": [
    "LICENSE"

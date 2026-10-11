@@ -14,7 +14,16 @@ from agylite.cli import main  # noqa: E402
 from agylite.registry import generate, loader, schema  # noqa: E402
 
 EXPECTED_CAPABILITIES = 63  # D-035: + testing/evidence
-EXPECTED_BUNDLED_FILES = 2582  # D-034/D-035: −15 browser/visual files, +4 Appllama (LICENSE, SKILL, 2 references); D-037: +graphify serve.py; D-038: −laravel-plugin-discovery (MCP); P25: −graphify tests/test_skillgen.py
+def _expected_bundled_files():
+    """Bundled files per the generated extraction summary (COPY + ADAPT + PRESERVE). Upstream updates (P28) change the
+    number; these tests check that provenance, registry and licenses all agree with the audited extraction matrix."""
+    import json as _json
+    with open(os.path.join(ROOT_DIR, "docs", "audit", "evidence", "extraction-summary.json"), encoding="utf-8") as f:
+        repos = _json.load(f)["repos"]
+    return sum(d.get(k, {}).get("files", 0) for d in repos.values() for k in ("COPY", "ADAPT", "PRESERVE"))
+
+
+EXPECTED_BUNDLED_FILES = _expected_bundled_files()
 # Files P7 retired in favour of capabilities/**/card.yaml (C-1); only history documents may still name them.
 RETIRED = re.compile(r"config/capabilities\.yaml|domain-model\.yaml|(?<![\w./-])integrations/(?:\*\.yaml|<name>|ecc|`| +#)|├── capabilities\.yaml")
 HISTORY = ("CHANGELOG.md", "docs/audit/", "docs/plan/", "docs/evidence/")

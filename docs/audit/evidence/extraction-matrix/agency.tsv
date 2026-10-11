@@ -7,7 +7,7 @@ EXCLUDE	INSTALLER		449	.github/PULL_REQUEST_TEMPLATE.md
 EXCLUDE	INSTALLER		530	.github/workflows/check-divisions.yml
 EXCLUDE	INSTALLER		830	.github/workflows/check-hermes-config-rewrite.yml
 EXCLUDE	INSTALLER		592	.github/workflows/check-runbooks.yml
-EXCLUDE	INSTALLER		2528	.github/workflows/check-tools.yml
+EXCLUDE	INSTALLER		2656	.github/workflows/check-tools.yml
 EXCLUDE	INSTALLER		3956	.github/workflows/lint-agents.yml
 EXCLUDE	INSTALLER		1011	.github/workflows/test-install.yml
 EXCLUDE	OUT_OF_DOMAIN		1463	.gitignore
@@ -24,48 +24,48 @@ EXCLUDE	OUT_OF_DOMAIN		7833	academic/academic-psychologist.md
 EXCLUDE	OUT_OF_DOMAIN		11508	academic/academic-statistician.md
 ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	11641	design/design-brand-guardian.md
 ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	11160	design/design-image-prompt-engineer.md
-ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	6799	design/design-inclusive-visuals-specialist.md
+ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	6763	design/design-inclusive-visuals-specialist.md
 ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	16759	design/design-persona-walkthrough.md
 ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	13339	design/design-ui-designer.md
 ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	8988	design/design-ui-finish-gate-reviewer.md
-ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	15760	design/design-ux-architect.md
+ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	16004	design/design-ux-architect.md
 ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	13030	design/design-ux-researcher.md
 ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	7416	design/design-visual-storyteller.md
-ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	15851	design/design-whimsy-injector.md
+ADAPT	Design specialist roles (subcapability set in P3)	design/design-review	16279	design/design-whimsy-injector.md
 REFERENCE	Host install contracts (P3 host audit evidence)		2514	divisions.json
 EXCLUDE	OUT_OF_DOMAIN		10691	engineering/engineering-ai-data-remediation-engineer.md
 ADAPT	AI/LLM system roles	engineering/ai-systems	7383	engineering/engineering-ai-engineer.md
 ADAPT	Architecture roles	engineering/architecture	14500	engineering/engineering-api-platform-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		28172	engineering/engineering-ats-validator-architect.md
-EXCLUDE	OUT_OF_DOMAIN		7953	engineering/engineering-autonomous-optimization-architect.md
-ADAPT	Architecture roles	engineering/architecture	10928	engineering/engineering-backend-architect.md
+EXCLUDE	OUT_OF_DOMAIN		8839	engineering/engineering-autonomous-optimization-architect.md
+ADAPT	Architecture roles	engineering/architecture	11263	engineering/engineering-backend-architect.md
 EXCLUDE	OUT_OF_DOMAIN		17646	engineering/engineering-china-network-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		19520	engineering/engineering-cms-developer.md
 ADAPT	Review roles	engineering/review	3076	engineering/engineering-code-reviewer.md
 ADAPT	Onboarding role	codebase/repository-understanding	9569	engineering/engineering-codebase-onboarding-engineer.md
 ADAPT	Backend specialist roles	engineering/backend	15680	engineering/engineering-data-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		13797	engineering/engineering-data-visualization-engineer.md
-ADAPT	Backend specialist roles	engineering/backend	5857	engineering/engineering-database-optimizer.md
+ADAPT	Backend specialist roles	engineering/backend	6215	engineering/engineering-database-optimizer.md
 ADAPT	Backend specialist roles	engineering/backend	16395	engineering/engineering-database-reliability-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		14777	engineering/engineering-desktop-app-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		13041	engineering/engineering-developer-tooling-engineer.md
 ADAPT	Delivery/operations roles	engineering/release	13695	engineering/engineering-devops-automator.md
 EXCLUDE	OUT_OF_DOMAIN		23523	engineering/engineering-drupal-performance.md
 EXCLUDE	OUT_OF_DOMAIN		21461	engineering/engineering-drupal-shopping-cart.md
-EXCLUDE	OUT_OF_DOMAIN		17144	engineering/engineering-email-intelligence-engineer.md
-EXCLUDE	OUT_OF_DOMAIN		6562	engineering/engineering-embedded-firmware-engineer.md
-EXCLUDE	OUT_OF_DOMAIN		21127	engineering/engineering-feishu-integration-developer.md
+EXCLUDE	OUT_OF_DOMAIN		17974	engineering/engineering-email-intelligence-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		7654	engineering/engineering-embedded-firmware-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		21582	engineering/engineering-feishu-integration-developer.md
 EXCLUDE	OUT_OF_DOMAIN		14269	engineering/engineering-filament-optimization-specialist.md
 EXCLUDE	OUT_OF_DOMAIN		13261	engineering/engineering-finops-engineer.md
 ADAPT	Frontend/mobile roles	engineering/frontend	9283	engineering/engineering-frontend-developer.md
 EXCLUDE	OUT_OF_DOMAIN		15613	engineering/engineering-gaussdb-expert.md
 ADAPT	Delivery/operations roles	engineering/release	3881	engineering/engineering-git-workflow-master.md
-ADAPT	Frontend/mobile roles	engineering/frontend	13522	engineering/engineering-i18n-engineer.md
-ADAPT	Identity/privacy roles	engineering/security	15693	engineering/engineering-identity-access-engineer.md
+ADAPT	Frontend/mobile roles	engineering/frontend	14113	engineering/engineering-i18n-engineer.md
+ADAPT	Identity/privacy roles	engineering/security	16138	engineering/engineering-identity-access-engineer.md
 ADAPT	Delivery/operations roles	engineering/release	21123	engineering/engineering-incident-response-commander.md
 EXCLUDE	OUT_OF_DOMAIN		13587	engineering/engineering-iot-fleet-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		27663	engineering/engineering-it-service-manager.md
-EXCLUDE	OUT_OF_DOMAIN		23473	engineering/engineering-knowledge-graph-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		23562	engineering/engineering-knowledge-graph-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		10947	engineering/engineering-llm-post-training-engineer.md
 ADAPT	Minimal-change role	engineering/simplicity	11231	engineering/engineering-minimal-change-engineer.md
 ADAPT	Frontend/mobile roles	engineering/frontend	17035	engineering/engineering-mobile-app-builder.md
@@ -74,13 +74,13 @@ ADAPT	AI/LLM system roles	engineering/ai-systems	29301	engineering/engineering-m
 EXCLUDE	OUT_OF_DOMAIN		13365	engineering/engineering-network-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		5611	engineering/engineering-orgscript-engineer.md
 ADAPT	Backend specialist roles	engineering/backend	15004	engineering/engineering-payments-billing-engineer.md
-EXCLUDE	OUT_OF_DOMAIN		33579	engineering/engineering-pdf-engine-architect.md
+EXCLUDE	OUT_OF_DOMAIN		34152	engineering/engineering-pdf-engine-architect.md
 ADAPT	Architecture roles	engineering/architecture	11688	engineering/engineering-platform-engineer.md
 ADAPT	Identity/privacy roles	engineering/security	14229	engineering/engineering-privacy-engineer.md
-ADAPT	AI/LLM system roles	engineering/ai-systems	9477	engineering/engineering-prompt-engineer.md
-ADAPT	AI/LLM system roles	engineering/ai-systems	18447	engineering/engineering-rag-pipeline-engineer.md
-ADAPT	Prototyping role	engineering/implementation	15492	engineering/engineering-rapid-prototyper.md
-ADAPT	Backend specialist roles	engineering/backend	14606	engineering/engineering-realtime-collaboration-engineer.md
+ADAPT	AI/LLM system roles	engineering/ai-systems	9861	engineering/engineering-prompt-engineer.md
+ADAPT	AI/LLM system roles	engineering/ai-systems	18954	engineering/engineering-rag-pipeline-engineer.md
+ADAPT	Prototyping role	engineering/implementation	15804	engineering/engineering-rapid-prototyper.md
+ADAPT	Backend specialist roles	engineering/backend	15014	engineering/engineering-realtime-collaboration-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		14863	engineering/engineering-rust-refactoring-specialist.md
 ADAPT	Backend specialist roles	engineering/backend	15023	engineering/engineering-search-relevance-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		26617	engineering/engineering-section-508-specialist.md
@@ -90,12 +90,12 @@ ADAPT	Architecture roles	engineering/architecture	6485	engineering/engineering-s
 EXCLUDE	OUT_OF_DOMAIN		21719	engineering/engineering-solidity-smart-contract-engineer.md
 ADAPT	Delivery/operations roles	engineering/release	3882	engineering/engineering-sre.md
 ADAPT	Technical writing role	engineering/documentation	14214	engineering/engineering-technical-writer.md
-EXCLUDE	OUT_OF_DOMAIN		19667	engineering/engineering-universal-document-compiler.md
+EXCLUDE	OUT_OF_DOMAIN		20060	engineering/engineering-universal-document-compiler.md
 EXCLUDE	OUT_OF_DOMAIN		24213	engineering/engineering-uswds-developer.md
 EXCLUDE	OUT_OF_DOMAIN		12918	engineering/engineering-video-streaming-engineer.md
-ADAPT	AI/LLM system roles	engineering/ai-systems	27754	engineering/engineering-voice-ai-integration-engineer.md
-EXCLUDE	OUT_OF_DOMAIN		13110	engineering/engineering-webassembly-engineer.md
-EXCLUDE	OUT_OF_DOMAIN		15879	engineering/engineering-wechat-mini-program-developer.md
+ADAPT	AI/LLM system roles	engineering/ai-systems	28621	engineering/engineering-voice-ai-integration-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		12992	engineering/engineering-webassembly-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		15955	engineering/engineering-wechat-mini-program-developer.md
 EXCLUDE	OUT_OF_DOMAIN		24292	engineering/engineering-wordpress-performance.md
 EXCLUDE	OUT_OF_DOMAIN		22177	engineering/engineering-wordpress-shopping-cart.md
 EXCLUDE	OUT_OF_DOMAIN		2402	examples/README.md
@@ -109,7 +109,7 @@ EXCLUDE	OUT_OF_DOMAIN		13448	finance/finance-financial-analyst.md
 EXCLUDE	OUT_OF_DOMAIN		16614	finance/finance-fpa-analyst.md
 EXCLUDE	OUT_OF_DOMAIN		15678	finance/finance-investment-researcher.md
 EXCLUDE	OUT_OF_DOMAIN		13731	finance/finance-tax-strategist.md
-EXCLUDE	OUT_OF_DOMAIN		11435	game-development/blender/blender-addon-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		11439	game-development/blender/blender-addon-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		8844	game-development/economy-designer.md
 EXCLUDE	OUT_OF_DOMAIN		12298	game-development/game-audio-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		8433	game-development/game-designer.md
@@ -121,13 +121,13 @@ EXCLUDE	OUT_OF_DOMAIN		13160	game-development/narrative-designer.md
 EXCLUDE	OUT_OF_DOMAIN		14116	game-development/roblox-studio/roblox-avatar-creator.md
 EXCLUDE	OUT_OF_DOMAIN		14863	game-development/roblox-studio/roblox-experience-designer.md
 EXCLUDE	OUT_OF_DOMAIN		15204	game-development/roblox-studio/roblox-systems-scripter.md
-EXCLUDE	OUT_OF_DOMAIN		11220	game-development/technical-artist.md
+EXCLUDE	OUT_OF_DOMAIN		11390	game-development/technical-artist.md
 EXCLUDE	OUT_OF_DOMAIN		12244	game-development/unity/unity-architect.md
 EXCLUDE	OUT_OF_DOMAIN		14889	game-development/unity/unity-editor-tool-developer.md
 EXCLUDE	OUT_OF_DOMAIN		14947	game-development/unity/unity-multiplayer-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		13080	game-development/unity/unity-shader-graph-artist.md
-EXCLUDE	OUT_OF_DOMAIN		14039	game-development/unreal-engine/unreal-multiplayer-architect.md
-EXCLUDE	OUT_OF_DOMAIN		15507	game-development/unreal-engine/unreal-systems-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		16492	game-development/unreal-engine/unreal-multiplayer-architect.md
+EXCLUDE	OUT_OF_DOMAIN		16344	game-development/unreal-engine/unreal-systems-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		11854	game-development/unreal-engine/unreal-technical-artist.md
 EXCLUDE	OUT_OF_DOMAIN		14011	game-development/unreal-engine/unreal-world-builder.md
 EXCLUDE	OUT_OF_DOMAIN		5628	gis/gis-3d-scene-developer.md
@@ -190,7 +190,7 @@ EXCLUDE	OUT_OF_DOMAIN		17166	marketing/marketing-livestream-commerce-coach.md
 EXCLUDE	OUT_OF_DOMAIN		14660	marketing/marketing-multi-platform-publisher.md
 EXCLUDE	OUT_OF_DOMAIN		18038	marketing/marketing-podcast-strategist.md
 EXCLUDE	OUT_OF_DOMAIN		24692	marketing/marketing-pr-communications-manager.md
-EXCLUDE	OUT_OF_DOMAIN		16176	marketing/marketing-private-domain-operator.md
+EXCLUDE	OUT_OF_DOMAIN		16196	marketing/marketing-private-domain-operator.md
 EXCLUDE	OUT_OF_DOMAIN		7498	marketing/marketing-reddit-community-builder.md
 ADAPT	SEO specialist role	seo/strategy	21310	marketing/marketing-seo-specialist.md
 ADAPT	Launch content roles	media/launch-video	30779	marketing/marketing-short-video-editing-coach.md
@@ -210,7 +210,7 @@ EXCLUDE	OUT_OF_DOMAIN		4995	paid-media/paid-media-ppc-strategist.md
 EXCLUDE	OUT_OF_DOMAIN		5282	paid-media/paid-media-programmatic-buyer.md
 EXCLUDE	OUT_OF_DOMAIN		4941	paid-media/paid-media-search-query-analyst.md
 EXCLUDE	OUT_OF_DOMAIN		5326	paid-media/paid-media-tracking-specialist.md
-ADAPT	Product roles for requirements intake	engineering/planning	5335	product/product-behavioral-nudge-engine.md
+ADAPT	Product roles for requirements intake	engineering/planning	5460	product/product-behavioral-nudge-engine.md
 ADAPT	Product roles for requirements intake	engineering/planning	15146	product/product-dx-engineer.md
 ADAPT	Product roles for requirements intake	engineering/planning	7271	product/product-feedback-synthesizer.md
 ADAPT	Product roles for requirements intake	engineering/planning	22687	product/product-manager.md
@@ -237,7 +237,7 @@ EXCLUDE	INSTALLER		363	scripts/agents-to-install.example
 EXCLUDE	INSTALLER		22622	scripts/build-hermes-plugin.py
 EXCLUDE	INSTALLER		6429	scripts/check-agent-originality.sh
 EXCLUDE	INSTALLER		6480	scripts/check-divisions.sh
-EXCLUDE	INSTALLER		9595	scripts/check-hermes-config-rewrite.py
+EXCLUDE	INSTALLER		12661	scripts/check-hermes-config-rewrite.py
 EXCLUDE	INSTALLER		769	scripts/check-hermes-config-rewrite.sh
 EXCLUDE	INSTALLER		3877	scripts/check-hermes-plugin.py
 EXCLUDE	INSTALLER		4039	scripts/check-runbooks.sh
@@ -247,13 +247,14 @@ EXCLUDE	INSTALLER		30808	scripts/convert.sh
 EXCLUDE	INSTALLER		1842	scripts/i18n/README.md
 EXCLUDE	INSTALLER		22358	scripts/i18n/agent-names-zh.json
 EXCLUDE	INSTALLER		1617	scripts/i18n/localize-agents-zh.ps1
-EXCLUDE	INSTALLER		75195	scripts/install.sh
-EXCLUDE	INSTALLER		9370	scripts/lib.sh
+EXCLUDE	INSTALLER		75586	scripts/install.sh
+EXCLUDE	INSTALLER		9823	scripts/lib.sh
 EXCLUDE	INSTALLER		9821	scripts/lint-agents.sh
 EXCLUDE	INSTALLER		2708	scripts/test-agent-selection.sh
 EXCLUDE	INSTALLER		1683	scripts/test-cli-usage.sh
+EXCLUDE	INSTALLER		2233	scripts/test-convert-fence-model.sh
 EXCLUDE	INSTALLER		2909	scripts/test-convert-frontmatter.sh
-EXCLUDE	INSTALLER		29677	scripts/test-convert-outputs.sh
+EXCLUDE	INSTALLER		30203	scripts/test-convert-outputs.sh
 EXCLUDE	INSTALLER		1467	scripts/test-convert-parallel-failure.sh
 EXCLUDE	INSTALLER		1201	scripts/test-convert-slug-collisions.sh
 EXCLUDE	INSTALLER		1047	scripts/test-convert-symlink-output.sh
@@ -269,27 +270,27 @@ EXCLUDE	INSTALLER		2489	scripts/test-install-openclaw-registration.sh
 EXCLUDE	INSTALLER		2137	scripts/test-install-parallel-logs.sh
 EXCLUDE	INSTALLER		1715	scripts/test-install-selection-completeness.sh
 EXCLUDE	INSTALLER		23281	scripts/test-install.sh
-EXCLUDE	INSTALLER		3321	scripts/test-lint-fences.sh
+EXCLUDE	INSTALLER		6014	scripts/test-lint-fences.sh
 ADAPT	Security specialist roles	engineering/security	17126	security/security-ai-generated-code-auditor.md
-ADAPT	Security specialist roles	engineering/security	28459	security/security-appsec-engineer.md
-ADAPT	Security specialist roles	engineering/security	18029	security/security-architect.md
+ADAPT	Security specialist roles	engineering/security	28614	security/security-appsec-engineer.md
+ADAPT	Security specialist roles	engineering/security	18277	security/security-architect.md
 EXCLUDE	OUT_OF_DOMAIN		22290	security/security-blockchain-security-auditor.md
 ADAPT	Security specialist roles	engineering/security	24587	security/security-cloud-security-architect.md
 ADAPT	Security specialist roles	engineering/security	7213	security/security-compliance-auditor.md
 ADAPT	Security specialist roles	engineering/security	24924	security/security-incident-responder.md
 ADAPT	Security specialist roles	engineering/security	21436	security/security-penetration-tester.md
 ADAPT	Security specialist roles	engineering/security	14165	security/security-secrets-credential-engineer.md
-ADAPT	Security specialist roles	engineering/security	31340	security/security-senior-secops.md
+ADAPT	Security specialist roles	engineering/security	31900	security/security-senior-secops.md
 ADAPT	Security specialist roles	engineering/security	25775	security/security-threat-detection-engineer.md
-ADAPT	Security specialist roles	engineering/security	28365	security/security-threat-intelligence-analyst.md
+ADAPT	Security specialist roles	engineering/security	28473	security/security-threat-intelligence-analyst.md
 EXCLUDE	OUT_OF_DOMAIN		12141	spatial-computing/macos-spatial-metal-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		4121	spatial-computing/terminal-integration-specialist.md
 EXCLUDE	OUT_OF_DOMAIN		3411	spatial-computing/visionos-spatial-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		1795	spatial-computing/xr-cockpit-interaction-specialist.md
 EXCLUDE	OUT_OF_DOMAIN		1847	spatial-computing/xr-immersive-developer.md
 EXCLUDE	OUT_OF_DOMAIN		1700	spatial-computing/xr-interface-architect.md
-EXCLUDE	OUT_OF_DOMAIN		6795	specialized/accounts-payable-agent.md
-EXCLUDE	OUT_OF_DOMAIN		18398	specialized/agentic-identity-trust.md
+EXCLUDE	OUT_OF_DOMAIN		7584	specialized/accounts-payable-agent.md
+EXCLUDE	OUT_OF_DOMAIN		18670	specialized/agentic-identity-trust.md
 EXCLUDE	OUT_OF_DOMAIN		15725	specialized/agents-orchestrator.md
 EXCLUDE	OUT_OF_DOMAIN		5831	specialized/automation-governance-architect.md
 EXCLUDE	OUT_OF_DOMAIN		25296	specialized/business-strategist.md
@@ -308,20 +309,20 @@ EXCLUDE	OUT_OF_DOMAIN		22100	specialized/healthcare-customer-service.md
 EXCLUDE	OUT_OF_DOMAIN		35322	specialized/healthcare-marketing-compliance.md
 EXCLUDE	OUT_OF_DOMAIN		27773	specialized/hospitality-guest-services.md
 EXCLUDE	OUT_OF_DOMAIN		23923	specialized/hr-onboarding.md
-EXCLUDE	OUT_OF_DOMAIN		14122	specialized/identity-graph-operator.md
+EXCLUDE	OUT_OF_DOMAIN		15070	specialized/identity-graph-operator.md
 EXCLUDE	OUT_OF_DOMAIN		16086	specialized/language-translator.md
 EXCLUDE	OUT_OF_DOMAIN		27280	specialized/legal-billing-time-tracking.md
 EXCLUDE	OUT_OF_DOMAIN		25630	specialized/legal-client-intake.md
 EXCLUDE	OUT_OF_DOMAIN		24728	specialized/legal-document-review.md
 EXCLUDE	OUT_OF_DOMAIN		28515	specialized/loan-officer-assistant.md
-EXCLUDE	OUT_OF_DOMAIN		11197	specialized/lsp-index-engineer.md
+EXCLUDE	OUT_OF_DOMAIN		11834	specialized/lsp-index-engineer.md
 EXCLUDE	OUT_OF_DOMAIN		21438	specialized/ma-integration-manager.md
 EXCLUDE	OUT_OF_DOMAIN		24636	specialized/medical-billing-coding-specialist.md
 EXCLUDE	OUT_OF_DOMAIN		19209	specialized/operations-manager.md
 EXCLUDE	OUT_OF_DOMAIN		22579	specialized/organizational-psychologist.md
 EXCLUDE	OUT_OF_DOMAIN		7833	specialized/personal-growth-mentor.md
 EXCLUDE	OUT_OF_DOMAIN		31124	specialized/real-estate-buyer-seller.md
-EXCLUDE	OUT_OF_DOMAIN		29401	specialized/recruitment-specialist.md
+EXCLUDE	OUT_OF_DOMAIN		29652	specialized/recruitment-specialist.md
 EXCLUDE	OUT_OF_DOMAIN		2653	specialized/report-distribution-agent.md
 EXCLUDE	OUT_OF_DOMAIN		11214	specialized/resume-tailor.md
 EXCLUDE	OUT_OF_DOMAIN		27700	specialized/retail-customer-returns.md
@@ -334,18 +335,18 @@ EXCLUDE	OUT_OF_DOMAIN		6643	specialized/specialized-cultural-intelligence-strate
 EXCLUDE	OUT_OF_DOMAIN		14833	specialized/specialized-developer-advocate.md
 ADAPT	Workflow/doc/model QA roles	engineering/documentation	2437	specialized/specialized-document-generator.md
 EXCLUDE	OUT_OF_DOMAIN		32568	specialized/specialized-fedramp-rmf-compliance.md
-EXCLUDE	OUT_OF_DOMAIN		10361	specialized/specialized-focus-music-architect.md
+EXCLUDE	OUT_OF_DOMAIN		10534	specialized/specialized-focus-music-architect.md
 EXCLUDE	OUT_OF_DOMAIN		11209	specialized/specialized-french-consulting-market.md
 EXCLUDE	OUT_OF_DOMAIN		14071	specialized/specialized-korean-business-navigator.md
 EXCLUDE	OUT_OF_DOMAIN		10624	specialized/specialized-master-plan-architect.md
-EXCLUDE	OUT_OF_DOMAIN		12470	specialized/specialized-mcp-builder.md
-ADAPT	Workflow/doc/model QA roles	engineering/documentation	21026	specialized/specialized-model-qa.md
+EXCLUDE	OUT_OF_DOMAIN		12476	specialized/specialized-mcp-builder.md
+ADAPT	Workflow/doc/model QA roles	engineering/documentation	22490	specialized/specialized-model-qa.md
 EXCLUDE	OUT_OF_DOMAIN		12770	specialized/specialized-pricing-analyst.md
 EXCLUDE	OUT_OF_DOMAIN		9943	specialized/specialized-salesforce-architect.md
 EXCLUDE	OUT_OF_DOMAIN		5946	specialized/specialized-strategy-duel-agent.md
-ADAPT	Workflow/doc/model QA roles	engineering/documentation	26481	specialized/specialized-workflow-architect.md
+ADAPT	Workflow/doc/model QA roles	engineering/documentation	26492	specialized/specialized-workflow-architect.md
 EXCLUDE	OUT_OF_DOMAIN		16984	specialized/study-abroad-advisor.md
-EXCLUDE	OUT_OF_DOMAIN		32397	specialized/supply-chain-strategist.md
+EXCLUDE	OUT_OF_DOMAIN		32929	specialized/supply-chain-strategist.md
 EXCLUDE	OUT_OF_DOMAIN		10892	specialized/zk-steward.md
 EXCLUDE	OUT_OF_DOMAIN		5754	strategy/EXECUTIVE-BRIEF.md
 EXCLUDE	OUT_OF_DOMAIN		8388	strategy/QUICKSTART.md
@@ -364,19 +365,19 @@ EXCLUDE	OUT_OF_DOMAIN		6256	strategy/runbooks/scenario-enterprise-feature.md
 EXCLUDE	OUT_OF_DOMAIN		6789	strategy/runbooks/scenario-incident-response.md
 EXCLUDE	OUT_OF_DOMAIN		7072	strategy/runbooks/scenario-marketing-campaign.md
 EXCLUDE	OUT_OF_DOMAIN		5631	strategy/runbooks/scenario-startup-mvp.md
-EXCLUDE	OUT_OF_DOMAIN		15796	support/support-analytics-reporter.md
+EXCLUDE	OUT_OF_DOMAIN		16593	support/support-analytics-reporter.md
 EXCLUDE	OUT_OF_DOMAIN		8992	support/support-executive-summary-generator.md
-EXCLUDE	OUT_OF_DOMAIN		19249	support/support-finance-tracker.md
-EXCLUDE	OUT_OF_DOMAIN		22365	support/support-infrastructure-maintainer.md
+EXCLUDE	OUT_OF_DOMAIN		20271	support/support-finance-tracker.md
+EXCLUDE	OUT_OF_DOMAIN		22834	support/support-infrastructure-maintainer.md
 EXCLUDE	OUT_OF_DOMAIN		26545	support/support-legal-compliance-checker.md
-EXCLUDE	OUT_OF_DOMAIN		24683	support/support-support-responder.md
+EXCLUDE	OUT_OF_DOMAIN		25647	support/support-support-responder.md
 ADAPT	Accessibility auditor role	testing/accessibility	16228	testing/testing-accessibility-auditor.md
 ADAPT	API testing	testing/local-verification	13840	testing/testing-api-tester.md
 EXCLUDE	BROWSER_POLICY		8910	testing/testing-evidence-collector.md
-ADAPT	Performance role	testing/performance	13021	testing/testing-performance-benchmarker.md
+ADAPT	Performance role	testing/performance	13185	testing/testing-performance-benchmarker.md
 EXCLUDE	BROWSER_POLICY		10854	testing/testing-reality-checker.md
 ADAPT	Testing roles	testing/strategy	12706	testing/testing-test-automation-engineer.md
 ADAPT	Test-result analysis before completion claims	testing/release-verification	16017	testing/testing-test-results-analyzer.md
-ADAPT	Testing roles	testing/strategy	17542	testing/testing-tool-evaluator.md
-ADAPT	Testing roles	testing/strategy	22050	testing/testing-workflow-optimizer.md
+ADAPT	Testing roles	testing/strategy	18825	testing/testing-tool-evaluator.md
+ADAPT	Testing roles	testing/strategy	22705	testing/testing-workflow-optimizer.md
 REFERENCE	Host install contracts (P3 host audit evidence)		8839	tools.json

@@ -29,9 +29,9 @@ EXCLUDE	REPO_META		143	.gitignore
 EXCLUDE	HOST_PORT		10	.opencode/skills
 EXCLUDE	REPO_META		5386	AGENTS.md
 EXCLUDE	REPO_META		4094	CLAUDE.md
-EXCLUDE	REPO_META		8864	CONTRIBUTING.md
+EXCLUDE	REPO_META		9404	CONTRIBUTING.md
 COPY	LICENSE	engineering/planning	1068	LICENSE
-EXCLUDE	REPO_META		26465	README.md
+EXCLUDE	REPO_META		25768	README.md
 ADAPT	Reviewer role	engineering/review	3995	agents/code-reviewer.md
 ADAPT	Security auditor role	engineering/security	4992	agents/security-auditor.md
 ADAPT	Test engineer role	testing/strategy	3275	agents/test-engineer.md
@@ -53,14 +53,13 @@ EXCLUDE	REPO_META		2447	docs/codex-setup.md
 EXCLUDE	REPO_META		2437	docs/commandcode-setup.md
 EXCLUDE	REPO_META		15362	docs/comparison.md
 EXCLUDE	REPO_META		3390	docs/copilot-cli-setup.md
-EXCLUDE	REPO_META		10522	docs/copilot-setup.md
-EXCLUDE	REPO_META		8370	docs/cursor-setup.md
+EXCLUDE	REPO_META		11478	docs/copilot-setup.md
+EXCLUDE	REPO_META		9120	docs/cursor-setup.md
 EXCLUDE	REPO_META		7850	docs/developer-onboarding.md
-EXCLUDE	REPO_META		1650	docs/dojo-setup.md
 EXCLUDE	REPO_META		5877	docs/gemini-cli-setup.md
 EXCLUDE	REPO_META		11199	docs/getting-started.md
-EXCLUDE	REPO_META		2386	docs/omp-setup.md
 EXCLUDE	REPO_META		9547	docs/opencode-setup.md
+EXCLUDE	REPO_META		934	docs/other-hosts.md
 EXCLUDE	REPO_META		11244	docs/skill-anatomy.md
 EXCLUDE	REPO_META		1471	docs/windsurf-setup.md
 REFERENCE	Skill eval cases reused as P25 acceptance tests		12079	evals/README.md
@@ -73,7 +72,7 @@ REFERENCE	Skill eval cases reused as P25 acceptance tests		3353	evals/cases/cons
 REFERENCE	Skill eval cases reused as P25 acceptance tests		1390	evals/cases/context-engineering.json
 REFERENCE	Skill eval cases reused as P25 acceptance tests		2078	evals/cases/debugging-and-error-recovery.json
 REFERENCE	Skill eval cases reused as P25 acceptance tests		1502	evals/cases/deprecation-and-migration.json
-REFERENCE	Skill eval cases reused as P25 acceptance tests		1368	evals/cases/documentation-and-adrs.json
+REFERENCE	Skill eval cases reused as P25 acceptance tests		3138	evals/cases/documentation-and-adrs.json
 REFERENCE	Skill eval cases reused as P25 acceptance tests		1322	evals/cases/doubt-driven-development.json
 REFERENCE	Skill eval cases reused as P25 acceptance tests		1478	evals/cases/frontend-ui-engineering.json
 REFERENCE	Skill eval cases reused as P25 acceptance tests		1272	evals/cases/git-workflow-and-versioning.json
@@ -105,6 +104,8 @@ REFERENCE	Skill eval cases reused as P25 acceptance tests		290	evals/fixtures/de
 REFERENCE	Skill eval cases reused as P25 acceptance tests		276	evals/fixtures/debugging-and-error-recovery/time-pressure.md
 REFERENCE	Skill eval cases reused as P25 acceptance tests		504	evals/fixtures/deprecation-and-migration/api-inventory.md
 REFERENCE	Skill eval cases reused as P25 acceptance tests		757	evals/fixtures/documentation-and-adrs/decision-context.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		663	evals/fixtures/documentation-and-adrs/prose-review/README.md
+REFERENCE	Skill eval cases reused as P25 acceptance tests		838	evals/fixtures/documentation-and-adrs/prose-review/queue.js
 REFERENCE	Skill eval cases reused as P25 acceptance tests		672	evals/fixtures/doubt-driven-development/migration-plan.md
 REFERENCE	Skill eval cases reused as P25 acceptance tests		306	evals/fixtures/frontend-ui-engineering/Button.tsx
 REFERENCE	Skill eval cases reused as P25 acceptance tests		530	evals/fixtures/frontend-ui-engineering/design-system.md
@@ -148,14 +149,14 @@ REFERENCE	Skill eval cases reused as P25 acceptance tests		125	evals/plugin/code
 REFERENCE	Skill eval cases reused as P25 acceptance tests		389	evals/plugin/code-review-stays-quiet/prompt.md
 REFERENCE	Skill eval cases reused as P25 acceptance tests		400	evals/skill-impact.md
 EXCLUDE	REPO_META		8398	hooks/SDD-CACHE.md
-EXCLUDE	REPO_META		4534	hooks/SIMPLIFY-IGNORE.md
+EXCLUDE	REPO_META		4702	hooks/SIMPLIFY-IGNORE.md
 EXCLUDE	REPO_META		4567	hooks/sdd-cache-post.sh
 EXCLUDE	REPO_META		4261	hooks/sdd-cache-pre.sh
 EXCLUDE	REPO_META		11298	hooks/sdd-cache-test.sh
 EXCLUDE	REPO_META		1436	hooks/session-start-test.sh
 EXCLUDE	REPO_META		1675	hooks/session-start.sh
-EXCLUDE	REPO_META		17807	hooks/simplify-ignore-test.sh
-EXCLUDE	REPO_META		14480	hooks/simplify-ignore.sh
+EXCLUDE	REPO_META		20287	hooks/simplify-ignore-test.sh
+EXCLUDE	REPO_META		16481	hooks/simplify-ignore.sh
 EXCLUDE	REPO_META		130	plugin.json
 COPY	Shared reference (closure)	design/accessibility	5206	references/accessibility-checklist.md
 COPY	Shared reference (closure)	engineering/completion	3798	references/definition-of-done.md
@@ -165,17 +166,17 @@ COPY	Shared reference (closure)	engineering/performance	13139	references/perform
 COPY	Shared reference linked from skills (closure)	engineering/security	14360	references/security-checklist.md
 COPY	Shared reference (closure)	testing/strategy	7460	references/testing-patterns.md
 EXCLUDE	REPO_META		11424	scripts/floor-guard-reference-test.js
-EXCLUDE	REPO_META		25444	scripts/lib/skill-lint-test.js
-EXCLUDE	REPO_META		25294	scripts/lib/skill-lint.js
-EXCLUDE	REPO_META		23277	scripts/run-evals-test.js
-EXCLUDE	REPO_META		26079	scripts/run-evals.js
+EXCLUDE	REPO_META		30180	scripts/lib/skill-lint-test.js
+EXCLUDE	REPO_META		27418	scripts/lib/skill-lint.js
+EXCLUDE	REPO_META		26835	scripts/run-evals-test.js
+EXCLUDE	REPO_META		26981	scripts/run-evals.js
 EXCLUDE	REPO_META		7514	scripts/validate-artifact-paths-test.js
 EXCLUDE	REPO_META		4880	scripts/validate-artifact-paths.js
 EXCLUDE	REPO_META		8618	scripts/validate-commands-test.js
 EXCLUDE	REPO_META		8691	scripts/validate-commands.js
-EXCLUDE	REPO_META		19013	scripts/validate-reference-links-test.js
-EXCLUDE	REPO_META		7718	scripts/validate-reference-links.js
-EXCLUDE	REPO_META		2401	scripts/validate-skills.js
+EXCLUDE	REPO_META		19874	scripts/validate-reference-links-test.js
+EXCLUDE	REPO_META		7804	scripts/validate-reference-links.js
+EXCLUDE	REPO_META		3614	scripts/validate-skills.js
 EXCLUDE	REPO_META		905	scripts/validate-versions-test.js
 EXCLUDE	REPO_META		919	scripts/validate-versions.js
 ADAPT	Interface design, ADRs	engineering/architecture	14886	skills/api-and-interface-design/SKILL.md
@@ -188,9 +189,9 @@ ADAPT	Implementation discipline	engineering/implementation	10681	skills/constrai
 REFERENCE	Design input for the OS context engine (P9)		15486	skills/context-engineering/SKILL.md
 ADAPT	Root-cause debugging	engineering/debugging	10913	skills/debugging-and-error-recovery/SKILL.md
 ADAPT	Deprecation and migration	engineering/migration	12642	skills/deprecation-and-migration/SKILL.md
-ADAPT	Interface design, ADRs	engineering/architecture	9859	skills/documentation-and-adrs/SKILL.md
+ADAPT	Interface design, ADRs	engineering/architecture	10910	skills/documentation-and-adrs/SKILL.md
 ADAPT	Implementation discipline	engineering/implementation	16647	skills/doubt-driven-development/SKILL.md
-ADAPT	Frontend engineering	engineering/frontend	11712	skills/frontend-ui-engineering/SKILL.md
+ADAPT	Frontend engineering	engineering/frontend	11721	skills/frontend-ui-engineering/SKILL.md
 ADAPT	Release and production readiness	engineering/release	14141	skills/git-workflow-and-versioning/SKILL.md
 ADAPT	Requirements and planning	engineering/planning	8111	skills/idea-refine/SKILL.md
 ADAPT	Requirements and planning	engineering/planning	20284	skills/idea-refine/examples.md
@@ -205,7 +206,7 @@ ADAPT	Performance + optimization-patterns reference	engineering/performance	9692
 ADAPT	Requirements and planning	engineering/planning	10564	skills/planning-and-task-breakdown/SKILL.md
 ADAPT	Security hardening + hardening-patterns reference	engineering/security	17559	skills/security-and-hardening/SKILL.md
 ADAPT	Security hardening + hardening-patterns reference	engineering/security	13036	skills/security-and-hardening/references/hardening-patterns.md
-ADAPT	Release and production readiness	engineering/release	11409	skills/shipping-and-launch/SKILL.md
+ADAPT	Release and production readiness	engineering/release	11515	skills/shipping-and-launch/SKILL.md
 ADAPT	Implementation discipline	engineering/implementation	10038	skills/source-driven-development/SKILL.md
 ADAPT	Requirements and planning	engineering/planning	13096	skills/spec-driven-development/SKILL.md
 ADAPT	TDD loop	testing/strategy	16517	skills/test-driven-development/SKILL.md

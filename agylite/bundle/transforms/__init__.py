@@ -8,7 +8,7 @@ from pathlib import Path
 
 from . import domain, gstack, rewrites
 
-TRANSFORM_VERSION = "4"  # 2: strong-anchor gstack rendering. 3: domain adaptation (D-038). 4: + design domain (D-039)
+TRANSFORM_VERSION = "5"  # 2: strong-anchor gstack rendering. 3: domain adaptation (D-038). 4: + design domain (D-039). 5: + 3 gstack placeholders (P28)
 
 
 class Transformer:

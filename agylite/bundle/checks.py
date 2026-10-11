@@ -15,7 +15,9 @@ D021_ALLOWED = {("graphify", "tests/fixtures/sample.mcp.json")}
 # D-038: files that treat MCP configuration as data to audit or detect (never configure or run MCP).
 MCP_AS_DATA = {"files/ecc/skills/workspace-surface-audit/SKILL.md",
                "files/beacon/rules/context-exfiltration/secret-read-then-mcp-tool-handoff.rule.yaml",
-               "files/beacon/rules/sensitive-edit/agent-control-surface-modified.rule.yaml"}
+               "files/beacon/rules/sensitive-edit/agent-control-surface-modified.rule.yaml",
+               "files/beacon/rules/prompt-injection/indirect-injection-in-tool-result.rule.yaml",
+               "files/beacon/rules/prompt-injection/mcp-poisoned-tool-description.rule.yaml"}
 
 
 def hard_violations(repo, source_path, dest, data: bytes):
