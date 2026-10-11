@@ -39,7 +39,8 @@ class TestLifecycle(unittest.TestCase):
     def test_route_carries_lifecycle(self):
         r = self.router.route("build a SaaS for dentists", project=ProjectFacts(stage="new"))   # scenario A
         self.assertEqual(r["schema_version"], 4)
-        self.assertEqual(r["lifecycle"][0]["commands"], ['agylite project questions "<request>"'])
+        self.assertEqual(r["lifecycle"][0]["commands"], ['agylite project questions "<request>"',
+                                                         'agylite project answer <id> "<answer>"'])
         r = self.router.route("add Google Maps navigation to bookings", project=ProjectFacts(stage="existing"))
         self.assertEqual(r["lifecycle"][-1]["step"], "RECONCILE")
         self.assertIsNone(self.router.route("make a launch video plan for our product")["lifecycle"])

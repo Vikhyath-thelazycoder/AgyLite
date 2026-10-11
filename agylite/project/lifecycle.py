@@ -116,6 +116,10 @@ def start_session(project, session_id: str, host: str):
                   "root": str(project.root)}
         write_yaml(path, record)
         record = dict(record, new=True)
+    from ..events.log import CURRENT_SESSION, sessions_dir
+    from ..isolation import atomic
+    pointer = checked(project, sessions_dir(project) / CURRENT_SESSION, "write")
+    atomic.write_text(pointer, json.dumps({"session_id": session_id, "host": host, "at": now()}))
     return record
 
 

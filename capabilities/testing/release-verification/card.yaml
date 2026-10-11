@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Release verification
 description: Re-verify gates and evidence before claiming completion
-intent_tags: [verify complete, ready to ship, done]
+intent_tags: [verify complete, ready to ship, is it done, definition of done]
 origin: bundled
 runtime_type: node
 requires_network: false

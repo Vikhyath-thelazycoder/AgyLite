@@ -31,8 +31,22 @@ def describe(selected, impact):
     }
 
 
+def active_task(project):
+    """The plan task being worked on when exactly one is IN_PROGRESS or READY_FOR_VERIFICATION, else None."""
+    from ..project import plan_index, state as pstate
+    try:
+        st = pstate.load_state(project)
+        index = plan_index.load_index(project, st) if st else None
+    except Exception:   # noqa: BLE001 — a broken plan never blocks verification; the run is just not tied to a task
+        return None
+    active = [t["id"] for p in (index or {}).get("phases", []) for t in p["tasks"]
+              if t["status"] in ("IN_PROGRESS", "READY_FOR_VERIFICATION")]
+    return active[0] if len(active) == 1 else None
+
+
 def verify(project, paths=None, *, full=False, kinds=None, include_e2e=False, task=None, bundle_dir=None,
            timeout=run.DEFAULT_TIMEOUT, session_id=None):
+    task = task or active_task(project)
     impact, selected = plan_for(project, paths, full=full, kinds=kinds, include_e2e=include_e2e, bundle_dir=bundle_dir)
     emit(project, "VERIFICATION_STARTED", session_id=session_id, capabilities=["testing/local-verification"],
          details={"checks": len(selected), "task": task})

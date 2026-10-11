@@ -18,7 +18,8 @@ DEFAULT_DEPTH = 2
 
 
 def changed_files(root) -> list:
-    """Working-tree changes against HEAD (staged, unstaged, untracked), repo-relative; [] outside git."""
+    """Working-tree changes against HEAD (staged, unstaged, untracked), repo-relative; [] outside git.
+    The OS's own project state (`.agylite/`) is never a code change."""
     try:
         p = subprocess.run(["git", "status", "--porcelain", "-uall", "--no-renames"], cwd=root, capture_output=True,
                            text=True, timeout=30)
@@ -26,7 +27,8 @@ def changed_files(root) -> list:
         return []
     if p.returncode:
         return []
-    return sorted({line[3:].strip().strip('"') for line in p.stdout.splitlines() if len(line) > 3})
+    paths = {line[3:].strip().strip('"') for line in p.stdout.splitlines() if len(line) > 3}
+    return sorted(x for x in paths if not x.startswith(".agylite/"))
 
 
 def code_limit(budgets=None) -> int:

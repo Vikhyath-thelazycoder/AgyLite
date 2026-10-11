@@ -108,6 +108,13 @@ def derive(layout, events, sources=None, now=None):
             set_("planner", "blocked", f"{d.get('item') or d.get('task', 'task')} blocked: {d.get('reason', 'see plan')}", rec)
         elif ev == "TASK_COMPLETED":
             set_("planner", "idle", f"{d.get('item') or d.get('task', 'task')} done", rec)
+        elif ev == "TASK_READY_FOR_VERIFICATION":
+            set_("planner", "waiting", f"{d.get('item', 'task')} ready for verification", rec)
+        elif ev == "TASK_VERIFIED":
+            set_("planner", "idle", f"{d.get('item', 'task')} VERIFIED", rec)
+        elif ev == "PHASE_CHANGED":
+            set_("planner", "idle" if d.get("to") in ("VERIFIED", "COMPLETED") else "working",
+                 f"phase {d.get('item', '?')} → {d.get('to', '?')}", rec)
         elif ev == "RISK_DETECTED":
             set_("beacon", "blocked", f"risk: {d.get('rule') or d.get('title') or 'detected'}", rec)
         elif ev == "ISOLATION_VIOLATION_BLOCKED":
@@ -140,6 +147,10 @@ def activity(events, limit=40):
             "VERIFICATION_PASSED": lambda: f"Verification PASSED · {d.get('evidence', '')}",
             "VERIFICATION_FAILED": lambda: f"Verification {d.get('result', 'FAILED')}: {', '.join(d.get('failed', []))}",
             "RISK_DETECTED": lambda: f"Risk: {d.get('rule') or d.get('title') or ''} ({rec['severity']})",
+            "TASK_READY_FOR_VERIFICATION": lambda: f"{d.get('item', 'Task')} ready for verification",
+            "TASK_VERIFIED": lambda: f"{d.get('item', 'Task')} VERIFIED · {d.get('evidence') or ''}".rstrip(" ·"),
+            "PHASE_CHANGED": lambda: f"Phase {d.get('item', '?')}: {d.get('from', '?')} → {d.get('to', '?')}"
+                                     + (f" ({d['reason']})" if d.get("reason") else ""),
         }.get(rec["event"], lambda: rec["event"].replace("_", " ").capitalize())()
         out.append({"ts": rec["ts"], "event": rec["event"], "severity": rec["severity"], "text": text})
     return out

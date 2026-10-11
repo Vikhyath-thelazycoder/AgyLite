@@ -29,6 +29,9 @@ change_types:
     - {type: PLAN_CHANGE, keywords: [plan, roadmap, phase, reprioritize, milestone, scope]}
     - {type: FEATURE_CHANGE, keywords: [change, update, modify, improve, adjust, tweak, extend, rework]}
     - {type: NEW_FEATURE, keywords: [add, build, create, implement, new, introduce, support, integrate, make]}
+  # How the work is delivered is not what the work is: "build X with unit tests" is a feature, not a testing change.
+  # These patterns are removed from the request before the change type is chosen (capability matching still sees them).
+  ignore: ['\b(?:with|including|includes|plus|and)\s+(?:(?:unit|integration|automated)\s+)?tests?\b', '\b(?:(?:unit|integration|automated)\s+)?tests?\s+(?:included|too|as well)\b']
   default_by_domain:
     engineering: FEATURE_CHANGE
     codebase: FEATURE_CHANGE
@@ -68,11 +71,34 @@ project:
 rules:
   # ── Product / new project ─────────────────────────────────────────────────────────────────────────────────────
   - id: new-product
-    description: Build a new application or SaaS (spec §14, §19.3, scenario A)
-    any: [saas, new app, new application, from scratch, new project, mvp, greenfield, build me, build a, build an]
-    unless: [build a test, build a component, build fails, build failing, build error]
+    description: Build a new application, tool or SaaS (spec §14, §19.3, scenario A). Design and security join only
+      when the product has an interface or users/network exposure (the two rules below), so a CLI or library stays lean.
+    any: &new_product [saas, new app, new application, from scratch, new project, mvp, greenfield, build me, build a, build an]
+    # A request that is just the product description ("a small Python CLI todo app …", "create an API for …").
+    regex: &new_product_rx ['^(?:task:\s*)?(?:(?:please\s+)?(?:build|create|make|write|develop|implement|scaffold|start)\s+)?(?:me\s+)?(?:a|an)\s+(?:[\w-]+\s+){0,6}?(?:app|application|cli|tool|program|script|service|api|bot|game|library|website|web app|dashboard)\b']
+    unless: &new_product_unless [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit]
     project: [new, unknown]
-    select: [engineering/planning, engineering/architecture, design/design-direction, engineering/security, testing/strategy]
+    select: [engineering/planning, engineering/architecture, engineering/implementation, testing/strategy]
+    weight: 3
+
+  - id: new-product-ui
+    description: A new product with a user interface also gets a design direction
+    any: *new_product
+    regex: *new_product_rx
+    require_any: [saas, web, website, web app, webapp, frontend, front-end, ui, ux, dashboard, landing page, mobile, ios, android, page, pages, screen, screens, interface, portal, storefront, marketplace]
+    unless: *new_product_unless
+    project: [new, unknown]
+    select: [design/design-direction]
+    weight: 3
+
+  - id: new-product-exposed
+    description: A new product with users, accounts, payments or network exposure also gets the security baseline
+    any: *new_product
+    regex: *new_product_rx
+    require_any: [saas, web, website, web app, webapp, api, server, backend, users, user accounts, account, accounts, login, log in, sign in, signup, sign up, auth, authentication, payment, payments, checkout, multi-tenant, cloud, online, marketplace, booking, bookings, mobile, admin]
+    unless: *new_product_unless
+    project: [new, unknown]
+    select: [engineering/security]
     weight: 3
 
   - id: existing-feature

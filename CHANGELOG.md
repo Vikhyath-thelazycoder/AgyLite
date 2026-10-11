@@ -2,6 +2,24 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [2.1.2] - 2026-10-11
+
+Fixes from the first hands-on trial (`docs/TRY_AGYLITE.md`).
+
+### Fixed
+- Routing: a new product no longer always pulls in design and security — design joins only with an interface, security
+  only with users, accounts, payments or network exposure; a request that just describes the product ("a small
+  Python CLI todo app …") is recognised; "build X with unit tests" is a feature, not a testing change; the bare tag
+  "done" no longer selects release verification.
+- Plan: a task's status rolls up into its phase (first task started → phase IN_PROGRESS; all tasks done → phase
+  VERIFIED/COMPLETED with the evidence; a reopened task reopens the phase); state follows the current phase and keeps
+  the last task-level verification (`verification.last_task`); `agylite verify` ties a run to the single active task.
+- Events: CLI events carry the session id of the host's last bootstrap; new `TASK_READY_FOR_VERIFICATION` and
+  `TASK_VERIFIED` events (no longer reported as verification runs); the dashboard shows task and phase changes.
+- BLOCKING requirement questions are recorded and must be answered (`agylite project answer`) before a task starts.
+- New projects start with an empty P1 instead of a template CI/authentication task.
+- `.agylite/` state files are never counted as changed code by `agylite verify`/`codebase affected`.
+
 ## [2.1.1] - 2026-10-11
 
 ### Changed

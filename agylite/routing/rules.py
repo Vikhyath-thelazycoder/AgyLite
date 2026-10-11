@@ -60,6 +60,11 @@ def validate_routing(cfg, cards, hierarchy):
     for e in ct.get("order") or []:
         if not e.get("keywords"):
             p.append(f"change type {e.get('type')}: keywords must be non-empty")
+    for rx in ct.get("ignore") or []:
+        try:
+            re.compile(rx)
+        except re.error as exc:
+            p.append(f"change_types.ignore: bad regex {rx!r}: {exc}")
     for dom, t in (ct.get("default_by_domain") or {}).items():
         if dom not in domains or t not in CHANGE_TYPES:
             p.append(f"change_types.default_by_domain: {dom} → {t} is not a known domain/type")

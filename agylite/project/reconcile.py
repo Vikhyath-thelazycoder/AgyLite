@@ -20,8 +20,11 @@ GENERIC = set(tokenize("add build create make fix update change new feature impl
 HISTORY_HEADING = "## Change history"
 # Spec §30 lifecycle events emitted when a task/phase status changes.
 STATUS_EVENTS = {"IN_PROGRESS": "TASK_STARTED", "BLOCKED": "TASK_BLOCKED", "COMPLETED": "TASK_COMPLETED",
-                 "READY_FOR_VERIFICATION": "VERIFICATION_STARTED", "VERIFIED": "VERIFICATION_PASSED"}
+                 "READY_FOR_VERIFICATION": "TASK_READY_FOR_VERIFICATION", "VERIFIED": "TASK_VERIFIED"}
 STATUS_META = re.compile(r"(Status:[ \t]*)([A-Z_]+)")
+EVIDENCE_META = re.compile(r"(Evidence:[ \t]*)([^·\n]*?)([ \t]*(?:·|$))", re.M)
+PHASE_ID = re.compile(r"^P\d+[A-Za-z]?$")
+NOT_STARTED_PHASE = ("NOT_STARTED", "PLANNED")
 NEXT_H2 = re.compile(r"^##[ \t]+\S", re.M)
 
 
@@ -128,32 +131,60 @@ def _add_task_locked(project, state, phase_id, title, *, capabilities=(), impact
 
 
 def set_status(project, state, index, item_id, status, evidence=None):
-    """Change a task's (T-…) or phase's (P…) status following the §25 transitions; done states need evidence."""
+    """Change a task's (T-…) or phase's (P…) status following the §25 transitions; done states need evidence.
+    A task change rolls up into its phase (first task started → phase IN_PROGRESS; every task done → phase VERIFIED
+    or COMPLETED with the evidence; a done task reopened → phase IN_PROGRESS), so plan, index and state agree."""
     from ..events.log import emit
     with project_lock(project, "plan"):
-        old = _set_status_locked(project, state, item_id, status, evidence)
+        old, rollup = _set_status_locked(project, state, item_id, status, evidence)
     if status in DONE_STATES:
         record_verification(project, item_id, status, evidence)
     details = {"item": item_id, "from": old, "to": status, "evidence": evidence}
-    if re.match(r"^P\d+[A-Za-z]?$", item_id):
+    if PHASE_ID.match(item_id):
         emit(project, "PHASE_CHANGED", details=details)
     elif status in STATUS_EVENTS:
         emit(project, STATUS_EVENTS[status], details=details)
     emit(project, "STATE_UPDATED", details={"change": "status", **details})
+    if rollup:
+        emit(project, "PHASE_CHANGED", details={**rollup, "reason": f"roll-up from {item_id}"})
+    if rollup or PHASE_ID.match(item_id):
+        index = plan_index.load_index(project, state, rebuild=True)
+        update_state(project, lambda s: s["plan"].__setitem__("current_phase", index.get("current_phase")))
     return old
+
+
+def _phase_rollup(phase, evidence):
+    """The phase status its tasks imply now, or None when the phase stays as it is."""
+    tasks = [t for t in phase["tasks"] if t["status"] != "INTENTIONALLY_DEFERRED"]
+    if not tasks:
+        return None
+    if all(t["status"] in DONE_STATES for t in tasks):
+        target = "COMPLETED" if all(t["status"] == "COMPLETED" for t in tasks) else "VERIFIED"
+        return target if phase["status"] not in DONE_STATES and evidence else None
+    if phase["status"] in DONE_STATES + NOT_STARTED_PHASE and any(t["status"] not in NOT_STARTED_PHASE for t in tasks):
+        return "IN_PROGRESS"
+    return None
+
+
+def _set_phase_meta(section, status, evidence=None):
+    section = STATUS_META.sub(rf"\g<1>{status}", section, count=1)
+    if evidence:
+        section = EVIDENCE_META.sub(lambda m: m.group(1) + _cell(evidence) + m.group(3), section, count=1)
+    return section
 
 
 def _set_status_locked(project, state, item_id, status, evidence):
     index = plan_index.load_index(project, state)
     text = _read_plan(project, state)
-    if re.match(r"^P\d+[A-Za-z]?$", item_id):
+    rollup = None
+    if PHASE_ID.match(item_id):
         p = plan_index.phase(index, item_id)
         old = p["status"]
         check_transition(old, status, evidence)
         start, end = p["section"]["start"], p["section"]["end"]
         section = text[start:end]
         if STATUS_META.search(section):
-            section = STATUS_META.sub(rf"\g<1>{status}", section, count=1)
+            section = _set_phase_meta(section, status, evidence if status in DONE_STATES else None)
         else:
             section = section.replace("\n", f"\nStatus: {status}\n", 1)
         text = text[:start] + section + text[end:]
@@ -166,10 +197,21 @@ def _set_status_locked(project, state, item_id, status, evidence):
         text, n = pattern.subn(rf"\g<1>{status}", text, count=1)
         if not n:
             raise ReconcileError(f"could not find the status cell of {item_id}")
+        # Roll the change up into the task's phase (derived status: the §25 phase transition table is not consulted).
+        phase = next(p for p in plan_index.parse_plan(text) if any(t["id"] == item_id for t in p["tasks"]))
+        target = _phase_rollup(phase, evidence)
+        if target:
+            start, end = phase["section"]["start"], phase["section"]["end"]
+            text = text[:start] + _set_phase_meta(text[start:end], target,
+                                                  evidence if target in DONE_STATES else None) + text[end:]
+            rollup = {"item": phase["phase_id"], "from": phase["status"], "to": target,
+                      "evidence": evidence if target in DONE_STATES else None}
     text = _append_history(text, f"{item_id}: {old} → {status}" + (f" (evidence: {_cell(evidence)})" if evidence else ""))
+    if rollup:
+        text = _append_history(text, f"{rollup['item']}: {rollup['from']} → {rollup['to']} (roll-up from {item_id})")
     _write_plan(project, state, text)
     plan_index.load_index(project, state)
-    return old
+    return old, rollup
 
 
 def reconcile(project, state, router, request, paths=(), new_phase=None):

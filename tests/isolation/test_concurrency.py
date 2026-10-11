@@ -69,8 +69,8 @@ class TestConcurrency(unittest.TestCase):
         self.wait_all([self.spawn("tasks", 5, tag=f"p{i}") for i in range(3)])
         index = plan_index.load_index(self.ref, state.require_state(self.ref), rebuild=True)
         ids = [t["id"] for t in plan_index.phase(index, "P1")["tasks"]]
-        self.assertEqual(len(ids), 16)                     # template T-1.1 + 15 added
-        self.assertEqual(len(set(ids)), 16, ids)
+        self.assertEqual(len(ids), 15)                     # the template's P1 starts empty; 15 added
+        self.assertEqual(len(set(ids)), 15, ids)
         text = (self.root / "docs" / "IMPLEMENTATION_PLAN.md").read_text()
         self.assertEqual(text.count(" added to P1 Foundations"), 15)
 

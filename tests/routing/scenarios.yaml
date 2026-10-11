@@ -170,3 +170,32 @@ scenarios:
     expect: [engineering/implementation, codebase/impact-analysis, testing/regression]
     forbid: [engineering/simplicity, seo/, design/, media/]
     change_type: REFACTOR
+
+  # ── Trial 2026-10-11 (docs/TRY_AGYLITE.md): wording must not swing the route ──────────────────────────────────────
+  - id: trial-cli-build
+    request: build a small Python command-line todo app with unit tests
+    stage: new
+    expect: [engineering/planning, engineering/architecture, engineering/implementation, testing/strategy]
+    forbid: [design/, engineering/security, seo/, media/, codebase/]
+    change_type: NEW_FEATURE
+
+  - id: trial-cli-description
+    request: 'A small Python command-line todo app in this folder. Commands: add "<text>", list, done <id>. Todos saved to a local JSON file. Standard library only. Unit tests included.'
+    stage: new
+    expect: [engineering/planning, engineering/implementation, testing/strategy]
+    forbid: [design/, engineering/security, testing/release-verification, seo/, media/]
+    change_type: NEW_FEATURE
+
+  - id: trial-web-product
+    request: create a web app dashboard for my team with user accounts
+    stage: new
+    expect: [engineering/planning, engineering/security, design/design-direction]
+    forbid: [seo/, media/, codebase/]
+    change_type: NEW_FEATURE
+
+  - id: trial-launch-video-new-project
+    request: make a launch video for the todo app
+    stage: new
+    expect: [media/launch-video]
+    forbid: [engineering/, design/, testing/, seo/]
+    change_type: MEDIA_CHANGE

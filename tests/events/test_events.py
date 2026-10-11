@@ -129,14 +129,23 @@ class TestLifecycleSequence(Env):
         self.assertEqual(cli("bootstrap", "--session", "s1", *p)[0], 0)
         self.assertEqual(cli("context", "--route", "Fix the payment webhook security.", "--session", "s1", *p)[0], 0)
         self.assertEqual(cli("plan", "add-task", "P1", "Verify", "webhook", "signatures", *p)[0], 0)
-        self.assertEqual(cli("plan", "set-status", "T-1.2", "IN_PROGRESS", *p)[0], 0)
-        self.assertEqual(cli("plan", "set-status", "T-1.2", "READY_FOR_VERIFICATION", *p)[0], 0)
-        self.assertEqual(cli("plan", "set-status", "T-1.2", "VERIFIED", "--evidence", "tests: 4 passed", *p)[0], 0)
+        self.assertEqual(cli("plan", "set-status", "T-1.1", "IN_PROGRESS", *p)[0], 0)
+        self.assertEqual(cli("plan", "set-status", "T-1.1", "READY_FOR_VERIFICATION", *p)[0], 0)
+        self.assertEqual(cli("plan", "set-status", "T-1.1", "VERIFIED", "--evidence", "tests: 4 passed", *p)[0], 0)
         names = [r["event"] for r in read(self.ref)]
         expected = ["PROJECT_DETECTED", "STATE_UPDATED", "SESSION_STARTED", "PROJECT_DETECTED", "DOMAIN_SELECTED",
                     "CAPABILITIES_SELECTED", "CONTEXT_LOADED", "STATE_UPDATED", "TASK_STARTED", "STATE_UPDATED",
-                    "VERIFICATION_STARTED", "STATE_UPDATED", "VERIFICATION_PASSED", "STATE_UPDATED"]
+                    "PHASE_CHANGED", "TASK_READY_FOR_VERIFICATION", "STATE_UPDATED", "TASK_VERIFIED",
+                    "STATE_UPDATED", "PHASE_CHANGED"]
         self.assertEqual(names, expected)
+        # Task status rolls up into the phase: started → P1 IN_PROGRESS, last task verified → P1 VERIFIED.
+        phases = [(r["details"]["from"], r["details"]["to"]) for r in read(self.ref, event="PHASE_CHANGED")]
+        self.assertEqual(phases, [("PLANNED", "IN_PROGRESS"), ("IN_PROGRESS", "VERIFIED")])
+        plan = (self.root / "docs" / "IMPLEMENTATION_PLAN.md").read_text(encoding="utf-8")
+        self.assertIn("Status: VERIFIED", plan)
+        self.assertIn("Evidence: tests: 4 passed", plan)
+        # CLI events after the bootstrap carry its session id (the host's shell has no AGYLITE_SESSION_ID).
+        self.assertEqual(read(self.ref, event="TASK_VERIFIED")[0]["session_id"], "s1")
         loaded = read(self.ref, event="CONTEXT_LOADED")[0]
         self.assertEqual(loaded["session_id"], "s1")
         self.assertIn("engineering/security", loaded["capabilities"])

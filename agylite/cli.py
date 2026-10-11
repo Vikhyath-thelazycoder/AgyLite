@@ -331,14 +331,22 @@ def _project_cmd(args):
         qs, skipped = questions.next_questions(questions.load_bank(), " ".join(args.request), stage=stage,
                                                answers=st.get("answers"), stack=st.get("stack") or
                                                lifecycle.detect_stack(project.root))
-        _print({"ask": qs, "not_asked": skipped}, args.json)
+        blocking = [q["id"] for q in qs if q["priority"] == "BLOCKING"]
+        if st and blocking:   # recorded: `plan set-status <task> IN_PROGRESS` refuses until they are answered
+            pstate.update_state(project, lambda s: s.__setitem__(
+                "pending_questions", sorted(set(s.get("pending_questions") or []) | set(blocking))))
+        _print({"ask": qs, "not_asked": skipped,
+                **({"answer_with": "agylite project answer <id> \"<answer>\""} if qs else {})}, args.json)
         return 0
     if cmd == "answer":
         bank = {q["id"] for q in questions.load_bank().get("questions") or []}
         if args.question not in bank:
             print(f"unknown question {args.question}", file=sys.stderr)
             return 2
-        pstate.update_state(project, lambda s: s["answers"].__setitem__(args.question, " ".join(args.answer)))
+        def record(s):
+            s["answers"][args.question] = " ".join(args.answer)
+            s["pending_questions"] = [q for q in s.get("pending_questions") or [] if q != args.question]
+        pstate.update_state(project, record)
         print(f"recorded {args.question}")
         return 0
     if cmd == "relink":
@@ -374,7 +382,8 @@ def _state_cmd(args):
     cur = next((p for p in (index or {}).get("phases", []) if p["phase_id"] == (index or {}).get("current_phase")), None)
     _print({"project": st["project"], "stack": st.get("stack"), "plan": st.get("plan"),
             "current_phase": {k: cur[k] for k in ("phase_id", "phase_name", "status", "active_tasks")} if cur else None,
-            "answers": st.get("answers"), "verification": st.get("verification"),
+            "answers": st.get("answers"), "pending_questions": st.get("pending_questions") or [],
+            "verification": st.get("verification"),
             "summary": pstate.summary_lines(st, index)}, args.json)
     return 0
 
@@ -415,6 +424,12 @@ def _plan_cmd(args):
         print(f"{task['id']} added to {args.phase}" + (" (phase reopened)" if reopened else ""))
         return 0
     if cmd == "set-status":
+        pending = [q for q in st.get("pending_questions") or [] if q not in (st.get("answers") or {})]
+        if pending and args.status.upper() == "IN_PROGRESS" and not args.item.upper().startswith("P"):
+            print(f"agylite plan: blocking requirements questions are unanswered: {', '.join(pending)}\n"
+                  f"  answer each first: agylite project answer <id> \"<answer>\" "
+                  f"(the questions: agylite project questions \"<request>\")", file=sys.stderr)
+            return 3
         old = reconcile.set_status(project, st, index, args.item, args.status.upper(), args.evidence)
         plan_index.load_index(project, st, rebuild=True)
         print(f"{args.item}: {old} → {args.status.upper()}")

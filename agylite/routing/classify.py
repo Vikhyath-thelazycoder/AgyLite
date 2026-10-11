@@ -31,6 +31,8 @@ def find_phrases(text: str, phrases):
 
 def classify_change(text: str, change_cfg, top_domain: str | None):
     """(change type, keyword that decided it or None)."""
+    for rx in change_cfg.get("ignore") or []:
+        text = re.sub(rx, " ", text)
     for entry in change_cfg.get("order") or []:
         hit = find_phrases(text, entry["keywords"])
         if hit:

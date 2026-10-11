@@ -82,6 +82,7 @@ def verification_block(existing=None):
     re-derived from config/verification.yaml, so no project can carry a different mode."""
     block = policy.state_block(policy.load_policy())
     block["last"] = (existing or {}).get("last")
+    block["last_task"] = (existing or {}).get("last_task")     # newest result tied to a plan task; kept across runs
     return block
 
 
@@ -107,8 +108,12 @@ def record_verification(project, task: str | None, result: str, evidence: str | 
         data = read_yaml(path) or {"schema_version": SCHEMA_VERSION, "results": []}
         data["results"].append(entry)
         write_yaml(path, data)
-    update_state(project, lambda s: s.__setitem__("verification", {**verification_block(s.get("verification")),
-                                                                    "last": entry}))
+    def apply(s):
+        block = {**verification_block(s.get("verification")), "last": entry}
+        if task:
+            block["last_task"] = entry
+        s["verification"] = block
+    update_state(project, apply)
     return entry
 
 
@@ -140,6 +145,9 @@ def summary_lines(state, index=None, pending=()):
         for p in index["phases"]:
             counts[p["status"]] = counts.get(p["status"], 0) + 1
         lines.append("phases: " + ", ".join(f"{n} {s}" for s, n in sorted(counts.items())))
+    open_blocking = [q for q in state.get("pending_questions") or [] if q not in (state.get("answers") or {})]
+    if open_blocking and not pending:
+        lines.append(f"unanswered BLOCKING questions: {', '.join(open_blocking)} (`agylite project answer <id> …`)")
     if pending:
         by = {}
         for q in pending:
@@ -150,4 +158,7 @@ def summary_lines(state, index=None, pending=()):
     last = ver.get("last")
     if last:
         lines.append(" ".join(f"last verification: {last['result']} {last.get('task') or ''} at {last['at']}".split()))
+    last_task = ver.get("last_task")
+    if last_task and last_task != last:
+        lines.append(f"last task verification: {last_task['task']} {last_task['result']} at {last_task['at']}")
     return lines

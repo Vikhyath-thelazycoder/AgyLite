@@ -13,8 +13,8 @@ steps:
     purpose: Know what is asked and what it touches before changing anything.
     commands:
       existing: ['agylite plan locate "<request>"', "agylite codebase affected --paths <files>"]
-      new: ['agylite project questions "<request>"']
-    exit: Intent restated; affected files and their tests listed (existing) or open requirement questions answered (new).
+      new: ['agylite project questions "<request>"', 'agylite project answer <id> "<answer>"']
+    exit: Intent restated; affected files and their tests listed (existing) or every BLOCKING requirement question answered and recorded (new; a task cannot start while one is open).
   PLAN:
     purpose: Put the change in the one living plan with acceptance criteria.
     commands:

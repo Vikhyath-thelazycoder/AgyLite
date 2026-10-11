@@ -12,12 +12,11 @@ Format per phase: a `## P<n> · <name>` heading, one meta line
 deferrals in the task row; record architecture decisions with `agylite decide add`.
 
 ## P1 · Foundations
-Status: PLANNED · Depends: — · Paths: — · Flags: security, testing · Evidence: —
-Objective: Project skeleton, CI, authentication baseline.
+Status: PLANNED · Depends: — · Paths: — · Flags: testing · Evidence: —
+Objective: The first working version: project skeleton, the core feature and its tests.
 
 | ID | Task | Status | Depends | Capabilities | Security | Design | Testing | Acceptance |
 |---|---|---|---|---|---|---|---|---|
-| T-1.1 | Repository, CI and environments | PLANNED | — | engineering/release | secrets in CI only | — | CI green | CI runs tests on every push |
 
 ## Change history
 

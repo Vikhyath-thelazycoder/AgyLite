@@ -507,3 +507,4 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 | 2026-10-11 | P27 | P27 completed: end-to-end offline integration test, checklist closed, final report (246 tests). **M7 completed; v2 transformation complete on the branch; awaiting user review and release go-ahead.** |
 | 2026-10-11 | Release | Merged to `main`, tagged and pushed `v2.0.0` (user go-ahead). |
 | 2026-10-11 | P28 | P28 added on request and completed: automatic upstream tracking — daily check, weekly/monthly apply of new commits only through every check, CI pull request, optional Mac job (D-047). 251 tests. |
+| 2026-10-11 | Trial | First hands-on trial (docs/TRY_AGYLITE.md) passed; its gaps fixed in v2.1.2: product routing by interface/exposure, phase roll-up + `last_task`, session-tagged and task events, enforced BLOCKING questions, empty template P1, `.agylite/` not a code change. 257 tests. |

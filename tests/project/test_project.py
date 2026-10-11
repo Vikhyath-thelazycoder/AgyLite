@@ -345,5 +345,77 @@ class TestVerificationPolicyState(ProjectEnv):
         self.assertNotIn("BROWSER_EXCEPTION_REQUESTED", [e["event"] for e in event_log.read(other)])
 
 
+
+class TestTrialFixes(ProjectEnv):
+    """Gaps found by the 2026-10-11 hands-on trial (docs/TRY_AGYLITE.md)."""
+
+    def plan_text(self):
+        return (self.root / "docs" / "IMPLEMENTATION_PLAN.md").read_text(encoding="utf-8")
+
+    def test_task_status_rolls_up_into_the_phase_and_state(self):
+        p = ("--project", str(self.root))
+        for item, status, *ev in (("T-3.1", "READY_FOR_VERIFICATION"), ("T-3.1", "VERIFIED", "e1.json"),
+                                  ("T-3.2", "IN_PROGRESS"), ("T-3.2", "READY_FOR_VERIFICATION")):
+            code, _, err = run_cli("plan", "set-status", item, status, *(["--evidence", ev[0]] if ev else []), *p)
+            self.assertEqual(code, 0, err)
+        st, index = self.state_and_index()
+        self.assertEqual(plan_index.phase(index, "P3")["status"], "IN_PROGRESS")   # one task still open
+        self.assertEqual(run_cli("plan", "set-status", "T-3.2", "VERIFIED", "--evidence", "e2.json", *p)[0], 0)
+        st, index = self.state_and_index()
+        p3 = plan_index.phase(index, "P3")
+        self.assertEqual((p3["status"], p3["evidence_pointer"]), ("VERIFIED", "e2.json"))
+        self.assertIn("P3: IN_PROGRESS → VERIFIED (roll-up from T-3.2)", self.plan_text())
+        self.assertEqual(st["plan"]["current_phase"], index["current_phase"])
+        self.assertEqual(st["verification"]["last_task"]["task"], "T-3.2")
+        # A later plain verify run does not erase which task was last verified.
+        state.record_verification(self.project, None, "PASSED", "e3.json")
+        st = state.require_state(self.project)
+        self.assertEqual((st["verification"]["last"]["task"], st["verification"]["last_task"]["task"]), (None, "T-3.2"))
+        # Reopening a verified task reopens its phase.
+        self.assertEqual(run_cli("plan", "set-status", "T-3.2", "IN_PROGRESS", *p)[0], 0)
+        self.assertEqual(plan_index.phase(self.state_and_index()[1], "P3")["status"], "IN_PROGRESS")
+
+    def test_first_started_task_starts_a_planned_phase(self):
+        p = ("--project", str(self.root))
+        self.assertEqual(run_cli("plan", "add-task", "P1", "Skeleton", *p)[1].strip(), "T-1.1 added to P1")
+        self.assertEqual(run_cli("plan", "set-status", "T-1.1", "IN_PROGRESS", *p)[0], 0)
+        self.assertEqual(plan_index.phase(self.state_and_index()[1], "P1")["status"], "IN_PROGRESS")
+
+    def test_blocking_questions_must_be_answered_before_a_task_starts(self):
+        p = ("--project", str(self.root))
+        code, out, _ = run_cli("project", "questions", "add", "login", "for", "users", *p, "--json")
+        self.assertIn("auth", [q["id"] for q in json.loads(out)["ask"] if q["priority"] == "BLOCKING"])
+        code, _, err = run_cli("plan", "set-status", "T-3.2", "IN_PROGRESS", *p)
+        self.assertEqual(code, 3)
+        self.assertIn("auth", err)
+        self.assertIn("unanswered BLOCKING questions: auth", "\n".join(state.summary_lines(state.require_state(self.project))))
+        self.assertEqual(run_cli("project", "answer", "auth", "email", "and", "password", *p)[0], 0)
+        code, _, err = run_cli("plan", "set-status", "T-3.2", "IN_PROGRESS", *p)
+        self.assertEqual(code, 0, err)
+        self.assertEqual(state.require_state(self.project)["pending_questions"], [])
+
+    def test_verify_ties_a_run_to_the_single_active_task(self):
+        from agylite.verify.engine import active_task
+        self.assertEqual(active_task(self.project), "T-3.1")
+        run_cli("plan", "set-status", "T-3.2", "IN_PROGRESS", "--project", str(self.root))
+        self.assertIsNone(active_task(self.project))                      # two active: not guessed
+
+
+class TestChangedFiles(unittest.TestCase):
+    def test_os_state_is_not_a_code_change(self):
+        import shutil
+        import subprocess
+        from agylite.codebase.impact import changed_files
+        if not shutil.which("git"):
+            self.skipTest("git not installed")
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+            (root / ".agylite" / "evidence").mkdir(parents=True)
+            (root / ".agylite" / "state.yaml").write_text("x: 1\n")
+            (root / ".agylite" / "evidence" / "e.json").write_text("{}")
+            (root / "todo.py").write_text("print(1)\n")
+            self.assertEqual(changed_files(root), ["todo.py"])
+
 if __name__ == "__main__":
     unittest.main()

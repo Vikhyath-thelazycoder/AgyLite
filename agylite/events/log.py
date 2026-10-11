@@ -7,6 +7,7 @@ break the work it observes.
 import json
 import os
 import sys
+import time
 from datetime import datetime, timezone
 
 from ..isolation.guard import guard_for
@@ -15,6 +16,25 @@ from .redact import redact
 from .schema import envelope
 
 DEFAULT_HOST = "cli"
+CURRENT_SESSION = "current.json"     # written by `agylite bootstrap` (the host's SessionStart hook)
+SESSION_TTL_S = 12 * 3600
+
+
+def sessions_dir(project):
+    return project.data_dir / "sessions"
+
+
+def current_session(project):
+    """The session id the host last bootstrapped for this project (within SESSION_TTL_S), else None.
+    Host shells do not inherit AGYLITE_SESSION_ID from the hook, so CLI events fall back to this pointer; with two
+    concurrent sessions on one project the newest bootstrap wins."""
+    try:
+        path = guard_for(project).check(sessions_dir(project) / CURRENT_SESSION)
+        if time.time() - path.stat().st_mtime > SESSION_TTL_S:
+            return None
+        return json.loads(path.read_text(encoding="utf-8")).get("session_id")
+    except (OSError, ValueError, AttributeError, PermissionError):
+        return None
 
 
 def events_dir(project):
@@ -27,7 +47,7 @@ def emit(project, event, **fields):
         return None
     try:
         if not fields.get("session_id"):
-            fields["session_id"] = os.environ.get("AGYLITE_SESSION_ID")
+            fields["session_id"] = os.environ.get("AGYLITE_SESSION_ID") or current_session(project)
         if not fields.get("host"):
             fields["host"] = os.environ.get("AGYLITE_HOST", DEFAULT_HOST)
         record = redact(envelope(event, project_id=project.project_id, **fields))
