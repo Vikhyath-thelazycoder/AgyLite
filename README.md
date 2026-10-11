@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/releases"><img alt="Version" src="https://img.shields.io/badge/version-2.1.5-5b8cff"></a>
+  <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/releases"><img alt="Version" src="https://img.shields.io/badge/version-2.1.6-5b8cff"></a>
   <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Vikhyath-thelazycoder/AgyLite/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-7cf2c4"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
@@ -50,6 +50,11 @@ curl -fsSL https://raw.githubusercontent.com/Vikhyath-thelazycoder/AgyLite/main/
 This needs macOS or Linux, `git` and Python 3.10 or newer (on macOS: `brew install python@3.12`). It downloads the 15
 pinned upstream projects once (about 2 minutes), builds the capability bundle in `~/.agylite`, and puts `agylite` on
 your PATH. After that Agylite works offline. You never clone the upstream projects yourself.
+
+**Optional: turn on auto-update.** In Claude Code run `/plugin`, open **Marketplaces → agylite-marketplace** and enable
+auto-update (or add `"autoUpdate": true` to its entry under `extraKnownMarketplaces` in `~/.claude/settings.json`).
+Claude Code then updates the plugin by itself, and the plugin brings the engine in `~/.agylite` up to the same version
+in the background at the next session start.
 
 **3. Start a new session and work as usual.** Ask for something like *"Build a small Python CLI todo app with tests"*:
 the agent routes the request, writes a plan task, implements it test-first and verifies it before calling it done.
@@ -221,8 +226,9 @@ local tests ([policy](docs/architecture/VERIFICATION_POLICY.md)).
 <details>
 <summary><b>How do I update or uninstall?</b></summary>
 
-Update the engine by running the installer again (or `agylite update --latest` for upstreams), and the plugin with
-`/plugin update agylite@agylite-marketplace`. To uninstall: `/plugin uninstall agylite@agylite-marketplace`, then
+With auto-update on, nothing: the plugin updates itself and refreshes the engine at session start. Otherwise run
+`/plugin update agylite@agylite-marketplace`; the engine follows at the next session start (or run the installer
+again). `agylite update --latest` brings in newer upstream commits. To uninstall: `/plugin uninstall agylite@agylite-marketplace`, then
 `rm -rf ~/.agylite` and remove the `# Agylite` PATH line from your shell profile.
 </details>
 

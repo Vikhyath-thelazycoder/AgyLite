@@ -2,6 +2,16 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [2.1.6] - 2026-10-11
+
+### Added
+- The engine follows the plugin: when Claude Code has updated the plugin, the next session start refreshes
+  `~/.agylite` to the same version in the background (never a downgrade; one at a time; `AGYLITE_NO_AUTO_UPDATE=1`
+  turns it off). With marketplace auto-update on, updates need no commands at all.
+
+### Fixed
+- The launcher no longer hands off to another Agylite plugin launcher found on PATH; the launcher test is hermetic.
+
 ## [2.1.5] - 2026-10-11
 
 ### Added

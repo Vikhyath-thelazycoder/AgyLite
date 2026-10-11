@@ -1,6 +1,6 @@
 {
   "name": "agylite",
-  "version": "2.1.5",
+  "version": "2.1.6",
   "description": "Agylite: one deterministic router, budgeted context, project state and local test-first verification over a curated bundle of engineering, codebase, design, testing, SEO and media capabilities. No MCP.",
   "author": {
     "name": "Vikhyath",

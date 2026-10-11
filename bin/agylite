@@ -7,10 +7,29 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 HOME_DIR="${AGYLITE_HOME:-$HOME/.agylite}"
 SETUP='curl -fsSL https://raw.githubusercontent.com/Vikhyath-thelazycoder/AgyLite/main/install.sh | bash'
 export AGYLITE_CLI="${BASH_SOURCE[0]}"
+
+# Keep the engine at the plugin's version: when Claude Code has auto-updated the plugin to a newer release, the first
+# session start refreshes $AGYLITE_HOME in the background (never a downgrade; AGYLITE_NO_AUTO_UPDATE=1 turns it off).
+if [ "${1:-}" = "bootstrap" ] && [ -z "${AGYLITE_NO_AUTO_UPDATE:-}" ] && [ -x "$HOME_DIR/core/bin/agylite" ] \
+    && [ -f "$HERE/VERSION" ] && [ -x "$HERE/scripts/install" ]; then
+  WANT="$(tr -d '[:space:]' < "$HERE/VERSION")"
+  HAVE="$(tr -d '[:space:]' < "$HOME_DIR/src/VERSION" 2>/dev/null || echo 0)"
+  LOCK="$HOME_DIR/.updating"
+  [ -d "$LOCK" ] && [ -n "$(find "$LOCK" -maxdepth 0 -mmin +30 2>/dev/null)" ] && rmdir "$LOCK" 2>/dev/null || true
+  if [ "$WANT" != "$HAVE" ] && [ "$(printf '%s\n%s\n' "$HAVE" "$WANT" | sort -V | tail -1)" = "$WANT" ] \
+      && mkdir "$LOCK" 2>/dev/null; then
+    mkdir -p "$HOME_DIR/logs"
+    ( AGYLITE_HOME="$HOME_DIR" "$HERE/scripts/install" > "$HOME_DIR/logs/auto-update.log" 2>&1; rmdir "$LOCK" ) \
+      < /dev/null > /dev/null 2>&1 &
+    echo "Agylite engine updating in the background: $HAVE → $WANT (log: $HOME_DIR/logs/auto-update.log)."
+  fi
+fi
+
 if [ -x "$HOME_DIR/core/bin/agylite" ]; then
   exec "$HOME_DIR/core/bin/agylite" "$@"
-elif command -v agylite >/dev/null 2>&1 && [ "$(command -v agylite)" != "${BASH_SOURCE[0]}" ]; then
-  exec agylite "$@"
+elif command -v agylite >/dev/null 2>&1 && [ "$(command -v agylite)" != "${BASH_SOURCE[0]}" ] \
+    && ! grep -q "Agylite launcher for host plugins" "$(command -v agylite)" 2>/dev/null; then
+  exec agylite "$@"   # a real install on PATH (another plugin's launcher would only bounce back here)
 fi
 for PY in "${AGYLITE_PYTHON:-}" python3.15 python3.14 python3.13 python3.12 python3.11 python3.10 python3; do
   [ -n "$PY" ] && command -v "$PY" >/dev/null 2>&1 || continue
