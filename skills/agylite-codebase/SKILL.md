@@ -41,3 +41,5 @@ first; never read or paste the whole repository.
 - New projects have no codebase step; start from requirements instead.
 
 Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+
+End your answer with the output of `agylite used` (what this work used).

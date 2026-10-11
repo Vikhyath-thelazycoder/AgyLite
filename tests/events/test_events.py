@@ -202,5 +202,35 @@ class TestRiskDetection(Env):
         self.assertEqual(cli("events", "rules", "--project", str(self.root))[0], 1)
 
 
+
+class TestUsedReport(unittest.TestCase):
+    def test_counts_upstreams_by_bundle_folder(self):
+        from agylite.events.used import upstream_counts
+        self.assertEqual(upstream_counts(["capabilities/engineering/planning/CARD.md", "files/ecc/a.md",
+                                          "files/ecc/b.md", "files/uiuxpromax/c.md"]), {"ecc": 2, "uiuxpromax": 1})
+
+    def test_summary_names_upstream_projects_engines_and_core_steps(self):
+        from agylite.events.used import render, session_events, summarize
+        ev = lambda name, sid="s1", **kw: {"event": name, "session_id": sid, "capabilities": kw.pop("caps", []),
+                                           "details": kw}
+        events = [ev("SESSION_STARTED", "s0"), ev("CONTEXT_LOADED", "s0", upstreams={"gstack": 9}),
+                  ev("SESSION_STARTED"), ev("DOMAIN_SELECTED"),
+                  ev("CAPABILITIES_SELECTED", caps=["design/design-direction", "engineering/planning"]),
+                  ev("CONTEXT_LOADED", upstreams={"ecc": 2, "addy": 3}),
+                  ev("CONTEXT_LOADED", upstreams={"ecc": 1}),
+                  ev("RUNTIME_USED", engine="uiuxpromax", command="design search"),
+                  ev("STATE_UPDATED", change="task_added", task="T-1.1", phase="P1"),
+                  ev("TASK_VERIFIED", item="T-1.1", to="VERIFIED"),
+                  ev("VERIFICATION_PASSED", result="PASSED")]
+        sid, mine = session_events(events)                     # newest session; s0's gstack load is not counted
+        text = render(summarize(mine), sid)
+        self.assertEqual(sid, "s1")
+        self.assertIn("Capabilities: design/design-direction, engineering/planning", text)
+        self.assertIn("Upstream content loaded: Addy Osmani agent-skills (3 files), ECC (3 files)", text)
+        self.assertNotIn("gstack", text)
+        self.assertIn("Engines run: UI/UX Pro Max (design search)", text)
+        self.assertIn("plan T-1.1 VERIFIED", text)
+        self.assertIn("verify ×1 (last PASSED)", text)
+
 if __name__ == "__main__":
     unittest.main()

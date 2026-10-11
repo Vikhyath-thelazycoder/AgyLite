@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/releases"><img alt="Version" src="https://img.shields.io/badge/version-2.1.4-5b8cff"></a>
+  <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/releases"><img alt="Version" src="https://img.shields.io/badge/version-2.1.5-5b8cff"></a>
   <a href="https://github.com/Vikhyath-thelazycoder/AgyLite/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Vikhyath-thelazycoder/AgyLite/actions/workflows/ci.yml/badge.svg"></a>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-7cf2c4"></a>
   <img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-3776ab">
@@ -106,6 +106,8 @@ flowchart LR
 - **Verify.** `agylite verify` runs the tests, type checks, lint and build that the change reaches, and records
   machine-readable evidence. Browser and screenshot "verification" is turned off by policy.
 - **Watch it.** `agylite dashboard --open` shows the Agent Office: one agent per capability, lighting up as it works.
+- **See what was used.** Every answer ends with `agylite used`: the routed capabilities, the upstream projects whose
+  guidance was loaded (ECC, gstack, UI/UX Pro Max, …) and the engines that ran.
 
 ## What's inside
 
@@ -129,6 +131,7 @@ agylite context engineering/security testing/security        # load just that gu
 agylite codebase affected                                    # files and tests the current change reaches
 agylite verify                                               # run the impacted checks, record evidence
 agylite dashboard --open                                     # the Agent Office
+agylite used                                                 # what this session used: capabilities, upstreams, engines
 ```
 
 <details>
@@ -144,7 +147,7 @@ agylite dashboard --open                                     # the Agent Office
 | Design | `design search\|system\|check` |
 | SEO | `seo run\|evidence\|authorize` |
 | Media | `media plan\|music-cues` |
-| Operations | `dashboard`, `events`, `runtime status\|install`, `update`, `rollback`, `gc`, `bundle`, `registry`, `adapters`, `doctor`, `validate`, `benchmark` |
+| Operations | `used`, `dashboard`, `events`, `runtime status\|install`, `update`, `rollback`, `gc`, `bundle`, `registry`, `adapters`, `doctor`, `validate`, `benchmark` |
 </details>
 
 ## Staying current

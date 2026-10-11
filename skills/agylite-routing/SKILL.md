@@ -44,3 +44,5 @@ Routing is done by the OS core, not by reading this file. Do not pick capabiliti
 - Simplicity review (Ponytail-derived) runs only when the user asks for it.
 - New projects start with requirements; existing projects start with codebase understanding (spec §19.2).
 - Never activate SEO, media or design capabilities the route did not select.
+
+End your answer with the output of `agylite used` (what this work used).

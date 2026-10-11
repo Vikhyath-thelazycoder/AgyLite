@@ -13,6 +13,8 @@ EVENT_TYPES = (
     "BROWSER_EXCEPTION_REQUESTED", "ISOLATION_VIOLATION_BLOCKED", "RISK_DETECTED",
     # plan task reached verification / was verified (distinct from `agylite verify` runs, which are VERIFICATION_*)
     "TASK_READY_FOR_VERIFICATION", "TASK_VERIFIED",
+    # an upstream engine ran (Graphify, UI/UX Pro Max, BeyondSEO, Brag, Unlazy) — `agylite used` reports it
+    "RUNTIME_USED",
 )
 SEVERITIES = ("info", "low", "medium", "high", "critical")
 FIELDS = ("schema_version", "id", "ts", "event", "severity", "project_id", "session_id", "host", "capabilities",

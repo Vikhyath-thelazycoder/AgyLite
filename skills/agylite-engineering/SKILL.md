@@ -23,3 +23,5 @@ Rules: guidance order is the route's `capabilities` order (user requirements →
 or screenshot. Simplicity review only when the user asks for it.
 
 Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+
+End your answer with the output of `agylite used` (what this work used).

@@ -2,6 +2,14 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [2.1.5] - 2026-10-11
+
+### Added
+- `agylite used`: what a session used — routed capabilities, the upstream projects whose content was loaded (with file
+  counts), the engines that ran (Graphify, UI/UX Pro Max, BeyondSEO, Brag, Unlazy) and the core steps (route, plan,
+  verify). Context loads record their upstreams; engine commands log `RUNTIME_USED`. The lifecycle's RECONCILE step
+  and every entry skill end the answer with this report.
+
 ## [2.1.4] - 2026-10-11
 
 ### Added

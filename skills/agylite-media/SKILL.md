@@ -15,3 +15,5 @@ description: Launch videos, demos and showcase material from a project or websit
 Media output is a deliverable, never verification evidence; showing a rendered video is not a test of the product.
 
 Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+
+End your answer with the output of `agylite used` (what this work used).

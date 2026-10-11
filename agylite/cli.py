@@ -1087,6 +1087,10 @@ def build_parser():
     project_arg(q)
     p.set_defaults(func=_guarded(_decide_cmd))
 
+    p = sub.add_parser("used", help="What this session used: capabilities, upstream projects, engines, core steps")
+    p.add_argument("--session", help="Session id (default: the host's current session, else the newest)")
+    project_arg(p)
+    p.set_defaults(func=_guarded(_used))
     p = sub.add_parser("events", help="Project event log and risk detection (spec §30)")
     esub = p.add_subparsers(dest="events_cmd", required=True)
     q = esub.add_parser("list", help="Show recent events (redacted)")
@@ -1271,6 +1275,39 @@ def _not_yet(name, phase):
     return 2
 
 
+def _note_engine(args, code):
+    """RUNTIME_USED for commands that run an upstream engine (`agylite used` reports them). Never raises."""
+    from .events.used import ENGINES
+    engine = ENGINES.get(getattr(args, "command", None))
+    if not engine:
+        return
+    try:
+        sub = next((getattr(args, a) for a in vars(args) if a.endswith("_cmd") and getattr(args, a)), None)
+        details = {"engine": engine, "command": " ".join(x for x in (args.command, sub) if x), "exit_code": code}
+        if engine == "graphify":
+            from .paths import agylite_home, current_bundle
+            from .runtimes import graphify
+            ready = graphify.health(agylite_home(), current_bundle()).get("status") == "ready"
+            if not ready:   # structural fallback: Graphify itself did not run
+                return
+        from .events import emit
+        emit(_project_ref(args), "RUNTIME_USED", details=details)
+    except Exception:   # noqa: BLE001 — reporting must never change a command's outcome
+        pass
+
+
+def _used(args):
+    import json
+
+    from .events.log import current_session, read
+    from .events.used import render, session_events, summarize
+    project = _project_ref(args)
+    sid, events = session_events(read(project), args.session or current_session(project))
+    summary = summarize(events)
+    print(json.dumps({"session_id": sid, **summary}, indent=1) if args.json else render(summary, sid))
+    return 0
+
+
 def main(argv=None):
     parser = build_parser()
     args = parser.parse_args(argv)
@@ -1280,7 +1317,9 @@ def main(argv=None):
         parser.print_help()
         return 0
     try:
-        return args.func(args)
+        code = args.func(args)
+        _note_engine(args, code)
+        return code
     except KeyboardInterrupt:
         print(f"\nagylite {args.command}: stopped (Ctrl+C)", file=sys.stderr)
         return 130

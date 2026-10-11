@@ -18,3 +18,5 @@ description: Pre-merge code review of the current change — scope drift, correc
 Simplicity review (Ponytail-derived) only when the user asks for it.
 
 Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+
+End your answer with the output of `agylite used` (what this work used).

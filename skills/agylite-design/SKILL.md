@@ -19,3 +19,5 @@ description: UI/UX and visual design work — direction, design systems, typogra
 Design requests do not activate engineering or SEO capabilities unless the route selects them.
 
 Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+
+End your answer with the output of `agylite used` (what this work used).

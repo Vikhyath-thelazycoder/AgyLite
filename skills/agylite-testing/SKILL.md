@@ -22,3 +22,5 @@ it as NOT_TESTED, or record a browser exception with `agylite verify exception -
 the browser; nothing is captured).
 
 Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+
+End your answer with the output of `agylite used` (what this work used).
