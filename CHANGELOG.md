@@ -2,6 +2,17 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [2.1.1] - 2026-10-11
+
+### Changed
+- First checked upstream update: ECC (672 commits), Beacon (211), Graphify (195), Ponytail (62), gstack (43), Open Design,
+  Taste, UI/UX Pro Max, Brag, Addy, Agency. Bundle 2,648 files.
+
+### Fixed
+- Batch updates build with earlier updated upstreams' new trees; inventories no longer download every file; license
+  metadata always fetched; stale capability cards no longer block an update; Beacon tool-result text matches upstream;
+  three new gstack placeholders replaced; bundled-file counts in tests derived from the extraction summary.
+
 ## [2.1.0] - 2026-10-11
 
 ### Added

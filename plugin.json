@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "agylite",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Agylite: deterministic routing, budgeted context, project state and local test-first verification over a curated bundle of engineering, codebase, design, testing, SEO and media capabilities. No MCP.",
   "author": {
     "name": "Vikhyath",
