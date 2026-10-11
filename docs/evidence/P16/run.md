@@ -27,3 +27,8 @@ HTTPS returns its A records), so the live crawl ran against the owner's public r
 3 attempted, 2 inspected, 1 skipped by robots.txt (`robots_rule_disallowed`, correct). `agylite seo evidence <run>`:
 complete captures labelled [FACT], the disallowed page [UNKNOWN]. **Live crawl: VERIFIED.** The 6 Graphify
 `test_security` tests stay open (they need `example.com`; running the upstream suite also needs the owner's permission).
+
+## example.com crawl (2026-10-11, after DNS fix)
+`agylite seo run crawl https://example.com/ --max-pages 5` → exit 0; 1 attempted, 1 inspected, 0 failed. Labels:
+presence [OBSERVATION] / absence [UNKNOWN] — partial capture because the opt-in browser extra (playwright) is not
+installed, exactly as designed. **Live crawl on the spec target: VERIFIED.**

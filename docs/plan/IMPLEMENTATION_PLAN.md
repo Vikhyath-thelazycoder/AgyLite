@@ -461,9 +461,9 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
    Add `export PATH="$HOME/.agylite/core/bin:$PATH"` to the shell profile.
 3. Claude Code plugin `agylite@agylite-marketplace` v2.1.1 installed; **RUNTIME_VERIFIED** (SessionStart hook ran
    2026-10-11T08:34:45Z). The v1 plugin is removed.
-4. Live public SEO crawl VERIFIED 2026-10-11 (owner's GitHub page; `example.com` alone does not resolve on this
-   network — docs/evidence/P16/run.md). Still open: the 6 Graphify `test_security` tests (need `example.com`);
-   Codex/Cursor/Antigravity runtime checks only if those hosts get installed. Tests: `python -m unittest discover -s tests`.
+4. All network checks VERIFIED 2026-10-11: live SEO crawl (owner's GitHub page and `example.com`) and Graphify
+   `test_security` 60/60 (docs/evidence/P16, P25). Nothing open; Codex/Cursor/Antigravity runtime checks only if
+   those hosts get installed. Tests: `python -m unittest discover -s tests`.
 
 ## Change history
 
