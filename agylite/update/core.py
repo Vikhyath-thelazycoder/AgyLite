@@ -47,15 +47,37 @@ def inventory_from_dir(tree: Path):
     return rows
 
 
-def inventory_from_git(clone: Path, sha: str):
-    out = subprocess.run(["git", "ls-tree", "-r", "-l", sha], cwd=clone, capture_output=True, text=True, check=True).stdout
+def inventory_from_git(clone: Path, sha: str, repo: str | None = None):
+    """(path, bytes, blob sha1) of a commit without downloading any file content: `ls-tree` without `-l` needs only
+    tree objects (a blobless clone has them; `-l` would fetch every blob one by one). Sizes, used only in reports,
+    come from one GitHub tree API call when available, else 0."""
+    out = subprocess.run(["git", "ls-tree", "-r", sha], cwd=clone, capture_output=True, text=True, check=True).stdout
+    sizes = _github_sizes(repo, sha) if repo else {}
     rows = []
     for line in out.splitlines():
         meta, path = line.split("\t", 1)
-        _mode, kind, blob, size = meta.split()
+        _mode, kind, blob = meta.split()
         if kind == "blob":
-            rows.append((path, int(size), blob))
+            rows.append((path, sizes.get(path, 0), blob))
     return rows
+
+
+def _github_sizes(repo: str, sha: str) -> dict:
+    import os as _os
+    import urllib.request
+    if "github.com" not in _os.environ.get("AGYLITE_UPSTREAM_BASE", "https://github.com"):
+        return {}
+    try:
+        req = urllib.request.Request(f"https://api.github.com/repos/{repo}/git/trees/{sha}?recursive=1",
+                                     headers={"Accept": "application/vnd.github+json", "User-Agent": "agylite"})
+        token = _os.environ.get("GITHUB_TOKEN")
+        if token:
+            req.add_header("Authorization", f"Bearer {token}")
+        with urllib.request.urlopen(req, timeout=30) as r:
+            tree = json.loads(r.read().decode())
+        return {t["path"]: t.get("size", 0) for t in tree.get("tree", []) if t.get("type") == "blob"}
+    except Exception:   # noqa: BLE001 - sizes are informational only
+        return {}
 
 
 def fetch_commit(repo: str, sha: str, target: Path, rules_repo, log=print, mirror_path: Path | None = None):
@@ -67,7 +89,7 @@ def fetch_commit(repo: str, sha: str, target: Path, rules_repo, log=print, mirro
         subprocess.run(["git", "clone", "--quiet", "--filter=blob:none", "--no-checkout", "--sparse", *ref,
                         url_for(repo), str(target)], check=True, capture_output=True)
     subprocess.run(["git", "fetch", "--quiet", "origin", sha], cwd=target, check=False)
-    rows = inventory_from_git(target, sha)
+    rows = inventory_from_git(target, sha, repo)
     needed = [p for p, _s, _b in rows if classify(rules_repo, p)["decision"] in BUNDLED or p.startswith(("LICENSE", "NOTICE"))]
     needed += [p[:-5] for p in needed if p.endswith(".tmpl")]
     subprocess.run(["git", "sparse-checkout", "set", "--no-cone", "--stdin"], cwd=target, check=True,
