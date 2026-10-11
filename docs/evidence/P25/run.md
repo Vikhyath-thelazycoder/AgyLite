@@ -30,3 +30,8 @@ Copy of the pinned upstream, scratch venv (core deps + pytest): **5,853 passed, 
 | 1 | test_install_references | `graphify install` (excluded, SEC-08) |
 | 1 | test_languages | `KeyError: 'coherence_check'` in an upstream markdown-frontmatter test (upstream issue; markdown extraction is not used by `affected`) |
 None of the failing areas is used by `update/query/path/explain/affected` on the languages the OS fixtures use.
+
+## Graphify `test_security` re-run (2026-10-11, bundle 2502140a790a)
+Copy of the pinned upstream, scratch venv (core + pytest): **54 passed, 6 failed** (3 min 3 s). All 6 failures are
+`ValueError: DNS resolution failed for 'example.com'` — this network cannot resolve that one domain (router and direct
+UDP 53 time out; DNS over HTTPS resolves it). Environment, not code; they pass once `example.com` resolves.
