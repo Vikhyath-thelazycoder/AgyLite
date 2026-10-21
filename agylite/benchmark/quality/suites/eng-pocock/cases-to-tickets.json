@@ -1,0 +1,33 @@
+{
+ "skill_name": "to-tickets",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "export-spec"
+   ],
+   "prompt": "Break docs/specs/export.md into tickets.",
+   "expectations": [
+    "Tickets are vertical slices that each cut through the layers end to end (view/endpoint/UI/tests), not one ticket per layer",
+    "Every ticket states which tickets block it, or that it can start immediately",
+    "The blocking edges are acyclic and every blocker comes before the tickets it blocks",
+    "The agent presents the proposed breakdown and asks the user to confirm granularity and edges before publishing or writing ticket files"
+   ],
+   "kind": "execution"
+  },
+  {
+   "id": 2,
+   "files": [
+    "rename-user-id"
+   ],
+   "prompt": "We need user_id renamed to account_id everywhere (database column, API field, SDK and all call sites, see README). Break this into tickets.",
+   "expectations": [
+    "The breakdown treats this as a wide refactor sequenced expand-contract: first add account_id beside user_id, then migrate call sites in batches, then remove user_id",
+    "Each migrate batch is blocked by the expand ticket, and the contract ticket is blocked by every migrate batch",
+    "Every ticket states its blocking tickets or that it can start immediately",
+    "The agent asks the user to confirm the breakdown before publishing or writing ticket files"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

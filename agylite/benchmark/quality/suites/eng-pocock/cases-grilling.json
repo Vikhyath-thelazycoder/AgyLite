@@ -1,0 +1,31 @@
+{
+ "skill_name": "grilling",
+ "evals": [
+  {
+   "id": 1,
+   "kind": "dialogue",
+   "prompt": "Grill me on this plan before I build it: I want to add team accounts to our single-user notes app so several people can share one workspace.",
+   "expectations": [
+    "The reply asks the user questions instead of starting to implement, plan files or write code",
+    "Each question in the round is numbered and comes with the assistant's recommended answer",
+    "No question in the round depends on the answer to another question asked in the same round",
+    "The reply ends by waiting for the user's answers rather than assuming answers and proceeding"
+   ],
+   "files": []
+  },
+  {
+   "id": 2,
+   "kind": "execution",
+   "files": [
+    "notes-app"
+   ],
+   "prompt": "Grill me on my plan to move note storage from the browser to a server. Ask me what you need to.",
+   "expectations": [
+    "The agent reads the repository to learn facts it can look up (for example that notes are kept in localStorage under notes.v1 in src/store.js) instead of asking the user for them",
+    "The questions put to the user are decisions only the user can make, not facts that the repository already answers",
+    "Each question is numbered and comes with a recommended answer",
+    "No source file is modified"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+ "skill_name": "to-spec",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "notes-tags"
+   ],
+   "prompt": "We've already discussed tagging in NOTES-DISCUSSION.md. Turn it into a spec and save it to docs/specs/tags.md.",
+   "expectations": [
+    "docs/specs/tags.md is written with the sections Problem Statement, Solution, User Stories, Implementation Decisions, Testing Decisions and Out of Scope",
+    "User stories are numbered in the form 'As a <actor>, I want <feature>, so that <benefit>' and cover the discussed decisions: at most 10 tags, the tag field (not #word in the body), sidebar counts, AND filtering, and tags disappearing with their last note",
+    "The agent synthesises the discussion without first interviewing the user with new questions about the feature",
+    "Implementation Decisions contain no specific file paths or code snippets",
+    "Out of Scope lists the deferred items from the discussion (colours, renaming, sharing, sync)"
+   ],
+   "kind": "execution"
+  },
+  {
+   "id": 2,
+   "files": [
+    "rate-limit"
+   ],
+   "prompt": "Turn the rate-limiting discussion in DISCUSSION.md into a spec at docs/specs/rate-limit.md.",
+   "expectations": [
+    "docs/specs/rate-limit.md is written with the sections Problem Statement, Solution, User Stories, Implementation Decisions, Testing Decisions and Out of Scope",
+    "Implementation Decisions carry the discussed decisions: per API key, 120 requests per minute sliding window, /health exempt, HTTP 429 with Retry-After in seconds and the rate_limited error body, in-memory counts",
+    "Testing Decisions say to test external behaviour through the HTTP interface (with a fake clock) rather than the window's internals",
+    "Implementation Decisions contain no specific file paths or code snippets",
+    "The agent does not interview the user with new questions before writing the spec"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

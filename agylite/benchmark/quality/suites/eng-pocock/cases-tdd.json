@@ -1,0 +1,34 @@
+{
+ "skill_name": "tdd",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "slugify"
+   ],
+   "prompt": "Add support for stripping emoji to slugify, test-first.",
+   "expectations": [
+    "Before writing a test, the agent names the public interface (seam) under test, slugify(text), rather than testing internals",
+    "A failing test for emoji stripping is written and run, shown failing, before src/slugify.js is changed",
+    "The test's expected value is an independent literal (for example 'party-time' for 'Party \ud83c\udf89 Time'), not recomputed the way the code computes it",
+    "Tests and implementation proceed one slice at a time: the agent does not write a batch of many tests before any implementation",
+    "The full suite is run with the repository's command (npm test / node --test) after the change"
+   ],
+   "kind": "execution"
+  },
+  {
+   "id": 2,
+   "files": [
+    "cart"
+   ],
+   "prompt": "Discount codes over 100% make cart totals negative. Fix it test-first.",
+   "expectations": [
+    "A failing test reproducing a negative total for a discount over 100 percent is written and run, shown failing, before cart/pricing.py is changed",
+    "The test asserts an independent expected value (for example 0) rather than recomputing the formula",
+    "The fix is minimal: it clamps or rejects the discount without adding unrelated features",
+    "The full suite is run with the repository's own command (python3 -m unittest) after the fix"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

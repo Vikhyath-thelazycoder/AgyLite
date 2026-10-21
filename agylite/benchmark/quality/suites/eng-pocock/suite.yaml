@@ -1,0 +1,24 @@
+# IMPLEMENTATION_PLAN §5 eng-pocock: Pocock's skills have no upstream evals, so 2 cases each in Addy's evals.json shape
+# (cases-<skill>.json, fixtures/), graded by Addy's grader prompt. Original arm: the Pocock skill alone via Addy's
+# method (--append-system-prompt): to-spec and to-tickets set disable-model-invocation, so a plain project-skill
+# install would never run them.
+name: eng-pocock
+runner: pocock_runner
+tasks:
+  - {skill: grilling, path: productivity/grilling, eval: 1}
+  - {skill: grilling, path: productivity/grilling, eval: 2}
+  - {skill: to-spec, path: engineering/to-spec, eval: 1}
+  - {skill: to-spec, path: engineering/to-spec, eval: 2}
+  - {skill: to-tickets, path: engineering/to-tickets, eval: 1}
+  - {skill: to-tickets, path: engineering/to-tickets, eval: 2}
+  - {skill: tdd, path: engineering/tdd, eval: 1}
+  - {skill: tdd, path: engineering/tdd, eval: 2}
+  - {skill: diagnosing-bugs, path: engineering/diagnosing-bugs, eval: 1}
+  - {skill: diagnosing-bugs, path: engineering/diagnosing-bugs, eval: 2}
+metrics: {expectations_passed: higher}
+target: "same vs the Pocock skill alone"
+credits:
+  - {repository: mattpocock/skills, license: MIT, commit: 5beb35b040e3de97e54fa9e386d7e42d15c295c2,
+     used: "the five skills' SKILL.md as the original arm; expectations derived from their text"}
+  - {repository: addyosmani/agent-skills, license: MIT, commit: aeac41d4d005999432bb7312f7ff06383a91d59d,
+     used: "evals.json case shape and the run-evals.js grader prompt"}

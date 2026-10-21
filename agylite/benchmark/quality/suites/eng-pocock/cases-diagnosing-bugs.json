@@ -1,0 +1,33 @@
+{
+ "skill_name": "diagnosing-bugs",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "weekly-report"
+   ],
+   "prompt": "Users say the weekly report puts Sunday sales in the wrong week. Diagnose and fix it.",
+   "expectations": [
+    "Before forming theories from reading code, the agent builds a red-capable feedback loop (a failing test or script asserting a Sunday's ISO week, e.g. 2026-10-18 is 2026-W42) and runs it, showing it red",
+    "The agent states several ranked hypotheses before testing them",
+    "The fix is verified by the same loop going green, and the full suite passes",
+    "A regression test for the Sunday case is left in the suite"
+   ],
+   "kind": "execution"
+  },
+  {
+   "id": 2,
+   "files": [
+    "parse-log"
+   ],
+   "prompt": "parseLog got about 10x slower in release 2.3.0. Diagnose it.",
+   "expectations": [
+    "The agent builds a timing loop on a large generated input and records a baseline measurement before changing code",
+    "The agent states ranked hypotheses for the slowdown before testing them",
+    "The slowdown is fixed (the per-line array copy is removed) and the speed-up is shown with the same timing loop",
+    "The existing behaviour test still passes after the change"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

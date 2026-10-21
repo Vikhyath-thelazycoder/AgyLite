@@ -1,0 +1,1 @@
+{"name": "log-tools", "version": "2.3.0", "type": "module", "private": true, "scripts": {"test": "node --test"}}

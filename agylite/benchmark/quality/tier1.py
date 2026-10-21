@@ -55,6 +55,9 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
         log(f"    metrics {rec.get('metrics')} cost {rec.get('cost')} {rec.get('isolation_error') or rec.get('error') or ''}")
         records.append(rec)
         (run_dir / "records.json").write_text(json.dumps(records, indent=1, default=str), encoding="utf-8")
+    if hasattr(mod, "finalize"):   # suite-level steps that need every arm (e.g. a blind judge over all pages)
+        records = mod.finalize(records, {"run_dir": run_dir, "judge_model": judge_model})
+        (run_dir / "records.json").write_text(json.dumps(records, indent=1, default=str), encoding="utf-8")
     report = score(suite, cfg, mod, records)
     report.update(run_dir=str(run_dir), model=model or harness.DEFAULT_MODEL, judge_model=judge_model,
                   bundle=(current_bundle().name if current_bundle() else None), date=stamp, runs=runs,

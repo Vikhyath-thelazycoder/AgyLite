@@ -1,0 +1,13 @@
+# IMPLEMENTATION_PLAN §5 design-taste: Taste v2.1's own A/B evals (evals/evals.json), rendered with its inspect.mjs,
+# linted with lint.mjs, and scored by a blind judge with its references/critique.md rubric (the pilot's method).
+name: design-taste
+runner: taste_runner
+upstream_method: "skills/taste-skill copied into the workspace as a project skill (.claude/skills/taste-skill)"
+tasks: [1, 2, 7]          # 1, 2 pages; 7 an app screen (inspected with --app)
+app_evals: [7]
+timeout_s: 1500
+metrics: {inspector_fail: lower, lint_fail: lower, judge_overall: higher}
+target: "inspector and lint FAIL = 0 like the original; judge same"
+credits:
+  - {repository: Leonxlnx/taste-skill, license: MIT, commit: 6010f91a9935f1c167dfc500fb1a475681892e6b,
+     used: "skills/taste-skill/evals/evals.json, scripts/inspect.mjs, scripts/lint.mjs, references/critique.md"}
