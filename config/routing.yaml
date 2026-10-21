@@ -74,6 +74,13 @@ project:
   existing_adds: [codebase/impact-analysis]
   new_forbids_domains: [codebase]
 
+# Owner decision 2026-10-21 (MP3 §3.1): Unlazy's completion gate runs on every multi-step change. Added as a dependency
+# (it does not count toward max_capabilities), only for routed (not unmatched) requests. Design, SEO, media, plan,
+# docs and testing changes are not code-changing types here; MIGRATION_CHANGE is not a change type in this taxonomy.
+change_type_adds:
+  types: [NEW_FEATURE, FEATURE_CHANGE, BUG_FIX, REFACTOR, SECURITY_CHANGE, PERFORMANCE_CHANGE]
+  add: [engineering/completion]
+
 rules:
   # ── Product / new project ─────────────────────────────────────────────────────────────────────────────────────
   - id: new-product

@@ -70,6 +70,9 @@ def validate_routing(cfg, cards, hierarchy):
             p.append(f"change_types.default_by_domain: {dom} → {t} is not a known domain/type")
     if ct.get("fallback") not in CHANGE_TYPES:
         p.append("change_types.fallback must be a spec §54 type")
+    adds = cfg.get("change_type_adds") or {}
+    p += [f"change_type_adds: unknown change type {t}" for t in adds.get("types") or [] if t not in CHANGE_TYPES]
+    p += [f"change_type_adds: unknown capability {c}" for c in adds.get("add") or [] if c not in cards]
     for r in cfg.get("roles") or []:
         if r.get("role") not in hierarchy:
             p.append(f"roles: {r.get('match')} → unknown hierarchy role {r.get('role')!r}")

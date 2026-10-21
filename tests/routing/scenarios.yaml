@@ -17,7 +17,7 @@ scenarios:
   - id: s14-checkout-security
     request: Improve checkout security.
     stage: existing
-    expect: [engineering/security, codebase/impact-analysis, testing/security]
+    expect: [engineering/security, codebase/impact-analysis, testing/security, engineering/completion]
     forbid: [design/, seo/, media/, engineering/simplicity]
     change_type: SECURITY_CHANGE
 
@@ -103,21 +103,21 @@ scenarios:
   - id: s70-a-new-saas
     request: Build me a travel booking SaaS with AI trip planning.
     stage: new
-    expect: [engineering/planning, engineering/architecture, security baseline, design/design-direction, testing/strategy]
+    expect: [engineering/planning, engineering/architecture, security baseline, design/design-direction, testing/strategy, engineering/completion]
     forbid: [codebase/, seo/, media/]
     change_type: NEW_FEATURE
 
   - id: s70-b-existing-maps
     request: Add Google Maps navigation to bookings.
     stage: existing
-    expect: [engineering/implementation, codebase/impact-analysis, codebase/repository-understanding, engineering/security, testing/strategy]
+    expect: [engineering/implementation, codebase/impact-analysis, codebase/repository-understanding, engineering/security, testing/strategy, engineering/completion]
     forbid: [seo/, media/]
     change_type: NEW_FEATURE
 
   - id: s70-c-security-bug
     request: Fix the payment webhook security.
     stage: existing
-    expect: [engineering/security, codebase/impact-analysis, testing/security]
+    expect: [engineering/security, codebase/impact-analysis, testing/security, engineering/completion]
     forbid: [design/, media/, seo/]
     change_type: SECURITY_CHANGE
 
@@ -167,7 +167,7 @@ scenarios:
   - id: refactor-no-simplicity
     request: Refactor the billing module.
     stage: existing
-    expect: [engineering/implementation, codebase/impact-analysis, testing/regression]
+    expect: [engineering/implementation, codebase/impact-analysis, testing/regression, engineering/completion]
     forbid: [engineering/simplicity, seo/, design/, media/]
     change_type: REFACTOR
 
@@ -175,21 +175,21 @@ scenarios:
   - id: trial-cli-build
     request: build a small Python command-line todo app with unit tests
     stage: new
-    expect: [engineering/planning, engineering/architecture, engineering/implementation, testing/strategy]
+    expect: [engineering/planning, engineering/architecture, engineering/implementation, testing/strategy, engineering/completion]
     forbid: [design/, engineering/security, seo/, media/, codebase/]
     change_type: NEW_FEATURE
 
   - id: trial-cli-description
     request: 'A small Python command-line todo app in this folder. Commands: add "<text>", list, done <id>. Todos saved to a local JSON file. Standard library only. Unit tests included.'
     stage: new
-    expect: [engineering/planning, engineering/implementation, testing/strategy]
+    expect: [engineering/planning, engineering/implementation, testing/strategy, engineering/completion]
     forbid: [design/, engineering/security, testing/release-verification, seo/, media/]
     change_type: NEW_FEATURE
 
   - id: trial-web-product
     request: create a web app dashboard for my team with user accounts
     stage: new
-    expect: [engineering/planning, engineering/security, design/design-direction]
+    expect: [engineering/planning, engineering/security, design/design-direction, engineering/completion]
     forbid: [seo/, media/, codebase/]
     change_type: NEW_FEATURE
 

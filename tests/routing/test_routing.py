@@ -36,7 +36,10 @@ class TestRoutingConfig(unittest.TestCase):
         cfg["rules"].append({"id": "bad", "any": ["x"], "select": ["seo/evidence"]})
         cfg["rules"].append({"id": "bad2", "any": ["y"], "select": ["engineering/simplicity"]})
         cfg["change_types"]["order"].pop()
+        cfg["change_type_adds"] = {"types": ["MIGRATION_CHANGE"], "add": ["engineering/nope"]}
         problems = " | ".join(validate_routing(cfg, self.router.cards, self.router.hierarchy))
+        self.assertIn("change_type_adds: unknown change type MIGRATION_CHANGE", problems)
+        self.assertIn("change_type_adds: unknown capability engineering/nope", problems)
         self.assertIn("unknown capability engineering/nonexistent", problems)
         self.assertIn("seo/evidence is internal", problems)
         self.assertIn("engineering/simplicity is explicit-only", problems)
@@ -81,6 +84,24 @@ class TestRouter(unittest.TestCase):
     def test_existing_project_adds_impact_analysis(self):
         self.assertIn("codebase/impact-analysis", self.ids("Fix the crash in the export endpoint", "existing"))
         self.assertNotIn("codebase/impact-analysis", self.ids("Fix the crash in the export endpoint", "new"))
+
+    def test_multi_step_changes_add_completion(self):
+        """MP3 §3.1 (owner decision 2026-10-21): Unlazy's completion gate joins every code-changing task as a
+        dependency (not counted in max_capabilities); quick questions and design/SEO/media/plan/docs/testing do not."""
+        cfg = self.router.cfg["change_type_adds"]
+        self.assertEqual(cfg["add"], ["engineering/completion"])
+        self.assertEqual(set(cfg["types"]), {"NEW_FEATURE", "FEATURE_CHANGE", "BUG_FIX", "REFACTOR",
+                                             "SECURITY_CHANGE", "PERFORMANCE_CHANGE"})
+        r = self.router.route("Fix the off-by-one bug in pagination", project=ProjectFacts(stage="existing"))
+        self.assertEqual(r["change_type"], "BUG_FIX")
+        dep = next(d for d in r["dependencies"] if d["id"] == "engineering/completion")
+        self.assertIn("BUG_FIX", dep["required_by"])
+        self.assertNotIn("engineering/completion", [c["id"] for c in r["capabilities"]])
+        for request in ("What does this function do?", "Make the landing page feel premium."):
+            with self.subTest(request):
+                self.assertNotIn("engineering/completion", capability_ids(self.router.route(request)))
+        self.assertNotIn("engineering/completion",
+                         capability_ids(self.router.route("Translate my grandmother's recipe into Italian")))
 
     def test_internal_capabilities_only_via_dependencies(self):
         result = self.router.route("Audit my website.")

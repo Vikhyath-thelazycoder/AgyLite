@@ -114,6 +114,11 @@ class Router:
                         domains.append(domain_of(cid))
 
         deps = dependency_closure(ids, self.cards, project.stack)
+        adds = self.cfg.get("change_type_adds") or {}
+        if ids and change_type in (adds.get("types") or []):   # MP3 §3.1: completion gate on multi-step changes
+            have = set(ids) | {d["id"] for d in deps}
+            deps += [{"id": cid, "required_by": f"change type {change_type} (completion gate, MP3 §3.1)"}
+                     for cid in adds.get("add") or [] if cid not in have]
         all_ids = set(ids) | {d["id"] for d in deps}
         fallbacks = {c: self.cards[c]["fallback_capability"] for c in ids
                      if self.cards[c]["fallback_capability"] and self.cards[c]["fallback_capability"] not in all_ids}
