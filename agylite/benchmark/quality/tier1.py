@@ -27,7 +27,7 @@ def plan(suite: str, arms=ARMS, runs=1, tasks=None):
 
 
 def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=False, max_sessions=None,
-        model=None, judge_model=None, python=None, out_root: Path | None = None, log=print) -> dict:
+        model=None, judge_model=None, python=None, out_root: Path | None = None, log=print, ledger=True) -> dict:
     cfg, mod, matrix = plan(suite, arms, runs, tasks)
     if dry_run:
         for m in matrix:
@@ -63,6 +63,9 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
                   bundle=(current_bundle().name if current_bundle() else None), date=stamp, runs=runs,
                   isolation="real (--setting-sources project,local --strict-mcp-config; init event checked)")
     (run_dir / "report.json").write_text(json.dumps(report, indent=1, default=str), encoding="utf-8")
+    if ledger:
+        from . import ledger as parity_ledger
+        parity_ledger.append(report)   # IMPLEMENTATION_PLAN §6: every run is recorded
     return report
 
 

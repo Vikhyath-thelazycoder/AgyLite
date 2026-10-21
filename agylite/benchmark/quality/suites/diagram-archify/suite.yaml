@@ -1,0 +1,12 @@
+# IMPLEMENTATION_PLAN §5 diagram-archify: Archify's ordinary-model-floor benchmark (manifest.json, prompts, cases,
+# benchmark.mjs verify). The original arm generates from the packaged skill root (the upstream's fair-run protocol);
+# every candidate is frozen, then verified by benchmark.mjs: semantic gate, `validate --quality showcase`, and a visual
+# review of Archify's own visual-check screenshots by a model reviewer (recorded with its identity, never upgraded).
+name: diagram-archify
+runner: archify_runner
+tasks: [web-runtime.architecture, agent-tool-call.workflow, cache-miss.sequence, product-analytics.dataflow, agent-run.lifecycle]
+metrics: {first_pass_usable: higher, semantic: higher, validation: higher}
+target: same
+credits:
+  - {repository: tt-a1i/archify, license: MIT, commit: 25cf37080fc8b1dbe758a4efc3935b55f3327083,
+     used: "benchmarks/ordinary-model-floor (manifest, prompts, cases, benchmark.mjs), archify/bin/archify.mjs"}

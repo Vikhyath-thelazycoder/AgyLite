@@ -114,5 +114,27 @@ class TestAddyGrading(unittest.TestCase):
         self.assertIsNone(parse_grading(json.dumps(good), 3))
 
 
+class TestLedger(unittest.TestCase):
+    def test_append_writes_json_and_generated_markdown(self):
+        import tempfile
+
+        from agylite.benchmark.quality import ledger
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "docs" / "plan").mkdir(parents=True)
+            rep = {"suite": "eng-addy", "date": "d", "runs": 1, "bundle": "b", "model": "m", "verdict": "near",
+                   "metrics": {"expectations_passed": {"baseline": 0.5, "upstream": 1.0, "agylite": 0.9,
+                                                        "retained": 0.8, "verdict": "near"}},
+                   "cost_usd": {"baseline": 1.0, "upstream": 2.0, "agylite": 1.5}}
+            ledger.append(rep, fix="none", next_step="diagnose", root=root)
+            ledger.note("design-extract baseline waits for its instrument (Phase 5)", root=root)
+            data = json.loads((root / ledger.JSON_PATH).read_text())
+            self.assertEqual((len(data["rows"]), data["rows"][0]["verdict"]), (1, "near"))
+            md = (root / ledger.MD_PATH).read_text()
+            self.assertIn("| eng-addy | 1 |", md)
+            self.assertIn("expectations_passed: 0.5 / 1 / 0.9 (0.8, near)", md)
+            self.assertIn("design-extract baseline waits", md)
+
+
 if __name__ == "__main__":
     unittest.main()
