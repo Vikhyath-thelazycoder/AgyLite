@@ -146,8 +146,8 @@ def run(root: Path, online=False, unittests=True) -> int:
         policy_problems = policy.policy_problems(cfg, cards)
     except (OSError, TypeError, ValueError) as exc:
         cfg, policy_problems = {}, [f"{type(exc).__name__}: {exc}"]
-    r.check(not policy_problems, f"Verification mode {cfg.get('mode')}; browser visual verification, Chrome DevTools "
-            "and screenshot verification disabled; no enabled capability needs a browser outside SEO/media",
+    r.check(not policy_problems, f"Verification mode {cfg.get('mode')}; design work adds Taste inspect (MP4); Chrome "
+            "DevTools and visual browser QA disabled; no enabled capability needs a browser outside SEO/media/design",
             "Verification policy violated: " + "; ".join(policy_problems[:3]))
     r.check(not _forbidden_bundled(root), "No MCP config, appllama-usage, simulator loop or browser-QA file in the bundle plan",
             "Forbidden files in the bundle plan: " + ", ".join(_forbidden_bundled(root)[:3]))

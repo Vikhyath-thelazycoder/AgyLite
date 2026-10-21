@@ -319,7 +319,8 @@ class TestVerificationPolicyState(ProjectEnv):
     def test_state_records_policy_and_evidence(self):
         ver = state.require_state(self.project)["verification"]
         self.assertEqual((ver["mode"], ver["browser_visual_verification"], ver["chrome_devtools"],
-                          ver["screenshot_verification"]), ("local-test-first", "disabled", "disabled", "disabled"))
+                          ver["screenshot_verification"]), ("local-test-first", "enabled", "disabled", "enabled"))
+        # MP4 §3.3: design work adds Taste inspect (browser + hashed screenshots); Chrome DevTools waits for Phase 7
         state.record_verification(self.project, "T-3.1", "PASSED", "python -m unittest: 12 passed")
         ver = state.require_state(self.project)["verification"]
         self.assertEqual((ver["mode"], ver["last"]["evidence"]), ("local-test-first", "python -m unittest: 12 passed"))

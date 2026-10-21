@@ -918,14 +918,15 @@ def _verify_cmd(args):
     kinds = ["test"] if args.command == "test" else (args.kind or None)
     if args.plan:
         impact, selected = engine.plan_for(project, args.paths, full=args.all, kinds=kinds,
-                                           include_e2e=args.include_e2e, bundle_dir=current_bundle())
+                                           include_e2e=args.include_e2e, bundle_dir=current_bundle(),
+                                           inspect=getattr(args, "inspect", None))
         _print(engine.describe(selected, impact), args.json)
         return 0
     try:
         record, rel, results = engine.verify(project, args.paths, full=args.all, kinds=kinds,
                                              include_e2e=args.include_e2e, task=args.task,
                                              bundle_dir=current_bundle(), timeout=args.timeout,
-                                             session_id=_session_id(args))
+                                             session_id=_session_id(args), inspect=getattr(args, "inspect", None))
     except evidence.EvidenceError as exc:
         print(f"agylite verify: {exc}", file=sys.stderr)
         return 1
@@ -1381,7 +1382,10 @@ def build_parser():
             p.add_argument("action", nargs="?", choices=("exception",),
                            help="exception: record a browser-exception request (runs nothing)")
             p.add_argument("--reason", help="With exception: why local verification is insufficient")
-            p.add_argument("--kind", action="append", choices=("test", "security", "typecheck", "lint", "build", "e2e"))
+            p.add_argument("--kind", action="append",
+                           choices=("test", "security", "typecheck", "lint", "build", "e2e", "design"))
+            p.add_argument("--inspect", help="Design changes: the page Taste inspect opens (URL or file; default: "
+                                             "the project's index.html or dist/index.html)")
         p.add_argument("--paths", nargs="*", help="Changed files (default: git working-tree changes)")
         p.add_argument("--plan", action="store_true", help="Show the selected checks without running them")
         p.add_argument("--all", action="store_true", help="Full suites instead of impacted tests")

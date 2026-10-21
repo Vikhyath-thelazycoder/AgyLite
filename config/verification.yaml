@@ -8,9 +8,9 @@ mode: local-test-first
 # Disabled verification mechanisms. `agylite validate` fails if any of them is switched on here, if an enabled
 # capability declares them, or if a routing rule can select a DISABLED_BY_POLICY capability.
 disabled:
-  browser_visual_verification: true
-  chrome_devtools: true
-  screenshot_verification: true
+  browser_visual_verification: false   # MP4 §3.3 + IMPLEMENTATION_PLAN §2.2: Taste inspect checks design work (below)
+  chrome_devtools: true                # Phase 7 (§2.2) enables the rest of browser verification
+  screenshot_verification: false       # inspect screenshots are evidence with their sha256, never instead of tests
   screenshot_comparison: true
   visual_browser_qa: true
   simulator_recording_loop: true
@@ -22,10 +22,11 @@ pipeline: [implement, test, static, security, integration, acceptance, evidence,
 # the full suite runs only for release verification.
 checks: [unit, integration, regression, api, state-dom, security, accessibility, performance, typecheck, lint, build]
 
-# What counts as evidence: a command with its exit code and counts. Never "looks correct" or a screenshot.
+# What counts as evidence: a command with its exit code and counts. Never "looks correct" or a screenshot alone; design
+# inspect screenshots are artefacts (path + sha256) next to a passing command.
 evidence:
   required_fields: [command, exit_code, result, at]
-  optional_fields: [suite, passed, failed, skipped, duration_ms, report, artifact_sha256]
+  optional_fields: [suite, passed, failed, skipped, duration_ms, report, artifact_sha256, artifacts, fails, warns]
   results: [PASSED, FAILED, NOT_TESTED, BLOCKED]
   forbidden: [screenshot, visual inspection, "looks correct"]
 
@@ -44,6 +45,15 @@ browser_exception:
     - screenshots are never sent into model context
     - the reason local verification was insufficient is recorded (BROWSER_EXCEPTION_REQUESTED event)
   scope: project  # recorded in that project's .agylite/verification.yaml only
+
+# Design work (MP4 §3.3, IMPLEMENTATION_PLAN §2.2, owner decision 2026-10-21): a change that touches style or markup is
+# done only when these pass as well as the project's tests, types, lint and build. A missing node>=22, browser or page
+# is recorded as BLOCKED (NOT_RUN …), never a pass. Screenshots count together with tests, never instead of them.
+design_verification:
+  commands:
+    - agylite design check
+    - agylite design taste lint <changed style/markup files>
+    - agylite design taste inspect <page> (0 FAIL at 1440/768/390; screenshots recorded with sha256)
 
 # Browser use that is not verification stays inside its own domain and never becomes engineering evidence.
 scoped_browser_use:

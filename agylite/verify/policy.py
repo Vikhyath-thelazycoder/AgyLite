@@ -10,8 +10,9 @@ import yaml
 from ..paths import repo_root
 
 MODE = "local-test-first"
-MUST_BE_DISABLED = ("browser_visual_verification", "chrome_devtools", "screenshot_verification",
-                    "screenshot_comparison", "visual_browser_qa", "simulator_recording_loop")
+# MP4 §3.3: browser_visual_verification and screenshot_verification are on for design work (Taste inspect); the rest
+# stays off until Phase 7 (IMPLEMENTATION_PLAN §2.2).
+MUST_BE_DISABLED = ("chrome_devtools", "screenshot_comparison", "visual_browser_qa", "simulator_recording_loop")
 
 
 def load_policy(root: Path | None = None):

@@ -14,11 +14,16 @@ def _now():
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def plan_for(project, paths=None, *, full=False, kinds=None, include_e2e=False, bundle_dir=None):
+def plan_for(project, paths=None, *, full=False, kinds=None, include_e2e=False, bundle_dir=None, inspect=None):
     from ..codebase import affected
+    from . import design
     checks = detect.detect(project.root)
     impact = None if full else affected(project, paths, bundle_dir=bundle_dir)
-    return impact, select.plan(checks, impact, full=full, kinds=kinds, include_e2e=include_e2e)
+    selected = select.plan(checks, impact, full=full, kinds=kinds, include_e2e=include_e2e)
+    if not kinds or "design" in kinds:   # MP4 §3.3: style/markup changes also need design check + Taste lint/inspect
+        changed = (impact or {}).get("changed") or list(paths or [])
+        selected += design.checks(project, changed, inspect=inspect, bundle_dir=bundle_dir)
+    return impact, selected
 
 
 def describe(selected, impact):
@@ -45,14 +50,23 @@ def active_task(project):
 
 
 def verify(project, paths=None, *, full=False, kinds=None, include_e2e=False, task=None, bundle_dir=None,
-           timeout=run.DEFAULT_TIMEOUT, session_id=None):
+           timeout=run.DEFAULT_TIMEOUT, session_id=None, inspect=None):
+    from . import design
     task = task or active_task(project)
-    impact, selected = plan_for(project, paths, full=full, kinds=kinds, include_e2e=include_e2e, bundle_dir=bundle_dir)
+    impact, selected = plan_for(project, paths, full=full, kinds=kinds, include_e2e=include_e2e, bundle_dir=bundle_dir,
+                                inspect=inspect)
     emit(project, "VERIFICATION_STARTED", session_id=session_id, capabilities=["testing/local-verification"],
          details={"checks": len(selected), "task": task})
     results = []
     for c, cmd, why, tests in selected:
+        if cmd is None:   # NOT_RUN (e.g. no node>=22 or browser): blocked, never a silent pass
+            results.append({"command": [c.name], "exit_code": "NOT_RUN", "result": "BLOCKED", "duration_ms": 0,
+                            "diagnosis": list(c.notes), "kind": c.kind, "name": c.name, "reason": why,
+                            "tests": tests, "at": _now()})
+            continue
         r = run.run_check(cmd, project.root, timeout)
+        if c.name == "taste inspect":
+            r.update(design.inspect_result(project.root, r))
         if r["result"] == "FAILED" and c.kind in RERUN_KINDS:
             again = run.run_check(cmd, project.root, timeout)
             r["rerun"] = {"exit_code": again["exit_code"], "result": again["result"]}
