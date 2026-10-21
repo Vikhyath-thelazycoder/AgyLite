@@ -161,6 +161,9 @@ class TestRewrites(unittest.TestCase):
                     samples[key] = f.read()
         if not os.path.isdir(staged):
             self.skipTest("staged upstreams needed for the P13 rewrite samples")
+        for key in POCOCK_ADAPT:                                    # MP3 §1.3: real upstream text
+            with open(os.path.join(staged, "pocock", key[1]), encoding="utf-8") as f:
+                samples[key] = f.read()
         self.assertEqual(set(samples), set(rewrites.REWRITES))
         for (repo, path), text in samples.items():
             out = rewrites.apply(repo, path, text)
@@ -182,6 +185,51 @@ class TestRewrites(unittest.TestCase):
     def test_drift_raises(self):
         with self.assertRaises(rewrites.RewriteDrift):
             rewrites.apply("unlazy", "SKILL.md", "upstream rewrote this section")
+
+
+POCOCK_ADAPT = [("pocock", f"skills/{p}/SKILL.md") for p in (
+    "productivity/grill-me", "engineering/grill-with-docs", "engineering/to-spec", "engineering/to-tickets",
+    "engineering/wayfinder", "engineering/improve-codebase-architecture", "engineering/implement",
+    "engineering/implement-spec", "engineering/tdd", "engineering/code-review", "productivity/handoff")]
+
+
+@unittest.skipUnless(os.path.isdir(os.path.join(ROOT_DIR, ".staging", "upstream", "pocock")), "pocock not staged")
+class TestPocockRewrites(unittest.TestCase):
+    """MP3 §1.3: only mechanics change (tracker → plan, Skill tool → agylite skill load, frontmatter); the method
+    text stays whole."""
+
+    def adapted(self, key):
+        with open(os.path.join(ROOT_DIR, ".staging", "upstream", *key), encoding="utf-8") as f:
+            text = f.read()
+        return text, rewrites.apply(*key, text)
+
+    def test_no_host_mechanics_survive(self):
+        for key in POCOCK_ADAPT:
+            with self.subTest(key[1]):
+                text, out = self.adapted(key)
+                for gone in ("Skill tool", "/setup-matt-pocock-skills", "disable-model-invocation"):
+                    self.assertNotIn(gone, out)
+                self.assertIn("agylite", out)
+                self.assertGreaterEqual(len(out), 0.9 * len(text) if len(text) > 1000 else 0)   # not shortened
+
+    def test_skill_calls_load_the_bundled_skill(self):
+        self.assertIn("Run `agylite skill load pocock/grilling`.", self.adapted(POCOCK_ADAPT[0])[1])
+        out = self.adapted(("pocock", "skills/engineering/wayfinder/SKILL.md"))[1]
+        self.assertIn("`agylite skill load pocock/grilling` and `agylite skill load pocock/domain-modeling`", out)
+        self.assertIn("`agylite skills get pocock/research`", out)          # not bundled until MP5
+
+    def test_tracker_is_the_plan(self):
+        spec = self.adapted(("pocock", "skills/engineering/to-spec/SKILL.md"))[1]
+        self.assertIn("In Agylite the tracker is the project's living plan. Write the spec to `docs/specs/<slug>.md`",
+                      spec)
+        self.assertIn("then save it as above; no labels.", spec)
+        self.assertIn("## User Stories", spec)                              # the template is untouched
+        tickets = self.adapted(("pocock", "skills/engineering/to-tickets/SKILL.md"))[1]
+        self.assertIn("### 5. Publish the tickets to the plan", tickets)
+        self.assertIn("--depends <task-id>", tickets)
+        way = self.adapted(("pocock", "skills/engineering/wayfinder/SKILL.md"))[1]
+        self.assertIn("## Wayfinder map: <destination>", way)
+        self.assertIn("[grilling] Decide the auth model", way)
 
 
 class TestChecks(unittest.TestCase):

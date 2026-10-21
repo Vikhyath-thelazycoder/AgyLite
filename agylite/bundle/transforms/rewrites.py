@@ -52,6 +52,70 @@ APPLLAMA_DONE = """## Definition of done, per screen
 
 """
 
+# MP3 §1.3 — Matt Pocock's skills: only the mechanics change. In Agylite the tracker is the project's living plan
+# (`agylite plan`), a "Skill tool" call is `agylite skill load pocock/<name>` (Plan B: the whole skill, IMPLEMENTATION_PLAN
+# §2.1, which overrides MP3's `context --file`), and `disable-model-invocation` is dropped (the router decides).
+POCOCK_TRACKER = ("In Agylite the tracker is the project's living plan. Write the spec to `docs/specs/<slug>.md` and add "
+                  "work with `agylite plan add-task <phase> \"<title>\" --depends <task-id> --acceptance \"<criterion>\"` "
+                  "(one task per ticket; `--depends` for each blocking edge). If the user names an external tracker "
+                  "(GitHub, Linear), ask before publishing anything there.")
+POCOCK_NOT_BUNDLED = {"research": "agylite skills get pocock/research"}   # research domain arrives in MP5
+
+
+def _pocock_load(name):
+    return POCOCK_NOT_BUNDLED.get(name, f"agylite skill load pocock/{name}")
+
+
+def _pocock_call(m):
+    """`Call/calls/calling the Skill tool with "x"` → `Run/runs/running `agylite skill load pocock/x``."""
+    verb = {"": "un", "s": "uns", "ing": "unning"}[m.group(2) or ""]
+    return f"{'R' if m.group(1) == 'C' else 'r'}{verb} `{_pocock_load(m.group(3))}`"
+
+
+def _pocock_twice(m):
+    verb = {"": "un", "s": "uns", "ing": "unning"}[m.group(2) or ""]
+    return (f"{'R' if m.group(1) == 'C' else 'r'}{verb} `{_pocock_load(m.group(3))}` and "
+            f"`{_pocock_load(m.group(4))}`")
+
+
+POCOCK_SKILL_CALL = (re.compile(r"\b([Cc])all(s|ing)? the Skill tool with [\"`]([\w-]+)[\"`]"), _pocock_call)
+POCOCK_SKILL_TWICE = (re.compile(r"\b([Cc])all(s|ing)? the Skill tool twice, for \"([\w-]+)\" and \"([\w-]+)\""),
+                      _pocock_twice)
+POCOCK_NO_AUTO = (re.compile(r"^disable-model-invocation: true\n", re.M), "")
+POCOCK_SETUP = (re.compile(r"The issue tracker (?:and triage label vocabulary )?should have been provided to you\. "
+                           r"If not, tell the user to run `/setup-matt-pocock-skills`\."), POCOCK_TRACKER)
+POCOCK_TICKETS_PUBLISH = (
+    re.compile(r"^### 5\. Publish the tickets to the configured tracker\n.*?(?=^Work the \*\*frontier\*\*)", re.M | re.S),
+    "### 5. Publish the tickets to the plan\n\n"
+    "Publish the approved tickets as tasks in the project's living plan, in dependency order (blockers first), so each "
+    "ticket's blocking edges can reference real task ids: one `agylite plan add-task <phase> \"<NN>: <ticket title>\" "
+    "--depends <task-id> --acceptance \"<criterion>\"` per ticket, one `--depends` per blocking edge (none when it can "
+    "start immediately). Write each ticket's body with the per-ticket template below into `docs/specs/<slug>.md`, one "
+    "`## <NN>: <title>` section per ticket: one ticket per task, never a single combined task. If the user names an "
+    "external tracker (GitHub, Linear), ask before publishing anything there.\n\n")
+WAYFINDER_MAP = (
+    re.compile(r"The map is a single issue on this repo's issue tracker, labelled `wayfinder:map`, the canonical "
+               r"artifact\. Its tickets are child issues of the map\."),
+    "In Agylite the map is a section `## Wayfinder map: <destination>` in the project's living plan, the canonical "
+    "artifact. Its tickets are plan tasks (`agylite plan add-task <phase> \"[<type>] <title>\" --depends <task-id>`), "
+    "the Agylite form of the map's child issues.")
+WAYFINDER_TRACKER = (
+    re.compile(r"The issue tracker should have been provided to you\. If not, tell the user to run "
+               r"`/setup-matt-pocock-skills`\. Consult the tracker doc's \"Wayfinding operations\" section for how "
+               r"_this_ repo expresses them\. If no tracker has been provided, default to the local-markdown tracker\."),
+    "In Agylite they live in the project's living plan: the map is the `## Wayfinder map: <destination>` section, "
+    "each ticket is a plan task, blocking is the task's Depends column (one `--depends` per blocking edge), closing "
+    "a ticket is `agylite plan set-status <task> VERIFIED --evidence <file>`, and the frontier is the PLANNED tasks "
+    "whose blockers are all done (`agylite plan show <phase>`). If the user names an external tracker (GitHub, "
+    "Linear), ask before publishing anything there.")
+WAYFINDER_LABEL = (
+    re.compile(r"Each ticket carries a `wayfinder:<type>` label, one of"),
+    "Each ticket's title starts with its type in brackets, the Agylite form of the `wayfinder:<type>` label (e.g. "
+    "`[grilling] Decide the auth model`), one of")
+WAYFINDER_NOTES = (re.compile(r"call the Skill tool for whichever skills the `## Notes` block names"),
+                   "load whichever skills the `## Notes` block names (`agylite skill load <upstream>/<name>`)")
+
+
 # (repo, path) -> [(pattern, replacement)]
 REWRITES = {
     # P13 (D-027/D-035/D-038): no MCP and no browser automation as a data source; parse artifacts the user provides.
@@ -135,6 +199,39 @@ REWRITES = {
          "controls, menus, pickers, sheets |\n"
          "| [references/motion.md](references/motion.md) | Any Reanimated work: gestures, transitions, springs, layout "
          "animations |\n"),
+    ],
+    ("pocock", "skills/productivity/grill-me/SKILL.md"): [POCOCK_NO_AUTO, POCOCK_SKILL_CALL],
+    ("pocock", "skills/engineering/grill-with-docs/SKILL.md"): [POCOCK_NO_AUTO, POCOCK_SKILL_TWICE],
+    ("pocock", "skills/engineering/to-spec/SKILL.md"): [
+        POCOCK_NO_AUTO, POCOCK_SETUP,
+        (re.compile(r"and publish it to the project issue tracker:"), "and save it in the project's living plan:"),
+        (re.compile(r"then publish it to the project issue tracker\. Apply the `ready-for-agent` triage label - no need "
+                    r"for additional triage\."), "then save it as above; no labels."),
+    ],
+    ("pocock", "skills/engineering/to-tickets/SKILL.md"): [
+        POCOCK_NO_AUTO, POCOCK_SETUP, POCOCK_TICKETS_PUBLISH,
+        (re.compile(r"published to the configured tracker \(edges as text in one file per ticket locally, or native "
+                    r"blocking links on a real tracker\)"),
+         "published as tasks in the project's living plan (one `--depends` per blocking edge)"),
+    ],
+    ("pocock", "skills/engineering/wayfinder/SKILL.md"): [
+        POCOCK_NO_AUTO, WAYFINDER_MAP, WAYFINDER_TRACKER, WAYFINDER_LABEL, WAYFINDER_NOTES, POCOCK_SKILL_TWICE,
+        POCOCK_SKILL_CALL,
+    ],
+    ("pocock", "skills/engineering/improve-codebase-architecture/SKILL.md"): [POCOCK_NO_AUTO, POCOCK_SKILL_CALL],
+    ("pocock", "skills/engineering/implement/SKILL.md"): [
+        POCOCK_NO_AUTO, POCOCK_SKILL_CALL,
+        (re.compile(r"fetch it from the issue tracker and state its title"),
+         "read it from the project's living plan (`agylite plan show <phase>`; a ticket is a task `T-…`) and state its "
+         "title"),
+    ],
+    ("pocock", "skills/engineering/implement-spec/SKILL.md"): [POCOCK_NO_AUTO, POCOCK_SETUP, POCOCK_SKILL_CALL],
+    ("pocock", "skills/engineering/tdd/SKILL.md"): [POCOCK_SKILL_CALL],
+    ("pocock", "skills/engineering/code-review/SKILL.md"): [POCOCK_SETUP],
+    ("pocock", "skills/productivity/handoff/SKILL.md"): [
+        POCOCK_NO_AUTO,
+        (re.compile(r"naming which skills the next agent should call the Skill tool for\."),
+         "naming which skills the next agent should load (`agylite skill load <upstream>/<name>`)."),
     ],
     ("uiuxpromax", ".claude/skills/ui-ux-pro-max/SKILL.md"): [
         (re.compile(r"\$\{CLAUDE_PLUGIN_ROOT\}/\.claude/skills/ui-ux-pro-max/scripts/"),

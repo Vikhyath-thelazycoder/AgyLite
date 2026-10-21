@@ -381,6 +381,16 @@ class TestTrialFixes(ProjectEnv):
         self.assertEqual(run_cli("plan", "set-status", "T-1.1", "IN_PROGRESS", *p)[0], 0)
         self.assertEqual(plan_index.phase(self.state_and_index()[1], "P1")["status"], "IN_PROGRESS")
 
+    def test_add_task_takes_several_blockers(self):
+        """MP3 §1.3: a Pocock ticket often has more than one blocker; `--depends` is repeatable."""
+        p = ("--project", str(self.root))
+        run_cli("plan", "add-task", "P1", "Schema", *p)
+        run_cli("plan", "add-task", "P1", "API", *p)
+        out = run_cli("plan", "add-task", "P1", "[task] Wire the UI", "--depends", "T-1.1", "--depends", "T-1.2",
+                      "--acceptance", "the form saves", *p)[1]
+        self.assertEqual(out.strip(), "T-1.3 added to P1")
+        self.assertIn("| T-1.3 | [task] Wire the UI | PLANNED | T-1.1, T-1.2 |", self.plan_text())
+
     def test_blocking_questions_must_be_answered_before_a_task_starts(self):
         p = ("--project", str(self.root))
         code, out, _ = run_cli("project", "questions", "add", "login", "for", "users", *p, "--json")

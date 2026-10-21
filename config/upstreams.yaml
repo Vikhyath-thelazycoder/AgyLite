@@ -28,3 +28,4 @@ upstreams:
   beacon:     {track: monthly, branch: main}
   beyondseo:  {track: weekly, branch: main}
   appllama:   {track: monthly, branch: main}
+  pocock:     {track: weekly, branch: main}

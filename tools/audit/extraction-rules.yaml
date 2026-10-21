@@ -64,6 +64,38 @@ repos:
       - {paths: ["benchmarks/**"], decision: REFERENCE, reason: "Benchmark methodology for P25 (calls remote LLMs; never bundled)"}
       - {paths: ["tests/**", "pi-extension/**"], decision: EXCLUDE, reason: UPSTREAM_DEV}
 
+  # MP3 §1 (owner decision 2026-10-21): Matt Pocock's skills are the primary source for requirements/grilling, spec,
+  # tickets, architecture (deep modules), TDD and bug diagnosis. The bundler keeps the `skills/` prefix, so bundle
+  # paths are files/pocock/skills/<group>/<skill>/… (MP3 §1.2 allows this when a prefix cannot be stripped).
+  pocock:
+    default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/planning, reason: LICENSE}
+      - {paths: ["**/agents/**"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["skills/productivity/grilling/SKILL.md"], decision: ADAPT, capability: engineering/planning, reason: "Requirements interview (primary)"}
+      - {paths: ["skills/productivity/grill-me/SKILL.md", "skills/engineering/grill-with-docs/SKILL.md"], decision: ADAPT, capability: engineering/planning, reason: "Pointers; Skill-tool calls → agylite skill load (closure)"}
+      - {paths: ["skills/engineering/to-spec/SKILL.md"], decision: ADAPT, capability: engineering/planning, reason: "Spec synthesis; tracker → Agylite plan (MP3 §1.3)"}
+      - {paths: ["skills/engineering/to-tickets/SKILL.md"], decision: ADAPT, capability: engineering/planning, reason: "Tracer-bullet tickets; tracker → agylite plan add-task (MP3 §1.3)"}
+      - {paths: ["skills/engineering/wayfinder/SKILL.md"], decision: ADAPT, capability: engineering/planning, reason: "Multi-session decision map; tracker → plan (MP3 §1.3)"}
+      - {paths: ["skills/engineering/prototype/**", "skills/productivity/to-questionnaire/SKILL.md"], decision: COPY, capability: engineering/planning, reason: "Level 3 (prototype keeps LOGIC.md/UI.md: closure)"}
+      - {paths: ["skills/engineering/domain-modeling/**"], decision: COPY, capability: engineering/architecture, reason: "GLOSSARY + ADR formats"}
+      - {paths: ["skills/engineering/codebase-design/**"], decision: COPY, capability: engineering/architecture, reason: "Deep modules (DEEPENING.md, DESIGN-IT-TWICE.md: closure)"}
+      - {paths: ["skills/engineering/improve-codebase-architecture/**"], decision: ADAPT, capability: engineering/architecture, reason: "Deepening review (primary); Skill-tool calls → agylite skill load; HTML report kept (Archify arrives in MP5)"}
+      - {paths: ["skills/engineering/implement/SKILL.md", "skills/engineering/implement-spec/SKILL.md"], decision: ADAPT, capability: engineering/implementation, reason: "Skill-tool calls → agylite skill load; tracker → plan"}
+      - {paths: ["skills/engineering/tdd/SKILL.md"], decision: ADAPT, capability: testing/strategy, reason: "TDD (primary); its one Skill-tool call → agylite skill load (mechanics only)"}
+      - {paths: ["skills/engineering/tdd/**"], decision: COPY, capability: testing/strategy, reason: "tests.md + mocking.md"}
+      - {paths: ["skills/engineering/diagnosing-bugs/**"], decision: COPY, capability: engineering/debugging, reason: "Diagnosis loop (primary); hitl-loop.template.sh only prompts in the terminal (checked: writes nothing outside the project)"}
+      - {paths: ["skills/engineering/code-review/SKILL.md"], decision: ADAPT, capability: engineering/review, reason: "Level 3; tracker setup line → plan (mechanics only)"}
+      - {paths: ["skills/engineering/pr/**", "skills/engineering/wizard/**"], decision: COPY, capability: engineering/release, reason: "Level 3 (CREDITS.md, template.sh: closure)"}
+      - {paths: ["skills/productivity/handoff/SKILL.md"], decision: ADAPT, capability: engineering/documentation, reason: "Level 3; Skill-tool wording → agylite skill load (mechanics only)"}
+      - {paths: ["skills/engineering/research/**"], decision: REFERENCE, reason: "Research domain arrives in MP5; until then reachable through `agylite skills get pocock/research`"}
+      - {paths: ["skills/productivity/writing-for-agents/**"], decision: REFERENCE, reason: "For maintaining Agylite's own skills"}
+      - {paths: ["skills/engineering/ask-matt/**", "skills/engineering/setup-matt-pocock-skills/**"], decision: EXCLUDE, reason: SUPERSEDED}
+      - {paths: ["skills/engineering/triage/**", "skills/engineering/retro/**"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+      - {paths: ["skills/productivity/teach/**", "skills/productivity/wait-what/**"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+      - {paths: ["skills/in-progress/**", "skills/misc/**", "skills/deprecated/**"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+      - {paths: [".claude-plugin/**", ".codex-plugin/**", ".agents/**", ".changeset/**", ".github/**", ".out-of-scope/**", ".gitignore", "scripts/**", "docs/**", "README.md", "skills/*/README.md", "CHANGELOG.md", "GLOSSARY.md", "SCOPE.md", "AGENTS.md", "CLAUDE.md", "package*.json"], decision: EXCLUDE, reason: REPO_META}
+
   addy:
     default: {decision: EXCLUDE, reason: HOST_PORT}
     rules:

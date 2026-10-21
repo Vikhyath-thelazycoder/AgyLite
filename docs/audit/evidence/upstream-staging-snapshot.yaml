@@ -21,6 +21,7 @@ snapshots:
   beyondseo:  {repo: beyondtahir/beyondseo,              branch: main, head: c160b9d7ba3f8a8c9a11fd042ea218e61183d43b, head_date: 2026-09-25, tracked_files: 221,   size: 5.5M, previous_pin: null, license_files: [LICENSE]}
   # Added 2026-10-05 (D-034): selective overlap audit; only 3 files extracted (MERGED into design/frontend + design/motion).
   appllama:   {repo: Appllama/appllama-skills,           branch: main, head: dd5caaec3d5d50ad7fc0324da238119c6b7c3707, head_date: 2026-09-06, tracked_files: 18,    size: 68K,  previous_pin: null, license_files: [LICENSE]}
+  pocock:     {repo: mattpocock/skills,                  branch: main, head: 5beb35b040e3de97e54fa9e386d7e42d15c295c2, head_date: 2026-10-19, tracked_files: 191,   size: 3.6M, previous_pin: null, license_files: [LICENSE]}
 
 excluded:
   free-for-dev: {repo: ripienaar/free-for-dev, reason: "Explicitly excluded by master spec §3.7. Not fetched. Zero references in current repo (grep -ri 'free-for-dev' → exit 1)."}

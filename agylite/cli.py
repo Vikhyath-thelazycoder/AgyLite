@@ -575,7 +575,7 @@ def _plan_cmd(args):
         return 0
     if cmd == "add-task":
         task, reopened = reconcile.add_task(project, st, index, args.phase, " ".join(args.title),
-                                            capabilities=args.capability or (), depends=args.depends,
+                                            capabilities=args.capability or (), depends=", ".join(args.depends or []) or None,
                                             acceptance=args.acceptance)
         plan_index.load_index(project, st, rebuild=True)
         print(f"{task['id']} added to {args.phase}" + (" (phase reopened)" if reopened else ""))
@@ -1227,7 +1227,7 @@ def build_parser():
     q.add_argument("phase")
     q.add_argument("title", nargs="+")
     q.add_argument("--capability", action="append")
-    q.add_argument("--depends")
+    q.add_argument("--depends", action="append", help="A blocking task id (repeat for several)")
     q.add_argument("--acceptance")
     project_arg(q)
     q = psub.add_parser("set-status", help="Set a task (T-…) or phase (P…) status (spec §25 states)")
