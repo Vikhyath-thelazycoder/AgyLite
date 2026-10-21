@@ -456,14 +456,14 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 
 ## Resume here (next session)
 
-1. `main` is released (v2.0.0 → v2.1.1); all phases M0–M7 and P28 are complete. No build work remains.
-2. Central install done on this machine (2026-10-11): `~/.agylite`, bundle `2502140a790a` known-good, 0 errors; doctor 50/0.
-   Add `export PATH="$HOME/.agylite/core/bin:$PATH"` to the shell profile.
-3. Claude Code plugin `agylite@agylite-marketplace` v2.1.1 installed; **RUNTIME_VERIFIED** (SessionStart hook ran
-   2026-10-11T08:34:45Z). The v1 plugin is removed.
-4. All network checks VERIFIED 2026-10-11: live SEO crawl (owner's GitHub page and `example.com`) and Graphify
-   `test_security` 60/60 (docs/evidence/P16, P25). Nothing open; Codex/Cursor/Antigravity runtime checks only if
-   those hosts get installed. Tests: `python -m unittest discover -s tests`.
+**Parity upgrade (2026-10-21 →, plan in `/Users/vikhyathmgowda007/Developer/os/IMPLEMENTATION_PLAN.md`, Phases 0–9):**
+Phases 0–4 done and on `main` (MP1 critical fixes, MP2 quality benchmarks, Plan B whole skills, MP3 engineering).
+**Next: Phase 5 (MP4 design), after the owner's go-ahead.** The step-by-step resume point, gate commands and every
+report are in `docs/plan/IMPLEMENTATION_LOG.md` → "RESUME FROM"; benchmark results in `docs/plan/PARITY_LEDGER.md`.
+Paid Tier 1 sessions (`claude -p`) are off unless the owner asks again.
+
+Earlier state (v2.x release, 2026-10-11): `main` released v2.0.0 → v2.1.x; central install in `~/.agylite`; Claude Code
+plugin `agylite@agylite-marketplace` installed and runtime-verified. Tests: `python -m unittest discover -s tests`.
 
 ## Change history
 
@@ -509,3 +509,4 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 | 2026-10-11 | P28 | P28 added on request and completed: automatic upstream tracking — daily check, weekly/monthly apply of new commits only through every check, CI pull request, optional Mac job (D-047). 251 tests. |
 | 2026-10-11 | Trial | First hands-on trial (docs/TRY_AGYLITE.md) passed; its gaps fixed in v2.1.2: product routing by interface/exposure, phase roll-up + `last_task`, session-tagged and task events, enforced BLOCKING questions, empty template P1, `.agylite/` not a code change. 257 tests. |
 | 2026-10-11 | Trial 2 | Second hands-on trial on v2.1.2 passed with no failures (route high, question gate, T-1.1, phase roll-up, session-tagged events, test-first). Polish in v2.1.3: same-status changes are no-ops; readable `events list`. 259 tests. |
+| 2026-10-22 | Parity Phases 0–4 | MP1 critical fixes (F1–F15, incl. auto-route on every prompt), MP2 quality benchmark (Tier 0 + Tier 1 harness, parity ledger; Tier 1 baselines eng-ponytail and eng-addy INCONCLUSIVE at n = 1, the rest not run), Plan B (whole skills, `skill load`, skill catalog) and MP3 (Pocock upstream, Ponytail lite ruleset in L0, ponytail-review first, Unlazy on every multi-step change, sources_priority everywhere). 357 tests; Tier 0 PASS. Merged to `main` on the owner's request. Next: MP4. Details: IMPLEMENTATION_LOG.md. |
