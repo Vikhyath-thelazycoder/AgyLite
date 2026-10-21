@@ -141,6 +141,42 @@ MP1 definition-of-done routes (`--brief`):
 This is not a quality-parity claim (n = 1, one arm). The remaining gap (the agent does not load the skill itself) is
 what Phase 3 addresses: whole-skill loading, with the hook telling the agent to run `agylite skill load <primary>`.
 
+## Phase 2: quality benchmarks (MP2) — DONE (built) on `impl/p2-benchmarks` (2026-10-21); baselines partial
+
+### MP2 report
+
+| Item | Commit | Test that proves it | Notes |
+|---|---|---|---|
+| Tier 0 (T0.1 routing OOD, T0.2 context selection, T0.3 fidelity, T0.4 tokens, T0.5 self-tests) | 2ba2c4d | `tests/benchmark/test_quality.py` | baseline `docs/benchmarks/quality-baseline-2026-10-21-tier0.json` |
+| Tier 1 harness (three arms, pilot isolation, `init` event checked, frozen plugin snapshot) | 2ba2c4d, 8703773 | `TestIsolation`, `TestDryRunAndSpend` | each suite uses the upstream's own instrument |
+| Suites: eng-addy, eng-ponytail, eng-pocock, design-taste, diagram-archify | 2ba2c4d, 04ed767, 41d09f3 | `TestSuiteSchema` | credits, license and full SHA per suite |
+| Parity ledger (`docs/plan/parity-ledger.json` → generated `PARITY_LEDGER.md`) | 41d09f3 | `TestLedger` | every run appends a row |
+| Usage-limit stop + `--resume` | e3bb448, 35db7b3, c1db1da | `TestUsageLimit` | a limit reply stops the run (no grading); resume reruns only missing cells; c1db1da fixed a false positive (an agent answer about HTTP 429) |
+
+**Tier 1 baselines (n = 1, Opus 5.5).** Paid sessions were run under the master prompt's spending rule until the
+owner withdrew it on 2026-10-21 (≈ $7.30 of usage). No paid session runs from now on unless the owner asks.
+
+| Suite | Metric: no skill / original / AgyLite | Verdict | Cost no skill / original / AgyLite |
+|---|---|---|---|
+| eng-ponytail | src_loc 45.4 / 19.6 / 42.6 (retained 0.11) | INCONCLUSIVE (noise at n = 1) | $1.21 / $0.92 / $1.14 |
+| eng-addy | expectations_passed 0.903 / 1.0 / 0.958 (retained 0.57); 1 original-arm cell ungraded | INCONCLUSIVE | $0.74 / $1.02 / $0.95 |
+| eng-pocock | 9/30 cells | not measured | — |
+| design-taste, diagram-archify | — | not measured | — |
+| design-extract, youtube, browser-qa, research, routing | instruments arrive in Phases 5–7 | not measured | — |
+
+The baseline finding that matters: in every AgyLite session the hook routed the prompt (`PROMPT_ROUTED`) but the
+agent loaded no context (`context_loaded` 0). Plan B (Phase 3) and MP3 (Phase 4) address this.
+
+### Phase 2 gate (this checkout's code)
+
+```
+unittest discover -s tests     → Ran 317 tests — OK (skipped=3)
+agylite doctor                 → 59 passed, 0 failed, 2 warnings (actionlint not on PATH; weekly pins beyondseo/unlazy 18 days > 14)
+agylite validate               → 23 passed, 0 failed
+agylite benchmark --compare    → 26/26 routing; OLD ≈ 360,338 · NEW ≈ 210,383 (42% less); route p95 0.45 ms
+benchmark --quality --tier 0   → PASS; tokens +0.0% vs the Tier 0 baseline; fidelity review 35%, visual-quality 16% (Plan B fixes)
+```
+
 ## RESUME FROM
 
 **Phase 2 (MP2 quality benchmarks), step 1: build `agylite/benchmark/quality/`** on branch `impl/p2-benchmarks`
