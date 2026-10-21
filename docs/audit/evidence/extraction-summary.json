@@ -230,8 +230,12 @@
     "bytes": 36718
    },
    "REFERENCE": {
-    "files": 31,
-    "bytes": 266161
+    "files": 30,
+    "bytes": 260596
+   },
+   "GENERATED": {
+    "files": 1,
+    "bytes": 5565
    },
    "ADAPT": {
     "files": 5,
@@ -559,9 +563,9 @@
    ]
   },
   "engineering/simplicity": {
-   "files": 23,
-   "bytes": 96321,
-   "est_tokens": 24080,
+   "files": 24,
+   "bytes": 101886,
+   "est_tokens": 25471,
    "sources": [
     "addy",
     "agency",

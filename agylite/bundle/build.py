@@ -24,6 +24,7 @@ from .rules import BUNDLED, classify, compile_rules, evidence_dir, load_capabili
     load_yaml, read_inventory
 from .store import git_blob_sha1, sha256
 from .transforms import TRANSFORM_VERSION, Transformer
+from .transforms.ponytail import GenerateError
 from .transforms.rewrites import RewriteDrift
 
 
@@ -187,9 +188,15 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
             data = src.read_bytes()
             if git_blob_sha1(data) != sha:
                 raise BuildError(f"{repo}:{path} does not match the audited blob hash (staging drift or tampering)")
+            for extra in rule.get("inputs", []):   # a generator reads these too: same audited-hash check
+                extra_sha = next((h for p, _n, h in inventories[repo] if p == extra), None)
+                extra_src = staging / repo / extra
+                if extra_sha is None or not extra_src.is_file() or git_blob_sha1(extra_src.read_bytes()) != extra_sha:
+                    raise BuildError(f"{repo}:{extra} (input of {path}) is missing or does not match its audited hash")
             try:
-                dest_rel, out, file_notes = transformer.apply(repo, path, data, rule["decision"], rule.get("capability", ""))
-            except RewriteDrift as exc:
+                dest_rel, out, file_notes = transformer.apply(repo, path, data, rule["decision"], rule.get("capability", ""),
+                                                              rule=rule, pin=pins[repo])
+            except (RewriteDrift, GenerateError) as exc:
                 raise BuildError(str(exc)) from exc
             # Plain single-link files (D-026): Unlazy refuses multi-link ledgers as tampering, so no hardlink dedup.
             digest = sha256(out)

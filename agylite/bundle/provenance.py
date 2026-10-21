@@ -56,7 +56,7 @@ def planned_records(verified_on: str | None = None):
                 "commit_sha": pins[repo]["head"],
                 "tag": None,
                 "source_path": path,
-                "destination_path": f"{cap}/{repo}/{path}",
+                "destination_path": f"{cap}/{repo}/{rule.get('output', path)}",
                 "domain": domain,
                 "subdomain": subdomain,
                 "capability": cap,

@@ -58,7 +58,7 @@ repos:
       - {paths: ["skills/ponytail/SKILL.md", "skills/ponytail-review/SKILL.md", "skills/ponytail-audit/SKILL.md", "skills/ponytail-debt/SKILL.md", "skills/ponytail-gain/SKILL.md"], decision: ADAPT, capability: engineering/simplicity, reason: "Simplicity/YAGNI discipline; loaded only via routing (never via hooks)"}
       - {paths: ["skills/ponytail-help/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["examples/**"], decision: COPY, capability: engineering/simplicity, reason: "Worked examples (Level 3)"}
-      - {paths: ["hooks/ponytail-instructions.js"], decision: REFERENCE, reason: "Ruleset text source for lite/full/ultra levels"}
+      - {paths: ["hooks/ponytail-instructions.js"], decision: GENERATED, generator: ponytail-lite, inputs: ["hooks/ponytail-config.js"], output: RULESET-lite.md, capability: engineering/simplicity, reason: "MP3 §2.1: lite ruleset generated at build (always on in L0)"}
       - {paths: ["hooks/**", "scripts/**", "plugin.json", "plugin.yaml", "package.json", "opencode.json", "gemini-extension.json", "__init__.py"], decision: EXCLUDE, reason: ALWAYS_ON}
       - {paths: ["ponytail-mcp/**"], decision: EXCLUDE, reason: MCP}
       - {paths: ["benchmarks/**"], decision: REFERENCE, reason: "Benchmark methodology for P25 (calls remote LLMs; never bundled)"}

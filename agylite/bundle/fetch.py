@@ -25,6 +25,7 @@ def needed_paths(evidence: Path):
     for repo, rr in rules_doc["repos"].items():
         inventory = {p for p, _, _ in read_inventory(evidence, repo)}
         paths = {p for p in inventory if classify(rr, p)["decision"] in BUNDLED}
+        paths |= {i for p in paths for i in classify(rr, p).get("inputs", []) if i in inventory}   # generator inputs
         if repo == "gstack":  # generated SKILL.md / sections next to bundled templates are renderer inputs
             paths |= {p[: -len(".tmpl")] for p in paths if p.endswith(".tmpl") and p[: -len(".tmpl")] in inventory}
         paths |= set(licenses.get(repo, {}).get("license_files", []))

@@ -148,7 +148,7 @@ EXCLUDE	ALWAYS_ON		1035	hooks/copilot-hooks.json
 EXCLUDE	ALWAYS_ON		320	hooks/cursor-hooks.json
 EXCLUDE	ALWAYS_ON		7605	hooks/ponytail-activate.js
 EXCLUDE	ALWAYS_ON		5792	hooks/ponytail-config.js
-REFERENCE	Ruleset text source for lite/full/ultra levels		5565	hooks/ponytail-instructions.js
+GENERATED	MP3 §2.1: lite ruleset generated at build (always on in L0)	engineering/simplicity	5565	hooks/ponytail-instructions.js
 EXCLUDE	ALWAYS_ON		4924	hooks/ponytail-map.js
 EXCLUDE	ALWAYS_ON		7431	hooks/ponytail-mode-tracker.js
 EXCLUDE	ALWAYS_ON		7635	hooks/ponytail-runtime.js

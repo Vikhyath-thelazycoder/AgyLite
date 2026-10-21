@@ -10,8 +10,10 @@ import yaml
 
 from ..paths import repo_root
 
-DECISIONS = {"COPY", "ADAPT", "WRAP", "REFERENCE", "PRESERVE", "EXCLUDE"}
-BUNDLED = {"COPY", "ADAPT", "WRAP", "PRESERVE"}
+# GENERATED (MP3 §2.1): the bundled file is the output of a named build-time generator run on the source (plus its
+# `inputs`), written to `output`; provenance keeps the source hash and the output hash.
+DECISIONS = {"COPY", "ADAPT", "WRAP", "REFERENCE", "PRESERVE", "EXCLUDE", "GENERATED"}
+BUNDLED = {"COPY", "ADAPT", "WRAP", "PRESERVE", "GENERATED"}
 
 
 def audit_dir() -> Path:
@@ -69,6 +71,11 @@ def compile_rules(rules_doc, caps):
             cap = rule.get("capability")
             if rule["decision"] in BUNDLED and cap not in caps:
                 errors.append(f"{repo}: bundled rule without known capability: {rule.get('paths')} -> {cap}")
+            if rule["decision"] == "GENERATED":
+                from .transforms.ponytail import GENERATORS
+                if rule.get("generator") not in GENERATORS or not rule.get("output") or len(rule.get("paths", [])) != 1:
+                    errors.append(f"{repo}: GENERATED rule needs one path, a known generator and an output: "
+                                  f"{rule.get('paths')}")
     return errors
 
 

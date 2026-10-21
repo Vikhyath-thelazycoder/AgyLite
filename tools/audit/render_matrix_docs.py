@@ -17,7 +17,7 @@ sys.path.insert(0, ROOT)
 from agylite.registry.loader import load_cards, load_domains  # noqa: E402
 AUDIT = os.path.join(ROOT, "docs", "audit")
 EVIDENCE = os.path.join(AUDIT, "evidence")
-BUNDLED = {"COPY", "ADAPT", "WRAP", "PRESERVE"}
+BUNDLED = {"COPY", "ADAPT", "WRAP", "PRESERVE", "GENERATED"}
 LICENSES = {
     "addy": "MIT", "agency": "MIT", "beacon": "MIT", "beyondseo": "MIT", "brag": "MIT", "ecc": "MIT",
     "graphify": "Apache-2.0 (+MIT)", "gstack": "MIT (+Apache-2.0 notices)", "karpathy": "MIT (declared)",
