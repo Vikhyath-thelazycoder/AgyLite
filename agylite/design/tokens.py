@@ -90,8 +90,24 @@ def scan(root: Path):
     return found
 
 
+def design_md_overrides(root: Path) -> dict:
+    """`design_check_overrides` from DESIGN.md front matter (MP4 §2.3): integer limits an approved design needs."""
+    path = Path(root) / "DESIGN.md"
+    text = path.read_text(encoding="utf-8") if path.is_file() else ""
+    if not text.startswith("---"):
+        return {}
+    try:
+        fm = yaml.safe_load(text.split("---", 2)[1]) or {}
+    except yaml.YAMLError:
+        return {}
+    raw = fm.get("design_check_overrides") or {}
+    return {k: v for k, v in raw.items() if isinstance(v, int) and not isinstance(v, bool)} if isinstance(raw, dict) else {}
+
+
 def check(root: Path, limits=None) -> dict:
-    limits = limits or load_limits()
+    limits = dict(limits or load_limits())
+    applied = {k: v for k, v in design_md_overrides(root).items() if k in limits and v > limits[k]}   # raise only
+    limits.update(applied)
     found = scan(root)
     accents, greys = {}, {}
     for rgb, where in found["colors"].items():
@@ -120,4 +136,4 @@ def check(root: Path, limits=None) -> dict:
     status = "FAIL" if any(c["status"] == "FAIL" for c in checks) else (
         "WARN" if any(c["status"] == "WARN" for c in checks) else "PASS")
     return {"status": status, "checks": checks, "design_md": (root / "DESIGN.md").is_file(),
-            "colors_found": len(found["colors"])}
+            "colors_found": len(found["colors"]), "overrides": applied}

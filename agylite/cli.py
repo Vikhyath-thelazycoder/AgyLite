@@ -698,9 +698,10 @@ def _runtime_cmd(args):
     if args.runtime_cmd == "status":
         from .runtimes import uiux
         from .runtimes import brag, seo
-        from .runtimes import taste
+        from .runtimes import designlang, taste
         _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home), uiux.health(bundle),
-                             taste.health(bundle, home), seo.health(home, bundle), brag.health(home, bundle)]}, args.json)
+                             taste.health(bundle, home), designlang.health(home), seo.health(home, bundle),
+                             brag.health(home, bundle)]}, args.json)
         return 0
     if args.runtime_cmd == "unlazy-hook":
         before = unlazy.stop_hook_commands()
@@ -720,6 +721,14 @@ def _runtime_cmd(args):
         try:
             _print(brag.install_music(home, bundle), args.json)
         except (brag.BragError, OSError) as exc:
+            print(f"agylite runtime install: {exc}", file=sys.stderr)
+            return 1
+        return 0
+    if args.name == "designlang":
+        from .runtimes import designlang
+        try:
+            _print(designlang.install(home), args.json)
+        except (designlang.DesignlangError, OSError) as exc:
             print(f"agylite runtime install: {exc}", file=sys.stderr)
             return 1
         return 0
@@ -824,8 +833,47 @@ def _design_cmd(args):
         except taste.TasteError as exc:
             print(f"agylite design taste: {exc}", file=sys.stderr)
             return 1
+    if args.design_cmd == "extract":   # MP4 §2.3: inspiration URLs → one DESIGN.md, then stop for the owner
+        from .design import extract
+        from .paths import agylite_home
+        from .runtimes import designlang
+        axes = {a: getattr(args, a) for a in extract.AXES if getattr(args, a, None)}
+        if axes and len(args.urls) != 2:
+            print("agylite design extract: --*-from axes need exactly two URLs", file=sys.stderr)
+            return 2
+        try:
+            r = extract.run(project.root.resolve(), args.urls, runtime=designlang.runtime(agylite_home()),
+                            out=args.out, primary=args.primary, dark=args.dark, depth=args.depth, axes=axes,
+                            replace=args.replace, allow_local=args.allow_local)
+        except (extract.ExtractError, designlang.DesignlangError) as exc:
+            print(f"agylite design extract: {exc}", file=sys.stderr)
+            return 2
+        if args.json:
+            _print(r, True)
+            return 0
+        s = r["summary"]
+        print(f"palette: {', '.join(s['palette'])}\nfonts: {', '.join(s['fonts']) or '—'}\n"
+              f"spacing base: {s['spacing_base']}\nradii: {', '.join(map(str, s['radii'])) or '—'}")
+        if r["overrides"]:
+            print(f"design check overrides: {r['overrides']}")
+        print(f"DESIGN.md: {r['design_md']}\nnotes: {r['merge_notes']}\nall outputs: {r['out']}")
+        if r["needs_replace_decision"]:
+            print("A DESIGN.md already exists, so this one was written beside it. Ask the owner before replacing it "
+                  "(rerun with --replace).")
+        print("Stop here: the owner reviews DESIGN.md. Write no UI code until it is approved, then record it:\n"
+              '  agylite decide add --kind design --topic DESIGN.md --decision "DESIGN.md approved" --reason "<who, when>"')
+        return 0
     if args.design_cmd == "check":
         result = tokens.check(project.root.resolve())
+        if result["overrides"]:   # MP4 §2.3: the first use of DESIGN.md's overrides is recorded once
+            from .project import decisions
+            try:
+                if not decisions.find(project, kind="design", topic="design-check-overrides"):
+                    decisions.add(project, kind="design", topic="design-check-overrides",
+                                  decision=f"design check uses the DESIGN.md limits {result['overrides']}",
+                                  reason="The approved DESIGN.md needs more than config/design.yaml allows (MP4 §2.3)")
+            except decisions.DecisionError as exc:
+                print(f"note: decision not recorded ({exc})", file=sys.stderr)
         if args.json:
             _print(result, True)
         else:
@@ -1312,7 +1360,7 @@ def build_parser():
     onoff.add_argument("--enable", action="store_true")
     onoff.add_argument("--disable", action="store_true")
     q = rsub.add_parser("install", help="Install a runtime from the active bundle (network: pip dependencies)")
-    q.add_argument("name", choices=("graphify", "seo", "brag"))
+    q.add_argument("name", choices=("graphify", "seo", "brag", "designlang"))
     q.add_argument("--browser", action="store_true", help="seo: add the browser extra (Playwright + Chromium, large)")
     q.add_argument("--reports", action="store_true", help="seo: add the PDF reports extra")
     q.add_argument("--json", action="store_true", help="JSON output")
@@ -1438,6 +1486,17 @@ def build_parser():
         q.add_argument(f"--{dial}", type=int, choices=range(1, 11), metavar="1-10")
     project_arg(q)
     q = dsub2.add_parser("check", help="Design-token checks: accents, greys, radii, fonts (config/design.yaml)")
+    project_arg(q)
+    q = dsub2.add_parser("extract", help="1-3 inspiration URLs → one DESIGN.md (designlang; MP4)")
+    q.add_argument("urls", nargs="+")
+    q.add_argument("--primary", help="With three URLs: the site paired with the second (default: the first)")
+    q.add_argument("--dark", action="store_true", help="Also extract the dark theme")
+    q.add_argument("--depth", type=int, help="Pages to follow per site")
+    q.add_argument("--out", help="Output folder in the project (default .agylite/design/inspiration)")
+    q.add_argument("--replace", action="store_true", help="Replace an existing DESIGN.md (ask the owner first)")
+    q.add_argument("--allow-local", action="store_true", help="Allow localhost/private URLs (your own dev server)")
+    for axis in ("colors", "typography", "spacing", "shape", "motion", "voice", "components"):
+        q.add_argument(f"--{axis}-from", dest=f"{axis}_from", choices=("a", "b"), help="Two URLs: take this axis from a or b")
     project_arg(q)
     q = dsub2.add_parser("taste", help="Taste v2.1 scripts: draw | inspect | lint | scenes | assets | status (MP4)")
     project_arg(q)

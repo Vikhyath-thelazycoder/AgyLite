@@ -462,6 +462,10 @@ Phases 0–4 done and on `main` (MP1 critical fixes, MP2 quality benchmarks, Pla
 report are in `docs/plan/IMPLEMENTATION_LOG.md` → "RESUME FROM"; benchmark results in `docs/plan/PARITY_LEDGER.md`.
 Paid Tier 1 sessions (`claude -p`) run only with the owner's approval.
 
+**Paid tests at the end of every master prompt (owner, 2026-10-22):** when a master prompt's code is done and green,
+run its paid Tier 1 suites (approved), record results and errors in the ledger and IMPLEMENTATION_LOG.md, then fix the
+errors right away or carry them into the next phases here. Never in the middle of a master prompt.
+
 **After MP6 (owner, 2026-10-22 — do not drop):** run every test, including all paid Tier 1 suites (approved), then
 build a results website: for each task, what plain Claude (no skill), the original skill and AgyLite each produced
 (the code, the grader's checks, the answer), side by side with scores and cost. Not before MP6 is done.
