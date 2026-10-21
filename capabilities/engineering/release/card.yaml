@@ -19,3 +19,4 @@ related_capabilities: [testing/release-verification]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/gstack/ship/SKILL.md, files/gstack/document-release/SKILL.md]

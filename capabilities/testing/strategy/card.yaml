@@ -20,3 +20,4 @@ conflicts: []
 fallback_capability: null
 web_qa_class: CORE
 enabled: true
+sources_priority: [files/pocock/skills/engineering/tdd/SKILL.md, files/addy/skills/test-driven-development/SKILL.md]

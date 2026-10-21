@@ -179,7 +179,7 @@ EXCLUDE	REPO_META		7804	scripts/validate-reference-links.js
 EXCLUDE	REPO_META		3614	scripts/validate-skills.js
 EXCLUDE	REPO_META		905	scripts/validate-versions-test.js
 EXCLUDE	REPO_META		919	scripts/validate-versions.js
-ADAPT	Interface design, ADRs	engineering/architecture	14886	skills/api-and-interface-design/SKILL.md
+ADAPT	Interface design	engineering/architecture	14886	skills/api-and-interface-design/SKILL.md
 EXCLUDE	BROWSER_POLICY		14539	skills/browser-testing-with-devtools/SKILL.md
 ADAPT	Release and production readiness	engineering/release	11332	skills/ci-cd-and-automation/SKILL.md
 ADAPT	Multi-axis review	engineering/review	20976	skills/code-review-and-quality/SKILL.md
@@ -189,7 +189,7 @@ ADAPT	Implementation discipline	engineering/implementation	10681	skills/constrai
 REFERENCE	Design input for the OS context engine (P9)		15486	skills/context-engineering/SKILL.md
 ADAPT	Root-cause debugging	engineering/debugging	10913	skills/debugging-and-error-recovery/SKILL.md
 ADAPT	Deprecation and migration	engineering/migration	12642	skills/deprecation-and-migration/SKILL.md
-ADAPT	Interface design, ADRs	engineering/architecture	10910	skills/documentation-and-adrs/SKILL.md
+ADAPT	MP3 §0: first source of engineering/documentation (docs and ADRs)	engineering/documentation	10910	skills/documentation-and-adrs/SKILL.md
 ADAPT	Implementation discipline	engineering/implementation	16647	skills/doubt-driven-development/SKILL.md
 ADAPT	Frontend engineering	engineering/frontend	11721	skills/frontend-ui-engineering/SKILL.md
 ADAPT	Release and production readiness	engineering/release	14141	skills/git-workflow-and-versioning/SKILL.md

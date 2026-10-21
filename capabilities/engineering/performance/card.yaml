@@ -19,3 +19,4 @@ related_capabilities: [testing/performance]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/addy/skills/performance-optimization/SKILL.md]

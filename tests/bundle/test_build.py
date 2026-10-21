@@ -228,6 +228,7 @@ class TestGeneratedRuleset(unittest.TestCase):
         paths = needed_paths(evidence_dir())["ponytail"]
         self.assertIn("hooks/ponytail-instructions.js", paths)
         self.assertIn("hooks/ponytail-config.js", paths)
+        self.assertIn("skills/ponytail/SKILL.md", paths)      # the JS reads it (getPonytailInstructions → SKILL_PATH)
 
 if __name__ == "__main__":
     unittest.main()

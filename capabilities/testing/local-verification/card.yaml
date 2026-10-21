@@ -21,3 +21,4 @@ conflicts: []
 fallback_capability: null
 web_qa_class: CORE
 enabled: true
+sources_priority: [files/ecc/skills/click-path-audit/SKILL.md]

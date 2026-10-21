@@ -66,8 +66,18 @@ def _first_files(cid, query, bundle):
     return HEADER.findall(text)
 
 
+def agency_in_first_two(entries, priority) -> list:
+    """MP3 §4: Agency files among a capability's first two ranked sources ([] when Agency is all it has)."""
+    from ...context import levels
+    ranked = [e["path"] for e in levels._rank_files(entries, None, priority)]
+    if all(p.startswith("files/agency/") for p in ranked):
+        return []
+    return [p for p in ranked[:2] if p.startswith("files/agency/")]
+
+
 def context_selection(root: Path, bundle: Path) -> dict:
-    """T0.2: the expected first file loads first, with and without a request."""
+    """T0.2: the expected first file loads first, with and without a request; and no Agency file ranks in the first
+    two sources of an engineering/testing capability (MP3 §4)."""
     expected = _yaml(root / "tests" / "context" / "expected_sources.yaml")
     requests = _yaml(root / "tests" / "context" / "fidelity_requests.yaml")
     rows = []
@@ -78,7 +88,16 @@ def context_selection(root: Path, bundle: Path) -> dict:
             got[label] = heads[0][0] if heads else None
         rows.append({"capability": cid, "expected": path, **got,
                      "ok": all(v == path for v in got.values())})
-    return {"rows": rows, "ok": all(r["ok"] for r in rows)}
+    from ...context import levels
+    from ...context.loader import ContextLoader
+    from ...registry import loader as registry
+    loader, agency = ContextLoader(None, None, bundle, use_cache=False), {}
+    for cid, card in registry.load_cards().items():
+        if cid.split("/", 1)[0] in ("engineering", "testing"):
+            bad = agency_in_first_two(loader.files_of(cid), card.get("sources_priority") or [])
+            if bad:
+                agency[cid] = bad
+    return {"rows": rows, "agency_first_two": agency, "ok": all(r["ok"] for r in rows) and not agency}
 
 
 def fidelity(root: Path, bundle: Path) -> dict:
@@ -165,6 +184,9 @@ def render(r: dict) -> str:
                   "|---|---|---|---|:---:|"]
         lines += [f"| {x['capability']} | {x['expected']} | {x['no request']} | {x['request']} | {'✔' if x['ok'] else '✗'} |"
                   for x in r["context_selection"]["rows"]]
+        agency = r["context_selection"].get("agency_first_two") or {}
+        lines += ["", "Agency in the first two sources (MP3 §4): " + ("; ".join(f"{c}: {', '.join(p)}"
+                                                                        for c, p in agency.items()) or "none")]
         lines += ["", "## T0.3 Fidelity (primary source; reported, not gated)", "",
                   "| capability | primary | loaded | tokens |", "|---|---|---|---:|"]
         for x in r["fidelity"]["rows"]:

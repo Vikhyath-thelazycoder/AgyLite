@@ -19,3 +19,4 @@ related_capabilities: [design/frontend]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/addy/skills/frontend-ui-engineering/SKILL.md]

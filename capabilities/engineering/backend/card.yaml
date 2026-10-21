@@ -19,3 +19,4 @@ related_capabilities: []
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/ecc/skills/backend-patterns/SKILL.md]

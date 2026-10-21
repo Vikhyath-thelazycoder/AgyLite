@@ -20,3 +20,4 @@ related_capabilities: [testing/security, codebase/impact-analysis]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/addy/skills/security-and-hardening/SKILL.md, files/gstack/cso/SKILL.md]

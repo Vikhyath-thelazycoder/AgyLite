@@ -19,3 +19,4 @@ related_capabilities: [codebase/impact-analysis]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/addy/skills/deprecation-and-migration/SKILL.md, files/ecc/skills/database-migrations/SKILL.md]

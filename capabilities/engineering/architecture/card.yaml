@@ -19,3 +19,4 @@ related_capabilities: [engineering/planning, codebase/repository-understanding]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/pocock/skills/engineering/improve-codebase-architecture/SKILL.md, files/pocock/skills/engineering/codebase-design/SKILL.md]

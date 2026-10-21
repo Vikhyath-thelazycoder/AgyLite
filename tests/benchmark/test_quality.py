@@ -172,6 +172,18 @@ class TestUsageLimit(unittest.TestCase):
         self.assertTrue(tier1._valid({"label": "x", "metrics": {"score": 0.0, "other": None}}))
 
 
+class TestAgencyNotFirst(unittest.TestCase):
+    def test_agency_files_never_rank_in_the_first_two(self):
+        """MP3 §4: no Agency file is among an engineering/testing capability's first two sources, unless Agency is
+        all it has (then there is nothing else to rank first)."""
+        from agylite.benchmark.quality.tier0 import agency_in_first_two
+        e = lambda p, kind="skill": {"path": p, "kind": kind, "tokens": 10, "name": p.split("/")[-2]}   # noqa: E731
+        entries = [e("files/agency/testing/a.md", "doc"), e("files/ecc/skills/x/SKILL.md"), e("files/addy/skills/y/SKILL.md")]
+        self.assertEqual(agency_in_first_two(entries, ["files/agency/testing/a.md"]), ["files/agency/testing/a.md"])
+        self.assertEqual(agency_in_first_two(entries, ["files/ecc/skills/x/SKILL.md"]), [])
+        self.assertEqual(agency_in_first_two([e("files/agency/testing/a.md", "doc")], []), [])
+
+
 class TestSuiteSchema(unittest.TestCase):
     def test_every_suite_has_credits_license_and_a_full_sha(self):
         self.assertTrue(suites.names())

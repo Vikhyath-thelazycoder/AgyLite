@@ -16,10 +16,12 @@ TIMEOUT = 10
 MAX_BYTES = 8 * 1024
 LEVEL = "lite"
 CALL = "process.stdout.write(require(process.argv[1]).getPonytailInstructions(process.argv[2]))"
-# Ponytail's own level commands do not exist in Agylite; the level is a config switch (mechanics only).
-SWITCH = re.compile(r"^Switch level: `/ponytail lite\|full\|ultra`\. Off: \"stop ponytail\" or \"normal mode\"\.$", re.M)
-SWITCH_AGYLITE = ("Level: lite, always on through Agylite (`config/discipline.yaml` → `ponytail_ruleset: lite|off`). "
-                  "Full Ponytail reviews: `agylite skill load ponytail/ponytail-review`.")
+# Ponytail's own level commands do not exist in Agylite; the level is a config switch (mechanics only). The JS builds
+# the text from skills/ponytail/SKILL.md (a declared input), or from a built-in fallback when that file is missing;
+# both carry this sentence.
+SWITCH = re.compile(r"Switch level: `/ponytail lite\|full\|ultra`\.")
+SWITCH_AGYLITE = ("Level: lite, always on through Agylite (`config/discipline.yaml` → `ponytail_ruleset: lite|off`); "
+                  "reviews: `agylite skill load ponytail/ponytail-review`.")
 CONTROL = re.compile(r"[\x00-\x08\x0b-\x1f\x7f]")
 
 

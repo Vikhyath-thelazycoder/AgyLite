@@ -59,7 +59,7 @@ repos:
       - {paths: ["skills/ponytail/SKILL.md", "skills/ponytail-audit/SKILL.md", "skills/ponytail-debt/SKILL.md", "skills/ponytail-gain/SKILL.md"], decision: ADAPT, capability: engineering/simplicity, reason: "Simplicity/YAGNI discipline; loaded only via routing (never via hooks)"}
       - {paths: ["skills/ponytail-help/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["examples/**"], decision: COPY, capability: engineering/simplicity, reason: "Worked examples (Level 3)"}
-      - {paths: ["hooks/ponytail-instructions.js"], decision: GENERATED, generator: ponytail-lite, inputs: ["hooks/ponytail-config.js"], output: RULESET-lite.md, capability: engineering/simplicity, reason: "MP3 §2.1: lite ruleset generated at build (always on in L0)"}
+      - {paths: ["hooks/ponytail-instructions.js"], decision: GENERATED, generator: ponytail-lite, inputs: ["hooks/ponytail-config.js", "skills/ponytail/SKILL.md"], output: RULESET-lite.md, capability: engineering/simplicity, reason: "MP3 §2.1: lite ruleset generated at build (always on in L0)"}
       - {paths: ["hooks/**", "scripts/**", "plugin.json", "plugin.yaml", "package.json", "opencode.json", "gemini-extension.json", "__init__.py"], decision: EXCLUDE, reason: ALWAYS_ON}
       - {paths: ["ponytail-mcp/**"], decision: EXCLUDE, reason: MCP}
       - {paths: ["benchmarks/**"], decision: REFERENCE, reason: "Benchmark methodology for P25 (calls remote LLMs; never bundled)"}
@@ -109,7 +109,8 @@ repos:
       - {paths: ["references/observability-checklist.md"], decision: COPY, capability: engineering/release, reason: "Shared reference (closure)"}
       - {paths: ["references/orchestration-patterns.md"], decision: COPY, capability: engineering/planning, reason: "Shared reference (closure)"}
       - {paths: ["skills/spec-driven-development/**", "skills/planning-and-task-breakdown/**", "skills/interview-me/**", "skills/idea-refine/**"], decision: ADAPT, capability: engineering/planning, reason: "Requirements and planning"}
-      - {paths: ["skills/api-and-interface-design/**", "skills/documentation-and-adrs/**"], decision: ADAPT, capability: engineering/architecture, reason: "Interface design, ADRs"}
+      - {paths: ["skills/api-and-interface-design/**"], decision: ADAPT, capability: engineering/architecture, reason: "Interface design"}
+      - {paths: ["skills/documentation-and-adrs/**"], decision: ADAPT, capability: engineering/documentation, reason: "MP3 §0: first source of engineering/documentation (docs and ADRs)"}
       - {paths: ["skills/incremental-implementation/**", "skills/source-driven-development/**", "skills/constraint-driven-development/**", "skills/doubt-driven-development/**"], decision: ADAPT, capability: engineering/implementation, reason: "Implementation discipline"}
       - {paths: ["skills/frontend-ui-engineering/**"], decision: ADAPT, capability: engineering/frontend, reason: "Frontend engineering"}
       - {paths: ["skills/security-and-hardening/**"], decision: ADAPT, capability: engineering/security, reason: "Security hardening + hardening-patterns reference"}

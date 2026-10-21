@@ -19,3 +19,4 @@ related_capabilities: [codebase/impact-analysis, testing/strategy]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/addy/skills/incremental-implementation/SKILL.md, files/pocock/skills/engineering/implement-spec/SKILL.md]

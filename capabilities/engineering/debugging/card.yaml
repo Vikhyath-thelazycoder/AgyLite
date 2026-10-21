@@ -19,3 +19,4 @@ related_capabilities: [codebase/code-search, testing/regression]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/pocock/skills/engineering/diagnosing-bugs/SKILL.md, files/gstack/investigate/SKILL.md]

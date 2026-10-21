@@ -20,4 +20,4 @@ conflicts: []
 fallback_capability: null
 enabled: true
 # MP1 F5: the primary source loads first (was alphabetical by upstream folder).
-sources_priority: [files/gstack/review/SKILL.md, files/addy/skills/code-review-and-quality/SKILL.md]
+sources_priority: [files/ponytail/skills/ponytail-review/SKILL.md, files/gstack/review/SKILL.md]

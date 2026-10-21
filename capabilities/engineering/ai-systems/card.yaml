@@ -19,3 +19,4 @@ related_capabilities: [testing/regression]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/ecc/skills/agentic-engineering/SKILL.md]

@@ -20,3 +20,4 @@ related_capabilities: []
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/ecc/skills/codebase-onboarding/SKILL.md, files/ecc/skills/repo-scan/SKILL.md]

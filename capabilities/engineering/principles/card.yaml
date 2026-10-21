@@ -20,3 +20,4 @@ related_capabilities: []
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/karpathy/skills/karpathy-guidelines/SKILL.md, files/ecc/skills/coding-standards/SKILL.md]

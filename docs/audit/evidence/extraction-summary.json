@@ -418,9 +418,9 @@
    ]
   },
   "engineering/architecture": {
-   "files": 22,
-   "bytes": 156864,
-   "est_tokens": 39216,
+   "files": 21,
+   "bytes": 145954,
+   "est_tokens": 36488,
    "sources": [
     "addy",
     "agency",
@@ -458,10 +458,11 @@
    ]
   },
   "engineering/documentation": {
-   "files": 9,
-   "bytes": 105519,
-   "est_tokens": 26379,
+   "files": 10,
+   "bytes": 116429,
+   "est_tokens": 29107,
    "sources": [
+    "addy",
     "agency",
     "ecc",
     "gstack",

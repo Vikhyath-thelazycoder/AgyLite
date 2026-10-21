@@ -21,3 +21,4 @@ related_capabilities: []
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/ponytail/skills/ponytail/SKILL.md, files/addy/skills/code-simplification/SKILL.md]

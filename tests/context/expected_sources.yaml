@@ -1,6 +1,25 @@
 # MP2 T0.2: the first file each capability must load at L2 (with and without --request). MP3/MP4/MP5 append here in
 # the commit that changes the capability's sources_priority.
-engineering/completion: files/unlazy/SKILL.md
 design/visual-quality: files/taste/skills/taste-skill/SKILL.md
-engineering/review: files/gstack/review/SKILL.md          # MP3 changes to ponytail-review
-engineering/planning: files/addy/skills/interview-me/SKILL.md   # MP3 changes to Pocock grilling
+engineering/principles: files/karpathy/skills/karpathy-guidelines/SKILL.md
+engineering/planning: files/pocock/skills/productivity/grilling/SKILL.md
+engineering/architecture: files/pocock/skills/engineering/improve-codebase-architecture/SKILL.md
+engineering/implementation: files/addy/skills/incremental-implementation/SKILL.md
+testing/strategy: files/pocock/skills/engineering/tdd/SKILL.md
+engineering/debugging: files/pocock/skills/engineering/diagnosing-bugs/SKILL.md
+engineering/review: files/ponytail/skills/ponytail-review/SKILL.md
+engineering/security: files/addy/skills/security-and-hardening/SKILL.md
+engineering/simplicity: files/ponytail/skills/ponytail/SKILL.md
+engineering/completion: files/unlazy/SKILL.md
+engineering/release: files/gstack/ship/SKILL.md
+engineering/documentation: files/addy/skills/documentation-and-adrs/SKILL.md
+engineering/backend: files/ecc/skills/backend-patterns/SKILL.md
+engineering/frontend: files/addy/skills/frontend-ui-engineering/SKILL.md
+engineering/performance: files/addy/skills/performance-optimization/SKILL.md
+engineering/migration: files/addy/skills/deprecation-and-migration/SKILL.md
+engineering/ai-systems: files/ecc/skills/agentic-engineering/SKILL.md
+testing/local-verification: files/ecc/skills/click-path-audit/SKILL.md
+testing/performance: files/ecc/skills/benchmark-methodology/SKILL.md
+testing/regression: files/ecc/skills/ai-regression-testing/SKILL.md
+testing/release-verification: files/ecc/skills/verification-loop/SKILL.md
+codebase/repository-understanding: files/ecc/skills/codebase-onboarding/SKILL.md
