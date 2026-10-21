@@ -13,7 +13,7 @@ sys.path.insert(0, ROOT_DIR)
 from agylite.cli import main  # noqa: E402
 from agylite.registry import generate, loader, schema  # noqa: E402
 
-EXPECTED_CAPABILITIES = 63  # D-035: + testing/evidence
+EXPECTED_CAPABILITIES = 64  # D-035: + testing/evidence; MP4 §2.5: + design/inspiration-extract
 def _expected_bundled_files():
     """Bundled files per the generated extraction summary (COPY + ADAPT + PRESERVE + GENERATED, MP3 §2.1). Upstream updates (P28) change the
     number; these tests check that provenance, registry and licenses all agree with the audited extraction matrix."""
@@ -197,7 +197,7 @@ class TestCli(unittest.TestCase):
     def test_check_show_list(self):
         code, out = self.run_cli("registry", "check", "--no-bundle")
         self.assertEqual(code, 0, out)
-        self.assertIn("63 capabilities", out)
+        self.assertIn(f"{EXPECTED_CAPABILITIES} capabilities", out)
         code, out = self.run_cli("registry", "show", "engineering/security")
         self.assertEqual(code, 0)
         self.assertIn("priority: 90", out)

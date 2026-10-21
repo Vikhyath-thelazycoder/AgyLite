@@ -29,3 +29,4 @@ upstreams:
   beyondseo:  {track: weekly, branch: main}
   appllama:   {track: monthly, branch: main}
   pocock:     {track: weekly, branch: main}
+  designlang: {track: releases, branch: main}   # MP4 §2.2: the runtime is the npm package; follow its releases

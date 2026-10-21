@@ -40,7 +40,7 @@ class TestSecurity(unittest.TestCase):
         with open(snap_path, "r", encoding="utf-8") as f:
             snapshots = yaml.safe_load(f)["snapshots"]
         hex_sha_regex = re.compile(r'^[0-9a-f]{40}$')
-        self.assertEqual(len(snapshots), 16)  # 14 + Appllama (D-034) + Pocock (MP3 §1.1)
+        self.assertEqual(len(snapshots), 17)  # 14 + Appllama (D-034) + Pocock (MP3 §1.1) + designlang (MP4 §2)
         for name, meta in snapshots.items():
             self.assertTrue(hex_sha_regex.match(meta.get("head", "")),
                             f"Upstream {name} head '{meta.get('head')}' is not a valid 40-character hexadecimal SHA")

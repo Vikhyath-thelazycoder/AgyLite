@@ -108,6 +108,20 @@
     "bytes": 16591696
    }
   },
+  "designlang": {
+   "EXCLUDE": {
+    "files": 1745,
+    "bytes": 26529548
+   },
+   "COPY": {
+    "files": 7,
+    "bytes": 12120
+   },
+   "REFERENCE": {
+    "files": 9,
+    "bytes": 92481
+   }
+  },
   "ecc": {
    "EXCLUDE": {
     "files": 3865,
@@ -375,6 +389,14 @@
     "opendesign",
     "taste",
     "uiuxpromax"
+   ]
+  },
+  "design/inspiration-extract": {
+   "files": 7,
+   "bytes": 12120,
+   "est_tokens": 3030,
+   "sources": [
+    "designlang"
    ]
   },
   "design/motion": {

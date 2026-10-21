@@ -1,0 +1,22 @@
+# design/inspiration-extract — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP4 §2: 1-3 inspiration URLs → designlang reads each site → one merged DESIGN.md the owner approves before UI code.
+name: Inspiration extract
+description: Read 1-3 inspiration sites with designlang into one DESIGN.md (systems, never identity) for owner approval
+intent_tags: [inspiration, inspired by, extract design, design tokens from, design system from, design language, look like, feel like, steal like an artist]
+origin: mixed
+runtime_type: node
+requires_network: true
+requires_browser: required-for-output
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: project
+activation_conditions:
+  when: [the request has inspiration URLs and asks for their look, style or design system]
+verification_requirements: [one DESIGN.md with the 8 canonical sections; sources and mode inspiration in its front matter; owner approval recorded before UI code]
+dependencies: [design/design-system]
+related_capabilities: [design/design-direction, design/visual-quality]
+conflicts: []
+fallback_capability: null
+enabled: true

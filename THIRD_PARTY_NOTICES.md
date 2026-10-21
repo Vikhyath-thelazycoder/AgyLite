@@ -12,6 +12,7 @@ Agylite bundles selected content from the upstream projects below (see `tools/au
 | [Asymptote-Labs/agent-beacon](https://github.com/Asymptote-Labs/agent-beacon) | `2462839` | MIT | Copyright (c) 2026 Asymptote Labs | 78 | `LICENSE` |
 | [beyondtahir/beyondseo](https://github.com/beyondtahir/beyondseo) | `c160b9d` | MIT | Copyright (c) 2026 Muhammad Tahir Ashraf (Beyond Tahir) | 199 | `LICENSE`, `THIRD_PARTY_NOTICES.md` |
 | [latent-spaces/brag](https://github.com/latent-spaces/brag) | `069432c` | MIT | Copyright (c) 2026 Shunit Haviv Hakimi | 291 | `LICENSE` |
+| [Manavarya09/design-extract](https://github.com/Manavarya09/design-extract) | `86bdbb5` | MIT | Copyright (c) 2024 Manavarya Singh | 7 | `LICENSE` |
 | [affaan-m/ECC](https://github.com/affaan-m/ECC) | `2d515e4` | MIT | Copyright (c) 2026 Affaan Mustafa | 408 | `LICENSE` |
 | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `b90b9df` | Apache-2.0 | Copyright (c) 2026 Safi Shamsi | 661 | `LICENSE`, `LICENSE-MIT`, `NOTICE` |
 | [garrytan/gstack](https://github.com/garrytan/gstack) | `5cb5e1c` | MIT | Copyright (c) 2026 Garry Tan | 103 | `LICENSE`, `NOTICE.md`, `licenses/Apache-2.0.txt` |

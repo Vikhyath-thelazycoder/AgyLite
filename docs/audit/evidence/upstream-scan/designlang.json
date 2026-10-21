@@ -1,0 +1,540 @@
+{
+ "repo": "designlang",
+ "head": "86bdbb53379d4c1f37ce407f706678c95181ea42",
+ "totals": {
+  "files": 1761,
+  "bytes": 26634149,
+  "submodules": []
+ },
+ "top_dirs": {
+  "website": 1444,
+  "src": 163,
+  "tests": 43,
+  "docs": 15,
+  "(root)": 14,
+  "commands": 14,
+  ".github": 12,
+  "chrome-extension": 11,
+  "raycast-extension": 9,
+  "bench": 7,
+  "marketplace": 7,
+  "vscode-extension": 7,
+  "figma-plugin": 4,
+  "github-action": 3,
+  ".claude-plugin": 2,
+  "assets": 2,
+  ".claude": 1,
+  "bin": 1,
+  "scripts": 1,
+  "skills": 1
+ },
+ "extensions": {
+  ".js": 410,
+  ".json": 360,
+  ".md": 270,
+  ".css": 218,
+  ".html": 146,
+  ".xml": 49,
+  ".php": 48,
+  ".ts": 37,
+  ".txt": 30,
+  ".mdc": 24,
+  ".fragment": 24,
+  ".kt": 24,
+  ".dart": 24,
+  ".swift": 24,
+  ".tsx": 15,
+  ".pdf": 13,
+  ".yml": 12,
+  ".png": 9,
+  ".svg": 8,
+  "(none)": 5,
+  ".mjs": 4,
+  ".tape": 1,
+  ".cjs": 1,
+  ".sh": 1,
+  ".dockerfile": 1
+ },
+ "host_dirs": [
+  ".claude",
+  ".claude-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json",
+  "package.json",
+  "raycast-extension/package.json",
+  "vscode-extension/package.json",
+  "website/package.json"
+ ],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/extract-design/SKILL.md",
+   "name": "extract-design",
+   "description": "Extract the full design language from any website URL. Produces 8 output files including AI-optimized markdown, visual HTML preview, Tailwind config, React theme, shadcn/ui theme, Figma variables, W3C design tokens, and CSS variables. Also ",
+   "bytes": 3344
+  },
+  {
+   "path": "website/public/gallery/cal-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for cal.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 806
+  },
+  {
+   "path": "website/public/gallery/clerk-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for clerk.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 813
+  },
+  {
+   "path": "website/public/gallery/coinbase-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for coinbase.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 791
+  },
+  {
+   "path": "website/public/gallery/discord-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for discord.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 918
+  },
+  {
+   "path": "website/public/gallery/duolingo-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for duolingo.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 942
+  },
+  {
+   "path": "website/public/gallery/framer-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for framer.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 908
+  },
+  {
+   "path": "website/public/gallery/loom-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for loom.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 1125
+  },
+  {
+   "path": "website/public/gallery/mintlify-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for mintlify.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 940
+  },
+  {
+   "path": "website/public/gallery/netflix-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for netflix.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 837
+  },
+  {
+   "path": "website/public/gallery/perplexity-ai/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for perplexity.ai \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 793
+  },
+  {
+   "path": "website/public/gallery/planetscale-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for planetscale.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 847
+  },
+  {
+   "path": "website/public/gallery/posthog-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for posthog.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 857
+  },
+  {
+   "path": "website/public/gallery/postman-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for postman.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 990
+  },
+  {
+   "path": "website/public/gallery/railway-app/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for railway.app \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 892
+  },
+  {
+   "path": "website/public/gallery/ramp-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for ramp.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 761
+  },
+  {
+   "path": "website/public/gallery/raycast-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for raycast.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 767
+  },
+  {
+   "path": "website/public/gallery/render-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for render.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 842
+  },
+  {
+   "path": "website/public/gallery/replit-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for replit.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 765
+  },
+  {
+   "path": "website/public/gallery/resend-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for resend.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 937
+  },
+  {
+   "path": "website/public/gallery/retool-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for retool.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 892
+  },
+  {
+   "path": "website/public/gallery/sentry-io/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for sentry.io \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 974
+  },
+  {
+   "path": "website/public/gallery/supabase-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for supabase.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 820
+  },
+  {
+   "path": "website/public/gallery/v0-dev/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for v0.dev \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 873
+  },
+  {
+   "path": "website/public/gallery/webflow-com/.claude/skills/designlang/SKILL.md",
+   "name": "designlang-tokens",
+   "description": "Use when styling UI for webflow.com \u2014 references the extracted design system tokens instead of inventing colors, spacing, or typography.",
+   "bytes": 977
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 14,
+  "files": [
+   "commands/battle.md",
+   "commands/brand.md",
+   "commands/dna.md",
+   "commands/extract.md",
+   "commands/fidelity.md",
+   "commands/gallery.md",
+   "commands/grade.md",
+   "commands/pack.md",
+   "commands/pair.md",
+   "commands/remix.md",
+   "commands/site.md",
+   "commands/studio.md",
+   "commands/theme-swap.md",
+   "commands/verify.md"
+  ]
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 62,
+   "files": [
+    "CHANGELOG.md",
+    "README.md",
+    "bin/design-extract.js",
+    "docs/MCP-REGISTRY.md",
+    "docs/superpowers/plans/2026-04-18-designlang-v7.md",
+    "docs/superpowers/specs/2026-04-18-designlang-v7-design.md",
+    "marketplace/SUBMISSION-PLAYBOOK.md",
+    "marketplace/cursor-listing.md",
+    "package-lock.json",
+    "package.json",
+    "smithery.yaml",
+    "src/formatters/agent-prompt.js",
+    "src/mcp/server.js",
+    "src/studio.js",
+    "tests/mcp-v2.test.js",
+    "tests/mcp.test.js",
+    "website/app/blog/mcp-launch/page.js",
+    "website/app/components/McpSection.js",
+    "website/app/components/ResultViewer.js",
+    "website/app/gallery/[slug]/page.js",
+    "website/app/page.js",
+    "website/lib/build-files.js",
+    "website/public/CHANGELOG.md",
+    "website/public/README.md",
+    "website/public/gallery/airbnb-com/airbnb-com-AGENT.md",
+    "website/public/gallery/anthropic-com/anthropic-com-AGENT.md",
+    "website/public/gallery/apple-com/apple-com-AGENT.md",
+    "website/public/gallery/arc-net/arc-net-AGENT.md",
+    "website/public/gallery/cal-com/cal-com-AGENT.md",
+    "website/public/gallery/clerk-com/clerk-com-AGENT.md",
+    "website/public/gallery/coinbase-com/coinbase-com-AGENT.md",
+    "website/public/gallery/discord-com/discord-com-AGENT.md",
+    "website/public/gallery/duolingo-com/duolingo-com-AGENT.md",
+    "website/public/gallery/figma-com/figma-com-AGENT.md",
+    "website/public/gallery/framer-com/framer-com-AGENT.md",
+    "website/public/gallery/github-com/github-com-AGENT.md",
+    "website/public/gallery/linear-app/linear-app-AGENT.md",
+    "website/public/gallery/loom-com/loom-com-AGENT.md",
+    "website/public/gallery/mintlify-com/mintlify-com-AGENT.md",
+    "website/public/gallery/netflix-com/netflix-com-AGENT.md",
+    "website/public/gallery/notion-so/notion-so-AGENT.md",
+    "website/public/gallery/openai-com/openai-com-AGENT.md",
+    "website/public/gallery/perplexity-ai/perplexity-ai-AGENT.md",
+    "website/public/gallery/planetscale-com/planetscale-com-AGENT.md",
+    "website/public/gallery/posthog-com/posthog-com-AGENT.md",
+    "website/public/gallery/postman-com/postman-com-AGENT.md",
+    "website/public/gallery/railway-app/railway-app-AGENT.md",
+    "website/public/gallery/ramp-com/ramp-com-AGENT.md",
+    "website/public/gallery/raycast-com/raycast-com-AGENT.md",
+    "website/public/gallery/render-com/render-com-AGENT.md",
+    "website/public/gallery/replit-com/replit-com-AGENT.md",
+    "website/public/gallery/resend-com/resend-com-AGENT.md",
+    "website/public/gallery/retool-com/retool-com-AGENT.md",
+    "website/public/gallery/sentry-io/sentry-io-AGENT.md",
+    "website/public/gallery/spotify-com/spotify-com-AGENT.md",
+    "website/public/gallery/stripe-com/stripe-com-AGENT.md",
+    "website/public/gallery/supabase-com/supabase-com-AGENT.md",
+    "website/public/gallery/tailwindcss-com/tailwindcss-com-AGENT.md",
+    "website/public/gallery/v0-dev/v0-dev-AGENT.md",
+    "website/public/gallery/vercel-com/vercel-com-AGENT.md"
+   ]
+  },
+  "network": {
+   "count": 16,
+   "files": [
+    "bin/design-extract.js",
+    "src/classifiers/smart.js",
+    "src/crawler.js",
+    "src/utils-cookies.js",
+    "tests/crawler-settle.test.js",
+    "website/app/api/stats/route.js",
+    "website/app/components/Extractor.js",
+    "website/app/components/HeroExtractor.js",
+    "website/app/components/ShareExtractionButton.js",
+    "website/app/components/theatre/Theatre.js",
+    "website/app/layout.js",
+    "website/app/motion/MotionAnalyzer.js",
+    "website/app/studio/StudioPlayground.js",
+    "website/lib/cache.js",
+    "website/lib/rate-limit.js",
+    "website/lib/reel.js"
+   ]
+  },
+  "telemetry": {
+   "count": 26,
+   "files": [
+    "src/extractors/perf.js",
+    "src/extractors/stack-fingerprint.js",
+    "src/extractors/stack-intel.js",
+    "tests/v10.4-features.test.js",
+    "website/app/components/Grainient.js",
+    "website/app/gallery/[slug]/page.js",
+    "website/app/gallery/page.js",
+    "website/app/page.js",
+    "website/package-lock.json",
+    "website/public/gallery/_meta.json",
+    "website/public/gallery/airbnb-com/airbnb-com-stack-intel.json",
+    "website/public/gallery/anthropic-com/anthropic-com-stack-intel.json",
+    "website/public/gallery/notion-so/notion-so-stack-intel.json",
+    "website/public/gallery/posthog-com/posthog-com-design-tokens.json",
+    "website/public/gallery/posthog-com/posthog-com-gradients.json",
+    "website/public/gallery/posthog-com/posthog-com-mcp.json",
+    "website/public/gallery/posthog-com/posthog-com-motion.framer.js",
+    "website/public/gallery/posthog-com/posthog-com-theme.js",
+    "website/public/gallery/posthog-com/posthog-com-tokens.d.ts",
+    "website/public/gallery/sentry-io/sentry-io-design-tokens.json",
+    "website/public/gallery/sentry-io/sentry-io-gradients.json",
+    "website/public/gallery/sentry-io/sentry-io-mcp.json",
+    "website/public/gallery/sentry-io/sentry-io-motion.framer.js",
+    "website/public/gallery/sentry-io/sentry-io-theme.js",
+    "website/public/gallery/sentry-io/sentry-io-tokens.d.ts",
+    "website/public/gallery/spotify-com/spotify-com-stack-intel.json"
+   ]
+  },
+  "background": {
+   "count": 6,
+   "files": [
+    ".github/workflows/bench.yml",
+    ".github/workflows/codeql.yml",
+    "bench/run.mjs",
+    "bin/design-extract.js",
+    "tests/crawler-settle.test.js",
+    "website/app/drift/page.js"
+   ]
+  },
+  "browser": {
+   "count": 58,
+   "files": [
+    ".claude-plugin/marketplace.json",
+    ".claude-plugin/plugin.json",
+    ".github/workflows/release.yml",
+    ".github/workflows/test.yml",
+    "bench/evidence.mjs",
+    "bench/holdout.json",
+    "bench/run.mjs",
+    "bench/sites.json",
+    "bin/design-extract.js",
+    "package-lock.json",
+    "package.json",
+    "src/browser.js",
+    "src/ci.js",
+    "src/classifiers/smart.js",
+    "src/clone.js",
+    "src/crawler.js",
+    "src/extractors/component-library.js",
+    "src/extractors/component-screenshots.js",
+    "src/extractors/dark-mode-pair.js",
+    "src/extractors/interactions.js",
+    "src/extractors/logo.js",
+    "src/extractors/perf.js",
+    "src/extractors/responsive-screenshots.js",
+    "src/extractors/responsive.js",
+    "src/fidelity/run.js",
+    "src/formatters/prompt-pack.js",
+    "src/mcp/jobs.js",
+    "src/multipage.js",
+    "src/pack.js",
+    "src/pdf.js",
+    "src/replay.js",
+    "src/screencast.js",
+    "src/site.js",
+    "src/utils-cookies.js",
+    "src/verify/index.js",
+    "src/verify/render.js",
+    "tests/browser.test.js",
+    "tests/ci.test.js",
+    "tests/cli.test.js",
+    "tests/cookies.test.js",
+    "tests/crawler-settle.test.js",
+    "tests/exit-codes.test.js",
+    "tests/v9-features.test.js",
+    "website/app/api/badge/[host]/route.js",
+    "website/app/api/extract/route.js",
+    "website/app/api/studio/route.js",
+    "website/app/components/Extractor.js",
+    "website/app/opengraph-image.js",
+    "website/app/page.js",
+    "website/app/seo-config.js",
+    "website/app/watch/opengraph-image.js",
+    "website/app/watch/page.js",
+    "website/lib/browser.js",
+    "website/lib/pdf.js",
+    "website/next.config.mjs",
+    "website/package-lock.json",
+    "website/package.json",
+    "website/public/gallery/tailwindcss-com/tailwindcss-com-intent.json"
+   ]
+  },
+  "shell_exec": {
+   "count": 11,
+   "files": [
+    "bench/run.mjs",
+    "bin/design-extract.js",
+    "raycast-extension/src/extract.tsx",
+    "raycast-extension/src/score.tsx",
+    "src/chat.js",
+    "src/replay.js",
+    "tests/cli.test.js",
+    "tests/exit-codes.test.js",
+    "tests/mcp-v2.test.js",
+    "vscode-extension/extension.js",
+    "website/app/components/ResultViewer.js"
+   ]
+  },
+  "env_secrets": {
+   "count": 25,
+   "files": [
+    ".github/workflows/dependabot-auto-merge.yml",
+    ".github/workflows/manavarya-bot.yml",
+    "bench/run.mjs",
+    "bin/design-extract.js",
+    "github-action/action.yml",
+    "src/ci.js",
+    "src/classifiers/smart.js",
+    "src/formatters/agent-rules.js",
+    "src/formatters/android-compose.js",
+    "src/formatters/flutter-dart.js",
+    "src/formatters/ios-swiftui.js",
+    "src/formatters/wordpress.js",
+    "tests/formatters.test.js",
+    "tests/smart.test.js",
+    "vscode-extension/package-lock.json",
+    "website/app/api/badge/[host]/route.js",
+    "website/app/api/extract/route.js",
+    "website/app/api/pdf/route.js",
+    "website/app/components/SponsorSlot.js",
+    "website/app/layout.js",
+    "website/lib/browser.js",
+    "website/lib/cache.js",
+    "website/lib/rate-limit.js",
+    "website/lib/reel.js",
+    "website/lib/token-helpers.js"
+   ]
+  },
+  "home_writes": {
+   "count": 3,
+   "files": [
+    "raycast-extension/src/extract.tsx",
+    "src/history.js",
+    "website/app/blog/mcp-launch/page.js"
+   ]
+  },
+  "self_update": {
+   "count": 3,
+   "files": [
+    ".github/workflows/release.yml",
+    "github-action/action.yml",
+    "src/sync.js"
+   ]
+  },
+  "llm_api": {
+   "count": 29,
+   "files": [
+    "bin/design-extract.js",
+    "src/classifiers/smart.js",
+    "tests/smart.test.js",
+    "website/app/drift/page.js",
+    "website/app/gallery/[slug]/page.js",
+    "website/app/gallery/page.js",
+    "website/app/robots.js",
+    "website/public/gallery/_meta.json",
+    "website/public/gallery/anthropic-com/anthropic-com-design-tokens.json",
+    "website/public/gallery/anthropic-com/anthropic-com-gradients.json",
+    "website/public/gallery/anthropic-com/anthropic-com-intent.json",
+    "website/public/gallery/anthropic-com/anthropic-com-mcp.json",
+    "website/public/gallery/anthropic-com/anthropic-com-motion.framer.js",
+    "website/public/gallery/anthropic-com/anthropic-com-motion.one.js",
+    "website/public/gallery/anthropic-com/anthropic-com-motion.tailwind.js",
+    "website/public/gallery/anthropic-com/anthropic-com-seo.json",
+    "website/public/gallery/anthropic-com/anthropic-com-tailwind.config.js",
+    "website/public/gallery/anthropic-com/anthropic-com-theme.js",
+    "website/public/gallery/anthropic-com/anthropic-com-tokens.d.ts",
+    "website/public/gallery/anthropic-com/anthropic-com-voice.json",
+    "website/public/gallery/anthropic-com/anthropic-com-wordpress-theme.json",
+    "website/public/gallery/openai-com/openai-com-design-tokens.json",
+    "website/public/gallery/openai-com/openai-com-gradients.json",
+    "website/public/gallery/openai-com/openai-com-mcp.json",
+    "website/public/gallery/openai-com/openai-com-motion.framer.js",
+    "website/public/gallery/openai-com/openai-com-motion.one.js",
+    "website/public/gallery/openai-com/openai-com-motion.tailwind.js",
+    "website/public/gallery/openai-com/openai-com-theme.js",
+    "website/public/gallery/openai-com/openai-com-tokens.d.ts"
+   ]
+  }
+ }
+}

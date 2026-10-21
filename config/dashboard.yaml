@@ -27,7 +27,7 @@ seats:
   - {id: debugger, name: Debugger, room: engineering, x: 126, y: 106, caps: [engineering/debugging]}
   - {id: mapper, name: Mapper, room: engineering, x: 178, y: 106, caps: [codebase/repository-understanding, codebase/impact-analysis, codebase/code-search]}
   - {id: gate, name: Gatekeeper, room: engineering, x: 236, y: 106, caps: [engineering/completion]}
-  - {id: director, name: Director, room: design, x: 322, y: 56, caps: [design/design-direction, design/brand, design/visual-quality]}
+  - {id: director, name: Director, room: design, x: 322, y: 56, caps: [design/design-direction, design/inspiration-extract, design/brand, design/visual-quality]}
   - {id: ux, name: UX, room: design, x: 374, y: 56, caps: [design/ux, design/typography]}
   - {id: mobile, name: Mobile, room: design, x: 426, y: 56, caps: [design/frontend]}
   - {id: systems, name: Systems, room: design, x: 322, y: 106, caps: [design/design-system, design/design-review]}

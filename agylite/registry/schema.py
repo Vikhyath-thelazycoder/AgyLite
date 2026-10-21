@@ -33,7 +33,7 @@ WEB_QA_CLASSES = {"CORE", "OPTIONAL", "DISABLED_BY_POLICY"}
 RUNTIME_STATUSES = {"ACTIVE", "DISABLED_BY_POLICY"}
 # Only these domains may declare a browser need, and only for their own output (SEO capture, media rendering) —
 # never as verification (D-035). Every other domain is requires_browser: none.
-BROWSER_SCOPED_DOMAINS = {"seo", "media"}
+BROWSER_SCOPED_DOMAINS = {"seo", "media", "design"}   # design: MP4 + IMPLEMENTATION_PLAN §2.2 (designlang reads sites; Taste inspect)
 HOST_STATUSES = {"NOT_VERIFIED", "FILES_PRESENT", "RUNTIME_VERIFIED", "UNSUPPORTED"}
 ID = re.compile(r"^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$")
 SHA1 = re.compile(r"^[0-9a-f]{40}$")

@@ -22,6 +22,7 @@ snapshots:
   # Added 2026-10-05 (D-034): selective overlap audit; only 3 files extracted (MERGED into design/frontend + design/motion).
   appllama:   {repo: Appllama/appllama-skills,           branch: main, head: dd5caaec3d5d50ad7fc0324da238119c6b7c3707, head_date: 2026-09-06, tracked_files: 18,    size: 68K,  previous_pin: null, license_files: [LICENSE]}
   pocock:     {repo: mattpocock/skills,                  branch: main, head: 5beb35b040e3de97e54fa9e386d7e42d15c295c2, head_date: 2026-10-19, tracked_files: 191,   size: 3.6M, previous_pin: null, license_files: [LICENSE]}
+  designlang: {repo: Manavarya09/design-extract,           branch: main, head: 86bdbb53379d4c1f37ce407f706678c95181ea42, head_date: 2026-10-20, tracked_files: 1761,  size: 44M,  previous_pin: null, license_files: [LICENSE], package: "designlang@13.3.2"}
 
 excluded:
   free-for-dev: {repo: ripienaar/free-for-dev, reason: "Explicitly excluded by master spec §3.7. Not fetched. Zero references in current repo (grep -ri 'free-for-dev' → exit 1)."}

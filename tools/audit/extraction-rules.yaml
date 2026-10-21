@@ -337,6 +337,22 @@ repos:
       - {paths: ["research/**"], decision: REFERENCE, reason: "LLM laziness research (completion design input)"}
       - {paths: ["skill.sh", "scripts/**"], decision: EXCLUDE, reason: REPO_META}
 
+  # MP4 §2: design-extract (designlang) reads inspiration sites into a DESIGN.md. It is a running program with an npm
+  # dependency tree (Playwright), so it is installed as an isolated runtime (agylite runtime install designlang), not
+  # bundled; only its command docs and licence are bundled.
+  designlang:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: design/inspiration-extract, reason: LICENSE}
+      - {paths: ["commands/extract.md", "commands/pair.md", "commands/site.md", "commands/remix.md", "commands/dna.md", "commands/grade.md"], decision: COPY, capability: design/inspiration-extract, reason: "Command reference (L3)"}
+      - {paths: ["README.md"], decision: REFERENCE, reason: "Usage reference"}
+      - {paths: ["skills/extract-design/SKILL.md"], decision: REFERENCE, reason: "Outdated (8 output files); Agylite writes its own entry (MP4 §2.4)"}
+      - {paths: ["src/mcp/**", "smithery.yaml", "smithery.dockerfile"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["src/**", "bin/**", "package.json", "package-lock.json"], decision: EXCLUDE, reason: PRODUCT_RUNTIME}
+      - {paths: ["bench/**"], decision: REFERENCE, reason: "MP2 design-extract suite instrument (run from the upstream clone)"}
+      - {paths: ["website/**", "assets/**", "docs/**"], decision: EXCLUDE, reason: DOC_ASSET}
+      - {paths: ["chrome-extension/**", "raycast-extension/**", "vscode-extension/**", "figma-plugin/**", "github-action/**", "marketplace/**", ".claude-plugin/**"], decision: EXCLUDE, reason: HOST_PORT}
+
   uiuxpromax:
     default: {decision: EXCLUDE, reason: REPO_META}
     rules:

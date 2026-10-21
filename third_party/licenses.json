@@ -66,6 +66,17 @@
   "note": null,
   "repository": "latent-spaces/brag"
  },
+ "designlang": {
+  "attribution": "Copyright (c) 2024 Manavarya Singh",
+  "bundled_files": 7,
+  "commit_sha": "86bdbb53379d4c1f37ce407f706678c95181ea42",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "Manavarya09/design-extract"
+ },
  "ecc": {
   "attribution": "Copyright (c) 2026 Affaan Mustafa",
   "bundled_files": 408,
