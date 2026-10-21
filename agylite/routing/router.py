@@ -131,8 +131,8 @@ class Router:
             impact = {"command": "agylite codebase affected" + (" --paths " + " ".join(paths) if paths else ""),
                       "code_files_limit": self.code_limit, "returns": ["files", "tests", "unknown"]}
         # P13: engineering work follows one lifecycle (config/lifecycle.yaml), ordered per change type.
-        lifecycle = (steps_for(self.lifecycle, change_type, project.stage)
-                     if set(domains) & LIFECYCLE_DOMAINS else None)
+        lifecycle = (steps_for(self.lifecycle, change_type, project.stage, capabilities=ids)
+                     if set(domains) & LIFECYCLE_DOMAINS or "design/inspiration-extract" in ids else None)
         pipeline = next((h.pipeline for h in hits if h.pipeline), None) or domains
         # D-035: browser verification is disabled by policy; an explicit request is only surfaced, never activated.
         browser = "exception-requested" if any(h.browser_exception for h in hits) else "disabled"

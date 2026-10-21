@@ -6,6 +6,12 @@
 
 version: 1
 questions:
+  - id: design-md-approved
+    priority: BLOCKING
+    question: Is the DESIGN.md extracted from the inspiration sites approved as the basis for the UI (or what must change)?
+    affects: every UI decision; no UI code is written before it is approved (MP4 §2.3, §3.2)
+    ask_when_capability: [design/inspiration-extract]
+
   - id: product-goal
     priority: BLOCKING
     question: Who are the target users and what is the one outcome the first release must deliver?

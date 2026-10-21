@@ -125,6 +125,7 @@ def start_session(project, session_id: str, host: str):
 
 # ── Engineering lifecycle (P13, config/lifecycle.yaml) ──────────────────────────────────────────────────────────
 STEP_ORDER = ("UNDERSTAND", "PLAN", "IMPLEMENT", "TEST", "VERIFY", "RECONCILE")
+OPTIONAL_STEPS = ("INSPIRATION",)   # MP4 §3.2: inserted by steps_for when the route needs it, never listed per type
 
 
 def load_lifecycle(root: Path | None = None):
@@ -141,7 +142,7 @@ def validate_lifecycle(cfg, change_types=()) -> list:
     if cfg.get("version") != 1:
         p.append("lifecycle.yaml version must be 1")
     steps = cfg.get("steps") or {}
-    if tuple(steps) != STEP_ORDER:
+    if tuple(s for s in steps if s not in OPTIONAL_STEPS) != STEP_ORDER:
         p.append(f"steps must be {' → '.join(STEP_ORDER)}")
     for name, step in steps.items():
         for key in ("purpose", "commands", "exit"):
@@ -165,13 +166,17 @@ def validate_lifecycle(cfg, change_types=()) -> list:
     return p
 
 
-def steps_for(cfg, change_type: str, stage: str = "unknown"):
-    """The ordered lifecycle for one request: step, purpose, the OS commands for this project stage, exit, rule."""
+def steps_for(cfg, change_type: str, stage: str = "unknown", capabilities=()):
+    """The ordered lifecycle for one request: step, purpose, the OS commands for this project stage, exit, rule.
+    MP4 §3.2: a DESIGN_CHANGE that routes design/inspiration-extract gets INSPIRATION before PLAN."""
     types = cfg.get("change_types") or {}
     entry = types.get(change_type) or types.get("default") or {}
     rules = entry.get("rules") or {}
+    names = list(entry.get("steps") or [])
+    if "design/inspiration-extract" in capabilities and "INSPIRATION" in cfg["steps"] and "INSPIRATION" not in names:
+        names.insert(names.index("PLAN") if "PLAN" in names else 0, "INSPIRATION")
     out = []
-    for name in entry.get("steps") or []:
+    for name in names:
         step = cfg["steps"][name]
         cmds = step["commands"]
         chosen = cmds.get(stage) or cmds.get("any") or cmds.get("existing" if stage != "new" else "new") or []

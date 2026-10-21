@@ -484,9 +484,11 @@ def _project_cmd(args):
     if cmd == "questions":
         st = pstate.load_state(project) or {}
         stage = (st.get("project") or {}).get("stage") or lifecycle.detect_stage(project.root)
+        from .routing import Router, capability_ids
+        route = Router().route(" ".join(args.request), project=_facts(project))
         qs, skipped = questions.next_questions(questions.load_bank(), " ".join(args.request), stage=stage,
                                                answers=st.get("answers"), stack=st.get("stack") or
-                                               lifecycle.detect_stack(project.root))
+                                               lifecycle.detect_stack(project.root), capabilities=capability_ids(route))
         blocking = [q["id"] for q in qs if q["priority"] == "BLOCKING"]
         if st and blocking:   # recorded: `plan set-status <task> IN_PROGRESS` refuses until they are answered
             pstate.update_state(project, lambda s: s.__setitem__(

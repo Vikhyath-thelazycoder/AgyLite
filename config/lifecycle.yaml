@@ -15,6 +15,14 @@ steps:
       existing: ['agylite plan locate "<request>"', "agylite codebase affected --paths <files>"]
       new: ['agylite project questions "<request>"', 'agylite project answer <id> "<answer>"']
     exit: Intent restated; affected files and their tests listed (existing) or every BLOCKING requirement question answered and recorded (new; a task cannot start while one is open).
+  INSPIRATION:
+    # MP4 §3.2: only for DESIGN_CHANGE routes with design/inspiration-extract (agylite/project/lifecycle.py steps_for).
+    purpose: Turn the inspiration sites into one DESIGN.md the owner approves before any UI code.
+    commands:
+      any: ["agylite design extract <url> [<url> [<url>]]", 'agylite project questions "<request>"',
+            'agylite project answer design-md-approved "<who approved, when>"',
+            'agylite decide add --kind design --topic DESIGN.md --decision "DESIGN.md approved" --reason "<who, when>"']
+    exit: DESIGN.md written (systems, never identity) and approved by the owner; the approval is answered (design-md-approved) and recorded as a design decision.
   PLAN:
     purpose: Put the change in the one living plan with acceptance criteria.
     commands:

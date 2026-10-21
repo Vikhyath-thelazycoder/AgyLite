@@ -280,7 +280,33 @@ naming the load command (within a budget), then re-run the AgyLite arm only.
 
 ## RESUME FROM
 
-**Phase 5 (MP4 design best of the best) — waits for the owner's go-ahead.** Everything through MP3 is on `main`.
+<!-- mp4-progress:start -->
+**Phase 5 (MP4 design) — IN PROGRESS on `impl/p5-design` (pushed to `main` after every green commit).**
+Worktree: the session scratchpad `wt-p5`; temporary engine home `home-p5` (bundle `22bf70be985e`, Taste v2.1).
+
+Done (on `main`):
+- §1 Taste v2.1: pin 6010f91, rules, SKILL.md rewrites, `agylite design taste draw|lint|inspect|scenes|assets|status`,
+  self-test, `sources_priority` (exact paths may name another capability's skill, so Taste leads direction too).
+- §2 designlang: upstream + `design/inspiration-extract`; `agylite design extract` (1-3 URLs → one DESIGN.md, identity
+  shifted, overrides); `agylite runtime install designlang`; DESIGN.md overrides in `agylite design check`.
+- §2.5 routing: rule `design-inspiration` (`requires_urls`), `url_only`.
+- §3.3 verify: design changes add design check + Taste lint + Taste inspect (0 FAIL); policy flipped for design only.
+- §3.2 INSPIRATION lifecycle step + BLOCKING question `design-md-approved` (asked by route capability).
+
+Left (in order):
+1. §3.1 rewrite `skills/agylite-design/SKILL.md` (paths A/B, precedence, inspiration rules) + precedence in the
+   design-direction card.
+2. §4 `docs/architecture/DESIGN_MD.md` (designlang 8 H1 sections + front matter vs Open Design 9 numbered H2 sections;
+   AgyLite follows designlang).
+3. §6 real run: `agylite runtime install designlang` (network ~150 MB) in `home-p5`, then `agylite design extract
+   https://linear.app https://vercel.com` in a temp git project; check the DESIGN.md has the 8 sections.
+4. Gate (tests, doctor, validate, benchmark --compare, Tier 0) → commit + push.
+5. Paid test (owner rule: end of each master prompt): `design-taste` suite (and `design-extract` if built), record in
+   the ledger; fix errors now or carry them forward in the plan files.
+6. MP4 report in this log, update this block to "DONE", push, stop for the owner's go-ahead on MP5.
+<!-- mp4-progress:end -->
+
+How to work (any phase):
 1. Read `/Users/vikhyathmgowda007/Developer/os/MASTER_PROMPT_4_DESIGN_BEST_OF_BEST.md` and IMPLEMENTATION_PLAN §2.2.
 2. Branch `impl/p5-design` from `main`; work in a worktree; build bundles in a temporary `AGYLITE_HOME` (copy
    `staging/` and `mirrors/` from the last temp home with `cp -cR` so only new upstreams are downloaded).

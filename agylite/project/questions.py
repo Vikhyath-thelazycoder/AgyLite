@@ -29,8 +29,8 @@ def validate_bank(bank):
             p.append(f"{qid}: priority must be one of {PRIORITIES}")
         if not q.get("question") or not q.get("affects"):
             p.append(f"{qid}: needs question text and `affects` (what the answer changes)")
-        if not q.get("new_project") and not q.get("ask_when"):
-            p.append(f"{qid}: needs new_project: true or ask_when keywords")
+        if not q.get("new_project") and not q.get("ask_when") and not q.get("ask_when_capability"):
+            p.append(f"{qid}: needs new_project: true, ask_when keywords or ask_when_capability")
     return p
 
 
@@ -45,14 +45,16 @@ def inferred(bank, stack):
     return out
 
 
-def next_questions(bank, request, *, stage, answers=None, stack=(), limit=5):
-    """The questions to ask now, highest priority first; returns (questions, skipped {id: reason})."""
+def next_questions(bank, request, *, stage, answers=None, stack=(), limit=5, capabilities=()):
+    """The questions to ask now, highest priority first; returns (questions, skipped {id: reason}). A question with
+    `ask_when_capability` applies when the request's route selects one of them (MP4 §3.2: DESIGN.md approval)."""
     text = normalize(request or "")
     answers = answers or {}
     known = inferred(bank, stack)
     open_qs, skipped = [], {}
     for q in bank.get("questions") or []:
-        applies = (q.get("new_project") and stage == "new") or bool(find_phrases(text, q.get("ask_when") or []))
+        applies = ((q.get("new_project") and stage == "new") or bool(find_phrases(text, q.get("ask_when") or []))
+                   or bool(set(q.get("ask_when_capability") or []) & set(capabilities)))
         if not applies:
             continue
         if q["id"] in answers:
