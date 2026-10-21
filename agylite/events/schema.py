@@ -15,6 +15,8 @@ EVENT_TYPES = (
     "TASK_READY_FOR_VERIFICATION", "TASK_VERIFIED",
     # an upstream engine ran (Graphify, UI/UX Pro Max, BeyondSEO, Brag, Unlazy) — `agylite used` reports it
     "RUNTIME_USED",
+    # MP1 F4: a request no capability fits (keywords + hash, never the text) — MP6 reports these weekly
+    "ROUTE_UNMATCHED",
 )
 SEVERITIES = ("info", "low", "medium", "high", "critical")
 FIELDS = ("schema_version", "id", "ts", "event", "severity", "project_id", "session_id", "host", "capabilities",

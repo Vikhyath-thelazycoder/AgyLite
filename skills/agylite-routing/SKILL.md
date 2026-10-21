@@ -37,7 +37,9 @@ Routing is done by the OS core, not by reading this file. Do not pick capabiliti
    - `browser`: `disabled` → no browser at all; `exception-requested` → the user explicitly asked to see the page: run
      local verification, give them the URL to open themselves, and record the exception with its reason.
    - `pipeline` gives the domain order for multi-domain work (e.g. SEO audit → engineering → testing).
-   - `confidence: low` (BM25 fallback) or `none`: confirm the intent with the user before acting.
+   - `confidence: low` (BM25 fallback): confirm the intent with the user before acting.
+   - `unmatched: true`: tell the user in one line that no Agylite capability covers this request, then do the work
+     with general principles (`fallback_guidance`). Do not invent a capability.
 
 ## Rules
 

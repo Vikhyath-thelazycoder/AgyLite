@@ -18,7 +18,8 @@ from .rules import load_hierarchy, load_routing, match_paths, match_rules, role_
 from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, select_capabilities
 
 # 2: browser disabled|exception-requested, verification_mode (D-035). 3: impact (P12). 4: lifecycle (P13).
-# 5: urls (MP1 F1) — URLs/domains found in the request; matching sees the placeholder `urlref` in their place.
+# 5: urls (MP1 F1) — URLs/domains found in the request; matching sees the placeholder `urlref` in their place;
+#    unmatched + fallback_guidance (MP1 F4) — nothing fits, so the agent uses principles only.
 ROUTE_SCHEMA_VERSION = 5
 
 
@@ -32,6 +33,7 @@ class ProjectFacts:
 
 
 LIFECYCLE_DOMAINS = {"engineering", "codebase", "testing"}
+UNMATCHED_GUIDANCE = ("engineering/principles",)   # MP1 F4: always safe when no capability fits
 
 
 class RoutingError(ValueError):
@@ -129,6 +131,8 @@ class Router:
                       "medium" if selected and best >= confident else
                       "low" if selected else "none")
         roles = self.cfg.get("roles") or []
+        # F4: an empty selection is said out loud, and the agent falls back to the always-safe principles.
+        unmatched = not selected
         return {
             "schema_version": ROUTE_SCHEMA_VERSION,
             "request": request,
@@ -153,6 +157,8 @@ class Router:
             "rules": [h.rule for h in hits],
             "method": method,
             "confidence": confidence,
+            "unmatched": unmatched,
+            "fallback_guidance": list(UNMATCHED_GUIDANCE) if unmatched else [],
             "duration_ms": round((time.perf_counter() - start) * 1000, 3),
         }
 

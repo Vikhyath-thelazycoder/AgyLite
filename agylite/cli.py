@@ -145,6 +145,19 @@ def _emit_route(project, result, session_id=None):
     emit(project, "CAPABILITIES_SELECTED", session_id=session_id, capabilities=caps,
          details={"dependencies": [d["id"] for d in result["dependencies"]], "fallbacks": result["fallbacks"],
                   "browser": result["browser"], "suppressed": len(result["suppressed"]), "rules": result["rules"]})
+    if result.get("unmatched"):
+        emit(project, "ROUTE_UNMATCHED", session_id=session_id, details=_unmatched_details(result["request"]))
+
+
+def _unmatched_details(request, keywords=True):
+    """MP1 F4: what MP6 needs to group requests nobody routes — content words, a hash and the length, never the text."""
+    import hashlib
+
+    from .routing.fallback_bm25 import tokenize
+    d = {"request_sha256": hashlib.sha256(request.encode()).hexdigest()[:16], "length": len(request)}
+    if keywords:
+        d["keywords"] = sorted(set(tokenize(request)))[:12]
+    return d
 
 
 def _route(args):
@@ -160,7 +173,9 @@ def _route(args):
         print(f"agylite route: {exc}", file=sys.stderr)
         return 2
     _emit_route(project, result, _session_id(args))
-    if args.brief:
+    if args.brief and result.get("unmatched"):
+        print(f"{result['change_type']} · UNMATCHED · no capability fits; using principles only")
+    elif args.brief:
         caps = ", ".join(c["id"] for c in result["capabilities"]) or "—"
         deps = ", ".join(d["id"] for d in result["dependencies"])
         print(f"{result['change_type']} · {result['confidence']} ({result['method']}) · {caps}"
