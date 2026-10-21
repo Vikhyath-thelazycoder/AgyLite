@@ -1,0 +1,191 @@
+{
+ "version": 1,
+ "rows": [
+  {
+   "date": "20261021T162010Z",
+   "suite": "eng-ponytail",
+   "n": 1,
+   "bundle": "5cb3ec9b15bc",
+   "agylite_commit": "870377366f1e900e4fbd3b848694eb9f289a82e1",
+   "upstream_shas": {
+    "ponytail": "09c434ab73ca43761c5d8b0c5d341926c2fba710"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "correct": {
+     "baseline": 1.0,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": null,
+     "verdict": "same"
+    },
+    "safe": {
+     "baseline": 0.8571428571428571,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    },
+    "src_loc": {
+     "baseline": 45.42857142857143,
+     "upstream": 19.571428571428573,
+     "agylite": 42.57142857142857,
+     "retained": 0.11,
+     "verdict": "inconclusive"
+    },
+    "wrote_tests": {
+     "baseline": 1.0,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": null,
+     "verdict": "same"
+    },
+    "cost": {
+     "baseline": 0.1727899857142857,
+     "upstream": 0.13128677142857142,
+     "agylite": 0.16312817142857144,
+     "retained": 0.233,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 1.2095,
+    "upstream": 0.919,
+    "agylite": 1.1419
+   },
+   "agent_seconds": {
+    "baseline": 207.2,
+    "upstream": 163.4,
+    "agylite": 279.9
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 0,
+     "context_loaded": 0,
+     "route_unmatched": 1,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261021T162010Z-eng-ponytail",
+   "fix_applied": "\u2014 (Phase 2 baseline: AgyLite v2.1.6 + MP1)",
+   "next_step": "Phase 4: Ponytail lite rules in L0, ponytail-review first; Phase 3 whole skills"
+  },
+  {
+   "date": "20261021T163611Z",
+   "suite": "eng-addy",
+   "n": 1,
+   "bundle": "5cb3ec9b15bc",
+   "agylite_commit": "e3bb448e3be43ce37af563a6021651ca0619c210",
+   "upstream_shas": {
+    "agent-skills": "aeac41d4d005999432bb7312f7ff06383a91d59d"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "expectations_passed": {
+     "baseline": 0.9027777777777778,
+     "upstream": 1.0,
+     "agylite": 0.9583333333333334,
+     "retained": 0.571,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 0.7397,
+    "upstream": 1.0153,
+    "agylite": 0.9502
+   },
+   "agent_seconds": {
+    "baseline": 162.5,
+    "upstream": 164.8,
+    "agylite": 161.6
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261021T163611Z-eng-addy",
+   "fix_applied": "",
+   "next_step": ""
+  }
+ ],
+ "notes": [
+  "20261021T172159Z eng-pocock: stopped by a usage limit after 9/30 cells; resume: `agylite benchmark --quality --tier 1 --suite eng-pocock --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261021T172159Z-eng-pocock`",
+  "Correction to the 20261021T172159Z eng-pocock note: that stop was a false positive of the usage-limit detector (the agent's rate-limiter spec mentioned HTTP 429), fixed in c1db1da. 9/30 cells were recorded; the run was not resumed.",
+  "2026-10-21: the owner withdrew permission for paid Tier 1 sessions. eng-pocock (9/30), design-taste and diagram-archify baselines are not run; eng-addy keeps one ungraded cell (debugging#1, original arm). These suites are reported as not measured, never as Same.",
+  "design-extract, youtube, browser-qa, research and routing (Tier 1) wait for their instruments and AgyLite capabilities (Phases 5-7), and for paid sessions to be allowed again."
+ ]
+}

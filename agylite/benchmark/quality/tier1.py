@@ -29,8 +29,11 @@ def plan(suite: str, arms=ARMS, runs=1, tasks=None):
 
 
 def _valid(rec) -> bool:
-    """A finished cell: no error, no isolation problem, and not a limit reply recorded as an answer."""
-    return not (rec.get("error") or rec.get("isolation_error") or harness.is_usage_limit(rec.get("result")))
+    """A finished cell: no error, no isolation problem, not a limit reply recorded as an answer, and at least one
+    measured metric (an invalid grader reply scores nothing)."""
+    if rec.get("error") or rec.get("isolation_error") or harness.is_usage_limit(rec.get("result")):
+        return False
+    return any(v is not None for v in (rec.get("metrics") or {}).values())
 
 
 def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=False, max_sessions=None,

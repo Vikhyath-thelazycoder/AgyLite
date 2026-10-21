@@ -1,0 +1,454 @@
+{
+ "bundle": "5cb3ec9b15bc",
+ "fidelity": {
+  "rows": [
+   {
+    "capability": "engineering/planning",
+    "detail": "sections 17/18, \u22483359 of 3770 est. tokens",
+    "loaded": true,
+    "primary": "files/addy/skills/interview-me/SKILL.md",
+    "sections": 0.944,
+    "tokens": 0.891,
+    "warn": false
+   },
+   {
+    "capability": "engineering/review",
+    "detail": "sections 20/35, \u22483354 of 9697 est. tokens",
+    "loaded": true,
+    "primary": "files/gstack/review/SKILL.md",
+    "sections": 0.571,
+    "tokens": 0.346,
+    "warn": true
+   },
+   {
+    "capability": "engineering/completion",
+    "detail": "whole file",
+    "loaded": true,
+    "primary": "files/unlazy/SKILL.md",
+    "sections": 1.0,
+    "tokens": 1.0,
+    "warn": false
+   },
+   {
+    "capability": "design/visual-quality",
+    "detail": "sections 25/106, \u22483390 of 21814 est. tokens",
+    "loaded": true,
+    "primary": "files/taste/skills/taste-skill/SKILL.md",
+    "sections": 0.236,
+    "tokens": 0.155,
+    "warn": true
+   }
+  ]
+ },
+ "routing": {
+  "by_domain": {
+   "codebase": [
+    1,
+    1
+   ],
+   "design": [
+    7,
+    7
+   ],
+   "engineering": [
+    65,
+    104
+   ],
+   "media": [
+    1,
+    1
+   ],
+   "research": [
+    2,
+    2
+   ],
+   "seo": [
+    12,
+    12
+   ],
+   "testing": [
+    5,
+    7
+   ],
+   "youtube": [
+    2,
+    2
+   ]
+  },
+  "failed": [
+   {
+    "forbidden": [],
+    "id": "addy-api-and-interface-design-1",
+    "missing": [
+     "engineering/architecture"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-api-and-interface-design-3",
+    "missing": [
+     "engineering/architecture"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-ci-cd-and-automation-1",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-ci-cd-and-automation-3",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-code-simplification-2",
+    "missing": [
+     "engineering/simplicity"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-code-simplification-3",
+    "missing": [
+     "engineering/simplicity"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-constraint-driven-development-1",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-constraint-driven-development-2",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-constraint-driven-development-3",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-constraint-driven-development-4",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-constraint-driven-development-5",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-deprecation-and-migration-1",
+    "missing": [
+     "engineering/migration"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-deprecation-and-migration-3",
+    "missing": [
+     "engineering/migration"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-deprecation-and-migration-4",
+    "missing": [
+     "engineering/migration"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-deprecation-and-migration-5",
+    "missing": [
+     "engineering/migration"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-documentation-and-adrs-3",
+    "missing": [
+     "engineering/architecture"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-doubt-driven-development-1",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-doubt-driven-development-2",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-doubt-driven-development-3",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-frontend-ui-engineering-1",
+    "missing": [
+     "engineering/frontend"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-frontend-ui-engineering-3",
+    "missing": [
+     "engineering/frontend"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-git-workflow-and-versioning-1",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-git-workflow-and-versioning-2",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-git-workflow-and-versioning-4",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-idea-refine-1",
+    "missing": [
+     "engineering/planning"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-idea-refine-3",
+    "missing": [
+     "engineering/planning"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-interview-me-1",
+    "missing": [
+     "engineering/planning"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-interview-me-3",
+    "missing": [
+     "engineering/planning"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-observability-and-instrumentation-1",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-observability-and-instrumentation-2",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-observability-and-instrumentation-3",
+    "missing": [
+     "engineering/release"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-performance-optimization-2",
+    "missing": [
+     "engineering/performance"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-performance-optimization-5",
+    "missing": [
+     "engineering/performance"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-security-and-hardening-4",
+    "missing": [
+     "engineering/security"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-security-and-hardening-5",
+    "missing": [
+     "engineering/security"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-source-driven-development-1",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-source-driven-development-2",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-source-driven-development-3",
+    "missing": [
+     "engineering/implementation"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-spec-driven-development-4",
+    "missing": [
+     "engineering/planning"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-test-driven-development-2",
+    "missing": [
+     "testing/strategy"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   },
+   {
+    "forbidden": [],
+    "id": "addy-test-driven-development-5",
+    "missing": [
+     "testing/strategy"
+    ],
+    "set": "addy_trigger_scenarios.yaml"
+   }
+  ],
+  "new_failures": [],
+  "sets": {
+   "addy_trigger_scenarios.yaml": [
+    41,
+    82
+   ],
+   "ood_scenarios.yaml": [
+    54,
+    54
+   ]
+  }
+ },
+ "tier": 0,
+ "tokens": {
+  "ok": true,
+  "regressions": [],
+  "scenarios": {
+   "refactor-no-simplicity": 8652,
+   "s14-ai-search": 8801,
+   "s14-build-saas": 9680,
+   "s14-checkout-security": 8806,
+   "s14-landing-premium": 9158,
+   "s14-seo-audit": 5998,
+   "s23a-explicit-visual": 6536,
+   "s23a-login-flow": 6662,
+   "s23a-mobile-overlap": 8465,
+   "s23a-technical-seo": 7085,
+   "s70-a-new-saas": 9896,
+   "s70-b-existing-maps": 9443,
+   "s70-c-security-bug": 8729,
+   "s70-d-design": 8315,
+   "s70-e-seo-audit": 5998,
+   "s70-f-seo-fix": 9423,
+   "s70-g-ai-search": 5528,
+   "s70-h-launch-video": 5355,
+   "simplicity-explicit": 5156,
+   "trial-cli-build": 9246,
+   "trial-cli-description": 9286,
+   "trial-launch-video-new-project": 5355,
+   "trial-web-product": 9911,
+   "vp-payment-webhook": 9288,
+   "vp-react-native-app": 9791,
+   "vp-react-website": 9811
+  },
+  "total": 210374
+ }
+}
