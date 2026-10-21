@@ -37,12 +37,14 @@ class UsageLimit(RuntimeError):
     """The host refused the session (5-hour session limit, weekly cap, rate limit): stop the run, never grade it."""
 
 
-LIMIT_REPLY = re.compile(r"hit your (session|weekly|usage|daily) limit|usage limit reached|rate_limit_error|"
-                         r"\b429\b.*rate|limit will reset", re.I)
+# The host's refusal is one short line; an agent's answer about rate limiting (HTTP 429, "rate limit") is not one.
+LIMIT_REPLY = re.compile(r"^\s*(?:You've hit your (?:session|weekly|usage|daily) limit|Claude (?:AI )?usage limit reached|"
+                         r"API Error: 429\b.*rate_limit_error)", re.I)
+LIMIT_REPLY_MAX = 300
 
 
 def is_usage_limit(text) -> bool:
-    return bool(text) and bool(LIMIT_REPLY.search(text))
+    return bool(text) and len(text) <= LIMIT_REPLY_MAX and bool(LIMIT_REPLY.search(text))
 
 
 @dataclass
@@ -199,7 +201,7 @@ def ask(prompt: str, *, model=None, timeout=600) -> str:
         out = subprocess.run(["claude", "-p", "--setting-sources", "project,local", "--strict-mcp-config",
                               "--model", model or DEFAULT_MODEL], input=prompt, text=True, capture_output=True,
                              cwd=d, timeout=timeout).stdout
-    if is_usage_limit(out) and len(out) < 400:   # a grader's verdict may quote a limit; a refusal is short
+    if is_usage_limit(out):
         raise UsageLimit(out.strip()[:200])
     return out
 

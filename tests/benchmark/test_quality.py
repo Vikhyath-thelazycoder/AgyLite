@@ -114,7 +114,10 @@ class TestUsageLimit(unittest.TestCase):
         for text in ("You've hit your session limit · resets 10:40pm (Asia/Calcutta)", "You've hit your weekly limit",
                      "API Error: 429 rate_limit_error", "Claude usage limit reached. Your limit will reset at 5pm"):
             self.assertTrue(harness.is_usage_limit(text), text)
-        for text in ("I fixed the pagination bug; the rate limiter test passes.", "", None):
+        spec = ("I wrote the spec at `rate-limit/docs/specs/rate-limit.md`.\n\n**Requirements:** over the limit the API "
+                "answers 429 with a Retry-After header; the rate window resets every minute.")   # eng-pocock to-spec#2
+        for text in ("I fixed the pagination bug; the rate limiter test passes.", "", None, spec,
+                     "You've hit your session limit · resets 10:40pm. " + "x" * 400):
             self.assertFalse(harness.is_usage_limit(text), text)
 
     def test_run_session_raises_on_a_limit_reply(self):
@@ -126,6 +129,8 @@ class TestUsageLimit(unittest.TestCase):
                 mock.patch("subprocess.run", return_value=mock.Mock(stdout=trace, returncode=1)):
             with self.assertRaises(harness.UsageLimit):
                 harness.run_session("p", Path(tmp), harness.ArmSetup("baseline"))
+        # a grader call is plain-text `claude -p`, not stream-json
+        with mock.patch("subprocess.run", return_value=mock.Mock(stdout="You've hit your session limit · resets 10:40pm\n")):
             with self.assertRaises(harness.UsageLimit):
                 harness.ask("grade this")
 
