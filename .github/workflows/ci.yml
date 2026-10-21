@@ -23,6 +23,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .
 
+      - name: Lint workflow files
+        # MP1 F14: an invalid workflow (e.g. `runner` in job-level env) is rejected by GitHub silently, with 0 jobs.
+        run: |
+          pip install actionlint-py==1.7.12.25
+          actionlint .github/workflows/*.yml
+
       - name: Run Python unit tests
         run: |
           python -m unittest discover -s tests -p "test_*.py"

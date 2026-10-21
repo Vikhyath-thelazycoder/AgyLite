@@ -21,9 +21,10 @@ jobs:
   upstreams:
     runs-on: ubuntu-latest
     timeout-minutes: 60
-    env:
-      AGYLITE_HOME: ${{ runner.temp }}/agylite
     steps:
+      # MP1 F14: `runner` is not available in job-level env; GitHub rejected the whole file (0 jobs, never scheduled).
+      - name: Engine home
+        run: echo "AGYLITE_HOME=$RUNNER_TEMP/agylite" >> "$GITHUB_ENV"
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: "3.12"}

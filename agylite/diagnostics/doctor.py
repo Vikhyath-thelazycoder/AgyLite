@@ -121,6 +121,36 @@ def last_update_run(home: Path):
     return stamps[-1][:10] if stamps else None
 
 
+def workflow_checks(r, root: Path):
+    """MP1 F14: every workflow parses, and actionlint (when installed) accepts it — GitHub silently rejects a file with
+    an invalid expression context (0 jobs, never scheduled), which YAML parsing alone cannot see."""
+    import shutil
+    import subprocess
+
+    import yaml
+    files = sorted((root / ".github" / "workflows").glob("*.yml"))
+    r.check(bool(files), f"{len(files)} workflow files", ".github/workflows has no workflow files")
+    for wf in files:
+        try:
+            data = yaml.safe_load(wf.read_text(encoding="utf-8"))
+            ok = isinstance(data, dict) and "name" in data and "jobs" in data
+        except (OSError, yaml.YAMLError):
+            ok = False
+        rel = wf.relative_to(root).as_posix()
+        r.check(ok, f"{rel} valid YAML workflow", f"{rel} missing or invalid")
+    tool = shutil.which("actionlint")
+    if not tool:
+        r.warn("actionlint not installed: expression contexts not checked (CI runs it)")
+        return
+    try:
+        out = subprocess.run([tool, *map(str, files)], cwd=root, capture_output=True, text=True, timeout=60)
+    except (OSError, subprocess.SubprocessError) as exc:
+        r.warn(f"actionlint could not run: {exc}")
+        return
+    first = (out.stdout or out.stderr).strip().splitlines()[:1]
+    r.check(out.returncode == 0, "actionlint: every workflow valid", f"actionlint: {first[0] if first else 'failed'}")
+
+
 def skill_owned_copy(bundle_dir: Path, path: str) -> bool:
     """True when `path` sits in a skill's references/ and that skill's own SKILL.md links it skill-relatively, so the
     copy is part of a whole skill, not an accidental duplicate (MP1 F12)."""
@@ -259,14 +289,7 @@ def _run(root: Path, user_home: Path) -> int:
     r.end_section()
 
     r.section("⚙️  CI Workflow Integrity")
-    import yaml
-    ci = root / ".github/workflows/ci.yml"
-    try:
-        ci_data = yaml.safe_load(ci.read_text(encoding="utf-8"))
-        ci_ok = isinstance(ci_data, dict) and "name" in ci_data and "jobs" in ci_data
-    except (OSError, yaml.YAMLError):
-        ci_ok = False
-    r.check(ci_ok, ".github/workflows/ci.yml valid YAML workflow", ".github/workflows/ci.yml missing or invalid")
+    workflow_checks(r, root)
     r.end_section()
 
     r.section("🚫 MCP Absence Check")
