@@ -63,6 +63,17 @@ class Base(unittest.TestCase):
 
 
 class TestTracking(Base):
+    def test_check_records_when_a_pin_was_found_current(self):
+        """F9 follow-up: doctor counts a pin as fresh from the last check that found it current."""
+        rows = track.check(self.fx.home, evidence=self.fx.evidence, policy=self.policy)
+        self.assertEqual(rows[0]["status"], "up-to-date")
+        self.assertIn("checked_current", track._state(self.fx.home)["alpha"])
+        self.write({"skills/new.md": "x\n"})
+        self.commit("new")
+        track._save_state(self.fx.home, {})
+        track.check(self.fx.home, evidence=self.fx.evidence, policy=self.policy)
+        self.assertNotIn("alpha", track._state(self.fx.home))
+
     def test_check_then_latest_applies_new_commit_via_mirror(self):
         rows = track.check(self.fx.home, evidence=self.fx.evidence, policy=self.policy)
         self.assertEqual(rows[0]["status"], "up-to-date")

@@ -115,6 +115,13 @@ def check(home: Path, *, evidence: Path | None = None, policy=None, repos=None) 
             row.update(latest=None, status="error", error=str(exc).strip()[-200:])
         row["due"] = due(name, pol, state)
         rows.append(row)
+    # Doctor counts a pin as fresh from the last check that found it current (MP1 F9); `due` is unaffected.
+    current = [r["repo"] for r in rows if r["status"] == "up-to-date"]
+    if current:
+        stamp = datetime.now(timezone.utc).isoformat()
+        for name in current:
+            state.setdefault(name, {})["checked_current"] = stamp
+        _save_state(home, state)
     return rows
 
 

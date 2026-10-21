@@ -93,13 +93,19 @@ def pin_age_lines(dates: dict, policy: dict, today) -> list:
 
 
 def _checked(home: Path) -> dict:
-    """{upstream: ISO time `agylite update --latest` last found it current or applied it} from the tracking state."""
+    """{upstream: ISO time an update check last found it current or applied it} from the tracking state."""
     state = home / "updates" / "tracking.json"
     try:
         data = json.loads(state.read_text(encoding="utf-8")) if state.is_file() else {}
-        return {n: v["applied_check"] for n, v in data.items() if isinstance(v, dict) and v.get("applied_check")}
     except ValueError:
         return {}
+    out = {}
+    for n, v in data.items():
+        stamps = [v.get(k) for k in ("applied_check", "checked_current")] if isinstance(v, dict) else []
+        stamps = sorted(s for s in stamps if s)
+        if stamps:
+            out[n] = stamps[-1]
+    return out
 
 
 def fresh_dates(dates: dict, home: Path) -> dict:
@@ -110,7 +116,7 @@ def fresh_dates(dates: dict, home: Path) -> dict:
 
 
 def last_update_run(home: Path):
-    """Date of the newest `agylite update --latest` check recorded in the tracking state, else None."""
+    """Date of the newest `agylite update --check|--latest` run recorded in the tracking state, else None."""
     stamps = sorted(_checked(home).values())
     return stamps[-1][:10] if stamps else None
 
@@ -166,7 +172,7 @@ def host_and_supply_checks(r, root: Path, user_home: Path, bundle_dir):
     for level, message in pin_age_lines(dates, load_policy(root), date.today()):
         (r.warn if level == "warn" else r.ok)(message)
     last = last_update_run(agylite_home())
-    r.ok(f"Last `agylite update --latest` run on this machine: {last or 'never'}")
+    r.ok(f"Last `agylite update --check`/`--latest` run on this machine: {last or 'never'}")
     if bundle_dir is not None and (bundle_dir / "index.json").is_file():
         files = json.loads((bundle_dir / "index.json").read_text(encoding="utf-8"))["files"]
         by_hash = {}
