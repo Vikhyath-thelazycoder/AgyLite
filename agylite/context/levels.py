@@ -39,7 +39,8 @@ def bootstrap(*, project, session_id, host, bundle_dir, budgets, root=None, stag
         f"plan: {plan_pointer or '—'}",
     ]
     domains = registry.load_domains(root)
-    index = ["capabilities (route: `agylite route \"<request>\"` · load: `agylite context <id>…`):"]
+    index = ["capabilities (route: `agylite route \"<request>\"` · load: `agylite skill load <upstream>/<skill>` or "
+             "`agylite context <id>…` · rare needs: `agylite skills search \"<words>\"`):"]
     index += [f"  {d}: " + ", ".join(c.split("/", 1)[1] for c in m["capabilities"]) for d, m in domains.items()]
 
     def assemble(state_part):
@@ -113,66 +114,88 @@ def source_priorities(root=None):
     return {cid: card.get("sources_priority") or [] for cid, card in registry.load_cards(root).items()}
 
 
-def capability_context(loader, cids, budgets, query=None, priorities=None):
-    """L2: the most relevant entry files of up to `max_capabilities_full` capabilities, section by section within
-    `max_tokens_per_task`; remaining files and capabilities are listed for explicit L3 / later loading."""
+def skill_id(entry) -> str:
+    """`<upstream>/<skill name>` (e.g. `ponytail/ponytail-review`, `taste/design-taste-frontend`)."""
+    parts = entry["path"].split("/")
+    folder = parts[-2] if parts[-1].startswith("SKILL.md") and len(parts) > 3 else parts[-1]
+    return f"{parts[1]}/{entry.get('name') or folder}"
+
+
+def primary_skill(entries, query=None, priority=()):
+    """The capability's primary skill: the first `sources_priority` match, else its best-ranked SKILL.md."""
+    ranked = _rank_files(entries, query, priority)
+    return next((e for e in ranked if e["kind"] == "skill"), ranked[0] if ranked else None)
+
+
+def skill_unit(loader, entry) -> dict:
+    """The skill's folder (relative links resolve there) and its other bundled files, read on demand."""
+    folder = entry["path"].rsplit("/", 1)[0]
+    files = sorted({e["path"]: e for es in loader.index["capabilities"].values() for e in es
+                    if e["path"].startswith(folder + "/") and e["path"] != entry["path"]}.values(),
+                   key=lambda e: e["path"])
+    return {"folder": folder, "files": files}
+
+
+def whole_skill(loader, entry, level="L2") -> tuple:
+    """(text, sent tokens): one skill's SKILL.md in full — no section picking, no truncation (Plan B) — followed by
+    its folder and file list. A file already sent in this session becomes a `[cached]` marker."""
+    unit = skill_unit(loader, entry)
+    bundle = loader.require_bundle()
+    head = f"### {entry['path']} — {entry.get('name', '')} (skill {skill_id(entry)}, whole)\n"
+    if loader.cached(entry["path"], sha256=entry["sha256"], sections=["all"]):
+        loader.note_hit(entry["path"], level, ["all"])
+        body = _cached_marker(entry["path"], ["all"])
+    else:
+        body = loader.read(bundle / entry["path"], display=entry["path"], level=level).rstrip() + "\n"
+        loader.record(entry["path"], level=level, sha256=entry["sha256"], sections=["all"], sent_bytes=nbytes(body))
+    tail = f"Skill folder: {bundle / unit['folder']} (this skill's relative paths resolve here)\n"
+    if unit["files"]:
+        tail += ("Files of this skill (read when the skill says so, e.g. `agylite context --file <path>`): "
+                 + ", ".join(f"{e['path']} (~{e['tokens']})" for e in unit["files"][:40])
+                 + (" …" if len(unit["files"]) > 40 else "") + "\n")
+    text = head + body + tail
+    return text, est_tokens(nbytes(body))
+
+
+def capability_context(loader, cids, budgets, query=None, priorities=None, whole=1):
+    """L2 (IMPLEMENTATION_PLAN §2.1, Plan B): the primary skill of the highest-ranked capability loads whole, a second
+    one too when `whole=2` (strong signals in two domains) and it fits `max_tokens_per_task`; every other routed
+    capability is index only, naming its primary skill for `agylite skill load`. Secondary sources stay L3."""
     cfg = budgets["levels"]["L2"]
     priorities = source_priorities() if priorities is None else priorities
-    # Content gets the budget minus a reserve for headers and the file/section listings, so the whole L2 text fits.
-    total = Budget(int(cfg["max_tokens_per_task"] * (1 - L2_LISTING_RESERVE)))
-    bundle = loader.require_bundle()
-    full, index_only = list(cids[:cfg["max_capabilities_full"]]), list(cids[cfg["max_capabilities_full"]:])
-    plan = []
-    for cid in full:
-        plan += [(cid, e) for e in _rank_files(loader.files_of(cid), query, priorities.get(cid, ()))
-                 [:cfg["max_files_per_capability"]]]
-    # Pass 1 — choose sections from metadata only, so the choice (and therefore the cache key) does not depend on
-    # what this session already holds. Unused share rolls over to the next file.
-    planned, left = [], total.limit
-    for i, (cid, e) in enumerate(plan):
-        share = max(left // (len(plan) - i), 1)
-        secs = sections_from(e)
-        chosen, skipped, truncated = pick_sections(secs, share, query)
-        cost = sum(s.tokens for s in chosen) if chosen and not truncated else min(e["tokens"], share)
-        left -= min(cost, share)
-        planned.append((cid, e, share, secs, chosen, skipped, truncated))
-    # Pass 2 — send what is not already in this session's context.
-    parts, current = [], None
-    for cid, e, share, secs, chosen, skipped, truncated in planned:
-        if cid != current:
-            current = cid
-            parts.append(f"## {cid} · L2\n")
-        ids = [s.id for s in chosen] or ["all"]
-        if loader.cached(e["path"], sha256=e["sha256"], sections=ids):
-            loader.note_hit(e["path"], "L2", ids)
-            parts.append(_cached_marker(e["path"], ids))
+    n_whole = min(max(int(whole), 1), cfg["max_whole_skills_per_task"])
+    budget = Budget(cfg["max_tokens_per_task"])
+    parts, full, index_only = [], [], []
+    for i, cid in enumerate(cids):
+        entries = loader.files_of(cid)
+        prim = primary_skill(entries, query, priorities.get(cid, ()))
+        if prim is not None and len(full) < n_whole and i < n_whole and (not full or budget.fits(prim["tokens"])):
+            text, sent = whole_skill(loader, prim)
+            budget.take(sent)
+            full.append(cid)
+            parts.append(f"## {cid} · L2\n{text}")
+            rest = [e for e in _rank_files(entries, query, priorities.get(cid, ()))
+                    if e["path"] != prim["path"] and not e["path"].startswith(prim["path"].rsplit("/", 1)[0] + "/")]
+            if rest:
+                parts.append(f"Secondary sources of {cid} (L3, explicit only): "
+                             + ", ".join(f"{e['path']} (~{e['tokens']})" for e in rest[:8])
+                             + (" …" if len(rest) > 8 else "") + "\n")
             continue
-        text = loader.read(bundle / e["path"], display=e["path"], level="L2")
-        out = render(text, chosen, truncated, share) if chosen else text[:share * 4]
-        total.take(est_tokens(nbytes(out)))
-        loader.record(e["path"], level="L2", sha256=e["sha256"], sections=ids, sent_bytes=nbytes(out))
-        header = f"### {e['path']} — {e.get('name', '')}"
-        if skipped:
-            header += f" (sections {len(chosen)}/{len(secs)}, ≈{est_tokens(nbytes(out))} of {e['tokens']} est. tokens)"
-        parts.append(header + "\n" + out.rstrip() + "\n")
-        if skipped:
-            more = ", ".join(f"{s.id} (~{s.tokens})" for s in skipped[:10])
-            parts.append(f"More sections: {more}{' …' if len(skipped) > 10 else ''} → "
-                         f"`agylite context --file {e['path']} --section <id>`\n")
-    for cid in full:
-        loaded = {e["path"] for c, e in plan if c == cid}
-        rest = [e for e in loader.files_of(cid) if e["kind"] in L3_KINDS and e["path"] not in loaded]
-        rest.sort(key=lambda e: (e["kind"] not in ("skill", "doc", "reference"), e["path"]))
-        if rest:
-            shown = ", ".join(f"{e['path']} (~{e['tokens']})" for e in rest[:5])
-            parts.append(f"{cid}: {len(rest)} more files at L3 (explicit `--file`): {shown}{' …' if len(rest) > 5 else ''}\n")
-    for cid in index_only:
-        ranked = _rank_files(loader.files_of(cid), query, priorities.get(cid, ()))
-        names = ", ".join(e.get("name", e["path"]) for e in ranked[:5]) or "OS-native"
-        parts.append(f"## {cid} · index only (L2 capability limit reached): {names} → `agylite context {cid}`\n")
+        index_only.append(cid)
+        parts.append(f"## {cid} · index only: " + (f"primary skill {skill_id(prim)} → `agylite skill load {skill_id(prim)}`"
+                                                    if prim else "OS-native (no bundled skill)") + "\n")
     text = "".join(parts)
     return {"level": "L2", "text": text, "est_tokens": est_tokens(nbytes(text)), "limit": cfg["max_tokens_per_task"],
             "capabilities_full": full, "capabilities_index_only": index_only}
+
+
+def find_skill(loader, sid: str):
+    """The bundled SKILL.md entry whose skill id is `sid`, else None."""
+    for entries in loader.index["capabilities"].values():
+        for e in entries:
+            if e["kind"] == "skill" and skill_id(e) == sid:
+                return e
+    return None
 
 
 def deep_reference(loader, path: str, budgets, sections=None, query=None):

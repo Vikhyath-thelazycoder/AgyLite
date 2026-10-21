@@ -47,10 +47,19 @@ class TestPromptHook(unittest.TestCase):
         lines = out.splitlines()
         self.assertTrue(lines[0].startswith("Agylite route: "), out)
         self.assertIn("engineering/security", lines[0])
-        self.assertTrue(lines[1].startswith(f'Before changing anything, load the guidance: agylite context --request "{PROMPT}"'))
+        # no bundle installed in this home: the load line falls back to the context command
+        self.assertTrue(lines[1].startswith(f'Before the first edit, load the whole skill and follow it: '
+                                            f'agylite context --request "{PROMPT}"'))
         self.assertIn("Done means: agylite verify passes", lines[2])
         self.assertIn("# engineering/", out)                     # at least one L1 card
         self.assertLessEqual(len(out.encode()) // 4, 800)
+
+    def test_with_a_bundle_the_hook_names_the_whole_skill_to_load(self):
+        """Plan B: the route arrives with `agylite skill load <upstream>/<name>` for the primary skill."""
+        from tests.context.fixtures import make_bundle
+        make_bundle(self.home)
+        _, out = self.hook({"prompt": PROMPT})
+        self.assertIn("Before the first edit, load the whole skill and follow it: agylite skill load alpha/", out)
 
     def test_silent_cases(self):
         for stdin in ({"prompt": "Translate my grandmother's recipe into Italian"},   # unmatched

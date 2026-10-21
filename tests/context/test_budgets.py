@@ -26,7 +26,7 @@ class TestBudgetsConfig(unittest.TestCase):
         cfg = load_budgets()
         self.assertEqual(validate_budgets(cfg), [])
         self.assertEqual(cfg["levels"]["L0"]["max_tokens"], 1500)   # D-014 starting values
-        self.assertEqual(cfg["levels"]["L2"]["max_tokens_per_task"], 8000)
+        self.assertEqual(cfg["levels"]["L2"]["max_tokens_per_task"], 40000)   # Plan B (IMPLEMENTATION_PLAN §2.1)
 
     def test_planted_errors(self):
         cfg = copy.deepcopy(load_budgets())
@@ -100,19 +100,21 @@ class TestLevels(Env):
         l1 = levels.domain_context(self.loader(), ["engineering/security", "engineering/backend"], tiny)
         self.assertIn("L1 budget reached for engineering; more cards: engineering/backend", l1["text"])
 
-    def test_l2_budget_files_and_capability_limit(self):
+    def test_l2_whole_primary_skill_and_index_only(self):
+        """Plan B (IMPLEMENTATION_PLAN §2.1) replaced section-picked slices of two files per capability: the first
+        capability's primary skill loads whole, the others are index only; references are listed, never loaded."""
         loader = self.loader()
         caps = ["engineering/security", "engineering/backend", "testing/security", "codebase/impact-analysis"]
-        l2 = levels.capability_context(loader, caps, self.budgets, query="webhook signature")
-        sent = sum(e["sent_tokens"] for e in loader.log)
-        self.assertLessEqual(sent, self.budgets["levels"]["L2"]["max_tokens_per_task"])
+        l2 = levels.capability_context(loader, caps, self.budgets, query="webhook signature",
+                                       priorities={"engineering/security": ["files/alpha/skills/security-review/SKILL.md"]})
         self.assertLessEqual(l2["est_tokens"], self.budgets["levels"]["L2"]["max_tokens_per_task"])
-        self.assertEqual(l2["capabilities_index_only"], ["codebase/impact-analysis"])
+        self.assertEqual(l2["capabilities_full"], ["engineering/security"])
+        self.assertEqual(l2["capabilities_index_only"], caps[1:])
         kinds = {file_kind(e["path"]) for e in loader.log}
-        self.assertLessEqual(kinds, {"skill", "doc"}, "L2 never loads references, data or licenses")
+        self.assertEqual(kinds, {"skill"}, "L2 loads the whole primary skill only; references stay on demand")
         self.assertIn("## Webhook signature verification", l2["text"])
-        self.assertIn("More sections:", l2["text"])
-        self.assertIn("files/alpha/skills/hardening/references/checklist.md", l2["text"])   # offered for L3
+        self.assertIn("## Dependency audit", l2["text"])                                # the last section too
+        self.assertNotIn("More sections:", l2["text"])
 
     def test_l3_explicit_file_and_sections(self):
         loader = self.loader()

@@ -28,9 +28,10 @@ def validate_budgets(cfg):
         if not str(entry.get("why") or "").strip():
             p.append(f"levels.{level}: missing `why`")
     l2 = levels.get("L2") or {}
-    for key in ("max_capabilities_full", "max_files_per_capability"):
-        if not (isinstance(l2.get(key), int) and l2[key] > 0):
-            p.append(f"levels.L2.{key} must be a positive integer")
+    if not (isinstance(l2.get("max_whole_skills_per_task"), int) and l2["max_whole_skills_per_task"] > 0):
+        p.append("levels.L2.max_whole_skills_per_task must be a positive integer")
+    if l2.get("primary_skill") != "whole":
+        p.append("levels.L2.primary_skill must be `whole` (IMPLEMENTATION_PLAN §2.1: skills are never sliced)")
     if (levels.get("L3") or {}).get("explicit_only") is not True:
         p.append("levels.L3.explicit_only must be true (spec §16: never default to Level 3)")
     for key in OTHER_KEYS:

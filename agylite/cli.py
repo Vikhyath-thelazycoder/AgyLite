@@ -264,6 +264,67 @@ def _hook(args):
     return 0
 
 
+def _skill(args):
+    """Plan B (IMPLEMENTATION_PLAN §2.1): print one whole skill with its folder and file list, or list skill ids."""
+    from .context import levels
+    from .context.loader import ContextError, ContextLoader
+    from .paths import current_bundle
+    project = _project_ref(args)
+    loader = ContextLoader(project, _session_id(args), current_bundle(), use_cache=not args.no_cache)
+    try:
+        if args.skill_cmd == "list":
+            for cid, entries in sorted(loader.index["capabilities"].items()):
+                if args.capability and cid != args.capability:
+                    continue
+                for e in entries:
+                    if e["kind"] == "skill":
+                        print(f"{levels.skill_id(e):48} {cid:34} ~{e['tokens']} tokens")
+            return 0
+        entry = levels.find_skill(loader, args.skill_id or "")
+        if entry is None:
+            print(f"agylite skill: no bundled skill {args.skill_id!r}; list them with `agylite skill list`, or find one "
+                  f"in every upstream with `agylite skills search \"<words>\"`", file=sys.stderr)
+            return 2
+        text, _ = levels.whole_skill(loader, entry, level="L2")
+    except ContextError as exc:
+        print(f"agylite skill: {exc}", file=sys.stderr)
+        return 1
+    loader.finish(active_capabilities=[next((c for c, es in loader.index["capabilities"].items()
+                                              if any(x["path"] == entry["path"] for x in es)), "")])
+    sys.stdout.write(text)
+    return 0
+
+
+def _skills(args):
+    """Plan B breadth: `skills search` ranks the catalog of every pinned upstream; `skills get` fetches one folder."""
+    import json
+
+    from . import catalog
+    from .paths import agylite_home, current_bundle
+    bundle = current_bundle()
+    try:
+        cat = catalog.load(bundle) if bundle else None
+    except FileNotFoundError as exc:
+        print(f"agylite skills: {exc}", file=sys.stderr)
+        return 1
+    if cat is None:
+        print("agylite skills: no bundle installed (scripts/install)", file=sys.stderr)
+        return 1
+    if args.skills_cmd == "search":
+        res = catalog.search(cat, " ".join(args.words), args.n)
+        print(json.dumps(res, indent=1) if args.json else catalog.render(res), end="" if not args.json else "\n")
+        return 0
+    from .paths import repo_root
+    licenses = json.loads((repo_root() / "third_party" / "licenses.json").read_text(encoding="utf-8"))
+    try:
+        dest = catalog.get(agylite_home(), cat, args.words[0], licenses)
+    except (KeyError, PermissionError) as exc:
+        print(f"agylite skills: {exc.args[0]}", file=sys.stderr)
+        return 2
+    print(f"fetched {args.words[0]} → {dest}\nRead {dest / 'SKILL.md'} and follow it like any skill; its files are in that folder.")
+    return 0
+
+
 def _bootstrap(args):
     import json
 
@@ -311,6 +372,7 @@ def _context(args):
         _emit_route(_project_ref(args), route, _session_id(args))
         caps = caps or [c["id"] for c in route["capabilities"]]
         query = query or args.route
+        args.whole = args.whole or max(len(route.get("whole_skills") or []), 1)
     if not query and not args.file:
         print("note: no --request given; files ranked by sources_priority only", file=sys.stderr)
     cards = load_cards()
@@ -340,7 +402,7 @@ def _context(args):
                     f"- {d['decision_id']} [{d['kind']}] {d['topic']}: {d['decision']}\n" for d in relevant)
                 out.append({"level": "L1", "text": text, "est_tokens": -(-len(text.encode()) // 4)})
             if level >= 2:
-                out.append(levels.capability_context(loader, caps, budgets, query=query))
+                out.append(levels.capability_context(loader, caps, budgets, query=query, whole=args.whole or 1))
     except ContextError as exc:
         print(f"agylite context: {exc}", file=sys.stderr)
         return 1
@@ -1079,11 +1141,28 @@ def build_parser():
     p.add_argument("--host", default="claude-code")
     p.set_defaults(func=_hook)
 
+    p = sub.add_parser("skill", help="Load one whole skill by id (Plan B): `agylite skill load <upstream>/<name>`")
+    p.add_argument("skill_cmd", choices=("load", "list"))
+    p.add_argument("skill_id", nargs="?", help="e.g. ponytail/ponytail-review, taste/design-taste-frontend")
+    p.add_argument("--capability", help="With list: only this capability's skills")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.add_argument("--session", help="Session id (default: $AGYLITE_SESSION_ID)")
+    p.add_argument("--no-cache", action="store_true")
+    p.set_defaults(func=_skill)
+
+    p = sub.add_parser("skills", help="Search every upstream's skills (de-duplicated catalog) and fetch one at its pin")
+    p.add_argument("skills_cmd", choices=("search", "get"))
+    p.add_argument("words", nargs="+", help="search: words · get: one skill id from search")
+    p.add_argument("-n", type=int, default=5, help="search: results (default 5)")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(func=_skills)
+
     p = sub.add_parser("context", help="Load L1/L2 context for capabilities, or one L3 file (explicit)")
     p.add_argument("capability", nargs="*", help="Capability ids (from `agylite route`)")
     p.add_argument("--level", type=int, choices=(1, 2, 3), default=2,
                    help="1 = cards only; 2 = cards + capability files; 3 = one --file (explicit only)")
     p.add_argument("--route", metavar="REQUEST", help="Route REQUEST and load the selected capabilities")
+    p.add_argument("--whole", type=int, choices=(1, 2), help="Whole primary skills to load (default: what the route says, else 1)")
     p.add_argument("--request", help="Request text used to rank files and sections")
     p.add_argument("--file", help="Level 3: one bundle file (path as listed by L2), explicit only")
     p.add_argument("--section", action="append", help="With --file: only these section ids")

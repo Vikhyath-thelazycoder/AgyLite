@@ -57,12 +57,14 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
     ids = [c["id"] for c in route["capabilities"]]
     deps = [d["id"] for d in route["dependencies"]]
     limit = budgets["prompt_hook"]["max_tokens"]
+    loader = ContextLoader(project, session_id, current_bundle())
+    skills = primary_skill_ids(loader, route.get("whole_skills") or ids[:1], prompt)
+    load = (" && ".join(f"agylite skill load {s}" for s in skills) if skills else
+            f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
     lines = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else ""),
-             f'Before changing anything, load the guidance: agylite context --request "{_quote(prompt)}" '
-             + " ".join(ids),
+             f"Before the first edit, load the whole skill and follow it: {load}",
              "Done means: agylite verify passes (tests, types, lint, build)."]
     used = est_tokens(nbytes("\n".join(lines)))
-    loader = ContextLoader(project, session_id, current_bundle())
     cards, cached = [], []
     caps_dir = (root or repo_root()) / "capabilities"
     for cid in ids:
@@ -92,9 +94,25 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
     out = "\n".join(lines) + "\n"
     emit(project, "PROMPT_ROUTED", session_id=session_id, host=host, capabilities=ids,
          est_tokens=est_tokens(nbytes(out)),
-         details={**meta, "change_type": route["change_type"], "cards": cards, "cached_cards": cached})
+         details={**meta, "change_type": route["change_type"], "cards": cards, "cached_cards": cached,
+                  "skills": skills})
     _mark_fired(host)
     return out
+
+
+def primary_skill_ids(loader, cids, query) -> list:
+    """Plan B: the skill ids (`<upstream>/<name>`) of these capabilities' primary skills, from the bundle index."""
+    from . import levels
+    try:
+        prios = levels.source_priorities()
+        out = []
+        for cid in cids:
+            entry = levels.primary_skill(loader.files_of(cid), query, prios.get(cid, ()))
+            if entry is not None and entry["kind"] == "skill":
+                out.append(levels.skill_id(entry))
+        return out
+    except Exception:   # no bundle yet: fall back to the context command
+        return []
 
 
 def _mark_fired(host: str):

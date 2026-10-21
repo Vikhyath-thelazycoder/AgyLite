@@ -114,6 +114,22 @@ def _self_tests(work: Path, log):
     return results
 
 
+def write_catalog(bundle: Path, staging: Path, evidence: Path, records) -> dict:
+    """Plan B: index every SKILL.md of every pinned upstream into <bundle>/catalog.json (`agylite skills search`)."""
+    from .. import catalog
+    from ..context.sections import frontmatter
+    bundled = {}
+    for r in records:
+        dest = r["destination_path"]
+        if dest.endswith("/SKILL.md") and (bundle / dest).is_file():
+            fm, _ = frontmatter((bundle / dest).read_text(encoding="utf-8", errors="replace"))
+            repo = dest.split("/")[1]
+            bundled[(repo, r["source_path"])] = f"{repo}/{fm.get('name') or dest.rsplit('/', 2)[-2]}"
+    cat = catalog.build(staging, evidence, bundled)
+    (bundle / catalog.CATALOG).write_text(json.dumps(cat, indent=1), encoding="utf-8")
+    return {"skills": cat["count"], "skipped_copies": cat["skipped_copies"], "missing": len(cat["missing"])}
+
+
 def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = None, evidence: Path | None = None,
           licenses_path: Path | None = None, activate_bundle=True, self_test=False,
           log=print):
@@ -136,6 +152,8 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
         existing = json.loads((final / "BUILD.json").read_text(encoding="utf-8"))
         if existing.get("status") == "known-good" and not verify(final):
             log(f"bundle {bundle_id} already built and intact")
+            if not (final / "catalog.json").is_file():   # bundles built before Plan B gain their skill catalog
+                write_catalog(final, staging, evidence, json.loads((final / "provenance.json").read_text(encoding="utf-8")))
             reg = load_registry(final)
             if reg is None or reg.get("inputs_hash") != cards_hash():
                 write_registry(final)
@@ -219,6 +237,7 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
     (work / "index.json").write_text(json.dumps({"bundle_id": bundle_id, "capabilities": capabilities,
                                                  "files": index_files}, indent=1, sort_keys=True), encoding="utf-8")
     (work / "provenance.json").write_text(json.dumps(records, indent=1), encoding="utf-8")
+    catalog_info = write_catalog(work, staging, evidence, records)
     write_registry(work, bundle_id=bundle_id)
     info = {
         "bundle_id": bundle_id, "created": created, "status": "failed" if errors else "known-good",
@@ -229,6 +248,7 @@ def build(home: Path, staging: Path | None = None, *, rules_path: Path | None = 
         "debts": {k: sorted(v) for k, v in debts.items()},
         "unresolved_placeholders": unresolved,
         "provenance_fields": list(FIELDS),
+        "catalog": catalog_info,
     }
     if self_test and not errors:
         info["self_tests"] = _self_tests(work, log)

@@ -19,12 +19,15 @@ levels:
       A rendered CARD.md is ≤ 250 est. tokens (registry check enforces ≤ 1,000 bytes); 2,000 per domain fits the
       routed cards of one domain (P7 finding: whole domains exceed this, so only routed cards are loaded).
   L2:
-    max_tokens_per_task: 8000
-    max_capabilities_full: 3
-    max_files_per_capability: 2
+    primary_skill: whole
+    max_whole_skills_per_task: 2
+    max_tokens_per_task: 40000
     why: >-
-      Upstream skills are 2–5k est. tokens each (doc 13). 8,000 per task loads the most relevant sections of up to
-      three capabilities; further capabilities get a file/section index only and are fetched by id when needed.
+      IMPLEMENTATION_PLAN §2.1 (Plan B, owner decision 2026-10-21): the upstreams benchmarked their complete skill, so a
+      routed capability's primary SKILL.md loads whole, never section-picked or truncated; its references are listed
+      and read on demand, as the original skill says. One whole skill per task, two when the route has strong signals in
+      two domains; other routed capabilities are index only. 40,000 lets the largest primaries (gstack ship and
+      investigate, 12–20K tokens) fit whole next to a second skill. Section-level loading remains for L3 only.
   L3:
     max_tokens_per_fetch: 12000
     explicit_only: true

@@ -29,6 +29,7 @@ def needed_paths(evidence: Path):
             paths |= {p[: -len(".tmpl")] for p in paths if p.endswith(".tmpl") and p[: -len(".tmpl")] in inventory}
         paths |= set(licenses.get(repo, {}).get("license_files", []))
         paths |= {p for p in (".claude-plugin/plugin.json",) if p in inventory}   # license metadata (no LICENSE file)
+        paths |= {p for p in inventory if p.rsplit("/", 1)[-1] == "SKILL.md"}   # skill catalog input (Plan B search)
         needed[repo] = sorted(paths)
     return needed
 

@@ -19,7 +19,8 @@ from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, se
 
 # 2: browser disabled|exception-requested, verification_mode (D-035). 3: impact (P12). 4: lifecycle (P13).
 # 5: urls (MP1 F1) — URLs/domains found in the request; matching sees the placeholder `urlref` in their place;
-#    unmatched + fallback_guidance (MP1 F4) — nothing fits, so the agent uses principles only.
+#    unmatched + fallback_guidance (MP1 F4) — nothing fits, so the agent uses principles only;
+#    whole_skills (Plan B) — the capabilities whose primary skill loads whole (one, or two across domains).
 ROUTE_SCHEMA_VERSION = 5
 
 
@@ -133,6 +134,12 @@ class Router:
         roles = self.cfg.get("roles") or []
         # F4: an empty selection is said out loud, and the agent falls back to the always-safe principles.
         unmatched = not selected
+        # Plan B (IMPLEMENTATION_PLAN §2.1): the first capability's primary skill loads whole; a second one only when
+        # the task clearly spans two jobs (strong rule signals in two domains). The rest are index only.
+        whole = [selected[0].cid] if selected else []
+        if selected and selected[0].strong:
+            second = next((c.cid for c in selected[1:] if c.strong and domain_of(c.cid) != domain_of(selected[0].cid)), None)
+            whole += [second] if second else []
         return {
             "schema_version": ROUTE_SCHEMA_VERSION,
             "request": request,
@@ -158,6 +165,7 @@ class Router:
             "method": method,
             "confidence": confidence,
             "unmatched": unmatched,
+            "whole_skills": whole,
             "fallback_guidance": list(UNMATCHED_GUIDANCE) if unmatched else [],
             "duration_ms": round((time.perf_counter() - start) * 1000, 3),
         }
