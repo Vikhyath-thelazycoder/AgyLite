@@ -9,6 +9,31 @@ CHANGE_TYPES = ("NEW_FEATURE", "FEATURE_CHANGE", "BUG_FIX", "REFACTOR", "SECURIT
 
 _QUOTES = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"'})
 
+# MP1 F1: URLs and bare domains are masked before keyword matching, so `stripe.com` is not a payment signal.
+URL_PLACEHOLDER = "urlref"
+_TLDS = "com|io|app|dev|ai|org|net|co|so|sh|xyz|design|studio|tech|site|me|us|uk|de|fr|in"
+_FILE_EXTENSIONS = frozenset("py js ts tsx jsx json yaml yml md css html toml lock txt sql sh".split())
+_URL = re.compile(r"https?://\S+|www\.\S+|(?<![\w@./-])[a-z0-9-]+(?:\.[a-z0-9-]+)*\.(?:" + _TLDS + r")\b(?:/\S*)?",
+                  re.IGNORECASE)
+_TRAILING = ".,;:!?)]}'\""
+
+
+def extract_urls(text: str) -> tuple[str, list[str]]:
+    """(text with each URL or bare domain replaced by ` urlref `, the URLs found). A name whose last label is a common
+    file extension (`deploy.sh`, `config.yaml`) is a file, not a domain; versions and `node.js` never match."""
+    urls = []
+
+    def mask(m):
+        url = m.group(0).rstrip(_TRAILING)
+        tail = m.group(0)[len(url):]
+        host = re.sub(r"^https?://", "", url, flags=re.IGNORECASE).split("/", 1)[0]
+        if not m.group(0).lower().startswith(("http", "www.")) and host.rsplit(".", 1)[-1].lower() in _FILE_EXTENSIONS:
+            return m.group(0)
+        urls.append(url)
+        return f" {URL_PLACEHOLDER} {tail}"
+
+    return _URL.sub(mask, text), urls
+
 
 def normalize(text: str) -> str:
     return " ".join(text.translate(_QUOTES).lower().split())

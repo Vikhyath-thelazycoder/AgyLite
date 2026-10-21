@@ -6,7 +6,8 @@ browser policy, verification mode, method and confidence.
 
 ## Pipeline (`agylite/routing/router.py`, config `config/routing.yaml`)
 
-1. Normalize the request.
+1. Mask URLs and bare domains (`stripe.com`, `https://…`) as the placeholder `urlref` and normalize the request;
+   the URLs found are returned as `urls` (schema 5, MP1 F1), so a brand-named site never fires a keyword rule.
 2. Rules (keywords, `unless` exclusions, project stage) and path rules (`--paths`) → strong candidates.
 3. Card intent tags → weak candidates.
 4. Suppression ("forbidden pairings"), project stage (new: no codebase; existing: impact analysis first), limits.

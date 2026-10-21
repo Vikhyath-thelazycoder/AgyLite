@@ -12,12 +12,14 @@ from ..context.budget import load_budgets
 from ..project.lifecycle import load_lifecycle, steps_for
 from ..registry import loader
 from ..verify import policy
-from .classify import classify_change, normalize
+from .classify import classify_change, extract_urls, normalize
 from .fallback_bm25 import BM25
 from .rules import load_hierarchy, load_routing, match_paths, match_rules, role_of
 from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, select_capabilities
 
-ROUTE_SCHEMA_VERSION = 4  # 2: browser disabled|exception-requested, verification_mode (D-035). 3: impact (P12). 4: lifecycle (P13)
+# 2: browser disabled|exception-requested, verification_mode (D-035). 3: impact (P12). 4: lifecycle (P13).
+# 5: urls (MP1 F1) — URLs/domains found in the request; matching sees the placeholder `urlref` in their place.
+ROUTE_SCHEMA_VERSION = 5
 
 
 @dataclass
@@ -67,7 +69,8 @@ class Router:
         unknown = [c for c in requested if c not in self.cards]
         if unknown:
             raise RoutingError(f"unknown capability {unknown[0]} (see `agylite registry list`)")
-        text = normalize(request)
+        masked, urls = extract_urls(request)
+        text = normalize(masked)  # rules, tags, BM25 and the change type see `urlref`, never a domain name (F1)
         limits = self.cfg.get("limits") or {}
         confident = limits.get("confident_score", 2)
         hits = match_rules(text, self.cfg, project.stage) + match_paths(paths, self.cfg)
@@ -123,6 +126,7 @@ class Router:
         return {
             "schema_version": ROUTE_SCHEMA_VERSION,
             "request": request,
+            "urls": urls,
             "change_type": change_type,
             "change_type_keyword": decided_by,
             "project": {"stage": project.stage, "project_id": project.project_id, "phase": project.phase,
