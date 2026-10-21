@@ -6,7 +6,7 @@ description: Release readiness — plan completion, verification evidence, chang
 # Agylite Production
 
 1. **Route:** `agylite route "prepare the release" --paths <files…>` → `engineering/release`,
-   `testing/release-verification`; load with `agylite context <id>…`.
+   `testing/release-verification`; load with `agylite context --request "<the user's request>" <id>…`.
 2. **Plan completion:** every task the release claims is VERIFIED with evidence (`agylite plan show <phase>`);
    PARTIAL or unverified items block the release unless the user accepts the risk
    (`agylite decide add --kind process --topic "risk acceptance" …`).

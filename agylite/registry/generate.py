@@ -244,4 +244,19 @@ def check(root: Path | None = None, bundle_dir: Path | None = None):
             problems.append(f"bundle {bundle_dir.name}: {REGISTRY_FILE} is stale (run `agylite registry build`)")
         else:
             problems += [f"bundle {bundle_dir.name}: {p}" for p in schema.validate_registry(reg, names)]
+        problems += sources_priority_problems(cards, bundle_dir)
     return problems
+
+
+def sources_priority_problems(cards, bundle_dir: Path):
+    """MP1 F5: every sources_priority glob must match a file the bundle maps to that capability, so a source removed
+    or moved upstream fails the check instead of silently falling back to another file."""
+    import fnmatch
+    index = json.loads((bundle_dir / "index.json").read_text(encoding="utf-8"))
+    files = index.get("files") or {}
+    by_cap = {}
+    for path, meta in files.items():
+        by_cap.setdefault(meta.get("capability"), []).append(path)
+    return [f"{cid}: sources_priority {g} matches no file of {cid} in bundle {bundle_dir.name}"
+            for cid, card in cards.items() for g in card.get("sources_priority") or []
+            if not any(fnmatch.fnmatchcase(p, g) for p in by_cap.get(cid, []))]

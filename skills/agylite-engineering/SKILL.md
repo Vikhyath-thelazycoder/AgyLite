@@ -8,7 +8,7 @@ description: Engineering work (features, fixes, refactors, migrations) through t
 The OS decides which engineering guidance applies; this skill only tells you how to follow it.
 
 1. **Route:** `agylite route "<request>" --paths <files…>`. Load only what it selects:
-   `agylite context <capability-id>…`.
+   `agylite context --request "<the user's request>" <capability-id>…`.
 2. **Follow `lifecycle`** from the route result (`config/lifecycle.yaml`), step by step, running each step's
    commands and meeting its `exit` before moving on:
    UNDERSTAND (`agylite codebase affected`, `agylite plan locate`) → PLAN (`agylite plan reconcile`) →

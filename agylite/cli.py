@@ -259,6 +259,8 @@ def _context(args):
         _emit_route(_project_ref(args), route, _session_id(args))
         caps = caps or [c["id"] for c in route["capabilities"]]
         query = query or args.route
+    if not query and not args.file:
+        print("note: no --request given; files ranked by sources_priority only", file=sys.stderr)
     cards = load_cards()
     unknown = [c for c in caps if c not in cards]
     if unknown:

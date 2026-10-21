@@ -16,7 +16,8 @@ SPEC_FIELDS = (
 # Filled by agylite/registry/generate.py from the card path and bundle provenance; never written in a card.
 GENERATED_FIELDS = ("capability_id", "domain", "subdomain", "source_repositories", "source_paths", "version",
                     "commit_sha", "license", "integration_type", "token_cost_estimate")
-EXTRA_FIELDS = ("origin", "web_qa_class", "web_qa_modes", "runtime_status")
+# sources_priority (MP1 F5): bundle-path globs, the capability's primary source first; validated against the bundle.
+EXTRA_FIELDS = ("origin", "web_qa_class", "web_qa_modes", "runtime_status", "sources_priority")
 AUTHORED_FIELDS = tuple(f for f in SPEC_FIELDS if f not in GENERATED_FIELDS) + EXTRA_FIELDS
 
 ORIGINS = {"bundled", "os-native", "mixed"}
@@ -76,6 +77,10 @@ def validate_card(cid, card, ids):
         ("enabled", isinstance(card["enabled"], bool)),
     )
     p += [f"{cid}: invalid {field}: {card.get(field)!r}" for field, ok in checks if not ok]
+
+    prio = card.get("sources_priority")
+    if prio is not None and not (_str_list(prio, non_empty=True) and all(g.startswith("files/") for g in prio)):
+        p.append(f"{cid}: sources_priority must be a non-empty list of bundle path globs (files/…)")
 
     act = card["activation_conditions"]
     if not isinstance(act, dict) or act.get("mode") not in ACTIVATION_MODES or not _str_list(act.get("when"), True):

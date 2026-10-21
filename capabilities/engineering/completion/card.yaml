@@ -20,3 +20,5 @@ related_capabilities: [testing/release-verification]
 conflicts: []
 fallback_capability: null
 enabled: true
+# MP1 F5: the primary source loads first (was alphabetical by upstream folder).
+sources_priority: [files/unlazy/SKILL.md]

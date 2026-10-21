@@ -6,7 +6,7 @@ description: UI/UX and visual design work — direction, design systems, typogra
 # Agylite Design
 
 1. **Route:** `agylite route "<request>" --paths <files…>` and load only what it selects with
-   `agylite context <id>…` (mobile/native requests load the merged native-mobile rules in `design/frontend`).
+   `agylite context --request "<the user's request>" <id>…` (mobile/native requests load the merged native-mobile rules in `design/frontend`).
 2. **Decisions first:** `agylite decide list --kind design`; keep to recorded brand and system decisions, and
    record new ones with `agylite decide add --kind design …`.
 3. **Engine** (read-only unless persisted):

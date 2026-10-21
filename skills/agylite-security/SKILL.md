@@ -6,7 +6,7 @@ description: Security-sensitive changes (auth, secrets, payments/webhooks, input
 # Agylite Security
 
 1. **Route:** `agylite route "<request>" --paths <files…>`; security work selects `engineering/security` (project
-   security outranks every methodology) and `testing/security`. Load them with `agylite context <id>…`.
+   security outranks every methodology) and `testing/security`. Load them with `agylite context --request "<the user's request>" <id>…`.
 2. **Understand the surface:** `agylite codebase affected --paths <files…>`; check recorded security decisions
    with `agylite decide list --kind security`.
 3. **Fix with negative tests** (lifecycle rule for SECURITY_CHANGE): forged/expired signatures rejected,

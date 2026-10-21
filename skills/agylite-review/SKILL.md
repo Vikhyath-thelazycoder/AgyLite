@@ -6,7 +6,7 @@ description: Pre-merge code review of the current change — scope drift, correc
 # Agylite Review
 
 1. **Route:** `agylite route "review this change" --paths $(git diff --name-only origin/<base>)`, then
-   `agylite context engineering/review` (plus any security/testing capability it selects).
+   `agylite context --request "<the user's request>" engineering/review` (plus any security/testing capability it selects).
 2. **Scope:** compare the diff with its plan task (`agylite plan locate`); report scope creep and missing
    requirements first.
 3. **Impact:** `agylite codebase affected` — review the changed files and what they reach, not the whole repo.

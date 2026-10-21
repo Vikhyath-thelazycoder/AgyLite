@@ -5,7 +5,7 @@ description: SEO audits, AI-search readiness, keyword/competitor/backlink resear
 
 # Agylite SEO
 
-1. **Route:** `agylite route "<request>"`; load only the selected `seo/*` capabilities with `agylite context`.
+1. **Route:** `agylite route "<request>"`; load only the selected `seo/*` capabilities with `agylite context --request "<the user's request>" <id>…`.
 2. **Runtime:** `agylite runtime status` → install once with `agylite runtime install seo` (core; add
    `--browser` only if the user agrees to the large Chromium download for rendered pages).
 3. **Capture:** `agylite seo run crawl <url> [--max-pages N]` (output goes to the project's data dir), then

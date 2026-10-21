@@ -19,3 +19,5 @@ related_capabilities: [engineering/architecture, engineering/documentation]
 conflicts: []
 fallback_capability: null
 enabled: true
+# MP1 F5: the primary source loads first (was alphabetical by upstream folder).
+sources_priority: [files/addy/skills/interview-me/SKILL.md, files/gstack/plan-eng-review/SKILL.md]

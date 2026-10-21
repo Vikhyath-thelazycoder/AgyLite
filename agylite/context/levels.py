@@ -1,5 +1,6 @@
 """Progressive context levels (spec §16): L0 bootstrap · L1 routed capability cards · L2 capability files (sections) ·
 L3 deep reference (explicit only). Every assembly respects config/budgets.yaml and goes through the ContextLoader."""
+import fnmatch
 import os
 
 from .. import __version__
@@ -88,29 +89,43 @@ def domain_context(loader, cids, budgets, root=None):
     return {"level": "L1", "text": text, "est_tokens": est_tokens(nbytes(text)), "limit_per_domain": limit}
 
 
-def _rank_files(entries, query):
+def priority_rank(path, priority):
+    """Index of the first `sources_priority` glob matching `path`; unmatched files rank after every glob (MP1 F5)."""
+    return next((i for i, g in enumerate(priority) if fnmatch.fnmatchcase(path, g)), len(priority))
+
+
+def _rank_files(entries, query, priority=()):
     """L2 candidates: skills and docs; a capability without any (e.g. BeyondSEO playbook-only SEO subdomains) uses its
-    own markdown references, which are then its primary instructions."""
+    own markdown references, which are then its primary instructions. Order: the card's `sources_priority` first,
+    then BM25 against the request, then the old tie-breakers — never the folder name alone (MP1 F5)."""
     cands = [e for e in entries if e["kind"] in L2_KINDS] or [e for e in entries if e["kind"] == "reference"]
     if query and cands:
         scores = dict(BM25({e["path"]: " ".join([e.get("name", ""), e.get("description", ""),
                                                   e["path"].replace("/", " ").replace("-", " ")])
                             for e in cands}).score(query))
-        return sorted(cands, key=lambda e: (-scores.get(e["path"], 0.0), e["kind"] != "skill", e["tokens"], e["path"]))
-    return sorted(cands, key=lambda e: (e["kind"] != "skill", e["path"]))
+        return sorted(cands, key=lambda e: (priority_rank(e["path"], priority), -scores.get(e["path"], 0.0),
+                                            e["kind"] != "skill", e["tokens"], e["path"]))
+    return sorted(cands, key=lambda e: (priority_rank(e["path"], priority), e["kind"] != "skill", e["path"]))
 
 
-def capability_context(loader, cids, budgets, query=None):
+def source_priorities(root=None):
+    """{capability id: its card's sources_priority globs}."""
+    return {cid: card.get("sources_priority") or [] for cid, card in registry.load_cards(root).items()}
+
+
+def capability_context(loader, cids, budgets, query=None, priorities=None):
     """L2: the most relevant entry files of up to `max_capabilities_full` capabilities, section by section within
     `max_tokens_per_task`; remaining files and capabilities are listed for explicit L3 / later loading."""
     cfg = budgets["levels"]["L2"]
+    priorities = source_priorities() if priorities is None else priorities
     # Content gets the budget minus a reserve for headers and the file/section listings, so the whole L2 text fits.
     total = Budget(int(cfg["max_tokens_per_task"] * (1 - L2_LISTING_RESERVE)))
     bundle = loader.require_bundle()
     full, index_only = list(cids[:cfg["max_capabilities_full"]]), list(cids[cfg["max_capabilities_full"]:])
     plan = []
     for cid in full:
-        plan += [(cid, e) for e in _rank_files(loader.files_of(cid), query)[:cfg["max_files_per_capability"]]]
+        plan += [(cid, e) for e in _rank_files(loader.files_of(cid), query, priorities.get(cid, ()))
+                 [:cfg["max_files_per_capability"]]]
     # Pass 1 — choose sections from metadata only, so the choice (and therefore the cache key) does not depend on
     # what this session already holds. Unused share rolls over to the next file.
     planned, left = [], total.limit
@@ -152,7 +167,8 @@ def capability_context(loader, cids, budgets, query=None):
             shown = ", ".join(f"{e['path']} (~{e['tokens']})" for e in rest[:5])
             parts.append(f"{cid}: {len(rest)} more files at L3 (explicit `--file`): {shown}{' …' if len(rest) > 5 else ''}\n")
     for cid in index_only:
-        names = ", ".join(e.get("name", e["path"]) for e in _rank_files(loader.files_of(cid), query)[:5]) or "OS-native"
+        ranked = _rank_files(loader.files_of(cid), query, priorities.get(cid, ()))
+        names = ", ".join(e.get("name", e["path"]) for e in ranked[:5]) or "OS-native"
         parts.append(f"## {cid} · index only (L2 capability limit reached): {names} → `agylite context {cid}`\n")
     text = "".join(parts)
     return {"level": "L2", "text": text, "est_tokens": est_tokens(nbytes(text)), "limit": cfg["max_tokens_per_task"],

@@ -8,7 +8,7 @@ tools: Read, Grep, Glob, Bash
 
 You review and shape structural changes: new modules, cross-cutting refactors, data-model and API changes.
 
-1. `agylite route "<request>"` and `agylite context engineering/architecture` (plus what the route selects).
+1. `agylite route "<request>"` and `agylite context --request "<request>" engineering/architecture` (plus what the route selects).
 2. Ground every claim in the code: `agylite codebase affected --paths <files…>`,
    `agylite codebase query|explain|path …`; cite `file:line`.
 3. Read recorded decisions first (`agylite decide list --kind architecture`); a proposal that contradicts one

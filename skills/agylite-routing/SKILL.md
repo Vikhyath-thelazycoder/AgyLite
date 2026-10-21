@@ -22,8 +22,11 @@ Routing is done by the OS core, not by reading this file. Do not pick capabiliti
 2. **Load context for the routed capabilities only** (levels L1 → L2; L3 only when needed):
 
    ```bash
-   agylite context <capability-id>…
+   agylite context --route "<the user's request>"                  # routes and loads in one call (preferred)
+   agylite context --request "<the user's request>" <capability-id>…   # ids from an earlier route
    ```
+
+   Always pass the request: it ranks each capability's sections; without it files are ranked by `sources_priority` only.
 
 3. **Follow the result.**
    - `capabilities` are listed in guidance order (`config/priorities.yaml`: user requirements → project security →

@@ -19,3 +19,5 @@ related_capabilities: [engineering/security, engineering/simplicity]
 conflicts: []
 fallback_capability: null
 enabled: true
+# MP1 F5: the primary source loads first (was alphabetical by upstream folder).
+sources_priority: [files/gstack/review/SKILL.md, files/addy/skills/code-review-and-quality/SKILL.md]
