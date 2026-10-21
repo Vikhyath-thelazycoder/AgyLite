@@ -177,12 +177,87 @@ agylite benchmark --compare    → 26/26 routing; OLD ≈ 360,338 · NEW ≈ 210
 benchmark --quality --tier 0   → PASS; tokens +0.0% vs the Tier 0 baseline; fidelity review 35%, visual-quality 16% (Plan B fixes)
 ```
 
+## Phase 3: Plan B conversion (IMPLEMENTATION_PLAN §2.1) — DONE on `impl/p3-plan-b` (2026-10-21)
+
+| Item | Commit | Test that proves it |
+|---|---|---|
+| Whole primary skills at L2 (no section picking, no truncation), skill files listed for on-demand reading; `L2.primary_skill: whole`, `max_whole_skills_per_task: 2`, `max_tokens_per_task: 40000` | ddafa70 | `tests/context/test_whole_skill.py` |
+| `agylite skill load <upstream>/<name>`; the prompt hook names it | ddafa70 | `TestSkillLoadCommand`, `test_prompt_hook.py` |
+| `catalog.json` (every SKILL.md of every pinned upstream; translations/host ports skipped; policy-flagged skills listed, never fetched) + `agylite skills search/get` | ddafa70 | `tests/catalog/test_catalog.py` ("SwiftUI" → `ecc/swiftui-patterns`, never `docs/ja-JP/`) |
+| Token report per message (L0 + hook) and per task; "(96% more)" instead of "(-96% less)" | df22d31 | `test_diagnostics.py` |
+
+Real bundle (temporary engine home): catalog 828 skills, 749 copies skipped, 0 missing, 69 policy-flagged; gstack
+`ship` (≈ 9.9K tokens) and `investigate` (≈ 4.4K) load whole. Gate: 332 tests OK, doctor 58/0, validate 23/0,
+routing 26/26, Tier 0 PASS with fidelity 100% for every primary.
+
+## Phase 4: engineering best of the best (MP3) — DONE on `impl/p4-engineering` (2026-10-22)
+
+### MP3 report
+
+| Item | Commit | Test that proves it | Notes |
+|---|---|---|---|
+| §1.1 upstream `pocock` (mattpocock/skills@5beb35b, 2026-10-19, 191 files, weekly) | 8865c59 | `test_security` (16 pins) | inventory + scan via `tools/audit/scan_upstream.py` |
+| §1.2 extraction rules (ADAPT 13, COPY 19; 0 open closure gaps) | 8865c59, 0adb751 | extraction matrix | bundle paths keep `skills/` (`files/pocock/skills/…`), as §1.2 allows |
+| §1.3 mechanics-only rewrites: tracker → living plan, Skill tool → `agylite skill load pocock/<name>`, research → `agylite skills get`, no `disable-model-invocation` | 8865c59 | `TestPocockRewrites` (no shortening; drift fails the build) | **deviation:** tdd, code-review, handoff are ADAPT (one mechanics line each); Plan B's `skill load` instead of `context --file` |
+| §1.3 `plan add-task --depends` repeatable | 8865c59 | `test_add_task_takes_several_blockers` | |
+| §1.4 rules requirements-grilling, spec-tickets, diagnose, architecture-deepening + 4 scenarios; OOD `pending: MP3` removed | 0adb751 | `test_scenarios`, `test_ood` | also fixed: the highest-*ranked* capability loads whole (was: first listed), so "Diagnose why the checkout test is flaky" loads diagnosing-bugs, not security |
+| §2.1 GENERATED decision; `files/ponytail/RULESET-lite.md` from `getPonytailInstructions('lite')` | 71ce26f | `TestGeneratedRuleset` | untrusted JS: no codegen from strings, empty env, 10 s, ≤ 8 KB text; inputs `ponytail-config.js` and `skills/ponytail/SKILL.md` hash-checked; 2,916 chars |
+| §2.2 ruleset always on in L0 (`ponytail_ruleset: lite|off`), never truncated; doctor line | e19d9db | `tests/context/test_discipline.py` | L0 ≈ 307 → ≈ 1,089 tokens (+782 per session); stays under 1,500, so the budget was not raised |
+| §2.3 `ponytail-review` → engineering/review (first), gstack review second; `agylite-review` follows its structure | 377d87b | `TestReviewSkill` | simplicity stays explicit-only, lowest priority |
+| §3.1 completion gate added to every NEW_FEATURE/FEATURE_CHANGE/BUG_FIX/REFACTOR/SECURITY/PERFORMANCE route (dependency) | 3c8d00f | `test_multi_step_changes_add_completion` | MIGRATION_CHANGE is not a change type; 8 scenario expectations updated |
+| §3.2 installer enables Unlazy's Stop hook; prints what changed; doctor line | 9c2b47b | `tests/runtimes/test_unlazy_hook.py` (temp HOME) | not run on this machine (the installed engine is untouched) |
+| §3.3 completion → Unlazy first; Taste `output-skill` EXCLUDE SUPERSEDED | (MP1) | T0.2 | confirmed |
+| §4 `sources_priority` for every engineering/testing capability; T0.2 lists every first file; Agency never ahead of a non-Agency source | 97ad182, 4642657 | Tier 0 T0.2 (24/24) | **deviation:** Addy documentation-and-adrs moved to engineering/documentation (a file has one capability) |
+| §5 ECC skills added after the pin classified | f635ff5 | — | not in the pinned inventory yet |
+| §6.4 token baseline | 6a56c47 | `test_p25` | every-turn NEW 3,677 B → 6,805 B |
+| §6.6 Tier 1 `eng-simplicity-review`, `eng-core` | — | — | **not run**: the owner withdrew paid sessions on 2026-10-21 |
+
+### Phase 4 gate (temporary engine home `home-p4`, bundle `52e8c1108c39`, 2,737 files)
+
+```
+unittest discover -s tests     → Ran 357 tests — OK (skipped=3)
+agylite doctor                 → 59 passed, 0 failed, 4 warnings (Unlazy Stop hook disabled in the temp home; actionlint
+                                 not on PATH; graphify not installed in the temp home; weekly pins beyondseo/unlazy 19 days)
+agylite validate               → 23 passed, 0 failed
+agylite benchmark --compare    → 30/30 routing; per message: L0 ≈ 1,089, hook p50 ≈ 521 / max ≈ 791 tokens;
+                                 tasks OLD ≈ 70,905 · NEW ≈ 153,011 (116% more: whole skills)
+benchmark --quality --tier 0   → PASS; OOD 54/54; Addy triggers 42/82 (51%); T0.2 24/24; Agency first-two: none;
+                                 fidelity 100% for all 23 primaries; self-tests unlazy/uiuxpromax exit 0
+```
+
+MP3 §6.3 sign-off commands:
+```
+$ agylite route "Grill me on this plan before I build it" --brief
+PLAN_CHANGE · high (rules) · engineering/planning, engineering/implementation + deps: engineering/stack-packs
+$ agylite context --request "Grill me on this plan" engineering/planning | grep '^### files/'
+### files/pocock/skills/productivity/grilling/SKILL.md — grilling (skill pocock/grilling, whole)
+$ agylite context --request "Review this diff" engineering/review | grep '^### files/'
+### files/ponytail/skills/ponytail-review/SKILL.md — ponytail-review (skill ponytail/ponytail-review, whole)
+$ agylite context --request "Fix the flaky checkout test" engineering/debugging | grep '^### files/'
+### files/pocock/skills/engineering/diagnosing-bugs/SKILL.md — diagnosing-bugs (skill pocock/diagnosing-bugs, whole)
+$ agylite bootstrap --host claude-code | tail -30
+… "## The smallest complete change" … "## Levels" … "| **lite** | Build what was asked. …" …
+Full principles (Karpathy): `agylite context engineering/principles`.
+```
+
+Still not the same / open:
+- Addy's own trigger prompts route to the right skill 42/82 times (51%); the goal is ≥ 95% (Phase 9).
+- No Tier 1 numbers after MP3 (paid sessions are off); eng-addy and eng-ponytail baselines stay INCONCLUSIVE at n = 1.
+- The installed engine in `~/.agylite` still runs v2.1.6 + MP1; installing this bundle (and the Unlazy hook) is
+  the owner's step: `scripts/install` from this checkout.
+
+MP3 §7 proposals for the owner (not implemented): Karpathy's four principles in L0 too (≈ 400 tokens); Ponytail
+`full` as an opt-in level once measured; Pocock `triage` when an external tracker is used; trim ECC to stack packs,
+AI systems and release patterns (≈ 60 files of overlap).
+
 ## RESUME FROM
 
-**Phase 2 (MP2 quality benchmarks), step 1: build `agylite/benchmark/quality/`** on branch `impl/p2-benchmarks`
-(from `impl/p1-critical-fixes`).
-1. Tier 0 suites T0.1–T0.5, `agylite benchmark --quality --tier 0`, baseline file.
-2. Tier 1 harness with the pilot's isolation (`--setting-sources project,local`, AgyLite arm via `--plugin-dir`, a fresh
-   workspace outside git, `AGYLITE_HOME` = a per-run home with `bundles/current` linked and no `core`, so
-   `bin/agylite` runs the checkout's code). Suites per IMPLEMENTATION_PLAN §5.
-3. Record the Tier 1 baseline (n = 1) in `docs/benchmarks/quality-baseline-<date>.json`; start the parity ledger.
+**Phase 5 (MP4 design best of the best) — waits for the owner's go-ahead.** Everything through MP3 is on `main`.
+1. Read `/Users/vikhyathmgowda007/Developer/os/MASTER_PROMPT_4_DESIGN_BEST_OF_BEST.md` and IMPLEMENTATION_PLAN §2.2.
+2. Branch `impl/p5-design` from `main`; work in a worktree; build bundles in a temporary `AGYLITE_HOME` (copy
+   `staging/` and `mirrors/` from the last temp home with `cp -cR` so only new upstreams are downloaded).
+3. Gate per phase: `PYTHONPATH=. python -m unittest discover -s tests`, `agylite doctor`, `agylite validate`,
+   `agylite benchmark --compare`, `agylite benchmark --quality --tier 0` (run the checkout's code with
+   `PYTHONPATH=<checkout> python -m agylite.cli …`; `bin/agylite` runs the installed engine).
+4. **No paid Tier 1 sessions** (`claude -p`) unless the owner asks again; report those suites as not measured.
+5. After MP4: report, update this log and this section, push, stop for approval.
