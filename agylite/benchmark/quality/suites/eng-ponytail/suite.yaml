@@ -1,0 +1,11 @@
+# IMPLEMENTATION_PLAN §5 eng-ponytail: Ponytail's agentic benchmark (benchmarks/agentic/run.py + tasks.py), imported and
+# run unchanged; the Agylite arm is its `ponytail2` plugin arm pointed at this checkout, and only that arm may run
+# `agylite` through Bash (as in the pilot) — every other Bash call stays blocked, as in the upstream runner.
+name: eng-ponytail
+runner: ponytail_runner
+tasks: [safe-path, trace-transfer, scope-rename, vibe-todo, csv-sum, auth-token, scope-recipients]
+metrics: {correct: higher, safe: higher, src_loc: lower, wrote_tests: higher, cost: lower}
+target: "same on src_loc and cost; correct and safe on every task where the original is"
+credits:
+  - {repository: DietrichGebert/ponytail, license: MIT, commit: 09c434ab73ca43761c5d8b0c5d341926c2fba710,
+     used: "benchmarks/agentic/run.py (run_cell, scorers), tasks.py"}

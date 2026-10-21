@@ -1,0 +1,16 @@
+# IMPLEMENTATION_PLAN §5 eng-addy: Addy's behavioural evals, graded by Addy's own grader prompt (run-evals.js Tier 3).
+name: eng-addy
+runner: addy_runner
+upstream_method: "--append-system-prompt 'Follow this skill exactly:' + the skill's SKILL.md (run-evals.js)"
+tasks:
+  - {skill: test-driven-development, eval: 1}
+  - {skill: test-driven-development, eval: 2}
+  - {skill: test-driven-development, eval: 3}
+  - {skill: code-review-and-quality, eval: 1}
+  - {skill: debugging-and-error-recovery, eval: 1}
+  - {skill: debugging-and-error-recovery, eval: 2}
+metrics: {expectations_passed: higher}
+target: same
+credits:
+  - {repository: addyosmani/agent-skills, license: MIT, commit: aeac41d4d005999432bb7312f7ff06383a91d59d,
+     used: "evals/cases/*.json, evals/fixtures/**, the grader prompt of scripts/run-evals.js"}

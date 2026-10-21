@@ -1,0 +1,6 @@
+# MP2 T0.3: one representative request per capability with sources_priority; the fidelity table reports how much of
+# the primary source the agent sees for it.
+engineering/completion: Finish the checkout refactor end to end and do not stop until every check passes
+design/visual-quality: Make the landing page feel premium and less generic
+engineering/review: Review this pull request before I merge it
+engineering/planning: Grill me on this plan before I build it

@@ -24,7 +24,47 @@ def _validate(args):
     return run(_root(args), online=args.online, unittests=not args.no_unittest)
 
 
+def _quality(args):
+    """MP2: `benchmark --quality --tier 0|1`."""
+    import json
+
+    from .benchmark.quality import harness, tier0, tier1
+    if args.report:
+        rep = json.loads((Path(args.report) / "report.json").read_text(encoding="utf-8"))
+        print(tier1.render(rep), end="")
+        return 0
+    if args.tier == 0:
+        base = json.loads(Path(args.compare_to).read_text(encoding="utf-8")) if args.compare_to else None
+        rep = tier0.run(bundle=Path(args.bundle) if args.bundle else None, baseline=base)
+        print(tier0.render(rep), end="")
+        if args.baseline_save:
+            tier0.save_baseline(rep, Path(args.baseline_save))
+            print(f"baseline saved: {args.baseline_save}")
+        return 0 if rep["ok"] else 1
+    if not args.suite:
+        from .benchmark.quality import suites
+        print("agylite benchmark --quality --tier 1: name --suite (" + ", ".join(suites.names()) + ")", file=sys.stderr)
+        return 2
+    code = 0
+    for suite in args.suite.split(","):
+        try:
+            rep = tier1.run(suite, arms=tuple(args.arms.split(",")), runs=args.runs,
+                            tasks=args.tasks.split(",") if args.tasks else None, dry_run=args.dry_run,
+                            yes_spend=args.yes_spend, max_sessions=args.max_sessions, model=args.model,
+                            judge_model=args.judge_model, python=sys.executable)
+        except harness.SpendRefused as exc:
+            print(f"agylite benchmark: {exc}", file=sys.stderr)
+            return 3
+        if not args.dry_run:
+            print(tier1.render(rep), end="")
+            print(f"report: {rep['run_dir']}/report.json")
+            code |= 0 if rep["verdict"] == "same" else 1
+    return code
+
+
 def _benchmark(args):
+    if args.quality:
+        return _quality(args)
     from .diagnostics.benchmark import compare, render, run
     root = Path(args.plugins_root).expanduser() if args.plugins_root else None
     if not args.compare:
@@ -971,6 +1011,22 @@ def build_parser():
     p.add_argument("--compare", action="store_true", help="OLD vs NEW per spec scenario: tokens, routing accuracy, speed")
     p.add_argument("--out", help="With --compare: also write the Markdown report here")
     p.add_argument("--plugins-root", help="Claude Code plugins dir (default: ~/.claude/plugins)")
+    q = p.add_argument_group("quality (MP2: is Agylite as good as the upstream skill?)")
+    q.add_argument("--quality", action="store_true", help="Quality benchmark instead of the token comparison")
+    q.add_argument("--tier", type=int, choices=(0, 1), default=0, help="0: deterministic, free · 1: paid A/B sessions")
+    q.add_argument("--suite", help="Tier 1 suite(s), comma-separated")
+    q.add_argument("--arms", default="baseline,upstream,agylite")
+    q.add_argument("--runs", type=int, default=1)
+    q.add_argument("--tasks", help="Only these task ids (comma-separated)")
+    q.add_argument("--dry-run", action="store_true", help="Print the session matrix; start nothing")
+    q.add_argument("--yes-spend", action="store_true", help="Required to start paid sessions")
+    q.add_argument("--max-sessions", type=int, help="Hard cap on paid sessions")
+    q.add_argument("--model", help="Actor model id (default claude-opus-5-5)")
+    q.add_argument("--judge-model", help="Grader/judge model id (default: the actor's)")
+    q.add_argument("--bundle", help="Tier 0 against this bundle directory (default: current)")
+    q.add_argument("--baseline-save", help="Tier 0: save this run as the baseline file")
+    q.add_argument("--compare-to", help="Tier 0: regression check against a saved baseline")
+    q.add_argument("--report", help="Re-render a Tier 1 run directory's report")
     p.set_defaults(func=_benchmark)
 
     p = sub.add_parser("bundle", help="Fetch pinned upstreams, build/verify/list the local capability bundle")

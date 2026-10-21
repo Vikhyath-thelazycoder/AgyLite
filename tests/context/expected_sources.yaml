@@ -1,0 +1,6 @@
+# MP2 T0.2: the first file each capability must load at L2 (with and without --request). MP3/MP4/MP5 append here in
+# the commit that changes the capability's sources_priority.
+engineering/completion: files/unlazy/SKILL.md
+design/visual-quality: files/taste/skills/taste-skill/SKILL.md
+engineering/review: files/gstack/review/SKILL.md          # MP3 changes to ponytail-review
+engineering/planning: files/addy/skills/interview-me/SKILL.md   # MP3 changes to Pocock grilling
