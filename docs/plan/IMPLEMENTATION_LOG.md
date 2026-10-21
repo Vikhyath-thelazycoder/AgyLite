@@ -82,3 +82,58 @@ actionlint .github/workflows/*.yml                  → upstream-updates.yml:25:
 ```
 
 Phase 0 is green (the known gaps are recorded above). Next: Phase 1 (MP1 F1–F15) on `impl/p1-critical-fixes`.
+
+## Phase 1: critical fixes (MP1) — IN PROGRESS on `impl/p1-critical-fixes`
+
+Gate commands run this checkout's code with `PYTHONPATH=. python -m agylite.cli …`: `bin/agylite` execs the
+installed engine in `~/.agylite/core`, so it would test the old code. (The Tier 1 AgyLite arm needs the same care:
+`--plugin-dir` alone runs the installed engine, not this checkout.)
+
+| Item | State | Commit | Proof |
+|---|---|---|---|
+| F13 OOD routing set (54 requests) | done | 925d70a | `tests/routing/test_ood.py` (red first: 21 failures) |
+| F1 URLs/domains masked (`urls` in route, schema 5) | done | eb3d9d0 | `tests/routing/test_urls.py` |
+| F2 over-broad single-word keywords → phrases | done | 5eadb6b | OOD set; audit script output in the commit |
+| F3 BM25 domain agreement, stop-words, floor 4.0 / 0.75, ≥ 2 shared terms | done | 913340b | `test_routing.py::test_bm25_needs_domain_signal`, OOD set |
+| F4 unmatched routes (`unmatched`, `fallback_guidance`, `ROUTE_UNMATCHED` event) | done | 298685b | `tests/routing/test_unmatched.py` |
+| F5 `sources_priority` + `--request` in every entry skill | done | 2459b3e | `tests/context/test_sources_priority.py`, `test_entry_skills.py` |
+| F6 removed/moved Taste skills → EXCLUDE SUPERSEDED | done | f0d60f7 | `tests/bundle/test_rules.py`; candidate bundle `68a7954e901a` known-good |
+| F7 Taste tracking `manual` | done | 88e907a | `config/upstreams.yaml` |
+| F8 Graphify 0.9.93 + Brag secrets rule | **in progress, uncommitted** | — | see below |
+| F9 doctor pin age per track, last update run | todo | | |
+| F10 README benchmark conditions | todo | | |
+| F11 `agylite used` counts only loaded context | todo | | |
+| F12 duplicate UI/UX Pro Max file | todo | | |
+| F14 invalid upstream-updates workflow (actionlint) | todo | | |
+| F15 `UserPromptSubmit` auto-route hook | todo | | |
+
+Known open items carried forward:
+- OOD `ood-addy-interview` is `pending: MP3` (needs rule `requirements-grilling`); `ood-research` is
+  `pending_forbid: MP5` (weak `database` tag until the research domain exists). Both markers are strict.
+- The installed engine (`~/.agylite`, bundle `2502140a790a`) is untouched. All bundle work so far is in the temporary
+  engine home `<scratchpad>/home-f6` (bundles `68a7954e901a` → `5b079d678640` → `8b6e64123863`).
+
+### F8 state at the stop (2026-10-21)
+
+- In the temporary home, `agylite update graphify b90b9df…` and `agylite update brag 069432c…` (with `--source` trees
+  from `git archive` of the clones, `--self-test`) both **activated**; `runtime install graphify` → `graphify 0.9.93
+  ready`. One rule change was needed: `tests/test_code_only_update_all_hosts.py` imports the excluded
+  `tools/skillgen` → EXCLUDE (same reason as D-046's `test_skill*.py`).
+- `update --promote` wrote the new pins into `docs/audit/evidence/`, and the matrix, docs, notices and cards were
+  regenerated (uncommitted in the working tree).
+- **Suspicious, not committed:** the promoted `upstream-file-hashes/brag.tsv` has 1,235 rows with repeated blob hashes
+  (the clone tracks 369 files; the old inventory had 371 rows), so `extraction-summary.json` shows Brag EXCLUDE
+  57 → 921 files. Graphify's inventory looks right (1,085 rows vs 1,083 tracked files). The likely cause is the
+  inventory taken from a `--source` directory instead of `git ls-tree`. Do not commit F8 until this is understood.
+
+## RESUME FROM
+
+**Phase 1 · F8 · step "verify the promoted Brag inventory".**
+1. `git diff docs/audit/evidence/upstream-file-hashes/brag.tsv` and compare with `git -C ~/Developer/os/brag
+   ls-tree -r HEAD`; find why `inventory_from_dir` (agylite/update/core.py) produced duplicate rows. Fix the cause
+   (test first) or regenerate the inventory from `git ls-tree`, then re-run `update --promote` in the temporary home.
+2. Re-run the regenerators (`tools/audit/extraction_matrix.py`, `render_matrix_docs.py`, `python -m
+   agylite.bundle.notices`, `registry cards`, `registry build`), run the suite, commit F8.
+3. Continue with F9 → F10 → F11 → F12 → F14 → F15, then the Phase 1 gate (tests, doctor, validate, benchmark
+   --compare, actionlint, the F15 acceptance re-run of two pilot cells), then activate the green bundle in
+   `~/.agylite` and start Phase 2.
