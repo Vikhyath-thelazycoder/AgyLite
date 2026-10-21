@@ -70,7 +70,9 @@ class TestBenchmark(unittest.TestCase):
         ok, total = r["routing_accuracy"]
         self.assertEqual(ok, total)
         self.assertGreater(total, 15)
-        self.assertLess(r["new_always"], 6000)
+        # MP3 §2.2 + §6.4: L0 carries the Ponytail lite ruleset (≈ 2.9 KB) on every turn, so the per-turn ceiling
+        # rose from 6,000 to 8,000 bytes (≈ 1,500 → 2,000 est. tokens).
+        self.assertLess(r["new_always"], 8000)
         self.assertIn("Routing accuracy on the spec scenarios", md)
         self.assertIn("estimates", md)
 
