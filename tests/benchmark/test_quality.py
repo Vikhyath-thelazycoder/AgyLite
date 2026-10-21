@@ -3,6 +3,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -86,6 +87,78 @@ class TestDryRunAndSpend(unittest.TestCase):
     def test_arm_order_alternates_between_runs(self):
         _cfg, _mod, matrix = tier1.plan("eng-addy", runs=2, tasks=["test-driven-development#1"])
         self.assertEqual([m["arm"] for m in matrix], ["baseline", "upstream", "agylite", "agylite", "upstream", "baseline"])
+
+
+class _FakeSuite:
+    """A three-cell suite whose second session hits the usage limit (no real session starts)."""
+    METRICS = {"score": False}
+
+    def __init__(self, limit_at=None):
+        self.limit_at, self.calls = limit_at, []
+
+    def cells(self, cfg):
+        return [{"task": f"t#{i}"} for i in (1, 2)]
+
+    def run_cell(self, cell, ctx):
+        self.calls.append(ctx["label"])
+        if ctx["label"] == self.limit_at:
+            raise harness.UsageLimit("You've hit your session limit · resets 10:40pm")
+        return {"label": ctx["label"], "arm": ctx["arm"], "cost": 0.1, "metrics": {"score": 1.0}}
+
+
+class TestUsageLimit(unittest.TestCase):
+    """MP2 spending rule: on a usage-limit or rate-limit reply the run stops and says where to resume; a limit
+    message is never graded as an answer."""
+
+    def test_detects_limit_replies_only(self):
+        for text in ("You've hit your session limit · resets 10:40pm (Asia/Calcutta)", "You've hit your weekly limit",
+                     "API Error: 429 rate_limit_error", "Claude usage limit reached. Your limit will reset at 5pm"):
+            self.assertTrue(harness.is_usage_limit(text), text)
+        for text in ("I fixed the pagination bug; the rate limiter test passes.", "", None):
+            self.assertFalse(harness.is_usage_limit(text), text)
+
+    def test_run_session_raises_on_a_limit_reply(self):
+        trace = "\n".join([json.dumps({"type": "system", "subtype": "init", "plugins": [], "skills": [],
+                                        "mcp_servers": []}),
+                           json.dumps({"type": "result", "result": "You've hit your session limit · resets 10:40pm",
+                                       "total_cost_usd": 0, "num_turns": 1})])
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch("subprocess.run", return_value=mock.Mock(stdout=trace, returncode=1)):
+            with self.assertRaises(harness.UsageLimit):
+                harness.run_session("p", Path(tmp), harness.ArmSetup("baseline"))
+            with self.assertRaises(harness.UsageLimit):
+                harness.ask("grade this")
+
+    def test_run_stops_at_the_first_limit_and_resumes_only_missing_cells(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            fake = _FakeSuite(limit_at="t-2__baseline__0")
+            with mock.patch.object(suites, "module", return_value=fake):
+                rep = tier1.run("eng-addy", yes_spend=True, out_root=Path(tmp), log=lambda *_: None, ledger=False)
+            self.assertIn("session limit", rep["stopped"])
+            self.assertEqual(fake.calls, ["t-1__baseline__0", "t-1__upstream__0", "t-1__agylite__0",
+                                          "t-2__baseline__0"])            # nothing after the limit
+            self.assertEqual(rep["sessions"], 3)                             # the limit cell is not a result
+            self.assertIn("--resume " + rep["run_dir"], rep["resume"])
+            again = _FakeSuite()
+            with mock.patch.object(suites, "module", return_value=again):
+                rep2 = tier1.run("eng-addy", yes_spend=True, resume=Path(rep["run_dir"]), log=lambda *_: None,
+                                 ledger=False)
+            self.assertEqual(again.calls, ["t-2__baseline__0", "t-2__upstream__0", "t-2__agylite__0"])
+            self.assertEqual((rep2["run_dir"], rep2["sessions"], rep2.get("stopped")), (rep["run_dir"], 6, None))
+
+    def test_resume_redoes_old_limit_replies_recorded_as_results(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            run_dir = Path(tmp) / "r"
+            run_dir.mkdir()
+            old = [{"label": "t-1__baseline__0", "arm": "baseline", "task": "t#1", "run": 0, "metrics": {"score": 1.0}},
+                   {"label": "t-1__upstream__0", "arm": "upstream", "task": "t#1", "run": 0, "metrics": {"score": None},
+                    "result": "You've hit your session limit · resets 10:40pm"}]
+            (run_dir / "records.json").write_text(json.dumps(old), encoding="utf-8")
+            fake = _FakeSuite()
+            with mock.patch.object(suites, "module", return_value=fake):
+                tier1.run("eng-addy", yes_spend=True, resume=run_dir, log=lambda *_: None, ledger=False)
+            self.assertNotIn("t-1__baseline__0", fake.calls)
+            self.assertIn("t-1__upstream__0", fake.calls)
 
 
 class TestSuiteSchema(unittest.TestCase):

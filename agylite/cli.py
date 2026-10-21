@@ -51,10 +51,17 @@ def _quality(args):
             rep = tier1.run(suite, arms=tuple(args.arms.split(",")), runs=args.runs,
                             tasks=args.tasks.split(",") if args.tasks else None, dry_run=args.dry_run,
                             yes_spend=args.yes_spend, max_sessions=args.max_sessions, model=args.model,
-                            judge_model=args.judge_model, python=sys.executable)
+                            judge_model=args.judge_model, python=sys.executable,
+                            resume=Path(args.resume).expanduser() if args.resume else None)
         except harness.SpendRefused as exc:
             print(f"agylite benchmark: {exc}", file=sys.stderr)
             return 3
+        if rep.get("stopped"):   # a usage limit: the rest of the suites wait for the reset too
+            print(tier1.render(rep), end="")
+            rest = args.suite.split(",")[args.suite.split(",").index(suite) + 1:]
+            if rest:
+                print(f"not started: {', '.join(rest)}")
+            return 4
         if not args.dry_run:
             print(tier1.render(rep), end="")
             print(f"report: {rep['run_dir']}/report.json")
@@ -1027,6 +1034,7 @@ def build_parser():
     q.add_argument("--baseline-save", help="Tier 0: save this run as the baseline file")
     q.add_argument("--compare-to", help="Tier 0: regression check against a saved baseline")
     q.add_argument("--report", help="Re-render a Tier 1 run directory's report")
+    q.add_argument("--resume", help="Tier 1: continue a stopped run directory (keeps its valid cells, runs the rest)")
     p.set_defaults(func=_benchmark)
 
     p = sub.add_parser("bundle", help="Fetch pinned upstreams, build/verify/list the local capability bundle")
