@@ -77,6 +77,10 @@ project:
 # Owner decision 2026-10-21 (MP3 §3.1): Unlazy's completion gate runs on every multi-step change. Added as a dependency
 # (it does not count toward max_capabilities), only for routed (not unmatched) requests. Design, SEO, media, plan,
 # docs and testing changes are not code-changing types here; MIGRATION_CHANGE is not a change type in this taxonomy.
+# Capabilities that only work from URLs in the request (MP4 §2.5): without a URL they are never selected, whatever
+# their intent tags say ("make it look like our old one" has nothing to extract).
+url_only: [design/inspiration-extract]
+
 change_type_adds:
   types: [NEW_FEATURE, FEATURE_CHANGE, BUG_FIX, REFACTOR, SECURITY_CHANGE, PERFORMANCE_CHANGE]
   add: [engineering/completion]
@@ -266,6 +270,15 @@ rules:
     any: [large feature, multi-file, substantial, don't stop, do not stop, until done, complete implementation, end to end, end-to-end]
     select: [engineering/completion]
     weight: 2
+
+  # ── MP4 §2.5: inspiration URLs → one DESIGN.md (designlang) before any UI code ──────────────────────────────────
+  - id: design-inspiration
+    description: The request names sites to take a look, style or design system from
+    requires_urls: true
+    any: [inspiration, inspired, like, extract, design system, design tokens, look, style, vibe, feel, clone the look, same style]
+    select: [design/inspiration-extract, design/design-system, design/design-direction]
+    suppress: [engineering/security, engineering/backend, seo, media]
+    weight: 5
 
   # ── MP3 §1.4: Pocock-led stages (owner decision 2026-10-21) ───────────────────────────────────────────────────
   - id: requirements-grilling

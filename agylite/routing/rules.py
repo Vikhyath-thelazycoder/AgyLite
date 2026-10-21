@@ -11,7 +11,7 @@ from .classify import CHANGE_TYPES, find_phrases
 
 PROJECT_STAGES = ("new", "existing", "unknown")
 RULE_KEYS = {"id", "description", "any", "regex", "require_any", "unless", "project", "select", "suppress",
-             "pipeline", "explicit", "weight", "browser_exception"}
+             "pipeline", "explicit", "weight", "browser_exception", "requires_urls"}
 
 
 @dataclass
@@ -70,6 +70,7 @@ def validate_routing(cfg, cards, hierarchy):
             p.append(f"change_types.default_by_domain: {dom} → {t} is not a known domain/type")
     if ct.get("fallback") not in CHANGE_TYPES:
         p.append("change_types.fallback must be a spec §54 type")
+    p += [f"url_only: unknown capability {c}" for c in cfg.get("url_only") or [] if c not in cards]
     adds = cfg.get("change_type_adds") or {}
     p += [f"change_type_adds: unknown change type {t}" for t in adds.get("types") or [] if t not in CHANGE_TYPES]
     p += [f"change_type_adds: unknown capability {c}" for c in adds.get("add") or [] if c not in cards]
@@ -89,6 +90,8 @@ def validate_routing(cfg, cards, hierarchy):
             p.append(f"rule {rid}: unknown keys {sorted(unknown)}")
         if not rule.get("any") and not rule.get("regex"):
             p.append(f"rule {rid}: needs `any` keywords or `regex`")
+        if "requires_urls" in rule and not isinstance(rule["requires_urls"], bool):
+            p.append(f"rule {rid}: requires_urls must be true or false")
         for rx in rule.get("regex") or []:
             try:
                 re.compile(rx)
@@ -132,11 +135,14 @@ def validate_routing(cfg, cards, hierarchy):
     return p
 
 
-def match_rules(text: str, cfg, stage: str):
-    """Every rule whose conditions hold for normalized `text` and the project stage."""
+def match_rules(text: str, cfg, stage: str, has_urls=False):
+    """Every rule whose conditions hold for normalized `text`, the project stage and (MP4 §2.5 `requires_urls`) whether
+    the request carries URLs."""
     hits = []
     for rule in cfg.get("rules") or []:
         if rule.get("project") and stage not in rule["project"]:
+            continue
+        if rule.get("requires_urls") and not has_urls:
             continue
         matched = find_phrases(text, rule.get("any") or [])
         matched += [f"/{rx}/" for rx in rule.get("regex") or [] if re.search(rx, text)]

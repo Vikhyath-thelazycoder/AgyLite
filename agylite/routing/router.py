@@ -76,7 +76,7 @@ class Router:
         text = normalize(masked)  # rules, tags, BM25 and the change type see `urlref`, never a domain name (F1)
         limits = self.cfg.get("limits") or {}
         confident = limits.get("confident_score", 2)
-        hits = match_rules(text, self.cfg, project.stage) + match_paths(paths, self.cfg)
+        hits = match_rules(text, self.cfg, project.stage, has_urls=bool(urls)) + match_paths(paths, self.cfg)
         selected, suppressed, extra = select_capabilities(text, self.cards, self.cfg, self.hierarchy, hits,
                                                           project.stage, requested, project.stack)
 
@@ -96,6 +96,9 @@ class Router:
                     method = ("bm25" if method in ("none", "bm25") else
                               method if method.endswith("+bm25") else f"{method}+bm25")
 
+        if not urls:   # MP4 §2.5: url_only capabilities need a URL to work on
+            only = set(self.cfg.get("url_only") or [])
+            selected = [c for c in selected if c.cid not in only]
         domain_score = {}
         for c in selected:
             domain_score[domain_of(c.cid)] = domain_score.get(domain_of(c.cid), 0) + max(c.score, 1)

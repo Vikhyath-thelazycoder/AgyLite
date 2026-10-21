@@ -52,6 +52,16 @@ class TestUrlRouting(unittest.TestCase):
         self.assertIn("engineering/security", ids)
         self.assertIn("engineering/backend", ids)
 
+    def test_requires_urls_rule_needs_a_url(self):
+        """MP4 §2.5: `requires_urls` rules (design-inspiration) fire only when the request carries a URL."""
+        from agylite.routing.rules import match_rules
+        cfg = {"rules": [{"id": "insp", "any": ["look like"], "select": ["design/inspiration-extract"],
+                          "requires_urls": True}]}
+        self.assertEqual(match_rules("make it look like urlref", cfg, "unknown"), [])
+        self.assertEqual([h.rule for h in match_rules("make it look like urlref", cfg, "unknown", has_urls=True)], ["insp"])
+        ids = [c["id"] for c in Router().route("Make the pricing page look like our old one")["capabilities"]]
+        self.assertNotIn("design/inspiration-extract", ids)
+
     def test_route_lists_the_urls(self):
         r = self.router.route("Make our pricing page look like https://www.notion.so/pricing")
         self.assertEqual(r["urls"], ["https://www.notion.so/pricing"])

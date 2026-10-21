@@ -25,7 +25,7 @@ scenarios:
     request: Make the landing page feel premium.
     stage: unknown
     expect: [design/design-direction, design/visual-quality, design/typography, design/frontend, design/design-review]
-    forbid: [seo/, media/, engineering/, codebase/]
+    forbid: [seo/, media/, engineering/, codebase/, design/inspiration-extract]
     change_type: DESIGN_CHANGE
 
   - id: s14-seo-audit
@@ -221,3 +221,20 @@ scenarios:
     request: Find deepening opportunities in this codebase
     stage: existing
     expect: [engineering/architecture]
+
+  # ── MP4 §2.5: inspiration URLs → design/inspiration-extract ────────────────────────────────────────────────────
+  - id: mp4-extract-two
+    request: Extract the design system from stripe.com and linear.app as inspiration
+    stage: unknown
+    expect: [design/inspiration-extract, design/design-system]
+    forbid: [engineering/security, engineering/backend]
+
+  - id: mp4-inspired-three
+    request: Build our landing page inspired by vercel.com, raycast.com and linear.app
+    stage: unknown
+    expect: [design/inspiration-extract]
+
+  - id: mp4-look-like
+    request: Make our pricing page look like https://www.notion.so/pricing
+    stage: existing
+    expect: [design/inspiration-extract]
