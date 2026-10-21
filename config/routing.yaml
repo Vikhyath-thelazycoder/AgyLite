@@ -110,7 +110,7 @@ rules:
 
   - id: third-party-integration
     description: External APIs, keys and payments carry backend and security work
-    any: [google maps, maps, map, stripe, paypal, razorpay, payment, payments, checkout, oauth, api key, third-party, third party, twilio, sendgrid, webhook, webhooks]
+    any: [google maps, maps api, map view, map widget, mapbox, leaflet, geocoding, geolocation, stripe, paypal, razorpay, payment, payments, checkout, oauth, api key, third-party, third party, twilio, sendgrid, webhook, webhooks]
     select: [engineering/backend, engineering/security]
     weight: 2
 
@@ -188,7 +188,7 @@ rules:
 
   - id: ai-search
     description: Visibility in AI-generated answers (AEO/GEO)
-    any: [ai search, ai-generated answers, ai generated answers, ai answers, answer engine, answer engines, generative engine, llm visibility, chatgpt, perplexity, ai overview, ai overviews, aeo, geo]
+    any: [ai search, ai-generated answers, ai generated answers, ai answers, answer engine, answer engines, generative engine, llm visibility, chatgpt, perplexity, ai overview, ai overviews, aeo, geo seo]
     select: [seo/ai-search, seo/entity, seo/content]
     suppress: [engineering, media, design]
     weight: 4

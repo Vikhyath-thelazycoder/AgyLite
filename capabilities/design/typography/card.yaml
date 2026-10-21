@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Typography
 description: Type scale, hierarchy, color systems
-intent_tags: [typography, font, type, color, contrast]
+intent_tags: [typography, font, typeface, type scale, color, contrast]
 origin: bundled
 runtime_type: none
 requires_network: false

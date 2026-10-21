@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: AI search
 description: 'AEO and GEO: answer readiness, AI citations'
-intent_tags: [ai search, aeo, geo, answer engine, ai overview, chatgpt visibility]
+intent_tags: [ai search, aeo, geo seo, answer engine, ai overview, chatgpt visibility]
 origin: bundled
 runtime_type: none
 requires_network: true

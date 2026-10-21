@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Performance
 description: Measured latency, sizes, timings, benchmarks
-intent_tags: [benchmark, perf test, load]
+intent_tags: [benchmark, perf test, load test, load testing]
 origin: mixed
 runtime_type: os-native
 requires_network: local-only

@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Strategy
 description: 30/60/90-day plans, growth models, roadmaps
-intent_tags: [seo plan, 90-day, roadmap, strategy]
+intent_tags: [seo plan, 90-day, seo roadmap, content roadmap, strategy]
 origin: bundled
 runtime_type: none
 requires_network: false

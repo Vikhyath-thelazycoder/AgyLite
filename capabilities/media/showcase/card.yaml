@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Showcase
 description: Launch copy and storytelling
-intent_tags: [launch post, showcase, copy, announcement]
+intent_tags: [launch post, showcase, marketing copy, launch copy, copywriting, announcement]
 origin: bundled
 runtime_type: none
 requires_network: false

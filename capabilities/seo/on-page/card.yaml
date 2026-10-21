@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: On-page SEO
 description: On-page, internal linking, conversion SEO
-intent_tags: [on-page, title tag, meta, internal links, conversion]
+intent_tags: [on-page, title tag, meta tags, meta description, internal links, conversion rate]
 origin: bundled
 runtime_type: python-isolated
 requires_network: true

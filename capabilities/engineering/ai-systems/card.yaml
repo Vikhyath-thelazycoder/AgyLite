@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: AI systems
 description: LLM/RAG/agent system design, cost-aware pipelines, prompt and AI security
-intent_tags: [llm, ai, rag, agent, prompt, embedding, model]
+intent_tags: [llm, ai, rag, agent, prompt, embedding, language model, ml model, llm model]
 origin: bundled
 runtime_type: none
 requires_network: false

@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Research
 description: Search/analytics integrations, deep research, discovery docs
-intent_tags: [search console, analytics, research]
+intent_tags: [search console, seo analytics, search analytics, keyword research, seo research, serp research, search volume]
 origin: bundled
 runtime_type: python-isolated
 requires_network: true

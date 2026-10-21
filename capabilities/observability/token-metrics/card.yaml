@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Token metrics
 description: Bytes/token estimates and usage per routing decision
-intent_tags: [token usage, cost]
+intent_tags: [token usage, token cost]
 origin: os-native
 runtime_type: os-native
 requires_network: false

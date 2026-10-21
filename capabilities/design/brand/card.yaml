@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Brand
 description: Brand identity, voice, kits
-intent_tags: [brand, logo, identity, voice]
+intent_tags: [brand, logo, brand identity, visual identity, brand voice]
 origin: bundled
 runtime_type: none
 requires_network: false

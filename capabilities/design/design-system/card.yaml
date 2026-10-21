@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Design system
 description: Tokens, components, reference systems, design-system recommendation engine
-intent_tags: [design system, tokens, palette, theme, style guide]
+intent_tags: [design system, design tokens, palette, theme, style guide]
 origin: bundled
 runtime_type: python-stdlib
 requires_network: false
