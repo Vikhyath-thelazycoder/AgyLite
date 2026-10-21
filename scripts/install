@@ -31,6 +31,8 @@ echo "→ Fetching pinned upstreams (network, once)"
 echo "→ Building and verifying the local bundle"
 "$HOME_DIR/core/bin/agylite" bundle build --staging "$HOME_DIR/staging/upstream" --self-test
 "$HOME_DIR/core/bin/agylite" bundle verify
+echo "→ Enabling Unlazy's completion gate (Stop hook in ~/.claude/settings.json; undo: agylite runtime unlazy-hook --disable)"
+"$HOME_DIR/core/bin/agylite" runtime unlazy-hook --enable
 
 echo
 echo "✅ Agylite installed. Add it to your PATH:"

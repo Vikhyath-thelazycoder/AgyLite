@@ -701,12 +701,17 @@ def _runtime_cmd(args):
                              seo.health(home, bundle), brag.health(home, bundle)]}, args.json)
         return 0
     if args.runtime_cmd == "unlazy-hook":
+        before = unlazy.stop_hook_commands()
         try:
             p = unlazy.stop_hook(home, enable=args.enable)
         except unlazy.UnlazyError as exc:
             print(f"agylite runtime unlazy-hook: {exc}", file=sys.stderr)
             return 1
         print((p.stdout or p.stderr).strip())
+        after = unlazy.stop_hook_commands()   # MP3 §3.2: say exactly what changed in the user's settings
+        added, removed = [c for c in after if c not in before], [c for c in before if c not in after]
+        print("~/.claude/settings.json: " + ("; ".join([f"added Stop hook `{c}`" for c in added] +
+                                                       [f"removed Stop hook `{c}`" for c in removed]) or "unchanged"))
         return p.returncode
     if args.name == "brag":
         from .runtimes import brag

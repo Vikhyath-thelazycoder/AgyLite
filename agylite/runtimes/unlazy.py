@@ -52,6 +52,26 @@ def gates(home: Path, mode: str, files, cwd: Path, extra=()) -> subprocess.Compl
     return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True)
 
 
+def settings_path() -> Path:
+    return Path.home() / ".claude" / "settings.json"
+
+
+def stop_hook_commands(path: Path | None = None) -> list:
+    """Unlazy's Stop-hook commands in the global settings (its packaged `scripts/stop-hook.mjs`), nothing else."""
+    import json
+    path = path or settings_path()
+    try:
+        groups = (json.loads(path.read_text(encoding="utf-8")).get("hooks") or {}).get("Stop") or []
+    except (OSError, ValueError, AttributeError):
+        return []
+    return [h.get("command", "") for g in groups if isinstance(g, dict) for h in g.get("hooks") or []
+            if isinstance(h, dict) and "stop-hook.mjs" in str(h.get("command", ""))]
+
+
+def stop_hook_state(path: Path | None = None) -> str:
+    return "enabled" if stop_hook_commands(path) else "disabled"
+
+
 def stop_hook(home: Path, enable: bool) -> subprocess.CompletedProcess:
     """Install or remove Unlazy's Stop hook in the user's global Claude Code settings (never project-local)."""
     node, d = _node(home)

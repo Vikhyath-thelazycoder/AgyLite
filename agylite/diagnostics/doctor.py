@@ -134,6 +134,16 @@ def prompt_hook_checks(r, root: Path):
             "Prompt hook: not registered in hooks/hooks.json (D-048)")
 
 
+def unlazy_hook_checks(r):
+    """MP3 §3.2: Unlazy's Stop hook (completion gate) is on by default; say whether it is registered."""
+    from ..runtimes import unlazy
+    state = unlazy.stop_hook_state()
+    if state == "enabled":
+        r.check(True, "Unlazy Stop hook: enabled")
+    else:
+        r.warn("Unlazy Stop hook: disabled (enable: agylite runtime unlazy-hook --enable)")
+
+
 def discipline_checks(r, root: Path):
     """MP3 §2.2: which Ponytail ruleset level L0 carries."""
     from ..context.prompt_hook import load_discipline
@@ -313,6 +323,7 @@ def _run(root: Path, user_home: Path) -> int:
     r.section("🪝 Prompt Hook (D-048)")
     prompt_hook_checks(r, root)
     discipline_checks(r, root)
+    unlazy_hook_checks(r)
     r.end_section()
 
     r.section("⚙️  CI Workflow Integrity")
