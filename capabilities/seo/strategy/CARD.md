@@ -2,7 +2,7 @@
 
 30/60/90-day plans, growth models, roadmaps.
 
-- **Use when:** seo plan, 90-day, roadmap, strategy
+- **Use when:** seo plan, 90-day, seo roadmap, content roadmap, strategy
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime none
 - **Loads:** 11 bundled files

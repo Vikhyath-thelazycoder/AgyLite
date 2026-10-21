@@ -2,7 +2,7 @@
 
 Launch copy and storytelling.
 
-- **Use when:** launch post, showcase, copy, announcement
+- **Use when:** launch post, showcase, marketing copy, launch copy, copywriting, announcement
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime none
 - **Loads:** 2 bundled files; entry points: copywriting, marketing-psychology

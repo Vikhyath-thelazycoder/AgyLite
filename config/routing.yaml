@@ -59,7 +59,13 @@ limits:
   tag_min_score: 1               # weak-only capabilities need at least this score
   confident_score: 2             # below this total score, BM25 fallback runs
   bm25_top_k: 3                  # spec §47 "maximum semantic retrieval results"
-  bm25_min_score: 3.0
+  # MP1 F3: BM25 attached unrelated domains on generic overlap ("plan", "build", "video"). It now needs a score of
+  # 4.0 and 75% of the best hit, may only add capabilities from the domains rules/tags already chose (or the top
+  # hit's domain when nothing was chosen), must share two request words, and ignores request words that carry no domain signal.
+  bm25_min_score: 4.0
+  bm25_min_ratio: 0.75
+  bm25_min_terms: 2              # one shared word ("video", "copy", "map") is coincidence, not a domain signal
+  bm25_stopwords: [plan, build, make, create, write, project, product, app, thing, help, want, need, please, me, my, this, that]
 
 # Project-stage behaviour (spec §19.2): existing projects get codebase understanding before change work; new
 # projects never route to codebase capabilities.

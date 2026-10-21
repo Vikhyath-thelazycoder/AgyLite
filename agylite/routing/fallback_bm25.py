@@ -13,10 +13,10 @@ will with you your""".split())
 _WORD = re.compile(r"[a-z0-9][a-z0-9+#.-]*[a-z0-9+#]|[a-z0-9]")
 
 
-def tokenize(text: str):
+def tokenize(text: str, extra_stopwords=frozenset()):
     out = []
     for w in _WORD.findall(text.lower()):
-        if w in STOPWORDS or len(w) < 2:
+        if w in STOPWORDS or w in extra_stopwords or len(w) < 2:
             continue
         if len(w) > 4 and w.endswith("ies"):
             w = w[:-3] + "y"
@@ -27,9 +27,11 @@ def tokenize(text: str):
 
 
 class BM25:
-    def __init__(self, docs: dict, k1: float = 1.2, b: float = 0.75):
+    def __init__(self, docs: dict, k1: float = 1.2, b: float = 0.75, stopwords=()):
+        """`stopwords`: extra words with no domain signal (router: `limits.bm25_stopwords`, MP1 F3)."""
         self.k1, self.b = k1, b
-        self.tf = {key: Counter(tokenize(text)) for key, text in docs.items()}
+        self.stopwords = frozenset(stopwords)
+        self.tf = {key: Counter(tokenize(text, self.stopwords)) for key, text in docs.items()}
         self.len = {key: sum(c.values()) for key, c in self.tf.items()}
         self.avg = (sum(self.len.values()) / len(self.len)) if self.len else 0.0
         df = Counter(t for c in self.tf.values() for t in c)
@@ -37,7 +39,7 @@ class BM25:
         self.idf = {t: math.log(1 + (n - d + 0.5) / (d + 0.5)) for t, d in df.items()}
 
     def score(self, query: str):
-        terms = set(tokenize(query))
+        terms = set(tokenize(query, self.stopwords))
         scores = {}
         for key, tf in self.tf.items():
             s = 0.0
@@ -49,10 +51,15 @@ class BM25:
                 scores[key] = s
         return sorted(scores.items(), key=lambda kv: (-kv[1], kv[0]))
 
-    def top(self, query: str, k: int, min_score: float):
-        """Up to k (key, score) pairs scoring at least min_score and at least 60% of the best score."""
-        ranked = self.score(query)
+    def top(self, query: str, k: int, min_score: float, min_ratio: float = 0.6, keep=None, min_terms: int = 1):
+        """Up to k (key, score) pairs scoring at least min_score and at least min_ratio of the best score, sharing at
+        least `min_terms` distinct query terms; with `keep(key, best_key)`, only the keys it accepts (the router's
+        domain agreement, MP1 F3)."""
+        terms = set(tokenize(query, self.stopwords))
+        ranked = [(key, s) for key, s in self.score(query) if sum(1 for t in terms if t in self.tf[key]) >= min_terms]
         if not ranked:
             return []
-        best = ranked[0][1]
-        return [(key, round(s, 3)) for key, s in ranked[:k] if s >= min_score and s >= best * 0.6]
+        best_key, best = ranked[0]
+        out = [(key, round(s, 3)) for key, s in ranked if s >= min_score and s >= best * min_ratio
+               and (keep is None or keep(key, best_key))]
+        return out[:k]

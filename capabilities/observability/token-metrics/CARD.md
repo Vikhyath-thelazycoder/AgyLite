@@ -2,7 +2,7 @@
 
 Bytes/token estimates and usage per routing decision.
 
-- **Use when:** token usage, cost
+- **Use when:** token usage, token cost
 - **Activation:** internal · priority 50 · context L1
 - **Needs:** runtime os-native
 - **Loads:** OS-native (no bundled files)

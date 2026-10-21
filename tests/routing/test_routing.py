@@ -109,8 +109,16 @@ class TestRouter(unittest.TestCase):
 
     def test_bm25_fallback_when_not_confident(self):
         self.assertIn("media/presentation", self.ids("prepare a slide deck about q3"))
-        result = self.router.route("translate the app into french")
+        result = self.router.route("keep the documentation living alongside the code")
         self.assertEqual((result["method"], result["confidence"]), ("bm25", "low"))
+        self.assertEqual(self.ids("keep the documentation living alongside the code"), ["engineering/documentation"])
+
+    def test_bm25_needs_domain_signal(self):
+        """MP1 F3: one shared word or generic verbs are no domain signal; BM25 stays inside the agreed domain."""
+        self.assertEqual(self.router.route("translate the app into french")["method"], "none")
+        self.assertEqual([i for i in self.ids("Summarise this YouTube video for me") if i.startswith("media/")], [])
+        self.assertEqual([i for i in self.ids("Grill me on this plan before I build it")
+                          if i.startswith("media/") or i == "testing/local-verification"], [])
 
     def test_bm25_not_used_when_rules_confident(self):
         self.assertEqual(self.router.route("Fix the payment webhook security.")["method"], "rules")

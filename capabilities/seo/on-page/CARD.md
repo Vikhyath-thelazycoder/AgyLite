@@ -2,7 +2,7 @@
 
 On-page, internal linking, conversion SEO.
 
-- **Use when:** on-page, title tag, meta, internal links, conversion
+- **Use when:** on-page, title tag, meta tags, meta description, internal links, conversion rate
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime python-isolated; network yes
 - **Loads:** 3 bundled files

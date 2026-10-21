@@ -2,7 +2,7 @@
 
 Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns.
 
-- **Use when:** verify, check whether, works, flow, login, checkout, qa, run tests …
+- **Use when:** verify, check whether, works, login flow, checkout flow, user flow, login, checkout …
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime os-native; network local-only; codebase analysis first
 - **Loads:** 10 bundled files; entry points: click-path-audit

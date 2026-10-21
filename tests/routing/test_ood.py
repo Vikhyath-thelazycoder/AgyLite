@@ -1,4 +1,4 @@
-"""MP1 F13: out-of-distribution routing — requests no rule was written for (forbid always holds; strict pending)."""
+"""MP1 F13: out-of-distribution routing — requests no rule was written for (forbid holds; pending markers are strict)."""
 import os
 import sys
 import unittest
@@ -34,21 +34,23 @@ class TestOutOfDistribution(unittest.TestCase):
         for sc in OOD:
             with self.subTest(sc["id"]):
                 ids = capability_ids(self.router.route(sc["request"], project=ProjectFacts(stage=sc["stage"])))
-                self.assertEqual(forbidden(ids, sc.get("forbid", []), sc.get("expect", [])), [],
-                                 f"{sc['id']}: routed {ids}")
+                bad = forbidden(ids, sc.get("forbid", []), sc.get("expect", []))
+                if sc.get("pending_forbid"):
+                    # Strict expected failure, for a forbid only a later prompt's domain can satisfy.
+                    self.assertTrue(bad, f"{sc['id']}: passes now; remove `pending_forbid: {sc['pending_forbid']}`")
+                    continue
+                self.assertEqual(bad, [], f"{sc['id']}: routed {ids}")
 
     def test_expect_holds_unless_pending(self):
         for sc in OOD:
             if not sc.get("expect"):
                 continue
             with self.subTest(sc["id"]):
-                known = set(self.router.cards)
                 ids = set(capability_ids(self.router.route(sc["request"], project=ProjectFacts(stage=sc["stage"]))))
                 missing = set(sc["expect"]) - ids
                 if sc.get("pending"):
-                    # Strict: once every expected capability exists, the marker goes and the expectation is enforced.
-                    self.assertFalse(set(sc["expect"]) <= known,
-                                     f"{sc['id']}: capabilities exist; remove `pending: {sc['pending']}`")
+                    # Strict expected failure: once the expectation holds, the marker must go.
+                    self.assertTrue(missing, f"{sc['id']}: passes now; remove `pending: {sc['pending']}`")
                     continue
                 self.assertEqual(missing, set(), f"{sc['id']}: missing; routed {sorted(ids)}")
 

@@ -1,7 +1,8 @@
 # Out-of-distribution routing scenarios (MP1 F13): requests no routing rule was written for. Same format as
-# scenarios.yaml. `forbid` must always hold. `expect` must hold unless the entry is `pending: <prompt>`: that marks an
-# expectation that needs a capability a later master prompt adds (strict: a pending entry that already passes fails
-# the test, so the marker is removed when the capability lands). Comments record what the router did before MP1.
+# scenarios.yaml. `forbid` and `expect` must hold, except where marked `pending: <prompt>` (the expectation needs a
+# capability or rule a later master prompt adds) or `pending_forbid: <prompt>` (the forbid needs a later domain to
+# claim the request). Both markers are strict: an entry that already passes fails the test, so the marker is removed
+# when the work lands. Comments record what the router did before MP1.
 #
 # Several phrasings come from Addy Osmani's agent-skills trigger evals (`evals/cases/*.json` → trigger.positive),
 # MIT, addyosmani/agent-skills@aeac41d4d005999432bb7312f7ff06383a91d59d. They are marked `# addy: <skill>`.
@@ -44,7 +45,8 @@ scenarios:
   - id: ood-research
     request: Research the best vector databases on Reddit, Twitter and YouTube
     stage: unknown
-    forbid: [engineering/backend, seo/]                    # before: seo + backend
+    forbid: [engineering/backend, seo/]                    # before: seo + backend; after F1-F4: backend via the
+    pending_forbid: MP5                                    # weak `database` tag (no research domain claims it yet)
     expect: [research/web, research/social, research/video]
     pending: MP5
   - id: ood-shorts
@@ -258,6 +260,7 @@ scenarios:
     request: Interview me about what I actually want before you build anything
     stage: unknown
     expect: [engineering/planning]
+    pending: MP3                                           # rule requirements-grilling ("interview me")
     forbid: [media/]
   - id: ood-addy-stress-test               # addy: idea-refine
     request: Stress-test my plan for the new onboarding flow

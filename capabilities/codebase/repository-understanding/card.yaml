@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Repository understanding
 description: Build/refresh the code graph; structure, entry points, modules, communities
-intent_tags: [understand, codebase, architecture of, onboard, explore, existing project]
+intent_tags: [understand, codebase, architecture of, onboard, explore, existing project, explain this repo, explain the codebase, this repo, how does this repo work]
 origin: bundled
 runtime_type: python-isolated
 requires_network: false

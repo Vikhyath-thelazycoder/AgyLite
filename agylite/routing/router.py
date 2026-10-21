@@ -60,7 +60,7 @@ class Router:
                 path = loader.capabilities_dir(self.root) / cid / "CARD.md"
                 body = path.read_text(encoding="utf-8") if path.is_file() else ""
                 docs[cid] = " ".join([card["name"], card["description"], " ".join(card["intent_tags"]), body])
-            self._bm25 = BM25(docs)
+            self._bm25 = BM25(docs, stopwords=(self.cfg.get("limits") or {}).get("bm25_stopwords") or ())
         return self._bm25
 
     def route(self, request: str, paths=(), project: ProjectFacts | None = None, requested=()):
@@ -81,7 +81,13 @@ class Router:
         best = max((c.score for c in selected), default=0)
         if best < confident:
             have = {c.cid for c in selected} | {s["id"] for s in suppressed}
-            for cid, score in self.bm25.top(text, limits.get("bm25_top_k", 3), limits.get("bm25_min_score", 1.5)):
+            # F3 domain agreement: BM25 may only add capabilities from the domains already selected, or, when
+            # nothing was selected, from the one domain of its own top hit.
+            agreed = {domain_of(c.cid) for c in selected}
+            keep = ((lambda cid, _top: domain_of(cid) in agreed) if agreed else
+                    (lambda cid, top: domain_of(cid) == domain_of(top)))
+            for cid, score in self.bm25.top(text, limits.get("bm25_top_k", 3), limits.get("bm25_min_score", 4.0),
+                                            limits.get("bm25_min_ratio", 0.75), keep, limits.get("bm25_min_terms", 1)):
                 if cid not in have:
                     selected.append(Candidate(cid, 0, False, [f"bm25 fallback (score {score})"]))
                     method = ("bm25" if method in ("none", "bm25") else

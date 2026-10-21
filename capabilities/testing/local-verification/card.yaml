@@ -3,7 +3,7 @@
 # The default verification engine (D-035, config/verification.yaml): local, deterministic, test-first. Replaces web-verification.
 name: Local verification
 description: "Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns"
-intent_tags: [verify, check whether, works, flow, login, checkout, qa, run tests, typecheck, lint, build check]
+intent_tags: [verify, check whether, works, login flow, checkout flow, user flow, login, checkout, qa, run tests, typecheck, lint, build check]
 origin: mixed
 runtime_type: os-native
 requires_network: local-only

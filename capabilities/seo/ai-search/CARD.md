@@ -2,7 +2,7 @@
 
 AEO and GEO: answer readiness, AI citations.
 
-- **Use when:** ai search, aeo, geo, answer engine, ai overview, chatgpt visibility
+- **Use when:** ai search, aeo, geo seo, answer engine, ai overview, chatgpt visibility
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime none; network yes
 - **Loads:** 10 bundled files
