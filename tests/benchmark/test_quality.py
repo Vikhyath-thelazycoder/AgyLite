@@ -174,14 +174,17 @@ class TestUsageLimit(unittest.TestCase):
 
 class TestAgencyNotFirst(unittest.TestCase):
     def test_agency_files_never_rank_in_the_first_two(self):
-        """MP3 §4: no Agency file is among an engineering/testing capability's first two sources, unless Agency is
-        all it has (then there is nothing else to rank first)."""
+        """MP3 §4: no Agency file is among an engineering/testing capability's first two sources ahead of a non-Agency
+        source; when the capability has fewer than two non-Agency sources, Agency may only follow all of them."""
         from agylite.benchmark.quality.tier0 import agency_in_first_two
         e = lambda p, kind="skill": {"path": p, "kind": kind, "tokens": 10, "name": p.split("/")[-2]}   # noqa: E731
         entries = [e("files/agency/testing/a.md", "doc"), e("files/ecc/skills/x/SKILL.md"), e("files/addy/skills/y/SKILL.md")]
         self.assertEqual(agency_in_first_two(entries, ["files/agency/testing/a.md"]), ["files/agency/testing/a.md"])
         self.assertEqual(agency_in_first_two(entries, ["files/ecc/skills/x/SKILL.md"]), [])
         self.assertEqual(agency_in_first_two([e("files/agency/testing/a.md", "doc")], []), [])
+        two = [e("files/agency/testing/a.md", "doc"), e("files/ecc/skills/x/SKILL.md")]   # testing/local-verification
+        self.assertEqual(agency_in_first_two(two, ["files/ecc/skills/x/SKILL.md"]), [])
+        self.assertEqual(agency_in_first_two(two, ["files/agency/testing/a.md"]), ["files/agency/testing/a.md"])
 
 
 class TestSuiteSchema(unittest.TestCase):

@@ -67,12 +67,13 @@ def _first_files(cid, query, bundle):
 
 
 def agency_in_first_two(entries, priority) -> list:
-    """MP3 §4: Agency files among a capability's first two ranked sources ([] when Agency is all it has)."""
+    """MP3 §4: Agency files among a capability's first two ranked sources that rank ahead of a non-Agency source
+    (Agency may follow every non-Agency source; [] when Agency is all it has)."""
     from ...context import levels
     ranked = [e["path"] for e in levels._rank_files(entries, None, priority)]
-    if all(p.startswith("files/agency/") for p in ranked):
-        return []
-    return [p for p in ranked[:2] if p.startswith("files/agency/")]
+    others = [i for i, p in enumerate(ranked) if not p.startswith("files/agency/")]
+    last = others[-1] if others else -1
+    return [p for i, p in enumerate(ranked[:2]) if p.startswith("files/agency/") and i < last]
 
 
 def context_selection(root: Path, bundle: Path) -> dict:
