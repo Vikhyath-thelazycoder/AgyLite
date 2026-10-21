@@ -216,7 +216,8 @@ class TestUsedReport(unittest.TestCase):
         events = [ev("SESSION_STARTED", "s0"), ev("CONTEXT_LOADED", "s0", upstreams={"gstack": 9}),
                   ev("SESSION_STARTED"), ev("DOMAIN_SELECTED"),
                   ev("CAPABILITIES_SELECTED", caps=["design/design-direction", "engineering/planning"]),
-                  ev("CONTEXT_LOADED", upstreams={"ecc": 2, "addy": 3}),
+                  ev("CONTEXT_LOADED", caps=["design/design-direction", "engineering/planning"],
+                     upstreams={"ecc": 2, "addy": 3}),
                   ev("CONTEXT_LOADED", upstreams={"ecc": 1}),
                   ev("RUNTIME_USED", engine="uiuxpromax", command="design search"),
                   ev("STATE_UPDATED", change="task_added", task="T-1.1", phase="P1"),
@@ -231,6 +232,30 @@ class TestUsedReport(unittest.TestCase):
         self.assertIn("Engines run: UI/UX Pro Max (design search)", text)
         self.assertIn("plan T-1.1 VERIFIED", text)
         self.assertIn("verify ×1 (last PASSED)", text)
+    def test_routed_without_loading_is_not_used(self):
+        """MP1 F11: route twice, load context once → only the loaded capability is under Capabilities."""
+        from agylite.events.used import render, summarize
+        ev = lambda name, **kw: {"event": name, "session_id": "s1", "capabilities": kw.pop("caps", []), "details": kw}
+        events = [ev("DOMAIN_SELECTED"), ev("CAPABILITIES_SELECTED", caps=["engineering/security"]),
+                  ev("DOMAIN_SELECTED"), ev("CAPABILITIES_SELECTED", caps=["engineering/review"]),
+                  ev("CONTEXT_LOADED", caps=["engineering/review"], upstreams={"gstack": 1})]
+        s = summarize(events)
+        self.assertEqual((s["capabilities"], s["routed_only"]), (["engineering/review"], ["engineering/security"]))
+        text = render(s)
+        self.assertIn("- Capabilities: engineering/review\n", text)
+        self.assertIn("Routed only (context not loaded): engineering/security", text)
+
+
+class TestDiagnosticsWriteNoRouteEvents(unittest.TestCase):
+    def test_benchmark_and_validate_never_emit(self):
+        """MP1 F11: diagnostic routes must not show up in `agylite used` (no event is written anywhere)."""
+        from agylite.diagnostics import benchmark, validate
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ, {"AGYLITE_HOME": tmp}), \
+                contextlib.redirect_stdout(io.StringIO()):
+            validate.run(Path(ROOT_DIR), unittests=False)
+            benchmark.compare(repeats=1)
+            written = [p for p in Path(tmp).rglob("*.jsonl") if "events" in p.parts]
+        self.assertEqual(written, [])
 
 if __name__ == "__main__":
     unittest.main()

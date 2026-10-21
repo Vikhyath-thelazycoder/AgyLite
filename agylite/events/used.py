@@ -35,15 +35,18 @@ def session_events(events, session_id=None):
 
 
 def summarize(events) -> dict:
-    caps, upstreams, engines, tasks = [], {}, {}, {}
+    """A capability counts as used only when its context was loaded in the session (MP1 F11); routed-but-unloaded
+    capabilities are reported separately as `routed_only`."""
+    caps, routed, upstreams, engines, tasks = [], [], {}, {}, {}
     routes, verifies = 0, []
     for e in events:
         d = e.get("details") or {}
         if e["event"] == "DOMAIN_SELECTED":
             routes += 1
         elif e["event"] == "CAPABILITIES_SELECTED":
-            caps += [c for c in e.get("capabilities") or [] if c not in caps]
+            routed += [c for c in e.get("capabilities") or [] if c not in routed]
         elif e["event"] == "CONTEXT_LOADED":
+            caps += [c for c in e.get("capabilities") or [] if c not in caps]
             for key, n in (d.get("upstreams") or {}).items():
                 upstreams[key] = upstreams.get(key, 0) + n
         elif e["event"] == "RUNTIME_USED":
@@ -58,15 +61,17 @@ def summarize(events) -> dict:
             tasks[d["item"]] = d["to"]
         if d.get("change") == "task_added" and d.get("task"):
             tasks.setdefault(d["task"], "PLANNED")
-    return {"capabilities": caps, "upstreams": upstreams, "engines": engines, "routes": routes, "tasks": tasks,
-            "verifications": verifies}
+    return {"capabilities": caps, "routed_only": [c for c in routed if c not in caps], "upstreams": upstreams,
+            "engines": engines, "routes": routes, "tasks": tasks, "verifications": verifies}
 
 
 def render(summary, session_id=None) -> str:
     s = summary
     ups = sorted(s["upstreams"].items(), key=lambda kv: (-kv[1], kv[0]))
     lines = [f"Agylite used{f' (session {session_id})' if session_id else ''}:"]
-    lines.append("- Capabilities: " + (", ".join(s["capabilities"]) or "none routed"))
+    lines.append("- Capabilities: " + (", ".join(s["capabilities"]) or "none loaded"))
+    if s.get("routed_only"):
+        lines.append("- Routed only (context not loaded): " + ", ".join(s["routed_only"]))
     lines.append("- Upstream content loaded: " + (", ".join(
         f"{UPSTREAMS.get(k, k)} ({n} file{'s' if n != 1 else ''})" for k, n in ups) or "none"))
     lines.append("- Engines run: " + (", ".join(
