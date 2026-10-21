@@ -52,7 +52,8 @@ def _quality(args):
                             tasks=args.tasks.split(",") if args.tasks else None, dry_run=args.dry_run,
                             yes_spend=args.yes_spend, max_sessions=args.max_sessions, model=args.model,
                             judge_model=args.judge_model, python=sys.executable,
-                            resume=Path(args.resume).expanduser() if args.resume else None)
+                            resume=Path(args.resume).expanduser() if args.resume else None,
+                            reuse_from=Path(args.reuse_from).expanduser() if args.reuse_from else None)
         except harness.SpendRefused as exc:
             print(f"agylite benchmark: {exc}", file=sys.stderr)
             return 3
@@ -1102,6 +1103,8 @@ def build_parser():
     q.add_argument("--compare-to", help="Tier 0: regression check against a saved baseline")
     q.add_argument("--report", help="Re-render a Tier 1 run directory's report")
     q.add_argument("--resume", help="Tier 1: continue a stopped run directory (keeps its valid cells, runs the rest)")
+    q.add_argument("--reuse-from", help="Tier 1: new run reusing an earlier run's cells for the arms not in --arms "
+                                        "(e.g. --arms agylite after an AgyLite change)")
     p.set_defaults(func=_benchmark)
 
     p = sub.add_parser("bundle", help="Fetch pinned upstreams, build/verify/list the local capability bundle")

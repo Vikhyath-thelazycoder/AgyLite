@@ -3,7 +3,9 @@
 Spend control: `dry_run` prints the session matrix; without `yes_spend` no paid session starts; `max_sessions` caps
 the run. Runs alternate arm order per run index; one session at a time. Traces stay under ~/.agylite/benchmarks/.
 A usage-limit or rate-limit reply stops the run (report `stopped`, `resume`); `resume=<run dir>` keeps that run's
-valid records and runs only the cells still missing.
+valid records and runs only the cells still missing. `reuse_from=<run dir>` starts a new run that copies that run's
+valid cells for every arm not in `arms` (IMPLEMENTATION_PLAN §2.4: never re-run an unchanged configuration), so a new
+AgyLite build re-runs only the AgyLite arm and whatever the earlier run lacks.
 """
 import json
 from datetime import datetime, timezone
@@ -38,13 +40,18 @@ def _valid(rec) -> bool:
 
 def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=False, max_sessions=None,
         model=None, judge_model=None, python=None, out_root: Path | None = None, log=print, ledger=True,
-        resume: Path | None = None) -> dict:
-    cfg, mod, matrix = plan(suite, arms, runs, tasks)
+        resume: Path | None = None, reuse_from: Path | None = None) -> dict:
+    cfg, mod, matrix = plan(suite, ARMS if reuse_from else arms, runs, tasks)
     if dry_run:
-        for m in matrix:
+        kept = {}
+        if resume or reuse_from:
+            src = json.loads((Path(resume or reuse_from) / "records.json").read_text(encoding="utf-8"))
+            kept = {r["label"] for r in src if _valid(r) and (resume or r["arm"] not in arms)}
+        todo = [m for m in matrix if _label(m) not in kept]
+        for m in todo:
             log(f"[dry-run] {suite} · {m['task']} · {m['arm']} · run {m['run']}")
-        log(f"{len(matrix)} sessions planned (none started)")
-        return {"suite": suite, "planned": len(matrix), "started": 0}
+        log(f"{len(todo)} sessions planned (none started)" + (f"; {len(matrix) - len(todo)} reused" if kept else ""))
+        return {"suite": suite, "planned": len(todo), "reused": len(matrix) - len(todo), "started": 0}
     if resume:
         run_dir = Path(resume)
         stamp = run_dir.name.split("-", 1)[0]
@@ -53,6 +60,9 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
         stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         run_dir = (out_root or agylite_home() / "benchmarks" / "quality") / f"{stamp}-{suite}"
         kept = {}
+        if reuse_from:   # the earlier run is read, never written
+            kept = {r["label"]: r for r in json.loads((Path(reuse_from) / "records.json").read_text(encoding="utf-8"))
+                    if _valid(r) and r["arm"] not in arms}
     todo = [m for m in matrix if _label(m) not in kept]
     harness.require_spend(yes_spend, len(todo), max_sessions)
     run_dir.mkdir(parents=True, exist_ok=True)
@@ -95,6 +105,7 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
         return report
     report = score(suite, cfg, mod, records)
     report.update(run_dir=str(run_dir), model=model or harness.DEFAULT_MODEL, judge_model=judge_model,
+                  reused_from=str(reuse_from) if reuse_from else None,
                   bundle=(current_bundle().name if current_bundle() else None), date=stamp, runs=runs,
                   isolation="real (--setting-sources project,local --strict-mcp-config; init event checked)")
     (run_dir / "report.json").write_text(json.dumps(report, indent=1, default=str), encoding="utf-8")

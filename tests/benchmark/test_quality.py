@@ -172,6 +172,31 @@ class TestUsageLimit(unittest.TestCase):
         self.assertTrue(tier1._valid({"label": "x", "metrics": {"score": 0.0, "other": None}}))
 
 
+class TestReuseArms(unittest.TestCase):
+    def test_reuse_keeps_unchanged_arms_and_reruns_the_named_ones(self):
+        """IMPLEMENTATION_PLAN §2.4 "never re-run an unchanged configuration": a new AgyLite build re-runs only the
+        AgyLite arm (and any cell the earlier run lacks); no-skill and original results come from the earlier run,
+        copied into a new run directory (the earlier run is never modified)."""
+        with tempfile.TemporaryDirectory() as tmp:
+            old = Path(tmp) / "old"
+            old.mkdir()
+            prev = [{"label": f"t-1__{a}__0", "arm": a, "task": "t#1", "run": 0, "metrics": {"score": 0.5}}
+                    for a in ("baseline", "upstream", "agylite")]
+            (old / "records.json").write_text(json.dumps(prev), encoding="utf-8")
+            fake = _FakeSuite()
+            with mock.patch.object(suites, "module", return_value=fake):
+                rep = tier1.run("eng-addy", arms=("agylite",), yes_spend=True, reuse_from=old, out_root=Path(tmp),
+                                log=lambda *_: None, ledger=False)
+            self.assertEqual(fake.calls, ["t-1__agylite__0", "t-2__baseline__0", "t-2__upstream__0", "t-2__agylite__0"])
+            self.assertNotEqual(rep["run_dir"], str(old))
+            self.assertEqual(rep["sessions"], 6)
+            self.assertEqual(rep["reused_from"], str(old))
+            self.assertEqual(json.loads((old / "records.json").read_text())[2]["metrics"], {"score": 0.5})
+            with mock.patch.object(suites, "module", return_value=_FakeSuite()):   # the dry run counts the same cells
+                dry = tier1.run("eng-addy", arms=("agylite",), dry_run=True, reuse_from=old, log=lambda *_: None)
+            self.assertEqual((dry["planned"], dry["reused"]), (4, 2))
+
+
 class TestAgencyNotFirst(unittest.TestCase):
     def test_agency_files_never_rank_in_the_first_two(self):
         """MP3 §4: no Agency file is among an engineering/testing capability's first two sources ahead of a non-Agency
