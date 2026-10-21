@@ -60,6 +60,18 @@ class TestRealRules(unittest.TestCase):
         inventories = sorted(f[:-4] for f in os.listdir(rules.evidence_dir() / "upstream-file-hashes"))
         self.assertEqual(sorted(doc["repos"]), inventories)
 
+    def test_removed_upstream_taste_content_is_superseded(self):
+        """MP1 F6: Taste v2.1 removed or moved these skills; the owner chose v2.1 only."""
+        doc = rules.load_rules()
+        self.assertEqual(rules.compile_rules(doc, rules.load_capabilities()), [])
+        taste = doc["repos"]["taste"]
+        for path in ("skills/output-skill/SKILL.md", "skills/soft-skill/SKILL.md", "skills/brandkit/SKILL.md",
+                     "skills/stitch-skill/SKILL.md", "skills/redesign-skill/SKILL.md",
+                     "skills/imagegen-frontend-web/SKILL.md"):
+            with self.subTest(path):
+                rule = rules.classify(taste, path)
+                self.assertEqual((rule["decision"], rule["reason"]), ("EXCLUDE", "SUPERSEDED"))
+
 
 if __name__ == "__main__":
     unittest.main()

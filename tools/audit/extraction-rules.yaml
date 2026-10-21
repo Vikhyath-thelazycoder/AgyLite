@@ -277,12 +277,14 @@ repos:
     rules:
       - {paths: ["LICENSE"], decision: COPY, capability: design/visual-quality, reason: LICENSE}
       - {paths: ["skills/taste-skill/SKILL.md"], decision: ADAPT, capability: design/visual-quality, reason: "Anti-slop core; split into sections (87 KB)"}
-      - {paths: ["skills/redesign-skill/SKILL.md"], decision: ADAPT, capability: design/design-direction, reason: "Audit-first redesign"}
-      - {paths: ["skills/soft-skill/SKILL.md", "skills/minimalist-skill/SKILL.md", "skills/brutalist-skill/SKILL.md"], decision: ADAPT, capability: design/design-direction, reason: "Aesthetic presets"}
-      - {paths: ["skills/stitch-skill/**"], decision: ADAPT, capability: design/design-system, reason: "DESIGN.md generation"}
-      - {paths: ["skills/brandkit/SKILL.md"], decision: ADAPT, capability: design/brand, reason: "Brand kit"}
-      - {paths: ["skills/output-skill/SKILL.md"], decision: ADAPT, capability: engineering/completion, reason: "No-placeholder output discipline"}
-      - {paths: ["skills/image-to-code-skill/SKILL.md", "skills/imagegen-frontend-web/SKILL.md", "skills/imagegen-frontend-mobile/SKILL.md"], decision: ADAPT, capability: design/frontend, reason: "Host-conditional: requires an image-generation tool"}
+      # MP1 F6: removed or moved upstream; the owner chose Taste v2.1 only (no taste-skill-classics, no imagegen-skills).
+      # The rules stay because the pinned commit still contains these files and the matrix must say why they are out.
+      # Moved to Leonxlnx/taste-skill-classics in v2.1.3 (removed from this repo in 825e306, 2026-10-19):
+      - {paths: ["skills/redesign-skill/SKILL.md", "skills/soft-skill/SKILL.md", "skills/minimalist-skill/SKILL.md", "skills/brutalist-skill/SKILL.md", "skills/stitch-skill/**"], decision: EXCLUDE, reason: SUPERSEDED}
+      # Moved to Leonxlnx/imagegen-skills in v2.1.3 (825e306):
+      - {paths: ["skills/brandkit/SKILL.md", "skills/image-to-code-skill/SKILL.md", "skills/imagegen-frontend-web/SKILL.md", "skills/imagegen-frontend-mobile/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
+      # full-output-enforcement removed in v2.1.1 (f6831c5, 2026-10-19); Unlazy is the completion source:
+      - {paths: ["skills/output-skill/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["skills/taste-skill-v1/SKILL.md", "skills/gpt-tasteskill/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["skills/llms.txt"], decision: REFERENCE, reason: "Index"}
       - {paths: ["research/**"], decision: REFERENCE, reason: "LLM laziness research (completion design input)"}

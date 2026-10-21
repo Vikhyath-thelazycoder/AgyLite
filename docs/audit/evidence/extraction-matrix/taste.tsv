@@ -48,18 +48,18 @@ EXCLUDE	REPO_META		4228	scripts/convert-readme-assets-webp.mjs
 EXCLUDE	REPO_META		3010	scripts/process-readme-buttons.mjs
 EXCLUDE	REPO_META		2396	scripts/process-sponsor-badge.mjs
 EXCLUDE	REPO_META		897	skill.sh
-ADAPT	Brand kit	design/brand	15992	skills/brandkit/SKILL.md
-ADAPT	Aesthetic presets	design/design-direction	8456	skills/brutalist-skill/SKILL.md
+EXCLUDE	SUPERSEDED		15992	skills/brandkit/SKILL.md
+EXCLUDE	SUPERSEDED		8456	skills/brutalist-skill/SKILL.md
 EXCLUDE	SUPERSEDED		7857	skills/gpt-tasteskill/SKILL.md
-ADAPT	Host-conditional: requires an image-generation tool	design/frontend	36442	skills/image-to-code-skill/SKILL.md
-ADAPT	Host-conditional: requires an image-generation tool	design/frontend	40326	skills/imagegen-frontend-mobile/SKILL.md
-ADAPT	Host-conditional: requires an image-generation tool	design/frontend	36854	skills/imagegen-frontend-web/SKILL.md
+EXCLUDE	SUPERSEDED		36442	skills/image-to-code-skill/SKILL.md
+EXCLUDE	SUPERSEDED		40326	skills/imagegen-frontend-mobile/SKILL.md
+EXCLUDE	SUPERSEDED		36854	skills/imagegen-frontend-web/SKILL.md
 REFERENCE	Index		1846	skills/llms.txt
-ADAPT	Aesthetic presets	design/design-direction	7901	skills/minimalist-skill/SKILL.md
-ADAPT	No-placeholder output discipline	engineering/completion	2592	skills/output-skill/SKILL.md
-ADAPT	Audit-first redesign	design/design-direction	15060	skills/redesign-skill/SKILL.md
-ADAPT	Aesthetic presets	design/design-direction	10561	skills/soft-skill/SKILL.md
-ADAPT	DESIGN.md generation	design/design-system	12053	skills/stitch-skill/DESIGN.md
-ADAPT	DESIGN.md generation	design/design-system	11851	skills/stitch-skill/SKILL.md
+EXCLUDE	SUPERSEDED		7901	skills/minimalist-skill/SKILL.md
+EXCLUDE	SUPERSEDED		2592	skills/output-skill/SKILL.md
+EXCLUDE	SUPERSEDED		15060	skills/redesign-skill/SKILL.md
+EXCLUDE	SUPERSEDED		10561	skills/soft-skill/SKILL.md
+EXCLUDE	SUPERSEDED		12053	skills/stitch-skill/DESIGN.md
+EXCLUDE	SUPERSEDED		11851	skills/stitch-skill/SKILL.md
 EXCLUDE	SUPERSEDED		21195	skills/taste-skill-v1/SKILL.md
 ADAPT	Anti-slop core; split into sections (87 KB)	design/visual-quality	87253	skills/taste-skill/SKILL.md

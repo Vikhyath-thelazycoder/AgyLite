@@ -222,8 +222,8 @@
   },
   "taste": {
    "EXCLUDE": {
-    "files": 38,
-    "bytes": 6218409
+    "files": 49,
+    "bytes": 6416497
    },
    "COPY": {
     "files": 1,
@@ -234,8 +234,8 @@
     "bytes": 28561
    },
    "ADAPT": {
-    "files": 12,
-    "bytes": 285341
+    "files": 1,
+    "bytes": 87253
    }
   },
   "uiuxpromax": {
@@ -301,24 +301,22 @@
    ]
   },
   "design/brand": {
-   "files": 36,
-   "bytes": 234458,
-   "est_tokens": 58614,
+   "files": 35,
+   "bytes": 218466,
+   "est_tokens": 54616,
    "sources": [
     "ecc",
     "opendesign",
-    "taste",
     "uiuxpromax"
    ]
   },
   "design/design-direction": {
-   "files": 13,
-   "bytes": 93113,
-   "est_tokens": 23278,
+   "files": 9,
+   "bytes": 51135,
+   "est_tokens": 12783,
    "sources": [
     "ecc",
-    "opendesign",
-    "taste"
+    "opendesign"
    ]
   },
   "design/design-review": {
@@ -332,24 +330,22 @@
    ]
   },
   "design/design-system": {
-   "files": 572,
-   "bytes": 9540370,
-   "est_tokens": 2385092,
+   "files": 570,
+   "bytes": 9516466,
+   "est_tokens": 2379116,
    "sources": [
     "ecc",
     "opendesign",
-    "taste",
     "uiuxpromax"
    ]
   },
   "design/frontend": {
-   "files": 147,
-   "bytes": 6190358,
-   "est_tokens": 1547589,
+   "files": 144,
+   "bytes": 6076736,
+   "est_tokens": 1519184,
    "sources": [
     "appllama",
     "opendesign",
-    "taste",
     "uiuxpromax"
    ]
   },
@@ -419,12 +415,11 @@
    ]
   },
   "engineering/completion": {
-   "files": 33,
-   "bytes": 426457,
-   "est_tokens": 106614,
+   "files": 32,
+   "bytes": 423865,
+   "est_tokens": 105966,
    "sources": [
     "addy",
-    "taste",
     "unlazy"
    ]
   },

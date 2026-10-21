@@ -21,7 +21,7 @@ Plan, build, review and ship software with completion discipline.
 | `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack | 30 | 185.5 | 47,495 | L2 | none | False | none | bundled | — |
 | `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack | 11 | 48.5 | 12,405 | L2 | none | False | none | bundled | — |
 | `engineering/simplicity` | YAGNI and minimality review (explicit or plan-review time; never always-on) | addy, agency, ecc, gstack, ponytail | 23 | 94.1 | 24,080 | L2 | none | False | none | bundled | — |
-| `engineering/completion` | Acceptance gates, evidence-backed completion states, no-placeholder output | addy, taste, unlazy | 33 | 416.5 | 106,614 | L2 | node | False | none | bundled | — |
+| `engineering/completion` | Acceptance gates, evidence-backed completion states, no-placeholder output | addy, unlazy | 32 | 413.9 | 105,966 | L2 | node | False | none | bundled | — |
 | `engineering/release` | CI/CD, git workflow, shipping, canary, observability-in-app, retros | addy, agency, ecc, gstack | 38 | 356.6 | 91,294 | L2 | none | False | none | bundled | — |
 | `engineering/migration` | Deprecations, schema/data migrations | addy, ecc | 2 | 24.1 | 6,169 | L2 | none | False | none | bundled | — |
 | `engineering/documentation` | Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs | agency, ecc, gstack | 8 | 102.1 | 26,144 | L2 | none | False | none | mixed | — |
@@ -44,16 +44,16 @@ Product-appropriate, non-generic, accessible interfaces with justified decisions
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `design/design-direction` | Design read, dials, aesthetic direction, redesign (preserve/overhaul) | ecc, opendesign, taste | 13 | 90.9 | 23,278 | L2 | none | False | none | bundled | — |
+| `design/design-direction` | Design read, dials, aesthetic direction, redesign (preserve/overhaul) | ecc, opendesign | 9 | 49.9 | 12,783 | L2 | none | False | none | bundled | — |
 | `design/visual-quality` | Inspectable anti-slop criteria and polish | ecc, gstack, opendesign, taste | 7 | 154.8 | 39,623 | L2 | none | False | none | bundled | — |
-| `design/design-system` | Tokens, components, reference systems, design-system recommendation engine | ecc, opendesign, taste, uiuxpromax | 572 | 9316.8 | 2,385,092 | L2 | python-stdlib | False | none | bundled | — |
+| `design/design-system` | Tokens, components, reference systems, design-system recommendation engine | ecc, opendesign, uiuxpromax | 570 | 9293.4 | 2,379,116 | L2 | python-stdlib | False | none | bundled | — |
 | `design/typography` | Type scale, hierarchy, color systems | opendesign | 5 | 24.8 | 6,346 | L2 | none | False | none | bundled | — |
 | `design/ux` | UX laws, flows, forms, state coverage | opendesign | 2 | 33.7 | 8,631 | L2 | none | False | none | bundled | — |
 | `design/accessibility` | Accessible design baseline and checklist | addy, ecc, opendesign | 6 | 55.7 | 14,251 | L2 | none | False | none | bundled | — |
 | `design/motion` | Purposeful motion, animation discipline, reduced motion (web and React Native gesture/spring motion) | appllama, ecc, opendesign | 16 | 177.9 | 45,541 | L2 | none | False | none | bundled | — |
-| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics, image-to-code) | appllama, opendesign, taste, uiuxpromax | 147 | 6045.3 | 1,547,589 | L2 | none | False | none | bundled | — |
+| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics, image-to-code) | appllama, opendesign, uiuxpromax | 144 | 5934.3 | 1,519,184 | L2 | none | False | none | bundled | — |
 | `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 228.7 | 58,542 | L2 | none | False | none | bundled | design/visual-quality |
-| `design/brand` | Brand identity, voice, kits | ecc, opendesign, taste, uiuxpromax | 36 | 229.0 | 58,614 | L2 | none | False | none | bundled | — |
+| `design/brand` | Brand identity, voice, kits | ecc, opendesign, uiuxpromax | 35 | 213.3 | 54,616 | L2 | none | False | none | bundled | — |
 
 ## testing
 

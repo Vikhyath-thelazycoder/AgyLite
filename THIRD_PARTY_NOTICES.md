@@ -18,6 +18,6 @@ Agylite bundles selected content from the upstream projects below (see `tools/au
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | `2c60614` | MIT | forrestchang and contributors | 2 | — License declared in package metadata; upstream ships no license text. |
 | [nexu-io/open-design](https://github.com/nexu-io/open-design) | `17e2559` | Apache-2.0 | Copyright 2026 Open Design contributors | 516 | `LICENSE` |
 | [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail) | `9b58c1f` | MIT | Copyright (c) 2026 DietrichGebert | 18 | `LICENSE` |
-| [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `717446e` | MIT | Copyright (c) 2026 Leonxlnx | 13 | `LICENSE` |
+| [Leonxlnx/taste-skill](https://github.com/Leonxlnx/taste-skill) | `717446e` | MIT | Copyright (c) 2026 Leonxlnx | 2 | `LICENSE` |
 | [nextlevelbuilder/ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) | `67803ea` | MIT | Copyright (c) 2024 Next Level Builder | 274 | `LICENSE` |
 | [Leonxlnx/unlazy](https://github.com/Leonxlnx/unlazy) | `1667149` | MIT | Copyright (c) 2026 Leonxlnx | 31 | `LICENSE` |

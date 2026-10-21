@@ -31,7 +31,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | opendesign | design/brand | `skills/brand-extract/` | 2 | 67.6 | ADAPT | none | Apache-2.0 | `17e2559` |
 | opendesign | design/brand | `skills/brand-guidelines/` | 1 | 1.4 | ADAPT | none | Apache-2.0 | `17e2559` |
 | opendesign | design/brand | `skills/theme-factory/` | 1 | 1.3 | ADAPT | none | Apache-2.0 | `17e2559` |
-| taste | design/brand | `skills/brandkit/` | 1 | 15.6 | ADAPT | none | MIT | `717446e` |
 | uiuxpromax | design/brand | `.claude/skills/banner-design/` | 2 | 11.8 | ADAPT | none | MIT | `67803ea` |
 | uiuxpromax | design/brand | `.claude/skills/brand/` | 18 | 105.7 | ADAPT | none | MIT | `67803ea` |
 | ecc | design/design-direction | `skills/frontend-design-direction/` | 2 | 12.2 | ADAPT | none | MIT | `2d515e4` |
@@ -40,10 +39,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | opendesign | design/design-direction | `skills/design-brief/` | 1 | 13.5 | ADAPT | none | Apache-2.0 | `17e2559` |
 | opendesign | design/design-direction | `skills/design-md/` | 1 | 1.1 | ADAPT | none | Apache-2.0 | `17e2559` |
 | opendesign | design/design-direction | `skills/reference-design-contract/` | 3 | 12.1 | ADAPT | none | Apache-2.0 | `17e2559` |
-| taste | design/design-direction | `skills/brutalist-skill/` | 1 | 8.3 | ADAPT | none | MIT | `717446e` |
-| taste | design/design-direction | `skills/minimalist-skill/` | 1 | 7.7 | ADAPT | none | MIT | `717446e` |
-| taste | design/design-direction | `skills/redesign-skill/` | 1 | 14.7 | ADAPT | none | MIT | `717446e` |
-| taste | design/design-direction | `skills/soft-skill/` | 1 | 10.3 | ADAPT | none | MIT | `717446e` |
 | agency | design/design-review | `design/` | 10 | 118.5 | ADAPT | none | MIT | `f99f6aa` |
 | gstack | design/design-review | `design-consultation/` | 3 | 31.7 | ADAPT | none | MIT (+Apache-2.0 notices) | `5cb5e1c` |
 | gstack | design/design-review | `plan-design-review/` | 4 | 44.9 | ADAPT | none | MIT (+Apache-2.0 notices) | `5cb5e1c` |
@@ -205,7 +200,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | opendesign | design/design-system | `design-systems/x-ai/` | 3 | 52.4 | COPY | python-stdlib | Apache-2.0 | `17e2559` |
 | opendesign | design/design-system | `design-systems/xiaohongshu/` | 3 | 57.5 | COPY | python-stdlib | Apache-2.0 | `17e2559` |
 | opendesign | design/design-system | `design-systems/zapier/` | 3 | 39.9 | COPY | python-stdlib | Apache-2.0 | `17e2559` |
-| taste | design/design-system | `skills/stitch-skill/` | 2 | 23.3 | ADAPT | python-stdlib | MIT | `717446e` |
 | uiuxpromax | design/design-system | `.claude/skills/design-system/` | 27 | 178.4 | ADAPT | python-stdlib | MIT | `67803ea` |
 | uiuxpromax | design/design-system | `.claude/skills/ui-ux-pro-max/` | 3 | 50.2 | ADAPT | python-stdlib | MIT | `67803ea` |
 | uiuxpromax | design/design-system | `LICENSE` | 1 | 1.0 | COPY | python-stdlib | MIT | `67803ea` |
@@ -220,9 +214,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | opendesign | design/frontend | `skills/platform-design/` | 1 | 1.3 | ADAPT | none | Apache-2.0 | `17e2559` |
 | opendesign | design/frontend | `skills/shadcn-ui/` | 1 | 1.1 | ADAPT | none | Apache-2.0 | `17e2559` |
 | opendesign | design/frontend | `skills/swiftui-design/` | 1 | 1.3 | ADAPT | none | Apache-2.0 | `17e2559` |
-| taste | design/frontend | `skills/image-to-code-skill/` | 1 | 35.6 | ADAPT | none | MIT | `717446e` |
-| taste | design/frontend | `skills/imagegen-frontend-mobile/` | 1 | 39.4 | ADAPT | none | MIT | `717446e` |
-| taste | design/frontend | `skills/imagegen-frontend-web/` | 1 | 36.0 | ADAPT | none | MIT | `717446e` |
 | uiuxpromax | design/frontend | `.claude/skills/design/` | 36 | 261.3 | ADAPT | none | MIT | `67803ea` |
 | uiuxpromax | design/frontend | `.claude/skills/ui-styling/` | 98 | 5626.5 | ADAPT | none | MIT | `67803ea` |
 | appllama | design/motion | `skills/appllama-app-design-skill/` | 1 | 4.4 | COPY | none | MIT | `dd5caae` |
@@ -270,7 +261,6 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/backend | `skills/backend-patterns/` | 1 | 13.0 | ADAPT | none | MIT | `2d515e4` |
 | ecc | engineering/backend | `skills/error-handling/` | 1 | 10.7 | ADAPT | none | MIT | `2d515e4` |
 | addy | engineering/completion | `references/` | 1 | 3.7 | COPY | node | MIT | `1be8e34` |
-| taste | engineering/completion | `skills/output-skill/` | 1 | 2.5 | ADAPT | node | MIT | `717446e` |
 | unlazy | engineering/completion | `LICENSE` | 1 | 1.0 | COPY | node | MIT | `1667149` |
 | unlazy | engineering/completion | `SECURITY.md` | 1 | 12.4 | PRESERVE | node | MIT | `1667149` |
 | unlazy | engineering/completion | `SKILL.md` | 1 | 10.3 | ADAPT | node | MIT | `1667149` |
@@ -549,4 +539,4 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | testing/strategy | `health/` | 1 | 15.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `5cb5e1c` |
 | gstack | testing/strategy | `test-audit/` | 1 | 7.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `5cb5e1c` |
 
-**Total bundled: 2648 files, 50.9 MB** across 55 capabilities.
+**Total bundled: 2637 files, 50.7 MB** across 55 capabilities.
