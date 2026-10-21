@@ -23,3 +23,8 @@ testing/performance: files/ecc/skills/benchmark-methodology/SKILL.md
 testing/regression: files/ecc/skills/ai-regression-testing/SKILL.md
 testing/release-verification: files/ecc/skills/verification-loop/SKILL.md
 codebase/repository-understanding: files/ecc/skills/codebase-onboarding/SKILL.md
+design/design-direction: files/taste/skills/taste-skill/SKILL.md
+design/frontend: files/uiuxpromax/.claude/skills/ui-styling/SKILL.md
+design/design-system: files/uiuxpromax/.claude/skills/ui-ux-pro-max/SKILL.md
+design/brand: files/uiuxpromax/.claude/skills/brand/SKILL.md
+design/motion: files/opendesign/skills/emilkowalski-motion/SKILL.md

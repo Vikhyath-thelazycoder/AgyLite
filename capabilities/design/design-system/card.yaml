@@ -19,3 +19,4 @@ related_capabilities: []
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/uiuxpromax/.claude/skills/ui-ux-pro-max/SKILL.md, files/opendesign/skills/design-md/SKILL.md]

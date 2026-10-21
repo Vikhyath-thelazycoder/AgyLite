@@ -95,7 +95,8 @@ def context_selection(root: Path, bundle: Path) -> dict:
     loader, agency = ContextLoader(None, None, bundle, use_cache=False), {}
     for cid, card in registry.load_cards().items():
         if cid.split("/", 1)[0] in ("engineering", "testing"):
-            bad = agency_in_first_two(loader.files_of(cid), card.get("sources_priority") or [])
+            prio = card.get("sources_priority") or []
+            bad = agency_in_first_two(levels.capability_entries(loader, cid, prio), prio)
             if bad:
                 agency[cid] = bad
     return {"rows": rows, "agency_first_two": agency, "ok": all(r["ok"] for r in rows) and not agency}

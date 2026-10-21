@@ -19,3 +19,4 @@ related_capabilities: []
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/opendesign/skills/emilkowalski-motion/SKILL.md, files/taste/skills/taste-skill/references/motion.md]

@@ -52,7 +52,15 @@ class TestValidation(unittest.TestCase):
         self.assertIn("files/gone/SKILL.md", problems[0])
 
     def test_glob_must_match_a_file_of_the_same_capability(self):
+        cards = {"design/visual-quality": {"sources_priority": ["files/taste/*/SKILL.md"]}}
+        self.assertEqual(len(sources_priority_problems(cards, self.bundle)), 1)
+
+    def test_exact_path_may_name_another_capabilitys_file(self):
+        """MP4 §1.5: Taste's SKILL.md leads design/visual-quality and design/design-direction, but a file is bundled
+        under one capability; an exact bundle path (no wildcard) may name another capability's file."""
         cards = {"design/visual-quality": {"sources_priority": ["files/taste/b/SKILL.md"]}}
+        self.assertEqual(sources_priority_problems(cards, self.bundle), [])
+        cards = {"design/visual-quality": {"sources_priority": ["files/taste/nope/SKILL.md"]}}
         self.assertEqual(len(sources_priority_problems(cards, self.bundle)), 1)
 
     def test_schema_rejects_non_bundle_paths(self):

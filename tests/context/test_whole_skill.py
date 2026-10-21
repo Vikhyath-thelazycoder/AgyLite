@@ -79,6 +79,15 @@ class TestWholeSkill(Env):
         self.assertEqual(l2["capabilities_full"], ["engineering/security", "testing/security"])
         self.assertIn(FILES["files/beta/skills/test-security/SKILL.md"].strip()[-40:], l2["text"])
 
+    def test_primary_may_be_another_capabilitys_skill(self):
+        """MP4 §1.5: a capability's sources_priority may name a skill bundled under another capability; it loads whole
+        as this capability's primary (the file is bundled once)."""
+        other = "files/beta/skills/test-security/SKILL.md"
+        l2 = levels.capability_context(self.loader(), ["engineering/backend"], self.budgets,
+                                       priorities={"engineering/backend": [other]})
+        self.assertIn(f"### {other}", l2["text"])
+        self.assertIn(FILES[other].strip()[-40:], l2["text"])
+
     def test_second_session_load_is_a_cache_marker(self):
         args = (["engineering/security"], self.budgets)
         kw = {"priorities": {"engineering/security": [PRIMARY]}}

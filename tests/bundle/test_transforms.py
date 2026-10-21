@@ -147,6 +147,7 @@ class TestRewrites(unittest.TestCase):
             ("ecc", "rules/README.md"): "```bash\n./install.sh typescript\n./install.sh python\n```\n",
             ("uiuxpromax", ".claude/skills/ui-ux-pro-max/SKILL.md"): 'python "${CLAUDE_PLUGIN_ROOT}/.claude/skills/ui-ux-pro-max/scripts/search.py"',
             ("appllama", "skills/appllama-app-design-skill/SKILL.md"): APPLLAMA_SAMPLE,
+            ("taste", "skills/taste-skill/SKILL.md"): TASTE_SAMPLE,
             ("gstack", "review/SKILL.md"): ("From the installed /review SKILL.md's directory, choose one path:\n"
                                             "- If the caller directory is `review`, Read `../qa/sections/exploratory.md` in full.\n"
                                             "Resolve QA's `sections/...` and `templates/...` paths from that installed QA "
@@ -231,6 +232,30 @@ class TestPocockRewrites(unittest.TestCase):
         way = self.adapted(("pocock", "skills/engineering/wayfinder/SKILL.md"))[1]
         self.assertIn("## Wayfinder map: <destination>", way)
         self.assertIn("[grilling] Decide the auth model", way)
+
+
+TASTE_SAMPLE = """4. **You look at what you made.** Screenshots at three widths, a juror's rubric, fix, look again.
+
+```bash
+node <skill>/scripts/draw.mjs --sector <sector> --brief "<one line>" --options 3
+node <skill>/scripts/lint.mjs <source files or folder>
+node <skill>/scripts/inspect.mjs <url or path/to/index.html>
+node <skill>/scripts/scenes.mjs <url or path/to/index.html>
+```
+Search them with `node <skill>/scripts/assets.mjs "<query>"`.
+"""
+
+
+class TestTasteRewrite(unittest.TestCase):
+    def test_script_calls_go_through_the_wrapper_and_done_means_verify(self):
+        """MP4 §1.3: every `node <skill>/scripts/X.mjs` → `agylite design taste X`; the look loop names verify."""
+        out = rewrites.apply("taste", "skills/taste-skill/SKILL.md", TASTE_SAMPLE)
+        self.assertNotIn("node <skill>/scripts/", out)
+        for cmd in ("draw", "lint", "inspect", "scenes", "assets"):
+            self.assertIn(f"agylite design taste {cmd}", out)
+        self.assertIn("The task is complete only when `agylite verify` passes: tests, types, lint incl. "
+                      "`agylite design taste lint`, build, and `agylite design taste inspect` with 0 FAIL.", out)
+        self.assertIn("a juror's rubric, fix, look again", out)          # Taste's own loop stays
 
 
 class TestChecks(unittest.TestCase):

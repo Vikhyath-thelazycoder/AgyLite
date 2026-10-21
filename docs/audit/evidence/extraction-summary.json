@@ -244,20 +244,24 @@
   },
   "taste": {
    "EXCLUDE": {
-    "files": 49,
-    "bytes": 6416497
+    "files": 28,
+    "bytes": 653515
    },
    "COPY": {
-    "files": 1,
-    "bytes": 1065
+    "files": 12,
+    "bytes": 288603
    },
    "REFERENCE": {
-    "files": 13,
-    "bytes": 28561
+    "files": 1,
+    "bytes": 5345
    },
    "ADAPT": {
     "files": 1,
-    "bytes": 87253
+    "bytes": 38458
+   },
+   "PRESERVE": {
+    "files": 27,
+    "bytes": 2097369
    }
   },
   "uiuxpromax": {
@@ -333,12 +337,13 @@
    ]
   },
   "design/design-direction": {
-   "files": 9,
-   "bytes": 51135,
-   "est_tokens": 12783,
+   "files": 18,
+   "bytes": 1726997,
+   "est_tokens": 431749,
    "sources": [
     "ecc",
-    "opendesign"
+    "opendesign",
+    "taste"
    ]
   },
   "design/design-review": {
@@ -362,12 +367,13 @@
    ]
   },
   "design/frontend": {
-   "files": 144,
-   "bytes": 6076736,
-   "est_tokens": 1519184,
+   "files": 150,
+   "bytes": 6168704,
+   "est_tokens": 1542176,
    "sources": [
     "appllama",
     "opendesign",
+    "taste",
     "uiuxpromax"
    ]
   },
@@ -398,9 +404,9 @@
    ]
   },
   "design/visual-quality": {
-   "files": 7,
-   "bytes": 158494,
-   "est_tokens": 39623,
+   "files": 30,
+   "bytes": 726776,
+   "est_tokens": 181694,
    "sources": [
     "ecc",
     "gstack",

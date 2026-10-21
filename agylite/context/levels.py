@@ -139,6 +139,15 @@ def source_priorities(root=None):
     return {cid: card.get("sources_priority") or [] for cid, card in registry.load_cards(root).items()}
 
 
+def capability_entries(loader, cid, priority=()) -> list:
+    """The capability's bundle files plus any exact-path sources_priority entry bundled under another capability
+    (MP4 §1.5: a skill can be the primary of more than one capability; it is bundled once)."""
+    own = loader.files_of(cid)
+    have = {e["path"] for e in own}
+    shared = [loader.bundle_entry(g) for g in priority if g not in have and not any(ch in g for ch in "*?[")]
+    return own + [e for e in shared if e]
+
+
 def skill_id(entry) -> str:
     """`<upstream>/<skill name>` (e.g. `ponytail/ponytail-review`, `taste/design-taste-frontend`)."""
     parts = entry["path"].split("/")
@@ -192,7 +201,7 @@ def capability_context(loader, cids, budgets, query=None, priorities=None, whole
     budget = Budget(cfg["max_tokens_per_task"])
     parts, full, index_only = [], [], []
     for i, cid in enumerate(cids):
-        entries = loader.files_of(cid)
+        entries = capability_entries(loader, cid, priorities.get(cid, ()))
         prim = primary_skill(entries, query, priorities.get(cid, ()))
         if prim is not None and len(full) < n_whole and i < n_whole and (not full or budget.fits(prim["tokens"])):
             text, sent = whole_skill(loader, prim)

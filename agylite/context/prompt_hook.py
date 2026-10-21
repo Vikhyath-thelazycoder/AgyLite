@@ -116,7 +116,8 @@ def primary_skill_ids(loader, cids, query) -> list:
         prios = levels.source_priorities()
         out = []
         for cid in cids:
-            entry = levels.primary_skill(loader.files_of(cid), query, prios.get(cid, ()))
+            entry = levels.primary_skill(levels.capability_entries(loader, cid, prios.get(cid, ())), query,
+                                         prios.get(cid, ()))
             if entry is not None and entry["kind"] == "skill":
                 out.append(levels.skill_id(entry))
         return out

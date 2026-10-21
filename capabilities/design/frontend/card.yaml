@@ -19,3 +19,4 @@ related_capabilities: [engineering/frontend]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/uiuxpromax/.claude/skills/ui-styling/SKILL.md, files/taste/skills/taste-skill/references/app-screens.md]

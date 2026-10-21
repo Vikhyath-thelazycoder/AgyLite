@@ -147,8 +147,8 @@
  },
  "taste": {
   "attribution": "Copyright (c) 2026 Leonxlnx",
-  "bundled_files": 2,
-  "commit_sha": "717446e07a78d4e6d7918b1fde1a263378eebac9",
+  "bundled_files": 40,
+  "commit_sha": "6010f91a9935f1c167dfc500fb1a475681892e6b",
   "license": "MIT",
   "license_files": [
    "LICENSE"

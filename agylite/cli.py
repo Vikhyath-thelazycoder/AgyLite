@@ -698,8 +698,9 @@ def _runtime_cmd(args):
     if args.runtime_cmd == "status":
         from .runtimes import uiux
         from .runtimes import brag, seo
+        from .runtimes import taste
         _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home), uiux.health(bundle),
-                             seo.health(home, bundle), brag.health(home, bundle)]}, args.json)
+                             taste.health(bundle, home), seo.health(home, bundle), brag.health(home, bundle)]}, args.json)
         return 0
     if args.runtime_cmd == "unlazy-hook":
         before = unlazy.stop_hook_commands()
@@ -812,6 +813,17 @@ def _design_cmd(args):
     from .paths import current_bundle
     from .runtimes import uiux
     project = _project_ref(args)
+    if args.design_cmd == "taste":   # MP4 §1.3: Taste v2.1 scripts from the bundle, run in the project
+        from .paths import agylite_home
+        from .runtimes import taste
+        if args.script == "status":
+            _print(taste.health(current_bundle(), agylite_home()), args.json)
+            return 0
+        try:
+            return taste.run(current_bundle(), agylite_home(), args.script, args.args, cwd=project.root).returncode
+        except taste.TasteError as exc:
+            print(f"agylite design taste: {exc}", file=sys.stderr)
+            return 1
     if args.design_cmd == "check":
         result = tokens.check(project.root.resolve())
         if args.json:
@@ -1427,6 +1439,10 @@ def build_parser():
     project_arg(q)
     q = dsub2.add_parser("check", help="Design-token checks: accents, greys, radii, fonts (config/design.yaml)")
     project_arg(q)
+    q = dsub2.add_parser("taste", help="Taste v2.1 scripts: draw | inspect | lint | scenes | assets | status (MP4)")
+    project_arg(q)
+    q.add_argument("script", choices=("draw", "inspect", "lint", "scenes", "assets", "status"))
+    q.add_argument("args", nargs=argparse.REMAINDER, help="Passed to the script (e.g. --sector, --options 3)")
     p.set_defaults(func=_design_cmd)
 
     p = sub.add_parser("codebase", help="Code graph (Graphify): affected files + related tests, scoped queries")

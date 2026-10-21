@@ -19,3 +19,4 @@ related_capabilities: [design/visual-quality, design/typography]
 conflicts: []
 fallback_capability: null
 enabled: true
+sources_priority: [files/taste/skills/taste-skill/SKILL.md, files/opendesign/skills/creative-director/SKILL.md]

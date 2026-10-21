@@ -250,13 +250,15 @@ def check(root: Path | None = None, bundle_dir: Path | None = None):
 
 def sources_priority_problems(cards, bundle_dir: Path):
     """MP1 F5: every sources_priority glob must match a file the bundle maps to that capability, so a source removed
-    or moved upstream fails the check instead of silently falling back to another file."""
+    or moved upstream fails the check instead of silently falling back to another file. MP4 §1.5: an exact path (no
+    wildcard) may name a file bundled under another capability (e.g. Taste's SKILL.md leads two capabilities)."""
     import fnmatch
     index = json.loads((bundle_dir / "index.json").read_text(encoding="utf-8"))
     files = index.get("files") or {}
     by_cap = {}
     for path, meta in files.items():
         by_cap.setdefault(meta.get("capability"), []).append(path)
+    exact = lambda g: not any(ch in g for ch in "*?[")   # noqa: E731
     return [f"{cid}: sources_priority {g} matches no file of {cid} in bundle {bundle_dir.name}"
             for cid, card in cards.items() for g in card.get("sources_priority") or []
-            if not any(fnmatch.fnmatchcase(p, g) for p in by_cap.get(cid, []))]
+            if not any(fnmatch.fnmatchcase(p, g) for p in by_cap.get(cid, [])) and not (exact(g) and g in files)]

@@ -238,6 +238,15 @@ REWRITES = {
     ("ponytail", "skills/ponytail-review/SKILL.md"): [
         (re.compile(r'"is this over-engineered", /ponytail-review\.'), '"is this over-engineered".'),
     ],
+    # MP4 §1.3: Taste v2.1's scripts run through the `agylite design taste` runtime (bundle paths, TASTE_SKILL_TMP,
+    # the draw memory under ~/.agylite); "done" names agylite verify. Taste's look-and-fix loop and juror rubric stay.
+    ("taste", "skills/taste-skill/SKILL.md"): [
+        (re.compile(r"node <skill>/scripts/(draw|lint|inspect|scenes|assets)\.mjs"), r"agylite design taste \1"),
+        (re.compile(r"4\. \*\*You look at what you made\.\*\* Screenshots at three widths, a juror's rubric, fix, look again\."),
+         "4. **You look at what you made.** Run `agylite design taste inspect`, look at the screenshots, and fix every "
+         "FAIL; then a juror's rubric, fix, look again. The task is complete only when `agylite verify` passes: tests, "
+         "types, lint incl. `agylite design taste lint`, build, and `agylite design taste inspect` with 0 FAIL."),
+    ],
     ("uiuxpromax", ".claude/skills/ui-ux-pro-max/SKILL.md"): [
         (re.compile(r"\$\{CLAUDE_PLUGIN_ROOT\}/\.claude/skills/ui-ux-pro-max/scripts/"),
          f"{BUNDLE}/files/uiuxpromax/src/ui-ux-pro-max/scripts/"),

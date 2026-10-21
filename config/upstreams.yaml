@@ -22,7 +22,7 @@ upstreams:
   ponytail:   {track: monthly, branch: main}
   graphify:   {track: monthly, branch: v8, self_test: true}
   opendesign: {track: weekly, branch: main}
-  taste:      {track: manual, branch: main}   # manual until MP4 migrates the rules to the v2.1 layout (skills/taste-skill/**)
+  taste:      {track: weekly, branch: main, self_test: true}   # MP4 §1.6: v2.1 layout migrated
   uiuxpromax: {track: weekly, branch: main, self_test: true}
   brag:       {track: monthly, branch: main}
   beacon:     {track: monthly, branch: main}

@@ -292,5 +292,8 @@ naming the load command (within a budget), then re-run the AgyLite arm only.
 6. **Open fix (owner asked not to forget it):** the agent never loads the skill (see "MP3 Tier 1 measurement").
    Deliver the primary skill's text in the prompt hook instead of only naming `agylite skill load`, then re-measure
    the AgyLite arm. MP4/MP5 skills depend on it too, so fix it early (before or at the start of Phase 9).
-7. Paid Tier 1 runs only with the owner's approval. Measure a new AgyLite build with
+7. Paid Tier 1 runs only with the owner's approval.
+8. **After MP6 (owner request):** run all tests incl. every paid Tier 1 suite, then build a results website showing,
+   per task, the output of plain Claude, the original skill and AgyLite side by side (code, grader checks, answer,
+   score, cost). Do not build it before MP6 is finished. Measure a new AgyLite build with
    `--arms agylite --reuse-from <earlier run dir>` (only the AgyLite arm is paid again).

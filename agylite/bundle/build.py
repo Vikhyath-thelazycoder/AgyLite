@@ -110,6 +110,13 @@ def _self_tests(work: Path, log):
         p = subprocess.run(["python3", "-m", "unittest", "discover", "-s", "tests"], cwd=uiux, capture_output=True, text=True)
         tail = (p.stderr.strip().splitlines() or [""])
         results["uiuxpromax"] = {"exit": p.returncode, "summary": " ".join(tail[-3:])}
+    from ..runtimes import taste   # MP4 §1.4: lint exits 0 on a clean page, 1 on one with known tells
+    fixtures = repo_root() / "tests" / "fixtures" / "taste"
+    if taste.scripts_dir(work) and fixtures.is_dir() and (taste.node_version() or (0,))[0] >= taste.MIN_NODE:
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp_home:
+            r = taste.self_test(work, Path(tmp_home), fixtures)
+        results["taste"] = {"exit": 0 if r["ok"] else 1, "lint_exit_codes": r["exit_codes"]}
     for name, r in results.items():
         log(f"  self-test {name}: exit {r['exit']}")
     return results

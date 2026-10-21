@@ -1,65 +1,70 @@
 decision	reason	capability	bytes	path
-EXCLUDE	REPO_META		501	.claude-plugin/marketplace.json
-EXCLUDE	REPO_META		447	.claude-plugin/plugin.json
+EXCLUDE	HOST_PORT		410	.agents/plugins/marketplace.json
+EXCLUDE	REPO_META		945	.claude-plugin/marketplace.json
+EXCLUDE	HOST_PORT		1218	.codex-plugin/plugin.json
+EXCLUDE	REPO_META		17	.gitattributes
 EXCLUDE	REPO_META		17	.github/FUNDING.yml
-EXCLUDE	REPO_META		959	.github/copilot-instructions.md
-EXCLUDE	DOC_ASSET		8272	CHANGELOG.md
+EXCLUDE	REPO_META		720	.github/workflows/check-skills.yml
+EXCLUDE	REPO_META		48	.gitignore
+EXCLUDE	REPO_META		25926	CHANGELOG.md
 COPY	LICENSE	design/visual-quality	1065	LICENSE
-EXCLUDE	DOC_ASSET		17846	README.md
-EXCLUDE	DOC_ASSET		0	assets/.gitkeep
-EXCLUDE	DOC_ASSET		99902	assets/readme-banner.webp
-EXCLUDE	DOC_ASSET		4864	assets/readme-cta-tasteskill.svg
-EXCLUDE	DOC_ASSET		32914	assets/readme-tastecode.webp
-EXCLUDE	DOC_ASSET		16024	assets/sponsors/animations-dev.webp
-EXCLUDE	DOC_ASSET		39216	assets/sponsors/emil-animations-dev.webp
-EXCLUDE	DOC_ASSET		1757134	assets/sponsors/fluxion-ai-banner.png
-EXCLUDE	DOC_ASSET		1363728	assets/sponsors/fluxion-ai.png
+EXCLUDE	REPO_META		15088	README.md
+EXCLUDE	DOC_ASSET		48042	assets/readme-tastecode-dark.webp
+EXCLUDE	DOC_ASSET		29104	assets/readme-tastecode.webp
 EXCLUDE	DOC_ASSET		1174	assets/sponsors/imgly-logo.svg
 EXCLUDE	DOC_ASSET		1924	assets/sponsors/interfaces-dev-icon.webp
 EXCLUDE	DOC_ASSET		11486	assets/sponsors/kimi-icon.png
 EXCLUDE	DOC_ASSET		3939	assets/sponsors/reactbits-icon-dark.svg
 EXCLUDE	DOC_ASSET		3937	assets/sponsors/reactbits-icon-light.svg
-EXCLUDE	DOC_ASSET		12502	assets/sponsors/reactbits-logo-dark.svg
-EXCLUDE	DOC_ASSET		12536	assets/sponsors/reactbits-logo-light.svg
 EXCLUDE	DOC_ASSET		4382	assets/sponsors/sentdm.png
-EXCLUDE	DOC_ASSET		1687265	assets/sponsors/sidrune-ai-banner.png
 EXCLUDE	DOC_ASSET		21326	assets/sponsors/sidrune-ai.png
 EXCLUDE	DOC_ASSET		242	assets/sponsors/vercel-logo.svg
-EXCLUDE	DOC_ASSET		17279	assets/taste-skill-logo.png
-EXCLUDE	DOC_ASSET		3280	assets/taste-skill-logo.webp
+EXCLUDE	DOC_ASSET		61650	assets/taste-skill-wordmark-dark.png
+EXCLUDE	DOC_ASSET		51509	assets/taste-skill-wordmark.png
 EXCLUDE	DOC_ASSET		13296	assets/vercel-oss-program-badge.svg
-EXCLUDE	DOC_ASSET		170130	examples/floria-bottom.webp
-EXCLUDE	DOC_ASSET		568180	examples/floria-full.webp
-EXCLUDE	DOC_ASSET		303012	examples/floria-top.webp
-REFERENCE	LLM laziness research (completion design input)		368	research/README.md
-REFERENCE	LLM laziness research (completion design input)		1870	research/laziness/README.md
-REFERENCE	LLM laziness research (completion design input)		2820	research/laziness/findings/empirical-results.md
-REFERENCE	LLM laziness research (completion design input)		1512	research/laziness/findings/references.md
-REFERENCE	LLM laziness research (completion design input)		3142	research/laziness/remediation/architectural-patterns.md
-REFERENCE	LLM laziness research (completion design input)		2856	research/laziness/remediation/parameter-tuning.md
-REFERENCE	LLM laziness research (completion design input)		3261	research/laziness/remediation/prompt-engineering.md
-REFERENCE	LLM laziness research (completion design input)		2363	research/laziness/remediation/reference-prompts.md
-REFERENCE	LLM laziness research (completion design input)		2124	research/laziness/root-causes/cognitive-shortcuts.md
-REFERENCE	LLM laziness research (completion design input)		2568	research/laziness/root-causes/output-limits.md
-REFERENCE	LLM laziness research (completion design input)		2165	research/laziness/root-causes/rlhf-and-compute.md
-REFERENCE	LLM laziness research (completion design input)		1666	research/laziness/root-causes/training-data-bias.md
-EXCLUDE	REPO_META		1112	scripts/build-emil-sponsor-row.mjs
-EXCLUDE	REPO_META		4228	scripts/convert-readme-assets-webp.mjs
-EXCLUDE	REPO_META		3010	scripts/process-readme-buttons.mjs
-EXCLUDE	REPO_META		2396	scripts/process-sponsor-badge.mjs
-EXCLUDE	REPO_META		897	skill.sh
-EXCLUDE	SUPERSEDED		15992	skills/brandkit/SKILL.md
-EXCLUDE	SUPERSEDED		8456	skills/brutalist-skill/SKILL.md
-EXCLUDE	SUPERSEDED		7857	skills/gpt-tasteskill/SKILL.md
-EXCLUDE	SUPERSEDED		36442	skills/image-to-code-skill/SKILL.md
-EXCLUDE	SUPERSEDED		40326	skills/imagegen-frontend-mobile/SKILL.md
-EXCLUDE	SUPERSEDED		36854	skills/imagegen-frontend-web/SKILL.md
-REFERENCE	Index		1846	skills/llms.txt
-EXCLUDE	SUPERSEDED		7901	skills/minimalist-skill/SKILL.md
-EXCLUDE	SUPERSEDED		2592	skills/output-skill/SKILL.md
-EXCLUDE	SUPERSEDED		15060	skills/redesign-skill/SKILL.md
-EXCLUDE	SUPERSEDED		10561	skills/soft-skill/SKILL.md
-EXCLUDE	SUPERSEDED		12053	skills/stitch-skill/DESIGN.md
-EXCLUDE	SUPERSEDED		11851	skills/stitch-skill/SKILL.md
-EXCLUDE	SUPERSEDED		21195	skills/taste-skill-v1/SKILL.md
-ADAPT	Anti-slop core; split into sections (87 KB)	design/visual-quality	87253	skills/taste-skill/SKILL.md
+EXCLUDE	DOC_ASSET		10491	examples/v2/CREDITS.md
+EXCLUDE	DOC_ASSET		26692	examples/v2/coffee-questions.webp
+EXCLUDE	DOC_ASSET		113142	examples/v2/coffee-roast.webp
+EXCLUDE	DOC_ASSET		29172	examples/v2/coffee-storefront.webp
+EXCLUDE	DOC_ASSET		173606	examples/v2/night-dates.webp
+EXCLUDE	INSTALLER		4012	install.sh
+REFERENCE	Skill readme		5345	skills/taste-skill/README.md
+ADAPT	Core skill; script calls → agylite design taste (MP4 §1.3)	design/visual-quality	38458	skills/taste-skill/SKILL.md
+PRESERVE	Base CSS/JS the skill builds with	design/frontend	15918	skills/taste-skill/assets/app.css
+PRESERVE	Base CSS/JS the skill builds with	design/frontend	6520	skills/taste-skill/assets/base.css
+PRESERVE	Base CSS/JS the skill builds with	design/frontend	2162	skills/taste-skill/assets/base.js
+PRESERVE	Base CSS/JS the skill builds with	design/frontend	58705	skills/taste-skill/assets/charts.js
+PRESERVE	Base CSS/JS the skill builds with	design/frontend	1141	skills/taste-skill/assets/scenes/stage.css
+PRESERVE	Base CSS/JS the skill builds with	design/frontend	7522	skills/taste-skill/assets/scenes/stage.js
+PRESERVE	MP2 design-taste suite input	design/visual-quality	8198	skills/taste-skill/evals/evals.json
+PRESERVE	Data for draw.mjs	design/design-direction	74229	skills/taste-skill/library/app.json
+PRESERVE	Data for draw.mjs	design/design-direction	61466	skills/taste-skill/library/directions.json
+PRESERVE	Data for draw.mjs	design/design-direction	108240	skills/taste-skill/library/heroes.json
+PRESERVE	Data for draw.mjs	design/design-direction	9033	skills/taste-skill/library/motions.json
+PRESERVE	Data for draw.mjs	design/design-direction	34753	skills/taste-skill/library/palettes.json
+PRESERVE	Data for draw.mjs	design/design-direction	160632	skills/taste-skill/library/photos.json
+PRESERVE	Data for draw.mjs	design/design-direction	276146	skills/taste-skill/library/sections.json
+PRESERVE	Data for draw.mjs	design/design-direction	869073	skills/taste-skill/library/sites.json
+PRESERVE	Data for draw.mjs	design/design-direction	82290	skills/taste-skill/library/type.json
+COPY	References (read on demand)	design/visual-quality	85358	skills/taste-skill/references/app-screens.md
+COPY	References (read on demand)	design/visual-quality	6853	skills/taste-skill/references/colour.md
+COPY	References (read on demand)	design/visual-quality	9436	skills/taste-skill/references/copy.md
+COPY	References (read on demand)	design/visual-quality	11157	skills/taste-skill/references/critique.md
+COPY	References (read on demand)	design/visual-quality	51025	skills/taste-skill/references/imagery.md
+COPY	References (read on demand)	design/visual-quality	18315	skills/taste-skill/references/layout.md
+COPY	References (read on demand)	design/visual-quality	55400	skills/taste-skill/references/motion.md
+COPY	References (read on demand)	design/visual-quality	24262	skills/taste-skill/references/research.md
+COPY	References (read on demand)	design/visual-quality	9817	skills/taste-skill/references/scenes.md
+COPY	References (read on demand)	design/visual-quality	7420	skills/taste-skill/references/tells.md
+COPY	References (read on demand)	design/visual-quality	8495	skills/taste-skill/references/type.md
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	64522	skills/taste-skill/scripts/assets.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	54140	skills/taste-skill/scripts/draw.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	27839	skills/taste-skill/scripts/inspect.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	14715	skills/taste-skill/scripts/lib/app-draw.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	11920	skills/taste-skill/scripts/lib/cdp.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	81280	skills/taste-skill/scripts/lib/probe.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	37284	skills/taste-skill/scripts/lib/rules.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	11747	skills/taste-skill/scripts/lint.mjs
+PRESERVE	Runtime (WRAP via agylite design taste)	design/visual-quality	8980	skills/taste-skill/scripts/scenes.mjs
+PRESERVE	Upstream tests (frontmatter needs the npm yaml package, so it is not an offline self-test)	design/visual-quality	4069	tests/frontmatter.mjs
+PRESERVE	Upstream tests (frontmatter needs the npm yaml package, so it is not an offline self-test)	design/visual-quality	4845	tests/profile-cleanup.mjs

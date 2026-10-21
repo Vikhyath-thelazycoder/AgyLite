@@ -462,6 +462,10 @@ Phases 0–4 done and on `main` (MP1 critical fixes, MP2 quality benchmarks, Pla
 report are in `docs/plan/IMPLEMENTATION_LOG.md` → "RESUME FROM"; benchmark results in `docs/plan/PARITY_LEDGER.md`.
 Paid Tier 1 sessions (`claude -p`) run only with the owner's approval.
 
+**After MP6 (owner, 2026-10-22 — do not drop):** run every test, including all paid Tier 1 suites (approved), then
+build a results website: for each task, what plain Claude (no skill), the original skill and AgyLite each produced
+(the code, the grader's checks, the answer), side by side with scores and cost. Not before MP6 is done.
+
 **Open fix carried into the next phases (owner, 2026-10-22 — do not drop):** the MP3 paid test showed the agent never
 runs `agylite skill load` (0 loads in 37 AgyLite sessions), so Addy (0.903 = no skill) and Pocock (0.572 vs 0.745)
 are not the same as the originals; Ponytail is near (87% retained) only because its rules sit in L0. Fix: deliver the
