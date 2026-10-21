@@ -1,0 +1,272 @@
+# Out-of-distribution routing scenarios (MP1 F13): requests no routing rule was written for. Same format as
+# scenarios.yaml. `forbid` must always hold. `expect` must hold unless the entry is `pending: <prompt>`: that marks an
+# expectation that needs a capability a later master prompt adds (strict: a pending entry that already passes fails
+# the test, so the marker is removed when the capability lands). Comments record what the router did before MP1.
+#
+# Several phrasings come from Addy Osmani's agent-skills trigger evals (`evals/cases/*.json` → trigger.positive),
+# MIT, addyosmani/agent-skills@aeac41d4d005999432bb7312f7ff06383a91d59d. They are marked `# addy: <skill>`.
+
+scenarios:
+  # ── Audit findings (AUDIT_REPORT §3.1) ────────────────────────────────────────────────────────────────────────
+  - id: ood-url-stripe
+    request: Extract the design system from stripe.com and linear.app as inspiration
+    stage: unknown
+    forbid: [engineering/security, engineering/backend]   # before: both selected (F1)
+  - id: ood-stripe-real
+    request: Add Stripe checkout to the pricing page
+    stage: existing
+    expect: [engineering/security, engineering/backend]   # must keep working after F1
+  - id: ood-mind-map
+    request: Make a mind map of this repo
+    stage: existing
+    forbid: [engineering/security, engineering/backend]   # before: both selected (F2)
+  - id: ood-roadmap
+    request: Draw a roadmap for Q3
+    stage: unknown
+    forbid: [seo/]                                         # before: seo/strategy (F2)
+  - id: ood-grill
+    request: Grill me on this plan before I build it
+    stage: unknown
+    expect: [engineering/planning]
+    forbid: [media/, testing/local-verification]           # before: launch-video via bm25 (F3)
+  - id: ood-yt-summary
+    request: Summarise this YouTube video for me
+    stage: unknown
+    forbid: [media/launch-video, media/demo]               # before: both via bm25 (F3)
+    expect: [research/video]
+    pending: MP5
+  - id: ood-yt-script
+    request: Write a YouTube script
+    stage: unknown
+    forbid: [seo/, media/launch-video]                     # before: new-product engineering set (F4)
+    expect: [youtube/script]
+    pending: MP5
+  - id: ood-research
+    request: Research the best vector databases on Reddit, Twitter and YouTube
+    stage: unknown
+    forbid: [engineering/backend, seo/]                    # before: seo + backend
+    expect: [research/web, research/social, research/video]
+    pending: MP5
+  - id: ood-shorts
+    request: Turn this long podcast video into 5 vertical shorts with captions
+    stage: unknown
+    forbid: [media/launch-video, engineering/]             # before: launch-video, demo via bm25
+    expect: [youtube/repurpose]
+    pending: MP5
+
+  # ── URLs and domain names ─────────────────────────────────────────────────────────────────────────────────────
+  - id: ood-url-hero
+    request: Copy the hero layout from https://vercel.com/home into our homepage
+    stage: existing
+    forbid: [media/, seo/, engineering/security]           # before: media/showcase via tags
+  - id: ood-url-docs
+    request: Our docs at docs.example.dev/api are out of date, update the README
+    stage: existing
+    expect: [engineering/documentation]
+    forbid: [engineering/backend, design/]
+  - id: ood-url-compare
+    request: Compare the pricing pages of notion.so and coda.io
+    stage: unknown
+    forbid: [engineering/, seo/technical]
+  - id: ood-url-paypal-link
+    request: Fix the broken link to https://paypal.com/help in the footer
+    stage: existing
+    expect: [engineering/debugging]
+    forbid: [engineering/security, engineering/backend]   # before: both via `paypal` inside the URL
+  - id: ood-url-github-issue
+    request: Read https://github.com/vercel/next.js/issues/123 and tell me if it affects us
+    stage: existing
+    forbid: [seo/, design/]                                # before: design-direction, seo/technical via bm25
+  - id: ood-url-slow-shop
+    request: Why is the product grid on shop.example.com so slow?
+    stage: existing
+    expect: [engineering/performance]
+    forbid: [seo/]
+
+  # ── Brand names that are also common words ────────────────────────────────────────────────────────────────────
+  - id: ood-brand-notion
+    request: Sync tasks to Notion when a ticket closes
+    stage: existing
+    forbid: [design/, seo/, media/]
+  - id: ood-brand-slack
+    request: Post a Slack message when the nightly build fails
+    stage: existing
+    forbid: [design/, seo/, media/]
+  - id: ood-brand-vercel
+    request: Deploy the app to Vercel
+    stage: existing
+    expect: [engineering/release]
+    forbid: [design/]                                      # before: design/frontend via bm25
+  - id: ood-brand-supabase
+    request: Store user avatars in Supabase storage
+    stage: existing
+    forbid: [design/, seo/, media/]
+  - id: ood-brand-linear
+    request: Make the Linear-style command palette for our app
+    stage: existing
+    forbid: [seo/, media/, engineering/security]
+  - id: ood-brand-apple
+    request: Sign in with Apple on the iOS app
+    stage: existing
+    expect: [engineering/security]
+    forbid: [seo/, media/]
+
+  # ── Short requests ────────────────────────────────────────────────────────────────────────────────────────────
+  - id: ood-short-fix
+    request: fix it
+    stage: existing
+    forbid: [seo/, design/, media/]                        # before: seo/website-work via bm25
+  - id: ood-short-nicer
+    request: make it nicer
+    stage: existing
+    forbid: [seo/, media/, engineering/security]
+  - id: ood-short-ship
+    request: ship it
+    stage: existing
+    expect: [engineering/release]
+  - id: ood-short-slow
+    request: why is this slow
+    stage: existing
+    expect: [engineering/performance]
+    forbid: [seo/, design/]
+  - id: ood-short-explain
+    request: explain this repo
+    stage: existing
+    expect: [codebase/repository-understanding]
+    forbid: [seo/, design/, media/]
+
+  # ── Non-native phrasings ──────────────────────────────────────────────────────────────────────────────────────
+  - id: ood-esl-login
+    request: pls make login page work good, it not working since yesterday
+    stage: existing
+    expect: [engineering/debugging]
+    forbid: [seo/, media/]
+  - id: ood-esl-button
+    request: the button no do anything when i click, fix please
+    stage: existing
+    forbid: [seo/, media/]                                 # before: seo/website-work via bm25
+  - id: ood-esl-cake
+    request: i want app for my shop, customers can order cake online
+    stage: new
+    forbid: [seo/, media/]
+  - id: ood-esl-needful
+    request: can you kindly do the needful and add export to csv
+    stage: existing
+    expect: [engineering/implementation]
+    forbid: [design/, seo/]
+  - id: ood-esl-ci
+    request: kindly check why tests are failing on CI
+    stage: existing
+    expect: [engineering/debugging]
+    forbid: [design/, seo/, media/]
+
+  # ── Design requests that are not "premium" ────────────────────────────────────────────────────────────────────
+  - id: ood-design-dark-mode
+    request: Add a dark mode toggle to the settings screen
+    stage: existing
+    forbid: [seo/, media/, engineering/security]
+  - id: ood-design-palette
+    request: Pick a calmer color palette for the dashboard
+    stage: existing
+    expect: [design/design-system]
+    forbid: [engineering/, seo/, media/]
+  - id: ood-design-a11y
+    request: Make the onboarding screens accessible for screen readers
+    stage: existing
+    expect: [design/accessibility]
+    forbid: [seo/, media/]
+  - id: ood-design-fade
+    request: Add a subtle fade-in animation to the cards
+    stage: existing
+    forbid: [seo/, media/, engineering/security]
+  - id: ood-design-fonts
+    request: Choose a better font pairing for the blog
+    stage: unknown
+    expect: [design/typography]
+    forbid: [seo/, engineering/]
+
+  # ── Testing requests that mention a browser ───────────────────────────────────────────────────────────────────
+  - id: ood-browser-playwright
+    request: Write a Playwright test for the signup flow
+    stage: existing
+    expect: [testing/strategy]
+    forbid: [seo/, media/, design/]
+  - id: ood-browser-devtools               # addy: browser-testing-with-devtools
+    request: Use Chrome DevTools to figure out why the checkout button click does nothing
+    stage: existing
+    forbid: [seo/, media/]
+  - id: ood-browser-e2e
+    request: Run the e2e tests in headless Chrome
+    stage: existing
+    expect: [testing/local-verification]
+    forbid: [seo/, design/, media/]
+  - id: ood-browser-safari
+    request: Test the site in Safari and Firefox
+    stage: existing
+    forbid: [seo/, media/]                                 # before: seo/website-work via bm25
+  - id: ood-browser-click-through
+    request: Click through the app and tell me what breaks
+    stage: existing
+    forbid: [seo/, media/, design/]
+
+  # ── Everyday engineering phrasings ────────────────────────────────────────────────────────────────────────────
+  - id: ood-addy-review                    # addy: code-review-and-quality
+    request: Review this pull request before I merge it
+    stage: existing
+    expect: [engineering/review]
+    forbid: [design/]                                      # before: design-review, visual-quality via tags+bm25
+  - id: ood-addy-crash                     # addy: debugging-and-error-recovery
+    request: The app crashes with a TypeError when I click save, help me find the root cause
+    stage: existing
+    expect: [engineering/debugging]
+  - id: ood-addy-n-plus-one                # addy: performance-optimization
+    request: Optimize this N+1 query
+    stage: existing
+    expect: [engineering/performance]
+    forbid: [seo/]                                         # before: seo/content via bm25
+  - id: ood-addy-tasks                     # addy: planning-and-task-breakdown
+    request: Break this spec into small verifiable tasks with acceptance criteria
+    stage: existing
+    expect: [engineering/planning]
+  - id: ood-addy-adr                       # addy: documentation-and-adrs
+    request: Write an ADR for choosing Postgres over MongoDB
+    stage: existing
+    expect: [engineering/documentation]
+  - id: ood-addy-ci                        # addy: ci-cd-and-automation
+    request: Set up a GitHub Actions pipeline that runs the tests on every pull request
+    stage: existing
+    forbid: [engineering/ai-systems, design/, seo/]        # before: ai-systems via bm25
+  - id: ood-addy-logging                   # addy: observability-and-instrumentation
+    request: Add structured logging and metrics to the checkout service
+    stage: existing
+    forbid: [design/, seo/, media/]
+  - id: ood-addy-upload                    # addy: security-and-hardening
+    request: Audit this file upload handler for vulnerabilities
+    stage: existing
+    expect: [engineering/security]
+    forbid: [seo/]                                         # before: seo/auditing via bm25
+  - id: ood-addy-spec                      # addy: spec-driven-development
+    request: Write a spec for the new billing feature before we write any code
+    stage: existing
+    expect: [engineering/planning]
+    forbid: [seo/]                                         # before: seo/website-work via bm25
+  - id: ood-addy-tdd-bug                   # addy: test-driven-development
+    request: Write a failing test for this bug before fixing it
+    stage: existing
+    expect: [engineering/debugging, testing/strategy]
+  - id: ood-addy-interview                 # addy: interview-me
+    request: Interview me about what I actually want before you build anything
+    stage: unknown
+    expect: [engineering/planning]
+    forbid: [media/]
+  - id: ood-addy-stress-test               # addy: idea-refine
+    request: Stress-test my plan for the new onboarding flow
+    stage: unknown
+    expect: [engineering/planning]
+    forbid: [media/, testing/local-verification]
+
+  # ── Nothing in Agylite covers this ────────────────────────────────────────────────────────────────────────────
+  - id: ood-unmatched-recipe
+    request: Translate my grandmother's recipe into Italian
+    stage: unknown
+    forbid: [engineering/, design/, seo/, media/, testing/, codebase/]
