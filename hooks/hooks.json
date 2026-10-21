@@ -1,5 +1,5 @@
 {
-  "description": "Agylite: Level-0 bootstrap at session start (D-042). No other hooks; the optional Unlazy Stop hook is registered centrally by `agylite runtime unlazy-hook --enable`.",
+  "description": "Agylite: Level-0 bootstrap at session start (D-042) and the route of every prompt (UserPromptSubmit, D-048). The optional Unlazy Stop hook is registered centrally by `agylite runtime unlazy-hook --enable`.",
   "hooks": {
     "SessionStart": [
       {
@@ -8,6 +8,17 @@
             "type": "command",
             "command": "\"${CLAUDE_PLUGIN_ROOT}/bin/agylite\" bootstrap --host claude-code",
             "timeout": 20
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "\"${CLAUDE_PLUGIN_ROOT}/bin/agylite\" hook prompt --host claude-code",
+            "timeout": 2
           }
         ]
       }

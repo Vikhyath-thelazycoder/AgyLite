@@ -17,6 +17,8 @@ EVENT_TYPES = (
     "RUNTIME_USED",
     # MP1 F4: a request no capability fits (keywords + hash, never the text) — MP6 reports these weekly
     "ROUTE_UNMATCHED",
+    # MP1 F15: the UserPromptSubmit hook routed a prompt (capabilities, tokens, cards; a hash, never the text)
+    "PROMPT_ROUTED",
 )
 SEVERITIES = ("info", "low", "medium", "high", "critical")
 FIELDS = ("schema_version", "id", "ts", "event", "severity", "project_id", "session_id", "host", "capabilities",

@@ -53,6 +53,9 @@ def runtime_record(host: str, home: Path | None = None):
 
 class Adapter:
     host = ""
+    # MP1 F15 (D-048): whether the host runs `agylite hook prompt` on every prompt. Hosts without a verified
+    # prompt-submit hook carry the "route first" rule in their always-loaded text instead.
+    prompt_hook = "unsupported"
 
     def __init__(self, root: Path | None = None, home: Path | None = None, user_home: Path | None = None):
         self.root = root or repo_root()
@@ -118,5 +121,6 @@ class Adapter:
         run = runtime_record(self.host, self.home)
         level = ("RUNTIME_VERIFIED" if run and inst["installed"] else "INSTALLED" if inst["installed"] else
                  "FILES_PRESENT" if not stale else "NOT_VERIFIED")
-        return {"host": self.host, "status": level, "files_current": not stale, "stale": stale, **inst,
+        return {"host": self.host, "status": level, "files_current": not stale, "stale": stale,
+                "prompt_hook": self.prompt_hook, **inst,
                 "runtime": run, "policy": POLICY_REF}

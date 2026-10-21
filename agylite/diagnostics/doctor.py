@@ -121,6 +121,19 @@ def last_update_run(home: Path):
     return stamps[-1][:10] if stamps else None
 
 
+def prompt_hook_checks(r, root: Path):
+    """MP1 F15: is the UserPromptSubmit hook registered and switched on, and when did it last fire on this machine."""
+    from ..context.prompt_hook import load_discipline
+    from ..paths import agylite_home
+    hooks = _json(root / "hooks" / "hooks.json") or {}
+    registered = "UserPromptSubmit" in (hooks.get("hooks") or {})
+    on = str(load_discipline(root).get("prompt_hook", "on")).lower() not in ("off", "false")
+    state = "enabled" if registered and on else "disabled"
+    fired = _json(agylite_home() / "hosts" / "prompt-hook.json") or {}
+    r.check(registered, f"Prompt hook: {state} (last fired: {(fired.get('last_fired') or 'never')[:19]})",
+            "Prompt hook: not registered in hooks/hooks.json (D-048)")
+
+
 def workflow_checks(r, root: Path):
     """MP1 F14: every workflow parses, and actionlint (when installed) accepts it — GitHub silently rejects a file with
     an invalid expression context (0 jobs, never scheduled), which YAML parsing alone cannot see."""
@@ -286,6 +299,10 @@ def _run(root: Path, user_home: Path) -> int:
     skill = root / ".agents/skills/agylite/SKILL.md"
     r.check(skill.is_file() and "name: agylite" in skill.read_text(encoding="utf-8"),
             ".agents/skills/agylite/SKILL.md adapter intact", ".agents/skills/agylite/SKILL.md missing or unnamed")
+    r.end_section()
+
+    r.section("🪝 Prompt Hook (D-048)")
+    prompt_hook_checks(r, root)
     r.end_section()
 
     r.section("⚙️  CI Workflow Integrity")

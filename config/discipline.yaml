@@ -1,0 +1,11 @@
+# Agylite — always-on discipline switches (MP1 F15; MP3 adds the Ponytail ruleset level here).
+
+version: 1
+
+# UserPromptSubmit hook (D-048): route every prompt and inject the route with it. `off` disables injection.
+prompt_hook: on
+
+# Prompts that carry no new task: the earlier route still applies, so nothing is injected.
+prompt_hook_followups:
+  max_words: 3
+  phrases: ["yes", "no", "ok", "okay", "continue", "go on", "do it", "thanks", "thank you"]

@@ -5,7 +5,7 @@ status; they contain no routing or state logic.
 
 | Host | Packaging | Install |
 |---|---|---|
-| Claude Code | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `skills/`, `agents/`, `hooks/hooks.json` (SessionStart → `bin/agylite bootstrap --host claude-code`, nothing else) | `claude plugin marketplace add Vikhyath-thelazycoder/AgyLite` then `claude plugin install agylite@agylite-marketplace` |
+| Claude Code | `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `skills/`, `agents/`, `hooks/hooks.json` (SessionStart → `bin/agylite bootstrap --host claude-code`; UserPromptSubmit → `bin/agylite hook prompt`, which injects each prompt's route, D-048) | `claude plugin marketplace add Vikhyath-thelazycoder/AgyLite` then `claude plugin install agylite@agylite-marketplace` |
 | Codex | `.codex-plugin/plugin.json` (`skills: ./skills/`), `.agents/plugins/marketplace.json` | `codex plugin marketplace add Vikhyath-thelazycoder/AgyLite` then `codex plugin add agylite@agylite-marketplace` (older CLIs: `codex plugin install`) |
 | Cursor | user-level skills | `agylite adapters install --host cursor` → `~/.cursor/skills/agylite-*` |
 | Antigravity | `.agents/skills/agylite/SKILL.md` (generated) + user-level skills | `agylite adapters install --host antigravity` → `~/.gemini/config/skills/agylite-*` |
@@ -21,3 +21,5 @@ agylite adapters uninstall --host cursor
 - RUNTIME_VERIFIED is reported only after the host actually ran `agylite bootstrap --host <name>`.
 - User-level installs carry a `.agylite-managed` marker, never overwrite other skills and remove only their own.
 - No adapter writes MCP configuration or enables browser tooling; every entry skill names `config/verification.yaml`.
+- Prompt hook (D-048): Claude Code routes every prompt through `agylite hook prompt`; `agylite adapters status` shows
+  `prompt_hook: unsupported` for Codex, Cursor and Antigravity, whose always-loaded text says to route every request first.

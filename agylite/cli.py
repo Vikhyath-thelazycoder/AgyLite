@@ -212,6 +212,18 @@ def _session_id(args, create=False):
     return sid
 
 
+def _hook(args):
+    """MP1 F15: print the context to inject for the prompt on stdin; never fail, never block (exit 0 always)."""
+    from .context import prompt_hook
+    try:
+        out = prompt_hook.run(sys.stdin.read(), args.host)
+    except BaseException:   # noqa: BLE001 — a hook may never break the host's prompt
+        out = ""
+    if out:
+        sys.stdout.write(out)
+    return 0
+
+
 def _bootstrap(args):
     import json
 
@@ -1005,6 +1017,11 @@ def build_parser():
     p.add_argument("--project", help="Project directory (default: current directory)")
     p.add_argument("--json", action="store_true", help="JSON output")
     p.set_defaults(func=_bootstrap)
+
+    p = sub.add_parser("hook", help="Host hook entry points (Claude Code UserPromptSubmit: `hook prompt`)")
+    p.add_argument("hook_cmd", choices=("prompt",))
+    p.add_argument("--host", default="claude-code")
+    p.set_defaults(func=_hook)
 
     p = sub.add_parser("context", help="Load L1/L2 context for capabilities, or one L3 file (explicit)")
     p.add_argument("capability", nargs="*", help="Capability ids (from `agylite route`)")

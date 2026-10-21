@@ -45,3 +45,11 @@ project_doc_sections_per_turn:
 semantic_results:
   value: 3
   why: BM25 fallback results per request; mirrors config/routing.yaml limits.bm25_top_k (the router reads that value).
+
+# MP1 F15 (D-048): the UserPromptSubmit hook injects the route, the load command and the routed L1 cards.
+prompt_hook:
+  max_tokens: 800
+  why: >-
+    Pilot 2026-10-21 (AUDIT_REPORT §9): the agent made 0 agylite calls on small, clear tasks, so the SessionStart
+    suggestion alone left AgyLite equal to no skill. The owner decided to auto-route every prompt; 800 fits the route
+    line, the load command and two or three cards, and cards already sent this session become one-line markers.

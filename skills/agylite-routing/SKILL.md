@@ -7,6 +7,10 @@ description: Route a task to the minimum Agylite capabilities with the determini
 
 Routing is done by the OS core, not by reading this file. Do not pick capabilities by hand and do not load every skill.
 
+Agylite's route arrives with your prompt (Claude Code's UserPromptSubmit hook prints `Agylite route: …` and the load
+command). Load the listed context before the first edit; do not skip it on small tasks. Without that line (other
+hosts, or the hook is off), route yourself with step 1.
+
 ## Steps
 
 1. **Route.** Run, from the project directory:

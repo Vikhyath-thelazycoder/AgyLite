@@ -1,6 +1,9 @@
 # Agylite — agent instructions
 
-Agylite is a local engineering OS for coding agents. Do not pick skills by hand and do not load every skill:
+Agylite is a local engineering OS for coding agents. Do not pick skills by hand and do not load every skill.
+On Claude Code, Agylite's route arrives with your prompt (UserPromptSubmit hook). Load the listed context before the
+first edit; do not skip it on small tasks. Hosts without that hook (Codex, Cursor, Antigravity) route every request
+themselves with step 2:
 
 1. `agylite bootstrap --host <your host>` at the start of a session (compact project state, plan pointer, capability index).
 2. `agylite route "<request>" [--paths <files…>]` — the minimum capabilities, their lifecycle and impact step.

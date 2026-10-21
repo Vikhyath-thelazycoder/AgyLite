@@ -18,8 +18,8 @@ from agylite.adapters import ADAPTERS, all_adapters, get, record_runtime  # noqa
 from agylite.adapters.base import entry_skills  # noqa: E402
 from agylite.cli import main  # noqa: E402
 
-FORBIDDEN = ("mcpServers", "mcp_config", "chrome-devtools", "take_screenshot", "playwright", "\"PreToolUse\"",
-             "\"UserPromptSubmit\"")
+# D-048 (MP1 F15) amends D-042: UserPromptSubmit routes every prompt; other hooks stay forbidden.
+FORBIDDEN = ("mcpServers", "mcp_config", "chrome-devtools", "take_screenshot", "playwright", "\"PreToolUse\"")
 
 
 class TestNoLogic(unittest.TestCase):
@@ -47,12 +47,16 @@ class TestPolicy(unittest.TestCase):
                     self.assertNotIn(word, text, f"{a.host} {rel}")
         self.assertIn("config/verification.yaml", get("antigravity").repo_files()[".agents/skills/agylite/SKILL.md"])
 
-    def test_claude_hooks_only_session_bootstrap(self):
+    def test_claude_hooks_session_bootstrap_and_prompt_route(self):
         hooks = json.loads(Path(ROOT_DIR, "hooks", "hooks.json").read_text(encoding="utf-8"))["hooks"]
-        self.assertEqual(list(hooks), ["SessionStart"])
+        self.assertEqual(list(hooks), ["SessionStart", "UserPromptSubmit"])   # D-042 amended by D-048 (MP1 F15)
         cmd = hooks["SessionStart"][0]["hooks"][0]["command"]
         self.assertIn("${CLAUDE_PLUGIN_ROOT}/bin/agylite", cmd)
         self.assertIn("bootstrap --host claude-code", cmd)
+        prompt = hooks["UserPromptSubmit"][0]["hooks"][0]
+        self.assertIn("${CLAUDE_PLUGIN_ROOT}/bin/agylite", prompt["command"])
+        self.assertIn("hook prompt --host claude-code", prompt["command"])
+        self.assertLessEqual(prompt["timeout"], 2)
 
     def test_manifest_versions_match(self):
         version = Path(ROOT_DIR, "VERSION").read_text(encoding="utf-8").strip()
