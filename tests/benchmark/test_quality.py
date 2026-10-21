@@ -160,6 +160,12 @@ class TestUsageLimit(unittest.TestCase):
             self.assertNotIn("t-1__baseline__0", fake.calls)
             self.assertIn("t-1__upstream__0", fake.calls)
 
+    def test_resume_redoes_a_cell_without_any_measured_metric(self):
+        """An invalid grader reply leaves no score (Addy's run-evals.js records a failure); resume reruns the cell."""
+        self.assertFalse(tier1._valid({"label": "x", "metrics": {"score": None}}))
+        self.assertFalse(tier1._valid({"label": "x", "metrics": {}}))
+        self.assertTrue(tier1._valid({"label": "x", "metrics": {"score": 0.0, "other": None}}))
+
 
 class TestSuiteSchema(unittest.TestCase):
     def test_every_suite_has_credits_license_and_a_full_sha(self):
