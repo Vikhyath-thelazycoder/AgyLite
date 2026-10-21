@@ -201,6 +201,10 @@ repos:
     default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
     rules:
       - {paths: ["LICENSE"], decision: COPY, capability: engineering/planning, reason: LICENSE}
+      # MP3 §5: skills ECC added after the pin, classified now so MP6's update review shows them as known.
+      - {paths: ["skills/story-lifecycle/**", "skills/context-and-decisions/**"], decision: EXCLUDE, reason: SUPERSEDED}   # Agylite plan / `decide`
+      - {paths: ["skills/change-impact/**"], decision: REFERENCE, reason: "Overlaps Graphify impact analysis; evaluate with MP2"}
+      - {paths: ["skills/module-regression/**", "skills/test-collaboration/**"], decision: REFERENCE, reason: "Candidates for testing/regression and testing/strategy L3"}
       - {paths: [".mcp.json", "**/*mcp*/**", "skills/mcp-server-patterns/**", "skills/codehealth-mcp/**", "scripts/memory-mcp.mjs", "skills/angular-developer/references/mcp.md", "skills/laravel-plugin-discovery/**"], decision: EXCLUDE, reason: MCP}
       - {paths: ["hooks/**", "scripts/hooks/**"], decision: REFERENCE, reason: "Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)"}
       - {paths: ["ecc2/**", "src/**"], decision: EXCLUDE, reason: ALWAYS_ON}
