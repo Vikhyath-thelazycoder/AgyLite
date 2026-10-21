@@ -43,8 +43,10 @@ def bootstrap(*, project, session_id, host, bundle_dir, budgets, root=None, stag
              "`agylite context <id>…` · rare needs: `agylite skills search \"<words>\"`):"]
     index += [f"  {d}: " + ", ".join(c.split("/", 1)[1] for c in m["capabilities"]) for d, m in domains.items()]
 
+    discipline = discipline_lines(bundle_dir)
+
     def assemble(state_part):
-        return "\n".join(head + [f"state: {s}" for s in state_part] + index) + "\n"
+        return "\n".join(head + [f"state: {s}" for s in state_part] + index + discipline) + "\n"
 
     state = list(state_lines)
     text = assemble(state)
@@ -52,6 +54,29 @@ def bootstrap(*, project, session_id, host, bundle_dir, budgets, root=None, stag
         state = state[:-1]
         text = assemble(state + ["(truncated to the L0 budget; run `agylite state`)"])
     return {"level": "L0", "text": text, "est_tokens": est_tokens(nbytes(text)), "limit": limit}
+
+
+RULESET = "files/ponytail/RULESET-lite.md"
+
+
+def load_discipline(root=None):
+    from .prompt_hook import load_discipline as load
+    return load(root)
+
+
+def discipline_lines(bundle_dir, root=None) -> list:
+    """MP3 §2.2: the Ponytail lite ruleset, whole, plus a pointer to the full principles (never truncated; L0 drops
+    state lines first). `ponytail_ruleset: off` in config/discipline.yaml removes it."""
+    if str(load_discipline(root).get("ponytail_ruleset", "lite")).lower() in ("off", "false"):
+        return []
+    path = bundle_dir / RULESET if bundle_dir else None
+    if path is None or not path.is_file():
+        return ["discipline: the Ponytail lite ruleset is not in this bundle (rebuild: `agylite bundle build`)"]
+    text = path.read_text(encoding="utf-8").strip()
+    if text.startswith("<!--"):                      # the provenance comment stays in the file
+        text = text.split("-->", 1)[1].strip()
+    return ["discipline (always on):", text,
+            "Full principles (Karpathy): `agylite context engineering/principles`."]
 
 
 def domain_context(loader, cids, budgets, root=None):

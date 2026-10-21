@@ -2,6 +2,10 @@
 
 version: 1
 
+# Ponytail ruleset in L0 (MP3 §2.2, owner decision 2026-10-21): the generated lite rules (files/ponytail/RULESET-lite.md)
+# are always on. `off` removes them. `full`/`ultra` are not offered until MP2 measures them.
+ponytail_ruleset: lite
+
 # UserPromptSubmit hook (D-048): route every prompt and inject the route with it. `off` disables injection.
 prompt_hook: on
 

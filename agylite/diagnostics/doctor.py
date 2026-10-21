@@ -134,6 +134,15 @@ def prompt_hook_checks(r, root: Path):
             "Prompt hook: not registered in hooks/hooks.json (D-048)")
 
 
+def discipline_checks(r, root: Path):
+    """MP3 §2.2: which Ponytail ruleset level L0 carries."""
+    from ..context.prompt_hook import load_discipline
+    level = str(load_discipline(root).get("ponytail_ruleset", "lite")).lower()
+    r.check(level in ("lite", "off", "false"),
+            f"Ponytail ruleset: {level} (" + ("always on in L0)" if level == "lite" else "not in L0)"),
+            f"Ponytail ruleset: unknown level {level!r} in config/discipline.yaml (lite|off)")
+
+
 def workflow_checks(r, root: Path):
     """MP1 F14: every workflow parses, and actionlint (when installed) accepts it — GitHub silently rejects a file with
     an invalid expression context (0 jobs, never scheduled), which YAML parsing alone cannot see."""
@@ -303,6 +312,7 @@ def _run(root: Path, user_home: Path) -> int:
 
     r.section("🪝 Prompt Hook (D-048)")
     prompt_hook_checks(r, root)
+    discipline_checks(r, root)
     r.end_section()
 
     r.section("⚙️  CI Workflow Integrity")

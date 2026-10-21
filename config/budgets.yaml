@@ -11,8 +11,9 @@ levels:
   L0:
     max_tokens: 1500
     why: >-
-      Bootstrap runs on every task. OS identity, host, project/session ids, phase, compact state, plan pointer and the
-      62-id capability index; 1,500 leaves room for a few state lines without letting state dumps creep into every turn.
+      Bootstrap runs on every task. OS identity, host, project/session ids, phase, compact state, plan pointer, the
+      capability index and the Ponytail lite ruleset (MP3 §2.2, ≈ 700 tokens, never truncated); 1,500 still leaves room
+      for a few state lines without letting state dumps creep into every turn.
   L1:
     max_tokens_per_domain: 2000
     why: >-
