@@ -30,5 +30,21 @@ class TestReviewSkill(unittest.TestCase):
         self.assertLess(text.index("ponytail-review"), text.index("gstack"))
         self.assertNotIn("Simplicity review (Ponytail-derived) only when the user asks", text)
 
+
+class TestDesignSkill(unittest.TestCase):
+    def test_design_flow_precedence_and_done(self):
+        """MP4 §3.1: inspiration → approved DESIGN.md → Taste draw → build → inspect loop → verify; precedence order."""
+        text = (ROOT / "skills" / "agylite-design" / "SKILL.md").read_text(encoding="utf-8")
+        order = ["owner's explicit instruction", "existing design system", "extracted from inspiration",
+                 "Taste v2.1", "UI/UX Pro Max", "Open Design"]
+        rule = " ".join(text[text.index("this order wins"):text.index("## A.")].split())
+        self.assertEqual([rule.index(x) for x in order], sorted(rule.index(x) for x in order))
+        for needle in ("agylite design extract", "stop: the owner reviews DESIGN.md", "design-md-approved",
+                       "agylite design taste draw", "--keep palette,type", "agylite design taste inspect",
+                       "agylite design taste lint", "0 FAIL", "never identity"):
+            self.assertIn(needle, text)
+        self.assertNotIn("Never verify by screenshot", text)
+
+
 if __name__ == "__main__":
     unittest.main()

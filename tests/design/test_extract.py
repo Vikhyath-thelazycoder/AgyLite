@@ -49,6 +49,19 @@ class Recorder:
         return 0
 
 
+UPSTREAM_FORMATTER = Path.home() / "Developer" / "os" / "design-extract" / "src" / "formatters" / "design-md.js"
+
+
+class TestDesignMdSections(unittest.TestCase):
+    @unittest.skipUnless(UPSTREAM_FORMATTER.is_file(), "design-extract clone not present")
+    def test_sections_match_designlangs_formatter(self):
+        """MP4 §4: the 8 canonical sections are designlang's own (formatDesignMd), the generator Agylite follows."""
+        import re
+        src = UPSTREAM_FORMATTER.read_text(encoding="utf-8")
+        found = [m[1] for m in re.findall(r"\[\s*(['\"])(.+?)\1,\s+section\w+\(design\)\]", src)]
+        self.assertEqual(tuple(found), extract.DESIGN_MD_SECTIONS)
+
+
 class TestValidation(unittest.TestCase):
     def test_urls_are_checked(self):
         self.assertEqual(extract.validate_urls(["https://linear.app", "vercel.com"]),

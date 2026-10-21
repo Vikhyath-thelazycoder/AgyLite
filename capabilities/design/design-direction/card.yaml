@@ -13,7 +13,7 @@ security_class: read-only
 cache_strategy: static
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
-verification_requirements: ['direction states audience, tone and dials with reasons']
+verification_requirements: ['direction states audience, tone and dials with reasons', 'precedence when sources disagree (MP4): owner instruction > project design system > extracted DESIGN.md > Taste v2.1 house rules > UI/UX Pro Max > Open Design references']
 dependencies: []
 related_capabilities: [design/visual-quality, design/typography]
 conflicts: []

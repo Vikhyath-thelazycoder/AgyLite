@@ -292,18 +292,16 @@ Done (on `main`):
 - §2.5 routing: rule `design-inspiration` (`requires_urls`), `url_only`.
 - §3.3 verify: design changes add design check + Taste lint + Taste inspect (0 FAIL); policy flipped for design only.
 - §3.2 INSPIRATION lifecycle step + BLOCKING question `design-md-approved` (asked by route capability).
+- §3.1 `skills/agylite-design/SKILL.md` rewritten (paths A/B, precedence, inspiration rules); precedence on the
+  design-direction card. §4 `docs/architecture/DESIGN_MD.md`; test that the 8 sections match designlang's formatter.
 
 Left (in order):
-1. §3.1 rewrite `skills/agylite-design/SKILL.md` (paths A/B, precedence, inspiration rules) + precedence in the
-   design-direction card.
-2. §4 `docs/architecture/DESIGN_MD.md` (designlang 8 H1 sections + front matter vs Open Design 9 numbered H2 sections;
-   AgyLite follows designlang).
-3. §6 real run: `agylite runtime install designlang` (network ~150 MB) in `home-p5`, then `agylite design extract
+1. §6 real run: `agylite runtime install designlang` (network ~150 MB) in `home-p5`, then `agylite design extract
    https://linear.app https://vercel.com` in a temp git project; check the DESIGN.md has the 8 sections.
-4. Gate (tests, doctor, validate, benchmark --compare, Tier 0) → commit + push.
-5. Paid test (owner rule: end of each master prompt): `design-taste` suite (and `design-extract` if built), record in
+2. Gate (tests, doctor, validate, benchmark --compare, Tier 0) → commit + push.
+3. Paid test (owner rule: end of each master prompt): `design-taste` suite (and `design-extract` if built), record in
    the ledger; fix errors now or carry them forward in the plan files.
-6. MP4 report in this log, update this block to "DONE", push, stop for the owner's go-ahead on MP5.
+4. MP4 report in this log, update this block to "DONE", push, stop for the owner's go-ahead on MP5.
 <!-- mp4-progress:end -->
 
 How to work (any phase):
