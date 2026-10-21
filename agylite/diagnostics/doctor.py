@@ -115,6 +115,14 @@ def last_update_run(home: Path):
     return stamps[-1][:10] if stamps else None
 
 
+def skill_owned_copy(bundle_dir: Path, path: str) -> bool:
+    """True when `path` sits in a skill's references/ and that skill's own SKILL.md links it skill-relatively, so the
+    copy is part of a whole skill, not an accidental duplicate (MP1 F12)."""
+    head, sep, rest = path.partition("/references/")
+    skill = bundle_dir / head / "SKILL.md"
+    return bool(sep) and skill.is_file() and f"references/{rest}" in skill.read_text(encoding="utf-8", errors="ignore")
+
+
 def host_and_supply_checks(r, root: Path, user_home: Path, bundle_dir):
     """P25 (§59, MR-02/03, doc 22 §7): separately installed upstream plugins and their always-loaded cost, host MCP /
     Chrome DevTools servers, stale pins, duplicate design files. Reads names and sizes only, never secret values."""
@@ -166,11 +174,16 @@ def host_and_supply_checks(r, root: Path, user_home: Path, bundle_dir):
             if meta["capability"].startswith("design/") and dest.endswith(".md"):
                 by_hash.setdefault(meta["sha256"], []).append(dest)
         dups = [v for v in by_hash.values() if len(v) > 1]
-        if dups:
-            r.warn(f"{len(dups)} design rule files are bundled more than once with identical content "
-                   f"(e.g. {dups[0][0]}); the context engine loads one copy")
+        own = [v for v in dups if all(skill_owned_copy(bundle_dir, p) for p in v)]
+        accidental = [v for v in dups if v not in own]
+        if accidental:
+            r.warn(f"{len(accidental)} design rule files are bundled more than once with identical content "
+                   f"(e.g. {accidental[0][0]}); the context engine loads one copy")
         else:
             r.ok("No duplicate design rule files in the bundle")
+        if own:
+            r.ok(f"{len(own)} identical reference file(s) kept once per skill that links it (whole skills, "
+                 f"IMPLEMENTATION_PLAN §2.1; e.g. {own[0][0]})")
     r.end_section()
 
 

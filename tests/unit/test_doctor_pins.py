@@ -40,5 +40,23 @@ class TestPinAges(unittest.TestCase):
             self.assertIsNone(last_update_run(home / "nothing"))
 
 
+class TestSkillOwnedCopies(unittest.TestCase):
+    def test_reference_linked_by_its_own_skill_is_not_a_duplicate(self):
+        """MP1 F12: UI/UX Pro Max ships banner-sizes-and-styles.md in both `design` and `banner-design`; each
+        SKILL.md links its own copy, so both stay (whole skills) and doctor does not warn."""
+        from agylite.diagnostics.doctor import skill_owned_copy
+        with tempfile.TemporaryDirectory() as tmp:
+            b = Path(tmp)
+            for skill, links in (("design", True), ("banner-design", True), ("other", False)):
+                d = b / "files" / "ux" / skill / "references"
+                d.mkdir(parents=True)
+                (d / "sizes.md").write_text("same\n")
+                (d.parent / "SKILL.md").write_text("Read `references/sizes.md`.\n" if links else "nothing\n")
+            self.assertTrue(skill_owned_copy(b, "files/ux/design/references/sizes.md"))
+            self.assertTrue(skill_owned_copy(b, "files/ux/banner-design/references/sizes.md"))
+            self.assertFalse(skill_owned_copy(b, "files/ux/other/references/sizes.md"))
+            self.assertFalse(skill_owned_copy(b, "files/ux/design/SKILL.md"))
+
+
 if __name__ == "__main__":
     unittest.main()
