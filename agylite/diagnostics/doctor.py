@@ -45,7 +45,74 @@ def _contains(paths, needle):
     return False
 
 
-STALE_PIN_DAYS = 120
+# MP1 F9: a pin is stale relative to how often its upstream is tracked (config/upstreams.yaml); manual never warns.
+STALE_PIN_DAYS = {"weekly": 14, "monthly": 45, "releases": 45, "manual": None}
+
+
+def pin_dates(root: Path) -> dict:
+    """{upstream: date its pin last changed}: the last commit of its audited inventory in this checkout, else the
+    snapshot's capture date (an installed copy has no git history)."""
+    import re
+    import subprocess
+    from datetime import date
+    evidence = root / "docs" / "audit" / "evidence"
+    snap = evidence / "upstream-staging-snapshot.yaml"
+    m = re.search(r"^# Captured: (\d{4}-\d{2}-\d{2})", snap.read_text(encoding="utf-8"), re.M) if snap.is_file() else None
+    captured = date.fromisoformat(m.group(1)) if m else None
+    out = {}
+    for inv in sorted((evidence / "upstream-file-hashes").glob("*.tsv")):
+        try:
+            day = subprocess.run(["git", "log", "-1", "--format=%cs", "--", str(inv.relative_to(root))], cwd=root,
+                                 capture_output=True, text=True, timeout=10).stdout.strip()
+        except (OSError, subprocess.SubprocessError):
+            day = ""
+        when = date.fromisoformat(day) if day else captured
+        if when:
+            out[inv.stem] = when
+    return out
+
+
+def pin_age_lines(dates: dict, policy: dict, today) -> list:
+    """[(level, message)]: the oldest pin per tracking policy, warned when older than that policy allows."""
+    lines = []
+    for track in ("weekly", "monthly", "releases", "manual"):
+        repos = [n for n in dates if policy.get(n, {}).get("track", "weekly") == track]
+        if not repos:
+            continue
+        oldest = min(repos, key=lambda n: (dates[n], n))
+        age, limit = (today - dates[oldest]).days, STALE_PIN_DAYS[track]
+        text = f"{track} pins: oldest {oldest}, {age} days ({dates[oldest].isoformat()})"
+        if limit is None:
+            lines.append(("ok", f"{text}; manual upstreams are never due"))
+        elif age > limit:
+            stale = sorted(n for n in repos if (today - dates[n]).days > limit)
+            lines.append(("warn", f"{text} > {limit}: review {', '.join(stale)} with `agylite update --check`"))
+        else:
+            lines.append(("ok", f"{text}; review after {limit} days"))
+    return lines
+
+
+def _checked(home: Path) -> dict:
+    """{upstream: ISO time `agylite update --latest` last found it current or applied it} from the tracking state."""
+    state = home / "updates" / "tracking.json"
+    try:
+        data = json.loads(state.read_text(encoding="utf-8")) if state.is_file() else {}
+        return {n: v["applied_check"] for n, v in data.items() if isinstance(v, dict) and v.get("applied_check")}
+    except ValueError:
+        return {}
+
+
+def fresh_dates(dates: dict, home: Path) -> dict:
+    """A pin is as fresh as the later of its last change and the last check that found it current."""
+    from datetime import date
+    checked = _checked(home)
+    return {n: max(d, date.fromisoformat(checked[n][:10])) if n in checked else d for n, d in dates.items()}
+
+
+def last_update_run(home: Path):
+    """Date of the newest `agylite update --latest` check recorded in the tracking state, else None."""
+    stamps = sorted(_checked(home).values())
+    return stamps[-1][:10] if stamps else None
 
 
 def host_and_supply_checks(r, root: Path, user_home: Path, bundle_dir):
@@ -85,16 +152,13 @@ def host_and_supply_checks(r, root: Path, user_home: Path, bundle_dir):
     r.end_section()
 
     r.section("📌 Supply Chain")
-    snap = root / "docs" / "audit" / "evidence" / "upstream-staging-snapshot.yaml"
-    if snap.is_file():
-        import re
-        m = re.search(r"^# Captured: (\d{4}-\d{2}-\d{2})", snap.read_text(encoding="utf-8"), re.M)
-        if m:
-            age = (date.today() - date.fromisoformat(m.group(1))).days
-            if age > STALE_PIN_DAYS:
-                r.warn(f"Upstream pins were audited {age} days ago ({m.group(1)}): review updates with `agylite update`")
-            else:
-                r.ok(f"Upstream pins audited {age} days ago ({m.group(1)}; review after {STALE_PIN_DAYS} days)")
+    from ..paths import agylite_home
+    from ..update.track import load_policy
+    dates = fresh_dates(pin_dates(root), agylite_home())
+    for level, message in pin_age_lines(dates, load_policy(root), date.today()):
+        (r.warn if level == "warn" else r.ok)(message)
+    last = last_update_run(agylite_home())
+    r.ok(f"Last `agylite update --latest` run on this machine: {last or 'never'}")
     if bundle_dir is not None and (bundle_dir / "index.json").is_file():
         files = json.loads((bundle_dir / "index.json").read_text(encoding="utf-8"))["files"]
         by_hash = {}
