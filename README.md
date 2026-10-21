@@ -80,12 +80,18 @@ one applies. Agylite routes deterministically and loads sections on demand.
 
 | | Upstream plugins installed directly | **Agylite** |
 |---|---:|---:|
-| Context loaded on every turn | ~31,800 tokens | **~900 tokens** |
-| 22 benchmark tasks, total context | ~1,020,000 tokens | **~176,000 tokens (83 % less)** |
-| Choosing what applies | the model picks among all descriptions | **rules: 22/22 scenarios correct, p95 0.34 ms** |
+| Per-turn context | ~32,000 tokens with five plugins installed | **~900 tokens** (plus up to 800 per prompt for the injected route, D-048) |
+| Per-task guidance | the whole skill files a task triggers | **about half** (51.6 % less in the published run) |
+| Choosing what applies | the model picks among all descriptions | **rules: 26/26 scenarios correct, p95 0.46 ms** |
 | "Done" means | the agent says so | **tests, types and build passed, evidence on file** |
 
-Measured with `agylite benchmark --compare` on the development machine; tokens are bytes ÷ 4 estimates.
+Measured with `agylite benchmark --compare`; tokens are bytes ÷ 4 estimates. The published run had four plugins
+installed, and 703,956 of its 1,027,007 OLD tokens were their per-turn descriptions; on a machine without them, the
+26-scenario suite is 42 % smaller with Agylite. In 7 of the 26 scenarios Agylite loads more than the upstream skill
+would (small tasks pay its fixed per-task overhead).
+
+Agylite loads selected sections of at most two files per capability. Whether that keeps the upstream skills' quality
+is measured by `agylite benchmark --quality` (see [docs/benchmarks/QUALITY.md](docs/benchmarks/QUALITY.md)).
 [Full results](docs/benchmarks/RESULTS.md).
 
 ## How it works
