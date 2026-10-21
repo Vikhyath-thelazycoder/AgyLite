@@ -39,8 +39,6 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
     """The text to inject for one prompt ("" when nothing should be injected)."""
     from ..events import emit
     from ..project.identity import detect
-    from ..routing import Router
-    from .loader import ContextLoader
 
     cfg = load_discipline(root)
     if str(cfg.get("prompt_hook", "on")).lower() in ("off", "false") or not prompt.strip():
@@ -48,12 +46,28 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
     if prompt.lstrip().startswith("/") or is_followup(prompt, cfg):
         return ""
     project = detect(Path(cwd) if cwd else None)
-    from ..cli import _facts   # the same project facts `agylite route` uses
-    route = Router(root).route(prompt, project=_facts(project))
     meta = {"prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest()[:16], "length": len(prompt)}
-    if route["unmatched"]:
+    hook = compose(prompt, project, budgets, root=root, session_id=session_id)
+    if hook is None:
         emit(project, "ROUTE_UNMATCHED", session_id=session_id, host=host, details=meta)
         return ""
+    emit(project, "PROMPT_ROUTED", session_id=session_id, host=host, capabilities=hook["ids"],
+         est_tokens=est_tokens(nbytes(hook["text"])),
+         details={**meta, "change_type": hook["change_type"], "cards": hook["cards"], "cached_cards": hook["cached"],
+                  "skills": hook["skills"]})
+    _mark_fired(host)
+    return hook["text"]
+
+
+def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
+    """The hook's text for one routed prompt, with no events and no fired marker (the token report measures it);
+    None when the route is unmatched. With a session, the cards sent are recorded in its context cache."""
+    from ..routing import Router
+    from .loader import ContextLoader
+    from ..cli import _facts   # the same project facts `agylite route` uses
+    route = Router(root).route(prompt, project=_facts(project))
+    if route["unmatched"]:
+        return None
     ids = [c["id"] for c in route["capabilities"]]
     deps = [d["id"] for d in route["dependencies"]]
     limit = budgets["prompt_hook"]["max_tokens"]
@@ -91,13 +105,8 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
         used += cost
     if loader.cache:
         loader.cache.save()
-    out = "\n".join(lines) + "\n"
-    emit(project, "PROMPT_ROUTED", session_id=session_id, host=host, capabilities=ids,
-         est_tokens=est_tokens(nbytes(out)),
-         details={**meta, "change_type": route["change_type"], "cards": cards, "cached_cards": cached,
-                  "skills": skills})
-    _mark_fired(host)
-    return out
+    return {"text": "\n".join(lines) + "\n", "ids": ids, "change_type": route["change_type"], "cards": cards,
+            "cached": cached, "skills": skills}
 
 
 def primary_skill_ids(loader, cids, query) -> list:

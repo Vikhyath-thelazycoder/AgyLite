@@ -61,6 +61,18 @@ class TestPromptHook(unittest.TestCase):
         _, out = self.hook({"prompt": PROMPT})
         self.assertIn("Before the first edit, load the whole skill and follow it: agylite skill load alpha/", out)
 
+    def test_compose_is_the_hook_text_without_side_effects(self):
+        """The token report measures the hook with compose(): same text, no events, no fired marker."""
+        from agylite.context import prompt_hook
+        from agylite.context.budget import load_budgets
+        from agylite.project.identity import detect
+        out = prompt_hook.compose(PROMPT, detect(self.root), load_budgets())
+        self.assertFalse((self.home / "hosts" / "prompt-hook.json").exists())
+        self.assertEqual(list(self.home.glob("projects/*/events/*.jsonl")), [])
+        _, printed = self.hook({"prompt": PROMPT}, session=None)
+        self.assertEqual(out["text"], printed)
+        self.assertIsNone(prompt_hook.compose("hello there", detect(self.root), load_budgets()))
+
     def test_silent_cases(self):
         for stdin in ({"prompt": "Translate my grandmother's recipe into Italian"},   # unmatched
                       {"prompt": "yes"}, {"prompt": "go on please"}, {"prompt": "/help me with the review"},

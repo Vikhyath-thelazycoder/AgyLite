@@ -63,6 +63,26 @@ class TestBenchmark(unittest.TestCase):
         self.assertEqual(code, 0)
         self.assertIn("| demo@m | 9.9 | 1 | 1 | 0 | 18 |", out)
 
+    def _report(self, old_bytes, new_bytes):
+        row = {"id": "x", "capabilities": ["engineering/review"], "routing_ok": True, "old_task": 1, "new_task": 2,
+               "old_bytes": old_bytes, "new_bytes": new_bytes}
+        return {"routing_accuracy": (1, 1), "bundle": "b", "plugins": [], "old_always": 0, "new_always": 0,
+                "own": {}, "l0_bytes": 400, "rows": [row], "route_p50": 0.1, "route_p95": 0.2, "l0_ms": 1,
+                "context_p50": 1, "context_p95": 2, "hook_p50": 600, "hook_max": 700}
+
+    def test_totals_say_more_when_new_is_larger(self):
+        """IMPLEMENTATION_PLAN §2.1: whole skills can make NEW larger than OLD; the report must say so, not "-96% less"."""
+        self.assertIn("(96% more)", benchmark.render(self._report(400, 784)))
+        self.assertIn("(50% less)", benchmark.render(self._report(800, 400)))
+        self.assertNotIn("-", benchmark.render(self._report(400, 784)).split("Totals over", 1)[1].split("\n", 1)[0])
+
+    def test_reports_tokens_per_message_and_per_task(self):
+        """IMPLEMENTATION_PLAN §6 item 5: per message (L0 + hook) and per task (whole skill)."""
+        out = benchmark.render(self._report(400, 784))
+        self.assertIn("Per message: L0 bootstrap ≈ 100 tokens (once per session) · prompt hook p50 ≈ 150 · max ≈ 175 "
+                      "tokens", out)
+        self.assertIn("whole primary skill", out)
+
     def test_no_plugins_is_not_an_error(self):
         with tempfile.TemporaryDirectory() as tmp:
             code, out = quiet(benchmark.run, plugins_root=Path(tmp))
