@@ -123,7 +123,7 @@ def compare(plugins_root: Path | None = None, out: Path | None = None, repeats=2
     from ..context.loader import ContextLoader
     from ..paths import current_bundle, repo_root
     from ..project.identity import detect
-    from ..routing import ProjectFacts, Router, capability_ids
+    from ..routing import ProjectFacts, Router, capability_ids, context_order
     root = repo_root()
     plugins_root = plugins_root or Path.home() / ".claude" / "plugins"
     seen, others = set(), []
@@ -153,7 +153,7 @@ def compare(plugins_root: Path | None = None, out: Path | None = None, repeats=2
         forbid = sc.get("forbid", [])
         ok = all(e in ids for e in expect) and not any(
             (c.startswith(f) if f.endswith("/") else c == f) and c not in expect for c in ids for f in forbid)
-        caps = [c["id"] for c in r["capabilities"]]
+        caps = context_order(r)
         hook = prompt_hook.compose(sc["request"], project, budgets)   # what each message adds (MP1 F15)
         if hook is not None:
             hook_bytes.append(len(hook["text"].encode()))

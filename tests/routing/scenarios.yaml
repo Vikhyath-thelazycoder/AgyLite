@@ -199,3 +199,25 @@ scenarios:
     expect: [media/launch-video]
     forbid: [engineering/, design/, testing/, seo/]
     change_type: MEDIA_CHANGE
+
+  # ── MP3 §1.4: Pocock-led stages ───────────────────────────────────────────────────────────────────────────────
+  - id: mp3-grill-plan
+    request: Grill me on this plan before I build it
+    stage: unknown
+    expect: [engineering/planning]
+    forbid: [media/, testing/local-verification]
+
+  - id: mp3-spec-tickets
+    request: Turn what we discussed into a spec and tickets
+    stage: unknown
+    expect: [engineering/planning]
+
+  - id: mp3-diagnose-flaky
+    request: Diagnose why the checkout test is flaky
+    stage: existing
+    expect: [engineering/debugging]
+
+  - id: mp3-deepening
+    request: Find deepening opportunities in this codebase
+    stage: existing
+    expect: [engineering/architecture]

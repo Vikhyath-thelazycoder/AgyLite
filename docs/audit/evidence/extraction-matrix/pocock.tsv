@@ -1,0 +1,192 @@
+decision	reason	capability	bytes	path
+EXCLUDE	REPO_META		1154	.agents/adr/0001-explicit-setup-pointer-only-for-hard-dependencies.md
+EXCLUDE	REPO_META		6562	.agents/adr/0002-ship-as-a-claude-code-plugin.md
+EXCLUDE	REPO_META		5258	.agents/install-block.md
+EXCLUDE	REPO_META		3850	.agents/invocation.md
+EXCLUDE	REPO_META		12953	.agents/writing-docs.md
+EXCLUDE	REPO_META		512	.changeset/README.md
+EXCLUDE	REPO_META		196	.changeset/ask-matt-read-skill-first.md
+EXCLUDE	REPO_META		292	.changeset/chief-of-staff-wiki.md
+EXCLUDE	REPO_META		368	.changeset/code-review-standards-and-subagents.md
+EXCLUDE	REPO_META		380	.changeset/config.json
+EXCLUDE	REPO_META		232	.changeset/diagnosing-bugs-prove-mutation.md
+EXCLUDE	REPO_META		236	.changeset/github-tracker-external-pr-list.md
+EXCLUDE	REPO_META		155	.changeset/grilling-yes-accepts-recommendation.md
+EXCLUDE	REPO_META		166	.changeset/handoff-temp-dir.md
+EXCLUDE	REPO_META		148	.changeset/implement-skill-tool-wording.md
+EXCLUDE	REPO_META		190	.changeset/implement-ticket-reference.md
+EXCLUDE	REPO_META		384	.changeset/setup-tracker-fixes.md
+EXCLUDE	REPO_META		181	.changeset/tdd-seam-tradeoffs.md
+EXCLUDE	REPO_META		105	.changeset/teach-quiz-answer-position.md
+EXCLUDE	REPO_META		126	.changeset/teach-workspace-root.md
+EXCLUDE	REPO_META		342	.changeset/to-tickets-sub-issues.md
+EXCLUDE	REPO_META		315	.changeset/wayfinder-labels-refs-research-prs.md
+EXCLUDE	REPO_META		397	.changeset/wizard-template-fixes-2.md
+EXCLUDE	REPO_META		454	.changeset/wizard-template-fixes.md
+EXCLUDE	REPO_META		605	.claude-plugin/marketplace.json
+EXCLUDE	REPO_META		1690	.claude-plugin/plugin.json
+EXCLUDE	REPO_META		1455	.github/ISSUE_TEMPLATE/bug.yml
+EXCLUDE	REPO_META		254	.github/ISSUE_TEMPLATE/config.yml
+EXCLUDE	REPO_META		1585	.github/ISSUE_TEMPLATE/idea.yml
+EXCLUDE	REPO_META		1362	.github/workflows/needs-info.yml
+EXCLUDE	REPO_META		780	.github/workflows/release.yml
+EXCLUDE	REPO_META		547	.github/workflows/triage-label.yml
+EXCLUDE	REPO_META		21	.gitignore
+EXCLUDE	REPO_META		1384	.out-of-scope/frozen-misc-skills.md
+EXCLUDE	REPO_META		1606	.out-of-scope/harness-name-collisions.md
+EXCLUDE	REPO_META		740	.out-of-scope/lazy-load-writing-for-agents.md
+EXCLUDE	REPO_META		1977	.out-of-scope/mainstream-issue-trackers-only.md
+EXCLUDE	REPO_META		1674	.out-of-scope/native-question-tool.md
+EXCLUDE	REPO_META		1539	.out-of-scope/new-skills.md
+EXCLUDE	REPO_META		1259	.out-of-scope/question-limits.md
+EXCLUDE	REPO_META		1125	.out-of-scope/setup-skill-verify-mode.md
+EXCLUDE	REPO_META		1137	.out-of-scope/subagent-recursion.md
+EXCLUDE	REPO_META		9	AGENTS.md
+EXCLUDE	REPO_META		55476	CHANGELOG.md
+EXCLUDE	REPO_META		3957	CLAUDE.md
+EXCLUDE	REPO_META		1768	GLOSSARY.md
+COPY	LICENSE	engineering/planning	1068	LICENSE
+EXCLUDE	REPO_META		16461	README.md
+EXCLUDE	REPO_META		2348	SCOPE.md
+EXCLUDE	HOST_PORT		1085	docs/agents/triage-labels.md
+EXCLUDE	REPO_META		11204	docs/engineering/ask-matt.md
+EXCLUDE	REPO_META		10996	docs/engineering/code-review.md
+EXCLUDE	REPO_META		12196	docs/engineering/codebase-design.md
+EXCLUDE	REPO_META		10767	docs/engineering/diagnosing-bugs.md
+EXCLUDE	REPO_META		10572	docs/engineering/domain-modeling.md
+EXCLUDE	REPO_META		9857	docs/engineering/grill-with-docs.md
+EXCLUDE	REPO_META		9764	docs/engineering/implement-spec.md
+EXCLUDE	REPO_META		10258	docs/engineering/implement.md
+EXCLUDE	REPO_META		11764	docs/engineering/improve-codebase-architecture.md
+EXCLUDE	REPO_META		8079	docs/engineering/pr.md
+EXCLUDE	REPO_META		9516	docs/engineering/prototype.md
+EXCLUDE	REPO_META		9356	docs/engineering/research.md
+EXCLUDE	REPO_META		5486	docs/engineering/resolving-merge-conflicts.md
+EXCLUDE	REPO_META		8828	docs/engineering/retro.md
+EXCLUDE	REPO_META		9132	docs/engineering/setup-matt-pocock-skills.md
+EXCLUDE	REPO_META		10363	docs/engineering/tdd.md
+EXCLUDE	REPO_META		8502	docs/engineering/to-spec.md
+EXCLUDE	REPO_META		10896	docs/engineering/to-tickets.md
+EXCLUDE	REPO_META		12893	docs/engineering/triage.md
+EXCLUDE	REPO_META		15582	docs/engineering/wayfinder.md
+EXCLUDE	REPO_META		9571	docs/engineering/wizard.md
+EXCLUDE	REPO_META		6581	docs/productivity/grill-me.md
+EXCLUDE	REPO_META		10243	docs/productivity/grilling.md
+EXCLUDE	REPO_META		8794	docs/productivity/handoff.md
+EXCLUDE	REPO_META		12422	docs/productivity/teach.md
+EXCLUDE	REPO_META		7815	docs/productivity/to-questionnaire.md
+EXCLUDE	REPO_META		3611	docs/productivity/wait-what.md
+EXCLUDE	REPO_META		7699	docs/productivity/writing-for-agents.md
+EXCLUDE	REPO_META		49290	package-lock.json
+EXCLUDE	REPO_META		597	package.json
+EXCLUDE	REPO_META		2240	scripts/link-skills.sh
+EXCLUDE	REPO_META		168	scripts/list-skills.sh
+EXCLUDE	REPO_META		1429	scripts/sync-plugin-version.mjs
+EXCLUDE	OUT_OF_DOMAIN		160	skills/deprecated/README.md
+EXCLUDE	REPO_META		4287	skills/engineering/README.md
+EXCLUDE	SUPERSEDED		4249	skills/engineering/ask-matt/PHASE-BOUNDARIES.md
+EXCLUDE	SUPERSEDED		12594	skills/engineering/ask-matt/SKILL.md
+EXCLUDE	HOST_PORT		137	skills/engineering/ask-matt/agents/openai.yaml
+ADAPT	Level 3; tracker setup line → plan (mechanics only)	engineering/review	6670	skills/engineering/code-review/SKILL.md
+EXCLUDE	HOST_PORT		100	skills/engineering/code-review/agents/openai.yaml
+COPY	Deep modules (DEEPENING.md, DESIGN-IT-TWICE.md: closure)	engineering/architecture	2553	skills/engineering/codebase-design/DEEPENING.md
+COPY	Deep modules (DEEPENING.md, DESIGN-IT-TWICE.md: closure)	engineering/architecture	2665	skills/engineering/codebase-design/DESIGN-IT-TWICE.md
+COPY	Deep modules (DEEPENING.md, DESIGN-IT-TWICE.md: closure)	engineering/architecture	6446	skills/engineering/codebase-design/SKILL.md
+EXCLUDE	HOST_PORT		102	skills/engineering/codebase-design/agents/openai.yaml
+COPY	Diagnosis loop (primary); hitl-loop.template.sh only prompts in the terminal (checked: writes nothing outside the project)	engineering/debugging	8664	skills/engineering/diagnosing-bugs/SKILL.md
+EXCLUDE	HOST_PORT		103	skills/engineering/diagnosing-bugs/agents/openai.yaml
+COPY	Diagnosis loop (primary); hitl-loop.template.sh only prompts in the terminal (checked: writes nothing outside the project)	engineering/debugging	1316	skills/engineering/diagnosing-bugs/scripts/hitl-loop.template.sh
+COPY	GLOSSARY + ADR formats	engineering/architecture	2733	skills/engineering/domain-modeling/ADR-FORMAT.md
+COPY	GLOSSARY + ADR formats	engineering/architecture	2300	skills/engineering/domain-modeling/GLOSSARY-FORMAT.md
+COPY	GLOSSARY + ADR formats	engineering/architecture	3346	skills/engineering/domain-modeling/SKILL.md
+EXCLUDE	HOST_PORT		101	skills/engineering/domain-modeling/agents/openai.yaml
+ADAPT	Pointers; Skill-tool calls → agylite skill load (closure)	engineering/planning	247	skills/engineering/grill-with-docs/SKILL.md
+EXCLUDE	HOST_PORT		145	skills/engineering/grill-with-docs/agents/openai.yaml
+ADAPT	Skill-tool calls → agylite skill load; tracker → plan	engineering/implementation	2780	skills/engineering/implement-spec/SKILL.md
+EXCLUDE	HOST_PORT		168	skills/engineering/implement-spec/agents/openai.yaml
+ADAPT	Skill-tool calls → agylite skill load; tracker → plan	engineering/implementation	622	skills/engineering/implement/SKILL.md
+EXCLUDE	HOST_PORT		139	skills/engineering/implement/agents/openai.yaml
+ADAPT	Deepening review (primary); Skill-tool calls → agylite skill load; HTML report kept (Archify arrives in MP5)	engineering/architecture	6641	skills/engineering/improve-codebase-architecture/HTML-REPORT.md
+ADAPT	Deepening review (primary); Skill-tool calls → agylite skill load; HTML report kept (Archify arrives in MP5)	engineering/architecture	6000	skills/engineering/improve-codebase-architecture/SKILL.md
+EXCLUDE	HOST_PORT		166	skills/engineering/improve-codebase-architecture/agents/openai.yaml
+COPY	Level 3 (CREDITS.md, template.sh: closure)	engineering/release	604	skills/engineering/pr/CREDITS.md
+COPY	Level 3 (CREDITS.md, template.sh: closure)	engineering/release	4169	skills/engineering/pr/SKILL.md
+EXCLUDE	HOST_PORT		93	skills/engineering/pr/agents/openai.yaml
+COPY	Level 3 (prototype keeps LOGIC.md/UI.md: closure)	engineering/planning	6036	skills/engineering/prototype/LOGIC.md
+COPY	Level 3 (prototype keeps LOGIC.md/UI.md: closure)	engineering/planning	2931	skills/engineering/prototype/SKILL.md
+COPY	Level 3 (prototype keeps LOGIC.md/UI.md: closure)	engineering/planning	6913	skills/engineering/prototype/UI.md
+EXCLUDE	HOST_PORT		100	skills/engineering/prototype/agents/openai.yaml
+REFERENCE	Research domain arrives in MP5; until then reachable through `agylite skills get pocock/research`		794	skills/engineering/research/SKILL.md
+EXCLUDE	HOST_PORT		94	skills/engineering/research/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		4369	skills/engineering/retro/SKILL.md
+EXCLUDE	HOST_PORT		146	skills/engineering/retro/agents/openai.yaml
+EXCLUDE	SUPERSEDED		6978	skills/engineering/setup-matt-pocock-skills/SKILL.md
+EXCLUDE	HOST_PORT		152	skills/engineering/setup-matt-pocock-skills/agents/openai.yaml
+EXCLUDE	SUPERSEDED		2042	skills/engineering/setup-matt-pocock-skills/domain.md
+EXCLUDE	SUPERSEDED		4117	skills/engineering/setup-matt-pocock-skills/issue-tracker-github.md
+EXCLUDE	SUPERSEDED		3816	skills/engineering/setup-matt-pocock-skills/issue-tracker-gitlab.md
+EXCLUDE	SUPERSEDED		1810	skills/engineering/setup-matt-pocock-skills/issue-tracker-local.md
+EXCLUDE	SUPERSEDED		1057	skills/engineering/setup-matt-pocock-skills/triage-labels.md
+ADAPT	TDD (primary); its one Skill-tool call → agylite skill load (mechanics only)	testing/strategy	3629	skills/engineering/tdd/SKILL.md
+EXCLUDE	HOST_PORT		87	skills/engineering/tdd/agents/openai.yaml
+COPY	tests.md + mocking.md	testing/strategy	1481	skills/engineering/tdd/mocking.md
+COPY	tests.md + mocking.md	testing/strategy	2214	skills/engineering/tdd/tests.md
+ADAPT	Spec synthesis; tracker → Agylite plan (MP3 §1.3)	engineering/planning	3043	skills/engineering/to-spec/SKILL.md
+EXCLUDE	HOST_PORT		135	skills/engineering/to-spec/agents/openai.yaml
+ADAPT	Tracer-bullet tickets; tracker → agylite plan add-task (MP3 §1.3)	engineering/planning	5812	skills/engineering/to-tickets/SKILL.md
+EXCLUDE	HOST_PORT		146	skills/engineering/to-tickets/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		7942	skills/engineering/triage/AGENT-BRIEF.md
+EXCLUDE	OUT_OF_DOMAIN		4667	skills/engineering/triage/OUT-OF-SCOPE.md
+EXCLUDE	OUT_OF_DOMAIN		6558	skills/engineering/triage/SKILL.md
+EXCLUDE	HOST_PORT		135	skills/engineering/triage/agents/openai.yaml
+ADAPT	Multi-session decision map; tracker → plan (MP3 §1.3)	engineering/planning	12380	skills/engineering/wayfinder/SKILL.md
+EXCLUDE	HOST_PORT		144	skills/engineering/wayfinder/agents/openai.yaml
+COPY	Level 3 (CREDITS.md, template.sh: closure)	engineering/release	4123	skills/engineering/wizard/SKILL.md
+EXCLUDE	HOST_PORT		96	skills/engineering/wizard/agents/openai.yaml
+COPY	Level 3 (CREDITS.md, template.sh: closure)	engineering/release	9498	skills/engineering/wizard/template.sh
+EXCLUDE	OUT_OF_DOMAIN		1676	skills/in-progress/README.md
+EXCLUDE	OUT_OF_DOMAIN		3816	skills/in-progress/chief-of-staff/SKILL.md
+EXCLUDE	HOST_PORT		184	skills/in-progress/chief-of-staff/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		1424	skills/in-progress/claude-handoff/SKILL.md
+EXCLUDE	HOST_PORT		141	skills/in-progress/claude-handoff/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		2522	skills/in-progress/loop-me/SKILL.md
+EXCLUDE	HOST_PORT		140	skills/in-progress/loop-me/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		7546	skills/in-progress/setup-ts-deep-modules/SKILL.md
+EXCLUDE	HOST_PORT		149	skills/in-progress/setup-ts-deep-modules/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		3712	skills/in-progress/setup-ts-deep-modules/dependency-cruiser.config.cjs
+EXCLUDE	OUT_OF_DOMAIN		4855	skills/in-progress/writing-beats/SKILL.md
+EXCLUDE	HOST_PORT		142	skills/in-progress/writing-beats/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		3558	skills/in-progress/writing-fragments/SKILL.md
+EXCLUDE	HOST_PORT		140	skills/in-progress/writing-fragments/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		5922	skills/in-progress/writing-shape/SKILL.md
+EXCLUDE	HOST_PORT		144	skills/in-progress/writing-shape/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		684	skills/misc/README.md
+EXCLUDE	OUT_OF_DOMAIN		2313	skills/misc/git-guardrails-claude-code/SKILL.md
+EXCLUDE	HOST_PORT		112	skills/misc/git-guardrails-claude-code/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		507	skills/misc/git-guardrails-claude-code/scripts/block-dangerous-git.sh
+EXCLUDE	OUT_OF_DOMAIN		2795	skills/misc/migrate-to-shoehorn/SKILL.md
+EXCLUDE	HOST_PORT		110	skills/misc/migrate-to-shoehorn/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		3589	skills/misc/scaffold-exercises/SKILL.md
+EXCLUDE	HOST_PORT		108	skills/misc/scaffold-exercises/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		2258	skills/misc/setup-pre-commit/SKILL.md
+EXCLUDE	HOST_PORT		99	skills/misc/setup-pre-commit/agents/openai.yaml
+EXCLUDE	REPO_META		1481	skills/productivity/README.md
+ADAPT	Pointers; Skill-tool calls → agylite skill load (closure)	engineering/planning	157	skills/productivity/grill-me/SKILL.md
+EXCLUDE	HOST_PORT		137	skills/productivity/grill-me/agents/openai.yaml
+ADAPT	Requirements interview (primary)	engineering/planning	2049	skills/productivity/grilling/SKILL.md
+EXCLUDE	HOST_PORT		113	skills/productivity/grilling/agents/openai.yaml
+ADAPT	Level 3; Skill-tool wording → agylite skill load (mechanics only)	engineering/documentation	940	skills/productivity/handoff/SKILL.md
+EXCLUDE	HOST_PORT		141	skills/productivity/handoff/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		2122	skills/productivity/teach/GLOSSARY-FORMAT.md
+EXCLUDE	OUT_OF_DOMAIN		2747	skills/productivity/teach/LEARNING-RECORD-FORMAT.md
+EXCLUDE	OUT_OF_DOMAIN		1540	skills/productivity/teach/MISSION-FORMAT.md
+EXCLUDE	OUT_OF_DOMAIN		1924	skills/productivity/teach/RESOURCES-FORMAT.md
+EXCLUDE	OUT_OF_DOMAIN		9733	skills/productivity/teach/SKILL.md
+EXCLUDE	HOST_PORT		139	skills/productivity/teach/agents/openai.yaml
+COPY	Level 3 (prototype keeps LOGIC.md/UI.md: closure)	engineering/planning	2904	skills/productivity/to-questionnaire/SKILL.md
+EXCLUDE	HOST_PORT		166	skills/productivity/to-questionnaire/agents/openai.yaml
+EXCLUDE	OUT_OF_DOMAIN		396	skills/productivity/wait-what/SKILL.md
+EXCLUDE	HOST_PORT		158	skills/productivity/wait-what/agents/openai.yaml
+REFERENCE	For maintaining Agylite's own skills		2629	skills/productivity/writing-for-agents/SKILL-MECHANICS.md
+REFERENCE	For maintaining Agylite's own skills		10886	skills/productivity/writing-for-agents/SKILL.md
+EXCLUDE	HOST_PORT		102	skills/productivity/writing-for-agents/agents/openai.yaml

@@ -374,10 +374,10 @@ def _context(args):
     budgets = load_budgets()
     caps, query = list(args.capability), args.request
     if args.route:
-        from .routing import Router
+        from .routing import Router, context_order
         route = Router().route(args.route, project=_facts(_project_ref(args)))
         _emit_route(_project_ref(args), route, _session_id(args))
-        caps = caps or [c["id"] for c in route["capabilities"]]
+        caps = caps or context_order(route)   # the whole-skill capabilities first (Plan B)
         query = query or args.route
         args.whole = args.whole or max(len(route.get("whole_skills") or []), 1)
     if not query and not args.file:

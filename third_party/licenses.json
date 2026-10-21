@@ -123,6 +123,17 @@
   "note": null,
   "repository": "nexu-io/open-design"
  },
+ "pocock": {
+  "attribution": "Copyright (c) 2026 Matt Pocock",
+  "bundled_files": 32,
+  "commit_sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "mattpocock/skills"
+ },
  "ponytail": {
   "attribution": "Copyright (c) 2026 DietrichGebert",
   "bundled_files": 18,

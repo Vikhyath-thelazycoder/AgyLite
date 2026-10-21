@@ -260,6 +260,32 @@ rules:
     select: [engineering/completion]
     weight: 2
 
+  # ── MP3 §1.4: Pocock-led stages (owner decision 2026-10-21) ───────────────────────────────────────────────────
+  - id: requirements-grilling
+    description: Requirements interview before building (Pocock grilling)
+    any: [grill me, grill this, grilling, stress-test my plan, stress test my plan, poke holes, interview me, challenge my plan, sharpen this plan]
+    select: [engineering/planning]
+    suppress: [media, seo, design]
+    weight: 4
+
+  - id: spec-tickets
+    description: Spec synthesis and tracer-bullet tickets (Pocock to-spec / to-tickets)
+    any: [write a spec, turn this into a spec, to spec, into a spec, break this into tickets, tracer bullet, tracer-bullet, vertical slices, split into tasks]
+    select: [engineering/planning]
+    weight: 3
+
+  - id: diagnose
+    description: Diagnosis loop for hard bugs, flakes and regressions (Pocock diagnosing-bugs)
+    any: [diagnose, root cause, why does this fail, why is this failing, flaky, regression appeared, bisect]
+    select: [engineering/debugging, testing/regression]
+    weight: 3
+
+  - id: architecture-deepening
+    description: Deep-module architecture review (Pocock improve-codebase-architecture)
+    any: [deep module, deepen, deepening, shallow module, improve the architecture, architecture review, refactor the architecture, module boundaries]
+    select: [engineering/architecture, codebase/impact-analysis]
+    weight: 3
+
 # File-path signals (spec §15 "file paths"): a changed path matching a glob selects capabilities (strong).
 paths:
   - {glob: ["**/auth/**", "**/*auth*.*", "**/security/**", "**/middleware/**"], select: [engineering/security]}

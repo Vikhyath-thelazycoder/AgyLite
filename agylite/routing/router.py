@@ -136,9 +136,11 @@ class Router:
         unmatched = not selected
         # Plan B (IMPLEMENTATION_PLAN §2.1): the first capability's primary skill loads whole; a second one only when
         # the task clearly spans two jobs (strong rule signals in two domains). The rest are index only.
-        whole = [selected[0].cid] if selected else []
-        if selected and selected[0].strong:
-            second = next((c.cid for c in selected[1:] if c.strong and domain_of(c.cid) != domain_of(selected[0].cid)), None)
+        # "Highest-ranked" is the score; the lifecycle order only breaks ties (security is listed first, not ranked first).
+        ranked = sorted(selected, key=lambda c: -c.score)
+        whole = [ranked[0].cid] if ranked else []
+        if ranked and ranked[0].strong:
+            second = next((c.cid for c in ranked[1:] if c.strong and domain_of(c.cid) != domain_of(ranked[0].cid)), None)
             whole += [second] if second else []
         return {
             "schema_version": ROUTE_SCHEMA_VERSION,
@@ -169,6 +171,13 @@ class Router:
             "fallback_guidance": list(UNMATCHED_GUIDANCE) if unmatched else [],
             "duration_ms": round((time.perf_counter() - start) * 1000, 3),
         }
+
+
+def context_order(result):
+    """The routed capability ids with the whole-skill ones first (Plan B loads the first `whole` of them whole)."""
+    ids = [c["id"] for c in result["capabilities"]]
+    whole = [c for c in result.get("whole_skills") or [] if c in ids]
+    return whole + [c for c in ids if c not in whole]
 
 
 def capability_ids(result, include_dependencies=True):

@@ -202,6 +202,24 @@
     "bytes": 343334
    }
   },
+  "pocock": {
+   "EXCLUDE": {
+    "files": 156,
+    "bytes": 599951
+   },
+   "COPY": {
+    "files": 19,
+    "bytes": 71964
+   },
+   "ADAPT": {
+    "files": 13,
+    "bytes": 50970
+   },
+   "REFERENCE": {
+    "files": 3,
+    "bytes": 14309
+   }
+  },
   "ponytail": {
    "EXCLUDE": {
     "files": 151,
@@ -396,13 +414,14 @@
    ]
   },
   "engineering/architecture": {
-   "files": 14,
-   "bytes": 124180,
-   "est_tokens": 31045,
+   "files": 22,
+   "bytes": 156864,
+   "est_tokens": 39216,
    "sources": [
     "addy",
     "agency",
-    "ecc"
+    "ecc",
+    "pocock"
    ]
   },
   "engineering/backend": {
@@ -424,23 +443,25 @@
    ]
   },
   "engineering/debugging": {
-   "files": 11,
-   "bytes": 49621,
-   "est_tokens": 12405,
+   "files": 13,
+   "bytes": 59601,
+   "est_tokens": 14900,
    "sources": [
     "addy",
     "ecc",
-    "gstack"
+    "gstack",
+    "pocock"
    ]
   },
   "engineering/documentation": {
-   "files": 8,
-   "bytes": 104579,
-   "est_tokens": 26144,
+   "files": 9,
+   "bytes": 105519,
+   "est_tokens": 26379,
    "sources": [
     "agency",
     "ecc",
-    "gstack"
+    "gstack",
+    "pocock"
    ]
   },
   "engineering/frontend": {
@@ -454,12 +475,13 @@
    ]
   },
   "engineering/implementation": {
-   "files": 6,
-   "bytes": 83807,
-   "est_tokens": 20951,
+   "files": 8,
+   "bytes": 87209,
+   "est_tokens": 21802,
    "sources": [
     "addy",
-    "agency"
+    "agency",
+    "pocock"
    ]
   },
   "engineering/migration": {
@@ -481,14 +503,15 @@
    ]
   },
   "engineering/planning": {
-   "files": 41,
-   "bytes": 450474,
-   "est_tokens": 112618,
+   "files": 52,
+   "bytes": 494014,
+   "est_tokens": 123503,
    "sources": [
     "addy",
     "agency",
     "ecc",
-    "gstack"
+    "gstack",
+    "pocock"
    ]
   },
   "engineering/principles": {
@@ -501,25 +524,27 @@
    ]
   },
   "engineering/release": {
-   "files": 38,
-   "bytes": 365177,
-   "est_tokens": 91294,
+   "files": 42,
+   "bytes": 383571,
+   "est_tokens": 95892,
    "sources": [
     "addy",
     "agency",
     "ecc",
-    "gstack"
+    "gstack",
+    "pocock"
    ]
   },
   "engineering/review": {
-   "files": 30,
-   "bytes": 189983,
-   "est_tokens": 47495,
+   "files": 31,
+   "bytes": 196653,
+   "est_tokens": 49163,
    "sources": [
     "addy",
     "agency",
     "ecc",
-    "gstack"
+    "gstack",
+    "pocock"
    ]
   },
   "engineering/security": {
@@ -771,14 +796,15 @@
    ]
   },
   "testing/strategy": {
-   "files": 15,
-   "bytes": 181802,
-   "est_tokens": 45450,
+   "files": 18,
+   "bytes": 189126,
+   "est_tokens": 47281,
    "sources": [
     "addy",
     "agency",
     "ecc",
-    "gstack"
+    "gstack",
+    "pocock"
    ]
   }
  }

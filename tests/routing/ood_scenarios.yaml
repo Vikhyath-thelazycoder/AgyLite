@@ -259,8 +259,7 @@ scenarios:
   - id: ood-addy-interview                 # addy: interview-me
     request: Interview me about what I actually want before you build anything
     stage: unknown
-    expect: [engineering/planning]
-    pending: MP3                                           # rule requirements-grilling ("interview me")
+    expect: [engineering/planning]                         # MP3 rule requirements-grilling ("interview me")
     forbid: [media/]
   - id: ood-addy-stress-test               # addy: idea-refine
     request: Stress-test my plan for the new onboarding flow
