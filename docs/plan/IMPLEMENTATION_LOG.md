@@ -289,5 +289,8 @@ naming the load command (within a budget), then re-run the AgyLite arm only.
    `PYTHONPATH=<checkout> python -m agylite.cli …`; `bin/agylite` runs the installed engine).
 4. **No paid Tier 1 sessions** (`claude -p`) unless the owner asks again; report those suites as not measured.
 5. After MP4: report, update this log and this section, push, stop for approval.
-6. Paid Tier 1 runs only with the owner's approval. Measure a new AgyLite build with
+6. **Open fix (owner asked not to forget it):** the agent never loads the skill (see "MP3 Tier 1 measurement").
+   Deliver the primary skill's text in the prompt hook instead of only naming `agylite skill load`, then re-measure
+   the AgyLite arm. MP4/MP5 skills depend on it too, so fix it early (before or at the start of Phase 9).
+7. Paid Tier 1 runs only with the owner's approval. Measure a new AgyLite build with
    `--arms agylite --reuse-from <earlier run dir>` (only the AgyLite arm is paid again).

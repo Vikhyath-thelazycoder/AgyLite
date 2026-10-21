@@ -460,7 +460,14 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 Phases 0–4 done and on `main` (MP1 critical fixes, MP2 quality benchmarks, Plan B whole skills, MP3 engineering).
 **Next: Phase 5 (MP4 design), after the owner's go-ahead.** The step-by-step resume point, gate commands and every
 report are in `docs/plan/IMPLEMENTATION_LOG.md` → "RESUME FROM"; benchmark results in `docs/plan/PARITY_LEDGER.md`.
-Paid Tier 1 sessions (`claude -p`) are off unless the owner asks again.
+Paid Tier 1 sessions (`claude -p`) run only with the owner's approval.
+
+**Open fix carried into the next phases (owner, 2026-10-22 — do not drop):** the MP3 paid test showed the agent never
+runs `agylite skill load` (0 loads in 37 AgyLite sessions), so Addy (0.903 = no skill) and Pocock (0.572 vs 0.745)
+are not the same as the originals; Ponytail is near (87% retained) only because its rules sit in L0. Fix: deliver the
+primary skill's text in the prompt hook (within a budget) instead of only naming the load command; then re-run the
+AgyLite arm only (`--arms agylite --reuse-from <run>`). Do it before or inside Phase 9; every later phase (MP4 design,
+MP5 skills) depends on the same skill loading. Details: IMPLEMENTATION_LOG.md → "MP3 Tier 1 measurement".
 
 Earlier state (v2.x release, 2026-10-11): `main` released v2.0.0 → v2.1.x; central install in `~/.agylite`; Claude Code
 plugin `agylite@agylite-marketplace` installed and runtime-verified. Tests: `python -m unittest discover -s tests`.
