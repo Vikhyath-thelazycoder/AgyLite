@@ -64,12 +64,28 @@ def agylite_home_for(run_dir: Path) -> Path:
     return home
 
 
+SNAPSHOT_SKIP = {".git", ".staging", "new", "__pycache__", ".agylite", "node_modules"}
+
+
+def plugin_snapshot(run_dir: Path) -> Path:
+    """A frozen copy of this checkout for one run, so editing the checkout while paid sessions run never changes the
+    arm under test; the commit and dirty state are recorded next to it."""
+    snap = run_dir / "agylite-plugin"
+    if not snap.is_dir():
+        shutil.copytree(repo_root(), snap, ignore=lambda d, names: [n for n in names if n in SNAPSHOT_SKIP])
+        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_root(), capture_output=True, text=True).stdout.strip()
+        dirty = subprocess.run(["git", "status", "--porcelain"], cwd=repo_root(), capture_output=True, text=True).stdout
+        (run_dir / "agylite-plugin.json").write_text(json.dumps({"commit": head, "dirty": bool(dirty.strip())}),
+                                                     encoding="utf-8")
+    return snap
+
+
 def agylite_arm(run_dir: Path, python: str | None = None) -> ArmSetup:
     home = agylite_home_for(run_dir)
     env = {"AGYLITE_HOME": str(home), "AGYLITE_NO_AUTO_UPDATE": "1"}
     if python:
         env["AGYLITE_PYTHON"] = python
-    return ArmSetup("agylite", args=["--plugin-dir", str(repo_root())], env=env, plugins=("agylite",))
+    return ArmSetup("agylite", args=["--plugin-dir", str(plugin_snapshot(run_dir))], env=env, plugins=("agylite",))
 
 
 def base_cmd(model: str | None) -> list:
