@@ -39,7 +39,8 @@ internal work overrides this, recorded with `agylite decide add`.
 `agylite design taste draw … --options 3` → the owner picks → steps A3–A5. With an existing design system, use
 `--keep palette,type` (precedence 2).
 
-Screenshots count together with passing tests and build, never instead of them. No MCP, no `--smart`, no API keys to
+Verification policy: `config/verification.yaml` (design work adds Taste lint and inspect, MP4). Screenshots count
+together with passing tests and build, never instead of them. No MCP, no `--smart`, no API keys to
 designlang, no mockup tool. Design requests do not activate engineering or SEO capabilities unless the route selects
 them.
 

@@ -281,27 +281,40 @@ naming the load command (within a budget), then re-run the AgyLite arm only.
 ## RESUME FROM
 
 <!-- mp4-progress:start -->
-**Phase 5 (MP4 design) — IN PROGRESS on `impl/p5-design` (pushed to `main` after every green commit).**
-Worktree: the session scratchpad `wt-p5`; temporary engine home `home-p5` (bundle `22bf70be985e`, Taste v2.1).
+**Phase 5 (MP4 design) — STOPPED by the owner on 2026-10-22. RESUME HERE.** Branch `impl/p5-design`; every green
+commit is fast-forwarded to `main` and pushed. Worktree: the session scratchpad `wt-p5` (recreate with
+`git worktree add <dir> impl/p5-design` if it is gone); temporary engine home `home-p5` (bundle `22bf70be985e`,
+Taste v2.1) — rebuild it with `agylite bundle fetch && agylite bundle build --self-test` in a fresh `AGYLITE_HOME` if
+it is gone (copy `staging/` and `mirrors/` from an older temp home with `cp -cR` to avoid re-downloading).
 
 Done (on `main`):
 - §1 Taste v2.1: pin 6010f91, rules, SKILL.md rewrites, `agylite design taste draw|lint|inspect|scenes|assets|status`,
-  self-test, `sources_priority` (exact paths may name another capability's skill, so Taste leads direction too).
-- §2 designlang: upstream + `design/inspiration-extract`; `agylite design extract` (1-3 URLs → one DESIGN.md, identity
-  shifted, overrides); `agylite runtime install designlang`; DESIGN.md overrides in `agylite design check`.
+  bundle self-test, `sources_priority` (exact paths may name another capability's skill, so Taste leads design
+  direction and visual quality).
+- §2 designlang: upstream + `design/inspiration-extract`; `agylite design extract` (1-3 URLs → one DESIGN.md, brand
+  colour shifted, MERGE_NOTES.md, never replaces an existing DESIGN.md without `--replace`); `agylite runtime install
+  designlang`; DESIGN.md `design_check_overrides` in `agylite design check` (+ one design decision).
 - §2.5 routing: rule `design-inspiration` (`requires_urls`), `url_only`.
-- §3.3 verify: design changes add design check + Taste lint + Taste inspect (0 FAIL); policy flipped for design only.
+- §3.3 verify: style/markup changes add design check + Taste lint + Taste inspect (0 FAIL, hashed screenshots);
+  NOT_RUN = BLOCKED; policy switched on for design only (the rest is Phase 7).
 - §3.2 INSPIRATION lifecycle step + BLOCKING question `design-md-approved` (asked by route capability).
 - §3.1 `skills/agylite-design/SKILL.md` rewritten (paths A/B, precedence, inspiration rules); precedence on the
   design-direction card. §4 `docs/architecture/DESIGN_MD.md`; test that the 8 sections match designlang's formatter.
+- Fix: commit 10e1885 was pushed with one failing test (the rewritten design skill no longer named
+  `config/verification.yaml`); the next commit restores that line.
 
 Left (in order):
-1. §6 real run: `agylite runtime install designlang` (network ~150 MB) in `home-p5`, then `agylite design extract
-   https://linear.app https://vercel.com` in a temp git project; check the DESIGN.md has the 8 sections.
-2. Gate (tests, doctor, validate, benchmark --compare, Tier 0) → commit + push.
-3. Paid test (owner rule: end of each master prompt): `design-taste` suite (and `design-extract` if built), record in
-   the ledger; fix errors now or carry them forward in the plan files.
-4. MP4 report in this log, update this block to "DONE", push, stop for the owner's go-ahead on MP5.
+1. §6 real run (network, not paid): `agylite runtime install designlang` (~150 MB) in `home-p5`, then
+   `agylite design extract https://linear.app https://vercel.com` in a temp git project; check the DESIGN.md has the 8
+   sections, the summary and the stop for approval.
+2. Gate (tests, doctor, validate, `benchmark --compare`, Tier 0); paste it into this log; commit + push only when the
+   test run prints `OK`.
+3. Paid test (owner rule: end of each master prompt): `design-taste` suite (and `design-extract`), recorded in the
+   ledger; fix errors now or carry them forward in the plan files.
+4. MP4 report in this log, set this block to DONE, push, stop for the owner's go-ahead on MP5.
+
+Open items carried from earlier phases: the skill-loading fix (IMPLEMENTATION_PLAN "Resume here" → "Open fix");
+after MP6, run every test and build the results website.
 <!-- mp4-progress:end -->
 
 How to work (any phase):
