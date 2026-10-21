@@ -250,6 +250,34 @@ MP3 §7 proposals for the owner (not implemented): Karpathy's four principles in
 `full` as an opt-in level once measured; Pocock `triage` when an external tracker is used; trim ECC to stack packs,
 AI systems and release patterns (≈ 60 files of overlap).
 
+## MP3 Tier 1 measurement (paid, owner-approved 2026-10-22)
+
+38 new sessions ($5.95 + grader calls), Opus 5.5, n = 1, AgyLite arm = `main` after MP3 with bundle `52e8c1108c39`.
+The no-skill and original arms were reused from the MP2 runs (`--reuse-from`, unchanged configurations); cells MP2
+never reached were run now. Rows are in `PARITY_LEDGER.md`.
+
+| Suite | Metric | No skill | Original | AgyLite before MP3 | AgyLite after MP3 | Retained | Verdict |
+|---|---|---:|---:|---:|---:|---:|---|
+| eng-ponytail | source lines (lower better) | 45.4 | 19.6 | 42.6 | **23.0** | 0.87 | INCONCLUSIVE (near, n = 1) |
+| eng-ponytail | vibe-todo lines | 207 | 49 | 166 | **68** | — | — |
+| eng-ponytail | safe | 6/7 | 7/7 | 7/7 | 7/7 | 1.0 | — |
+| eng-addy | expectations passed | 0.903 | 1.0 | 0.958 | **0.903** | 0.0 | INCONCLUSIVE |
+| eng-pocock | expectations passed | 0.47 | 0.745 | (not run) | **0.572** | 0.37 | INCONCLUSIVE |
+
+Cost per arm (whole suite): Ponytail $1.21 / $0.92 / $1.16; Addy $0.74 / $1.06 / $0.96; Pocock $1.23 / $1.73 / $1.54
+(no skill / original / AgyLite).
+
+Diagnosis (IMPLEMENTATION_PLAN §6 checklist): (1) the route arrived in every AgyLite session (`PROMPT_ROUTED`);
+(2) **the agent never loaded the skill** — 0 `agylite skill load` calls in all 37 AgyLite sessions, despite the hook's
+"Before the first edit, load the whole skill" line. Ponytail improved because its rules are in L0 and need no load;
+Addy and Pocock depend on the agent loading the skill, and it does not (Addy TDD pressure case: fixed first, test
+after; Addy code review: no severity labels; Pocock to-spec/to-tickets: no spec structure). Pocock tdd#1 (AgyLite)
+was ungraded (invalid grader reply). Note: Pocock's own tdd skill scored below no skill on both tdd cases (0.2, 0.0
+vs 0.6, 1.0).
+
+Next fix (Phase 9 round 1, needs a code change): deliver the primary skill's text in the prompt hook instead of only
+naming the load command (within a budget), then re-run the AgyLite arm only.
+
 ## RESUME FROM
 
 **Phase 5 (MP4 design best of the best) — waits for the owner's go-ahead.** Everything through MP3 is on `main`.
@@ -261,3 +289,5 @@ AI systems and release patterns (≈ 60 files of overlap).
    `PYTHONPATH=<checkout> python -m agylite.cli …`; `bin/agylite` runs the installed engine).
 4. **No paid Tier 1 sessions** (`claude -p`) unless the owner asks again; report those suites as not measured.
 5. After MP4: report, update this log and this section, push, stop for approval.
+6. Paid Tier 1 runs only with the owner's approval. Measure a new AgyLite build with
+   `--arms agylite --reuse-from <earlier run dir>` (only the AgyLite arm is paid again).
