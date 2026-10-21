@@ -11,6 +11,7 @@ Isolation is verified from the stream-json `init` event, never assumed. Paid ses
 """
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
@@ -30,6 +31,18 @@ class SpendRefused(RuntimeError):
 
 class IsolationError(RuntimeError):
     pass
+
+
+class UsageLimit(RuntimeError):
+    """The host refused the session (5-hour session limit, weekly cap, rate limit): stop the run, never grade it."""
+
+
+LIMIT_REPLY = re.compile(r"hit your (session|weekly|usage|daily) limit|usage limit reached|rate_limit_error|"
+                         r"\b429\b.*rate|limit will reset", re.I)
+
+
+def is_usage_limit(text) -> bool:
+    return bool(text) and bool(LIMIT_REPLY.search(text))
 
 
 @dataclass
@@ -174,6 +187,8 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
         out_dir.mkdir(parents=True, exist_ok=True)
         with gzip.open(out_dir / f"{label}.trace.jsonl.gz", "wt", encoding="utf-8") as f:
             f.write(stdout)
+    if is_usage_limit(rec.get("result")):
+        raise UsageLimit(rec["result"][:200])
     rec["_trace"] = stdout
     return rec
 
@@ -181,9 +196,12 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
 def ask(prompt: str, *, model=None, timeout=600) -> str:
     """A plain one-shot model call (graders, judges), in an empty directory, no plugins, no MCP."""
     with tempfile.TemporaryDirectory() as d:
-        return subprocess.run(["claude", "-p", "--setting-sources", "project,local", "--strict-mcp-config",
-                               "--model", model or DEFAULT_MODEL], input=prompt, text=True, capture_output=True,
-                              cwd=d, timeout=timeout).stdout
+        out = subprocess.run(["claude", "-p", "--setting-sources", "project,local", "--strict-mcp-config",
+                              "--model", model or DEFAULT_MODEL], input=prompt, text=True, capture_output=True,
+                             cwd=d, timeout=timeout).stdout
+    if is_usage_limit(out) and len(out) < 400:   # a grader's verdict may quote a limit; a refusal is short
+        raise UsageLimit(out.strip()[:200])
+    return out
 
 
 def require_spend(yes_spend: bool, sessions: int, max_sessions: int | None):
