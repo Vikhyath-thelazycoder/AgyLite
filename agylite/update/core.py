@@ -38,13 +38,17 @@ def _pins(evidence: Path):
 
 
 def inventory_from_dir(tree: Path):
-    """(path, bytes, blob sha1) for a plain directory tree (tests, local mirrors)."""
+    """(path, bytes, blob sha1) for a plain directory tree (tests, local mirrors). A symlink is one blob holding its
+    target, as git records it; it is never followed (Brag's .agents/skills/brag → skills/brag, MP1 F8)."""
     rows = []
-    for p in sorted(tree.rglob("*")):
-        if p.is_file() and ".git" not in p.relative_to(tree).parts:
-            data = p.read_bytes()
+    for dirpath, dirnames, filenames in os.walk(tree):   # os.walk does not descend into symlinked directories
+        base = Path(dirpath)
+        dirnames[:] = [d for d in dirnames if d != ".git"]
+        for name in [d for d in dirnames if (base / d).is_symlink()] + filenames:
+            p = base / name
+            data = os.readlink(p).encode() if p.is_symlink() else p.read_bytes()
             rows.append((p.relative_to(tree).as_posix(), len(data), git_blob_sha1(data)))
-    return rows
+    return sorted(rows)
 
 
 def inventory_from_git(clone: Path, sha: str, repo: str | None = None):
@@ -170,7 +174,7 @@ def update(home: Path, repo: str, sha: str, *, source: Path | None = None, stagi
         if name != repo and src.exists():
             (cand_stage / name).symlink_to(src.resolve())
     if source is not None:
-        shutil.copytree(source, cand_stage / repo, symlinks=False)
+        shutil.copytree(source, cand_stage / repo, symlinks=True)   # links stay links, as in git (F8)
         rows = inventory_from_dir(cand_stage / repo)
     else:
         rows = fetch_commit(pins[repo]["repo"], sha, cand_stage / repo, rules_doc["repos"][repo], log, mirror_path)

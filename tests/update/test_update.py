@@ -14,6 +14,7 @@ sys.path.insert(0, ROOT_DIR)
 from tests.bundle.test_build import FILES, Fixture  # noqa: E402
 from agylite.bundle import build as bundle_build  # noqa: E402
 from agylite.update import UpdateError, gc, rollback, update  # noqa: E402
+from agylite.update.core import git_blob_sha1, inventory_from_dir  # noqa: E402
 
 NEW_SHA = "b" * 40
 
@@ -83,6 +84,22 @@ class TestUpdate(Base):
         with self.assertRaises(UpdateError):
             update(self.fx.home, "nope", NEW_SHA, source=self.tree(FILES), staging=self.fx.staging,
                    evidence=self.fx.evidence, rules_path=self.fx.rules, licenses_path=self.fx.licenses)
+
+
+class TestInventoryFromDir(unittest.TestCase):
+    def test_symlink_is_one_blob_of_its_target_like_git(self):
+        """F8: Brag's .agents/skills/brag is a symlink to skills/brag; git records one blob (the link target), not a
+        copy of the directory it points to."""
+        with tempfile.TemporaryDirectory() as tmp:
+            tree = Path(tmp)
+            (tree / "skills" / "brag").mkdir(parents=True)
+            (tree / "skills" / "brag" / "SKILL.md").write_text("# brag\n")
+            (tree / ".agents" / "skills").mkdir(parents=True)
+            os.symlink("../../skills/brag", tree / ".agents" / "skills" / "brag")
+            rows = inventory_from_dir(tree)
+        self.assertEqual([r[0] for r in rows], [".agents/skills/brag", "skills/brag/SKILL.md"])
+        link = rows[0]
+        self.assertEqual(link[1:], (len(b"../../skills/brag"), git_blob_sha1(b"../../skills/brag")))
 
 
 class TestRollbackAndGc(Base):

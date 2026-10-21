@@ -78,7 +78,7 @@ REFERENCE	Example outputs		13249	examples/taxi-for-taxis/styles.css
 EXCLUDE	DOC_ASSET		556	plugin.json
 EXCLUDE	DOC_ASSET		740	scripts/check-brag-slim.mjs
 EXCLUDE	DOC_ASSET		2005	scripts/check-docs.mjs
-PRESERVE	Self-contained launch video (default path; closes G-2)	media/launch-video	7766	skills/brag-slim/SKILL.md
+PRESERVE	Self-contained launch video (default path; closes G-2)	media/launch-video	8444	skills/brag-slim/SKILL.md
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	9111	skills/brag/SKILL.md
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	985	skills/brag/assets/music/README.md
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	80788	skills/brag/assets/music/cues/happy-beats-business-moves-vol-1-by-ende-dot-app.music-cues.json
@@ -367,4 +367,4 @@ PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	10751	skills/brag/scripts/analyze_music_cues.py
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	248	skills/brag/scripts/pyproject.toml
 PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	170626	skills/brag/scripts/uv.lock
-PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	7766	skills/brag/slim.md
+PRESERVE	Full /brag incl. assets, references, uv script; requires Hyperframes (G-2)	media/launch-video	8444	skills/brag/slim.md

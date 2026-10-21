@@ -1,4 +1,4 @@
-# brag @ 8531ccb9f471ef5099abf930079e47b55c55bb21
+# brag @ 069432cac935ed1895859df201c31436c07fb74e
 blob_sha1	bytes	path
 60a9535c63f54b12842db6194be8211736c6004e	17	.agents/skills/brag
 ab2a17354c0c09681482846cecfbd663fff13075	22	.agents/skills/brag-slim
@@ -79,7 +79,7 @@ fbb2480a4394e017f16faea11d52ab11ee185d7a	1961805	examples/taxi-for-taxis/brag.mp
 ce4d3e12be52a1d5d9fdf3b799d4024c72f5c8e4	556	plugin.json
 472927236cd1e625817d1c83221cfa242e568c38	740	scripts/check-brag-slim.mjs
 b9900ade656a9d78d1b394ca10498feec445bae4	2005	scripts/check-docs.mjs
-0abca94d428335354a5117b2c369af0388bec2a6	7766	skills/brag-slim/SKILL.md
+e7f349b25d5ed26cdd66ce4d8f5a1bbb50bb7be2	8444	skills/brag-slim/SKILL.md
 9cf11c4409abfc4f5f5a79c440db3ffb4261d872	9111	skills/brag/SKILL.md
 da7389fbb19eaaa2511d53f859912bc6b671fff6	985	skills/brag/assets/music/README.md
 07f5590d7b19ec6a1f0e44fd9fe07841f230d651	80788	skills/brag/assets/music/cues/happy-beats-business-moves-vol-1-by-ende-dot-app.music-cues.json
@@ -368,4 +368,4 @@ d3ba5a780fd29c149520b26c7bb43186af9ab376	6049	skills/brag/references/step-1-insp
 a9bbe865ea3a7d8c6c11d923ce7b610ccab765e8	10751	skills/brag/scripts/analyze_music_cues.py
 5adfcdbd1b8d713e9723e0bd9493caeef0070f18	248	skills/brag/scripts/pyproject.toml
 b082f696fc4d1ca3cb12e16181ab2038b94aaad4	170626	skills/brag/scripts/uv.lock
-0abca94d428335354a5117b2c369af0388bec2a6	7766	skills/brag/slim.md
+e7f349b25d5ed26cdd66ce4d8f5a1bbb50bb7be2	8444	skills/brag/slim.md

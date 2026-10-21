@@ -34,7 +34,7 @@ Understand an existing project before changing it; narrow the code surface.
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `codebase/repository-understanding` | Build/refresh the code graph; structure, entry points, modules, communities | agency, ecc, graphify | 602 | 9489.0 | 2,429,176 | L2 | python-isolated | False | none | bundled | — |
+| `codebase/repository-understanding` | Build/refresh the code graph; structure, entry points, modules, communities | agency, ecc, graphify | 669 | 10483.6 | 2,683,801 | L2 | python-isolated | False | none | bundled | — |
 | `codebase/impact-analysis` | Affected-file and dependency impact of a change (graph reverse traversal) | — | 0 | 0.0 | 0 | L2 | python-isolated | False | none | mixed | codebase/repository-understanding |
 | `codebase/code-search` | Scoped subgraph query/path/explain instead of raw file dumps | — | 0 | 0.0 | 0 | L1 | python-isolated | False | none | mixed | codebase/repository-understanding |
 
@@ -51,7 +51,7 @@ Product-appropriate, non-generic, accessible interfaces with justified decisions
 | `design/ux` | UX laws, flows, forms, state coverage | opendesign | 2 | 33.7 | 8,631 | L2 | none | False | none | bundled | — |
 | `design/accessibility` | Accessible design baseline and checklist | addy, ecc, opendesign | 6 | 55.7 | 14,251 | L2 | none | False | none | bundled | — |
 | `design/motion` | Purposeful motion, animation discipline, reduced motion (web and React Native gesture/spring motion) | appllama, ecc, opendesign | 16 | 177.9 | 45,541 | L2 | none | False | none | bundled | — |
-| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics, image-to-code) | appllama, opendesign, uiuxpromax | 144 | 5934.3 | 1,519,184 | L2 | none | False | none | bundled | — |
+| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics) | appllama, opendesign, uiuxpromax | 144 | 5934.3 | 1,519,184 | L2 | none | False | none | bundled | — |
 | `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 228.7 | 58,542 | L2 | none | False | none | bundled | design/visual-quality |
 | `design/brand` | Brand identity, voice, kits | ecc, opendesign, uiuxpromax | 35 | 213.3 | 54,616 | L2 | none | False | none | bundled | — |
 
@@ -100,7 +100,7 @@ Launch and showcase artifacts — never activates backend capabilities.
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `media/launch-video` | Launch video from project or URL (brag-slim default; full brag when Hyperframes is present) | agency, brag | 294 | 16241.8 | 4,157,895 | L2 | python-uv | optional | required-for-output | bundled | — |
+| `media/launch-video` | Launch video from project or URL (brag-slim default; full brag when Hyperframes is present) | agency, brag | 294 | 16243.1 | 4,158,234 | L2 | python-uv | optional | required-for-output | bundled | — |
 | `media/demo` | UI demo recording and video editing | ecc | 46 | 120.8 | 30,932 | L2 | playwright-optional | False | required-for-output | bundled | — |
 | `media/presentation` | Decks, one-pagers, slides | ecc, opendesign, uiuxpromax | 23 | 124.0 | 31,743 | L2 | none | False | none | bundled | — |
 | `media/showcase` | Launch copy and storytelling | opendesign | 2 | 2.4 | 614 | L2 | none | False | none | bundled | — |

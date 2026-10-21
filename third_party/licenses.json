@@ -58,7 +58,7 @@
  "brag": {
   "attribution": "Copyright (c) 2026 Shunit Haviv Hakimi",
   "bundled_files": 291,
-  "commit_sha": "8531ccb9f471ef5099abf930079e47b55c55bb21",
+  "commit_sha": "069432cac935ed1895859df201c31436c07fb74e",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -79,8 +79,8 @@
  },
  "graphify": {
   "attribution": "Copyright (c) 2026 Safi Shamsi",
-  "bundled_files": 594,
-  "commit_sha": "b4e6307bf170f27e0cb888c03f4af9308d531a42",
+  "bundled_files": 661,
+  "commit_sha": "b90b9df7949bd04a15b40a1624af85d0a9cfdf04",
   "license": "Apache-2.0",
   "license_files": [
    "LICENSE",

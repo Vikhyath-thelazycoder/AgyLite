@@ -235,7 +235,7 @@ repos:
     default: {decision: EXCLUDE, reason: UPSTREAM_DEV}
     rules:
       - {paths: ["LICENSE", "LICENSE-MIT", "NOTICE"], decision: COPY, capability: codebase/repository-understanding, reason: LICENSE}
-      - {paths: ["tests/test_skill*.py"], decision: EXCLUDE, reason: "Tests of the excluded skill generator tools/skillgen (closure trace P25; upstream added more in the first P28 update)"}
+      - {paths: ["tests/test_skill*.py", "tests/test_code_only_update_all_hosts.py"], decision: EXCLUDE, reason: "Tests of the excluded skill generator tools/skillgen (closure trace P25; upstream added more in the first P28 update and in 0.9.93)"}
       - {paths: ["graphify/serve.py"], decision: PRESERVE, capability: codebase/repository-understanding, reason: "EXCEPTION to MCP exclusion (D-037): query/path/explain import its graph search helpers; mcp/starlette are imported only inside serve()/serve_http(), the mcp extra is never installed and the OS wrapper blocks `serve`"}
       - {paths: ["graphify/mcp_ingest.py"], decision: PRESERVE, capability: codebase/repository-understanding, reason: "EXCEPTION to MCP exclusion: unconditionally imported by extract.py; parses MCP config files as graph data; no server/client/config/runtime (§2.1 satisfied)"}
       - {paths: ["graphify/always_on/**", "graphify/skill-*.md", "graphify/command-kilo.md"], decision: EXCLUDE, reason: HOST_PORT}

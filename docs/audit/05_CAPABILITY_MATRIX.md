@@ -13,14 +13,14 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | codebase/repository-understanding | `skills/codebase-onboarding/` | 1 | 8.0 | ADAPT | python-isolated | MIT | `2d515e4` |
 | ecc | codebase/repository-understanding | `skills/repo-scan/` | 1 | 7.1 | ADAPT | python-isolated | MIT | `2d515e4` |
 | ecc | codebase/repository-understanding | `skills/workspace-surface-audit/` | 1 | 5.0 | ADAPT | python-isolated | MIT | `2d515e4` |
-| graphify | codebase/repository-understanding | `LICENSE` | 1 | 11.1 | COPY | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
-| graphify | codebase/repository-understanding | `LICENSE-MIT` | 1 | 1.0 | COPY | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
-| graphify | codebase/repository-understanding | `NOTICE` | 1 | 0.3 | COPY | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
-| graphify | codebase/repository-understanding | `graphify/` | 95 | 3647.5 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
-| graphify | codebase/repository-understanding | `graphify/` | 8 | 43.7 | ADAPT | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
-| graphify | codebase/repository-understanding | `pyproject.toml` | 1 | 8.5 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
-| graphify | codebase/repository-understanding | `tests/` | 486 | 4685.5 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
-| graphify | codebase/repository-understanding | `uv.lock` | 1 | 1011.2 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b4e6307` |
+| graphify | codebase/repository-understanding | `LICENSE` | 1 | 11.1 | COPY | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
+| graphify | codebase/repository-understanding | `LICENSE-MIT` | 1 | 1.0 | COPY | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
+| graphify | codebase/repository-understanding | `NOTICE` | 1 | 0.3 | COPY | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
+| graphify | codebase/repository-understanding | `graphify/` | 98 | 3973.2 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
+| graphify | codebase/repository-understanding | `graphify/` | 8 | 47.2 | ADAPT | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
+| graphify | codebase/repository-understanding | `pyproject.toml` | 1 | 8.8 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
+| graphify | codebase/repository-understanding | `tests/` | 550 | 5350.5 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
+| graphify | codebase/repository-understanding | `uv.lock` | 1 | 1011.2 | PRESERVE | python-isolated | Apache-2.0 (+MIT) | `b90b9df` |
 | addy | design/accessibility | `references/` | 1 | 5.1 | COPY | none | MIT | `1be8e34` |
 | ecc | design/accessibility | `agents/` | 1 | 7.2 | ADAPT | none | MIT | `2d515e4` |
 | ecc | design/accessibility | `skills/accessibility/` | 1 | 6.4 | ADAPT | none | MIT | `2d515e4` |
@@ -456,9 +456,9 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | media/demo | `skills/ui-demo/` | 1 | 14.9 | ADAPT | playwright-optional | MIT | `2d515e4` |
 | ecc | media/demo | `skills/video-editing/` | 13 | 29.7 | ADAPT | playwright-optional | MIT | `2d515e4` |
 | agency | media/launch-video | `marketing/` | 3 | 39.2 | ADAPT | python-uv | MIT | `f99f6aa` |
-| brag | media/launch-video | `LICENSE` | 1 | 1.1 | COPY | python-uv | MIT | `8531ccb` |
-| brag | media/launch-video | `skills/brag-slim/` | 1 | 7.6 | PRESERVE | python-uv | MIT | `8531ccb` |
-| brag | media/launch-video | `skills/brag/` | 289 | 16193.9 | PRESERVE | python-uv | MIT | `8531ccb` |
+| brag | media/launch-video | `LICENSE` | 1 | 1.1 | COPY | python-uv | MIT | `069432c` |
+| brag | media/launch-video | `skills/brag-slim/` | 1 | 8.2 | PRESERVE | python-uv | MIT | `069432c` |
+| brag | media/launch-video | `skills/brag/` | 289 | 16194.6 | PRESERVE | python-uv | MIT | `069432c` |
 | ecc | media/presentation | `skills/frontend-slides/` | 7 | 51.0 | ADAPT | none | MIT | `2d515e4` |
 | opendesign | media/presentation | `skills/release-notes-one-pager/` | 5 | 41.3 | ADAPT | none | Apache-2.0 | `17e2559` |
 | opendesign | media/presentation | `skills/remotion/` | 1 | 1.2 | ADAPT | none | Apache-2.0 | `17e2559` |
@@ -539,4 +539,4 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | testing/strategy | `health/` | 1 | 15.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `5cb5e1c` |
 | gstack | testing/strategy | `test-audit/` | 1 | 7.4 | ADAPT | none | MIT (+Apache-2.0 notices) | `5cb5e1c` |
 
-**Total bundled: 2637 files, 50.7 MB** across 55 capabilities.
+**Total bundled: 2704 files, 51.7 MB** across 55 capabilities.

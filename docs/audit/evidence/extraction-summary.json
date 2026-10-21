@@ -105,7 +105,7 @@
    },
    "PRESERVE": {
     "files": 290,
-    "bytes": 16590340
+    "bytes": 16591696
    }
   },
   "ecc": {
@@ -132,24 +132,24 @@
   },
   "graphify": {
    "EXCLUDE": {
-    "files": 379,
-    "bytes": 13660094
+    "files": 385,
+    "bytes": 14143406
    },
    "COPY": {
     "files": 3,
     "bytes": 12761
    },
    "PRESERVE": {
-    "files": 583,
-    "bytes": 9577143
+    "files": 650,
+    "bytes": 10592020
    },
    "REFERENCE": {
     "files": 37,
-    "bytes": 4406911
+    "bytes": 4411668
    },
    "ADAPT": {
     "files": 8,
-    "bytes": 44710
+    "bytes": 48333
    }
   },
   "gstack": {
@@ -281,9 +281,9 @@
  },
  "capabilities": {
   "codebase/repository-understanding": {
-   "files": 602,
-   "bytes": 9716705,
-   "est_tokens": 2429176,
+   "files": 669,
+   "bytes": 10735205,
+   "est_tokens": 2683801,
    "sources": [
     "agency",
     "ecc",
@@ -563,8 +563,8 @@
   },
   "media/launch-video": {
    "files": 294,
-   "bytes": 16631580,
-   "est_tokens": 4157895,
+   "bytes": 16632936,
+   "est_tokens": 4158234,
    "sources": [
     "agency",
     "brag"
