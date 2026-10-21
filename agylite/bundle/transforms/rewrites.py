@@ -233,6 +233,11 @@ REWRITES = {
         (re.compile(r"naming which skills the next agent should call the Skill tool for\."),
          "naming which skills the next agent should load (`agylite skill load <upstream>/<name>`)."),
     ],
+    # MP3 §2.3: ponytail-review leads engineering/review; Ponytail's slash command does not exist in Agylite (the router
+    # and `agylite skill load ponytail/ponytail-review` invoke it). The review method itself is unchanged.
+    ("ponytail", "skills/ponytail-review/SKILL.md"): [
+        (re.compile(r'"is this over-engineered", /ponytail-review\.'), '"is this over-engineered".'),
+    ],
     ("uiuxpromax", ".claude/skills/ui-ux-pro-max/SKILL.md"): [
         (re.compile(r"\$\{CLAUDE_PLUGIN_ROOT\}/\.claude/skills/ui-ux-pro-max/scripts/"),
          f"{BUNDLE}/files/uiuxpromax/src/ui-ux-pro-max/scripts/"),

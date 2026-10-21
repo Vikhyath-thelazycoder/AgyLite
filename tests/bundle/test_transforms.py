@@ -161,8 +161,8 @@ class TestRewrites(unittest.TestCase):
                     samples[key] = f.read()
         if not os.path.isdir(staged):
             self.skipTest("staged upstreams needed for the P13 rewrite samples")
-        for key in POCOCK_ADAPT:                                    # MP3 §1.3: real upstream text
-            with open(os.path.join(staged, "pocock", key[1]), encoding="utf-8") as f:
+        for key in POCOCK_ADAPT + [("ponytail", "skills/ponytail-review/SKILL.md")]:   # MP3 §1.3, §2.3: real text
+            with open(os.path.join(staged, key[0], key[1]), encoding="utf-8") as f:
                 samples[key] = f.read()
         self.assertEqual(set(samples), set(rewrites.REWRITES))
         for (repo, path), text in samples.items():
@@ -172,6 +172,7 @@ class TestRewrites(unittest.TestCase):
             self.assertNotIn("docs/lovable.md", out)
             self.assertNotIn("./install.sh", out)
             self.assertNotIn("CLAUDE_PLUGIN_ROOT", out)
+            self.assertNotIn("/ponytail-review", out)                      # no Ponytail slash commands (MP3 §2.3)
             for gone in ("Appllama MCP", "simctl", "Higgsfield", "references/performance.md", "sections/exploratory.md",
                          "references/simulator-loop.md", "references/image-assets.md"):
                 self.assertNotIn(gone, out)

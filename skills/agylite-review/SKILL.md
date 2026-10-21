@@ -12,10 +12,15 @@ description: Pre-merge code review of the current change — scope drift, correc
 3. **Impact:** `agylite codebase affected` — review the changed files and what they reach, not the whole repo.
 4. **Evidence:** `agylite verify --plan` shows the checks the change needs; findings about untested behaviour
    name the missing test.
-5. **Report** findings by severity with `file:line`, each with a concrete failure scenario. Never approve on
-   "looks fine": a passing `agylite verify` run is the minimum.
+5. **Review** with `agylite skill load ponytail/ponytail-review` and follow its structure (MP3 §2.3): read the
+   code the change touches (callers, callees, tests), not just the diff; number the findings in Must fix / Should
+   fix / Nice to have, each with `file:line` and four parts: what it is, what goes wrong (a concrete failure
+   scenario), the fix, and what happens if skipped. Then apply gstack's review checklists second
+   (`agylite skill load gstack/review`). Never approve on "looks fine": a passing `agylite verify` run is the
+   minimum.
 
-Simplicity review (Ponytail-derived) only when the user asks for it.
+The `engineering/simplicity` capability (Ponytail's audit/debt/gain skills) loads only when the user asks for
+simplification.
 
 Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
 

@@ -55,7 +55,8 @@ repos:
     default: {decision: EXCLUDE, reason: HOST_PORT}
     rules:
       - {paths: ["LICENSE"], decision: COPY, capability: engineering/simplicity, reason: LICENSE}
-      - {paths: ["skills/ponytail/SKILL.md", "skills/ponytail-review/SKILL.md", "skills/ponytail-audit/SKILL.md", "skills/ponytail-debt/SKILL.md", "skills/ponytail-gain/SKILL.md"], decision: ADAPT, capability: engineering/simplicity, reason: "Simplicity/YAGNI discipline; loaded only via routing (never via hooks)"}
+      - {paths: ["skills/ponytail-review/SKILL.md"], decision: ADAPT, capability: engineering/review, reason: "MP3 §2.3: first source of every code review (gstack review second)"}
+      - {paths: ["skills/ponytail/SKILL.md", "skills/ponytail-audit/SKILL.md", "skills/ponytail-debt/SKILL.md", "skills/ponytail-gain/SKILL.md"], decision: ADAPT, capability: engineering/simplicity, reason: "Simplicity/YAGNI discipline; loaded only via routing (never via hooks)"}
       - {paths: ["skills/ponytail-help/SKILL.md"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["examples/**"], decision: COPY, capability: engineering/simplicity, reason: "Worked examples (Level 3)"}
       - {paths: ["hooks/ponytail-instructions.js"], decision: GENERATED, generator: ponytail-lite, inputs: ["hooks/ponytail-config.js"], output: RULESET-lite.md, capability: engineering/simplicity, reason: "MP3 §2.1: lite ruleset generated at build (always on in L0)"}

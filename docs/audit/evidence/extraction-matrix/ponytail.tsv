@@ -179,7 +179,7 @@ ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	eng
 ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	1810	skills/ponytail-debt/SKILL.md
 ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	2206	skills/ponytail-gain/SKILL.md
 EXCLUDE	SUPERSEDED		2901	skills/ponytail-help/SKILL.md
-ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	5143	skills/ponytail-review/SKILL.md
+ADAPT	MP3 §2.3: first source of every code review (gstack review second)	engineering/review	5143	skills/ponytail-review/SKILL.md
 ADAPT	Simplicity/YAGNI discipline; loaded only via routing (never via hooks)	engineering/simplicity	3492	skills/ponytail/SKILL.md
 EXCLUDE	UPSTREAM_DEV		3196	tests/behavior.test.js
 EXCLUDE	UPSTREAM_DEV		4315	tests/commands.test.js
