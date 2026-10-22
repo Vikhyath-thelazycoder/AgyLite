@@ -512,6 +512,75 @@
    "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/8e680500-2a30-4ae5-8758-7f8231d051d7/scratchpad/home-p5/benchmarks/quality/20261022T041927Z-design-extract",
    "fix_applied": "none needed: per site every metric is same (identical values in both arms)",
    "next_step": "pooled colour verdict is inconclusive only because site-to-site spread counts as noise; linear.app colour is missed by designlang itself in both arms"
+  },
+  {
+   "date": "20261022T042203Z",
+   "suite": "design-taste",
+   "n": 1,
+   "bundle": "22bf70be985e",
+   "agylite_commit": "d1ca77c23a31dce68e5770c46446426690e4394c",
+   "upstream_shas": {
+    "taste-skill": "6010f91a9935f1c167dfc500fb1a475681892e6b"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "inspector_fail": {
+     "baseline": 7.333333333333333,
+     "upstream": 0.0,
+     "agylite": 2.3333333333333335,
+     "retained": 0.682,
+     "verdict": "regressed"
+    },
+    "lint_fail": {
+     "baseline": 11.666666666666666,
+     "upstream": 0.0,
+     "agylite": 2.3333333333333335,
+     "retained": 0.8,
+     "verdict": "inconclusive"
+    },
+    "judge_overall": {
+     "baseline": 6.5,
+     "upstream": 7.283333333333334,
+     "agylite": 6.75,
+     "retained": 0.319,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "regressed",
+   "cost_usd": {
+    "baseline": 1.8671,
+    "upstream": 8.0186,
+    "agylite": 3.0547
+   },
+   "agent_seconds": {
+    "baseline": 476.6,
+    "upstream": 2169.8,
+    "agylite": 889.0
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 2,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 1,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/8e680500-2a30-4ae5-8758-7f8231d051d7/scratchpad/home-p5/benchmarks/quality/20261022T042203Z-design-taste",
+   "fix_applied": "none yet: eval 1 (Taste skill loaded, lint+inspect run) is same (judge 7.45 vs 6.85)",
+   "next_step": "eval 2 routes only to design/frontend (no Taste, no load); eval 7 routes engineering/implementation first and loads addy/incremental-implementation; fix page/screen routing + deliver the primary skill in the prompt hook, then --arms agylite --reuse-from this run"
   }
  ],
  "notes": [

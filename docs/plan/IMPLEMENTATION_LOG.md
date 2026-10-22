@@ -278,43 +278,75 @@ vs 0.6, 1.0).
 Next fix (Phase 9 round 1, needs a code change): deliver the primary skill's text in the prompt hook instead of only
 naming the load command (within a budget), then re-run the AgyLite arm only.
 
+## Phase 5: design best of the best (MP4) — code DONE on `impl/p5-design` (2026-10-22); parity not yet same
+
+### MP4 report
+
+| Item | Commit | Test that proves it | Notes |
+|---|---|---|---|
+| §1 Taste v2.1 (pin 6010f91), `agylite design taste draw/lint/inspect/scenes/assets/status`, bundle self-test, `sources_priority` | 2830226 | Tier 0 self-test `taste: exit 0` | Taste leads design direction and visual quality |
+| §2.2–2.4 designlang upstream, `design/inspiration-extract`, `agylite design extract` (1-3 URLs → one DESIGN.md, brand colour shifted 24°, MERGE_NOTES.md, never replaces without `--replace`), `agylite runtime install designlang`, `design_check_overrides` | 6c7512f, 06254b8 | `tests/design/test_extract.py` | |
+| §2.5 routing rule `design-inspiration` (`requires_urls`), `url_only` | f0ecfc0 | routing scenarios | |
+| §3.3 style/markup changes add design check + Taste lint + inspect; NOT_RUN = BLOCKED | bfd1003 | verify tests | policy on for design only (the rest is Phase 7) |
+| §3.2 INSPIRATION lifecycle step + BLOCKING question `design-md-approved` | a9c8ea2 | `tests/design/test_inspiration_flow.py` | |
+| §3.1, §4 design entry skill (paths A/B, precedence), `docs/architecture/DESIGN_MD.md` | 10e1885, 676d9a2 | `test_sections_match_designlangs_formatter` | |
+| §6 real run (network): `runtime install designlang`, `design extract https://linear.app https://vercel.com` | 1248801 | `TestFuseScript` (fails without the fix) | 27 s; 8 sections; stops for approval. Fixed: breakpoints printed `[object Object]px` (designlang 13.3.2 formatter bug), duplicate radius labels collapsed YAML keys (4 of 6 radii kept), summary printed `spacing base: None` |
+| §6 `design-extract` suite (free) | d1ca77c | `TestDesignExtractSuite` | was planned but missing; built and run |
+
+### Phase 5 gate (temporary engine home `home-p5`, bundle `22bf70be985e`)
+
+```
+unittest discover -s tests     → Ran 391 tests — OK (skipped=3)
+agylite doctor                 → 59 passed, 0 failed, 4 warnings (Unlazy Stop hook disabled in the temp home; actionlint
+                                 not on PATH; graphify not installed in the temp home; weekly pins beyondseo/unlazy 19 days)
+agylite validate               → 23 passed, 0 failed
+agylite benchmark --compare    → routing 33/33; route p95 0.46 ms; L1+L2 p95 48 ms
+benchmark --quality --tier 0   → PASS (self-tests unlazy, uiuxpromax, taste exit 0); NEW ≈ 187,169 est. tokens / 33 scenarios
+```
+
+### MP4 Tier 1 measurement (2026-10-22, Opus 5.5, n = 1)
+
+`design-extract` (free, 6 extractions): every site **same** on every metric. stripe.com colour ✓ font ✓, linear.app
+colour ✗ font ✓ (designlang misses #5e6ad2 in both arms), gov.uk ✓ ✓; DESIGN.md 8/8 sections in both arms. The pooled
+colour verdict reads inconclusive only because site-to-site spread counts as run noise.
+
+`design-taste` (paid, 9 sessions + blind judge, **$12.94**: $1.87 / $8.02 / $3.05 no skill / original / AgyLite):
+
+| Eval | Inspector FAIL (no skill / original / AgyLite) | Lint FAIL | Judge overall | What the AgyLite agent did |
+|---|---|---|---|---|
+| 1 landing page | 13 / 0 / **0** | 25 / 0 / **0** | 6.5 / 6.85 / **7.45** | `skill load taste/design-taste-frontend`, taste draw, assets, lint, inspect → **same** |
+| 2 restaurant site | 7 / 0 / **5** | 9 / 0 / **7** | 6.5 / 7.5 / **6.3** | no skill load, no lint/inspect → regressed |
+| 7 app screen | 2 / 0 / **2** | 1 / 0 / **0** | 6.5 / 7.5 / **6.5** | loaded `addy/incremental-implementation` (wrong skill) → regressed |
+
+Suite: REGRESSED (inspector retained 0.68; lint 0.80 and judge 0.32 inconclusive). Diagnosis: when Taste is routed and
+loaded, AgyLite matches or beats the original (eval 1). Two causes for the rest: (1) **routing** — "Make a one-page
+website…" routes to design/frontend only (no design/design-direction, so Taste is never named), and "Build the main
+screen of … app" routes PLAN_CHANGE with engineering/implementation first (eval 1 itself routed TESTING_CHANGE but kept
+design-direction); (2) **skill loading** — the agent loads the skill only sometimes (the MP3 open fix).
+
+Fix (owner, 2026-10-22: right after this benchmark): route page/site/screen builds to design/design-direction first,
+deliver the primary skill's text in the prompt hook, then re-run the AgyLite arm only with `--reuse-from` this run.
+
 ## RESUME FROM
 
 <!-- mp4-progress:start -->
-**Phase 5 (MP4 design) — STOPPED by the owner on 2026-10-22. RESUME HERE.** Branch `impl/p5-design`; every green
-commit is fast-forwarded to `main` and pushed. Worktree: the session scratchpad `wt-p5` (recreate with
-`git worktree add <dir> impl/p5-design` if it is gone); temporary engine home `home-p5` (bundle `22bf70be985e`,
-Taste v2.1) — rebuild it with `agylite bundle fetch && agylite bundle build --self-test` in a fresh `AGYLITE_HOME` if
-it is gone (copy `staging/` and `mirrors/` from an older temp home with `cp -cR` to avoid re-downloading).
-
-Done (on `main`):
-- §1 Taste v2.1: pin 6010f91, rules, SKILL.md rewrites, `agylite design taste draw|lint|inspect|scenes|assets|status`,
-  bundle self-test, `sources_priority` (exact paths may name another capability's skill, so Taste leads design
-  direction and visual quality).
-- §2 designlang: upstream + `design/inspiration-extract`; `agylite design extract` (1-3 URLs → one DESIGN.md, brand
-  colour shifted, MERGE_NOTES.md, never replaces an existing DESIGN.md without `--replace`); `agylite runtime install
-  designlang`; DESIGN.md `design_check_overrides` in `agylite design check` (+ one design decision).
-- §2.5 routing: rule `design-inspiration` (`requires_urls`), `url_only`.
-- §3.3 verify: style/markup changes add design check + Taste lint + Taste inspect (0 FAIL, hashed screenshots);
-  NOT_RUN = BLOCKED; policy switched on for design only (the rest is Phase 7).
-- §3.2 INSPIRATION lifecycle step + BLOCKING question `design-md-approved` (asked by route capability).
-- §3.1 `skills/agylite-design/SKILL.md` rewritten (paths A/B, precedence, inspiration rules); precedence on the
-  design-direction card. §4 `docs/architecture/DESIGN_MD.md`; test that the 8 sections match designlang's formatter.
-- Fix: commit 10e1885 was pushed with one failing test (the rewritten design skill no longer named
-  `config/verification.yaml`); the next commit restores that line.
+**Phase 5 (MP4 design) — code done, gate green, measured (see "MP4 Tier 1 measurement"). NOW: the fixes the paid test
+found, approved by the owner (2026-10-22), before MP5.** Branch `impl/p5-design`; every green commit is fast-forwarded
+to `main` and pushed. Worktree: the session scratchpad `wt-p5`; temporary engine home `home-p5` (bundle
+`22bf70be985e`, designlang runtime installed).
 
 Left (in order):
-1. §6 real run (network, not paid): `agylite runtime install designlang` (~150 MB) in `home-p5`, then
-   `agylite design extract https://linear.app https://vercel.com` in a temp git project; check the DESIGN.md has the 8
-   sections, the summary and the stop for approval.
-2. Gate (tests, doctor, validate, `benchmark --compare`, Tier 0); paste it into this log; commit + push only when the
-   test run prints `OK`.
-3. Paid test (owner rule: end of each master prompt): `design-taste` suite (and `design-extract`), recorded in the
-   ledger; fix errors now or carry them forward in the plan files.
-4. MP4 report in this log, set this block to DONE, push, stop for the owner's go-ahead on MP5.
+1. Routing: page / site / screen / app-screen builds route to design/design-direction (Taste) first, not
+   engineering/implementation or design/frontend only; the three Taste eval prompts as routing scenarios.
+2. Skill loading (MP3 open fix): the prompt hook carries the primary skill's text (within a budget), not only the
+   `agylite skill load` command.
+3. Gate; commit + push on `OK`.
+4. Re-measure the AgyLite arm only: `agylite benchmark --quality --tier 1 --suite design-taste --arms agylite --yes-spend
+   --reuse-from <home-p5>/benchmarks/quality/20261022T042203Z-design-taste` (3 sessions + judge); then eng-addy and
+   eng-pocock the same way (MP3 runs). Record in the ledger.
+5. MP4 sign-off in this log, push, stop for the owner's go-ahead on MP5.
 
-Open items carried from earlier phases: the skill-loading fix (IMPLEMENTATION_PLAN "Resume here" → "Open fix");
-after MP6, run every test and build the results website.
+Open items carried: after MP6, run every test and build the results website.
 <!-- mp4-progress:end -->
 
 How to work (any phase):

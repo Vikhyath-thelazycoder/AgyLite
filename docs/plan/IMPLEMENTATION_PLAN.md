@@ -458,7 +458,7 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 
 **Parity upgrade (2026-10-21 →, plan in `/Users/vikhyathmgowda007/Developer/os/IMPLEMENTATION_PLAN.md`, Phases 0–9):**
 Phases 0–4 done and on `main` (MP1 critical fixes, MP2 quality benchmarks, Plan B whole skills, MP3 engineering).
-**Next: Phase 5 (MP4 design), after the owner's go-ahead.** The step-by-step resume point, gate commands and every
+Phase 5 (MP4 design) code is done and measured (design-extract same; design-taste regressed: routing + skill loading). **Next: those two fixes and an AgyLite-only re-measure, then stop for MP5.** The step-by-step resume point, gate commands and every
 report are in `docs/plan/IMPLEMENTATION_LOG.md` → "RESUME FROM"; benchmark results in `docs/plan/PARITY_LEDGER.md`.
 Paid Tier 1 sessions (`claude -p`) run only with the owner's approval.
 
