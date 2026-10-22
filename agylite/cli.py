@@ -855,7 +855,7 @@ def _design_cmd(args):
             return 0
         s = r["summary"]
         print(f"palette: {', '.join(s['palette'])}\nfonts: {', '.join(s['fonts']) or '—'}\n"
-              f"spacing base: {s['spacing_base']}\nradii: {', '.join(map(str, s['radii'])) or '—'}")
+              f"spacing base: {s['spacing_base'] or '—'}\nradii: {', '.join(map(str, s['radii'])) or '—'}")
         if r["overrides"]:
             print(f"design check overrides: {r['overrides']}")
         print(f"DESIGN.md: {r['design_md']}\nnotes: {r['merge_notes']}\nall outputs: {r['out']}")

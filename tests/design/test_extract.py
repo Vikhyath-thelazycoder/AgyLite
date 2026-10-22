@@ -4,6 +4,7 @@ designlang output (tests/fixtures/designlang/), so nothing here needs node, a br
 import json
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -159,6 +160,32 @@ class TestExtract(unittest.TestCase):
         self.assertEqual(fm["design_check_overrides"], {"radius_values": 5})     # 5 radii vs limit 4
         self.assertEqual(r["summary"]["radii"], [4, 8, 12, 16, 999])
         self.assertIn("#", r["summary"]["palette"][0])
+
+
+class TestFuseScript(unittest.TestCase):
+    """The fuse script fixes designlang 13.3.2's DESIGN.md input: breakpoint objects and duplicate radius labels."""
+
+    @unittest.skipUnless(shutil.which("node"), "node not on PATH")
+    def test_breakpoints_are_numbers_and_radius_labels_unique(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            pkg = Path(tmp) / "designlang"
+            (pkg / "src" / "formatters").mkdir(parents=True)
+            (pkg / "src" / "index.js").write_text(
+                "export async function extractDesignLanguage(url) { return { url,"
+                " breakpoints: [{ value: 768, label: 'md', type: 'min-width' }, { value: 1024, label: 'lg' }],"
+                " borders: { radii: [{ value: 6, label: 'md' }, { value: 9, label: 'md' }, { value: 16, label: 'lg' }] } }; }\n",
+                encoding="utf-8")
+            (pkg / "src" / "fuse.js").write_text("export function fuseDesigns(a, b) { return { design: a }; }\n",
+                                                 encoding="utf-8")
+            (pkg / "src" / "formatters" / "design-md.js").write_text(
+                "export function formatDesignMd(d) { return JSON.stringify(d); }\n", encoding="utf-8")
+            out = Path(tmp) / "out.json"
+            script = Path(ROOT_DIR) / "agylite" / "design" / "fuse_design_md.mjs"
+            subprocess.run(["node", str(script), "--pkg", str(pkg), "--a", "https://a.example", "--b",
+                            "https://b.example", "--out", str(out)], check=True, capture_output=True)
+            design = json.loads(out.read_text(encoding="utf-8"))
+        self.assertEqual(design["breakpoints"], [768, 1024])
+        self.assertEqual([r["label"] for r in design["borders"]["radii"]], ["md", "r9", "lg"])
 
 
 if __name__ == "__main__":

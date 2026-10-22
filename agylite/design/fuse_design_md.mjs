@@ -25,5 +25,14 @@ for (const k of ['colors', 'typography', 'spacing', 'shape', 'motion', 'voice', 
 }
 const [designA, designB] = await Promise.all([extractDesignLanguage(a), extractDesignLanguage(b)]);
 const { design } = fuseDesigns(designA, designB, axes);
+// designlang 13.3.2's DESIGN.md formatter prints breakpoints as numbers, but the extractor returns {value, label}
+// objects ("[object Object]px"); and two radii may share a label, which collapses YAML keys. Fix both before formatting.
+const bp = design.breakpoints || [];
+design.breakpoints = bp.map((b) => (typeof b === 'object' && b !== null ? b.value : b));
+const seen = new Set();
+for (const r of design.borders?.radii || []) {
+  if (r.label && seen.has(r.label)) r.label = `r${r.value}`;
+  seen.add(r.label);
+}
 writeFileSync(out, formatDesignMd(design), 'utf-8');
 console.log(`fused DESIGN.md: ${out}`);
