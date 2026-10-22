@@ -54,12 +54,32 @@ class TestPromptHook(unittest.TestCase):
         self.assertIn("# engineering/", out)                     # at least one L1 card
         self.assertLessEqual(len(out.encode()) // 4, 800)
 
-    def test_with_a_bundle_the_hook_names_the_whole_skill_to_load(self):
-        """Plan B: the route arrives with `agylite skill load <upstream>/<name>` for the primary skill."""
+    def test_with_a_bundle_the_hook_carries_the_whole_primary_skill(self):
+        """MP3/MP4 Tier 1: agents rarely ran `agylite skill load` (0 of 37, then 2 of 3), so the primary skill's text
+        arrives with the prompt, whole; a second prompt in the session gets a marker instead of the text again."""
         from tests.context.fixtures import make_bundle
         make_bundle(self.home)
         _, out = self.hook({"prompt": PROMPT})
-        self.assertIn("Before the first edit, load the whole skill and follow it: agylite skill load alpha/", out)
+        self.assertIn("The whole skill alpha/hardening follows; follow it before the first edit.", out)
+        self.assertIn("### files/alpha/skills/hardening/SKILL.md — hardening (skill alpha/hardening, whole)", out)
+        self.assertIn("## Headers", out)
+        self.assertIn("## Cookies", out)                         # never truncated
+        self.assertNotIn("agylite skill load alpha/hardening", out)
+        _, again = self.hook({"prompt": PROMPT})
+        self.assertIn("[cached] files/alpha/skills/hardening/SKILL.md", again)
+        self.assertNotIn("## Cookies", again)
+
+    def test_a_skill_over_the_hook_budget_stays_a_load_command(self):
+        from agylite.context.budget import load_budgets
+        from tests.context.fixtures import make_bundle
+        make_bundle(self.home)
+        budgets = load_budgets()
+        budgets["prompt_hook"]["primary_skill_max_tokens"] = 100
+        with mock.patch("agylite.context.budget.load_budgets", return_value=budgets):
+            _, out = self.hook({"prompt": PROMPT})
+        self.assertIn("Before the first edit, load the whole skill and follow it: agylite skill load alpha/hardening",
+                      out)
+        self.assertNotIn("## Cookies", out)
 
     def test_compose_is_the_hook_text_without_side_effects(self):
         """The token report measures the hook with compose(): same text, no events, no fired marker."""

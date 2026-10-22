@@ -200,8 +200,9 @@ def render(r) -> str:
         f"| OLD: installed plugin descriptions | {_t(r['old_always'])} |",
         f"| NEW: own descriptions ({sum(c for c, _ in r['own'].values())} items) + L0 bootstrap ({r['l0_bytes']:,} B) | {_t(r['new_always'])} |",
         "", f"Per message: L0 bootstrap ≈ {r['l0_bytes'] // 4:,} tokens (once per session) · prompt hook p50 ≈ "
-        f"{int(r['hook_p50']) // 4:,} · max ≈ {r['hook_max'] // 4:,} tokens (route line, `agylite skill load` line, L1 cards; "
-        "budget 800). Per task: the whole primary skill of the top capability (NEW L1+L2 below).",
+        f"{int(r['hook_p50']) // 4:,} · max ≈ {r['hook_max'] // 4:,} tokens (route line and L1 cards, budget 800, plus "
+        "the whole primary skill up to 12,000 on a session's first routed prompt; later prompts get a marker). Per task: "
+        "the whole primary skill of the top capability (NEW L1+L2 below).",
         "", "## Per task (spec scenarios)", "",
         "| Scenario | Routed capabilities | Routing | OLD task files | NEW L1+L2 | OLD total | NEW total |",
         "|---|---|:---:|---:|---:|---:|---:|"]

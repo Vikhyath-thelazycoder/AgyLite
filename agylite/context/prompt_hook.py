@@ -73,11 +73,20 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     limit = budgets["prompt_hook"]["max_tokens"]
     loader = ContextLoader(project, session_id, current_bundle())
     skills = primary_skill_ids(loader, route.get("whole_skills") or ids[:1], prompt)
-    load = (" && ".join(f"agylite skill load {s}" for s in skills) if skills else
+    # MP3/MP4 Tier 1: agents rarely ran the load command (0 of 37 sessions, then 2 of 3), so the first skill's text
+    # arrives with the prompt, whole, when it fits `prompt_hook.primary_skill_max_tokens`; any second skill stays a
+    # command. The session cache turns it into a one-line marker on later prompts.
+    inline = _inline_skill(loader, skills[0], budgets) if skills else None
+    rest = skills[1:] if inline else skills
+    load = (" && ".join(f"agylite skill load {s}" for s in rest) if rest else
             f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
-    lines = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else ""),
-             f"Before the first edit, load the whole skill and follow it: {load}",
-             "Done means: agylite verify passes (tests, types, lint, build)."]
+    lines = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
+    if inline:
+        lines.append(f"The whole skill {skills[0]} follows; follow it before the first edit."
+                     + (f" Also load and follow: {load}" if rest else ""))
+    else:
+        lines.append(f"Before the first edit, load the whole skill and follow it: {load}")
+    lines.append("Done means: agylite verify passes (tests, types, lint, build).")
     used = est_tokens(nbytes("\n".join(lines)))
     cards, cached = [], []
     caps_dir = (root or repo_root()) / "capabilities"
@@ -103,6 +112,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
         cards.append(cid)
         lines.append(text)
         used += cost
+    if inline:   # outside the card budget: the skill has its own
+        lines.append(inline.rstrip())
     if loader.cache:
         loader.cache.save()
     return {"text": "\n".join(lines) + "\n", "ids": ids, "change_type": route["change_type"], "cards": cards,
@@ -123,6 +134,19 @@ def primary_skill_ids(loader, cids, query) -> list:
         return out
     except Exception:   # no bundle yet: fall back to the context command
         return []
+
+
+def _inline_skill(loader, sid: str, budgets: dict):
+    """One skill's whole text (or its cached marker) for the hook; None when it is over the budget or not bundled."""
+    from . import levels
+    limit = budgets["prompt_hook"].get("primary_skill_max_tokens", 0)
+    try:
+        entry = levels.find_skill(loader, sid)
+        if entry is None or entry["tokens"] > limit:
+            return None
+        return levels.whole_skill(loader, entry, level="L2")[0]
+    except Exception:   # no bundle or an unreadable file: fall back to the load command
+        return None
 
 
 def _mark_fired(host: str):
