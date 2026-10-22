@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import shutil
 import sys
 import tempfile
 import unittest
@@ -258,6 +259,36 @@ class TestLedger(unittest.TestCase):
             self.assertIn("| eng-addy | 1 |", md)
             self.assertIn("expectations_passed: 0.5 / 1 / 0.9 (0.8, near)", md)
             self.assertIn("design-extract baseline waits", md)
+
+
+class TestDesignExtractSuite(unittest.TestCase):
+    """design-extract: designlang's bench ground truth and score.js, the original CLI against the AgyLite wrapper."""
+
+    def setUp(self):
+        from agylite.benchmark.quality.suites import extract_runner
+        self.m = extract_runner
+
+    def test_cells_are_the_suite_sites_and_baseline_runs_nothing(self):
+        cfg = suites.load_suite("design-extract")
+        self.assertEqual([c["site"] for c in self.m.cells(cfg)], cfg["tasks"])
+        with mock.patch("subprocess.run") as run:
+            rec = self.m.run_cell({"task": "stripe.com", "site": "stripe.com"},
+                                  {"arm": "baseline", "label": "stripe.com__baseline__0", "run_dir": "/nonexistent"})
+        run.assert_not_called()
+        self.assertEqual(rec["metrics"], {"color_hit": 0, "font_hit": 0, "design_md_sections": 0})
+
+    def test_sections_counts_the_eight_design_md_headings(self):
+        md = "---\nsite: x\n---\n\n# Overview\n\n# Colors\n## Colors sub\n# Shapes\n# Not a section\n"
+        self.assertEqual(self.m.sections(md), 3)
+
+    @unittest.skipUnless(shutil.which("node") and (suites.upstreams_dir() / "design-extract" / "bench" / "score.js")
+                         .is_file(), "node or the design-extract clone not present")
+    def test_hits_use_score_js_and_skip_dimensions_without_truth(self):
+        truth = {"primary": ["#533afd"], "font": ["sohne-var", "Söhne"]}
+        self.assertEqual(self.m.hits("#5339fc", "Sohne", truth), {"color": True, "font": True})
+        self.assertEqual(self.m.hits("#ff0000", None, truth), {"color": False, "font": False})
+        self.assertEqual(self.m.hits("#000000", "Geist", {"primary": [], "font": ["Geist"]}),
+                         {"color": None, "font": True})
 
 
 if __name__ == "__main__":

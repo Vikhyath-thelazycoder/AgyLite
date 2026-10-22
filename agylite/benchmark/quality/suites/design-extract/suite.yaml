@@ -1,0 +1,13 @@
+# IMPLEMENTATION_PLAN §5 design-extract: designlang's own extraction benchmark (bench/sites.json ground truth,
+# bench/score.js colorHit/fontHit). The original arm runs the designlang CLI; the AgyLite arm runs
+# `agylite design extract` in a fresh project. Same CLI underneath, so any difference is a wrapper bug.
+# Free: network and a local browser, no model sessions.
+name: design-extract
+runner: extract_runner
+tasks: [stripe.com, linear.app, gov.uk]   # the first three sites in bench/sites.json with a brand colour and a font
+timeout_s: 300
+metrics: {color_hit: higher, font_hit: higher, design_md_sections: higher}
+target: "equal: same colour and font hits, DESIGN.md has all 8 sections"
+credits:
+  - {repository: Manavarya09/design-extract, license: MIT, commit: 86bdbb53379d4c1f37ce407f706678c95181ea42,
+     used: "bench/sites.json, bench/score.js (colorHit, fontHit), designlang CLI 13.3.2"}

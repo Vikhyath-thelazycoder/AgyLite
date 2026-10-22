@@ -11,6 +11,7 @@ near 0.70–0.90 · regressed < 0.70 or worse than no skill · inconclusive with
 | 20261021T192046Z | eng-ponytail | 1 | 52e8c1108c39 | f3541718 | claude-opus-5-5 | correct: 1 / 1 / 1 (—, same)<br>safe: 0.857 / 1 / 1 (1, inconclusive)<br>src_loc: 45.4 / 19.6 / 23 (0.867, inconclusive)<br>wrote_tests: 1 / 1 / 1 (—, same)<br>cost: 0.173 / 0.131 / 0.166 (0.158, inconclusive) | **inconclusive** | $1.21 / $0.92 / $1.16 | — | — |
 | 20261021T192422Z | eng-addy | 1 | 52e8c1108c39 | f3541718 | claude-opus-5-5 | expectations_passed: 0.903 / 1 / 0.903 (0, inconclusive) | **inconclusive** | $0.74 / $1.06 / $0.96 | — | — |
 | 20261021T192855Z | eng-pocock | 1 | 52e8c1108c39 | f3541718 | claude-opus-5-5 | expectations_passed: 0.47 / 0.745 / 0.572 (0.372, inconclusive) | **inconclusive** | $1.23 / $1.73 / $1.54 | — | — |
+| 20261022T041927Z | design-extract | 1 | 22bf70be985e | 1248801b | claude-opus-5-5 | color_hit: 0 / 0.667 / 0.667 (1, inconclusive)<br>font_hit: 0 / 1 / 1 (1, same)<br>design_md_sections: 0 / 8 / 8 (1, same) | **inconclusive** | $0.00 / $0.00 / $0.00 | none needed: per site every metric is same (identical values in both arms) | pooled colour verdict is inconclusive only because site-to-site spread counts as noise; linear.app colour is missed by designlang itself in both arms |
 
 ## Notes
 
