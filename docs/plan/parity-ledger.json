@@ -821,6 +821,210 @@
    "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/8e680500-2a30-4ae5-8758-7f8231d051d7/scratchpad/home-p5/benchmarks/quality/20261022T120931Z-eng-pocock",
    "fix_applied": "cff519f: whole primary skill in the prompt hook",
    "next_step": "0.372 \u2192 0.709 retained (near); remaining gap: grilling and to-spec cells load pocock/grilling but score 0.2-0.5; to-tickets routed to gstack/ship once; Phase 9"
+  },
+  {
+   "date": "20261022T161455Z",
+   "suite": "research",
+   "n": 1,
+   "bundle": "8880741f98e6",
+   "agylite_commit": "e5789e864393c017f7b7ca5dfbb8bcc7be675770",
+   "upstream_shas": {
+    "Agent-Reach": "94f06c1969dfc1834001269d79d3ad0972d9dee6"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "success": {
+     "baseline": 1.0,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": null,
+     "verdict": "same"
+    }
+   },
+   "verdict": "same",
+   "cost_usd": {
+    "baseline": 0.5571,
+    "upstream": 0.4224,
+    "agylite": 0.5062
+   },
+   "agent_seconds": {
+    "baseline": 189.5,
+    "upstream": 62.8,
+    "agylite": 61.9
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/b01a3d4b-b6f1-4cca-b1e6-036516f1a093/scratchpad/home-p6/benchmarks/quality/20261022T161455Z-research",
+   "fix_applied": "none needed",
+   "next_step": "4/4 tasks pass in every arm (functional); the YouTube-transcript task is famous enough that plain Claude may answer from memory \u2014 use a less-known video in Phase 9; X/Reddit not measured (not enabled)"
+  },
+  {
+   "date": "20261022T162024Z",
+   "suite": "youtube",
+   "n": 1,
+   "bundle": "8880741f98e6",
+   "agylite_commit": "e5789e864393c017f7b7ca5dfbb8bcc7be675770",
+   "upstream_shas": {
+    "youtube-agent-skill": "a2feb2104981a375ffd4f87ee04f4f5344ac43c6"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "hook_verdict": {
+     "baseline": 38.0,
+     "upstream": 66.33333333333333,
+     "agylite": 52.0,
+     "retained": 0.494,
+     "verdict": "regressed"
+    },
+    "on_screen_beats": {
+     "baseline": 0.3333333333333333,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "same"
+    }
+   },
+   "verdict": "regressed",
+   "cost_usd": {
+    "baseline": 0.4962,
+    "upstream": 1.1977,
+    "agylite": 1.0149
+   },
+   "agent_seconds": {
+    "baseline": 145.4,
+    "upstream": 289.9,
+    "agylite": 253.8
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 2,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 1,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/b01a3d4b-b6f1-4cca-b1e6-036516f1a093/scratchpad/home-p6/benchmarks/quality/20261022T162024Z-youtube",
+   "fix_applied": "none yet",
+   "next_step": "hook_verdict 52 vs original 66 (retained 0.49) at n=1; on_screen_beats same. Traces: AgyLite routed to yt-script, got it whole, ran hookscore twice like the original \u2014 the gap is which hook lands on the HOOK line. Phase 9: n=3, check the top-scored hook is the one kept"
+  },
+  {
+   "date": "20261022T163204Z",
+   "suite": "diagram-archify",
+   "n": 1,
+   "bundle": "8880741f98e6",
+   "agylite_commit": "e5789e864393c017f7b7ca5dfbb8bcc7be675770",
+   "upstream_shas": {
+    "archify": "25cf37080fc8b1dbe758a4efc3935b55f3327083"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "first_pass_usable": {
+     "baseline": 0.2,
+     "upstream": 0.2,
+     "agylite": 0.2,
+     "retained": null,
+     "verdict": "same"
+    },
+    "semantic": {
+     "baseline": 0.2,
+     "upstream": 0.4,
+     "agylite": 0.4,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    },
+    "validation": {
+     "baseline": 0.4,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 2.0525,
+    "upstream": 2.9336,
+    "agylite": 2.7718
+   },
+   "agent_seconds": {
+    "baseline": 421.4,
+    "upstream": 558.0,
+    "agylite": 515.6
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/b01a3d4b-b6f1-4cca-b1e6-036516f1a093/scratchpad/home-p6/benchmarks/quality/20261022T163204Z-diagram-archify",
+   "fix_applied": "none needed",
+   "next_step": "validation 1.0 = original (retained 1), semantic 0.4 = original, first-pass usable 0.2 in all arms; inconclusive only by n=1 noise; Phase 9: n=3"
   }
  ],
  "notes": [

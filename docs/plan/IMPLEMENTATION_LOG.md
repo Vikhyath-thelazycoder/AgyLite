@@ -373,22 +373,44 @@ Sign-off (real network): `runtime install research` 13 s; `research doctor`; `re
 swipe`; `youtube voice init` (twice, idempotent); `youtube hookscore`; `diagram validate` and `finalize` with
 browser-check; `verify --diagram` PASSED with receipts as artefacts. `github` not run: `gh` is not installed here.
 
-MP5 paid suites (YouTube, Archify, research): next, at the end of this master prompt (owner rule).
+### MP5 Tier 1 measurement (2026-10-22, Opus 5.5, n = 1, 36 sessions, ≈ $16)
+
+New suites e5789e8: `youtube` (three yt-script tasks; the HOOK line scored by youtube-agent-skill's own hookscore.py;
+on-screen beats) and `research` (four fetch tasks with checkable answers; functional, not a parity claim).
+
+| Suite | Verdict | Metrics (no skill / original / AgyLite) | Cost (no skill / original / AgyLite) | Reading |
+|---|---|---|---|---|
+| research | **same** | success 1 / 1 / 1 (page, RSS, YouTube transcript, GitHub) | ≈ $0.46 / $0.42 / $0.51 | all pass; the transcript task is too famous (plain Claude may answer from memory) |
+| youtube | regressed | hook_verdict 38 / 66.3 / 52 (retained 0.49); on_screen_beats 0.33 / 1 / 1 (same) | $0.50 / $1.20 / $1.01 | AgyLite routes to yt-script, gets it whole and runs hookscore twice like the original; the gap is which hook lands on the HOOK line — likely n = 1 noise, the harness cannot tell at n = 1 |
+| diagram-archify | inconclusive | first-pass usable 0.2 / 0.2 / 0.2 (same); semantic 0.2 / 0.4 / 0.4 (retained 1); validation 0.4 / 1 / 1 (retained 1) | $2.05 / $2.93 / $2.77 | AgyLite equals the original on every metric; "inconclusive" is only the n = 1 noise rule |
+
+Errors: none (36/36 cells valid). Carried into Phase 9: youtube and diagram-archify at n = 3; a less-known video for
+research; X/Reddit once the owner enables them.
+
+### Owner decision (2026-10-22): overlapping skills load both primaries (option 2)
+
+When a task matches skills of more than one upstream (Addy and Pocock both have TDD, debugging and review skills), the
+prompt hook loads both whole, one marked as leading, within a token limit — instead of one primary per capability
+(which keeps Addy's own suite at no-skill). Rejected: routing by each upstream's trigger wording (option 1; ambiguous
+for real requests) and measuring capabilities instead of upstreams (option 3; gives up per-upstream parity).
+Implement in Phase 9, then re-run the AgyLite arm of eng-addy and eng-pocock with `--reuse-from`.
+
+### MP5 sign-off
+
+Code e5789e8 + 153a317 on `main`; gate green (435 tests, doctor 62/0, validate 23/0, routing 48/48, Tier 0 PASS); paid
+suites run once (research same, youtube regressed at n = 1, diagram-archify equal to the original). **Phase 6 exit
+criteria met. Stopped for the owner's go-ahead on MP6.**
 
 ## RESUME FROM
 
 <!-- mp5-progress:start -->
-**Phase 6 (MP5) — code done, gate green (see "Phase 6"). NOW: MP5's paid Tier 1 suites, then sign-off and stop for
-the owner.** Branch `impl/p6-new-domains`; worktree `wt-p6` and engine home `home-p6` in the session scratchpad
-`b01a3d4b-…/scratchpad` (bundle `8880741f98e6`, research runtime installed).
+**Phase 6 (MP5) — DONE and signed off (see "MP5 sign-off"). NOW: stop for the owner's go-ahead on MP6** (update
+workflow tracking all 20 upstreams, `/Users/vikhyathmgowda007/Developer/os/MASTER_PROMPT_6_UPSTREAM_UPDATES.md`), then
+Phase 7 (browser verification) and Phase 9 (parity loop).
 
-Left (in order):
-1. Paid suites: `diagram-archify` (exists, MP2); build the `youtube` and `research` suites if missing, then run all three
-   (three arms, n = 1). Record in the ledger; fix or carry errors.
-2. MP5 sign-off in this log, fast-forward `main`, push, stop for the owner's go-ahead on MP6.
-
-Carried: the Addy / one-primary question (see "MP4 re-measure") for Phase 9; after MP6, run every test and build the
-results website.
+Carried into Phase 9: option 2 (load both primaries for overlapping skills, owner decision 2026-10-22) and the eng-addy
+/ eng-pocock AgyLite-arm re-run; youtube and diagram-archify at n = 3; research with a less-known video. After MP6:
+run every test incl. every paid suite and build the results website.
 <!-- mp5-progress:end -->
 
 How to work (any phase):
