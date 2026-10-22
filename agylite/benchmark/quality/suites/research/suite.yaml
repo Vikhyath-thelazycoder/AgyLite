@@ -1,0 +1,13 @@
+# IMPLEMENTATION_PLAN §5 research: Agent-Reach has no upstream benchmark, so this is functional (task success), not a
+# parity claim. Four fetch tasks with a checkable answer: a docs page, an RSS feed, a YouTube transcript and a GitHub
+# repository. X and Reddit are opt-in and not enabled here, so they are not measured. Arms: plain Claude Code (its own
+# WebFetch/WebSearch), Agent-Reach's English skill as a project skill with its tools on PATH (yt-dlp from the research
+# runtime), and Agylite.
+name: research
+runner: research_runner
+tasks: [page, rss, youtube-transcript, github]
+metrics: {success: higher}
+target: "all pass (functional, not a parity claim)"
+credits:
+  - {repository: Panniantong/Agent-Reach, license: MIT, commit: 94f06c1969dfc1834001269d79d3ad0972d9dee6,
+     used: "agent_reach/skill/SKILL_en.md as the original arm"}

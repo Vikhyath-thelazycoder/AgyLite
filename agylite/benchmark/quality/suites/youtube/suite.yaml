@@ -1,0 +1,12 @@
+# IMPLEMENTATION_PLAN §5 youtube: the six stdlib tools are deterministic and checked against golden outputs in Tier 0
+# (tests/youtube, bundle self-test); this suite measures the judgement part — three yt-script tasks in three arms,
+# the opening hook scored by youtube-agent-skill's own hookscore.py, and whether the script follows the skill's shape
+# (an [ON SCREEN: …] note on the beats). The voice is given in the prompt so no arm needs a voice file.
+name: youtube
+runner: youtube_runner
+tasks: [desk-lamps, cable-management, standing-desk]
+metrics: {hook_verdict: higher, on_screen_beats: higher}
+target: "tools identical; hooks same"
+credits:
+  - {repository: Jakeschincariol/youtube-agent-skill, license: MIT, commit: a2feb2104981a375ffd4f87ee04f4f5344ac43c6,
+     used: "skills/yt-script (the original arm, as a project skill) and yt-script/hookscore.py (the instrument)"}
