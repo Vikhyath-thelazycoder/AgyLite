@@ -47,5 +47,5 @@ seats:
   - {id: creator, name: Creator, room: seomedia, x: 228, y: 270, caps: [youtube/script, youtube/packaging, youtube/repurpose, youtube/analytics, youtube/channel-ops, youtube/seo]}   # MP5 §2
   - {id: mentor, name: Karpathy, room: mentors, x: 350, y: 178, caps: [engineering/principles]}
   - {id: agency, name: Specialists, room: mentors, x: 418, y: 178, caps: [], sources_any: [agency]}
-  - {id: beacon, name: Watchtower, room: mentors, x: 350, y: 236, caps: [observability/risk-detection, observability/events, observability/sessions, observability/token-metrics]}
+  - {id: beacon, name: Watchtower, room: mentors, x: 350, y: 236, caps: [observability/risk-detection, observability/events, observability/sessions, observability/token-metrics, observability/updates]}
   - {id: simple, name: Simplicity, room: mentors, x: 418, y: 236, caps: [engineering/simplicity], fixed: "off"}

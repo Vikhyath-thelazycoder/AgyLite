@@ -234,7 +234,7 @@ local tests ([policy](docs/architecture/VERIFICATION_POLICY.md)).
 
 With auto-update on, nothing: the plugin updates itself and refreshes the engine at session start. Otherwise run
 `/plugin update agylite@agylite-marketplace`; the engine follows at the next session start (or run the installer
-again). `agylite update --latest` brings in newer upstream commits. To uninstall: `/plugin uninstall agylite@agylite-marketplace`, then
+again). `agylite update --review` shows what newer upstream commits change; `agylite update --approve <repo>` switches to one you approve. To uninstall: `/plugin uninstall agylite@agylite-marketplace`, then
 `rm -rf ~/.agylite` and remove the `# Agylite` PATH line from your shell profile.
 </details>
 

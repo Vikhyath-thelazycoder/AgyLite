@@ -1,0 +1,24 @@
+# observability/updates — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP6 (owner decision 2026-10-21): upstream updates are reviewed, benchmarked and switched only on the owner's approval.
+name: Upstream updates
+description: Review new upstream commits (what changed, whether it matters, how to adopt it safely) and switch only on approval
+intent_tags: [upstream updates, review updates, new commits upstream, update the upstreams]
+origin: os-native
+guide: GUIDE.md
+runtime_type: os-native
+requires_network: true
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: none
+activation_conditions:
+  mode: on-demand
+  when: [the owner asks to check, review, approve or reject upstream updates]
+verification_requirements: [a review report per run, nothing activated without the owner's explicit approval]
+dependencies: []
+related_capabilities: [observability/events]
+conflicts: []
+fallback_capability: null
+enabled: true

@@ -332,3 +332,10 @@ scenarios:
     stage: existing
     expect: [engineering/implementation]
     forbid: [engineering/diagrams]
+
+  # ── MP6 §3: upstream updates ─────────────────────────────────────────────────────────────────────────────────────
+  - id: mp6-review-updates
+    request: Review the upstream updates
+    stage: existing
+    expect: [observability/updates]
+    forbid: [engineering/, seo/]

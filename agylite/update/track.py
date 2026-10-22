@@ -4,7 +4,9 @@ update pipeline on a schedule (`config/upstreams.yaml`).
 - check:   `git ls-remote` per upstream (seconds, no download) → newest commit vs the active pin.
 - mirrors: one blobless bare mirror per upstream in `$AGYLITE_HOME/mirrors/`; later runs fetch only new commits and the
            update clones from the local mirror, so only the bundled files of the new commit are downloaded.
-- latest:  each due upstream with a new commit → `update()`; one failure never blocks the others.
+- latest:  each due upstream with a new commit → `update()`; one failure never blocks the others. Since MP6 (owner
+           decision 2026-10-21) it builds and checks candidates only; `activate=True` is for explicit callers (CI's
+           throwaway home after review), never the default. `agylite update --latest` is `--review --due`.
 - promote: copy the active bundle's pins and inventories into the repository's audited evidence (CI pull requests).
 - schedule: an optional weekly macOS LaunchAgent running `agylite update --latest --due` (explicit opt-in).
 """
@@ -145,8 +147,8 @@ def commits_between(mirror_path: Path, old: str, new: str) -> int | None:
 
 
 def latest(home: Path, *, only_due=False, repos=None, tracks=None, policy=None, staging=None, evidence=None,
-           rules_path=None, licenses_path=None, check_registry=True, log=print) -> list:
-    """Apply new upstream commits one repository at a time; each switch is independent and reversible."""
+           rules_path=None, licenses_path=None, check_registry=True, activate=False, log=print) -> list:
+    """Build (and only with `activate=True` switch to) new upstream commits one repository at a time."""
     home = Path(home)
     policy = policy or load_policy()
     state = _state(home)
@@ -169,7 +171,7 @@ def latest(home: Path, *, only_due=False, repos=None, tracks=None, policy=None, 
             report = update(home, name, row["latest"], mirror_path=mp, staging=staging,
                             evidence=_baseline(home, evidence), rules_path=rules_path,
                             licenses_path=licenses_path, self_test=bool(pol.get("self_test")),
-                            check_registry=check_registry, log=log)
+                            check_registry=check_registry, activate=activate, log=log)
         except (UpdateError, subprocess.SubprocessError, OSError) as exc:
             report = {"status": "failed", "errors": [str(exc).strip()[-300:]]}
         if report.get("status") == "activated":

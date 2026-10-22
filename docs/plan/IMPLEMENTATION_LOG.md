@@ -401,17 +401,57 @@ Code e5789e8 + 153a317 on `main`; gate green (435 tests, doctor 62/0, validate 2
 suites run once (research same, youtube regressed at n = 1, diagram-archify equal to the original). **Phase 6 exit
 criteria met. Stopped for the owner's go-ahead on MP6.**
 
+## Phase 8: update workflow (MP6: review → benchmark → the owner approves) — DONE on `impl/p8-update-workflow` (2026-10-22)
+
+### MP6 report
+
+| Item | Test that proves it | Notes |
+|---|---|---|
+| §1 `agylite update --review [--repo X…] [--due] [--track …] [--to SHA] [--out DIR] [--tier1-plan]`: non-merge commits from the blobless mirror, per-commit classes (BREAKING, PRIMARY, BUNDLED, NEW_SKILL, NEW_UNCLASSIFIED, POLICY, SECURITY, IRRELEVANT) + conventional type, section-level diffs with token deltas (unified diff for PRIMARY, > 200 lines to `.diff`), runtime versions + changelog, candidate built and checked with `update(activate=False)`, Tier 0 on the candidate vs current, Tier 1 plan (never run), verdicts, proposals (rename / delete / new skill via BM25 top 3 → REFERENCE / unclassified / rewrite drift with the failing pattern), `REPORT.md` + `report.json` + `<repo>-proposed-rules.patch` | `tests/update/test_review.py` (14, real temp git upstream) | POLICY counts what would reach the bundle (a bundled MCP/hook file, a new bundled installer, MCP config or telemetry newly added to bundled code/config, a license change) plus any new MCP config file; prose that mentions telemetry is not POLICY |
+| §2 `--approve REPO[@SHA] [--review DIR]` (refuses unreviewed, HOLD/NEEDS_RULES and stale reviews; decision in `updates/decisions.jsonl`), `--reject REPO@SHA --reason`, `--pending`; `--latest` = `--review --due` with the approval note; `track.latest()` builds candidates only unless `activate=True`; L0 line `updates: N reviewed upstream update(s) awaiting approval` from local files only | `test_review`, `test_track.test_latest_never_activates_by_default` | a candidate is built against the other upstreams' current pins, so approving one makes the others stale (re-review) |
+| §3 entry skill `agylite-update-review`, capability `observability/updates` (guide), routing rule `upstream-updates` → OBSERVABILITY_CHANGE | scenario `mp6-review-updates` | |
+| §4 CI: review → approve only ADOPT / SECURITY_FAST_TRACK in the runner's throwaway home (one upstream at a time) → promote → PR labelled `needs-owner-approval` with REPORT.md as body (merge = the owner's approval), review folder as an artifact | actionlint clean | Actions history: the workflow runs now (scheduled run 2026-10-22 succeeded after MP1 F14) |
+| §5 all 20 upstreams tracked; `releases` (designlang): a pin newer than the newest tag reads UP_TO_DATE | `test_real_policy_file_covers_every_upstream` | |
+| Found and fixed: `fetch_commit` skipped generator inputs (Ponytail's `hooks/ponytail-config.js`, so every Ponytail update failed); `gc` would delete the designlang and research runtimes; `--bundle` for Tier 1 (the AgyLite arm runs a candidate) | real review | |
+
+### Phase 8 gate (temporary engine home `home-p6`, bundle `8880741f98e6`)
+
+```
+unittest discover -s tests     → Ran 450 tests — OK (skipped=3)
+agylite doctor                 → 64 passed, 0 failed, 3 warnings
+agylite validate               → 23 passed, 0 failed
+agylite benchmark --compare    → routing 49/49
+benchmark --quality --tier 0   → PASS
+```
+
+### Sign-off: real `agylite update --review --due --tier1-plan` (2026-10-22; `current` 8880741f98e6 before and after)
+
+| Upstream | Commits | Verdict | Why |
+|---|---:|---|---|
+| agency | 57 | SECURITY_FAST_TRACK | 6 security commits; candidate 3587f53c87c0, Tier 0 PASS |
+| beacon | 294 | SECURITY_FAST_TRACK | 70 security-worded commits (detection rules); 1 new skill proposed as REFERENCE |
+| ecc | 171 | SECURITY_FAST_TRACK | 1 security commit; a PRIMARY file changed (no Tier 1 suite measures it yet) |
+| graphify | 35 | SECURITY_FAST_TRACK | 6 security commits; candidate builds, self-tests pass |
+| opendesign | 68 | SECURITY_FAST_TRACK | 1 security commit; 1 new skill proposed as REFERENCE |
+| uiuxpromax | 7 | SECURITY_FAST_TRACK | 1 security commit |
+| ponytail | 44 | SECURITY_FAST_TRACK | a PRIMARY file changed: Tier 1 (eng-ponytail) recommended |
+| addy | 14 | ADOPT_AFTER_TIER1 | 2 PRIMARY commits; Tier 1 plan eng-pocock + eng-addy |
+| gstack | 91 | NEEDS_RULES | the `review/SKILL.md` QA rewrite no longer matches upstream (pattern shown in the report) |
+| 11 others | 0 | UP_TO_DATE | designlang: the pin is newer than its newest release tag |
+
+Nothing was approved: the owner approves (`agylite update --pending` lists 8 approvable candidates).
+
 ## RESUME FROM
 
-<!-- mp5-progress:start -->
-**Phase 6 (MP5) — DONE and signed off (see "MP5 sign-off"). NOW: stop for the owner's go-ahead on MP6** (update
-workflow tracking all 20 upstreams, `/Users/vikhyathmgowda007/Developer/os/MASTER_PROMPT_6_UPSTREAM_UPDATES.md`), then
-Phase 7 (browser verification) and Phase 9 (parity loop).
+<!-- mp6-progress:start -->
+**Phase 8 (MP6) — DONE (see "Phase 8"). NOW: stop for the owner** — (1) which reviewed upstream updates to approve
+(`agylite update --pending`; review report `home-p6/updates/review-2026-10-22/REPORT.md`; gstack needs its review
+rewrite updated first), then (2) Phase 7 (browser verification, IMPLEMENTATION_PLAN §2.2) and (3) Phase 9 (parity
+loop). Owner request after MP6: run every test incl. every paid suite and build the results website.
 
-Carried into Phase 9: option 2 (load both primaries for overlapping skills, owner decision 2026-10-22) and the eng-addy
-/ eng-pocock AgyLite-arm re-run; youtube and diagram-archify at n = 3; research with a less-known video. After MP6:
-run every test incl. every paid suite and build the results website.
-<!-- mp5-progress:end -->
+Carried into Phase 9: option 2 (load both primaries for overlapping skills) + the eng-addy / eng-pocock AgyLite-arm
+re-run; youtube and diagram-archify at n = 3; research with a less-known video.
+<!-- mp6-progress:end -->
 
 How to work (any phase):
 1. Read `/Users/vikhyathmgowda007/Developer/os/MASTER_PROMPT_4_DESIGN_BEST_OF_BEST.md` and IMPLEMENTATION_PLAN §2.2.

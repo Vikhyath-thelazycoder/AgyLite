@@ -96,6 +96,8 @@ def fetch_commit(repo: str, sha: str, target: Path, rules_repo, log=print, mirro
     rows = inventory_from_git(target, sha, repo)
     needed = [p for p, _s, _b in rows if classify(rules_repo, p)["decision"] in BUNDLED
               or p.startswith(("LICENSE", "NOTICE", "licenses/")) or p == ".claude-plugin/plugin.json"]
+    have = {p for p, _s, _b in rows}
+    needed += [i for p in list(needed) for i in classify(rules_repo, p).get("inputs", []) if i in have]  # generator inputs
     needed += [p[:-5] for p in needed if p.endswith(".tmpl")]
     subprocess.run(["git", "sparse-checkout", "set", "--no-cone", "--stdin"], cwd=target, check=True,
                    input="".join(f"/{p}\n" for p in needed), text=True)
@@ -148,9 +150,11 @@ def dangling_after_update(old_rows, new_rows, rules_repo, read_text) -> list:
 
 def update(home: Path, repo: str, sha: str, *, source: Path | None = None, staging: Path | None = None,
            evidence: Path | None = None, rules_path: Path | None = None, licenses_path: Path | None = None,
-           self_test=False, check_registry=True, mirror_path: Path | None = None, log=print) -> dict:
+           self_test=False, check_registry=True, mirror_path: Path | None = None, activate=True, log=print) -> dict:
     """Build and (if every check passes) activate a bundle with `repo` pinned at `sha`.
-    `source`: a local tree of the new commit (tests / offline mirrors); otherwise the commit is fetched (network)."""
+    `source`: a local tree of the new commit (tests / offline mirrors); otherwise the commit is fetched (network).
+    `activate=False` (MP6 review): build and check the candidate, then stop with status `candidate`; `approve()`
+    switches to it later, only on the owner's approval."""
     home = Path(home)
     evidence = Path(evidence) if evidence else _current_evidence(home)
     staging = Path(staging) if staging else bundle_build.default_staging(home)
@@ -214,16 +218,23 @@ def update(home: Path, repo: str, sha: str, *, source: Path | None = None, stagi
             problems += [p for p in reg if "CARD.md is stale" not in p]
     shutil.copytree(cand_ev, bundle / "evidence", dirs_exist_ok=True)
     report.update(bundle_id=info["bundle_id"], counts=info["counts"], errors=problems[:50],
-                  status="activated" if not problems else "failed")
-    if not problems:
-        bundle_build.activate(home, info["bundle_id"])
-        trees.mkdir(parents=True, exist_ok=True)   # later updates build with this upstream's new tree
-        link = trees / repo
-        if link.is_symlink() or link.exists():
-            link.unlink()
-        link.symlink_to((cand_stage / repo).resolve())
+                  status=("activated" if activate else "candidate") if not problems else "failed",
+                  self_tests=info.get("self_tests"))
+    if not problems and activate:
+        switch(home, repo, info["bundle_id"], cand_stage / repo)
     _log(home, report)
     return report
+
+
+def switch(home: Path, repo: str, bundle_id: str, tree: Path):
+    """Make a built, checked bundle current, and let later updates build with this upstream's new tree."""
+    bundle_build.activate(home, bundle_id)
+    trees = Path(home) / "staging-current"
+    trees.mkdir(parents=True, exist_ok=True)
+    link = trees / repo
+    if link.is_symlink() or link.exists():
+        link.unlink()
+    link.symlink_to(Path(tree).resolve())
 
 
 def _current_evidence(home: Path) -> Path:
@@ -277,6 +288,8 @@ def gc(home: Path, dry_run=False) -> dict:
             src = files / repo if repo != "brag" else files / "brag" / "skills" / "brag" / "scripts"
             if (src / "pyproject.toml").is_file():
                 locks.add(f"{prefix}-{pyvenv.lock_of(src, repo)}")
+    for name in ("designlang", "research"):   # MP4/MP5 runtimes are named by their own pins, not by bundle files
+        locks |= {d.name for d in (home / "runtimes").glob(f"{name}-*")} if (home / "runtimes").is_dir() else set()
     runtimes = home / "runtimes"
     stale_rt = sorted(d.name for d in runtimes.iterdir() if d.is_dir() and d.name not in locks) if runtimes.is_dir() else []
     partial = sorted(p.name for p in bundles.glob(".build-*") if p.is_dir())   # interrupted builds

@@ -1,3 +1,3 @@
 # Domain observability (spec §5). Capability order is the registry order; one directory per entry.
 purpose: Structured, redacted events about OS activity; data source for the dashboard.
-capabilities: [events, sessions, token-metrics, risk-detection]
+capabilities: [events, sessions, token-metrics, risk-detection, updates]

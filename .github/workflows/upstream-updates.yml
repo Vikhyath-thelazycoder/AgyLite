@@ -1,7 +1,9 @@
-# Agylite upstream tracking (P28, D-047).
+# Agylite upstream tracking (P28, D-047; MP6 review-and-approve, owner decision 2026-10-21).
 # Daily: report which upstreams have new commits (no changes).
-# Weekly (Monday) and monthly (1st): fetch only the new commits, rebuild the bundle through every check, run the full
-# test suite and benchmarks, and open ONE pull request with the new pins. Nothing reaches users until it is merged.
+# Weekly (Monday) and monthly (1st): `agylite update --review` classifies every new commit, diffs what agents read,
+# builds and checks a candidate and runs Tier 0 on it. Only ADOPT / SECURITY_FAST_TRACK upstreams are approved, and only
+# inside this runner's throwaway home, to produce the pins of ONE pull request labelled needs-owner-approval (never
+# auto-merged). Merging that PR is the owner's approval for everyone who installs the plugin. Tier 1 never runs here.
 name: Upstream updates
 
 on:
@@ -53,11 +55,23 @@ jobs:
           agylite bundle fetch --staging "$AGYLITE_HOME/staging/upstream"
           agylite bundle build --staging "$AGYLITE_HOME/staging/upstream" --self-test
 
-      - name: Apply new commits (new commits only, every check)
+      - name: Review new commits (never activates)
         if: steps.mode.outputs.mode == 'apply'
         run: |
-          agylite update --latest ${{ steps.mode.outputs.track }} | tee apply.txt || true
-          agylite update --promote | tee -a apply.txt
+          agylite update --review --due ${{ steps.mode.outputs.track }} --tier1-plan --out review | tee review.txt
+
+      - name: Approve ADOPT / SECURITY_FAST_TRACK in this throwaway home (one upstream at a time)
+        if: steps.mode.outputs.mode == 'apply'
+        run: |
+          # each candidate is built against the other upstreams' current pins, so approving one makes the others stale:
+          # re-review each adoptable upstream right before approving it
+          for repo in $(python -c "import json; print(' '.join(r['repo'] for r in json.load(open('review/report.json'))['upstreams'] if r.get('verdict') in ('ADOPT', 'SECURITY_FAST_TRACK')))"); do
+            agylite update --review --repo "$repo" --out "review/approve-$repo" | tee -a review.txt
+            if python -c "import json,sys; r=json.load(open('review/approve-$repo/report.json'))['upstreams'][0]; sys.exit(r.get('verdict') not in ('ADOPT', 'SECURITY_FAST_TRACK'))"; then
+              agylite update --approve "$repo" --review "review/approve-$repo" | tee -a review.txt
+            fi
+          done
+          agylite update --promote | tee -a review.txt
 
       - name: Regenerate audited evidence, notices and docs
         if: steps.mode.outputs.mode == 'apply'
@@ -76,14 +90,30 @@ jobs:
           agylite validate --no-unittest
           agylite benchmark --compare --out docs/benchmarks/RESULTS.md --plugins-root /nonexistent > /dev/null
 
+      - name: Pull request body
+        if: steps.mode.outputs.mode == 'apply'
+        run: |
+          { echo '> **Owner approval:** merging this pull request approves these upstream pins for everyone who installs'
+            echo '> the plugin. Nothing here auto-merges. NEEDS_RULES, HOLD and ADOPT_AFTER_TIER1 upstreams are listed'
+            echo '> below but stay out of the pins; their proposed-rules patches are attached to the workflow run.'
+            echo; cat review/REPORT.md; } > pr-body.md
+
+      - name: Keep the review (report, diffs, proposed-rules patches)
+        if: steps.mode.outputs.mode == 'apply'
+        uses: actions/upload-artifact@v4
+        with:
+          name: upstream-review
+          path: review/
+
       - name: Open a pull request
         if: steps.mode.outputs.mode == 'apply'
         uses: peter-evans/create-pull-request@v6
         with:
           branch: upstream-updates
-          title: "Upstream updates"
-          commit-message: "chore(upstreams): update pinned upstreams (checked by agylite update --latest)"
-          body-path: apply.txt
+          title: "Upstream updates (needs owner approval)"
+          labels: needs-owner-approval
+          commit-message: "chore(upstreams): reviewed upstream pins (agylite update --review, ADOPT / SECURITY_FAST_TRACK only)"
+          body-path: pr-body.md
           add-paths: |
             docs/audit/evidence/**
             docs/audit/05_CAPABILITY_MATRIX.md

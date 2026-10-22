@@ -40,7 +40,7 @@ def _valid(rec) -> bool:
 
 def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=False, max_sessions=None,
         model=None, judge_model=None, python=None, out_root: Path | None = None, log=print, ledger=True,
-        resume: Path | None = None, reuse_from: Path | None = None) -> dict:
+        resume: Path | None = None, reuse_from: Path | None = None, bundle: Path | None = None) -> dict:
     cfg, mod, matrix = plan(suite, ARMS if reuse_from else arms, runs, tasks)
     if dry_run:
         kept = {}
@@ -66,6 +66,8 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
     todo = [m for m in matrix if _label(m) not in kept]
     harness.require_spend(yes_spend, len(todo), max_sessions)
     run_dir.mkdir(parents=True, exist_ok=True)
+    if bundle is not None:   # MP6 §1.4: the AgyLite arm runs a reviewed candidate, not the active bundle
+        (run_dir / "bundle.txt").write_text(str(Path(bundle).resolve()), encoding="utf-8")
     records, stopped = [kept[_label(m)] for m in matrix if _label(m) in kept], None
     for i, m in enumerate(todo):
         label = _label(m)
@@ -106,7 +108,8 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
     report = score(suite, cfg, mod, records)
     report.update(run_dir=str(run_dir), model=model or harness.DEFAULT_MODEL, judge_model=judge_model,
                   reused_from=str(reuse_from) if reuse_from else None,
-                  bundle=(current_bundle().name if current_bundle() else None), date=stamp, runs=runs,
+                  bundle=(Path(bundle).name if bundle else current_bundle().name if current_bundle() else None),
+                  date=stamp, runs=runs,
                   isolation="real (--setting-sources project,local --strict-mcp-config; init event checked)")
     (run_dir / "report.json").write_text(json.dumps(report, indent=1, default=str), encoding="utf-8")
     if ledger:

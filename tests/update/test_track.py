@@ -56,10 +56,10 @@ class Base(unittest.TestCase):
     def current(self):
         return os.readlink(self.fx.home / "bundles" / "current")
 
-    def latest(self, **kw):
+    def latest(self, activate=True, **kw):   # explicit activation; the default never switches (MP6)
         return track.latest(self.fx.home, policy=self.policy, staging=self.fx.staging, evidence=self.fx.evidence,
                             rules_path=self.fx.rules, licenses_path=self.fx.licenses, check_registry=False,
-                            log=lambda *_: None, **kw)
+                            activate=activate, log=lambda *_: None, **kw)
 
 
 class TestTracking(Base):
@@ -98,6 +98,15 @@ class TestTracking(Base):
         git("cat-file", "-e", f"{sha3}^{{commit}}", cwd=mirror)
         self.assertIn(sha3, (self.fx.home / "bundles" / "current" / "evidence" / "upstream-staging-snapshot.yaml")
                       .read_text(encoding="utf-8"))
+
+    def test_latest_never_activates_by_default(self):
+        """MP6: nothing activates automatically; the default builds and checks a candidate only."""
+        self.write({"docs/dup.md": FILES["docs/dup.md"] + "more\n"})
+        self.commit("docs")
+        before = self.current()
+        res = self.latest(activate=False)[0]
+        self.assertEqual(res["action"], "candidate", res.get("errors"))
+        self.assertEqual(self.current(), before)
 
     def test_broken_upstream_commit_never_switches(self):
         (self.upstream / "skills/x/references/r.md").unlink()

@@ -462,8 +462,9 @@ Phase 5 (MP4 design) is done: both fixes landed and the AgyLite-only re-measure 
 inspector same / judge 0.92 and eng-pocock from 0.37 to 0.71; eng-addy stays at no-skill because its tasks route to the
 Pocock/Ponytail primaries (owner decision carried into Phase 9). Phase 6 (MP5: research, YouTube, Archify diagrams) code
 is done and signed off (paid: research same, diagram-archify equal to the original, youtube hook score 0.49 at n = 1).
-**Next: MP6 (update workflow) on the owner's go-ahead.** Phase 9 carries the owner's option 2 (load both primaries for
-overlapping skills). The step-by-step resume point, gate commands and every
+Phase 8 (MP6) is done: upstream updates are review → benchmark → owner approval (`agylite update --review`, `--approve`,
+`--pending`); a real review found 8 approvable candidates and 1 NEEDS_RULES, none approved. **Next: the owner's
+approvals, Phase 7 (browser), Phase 9 (parity loop, incl. option 2), then every test + the results website.** The step-by-step resume point, gate commands and every
 report are in `docs/plan/IMPLEMENTATION_LOG.md` → "RESUME FROM"; benchmark results in `docs/plan/PARITY_LEDGER.md`.
 Paid Tier 1 sessions (`claude -p`) run only with the owner's approval.
 

@@ -23,7 +23,7 @@ change_types:
     - {type: YOUTUBE_CHANGE, keywords: [youtube, yt, shorts, youtube channel, my channel, video thumbnail, youtube thumbnail, audience retention, youtube subscribers, video script, script for my video, my video, my videos]}
     - {type: SEO_CHANGE, keywords: [seo, rank, ranking, search console, sitemap, robots, ai search, aeo, geo, schema markup, backlinks, ai-generated answers, ai generated answers, answer engine]}
     - {type: MEDIA_CHANGE, keywords: [video, demo, deck, slides, presentation, launch post, showcase, screen recording]}
-    - {type: OBSERVABILITY_CHANGE, keywords: [logging, logs, metrics, tracing, telemetry, monitoring, observability]}
+    - {type: OBSERVABILITY_CHANGE, keywords: [logging, logs, metrics, tracing, telemetry, monitoring, observability, upstream updates, upstream, upstreams, new commits upstream]}
     - {type: PERFORMANCE_CHANGE, keywords: [performance, slow, latency, faster, speed up, optimize, bundle size, memory leak]}
     - {type: BUG_FIX, keywords: [fix, bug, broken, crash, crashes, error, failing, fails, regression, not working, doesn't work]}
     - {type: TESTING_CHANGE, keywords: [test, tests, testing, coverage, tdd, e2e, check whether, verify, show me, screenshot]}
@@ -481,6 +481,14 @@ rules:
     project: [existing, unknown]
     select: [codebase/repository-understanding]
     weight: 3
+
+  # ── MP6 §3: upstream updates (review → benchmark → the owner approves) ──────────────────────────────────────────
+  - id: upstream-updates
+    description: Review new upstream commits and approve or reject them with the owner
+    any: [upstream updates, update the upstreams, review updates, review the updates, new commits upstream, check for updates, upstream changes]
+    select: [observability/updates]
+    suppress: [seo, media, design, research, youtube]
+    weight: 5
 
 # File-path signals (spec §15 "file paths"): a changed path matching a glob selects capabilities (strong).
 paths:

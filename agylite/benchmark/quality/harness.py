@@ -72,6 +72,10 @@ def agylite_home_for(run_dir: Path) -> Path:
     home = run_dir / "agylite-home"
     home.mkdir(parents=True, exist_ok=True)
     real = agylite_home()
+    pinned = run_dir / "bundle.txt"   # MP6: a candidate bundle under test becomes this home's `current`
+    if pinned.is_file() and not (home / "bundles").exists():
+        (home / "bundles").mkdir()
+        (home / "bundles" / "current").symlink_to(pinned.read_text(encoding="utf-8").strip())
     for name in ("bundles", "runtimes", "staging"):
         link = home / name
         if (real / name).exists() and not link.exists():

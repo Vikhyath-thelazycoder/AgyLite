@@ -53,7 +53,8 @@ def _quality(args):
                             yes_spend=args.yes_spend, max_sessions=args.max_sessions, model=args.model,
                             judge_model=args.judge_model, python=sys.executable,
                             resume=Path(args.resume).expanduser() if args.resume else None,
-                            reuse_from=Path(args.reuse_from).expanduser() if args.reuse_from else None)
+                            reuse_from=Path(args.reuse_from).expanduser() if args.reuse_from else None,
+                            bundle=Path(args.bundle).expanduser() if args.bundle else None)
         except harness.SpendRefused as exc:
             print(f"agylite benchmark: {exc}", file=sys.stderr)
             return 3
@@ -355,6 +356,11 @@ def _bootstrap(args):
     phase = next((f"{p['phase_id']} {p['phase_name']} ({p['status']})" for p in (index or {}).get("phases", [])
                   if p["phase_id"] == (index or {}).get("current_phase")), None)
     lines = pstate.summary_lines(st, index) if st else ["no project state yet (`agylite project init`)"]
+    from .paths import agylite_home
+    from .update.review import pending_line   # MP6 §2: local files only, never the network at session start
+    waiting = pending_line(agylite_home())
+    if waiting:
+        lines = [waiting] + lines
     pointer = (f"{index['plan_path']}#{index['current_phase']} · index .agylite/plan-index.yaml" if index else None)
     result = bootstrap(project=project, session_id=sid, host=args.host, bundle_dir=current_bundle(),
                        budgets=load_budgets(), stage=lifecycle.detect_stage(project.root, st), phase=phase,
@@ -1243,7 +1249,9 @@ def _update_cmd(args):
     from .update import UpdateError, gc, rollback, update
     home = agylite_home()
     try:
-        if args.command == "update" and (args.check or args.latest or args.promote or args.schedule):
+        if args.command == "update" and (args.review or args.latest or args.approve or args.reject or args.pending):
+            return _update_review(args, home)
+        if args.command == "update" and (args.check or args.promote or args.schedule):
             from .update import track
             if args.schedule:
                 path = track.schedule(home, enable=args.schedule == "install")
@@ -1263,19 +1271,6 @@ def _update_cmd(args):
                         print(f"{x['repo']:11} {x['track']:8} {x['pinned'][:7]} → {(x['latest'] or '???????')[:7]}  "
                               f"{x['status']}{'' if x['due'] else ' (not due)'}{'  ' + x['error'] if x.get('error') else ''}")
                 return 0
-            rows = track.latest(home, only_due=args.due, repos=repos, tracks=args.track or None)
-            if args.json:
-                _print(rows, True)
-            else:
-                for x in rows:
-                    extra = f" · {x['commits']} commits" if x.get("commits") is not None else ""
-                    print(f"{x['repo']:11} {x['action']:10} {x['pinned'][:7]} → {(x.get('latest') or '')[:7]}{extra}"
-                          + (f"  ✗ {x['errors'][0]}" if x.get("errors") else ""))
-            ok = [x for x in rows if x["action"] == "activated"]
-            for x in ok:
-                emit(_project_ref(args), "UPSTREAM_UPDATED", severity="medium",
-                     details={"repo": x["repo"], "from": x["pinned"], "to": x["latest"], "bundle_id": x["bundle_id"]})
-            return 1 if any(x["action"] == "failed" for x in rows) else 0
         if args.command == "update":
             if not (args.repo and args.sha):
                 print("agylite update: give <repo> <sha>, or use --check / --latest", file=sys.stderr)
@@ -1295,6 +1290,52 @@ def _update_cmd(args):
         return 1
     _print(r, args.json)
     return 0 if r.get("status", "ok") in ("activated", "ok") or args.command != "update" else 1
+
+
+def _update_review(args, home):
+    """MP6 (owner decision 2026-10-21): review → benchmark → the owner approves. Nothing activates automatically."""
+    from .events import emit
+    from .update import UpdateError
+    from .update import review as rv
+    if args.pending:
+        rows = rv.pending(home)
+        if args.json:
+            _print(rows, True)
+        else:
+            for e in rows:
+                print(f"{e['repo']:11} {e['from'][:7]} → {e['sha'][:7]}  {e['verdict']:20} build {e['build']:10} "
+                      f"{'approvable' if e['approvable'] else 'not approvable'} · {e['review']}/REPORT.md")
+            print(f"{len(rows)} reviewed update(s) pending" if rows else "no reviewed updates pending")
+        return 0
+    if args.approve:
+        repo, _, sha = args.approve.partition("@")
+        r = rv.approve(home, repo, sha or None, args.review if isinstance(args.review, str) else None)
+        emit(_project_ref(args), "UPSTREAM_UPDATED", severity="medium",
+             details={k: r[k] for k in ("repo", "from", "to", "bundle_id", "verdict", "who")})
+        _print(r, args.json)
+        return 0
+    if args.reject:
+        repo, _, sha = args.reject.partition("@")
+        if not (sha and args.reason):
+            print("agylite update --reject: give <repo>@<sha> and --reason \"…\"", file=sys.stderr)
+            return 2
+        _print(rv.reject(home, repo, sha, args.reason), args.json)
+        return 0
+    if args.latest:
+        print("updates are review-and-approve (owner decision 2026-10-21); run `agylite update --approve …` after "
+              "reading the report")
+    repos = args.repo_list or ([args.repo] if args.repo else None)
+    rep = rv.review(home, repos=repos, only_due=args.due or args.latest, tracks=args.track or None, to=args.to,
+                    out=Path(args.out) if args.out else None, tier1_plan=args.tier1_plan,
+                    log=lambda m: print(m, file=sys.stderr))
+    if args.json:
+        _print(rep, True)
+    else:
+        for r in rep["upstreams"]:
+            n = len(r["commits"]) if isinstance(r.get("commits"), list) else r.get("commits", "—")
+            print(f"{r['repo']:11} {str(n):>5} commits  {r['verdict']:20} {'; '.join(r.get('why') or [])[:110]}")
+        print(f"report: {rep['dir']}/REPORT.md")
+    return 0
 
 
 def _guarded(func):
@@ -1344,7 +1385,8 @@ def build_parser():
     q.add_argument("--max-sessions", type=int, help="Hard cap on paid sessions")
     q.add_argument("--model", help="Actor model id (default claude-opus-5-5)")
     q.add_argument("--judge-model", help="Grader/judge model id (default: the actor's)")
-    q.add_argument("--bundle", help="Tier 0 against this bundle directory (default: current)")
+    q.add_argument("--bundle", help="Tier 0 / Tier 1 against this bundle directory, e.g. a reviewed update candidate "
+                                    "(default: current)")
     q.add_argument("--baseline-save", help="Tier 0: save this run as the baseline file")
     q.add_argument("--compare-to", help="Tier 0: regression check against a saved baseline")
     q.add_argument("--report", help="Re-render a Tier 1 run directory's report")
@@ -1615,8 +1657,19 @@ def build_parser():
     p.add_argument("repo", nargs="?", help="Upstream name, e.g. graphify")
     p.add_argument("sha", nargs="?", help="Full 40-character commit SHA")
     p.add_argument("--check", action="store_true", help="Show which upstreams have new commits (no download)")
-    p.add_argument("--latest", action="store_true", help="Apply new upstream commits (all, or the named repo)")
-    p.add_argument("--due", action="store_true", help="With --latest: only upstreams whose interval has passed")
+    p.add_argument("--review", nargs="?", const=True, default=False, metavar="DIR",
+                   help="Review new upstream commits: classify, diff, build + check a candidate, Tier 0, verdict, "
+                        "report (never activates). With --approve: the review folder to approve from")
+    p.add_argument("--repo", dest="repo_list", action="append", help="With --review: only this upstream (repeatable)")
+    p.add_argument("--to", help="With --review --repo X: review up to this commit instead of the newest")
+    p.add_argument("--out", help="With --review: report folder (default ~/.agylite/updates/review-<date>)")
+    p.add_argument("--tier1-plan", action="store_true", help="With --review: print the Tier 1 plan with session counts")
+    p.add_argument("--approve", metavar="REPO[@SHA]", help="Activate a reviewed candidate (refuses stale reviews)")
+    p.add_argument("--reject", metavar="REPO@SHA", help="Remember a rejected update range (needs --reason)")
+    p.add_argument("--reason", help="With --reject: why")
+    p.add_argument("--pending", action="store_true", help="List reviewed candidates awaiting approval")
+    p.add_argument("--latest", action="store_true", help="Alias of --review --due (updates never activate on their own)")
+    p.add_argument("--due", action="store_true", help="With --review: only upstreams whose interval has passed")
     p.add_argument("--promote", action="store_true", help="Write the active bundle's pins into docs/audit/evidence (CI)")
     p.add_argument("--track", action="append", choices=("weekly", "monthly", "releases"),
                    help="With --latest: only upstreams with this policy (repeatable)")
