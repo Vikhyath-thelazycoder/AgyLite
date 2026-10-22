@@ -31,7 +31,12 @@ change_types:
     - {type: NEW_FEATURE, keywords: [add, build, create, implement, new, introduce, support, integrate, make]}
   # How the work is delivered is not what the work is: "build X with unit tests" is a feature, not a testing change.
   # These patterns are removed from the request before the change type is chosen (capability matching still sees them).
-  ignore: ['\b(?:with|including|includes|plus|and)\s+(?:(?:unit|integration|automated)\s+)?tests?\b', '\b(?:(?:unit|integration|automated)\s+)?tests?\s+(?:included|too|as well)\b']
+  ignore: ['\b(?:with|including|includes|plus|and)\s+(?:(?:unit|integration|automated)\s+)?tests?\b', '\b(?:(?:unit|integration|automated)\s+)?tests?\s+(?:included|too|as well)\b',
+           # MP4 Tier 1: product content is not project work. "the spending plan", "current plan", "the plan's limits"
+           # describe what the page shows; "no screenshots" describes missing assets, not a request to take any.
+           '\b(?:spending|pricing|price|payment|meal|budget|savings|subscription|billing|data|current|paid|free)\s+plans?\b',
+           "\\bplan's\\b",
+           '\bno\s+(?:\w+\s+){0,2}(?:screenshots?|photos?|photographs?|images?)\b']
   default_by_domain:
     engineering: FEATURE_CHANGE
     codebase: FEATURE_CHANGE
@@ -113,7 +118,9 @@ rules:
     any: *new_product
     regex: *new_product_rx
     require_any: [saas, web, website, web app, webapp, api, server, backend, users, user accounts, account, accounts, login, log in, sign in, signup, sign up, auth, authentication, payment, payments, checkout, multi-tenant, cloud, online, marketplace, booking, bookings, mobile, admin]
-    unless: *new_product_unless
+    # A static page (MP4 Tier 1: "Static HTML/CSS/JS") has no users, accounts or network exposure to secure.
+    unless: [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit,
+             static html, static site, static page, static website, plain html, html/css/js, html/css]
     project: [new, unknown]
     select: [engineering/security]
     weight: 3
@@ -153,6 +160,25 @@ rules:
     any: [premium, generic, high-end, polished, ai slop, slop, bland, make it pop, redesign]
     select: [design/design-direction, design/visual-quality, design/typography, design/frontend, design/design-review]
     suppress: [seo, media, engineering, testing]
+    weight: 3
+
+  # MP4 Tier 1 (2026-10-22): building a page, site or app screen is design work first, so Taste (design-direction)
+  # loads whole. Before this rule 9 of Taste's 10 evals ranked engineering first and offered Addy or Pocock skills.
+  - id: ui-build
+    description: Build a page, site or app screen (Taste leads)
+    any: &ui_build [landing page, launch page, homepage, home page, portfolio, website, web page, webpage, one-page, one page, main screen, app screen, dashboard, settings page, settings screen, workspace settings, static html, html/css/js]
+    regex: &ui_build_rx ['\b\w+\s+screens?\s+(?:of|for)\b']
+    unless: &ui_build_unless [seo, audit, rank, ranking, visible, visibility, ai search, ai-generated answers, ai generated answers, answer engine, sitemap, robots, schema markup, backlinks, api, backend, endpoint, database, migration, webhook, video, deck, slides, presentation]
+    select: [design/design-direction]
+    weight: 5
+
+  - id: ui-build-support
+    description: The same page, site or screen build also gets frontend craft (ranked below Taste; Taste lint and inspect
+      run at verify for every design change, so visual-quality is not added here and the 8-capability limit holds)
+    any: *ui_build
+    regex: *ui_build_rx
+    unless: *ui_build_unless
+    select: [design/frontend]
     weight: 3
 
   - id: layout-check
