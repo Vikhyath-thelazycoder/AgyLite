@@ -4,7 +4,7 @@
 version: 1
 
 # Registry and display order of the domains; each has capabilities/<domain>/domain.yaml.
-domains: [engineering, codebase, design, testing, seo, media, observability]
+domains: [engineering, codebase, design, testing, research, youtube, seo, media, observability]
 
 # Capabilities are host-neutral: every host reaches them through its thin adapter calling the `agylite` CLI (D-009).
 # Status stays NOT_VERIFIED until the host's adapter phase (P19–P22) records runtime evidence (D-024).

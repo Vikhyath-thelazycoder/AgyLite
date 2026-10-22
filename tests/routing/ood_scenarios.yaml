@@ -35,26 +35,26 @@ scenarios:
     stage: unknown
     forbid: [media/launch-video, media/demo]               # before: both via bm25 (F3)
     expect: [research/video]
-    pending: MP5
   - id: ood-yt-script
     request: Write a YouTube script
     stage: unknown
     forbid: [seo/, media/launch-video]                     # before: new-product engineering set (F4)
     expect: [youtube/script]
-    pending: MP5
   - id: ood-research
     request: Research the best vector databases on Reddit, Twitter and YouTube
     stage: unknown
     forbid: [engineering/backend, seo/]                    # before: seo + backend; after F1-F4: backend via the
-    pending_forbid: MP5                                    # weak `database` tag (no research domain claims it yet)
     expect: [research/web, research/social, research/video]
-    pending: MP5
+  - id: ood-keyword-research                                # MP5 §1.5 SEO boundary: "research" alone is not SEO
+    request: Do keyword research for my bakery site
+    stage: unknown
+    expect: [seo/keyword-research]
+    forbid: [research/]
   - id: ood-shorts
     request: Turn this long podcast video into 5 vertical shorts with captions
     stage: unknown
     forbid: [media/launch-video, engineering/]             # before: launch-video, demo via bm25
     expect: [youtube/repurpose]
-    pending: MP5
 
   # ── URLs and domain names ─────────────────────────────────────────────────────────────────────────────────────
   - id: ood-url-hero

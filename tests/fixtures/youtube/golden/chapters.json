@@ -1,0 +1,29 @@
+{
+ "valid": true,
+ "chapters": [
+  {
+   "start": 0.0,
+   "label": "0:00",
+   "draft_title": "Height Desk Step",
+   "seconds": 33.9
+  },
+  {
+   "start": 33.9,
+   "label": "0:33",
+   "draft_title": "Light Monitor Never",
+   "seconds": 25.9
+  },
+  {
+   "start": 59.8,
+   "label": "0:59",
+   "draft_title": "Sound Nobody Basically",
+   "seconds": 21.7
+  },
+  {
+   "start": 81.5,
+   "label": "1:21",
+   "draft_title": "Change Checklist Week",
+   "seconds": 38.5
+  }
+ ]
+}

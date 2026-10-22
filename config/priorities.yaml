@@ -45,6 +45,8 @@ domain_defaults:
   codebase: {priority: 50, activation: on-demand}
   design: {priority: 50, activation: on-demand}
   testing: {priority: 50, activation: on-demand}
+  research: {priority: 50, activation: on-demand}
+  youtube: {priority: 50, activation: on-demand}
   seo: {priority: 50, activation: on-demand}
   media: {priority: 50, activation: on-demand}
   observability: {priority: 50, activation: internal}

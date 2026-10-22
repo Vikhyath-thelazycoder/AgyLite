@@ -28,3 +28,16 @@ design/frontend: files/uiuxpromax/.claude/skills/ui-styling/SKILL.md
 design/design-system: files/uiuxpromax/.claude/skills/ui-ux-pro-max/SKILL.md
 design/brand: files/uiuxpromax/.claude/skills/brand/SKILL.md
 design/motion: files/opendesign/skills/emilkowalski-motion/SKILL.md
+# MP5: Agylite-authored guides lead the research channels; Pocock leads synthesis; youtube-agent-skill and Archify.
+research/web: capabilities/research/web/GUIDE.md
+research/social: capabilities/research/social/GUIDE.md
+research/video: capabilities/research/video/GUIDE.md
+research/code: capabilities/research/code/GUIDE.md
+research/synthesis: files/pocock/skills/engineering/research/SKILL.md
+youtube/script: files/ytagent/skills/yt-script/SKILL.md
+youtube/packaging: files/ytagent/skills/yt-package/SKILL.md
+youtube/repurpose: files/ytagent/skills/yt-shorts/SKILL.md
+youtube/analytics: files/ytagent/skills/yt-retention/SKILL.md
+youtube/channel-ops: files/ytagent/skills/yt-plan/SKILL.md
+youtube/seo: files/ytagent/skills/yt-seo/SKILL.md
+engineering/diagrams: files/archify/archify/SKILL.md

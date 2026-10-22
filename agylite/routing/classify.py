@@ -5,7 +5,8 @@ from functools import lru_cache
 # Spec §54: every request after implementation starts is one of these.
 CHANGE_TYPES = ("NEW_FEATURE", "FEATURE_CHANGE", "BUG_FIX", "REFACTOR", "SECURITY_CHANGE", "DESIGN_CHANGE",
                 "PERFORMANCE_CHANGE", "TESTING_CHANGE", "DOCUMENTATION_CHANGE", "INFRA_CHANGE", "SEO_CHANGE",
-                "MEDIA_CHANGE", "OBSERVABILITY_CHANGE", "PLAN_CHANGE")
+                "MEDIA_CHANGE", "OBSERVABILITY_CHANGE", "PLAN_CHANGE",
+                "RESEARCH_CHANGE", "YOUTUBE_CHANGE")   # MP5 §1.5, §2.4
 
 _QUOTES = str.maketrans({"’": "'", "‘": "'", "“": '"', "”": '"'})
 

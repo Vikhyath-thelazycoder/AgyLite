@@ -1,0 +1,26 @@
+# ytagent @ a2feb2104981a375ffd4f87ee04f4f5344ac43c6
+blob_sha1	bytes	path
+74b06505f970d189cec8e8aea9682a557df03cd3	636	.claude-plugin/marketplace.json
+78122e1b7e07f8d9283f72d6c918dc5d20d13c17	832	.claude-plugin/plugin.json
+b908d4cbe37ccea3388a2f308595ae63a255755d	29	.gitignore
+ac31f09aba721de8d139c7bef3d5024421426472	1073	LICENSE
+7889414543d8654abff5eb39f2b8365df52d4ae7	5294	README.md
+a4a6636bdfdc69a54416900d1c04bb42bd2782b6	2327	skills/yt-audit/SKILL.md
+d27cbeb65cb475381caa5754bbaa52554d56ee22	1380	skills/yt-chapters/SKILL.md
+2a86ec660720c238a9d72a11b2801c5585fe3dc0	3744	skills/yt-chapters/chapters.py
+40b484d0b2277ee617289efab6b94c17b254a765	2304	skills/yt-comment/SKILL.md
+31da6f9d59f1aa354af4a0a9c21b108d76fd2e5c	1639	skills/yt-edit/SKILL.md
+dde0c9886aa412d7368fd3c964d883699c2d142a	4244	skills/yt-edit/deadair.py
+d782ce2cc4c2d731af87c0a1a0f2fef566681db3	2303	skills/yt-package/SKILL.md
+7cbb8169f0f8f171bfe2bd0743c868ce341fea37	4080	skills/yt-package/title.py
+643b60591697b2d8dec56a1427f3c552db959213	2097	skills/yt-plan/SKILL.md
+e1a51f495acebd82e73a9078ee8ec6cfa485da12	1696	skills/yt-retention/SKILL.md
+a7df80972b3a90e638dead0df7288aa777778226	4666	skills/yt-retention/retention.py
+4b41cf186df4371dea7d8f8326dffc2e1cef2058	2685	skills/yt-script/SKILL.md
+767e0b0203e5674a919b8f86f95822764e4a3f49	9894	skills/yt-script/hooks.json
+2f65da556410e4e4418442f5eec41921fe7f53a2	5703	skills/yt-script/hookscore.py
+39710651c4c5c7e4e6d5462489246c66afdb7165	2176	skills/yt-seo/SKILL.md
+accbc27c38ba3c47a9a80a793aa7d0de080cb55a	1516	skills/yt-shorts/SKILL.md
+b4bbd0d8e185bc1af09778f0eb2ce0985ade96c3	1748	skills/yt-viral/SKILL.md
+f84b72e742ab846270d79a79931dd25a86f4a62a	3573	skills/yt-viral/swipe.py
+29b55dd71dd1ec72e49e0d2d6c9d25bd958f474f	1140	templates/voice.md

@@ -17,7 +17,7 @@ rooms:
 
 seats:
   - {id: router, name: Router, room: front, x: 226, y: 14, core: true}
-  - {id: architect, name: Architect, room: engineering, x: 22, y: 56, caps: [engineering/architecture, engineering/migration]}
+  - {id: architect, name: Architect, room: engineering, x: 22, y: 56, caps: [engineering/architecture, engineering/migration, engineering/diagrams]}
   - {id: backend, name: Backend, room: engineering, x: 74, y: 56, caps: [engineering/backend, engineering/implementation, engineering/ai-systems, engineering/stack-packs]}
   - {id: frontend, name: Frontend, room: engineering, x: 126, y: 56, caps: [engineering/frontend, engineering/performance]}
   - {id: security, name: Security, room: engineering, x: 178, y: 56, caps: [engineering/security]}
@@ -36,6 +36,7 @@ seats:
   - {id: qa, name: QA, room: qa, x: 22, y: 178, caps: [testing/local-verification, testing/regression, testing/strategy, testing/evidence]}
   - {id: sectest, name: Sec tests, room: qa, x: 76, y: 178, caps: [testing/security]}
   - {id: perf, name: Perf, room: qa, x: 22, y: 236, caps: [testing/performance]}
+  - {id: scout, name: Scout, room: qa, x: 128, y: 178, caps: [research/web, research/social, research/video, research/code, research/synthesis]}   # MP5 §1
   - {id: browser, name: Browser QA, room: qa, x: 96, y: 236, caps: [testing/browser-exception], fixed: disabled}
   - {id: seo, name: SEO, room: seomedia, x: 176, y: 178, caps: [seo/auditing, seo/technical, seo/on-page, seo/website-work, seo/runtime, seo/evidence, seo/reporting]}
   - {id: research, name: Research, room: seomedia, x: 228, y: 178, caps: [seo/keyword-research, seo/competitor-research, seo/research, seo/strategy, seo/backlinks-reputation, seo/local]}
@@ -43,6 +44,7 @@ seats:
   - {id: video, name: Video, room: seomedia, x: 176, y: 236, caps: [media/launch-video]}
   - {id: demo, name: Demo, room: seomedia, x: 228, y: 236, caps: [media/demo, media/showcase]}
   - {id: deck, name: Deck, room: seomedia, x: 280, y: 236, caps: [media/presentation]}
+  - {id: creator, name: Creator, room: seomedia, x: 228, y: 270, caps: [youtube/script, youtube/packaging, youtube/repurpose, youtube/analytics, youtube/channel-ops, youtube/seo]}   # MP5 §2
   - {id: mentor, name: Karpathy, room: mentors, x: 350, y: 178, caps: [engineering/principles]}
   - {id: agency, name: Specialists, room: mentors, x: 418, y: 178, caps: [], sources_any: [agency]}
   - {id: beacon, name: Watchtower, room: mentors, x: 350, y: 236, caps: [observability/risk-detection, observability/events, observability/sessions, observability/token-metrics]}

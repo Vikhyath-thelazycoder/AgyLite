@@ -1,0 +1,250 @@
+{
+ "repo": "agentreach",
+ "head": "94f06c1969dfc1834001269d79d3ad0972d9dee6",
+ "totals": {
+  "files": 121,
+  "bytes": 1268201,
+  "submodules": []
+ },
+ "top_dirs": {
+  "agent_reach": 51,
+  "tests": 35,
+  "docs": 19,
+  "(root)": 11,
+  ".openteams": 2,
+  ".github": 1,
+  "config": 1,
+  "scripts": 1
+ },
+ "extensions": {
+  ".py": 71,
+  ".md": 26,
+  ".png": 6,
+  ".svg": 4,
+  ".sh": 3,
+  "(none)": 2,
+  ".html": 2,
+  ".txt": 2,
+  ".example": 1,
+  ".yml": 1,
+  ".json": 1,
+  ".jpg": 1,
+  ".toml": 1
+ },
+ "host_dirs": [],
+ "manifests": [
+  "pyproject.toml"
+ ],
+ "mcp_files": [
+  "config/mcporter.json"
+ ],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "agent_reach/skill/SKILL.md",
+   "name": "agent-reach",
+   "description": ">",
+   "bytes": 8636
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 7,
+   "files": [
+    "agent_reach/channels/mcporter.py",
+    "agent_reach/integrations/mcp_server.py",
+    "config/mcporter.json",
+    "tests/test_auth_guidance_policy.py",
+    "tests/test_channels.py",
+    "tests/test_mcp_server.py",
+    "tests/test_mcporter_config.py"
+   ]
+  },
+  "network": {
+   "count": 15,
+   "files": [
+    "agent_reach/backends/opencli.py",
+    "agent_reach/channels/bilibili.py",
+    "agent_reach/channels/boss.py",
+    "agent_reach/channels/v2ex.py",
+    "agent_reach/channels/web.py",
+    "agent_reach/channels/xiaohongshu.py",
+    "agent_reach/channels/xueqiu.py",
+    "agent_reach/cli.py",
+    "agent_reach/scripts/transcribe_xiaoyuzhou.sh",
+    "agent_reach/transcribe.py",
+    "tests/test_channel_contracts.py",
+    "tests/test_channels.py",
+    "tests/test_cli.py",
+    "tests/test_v2ex_channel.py",
+    "tests/test_web_channel.py"
+   ]
+  },
+  "telemetry": {
+   "count": 3,
+   "files": [
+    "agent_reach/channels/github.py",
+    "tests/test_channels.py",
+    "tests/test_doctor.py"
+   ]
+  },
+  "background": {
+   "count": 4,
+   "files": [
+    "agent_reach/backends/opencli.py",
+    "agent_reach/cli.py",
+    "tests/test_doctor.py",
+    "tests/test_opencli_backend.py"
+   ]
+  },
+  "browser": {
+   "count": 8,
+   "files": [
+    "agent_reach/backends/opencli.py",
+    "agent_reach/channels/boss.py",
+    "agent_reach/channels/xiaohongshu.py",
+    "agent_reach/cli.py",
+    "agent_reach/cookie_extract.py",
+    "pyproject.toml",
+    "tests/test_boss_channel.py",
+    "tests/test_cookie_security.py"
+   ]
+  },
+  "shell_exec": {
+   "count": 19,
+   "files": [
+    "agent_reach/channels/v2ex.py",
+    "agent_reach/cli.py",
+    "agent_reach/probe.py",
+    "agent_reach/transcribe.py",
+    "tests/conftest.py",
+    "tests/test_channel_contracts.py",
+    "tests/test_channels.py",
+    "tests/test_cli.py",
+    "tests/test_cookie_extract_perms.py",
+    "tests/test_doctor.py",
+    "tests/test_integration_script.py",
+    "tests/test_p0_cli.py",
+    "tests/test_paths.py",
+    "tests/test_private_file_writes.py",
+    "tests/test_reddit_channel.py",
+    "tests/test_transcribe.py",
+    "tests/test_twitter_channel.py",
+    "tests/test_v2ex_channel.py",
+    "tests/test_xiaoyuzhou_install.py"
+   ]
+  },
+  "env_secrets": {
+   "count": 36,
+   "files": [
+    "agent_reach/backends/opencli.py",
+    "agent_reach/channels/boss.py",
+    "agent_reach/channels/github.py",
+    "agent_reach/channels/mcporter.py",
+    "agent_reach/channels/twitter.py",
+    "agent_reach/channels/xiaohongshu.py",
+    "agent_reach/channels/xiaoyuzhou.py",
+    "agent_reach/cli.py",
+    "agent_reach/config.py",
+    "agent_reach/cookie_extract.py",
+    "agent_reach/scripts/transcribe_xiaoyuzhou.sh",
+    "agent_reach/transcribe.py",
+    "agent_reach/utils/paths.py",
+    "agent_reach/utils/process.py",
+    "agent_reach/utils/text.py",
+    "tests/conftest.py",
+    "tests/test_auth_guidance_policy.py",
+    "tests/test_channels.py",
+    "tests/test_cli.py",
+    "tests/test_config.py",
+    "tests/test_cookie_extract_perms.py",
+    "tests/test_cookie_security.py",
+    "tests/test_doctor.py",
+    "tests/test_doctor_credential_boundaries.py",
+    "tests/test_mcp_server.py",
+    "tests/test_opencode_skill.py",
+    "tests/test_p0_cli.py",
+    "tests/test_private_file_writes.py",
+    "tests/test_probe.py",
+    "tests/test_reddit_channel.py",
+    "tests/test_scrub_credentials.py",
+    "tests/test_skill_command.py",
+    "tests/test_transcribe.py",
+    "tests/test_twitter_channel.py",
+    "tests/test_xhs_format.py",
+    "tests/test_xiaoyuzhou_install.py"
+   ]
+  },
+  "home_writes": {
+   "count": 17,
+   "files": [
+    "agent_reach/backends/opencli.py",
+    "agent_reach/channels/boss.py",
+    "agent_reach/channels/github.py",
+    "agent_reach/channels/mcporter.py",
+    "agent_reach/channels/reddit.py",
+    "agent_reach/channels/xiaohongshu.py",
+    "agent_reach/channels/xiaoyuzhou.py",
+    "agent_reach/cli.py",
+    "agent_reach/cookie_extract.py",
+    "agent_reach/scripts/transcribe_xiaoyuzhou.sh",
+    "agent_reach/utils/paths.py",
+    "test.sh",
+    "tests/test_channel_contracts.py",
+    "tests/test_home_isolation.py",
+    "tests/test_opencode_skill.py",
+    "tests/test_private_file_writes.py",
+    "tests/test_skill_command.py"
+   ]
+  },
+  "self_update": {
+   "count": 13,
+   "files": [
+    ".github/workflows/pytest.yml",
+    "agent_reach/backends/opencli.py",
+    "agent_reach/channels/exa_search.py",
+    "agent_reach/channels/rss.py",
+    "agent_reach/channels/xiaohongshu.py",
+    "agent_reach/channels/youtube.py",
+    "agent_reach/cli.py",
+    "agent_reach/cookie_extract.py",
+    "agent_reach/integrations/mcp_server.py",
+    "test.sh",
+    "tests/test_channels.py",
+    "tests/test_integration_script.py",
+    "tests/test_opencli_backend.py"
+   ]
+  },
+  "llm_api": {
+   "count": 14,
+   "files": [
+    "agent_reach/channels/youtube.py",
+    "agent_reach/cli.py",
+    "agent_reach/config.py",
+    "agent_reach/scripts/transcribe_xiaoyuzhou.sh",
+    "agent_reach/transcribe.py",
+    "pyproject.toml",
+    "tests/test_auth_guidance_policy.py",
+    "tests/test_channel_contracts.py",
+    "tests/test_channels.py",
+    "tests/test_p0_cli.py",
+    "tests/test_skill_command.py",
+    "tests/test_transcribe.py",
+    "tests/test_url_security.py",
+    "tests/test_youtube_channel.py"
+   ]
+  }
+ }
+}

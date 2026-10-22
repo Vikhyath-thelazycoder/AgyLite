@@ -36,6 +36,24 @@
     "bytes": 11353
    }
   },
+  "agentreach": {
+   "EXCLUDE": {
+    "files": 106,
+    "bytes": 1176192
+   },
+   "COPY": {
+    "files": 1,
+    "bytes": 1067
+   },
+   "REFERENCE": {
+    "files": 13,
+    "bytes": 90613
+   },
+   "PRESERVE": {
+    "files": 1,
+    "bytes": 329
+   }
+  },
   "appllama": {
    "EXCLUDE": {
     "files": 14,
@@ -48,6 +66,28 @@
    "ADAPT": {
     "files": 1,
     "bytes": 20220
+   }
+  },
+  "archify": {
+   "EXCLUDE": {
+    "files": 958,
+    "bytes": 97003167
+   },
+   "COPY": {
+    "files": 4,
+    "bytes": 13450
+   },
+   "ADAPT": {
+    "files": 1,
+    "bytes": 18870
+   },
+   "PRESERVE": {
+    "files": 184,
+    "bytes": 5299193
+   },
+   "REFERENCE": {
+    "files": 27,
+    "bytes": 621308
    }
   },
   "beacon": {
@@ -222,16 +262,16 @@
     "bytes": 599951
    },
    "COPY": {
-    "files": 19,
-    "bytes": 71964
+    "files": 20,
+    "bytes": 72758
    },
    "ADAPT": {
     "files": 13,
     "bytes": 50970
    },
    "REFERENCE": {
-    "files": 3,
-    "bytes": 14309
+    "files": 2,
+    "bytes": 13515
    }
   },
   "ponytail": {
@@ -316,6 +356,28 @@
    "REFERENCE": {
     "files": 1,
     "bytes": 250
+   }
+  },
+  "ytagent": {
+   "EXCLUDE": {
+    "files": 3,
+    "bytes": 1497
+   },
+   "COPY": {
+    "files": 2,
+    "bytes": 2213
+   },
+   "REFERENCE": {
+    "files": 1,
+    "bytes": 5294
+   },
+   "ADAPT": {
+    "files": 11,
+    "bytes": 21871
+   },
+   "PRESERVE": {
+    "files": 7,
+    "bytes": 35904
    }
   }
  },
@@ -483,6 +545,14 @@
     "ecc",
     "gstack",
     "pocock"
+   ]
+  },
+  "engineering/diagrams": {
+   "files": 189,
+   "bytes": 5331513,
+   "est_tokens": 1332878,
+   "sources": [
+    "archify"
    ]
   },
   "engineering/documentation": {
@@ -653,6 +723,22 @@
    "est_tokens": 59569,
    "sources": [
     "beacon"
+   ]
+  },
+  "research/synthesis": {
+   "files": 1,
+   "bytes": 794,
+   "est_tokens": 198,
+   "sources": [
+    "pocock"
+   ]
+  },
+  "research/web": {
+   "files": 2,
+   "bytes": 1396,
+   "est_tokens": 349,
+   "sources": [
+    "agentreach"
    ]
   },
   "seo/ai-search": {
@@ -839,6 +925,54 @@
     "ecc",
     "gstack",
     "pocock"
+   ]
+  },
+  "youtube/analytics": {
+   "files": 5,
+   "bytes": 14010,
+   "est_tokens": 3502,
+   "sources": [
+    "ytagent"
+   ]
+  },
+  "youtube/channel-ops": {
+   "files": 2,
+   "bytes": 4401,
+   "est_tokens": 1100,
+   "sources": [
+    "ytagent"
+   ]
+  },
+  "youtube/packaging": {
+   "files": 2,
+   "bytes": 6383,
+   "est_tokens": 1595,
+   "sources": [
+    "ytagent"
+   ]
+  },
+  "youtube/repurpose": {
+   "files": 5,
+   "bytes": 12523,
+   "est_tokens": 3130,
+   "sources": [
+    "ytagent"
+   ]
+  },
+  "youtube/script": {
+   "files": 5,
+   "bytes": 20495,
+   "est_tokens": 5123,
+   "sources": [
+    "ytagent"
+   ]
+  },
+  "youtube/seo": {
+   "files": 1,
+   "bytes": 2176,
+   "est_tokens": 544,
+   "sources": [
+    "ytagent"
    ]
   }
  }

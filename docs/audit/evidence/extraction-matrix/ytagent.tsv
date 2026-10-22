@@ -1,0 +1,25 @@
+decision	reason	capability	bytes	path
+EXCLUDE	HOST_PORT		636	.claude-plugin/marketplace.json
+EXCLUDE	HOST_PORT		832	.claude-plugin/plugin.json
+EXCLUDE	REPO_META		29	.gitignore
+COPY	LICENSE	youtube/script	1073	LICENSE
+REFERENCE	Usage reference		5294	README.md
+ADAPT	Voice file, tool paths, channel lists via agylite research channel (MP5 §2.2)	youtube/analytics	2327	skills/yt-audit/SKILL.md
+ADAPT	Tool paths; transcripts via agylite research video (MP5 §2.2)	youtube/repurpose	1380	skills/yt-chapters/SKILL.md
+PRESERVE	Runtime behind agylite youtube deadair / chapters	youtube/repurpose	3744	skills/yt-chapters/chapters.py
+ADAPT	Voice file path (MP5 §2.2)	youtube/channel-ops	2304	skills/yt-comment/SKILL.md
+ADAPT	Tool paths; transcripts via agylite research video (MP5 §2.2)	youtube/repurpose	1639	skills/yt-edit/SKILL.md
+PRESERVE	Runtime behind agylite youtube deadair / chapters	youtube/repurpose	4244	skills/yt-edit/deadair.py
+ADAPT	Voice file and tool paths (MP5 §2.2)	youtube/packaging	2303	skills/yt-package/SKILL.md
+PRESERVE	Runtime behind agylite youtube title	youtube/packaging	4080	skills/yt-package/title.py
+ADAPT	Voice file path (MP5 §2.2)	youtube/channel-ops	2097	skills/yt-plan/SKILL.md
+ADAPT	Voice file, tool paths, channel lists via agylite research channel (MP5 §2.2)	youtube/analytics	1696	skills/yt-retention/SKILL.md
+PRESERVE	Runtime behind agylite youtube retention / swipe	youtube/analytics	4666	skills/yt-retention/retention.py
+ADAPT	Voice file → ~/.agylite/youtube/voice.md; tools → agylite youtube (MP5 §2.2)	youtube/script	2685	skills/yt-script/SKILL.md
+PRESERVE	Runtime (stdlib) behind agylite youtube hookscore; hooks.json is also read by yt-viral	youtube/script	9894	skills/yt-script/hooks.json
+PRESERVE	Runtime (stdlib) behind agylite youtube hookscore; hooks.json is also read by yt-viral	youtube/script	5703	skills/yt-script/hookscore.py
+ADAPT	Voice file path (MP5 §2.2)	youtube/seo	2176	skills/yt-seo/SKILL.md
+ADAPT	Tool paths; transcripts via agylite research video (MP5 §2.2)	youtube/repurpose	1516	skills/yt-shorts/SKILL.md
+ADAPT	Voice file, tool paths, channel lists via agylite research channel (MP5 §2.2)	youtube/analytics	1748	skills/yt-viral/SKILL.md
+PRESERVE	Runtime behind agylite youtube retention / swipe	youtube/analytics	3573	skills/yt-viral/swipe.py
+COPY	Template for agylite youtube voice init	youtube/script	1140	templates/voice.md

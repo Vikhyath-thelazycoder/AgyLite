@@ -89,7 +89,7 @@ repos:
       - {paths: ["skills/engineering/code-review/SKILL.md"], decision: ADAPT, capability: engineering/review, reason: "Level 3; tracker setup line → plan (mechanics only)"}
       - {paths: ["skills/engineering/pr/**", "skills/engineering/wizard/**"], decision: COPY, capability: engineering/release, reason: "Level 3 (CREDITS.md, template.sh: closure)"}
       - {paths: ["skills/productivity/handoff/SKILL.md"], decision: ADAPT, capability: engineering/documentation, reason: "Level 3; Skill-tool wording → agylite skill load (mechanics only)"}
-      - {paths: ["skills/engineering/research/**"], decision: REFERENCE, reason: "Research domain arrives in MP5; until then reachable through `agylite skills get pocock/research`"}
+      - {paths: ["skills/engineering/research/SKILL.md"], decision: COPY, capability: research/synthesis, reason: "MP5 §1.4: primary-source research discipline (primary of research/synthesis)"}
       - {paths: ["skills/productivity/writing-for-agents/**"], decision: REFERENCE, reason: "For maintaining Agylite's own skills"}
       - {paths: ["skills/engineering/ask-matt/**", "skills/engineering/setup-matt-pocock-skills/**"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["skills/engineering/triage/**", "skills/engineering/retro/**"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
@@ -388,6 +388,67 @@ repos:
       - {paths: [".claude-plugin/**", ".cursor-plugin/**"], decision: EXCLUDE, reason: HOST_PORT}
       - {paths: ["README.md", ".gitignore"], decision: EXCLUDE, reason: REPO_META}
 
+  # ------------------------------------------------------------------ RESEARCH (MP5 §1)
+  # Agent-Reach is a running program (channels over yt-dlp, feedparser, gh, twitter-cli, rdt-cli). Agylite installs
+  # the pinned package as the `research` runtime and calls only its allow-listed tools through `agylite research`;
+  # the skill text is Agylite's own English guides (capabilities/research/*/GUIDE.md), derived from these files.
+  agentreach:
+    default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: research/web, reason: LICENSE}
+      - {paths: ["constraints.txt"], decision: PRESERVE, capability: research/web, reason: "Tested dependency pins: the research runtime installs with -c constraints.txt (MP5 §1.2)"}
+      - {paths: ["agent_reach/skill/SKILL.md", "agent_reach/skill/SKILL_en.md", "agent_reach/skill/references/search.md", "agent_reach/skill/references/social.md", "agent_reach/skill/references/web.md", "agent_reach/skill/references/video.md", "agent_reach/skill/references/dev.md"], decision: REFERENCE, reason: "Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file"}
+      - {paths: ["agent_reach/skill/references/career.md", "agent_reach/skill/references/finance.md"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+      - {paths: ["agent_reach/cookie_extract.py", "agent_reach/backends/**", "agent_reach/channels/_opencli_site.py", "agent_reach/channels/facebook.py", "agent_reach/channels/instagram.py"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["agent_reach/transcribe.py", "agent_reach/scripts/transcribe_xiaoyuzhou.sh", "agent_reach/guides/setup-groq.md"], decision: EXCLUDE, reason: PAID_API}
+      - {paths: ["agent_reach/channels/mcporter.py", "agent_reach/channels/exa_search.py", "agent_reach/channels/linkedin.py", "agent_reach/integrations/**", "config/mcporter.json", "agent_reach/guides/setup-exa.md"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["agent_reach/channels/bilibili.py", "agent_reach/channels/boss.py", "agent_reach/channels/v2ex.py", "agent_reach/channels/xiaohongshu.py", "agent_reach/channels/xiaoyuzhou.py", "agent_reach/channels/xueqiu.py", "agent_reach/guides/setup-xiaohongshu.md"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+      - {paths: ["agent_reach/**", "pyproject.toml"], decision: EXCLUDE, reason: PRODUCT_RUNTIME}
+      - {paths: ["tests/**", "test.sh", "scripts/**"], decision: EXCLUDE, reason: UPSTREAM_DEV}
+      - {paths: ["docs/assets/**", "docs/wechat-group-qr.jpg", ".openteams/**"], decision: EXCLUDE, reason: DOC_ASSET}
+      - {paths: ["docs/install.md", "docs/update.md"], decision: EXCLUDE, reason: INSTALLER}
+      - {paths: ["docs/cookie-export.md", "docs/troubleshooting.md", "docs/dependency-locking.md", "README.md", "docs/README_en.md", "llms.txt"], decision: REFERENCE, reason: "Usage reference for the runtime wrapper"}
+      - {paths: ["docs/README_ja.md", "docs/README_ko.md"], decision: EXCLUDE, reason: TRANSLATION}
+      - {paths: [".github/**", ".gitignore", ".env.example", "CHANGELOG.md", "CONTRIBUTING.md", "SECURITY.md"], decision: EXCLUDE, reason: REPO_META}
+
+  # ------------------------------------------------------------------ YOUTUBE (MP5 §2)
+  # Key `ytagent`, not MP5's `youtube`: `youtube` is the domain, and capability ids never carry upstream names.
+  ytagent:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: youtube/script, reason: LICENSE}
+      - {paths: ["skills/yt-script/SKILL.md"], decision: ADAPT, capability: youtube/script, reason: "Voice file → ~/.agylite/youtube/voice.md; tools → agylite youtube (MP5 §2.2)"}
+      - {paths: ["skills/yt-script/hookscore.py", "skills/yt-script/hooks.json"], decision: PRESERVE, capability: youtube/script, reason: "Runtime (stdlib) behind agylite youtube hookscore; hooks.json is also read by yt-viral"}
+      - {paths: ["skills/yt-package/SKILL.md"], decision: ADAPT, capability: youtube/packaging, reason: "Voice file and tool paths (MP5 §2.2)"}
+      - {paths: ["skills/yt-package/title.py"], decision: PRESERVE, capability: youtube/packaging, reason: "Runtime behind agylite youtube title"}
+      - {paths: ["skills/yt-shorts/SKILL.md", "skills/yt-edit/SKILL.md", "skills/yt-chapters/SKILL.md"], decision: ADAPT, capability: youtube/repurpose, reason: "Tool paths; transcripts via agylite research video (MP5 §2.2)"}
+      - {paths: ["skills/yt-edit/deadair.py", "skills/yt-chapters/chapters.py"], decision: PRESERVE, capability: youtube/repurpose, reason: "Runtime behind agylite youtube deadair / chapters"}
+      - {paths: ["skills/yt-retention/SKILL.md", "skills/yt-viral/SKILL.md", "skills/yt-audit/SKILL.md"], decision: ADAPT, capability: youtube/analytics, reason: "Voice file, tool paths, channel lists via agylite research channel (MP5 §2.2)"}
+      - {paths: ["skills/yt-retention/retention.py", "skills/yt-viral/swipe.py"], decision: PRESERVE, capability: youtube/analytics, reason: "Runtime behind agylite youtube retention / swipe"}
+      - {paths: ["skills/yt-plan/SKILL.md", "skills/yt-comment/SKILL.md"], decision: ADAPT, capability: youtube/channel-ops, reason: "Voice file path (MP5 §2.2)"}
+      - {paths: ["skills/yt-seo/SKILL.md"], decision: ADAPT, capability: youtube/seo, reason: "Voice file path (MP5 §2.2)"}
+      - {paths: ["templates/voice.md"], decision: ADAPT, capability: youtube/script, reason: "Template for agylite youtube voice init (its own path → ~/.agylite/youtube/voice.md)"}
+      - {paths: ["README.md"], decision: REFERENCE, reason: "Usage reference"}
+      - {paths: [".claude-plugin/**"], decision: EXCLUDE, reason: HOST_PORT}
+
+  # ------------------------------------------------------------------ DIAGRAMS (MP5 §3)
+  # The Archify skill folder runs as-is (Node ≥ 18, no npm dependencies) through `agylite diagram`. The rendered
+  # showcase pages in examples/ (12 MB) are DOC_ASSET; the JSON examples stay because the Type router names them and
+  # `archify doctor`/`compare`/`guide` read them (a deviation from MP5 §3.2's "only the named files", recorded in
+  # IMPLEMENTATION_LOG). Its update check never runs: the wrapper sets ARCHIFY_UPDATE_CHECK_DISABLED=1.
+  archify:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE", "THIRD_PARTY_NOTICES.md", "archify/LICENSE", "archify/THIRD_PARTY_NOTICES.md"], decision: COPY, capability: engineering/diagrams, reason: LICENSE}
+      - {paths: ["archify/SKILL.md"], decision: ADAPT, capability: engineering/diagrams, reason: "bin/archify.mjs → agylite diagram; explainers on demand only; Agylite owns updates (MP5 §3.2)"}
+      - {paths: ["archify/examples/*.html"], decision: EXCLUDE, reason: DOC_ASSET}
+      - {paths: ["archify/references/update-awareness.md"], decision: EXCLUDE, reason: SUPERSEDED}
+      - {paths: ["archify/**"], decision: PRESERVE, capability: engineering/diagrams, reason: "Archify runtime: CLI, renderers, schemas, references, explainer runtime, JSON examples (MP5 §3.2)"}
+      - {paths: ["benchmarks/**"], decision: REFERENCE, reason: "MP2 diagram-archify suite instrument"}
+      - {paths: ["examples/**", "docs/**", "website/**", "viewer/**", "journal/**", "experiments/**", "archify.zip", "README*.md"], decision: EXCLUDE, reason: DOC_ASSET}
+      - {paths: [".agents/**", "integrations/**", "community/**"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["test/**", "tools/**", "scripts/**", "package.json", "package-lock.json"], decision: EXCLUDE, reason: UPSTREAM_DEV}
+
   # ------------------------------------------------------------------ MEDIA
   brag:
     default: {decision: EXCLUDE, reason: DOC_ASSET}
@@ -443,6 +504,16 @@ repos:
 # Gaps reviewed and accepted: the reference is a documentation mention, a self-reference to a generated file,
 # or is removed by the ADAPT rewrite. Matched on (repo, target); every entry carries its reason.
 accepted_gaps:
+  - {repo: archify, target: archify/references/update-awareness.md, reason: "Update awareness section replaced by SKILL.md ADAPT (Agylite owns updates, MP5 §3.2)"}
+  - {repo: archify, target: docs/assets/archify-mark.svg, reason: "Source comment naming where the inlined symbol came from"}
+  - {repo: archify, target: docs/guide.html, reason: "Upstream dev npm script in package.json; never run"}
+  - {repo: archify, target: docs/start.html, reason: "Upstream dev npm script in package.json; never run"}
+  - {repo: archify, target: scripts/build-gallery.mjs, reason: "Upstream dev npm script in package.json; never run"}
+  - {repo: archify, target: scripts/build-guide.mjs, reason: "Upstream dev npm script in package.json; never run"}
+  - {repo: archify, target: scripts/build-readme-showcase.mjs, reason: "Upstream dev npm script in package.json; never run"}
+  - {repo: archify, target: scripts/build-start.mjs, reason: "Upstream dev npm script in package.json; never run"}
+  - {repo: archify, target: scripts/check-release-identity.mjs, reason: "Upstream dev npm script in package.json; never run"}
+  - {repo: archify, target: scripts/generate-viewer.mjs, reason: "Upstream dev npm script in package.json; never run"}
   - {repo: agency, target: CONTRIBUTING.md, reason: "Example mention in a persona"}
   - {repo: beacon, target: docs/README.md, reason: "String inside a detection rule (instruction-surface example)"}
   - {repo: beyondseo, target: CHANGELOG.md, reason: "Docs index mention"}

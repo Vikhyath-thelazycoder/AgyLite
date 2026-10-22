@@ -1,0 +1,23 @@
+# research/web — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP5 §1.4: Agylite-authored guide over the Agent-Reach channels it allows (Jina Reader / direct read, RSS).
+name: Web research
+description: Find pages with the host's web search, read them with agylite research read or rss, quote with URLs
+intent_tags: [read this page, read this article, rss feed, investigate online, compare online, research online]
+origin: mixed
+guide: GUIDE.md
+runtime_type: python-isolated
+requires_network: true
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: run
+activation_conditions:
+  when: [the request asks to research, look up or read sources on the web]
+verification_requirements: [every claim has a source URL, unverified claims are marked unverified]
+dependencies: []
+related_capabilities: [research/synthesis, research/social, research/video]
+conflicts: []
+fallback_capability: null
+enabled: true

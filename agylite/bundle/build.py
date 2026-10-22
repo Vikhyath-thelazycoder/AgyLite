@@ -117,6 +117,15 @@ def _self_tests(work: Path, log):
         with tempfile.TemporaryDirectory() as tmp_home:
             r = taste.self_test(work, Path(tmp_home), fixtures)
         results["taste"] = {"exit": 0 if r["ok"] else 1, "lint_exit_codes": r["exit_codes"]}
+    from ..runtimes import archify, youtube   # MP5 §2.5 / §3.4: the tools score the fixtures; every example validates
+    yt_fixtures = repo_root() / "tests" / "fixtures" / "youtube"
+    if (work / youtube.ROOT).is_dir() and yt_fixtures.is_dir():
+        r = youtube.self_test(work, yt_fixtures)
+        results["youtube"] = {"exit": 0 if r["ok"] else 1, "exit_codes": r["exit_codes"]}
+    if archify.cli_path(work) and (archify.node_version() or (0,))[0] >= archify.MIN_NODE:
+        r = archify.self_test(work)
+        results["archify"] = {"exit": 0 if r["ok"] else 1, "validated": len(r["exit_codes"]),
+                              "failed": sorted(k for k, v in r["exit_codes"].items() if v)}
     for name, r in results.items():
         log(f"  self-test {name}: exit {r['exit']}")
     return results

@@ -1,0 +1,3 @@
+# Domain youtube (MP5 §2). Capability order is the registry order; one directory per entry.
+purpose: "Scripts, packaging, Shorts picks, edit lists, chapters, analytics and plans for a YouTube channel — never renders or uploads."
+capabilities: [script, packaging, repurpose, analytics, channel-ops, seo]

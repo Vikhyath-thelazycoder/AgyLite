@@ -3,6 +3,16 @@ agency	engineering/engineering-technical-writer.md	CONTRIBUTING.md	CONTRIBUTING.
 appllama	skills/appllama-app-design-skill/SKILL.md	references/image-assets.md	skills/appllama-app-design-skill/references/image-assets.md	EXCLUDE	ACCEPTED: Link removed by SKILL.md ADAPT (image generation: Taste canonical; Higgsfield MCP excluded, D-034)
 appllama	skills/appllama-app-design-skill/SKILL.md	references/performance.md	skills/appllama-app-design-skill/references/performance.md	EXCLUDE	ACCEPTED: Link removed by SKILL.md ADAPT (RN performance: ECC rules canonical, D-034)
 appllama	skills/appllama-app-design-skill/SKILL.md	references/simulator-loop.md	skills/appllama-app-design-skill/references/simulator-loop.md	EXCLUDE	ACCEPTED: Link removed by SKILL.md ADAPT (simulator screenshot/recording loop excluded, D-035)
+archify	archify/SKILL.md	references/update-awareness.md	archify/references/update-awareness.md	EXCLUDE	ACCEPTED: Update awareness section replaced by SKILL.md ADAPT (Agylite owns updates, MP5 §3.2)
+archify	archify/explainer/render.mjs	docs/assets/archify-mark.svg	docs/assets/archify-mark.svg	EXCLUDE	ACCEPTED: Source comment naming where the inlined symbol came from
+archify	archify/package.json	../docs/guide.html	docs/guide.html	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+archify	archify/package.json	../docs/start.html	docs/start.html	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+archify	archify/package.json	../scripts/build-gallery.mjs	scripts/build-gallery.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+archify	archify/package.json	../scripts/build-guide.mjs	scripts/build-guide.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+archify	archify/package.json	../scripts/build-readme-showcase.mjs	scripts/build-readme-showcase.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+archify	archify/package.json	../scripts/build-start.mjs	scripts/build-start.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+archify	archify/package.json	../scripts/check-release-identity.mjs	scripts/check-release-identity.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+archify	archify/package.json	../scripts/generate-viewer.mjs	scripts/generate-viewer.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
 beacon	rules/sensitive-edit/agent-instruction-surface-modified.rule.yaml	docs/README.md	docs/README.md	EXCLUDE	ACCEPTED: String inside a detection rule (instruction-surface example)
 beyondseo	SKILL.md	docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
 beyondseo	SKILL.md	docs/lovable.md	docs/lovable.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT

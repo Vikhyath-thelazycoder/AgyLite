@@ -162,7 +162,8 @@ class TestRewrites(unittest.TestCase):
                     samples[key] = f.read()
         if not os.path.isdir(staged):
             self.skipTest("staged upstreams needed for the P13 rewrite samples")
-        for key in POCOCK_ADAPT + [("ponytail", "skills/ponytail-review/SKILL.md")]:   # MP3 §1.3, §2.3: real text
+        mp5 = [k for k in rewrites.REWRITES if k[0] in ("ytagent", "archify")]   # MP5 §2.2, §3.2: real text
+        for key in POCOCK_ADAPT + [("ponytail", "skills/ponytail-review/SKILL.md")] + mp5:   # MP3 §1.3, §2.3: real text
             with open(os.path.join(staged, key[0], key[1]), encoding="utf-8") as f:
                 samples[key] = f.read()
         self.assertEqual(set(samples), set(rewrites.REWRITES))
@@ -218,7 +219,7 @@ class TestPocockRewrites(unittest.TestCase):
         self.assertIn("Run `agylite skill load pocock/grilling`.", self.adapted(POCOCK_ADAPT[0])[1])
         out = self.adapted(("pocock", "skills/engineering/wayfinder/SKILL.md"))[1]
         self.assertIn("`agylite skill load pocock/grilling` and `agylite skill load pocock/domain-modeling`", out)
-        self.assertIn("`agylite skills get pocock/research`", out)          # not bundled until MP5
+        self.assertIn("`agylite skill load pocock/research`", out)          # bundled since MP5 (research/synthesis)
 
     def test_tracker_is_the_plan(self):
         spec = self.adapted(("pocock", "skills/engineering/to-spec/SKILL.md"))[1]

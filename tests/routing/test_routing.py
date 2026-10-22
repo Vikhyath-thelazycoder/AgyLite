@@ -59,6 +59,7 @@ class TestClassify(unittest.TestCase):
             "DESIGN_CHANGE": "tighten the spacing on cards", "INFRA_CHANGE": "move hosting to docker",
             "DOCUMENTATION_CHANGE": "update the readme", "PLAN_CHANGE": "reprioritize the roadmap",
             "FEATURE_CHANGE": "tweak the booking confirmation", "NEW_FEATURE": "add CSV import",
+            "RESEARCH_CHANGE": "research the best vector databases", "YOUTUBE_CHANGE": "write a youtube script",
         }
         self.assertEqual(set(samples), set(CHANGE_TYPES))
         for expected, text in samples.items():

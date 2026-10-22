@@ -1,0 +1,160 @@
+{
+ "repo": "ytagent",
+ "head": "a2feb2104981a375ffd4f87ee04f4f5344ac43c6",
+ "totals": {
+  "files": 24,
+  "bytes": 66779,
+  "submodules": []
+ },
+ "top_dirs": {
+  "skills": 18,
+  "(root)": 3,
+  ".claude-plugin": 2,
+  "templates": 1
+ },
+ "extensions": {
+  ".md": 13,
+  ".py": 6,
+  ".json": 3,
+  "(none)": 2
+ },
+ "host_dirs": [
+  ".claude-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json",
+  "skills/yt-script/hooks.json"
+ ],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/yt-audit/SKILL.md",
+   "name": "yt-audit",
+   "description": ">-",
+   "bytes": 2327
+  },
+  {
+   "path": "skills/yt-chapters/SKILL.md",
+   "name": "yt-chapters",
+   "description": ">-",
+   "bytes": 1380
+  },
+  {
+   "path": "skills/yt-comment/SKILL.md",
+   "name": "yt-comment",
+   "description": ">-",
+   "bytes": 2304
+  },
+  {
+   "path": "skills/yt-edit/SKILL.md",
+   "name": "yt-edit",
+   "description": ">-",
+   "bytes": 1639
+  },
+  {
+   "path": "skills/yt-package/SKILL.md",
+   "name": "yt-package",
+   "description": ">-",
+   "bytes": 2303
+  },
+  {
+   "path": "skills/yt-plan/SKILL.md",
+   "name": "yt-plan",
+   "description": ">-",
+   "bytes": 2097
+  },
+  {
+   "path": "skills/yt-retention/SKILL.md",
+   "name": "yt-retention",
+   "description": ">-",
+   "bytes": 1696
+  },
+  {
+   "path": "skills/yt-script/SKILL.md",
+   "name": "yt-script",
+   "description": ">-",
+   "bytes": 2685
+  },
+  {
+   "path": "skills/yt-seo/SKILL.md",
+   "name": "yt-seo",
+   "description": ">-",
+   "bytes": 2176
+  },
+  {
+   "path": "skills/yt-shorts/SKILL.md",
+   "name": "yt-shorts",
+   "description": ">-",
+   "bytes": 1516
+  },
+  {
+   "path": "skills/yt-viral/SKILL.md",
+   "name": "yt-viral",
+   "description": ">-",
+   "bytes": 1748
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 1,
+  "files": [
+   "skills/yt-script/hooks.json"
+  ]
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 0,
+   "files": []
+  },
+  "env_secrets": {
+   "count": 2,
+   "files": [
+    "skills/yt-package/title.py",
+    "skills/yt-script/hookscore.py"
+   ]
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 1,
+   "files": [
+    ".claude-plugin/marketplace.json"
+   ]
+  }
+ }
+}

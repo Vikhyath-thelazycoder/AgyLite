@@ -1,0 +1,56 @@
+{
+ "source": "transcript.srt",
+ "duration": 120.0,
+ "cuts": [
+  {
+   "kind": "FILLER",
+   "start": 9.1,
+   "end": 10.0,
+   "why": "um"
+  },
+  {
+   "kind": "DEAD",
+   "start": 10.225,
+   "end": 12.375,
+   "why": "2.60s gap"
+  },
+  {
+   "kind": "FILLER",
+   "start": 28.6,
+   "end": 30.2,
+   "why": "so yeah"
+  },
+  {
+   "kind": "DEAD",
+   "start": 30.425,
+   "end": 33.675,
+   "why": "3.70s gap"
+  },
+  {
+   "kind": "REPEAT",
+   "start": 39.7,
+   "end": 45.0,
+   "why": "restart of \"never put the window behind\""
+  },
+  {
+   "kind": "DEAD",
+   "start": 56.225,
+   "end": 59.575,
+   "why": "3.80s gap"
+  },
+  {
+   "kind": "FILLER",
+   "start": 77.2,
+   "end": 78.0,
+   "why": "basically"
+  },
+  {
+   "kind": "DEAD",
+   "start": 78.225,
+   "end": 81.275,
+   "why": "3.50s gap"
+  }
+ ],
+ "removed": 20.4,
+ "out": 99.6
+}

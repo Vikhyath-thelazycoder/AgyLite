@@ -98,6 +98,9 @@ def render_card_md(cid, card, entries, deps_with_files=(), exclude=()):
         loads = "shares the bundled files of " + ", ".join(deps_with_files)
     else:
         loads = "OS-native (no bundled files)"
+    if card.get("guide"):   # MP5 §1.4: the authored guide is the primary skill
+        domain, sub = cid.split("/", 1)
+        loads = f"Agylite guide (skill agylite/{domain}-{sub})" + ("" if loads.startswith("OS-native") else f"; {loads}")
     lines = [
         f"# {cid} — {card['name']}", "",
         _sentence(card["description"]), "",
@@ -223,6 +226,8 @@ def check(root: Path | None = None, bundle_dir: Path | None = None):
     except loader.RegistryError as exc:
         return problems + [str(exc)]
     problems += schema.validate_cards(cards)
+    problems += [f"{cid}: guide {card['guide']} missing next to card.yaml" for cid, card in cards.items()
+                 if card.get("guide") and not (loader.capabilities_dir(root) / cid / card["guide"]).is_file()]
     problems += [f"extraction rules: {e}" for e in compile_rules(load_rules(), cards)]
     names, entries = upstream_names(), entries_from_plan()
     for cid, text in card_docs(cards, entries, names).items():

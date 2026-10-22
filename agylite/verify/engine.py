@@ -14,15 +14,19 @@ def _now():
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def plan_for(project, paths=None, *, full=False, kinds=None, include_e2e=False, bundle_dir=None, inspect=None):
+def plan_for(project, paths=None, *, full=False, kinds=None, include_e2e=False, bundle_dir=None, inspect=None,
+             diagrams=None):
     from ..codebase import affected
-    from . import design
+    from . import design, diagram
     checks = detect.detect(project.root)
     impact = None if full else affected(project, paths, bundle_dir=bundle_dir)
     selected = select.plan(checks, impact, full=full, kinds=kinds, include_e2e=include_e2e)
     if not kinds or "design" in kinds:   # MP4 §3.3: style/markup changes also need design check + Taste lint/inspect
         changed = (impact or {}).get("changed") or list(paths or [])
         selected += design.checks(project, changed, inspect=inspect, bundle_dir=bundle_dir)
+    if not kinds or "diagram" in kinds:   # MP5 §3.3: delivered diagrams pass Archify check + Chrome browser-check
+        changed = (impact or {}).get("changed") or list(paths or [])
+        selected += diagram.checks(project, changed, named=diagrams)
     return impact, selected
 
 
@@ -50,11 +54,11 @@ def active_task(project):
 
 
 def verify(project, paths=None, *, full=False, kinds=None, include_e2e=False, task=None, bundle_dir=None,
-           timeout=run.DEFAULT_TIMEOUT, session_id=None, inspect=None):
-    from . import design
+           timeout=run.DEFAULT_TIMEOUT, session_id=None, inspect=None, diagrams=None):
+    from . import design, diagram
     task = task or active_task(project)
     impact, selected = plan_for(project, paths, full=full, kinds=kinds, include_e2e=include_e2e, bundle_dir=bundle_dir,
-                                inspect=inspect)
+                                inspect=inspect, diagrams=diagrams)
     emit(project, "VERIFICATION_STARTED", session_id=session_id, capabilities=["testing/local-verification"],
          details={"checks": len(selected), "task": task})
     results = []
@@ -67,6 +71,8 @@ def verify(project, paths=None, *, full=False, kinds=None, include_e2e=False, ta
         r = run.run_check(cmd, project.root, timeout)
         if c.name == "taste inspect":
             r.update(design.inspect_result(project.root, r))
+        if c.kind == "diagram":
+            r.update(diagram.result(project.root, why))
         if r["result"] == "FAILED" and c.kind in RERUN_KINDS:
             again = run.run_check(cmd, project.root, timeout)
             r["rerun"] = {"exit_code": again["exit_code"], "result": again["result"]}

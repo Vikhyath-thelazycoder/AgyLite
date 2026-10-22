@@ -1,0 +1,23 @@
+# research/video — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP5 §1.2: yt-dlp in the research runtime (subtitles, metadata, comments, search, channel lists); no downloads.
+name: Video research
+description: YouTube transcripts, metadata, comments, search and channel lists through yt-dlp (no video download)
+intent_tags: [video transcript, youtube transcript, auto-subtitles]   # the video phrases are routing rules
+origin: os-native
+guide: GUIDE.md
+runtime_type: python-isolated
+requires_network: true
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: run
+activation_conditions:
+  when: [the request names a video, a transcript or a YouTube URL]
+verification_requirements: [quotes carry the video URL and timestamp, auto-subtitles de-duplicated]
+dependencies: []
+related_capabilities: [research/synthesis, youtube/repurpose, youtube/analytics]
+conflicts: []
+fallback_capability: null
+enabled: true

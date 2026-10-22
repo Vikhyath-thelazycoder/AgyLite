@@ -17,7 +17,7 @@ from ...paths import repo_root
 TOKEN_SCENARIO_LIMIT = 0.15   # MP2 T0.4: no scenario more than +15 % over baseline
 TOKEN_TOTAL_LIMIT = 0.05      # … and the total no more than +5 %
 FIDELITY_WARN = 0.50          # warn when the primary source is under half loaded
-HEADER = re.compile(r"^### (files/\S+) — .*?(?:\(sections (\d+)/(\d+), ≈(\d+) of (\d+) est\. tokens\))?$", re.M)
+HEADER = re.compile(r"^### ((?:files/|capabilities/)\S+) — .*?(?:\(sections (\d+)/(\d+), ≈(\d+) of (\d+) est\. tokens\))?$", re.M)
 
 
 def _yaml(path: Path):
@@ -147,7 +147,7 @@ def tokens(root: Path, baseline: dict | None) -> dict:
 
 
 def self_tests(bundle: Path) -> dict:
-    """T0.5: the bundle's engine self-tests (Unlazy, UI/UX Pro Max; MP4/MP5 add Taste, YouTube, Archify)."""
+    """T0.5: the bundle's engine self-tests (Unlazy, UI/UX Pro Max, Taste, YouTube tools, Archify examples)."""
     from ...bundle.build import _self_tests
     results = _self_tests(bundle, log=lambda *_: None)
     return {"results": results, "ok": all(r["exit"] == 0 for r in results.values())}

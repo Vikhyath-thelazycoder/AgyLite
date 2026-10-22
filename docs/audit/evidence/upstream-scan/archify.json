@@ -1,0 +1,363 @@
+{
+ "repo": "archify",
+ "head": "25cf37080fc8b1dbe758a4efc3935b55f3327083",
+ "totals": {
+  "files": 1174,
+  "bytes": 102955988,
+  "submodules": []
+ },
+ "top_dirs": {
+  "test": 314,
+  "archify": 203,
+  "docs": 203,
+  "website": 108,
+  "experiments": 77,
+  "journal": 62,
+  "examples": 28,
+  "integrations": 28,
+  "scripts": 28,
+  "benchmarks": 27,
+  ".agents": 24,
+  "(root)": 22,
+  "viewer": 18,
+  "tools": 17,
+  ".github": 11,
+  "community": 4
+ },
+ "extensions": {
+  ".mjs": 421,
+  ".json": 192,
+  ".md": 179,
+  ".png": 138,
+  ".html": 84,
+  ".js": 46,
+  ".astro": 20,
+  ".css": 15,
+  "(none)": 12,
+  ".yml": 10,
+  ".txt": 10,
+  ".webp": 8,
+  ".jpg": 7,
+  ".svg": 7,
+  ".woff2": 5,
+  ".yaml": 4,
+  ".mmd": 4,
+  ".ts": 3,
+  ".sh": 2,
+  ".ttf": 2,
+  ".zip": 1,
+  ".gif": 1,
+  ".py": 1,
+  ".ps1": 1,
+  ".tsx": 1
+ },
+ "host_dirs": [
+  ".agents"
+ ],
+ "manifests": [
+  "archify/package.json",
+  "integrations/deepseek-harness/package.json",
+  "package.json",
+  "website/package.json"
+ ],
+ "mcp_files": [],
+ "installers": [
+  "archify/scripts/update-contract.mjs",
+  "test/update-contract.test.mjs",
+  "test/update-notifier.test.mjs"
+ ],
+ "license_files": [
+  ".agents/skills/simplify-codebase/LICENSE",
+  ".agents/skills/test-value/LICENSE",
+  "LICENSE",
+  "THIRD_PARTY_NOTICES.md",
+  "archify/LICENSE",
+  "archify/THIRD_PARTY_NOTICES.md",
+  "archify/explainer/vendor/pele/LICENSE",
+  "scripts/third-party-notices-contract.mjs"
+ ],
+ "skills": [
+  {
+   "path": ".agents/skills/archify-review/SKILL.md",
+   "name": "archify-review",
+   "description": "Review Archify issues, PRs, or code through value, cost, and impact to support evidence-based maintenance decisions. Use for issue triage, change reviews, and code quality assessments.",
+   "bytes": 1658
+  },
+  {
+   "path": ".agents/skills/archify-tuning/SKILL.md",
+   "name": "archify-tuning",
+   "description": "Improve Archify diagram accuracy, visual quality and complete authoring speed with fewer repairs. Use for generation experiments or evaluating changes to layout, routing, diagnostics, authoring instructions and acceptance rules against actu",
+   "bytes": 9148
+  },
+  {
+   "path": ".agents/skills/simplify-codebase/SKILL.md",
+   "name": "simplify-codebase",
+   "description": "Simplification audit or authorized codebase simplification whose stated objective is to remove accidental complexity. Use for evidence-backed deletion or consolidation of dead code, duplicate state, redundant APIs or layers, ownerless abstr",
+   "bytes": 6935
+  },
+  {
+   "path": ".agents/skills/test-value/SKILL.md",
+   "name": "test-value",
+   "description": "Improve test value and feedback cost when auditing slow, flaky, redundant or brittle tests; choosing tests during implementation; or reviewing test changes before a commit or PR. Keep ordinary implementation and pre-commit use scoped to the",
+   "bytes": 9584
+  },
+  {
+   "path": "archify/SKILL.md",
+   "name": "archify",
+   "description": "Create validated architecture, workflow, sequence, data-flow, lifecycle/state, ERD, class, tree, timeline, and waterfall diagrams as explorable standalone HTML with dark/light themes, motion and image/SVG/WebM export. Accept requirements or",
+   "bytes": 18870
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 5,
+   "files": [
+    "docs/cases/mco-runtime.architecture.html",
+    "docs/cases/mco-runtime.architecture.json",
+    "docs/research/skill-plugin-update-reminder-market-design.md",
+    "experiments/mco-showcase/mco-runtime.architecture.json",
+    "experiments/mco-showcase/mco-runtime.html"
+   ]
+  },
+  "network": {
+   "count": 10,
+   "files": [
+    "scripts/run-windows-path-tests.mjs",
+    "test/cli.test.mjs",
+    "test/preview-force-stop.test.mjs",
+    "test/preview.test.mjs",
+    "test/repository-evidence-types.test.mjs",
+    "test/repository-evidence.test.mjs",
+    "test/site-language-continuity.test.mjs",
+    "test/webm-artifact.smoke.mjs",
+    "tools/contributor-cards/github.mjs",
+    "website/package-lock.json"
+   ]
+  },
+  "telemetry": {
+   "count": 17,
+   "files": [
+    "archify/brand-marks/catalog.json",
+    "archify/renderers/shared/generated-brand-marks.mjs",
+    "archify/scripts/check-render-output.mjs",
+    "benchmarks/ordinary-model-floor/cases/product-analytics.dataflow.case.json",
+    "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models-postfix.json",
+    "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models-quality-first.json",
+    "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models.json",
+    "examples/maka-architecture.architecture.json",
+    "integrations/deepseek-harness/scripts/distribution-acceptance.mjs",
+    "integrations/deepseek-harness/test/adapter-security.test.mjs",
+    "integrations/deepseek-harness/test/docs-contract.test.mjs",
+    "scripts/copy-site-assets.mjs",
+    "test/geometry.test.mjs",
+    "test/layout-rules.test.mjs",
+    "test/ordinary-model-floor.test.mjs",
+    "test/skill-installation.test.mjs",
+    "website/package-lock.json"
+   ]
+  },
+  "background": {
+   "count": 10,
+   "files": [
+    ".github/workflows/dsh.yml",
+    ".github/workflows/star-history.yml",
+    "archify/bin/preview.mjs",
+    "archify/explainer/render.mjs",
+    "docs/cases/mco-runtime.architecture.json",
+    "experiments/mco-showcase/mco-runtime.architecture.json",
+    "integrations/deepseek-harness/scripts/distribution-acceptance.mjs",
+    "test/delivery-update.test.mjs",
+    "test/preview-force-stop.test.mjs",
+    "test/preview.test.mjs"
+   ]
+  },
+  "browser": {
+   "count": 12,
+   "files": [
+    ".agents/skills/archify-tuning/scripts/shots.mjs",
+    "archify/bin/visual-check.mjs",
+    "docs/issue-52-visual-evidence/browser-results.json",
+    "scripts/build-readme-showcase.mjs",
+    "scripts/run-browser-tests.mjs",
+    "test/browser-gate.test.mjs",
+    "test/helpers/desktop-browser.mjs",
+    "test/readme-showcase.test.mjs",
+    "test/visual-check.test.mjs",
+    "test/webm-artifact.smoke.mjs",
+    "viewer/export.js",
+    "website/package-lock.json"
+   ]
+  },
+  "shell_exec": {
+   "count": 252,
+   "files": [
+    ".agents/skills/archify-tuning/scripts/collect.mjs",
+    ".agents/skills/archify-tuning/scripts/lib.mjs",
+    ".agents/skills/archify-tuning/scripts/replay.mjs",
+    ".agents/skills/archify-tuning/scripts/round.mjs",
+    "archify/bin/archify.mjs",
+    "archify/bin/delivery-update.mjs",
+    "archify/bin/finalize.mjs",
+    "archify/bin/open-artifact.mjs",
+    "archify/bin/preview.mjs",
+    "archify/bin/visual-check.mjs",
+    "archify/delta/architecture-delta.mjs",
+    "archify/explainer/check.mjs",
+    "archify/explainer/diagrams.mjs",
+    "archify/explainer/sources.mjs",
+    "archify/explainer/vendor/pele/chunks/3DKXF73K.js",
+    "archify/explainer/vendor/pele/chunks/EJ5KOXYD.js",
+    "archify/explainer/vendor/pele/chunks/IZOKQ2GT.js",
+    "archify/explainer/vendor/pele/chunks/YAYTP6L5.js",
+    "archify/renderers/shared/brand-marks.mjs",
+    "archify/renderers/shared/repository-evidence.mjs",
+    "archify/renderers/shared/svg-path-analysis.mjs",
+    "archify/scripts/check-update.mjs",
+    "archify/scripts/render-examples.mjs",
+    "archify/scripts/update-contract.mjs",
+    "benchmarks/ordinary-model-floor/benchmark.mjs",
+    "benchmarks/repair-rounds/benchmark.mjs",
+    "docs/specs/explainer/prototypes/build.mjs",
+    "experiments/node-index-rows/compare.mjs",
+    "experiments/visual-evolution/prototype.mjs",
+    "integrations/deepseek-harness/scripts/resolve-cli.mjs",
+    "integrations/deepseek-harness/test/adapter-security.test.mjs",
+    "integrations/deepseek-harness/test/adapter-staging.test.mjs",
+    "integrations/deepseek-harness/test/resolve-cli.test.mjs",
+    "integrations/deepseek-harness/test/tarball-contract.test.mjs",
+    "integrations/deepseek-harness/test/transient-retry.test.mjs",
+    "integrations/deepseek-harness/test/zero-regression.test.mjs",
+    "integrations/hermes-agent/test/plugin-contract.test.mjs",
+    "scripts/build-gallery.mjs",
+    "scripts/build-readme-showcase.mjs",
+    "scripts/check-stable-update-manifest.mjs",
+    "scripts/ci-scope.mjs",
+    "scripts/package-smoke.mjs",
+    "scripts/package-update-smoke.mjs",
+    "scripts/run-affected-tests.mjs",
+    "scripts/run-browser-tests.mjs",
+    "scripts/run-tests.mjs",
+    "scripts/run-windows-path-tests.mjs",
+    "scripts/stage-clean-skill.mjs",
+    "scripts/test-runner-options.mjs",
+    "test/animation.test.mjs",
+    "test/archify-tuning.test.mjs",
+    "test/architecture-automatic-labels.test.mjs",
+    "test/architecture-compare-recovery.test.mjs",
+    "test/architecture-component-diagnostics.test.mjs",
+    "test/architecture-delta-literals.test.mjs",
+    "test/architecture-delta-markers.test.mjs",
+    "test/architecture-delta.test.mjs",
+    "test/architecture-first-draft.test.mjs",
+    "test/architecture-leading-space.test.mjs",
+    "test/architecture-reading-size-browser.test.mjs"
+   ]
+  },
+  "env_secrets": {
+   "count": 112,
+   "files": [
+    ".github/ISSUE_TEMPLATE/improvement.yml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/contributor-cards.yml",
+    "archify/bin/archify.mjs",
+    "archify/explainer/diff.mjs",
+    "archify/explainer/sources.mjs",
+    "archify/renderers/architecture/render-architecture.mjs",
+    "archify/renderers/dataflow/render-dataflow.mjs",
+    "archify/renderers/explainer/render-explainer.mjs",
+    "archify/renderers/shared/brand-marks.mjs",
+    "archify/renderers/shared/cli.mjs",
+    "archify/renderers/shared/diagnostics.mjs",
+    "archify/renderers/shared/geometry.mjs",
+    "archify/renderers/workflow/render-workflow.mjs",
+    "archify/scripts/check-render-output.mjs",
+    "archify/scripts/check-update.mjs",
+    "archify/scripts/delivery-update-child.mjs",
+    "examples/maka-architecture.architecture.json",
+    "integrations/deepseek-harness/test/adapter-security.test.mjs",
+    "integrations/deepseek-harness/test/probe-skills.mjs",
+    "integrations/hermes-agent/__init__.py",
+    "integrations/hermes-agent/test/plugin-contract.test.mjs",
+    "scripts/build-readme-showcase.mjs",
+    "scripts/check-stable-update-manifest.mjs",
+    "scripts/ci-scope.mjs",
+    "scripts/package-smoke.mjs",
+    "scripts/run-affected-tests.mjs",
+    "scripts/run-tests.mjs",
+    "scripts/run-windows-path-tests.mjs",
+    "test/archify-tuning.test.mjs",
+    "test/atomic-output-recovery.test.mjs",
+    "test/bottom-node-index-browser.test.mjs",
+    "test/brand-marks.test.mjs",
+    "test/class-motion-browser.test.mjs",
+    "test/clean-skill-staging.test.mjs",
+    "test/cli.test.mjs",
+    "test/cloudflare-deployment-workflow.test.mjs",
+    "test/community-packages.test.mjs",
+    "test/community-proof-intake.test.mjs",
+    "test/crossover-state-browser.test.mjs",
+    "test/delivery-sidecar-path.test.mjs",
+    "test/desktop-reader-browser.test.mjs",
+    "test/explainer-browser.test.mjs",
+    "test/explainer-diagrams.test.mjs",
+    "test/explainer-diff.test.mjs",
+    "test/explainer-sources.test.mjs",
+    "test/export-browser.test.mjs",
+    "test/export-cleanup-browser.test.mjs",
+    "test/export-selection-browser.test.mjs",
+    "test/finalize-browser.test.mjs",
+    "test/finalize.test.mjs",
+    "test/finder-browser.test.mjs",
+    "test/focus-browser.test.mjs",
+    "test/i18n-browser.test.mjs",
+    "test/intent-trace-browser.test.mjs",
+    "test/joint-layout-browser.test.mjs",
+    "test/menu-modifier-browser.test.mjs",
+    "test/motion-governor-browser.test.mjs",
+    "test/offline-font-browser.test.mjs",
+    "test/open-artifact.test.mjs"
+   ]
+  },
+  "home_writes": {
+   "count": 5,
+   "files": [
+    ".agents/skills/archify-tuning/scripts/collect.mjs",
+    ".agents/skills/archify-tuning/scripts/lib.mjs",
+    "archify/scripts/check-update.mjs",
+    "integrations/hermes-agent/__init__.py",
+    "test/explainer-parser.test.mjs"
+   ]
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 13,
+   "files": [
+    "archify/brand-marks/catalog.json",
+    "archify/renderers/shared/generated-brand-marks.mjs",
+    "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models-postfix.json",
+    "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models-quality-first.json",
+    "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models.json",
+    "scripts/package-smoke.mjs",
+    "scripts/third-party-notices-contract.mjs",
+    "test/brand-marks.test.mjs",
+    "test/clean-skill-staging.test.mjs",
+    "test/node-icons.test.mjs",
+    "test/ordinary-model-floor.test.mjs",
+    "test/release-package-gates.test.mjs",
+    "test/repair-receipt.test.mjs"
+   ]
+  }
+ }
+}

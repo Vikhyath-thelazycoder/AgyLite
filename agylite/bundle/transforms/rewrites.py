@@ -59,7 +59,7 @@ POCOCK_TRACKER = ("In Agylite the tracker is the project's living plan. Write th
                   "work with `agylite plan add-task <phase> \"<title>\" --depends <task-id> --acceptance \"<criterion>\"` "
                   "(one task per ticket; `--depends` for each blocking edge). If the user names an external tracker "
                   "(GitHub, Linear), ask before publishing anything there.")
-POCOCK_NOT_BUNDLED = {"research": "agylite skills get pocock/research"}   # research domain arrives in MP5
+POCOCK_NOT_BUNDLED = {}   # skills named by a bundled skill but not bundled themselves (none since MP5 bundled research)
 
 
 def _pocock_load(name):
@@ -116,8 +116,64 @@ WAYFINDER_NOTES = (re.compile(r"call the Skill tool for whichever skills the `##
                    "load whichever skills the `## Notes` block names (`agylite skill load <upstream>/<name>`)")
 
 
+# MP5 §2.2 — youtube-agent-skill: the creator's voice file is host-neutral (~/.agylite/youtube/voice.md), the stdlib
+# tools run through `agylite youtube <tool>`, `/yt-x` slash commands are `agylite skill load ytagent/yt-x`, and
+# transcripts and channel lists come from the research domain. The skills' method and gates stay verbatim.
+YT_VOICE = (re.compile(r"Read `~/\.claude/youtube/voice\.md` if it exists\."),
+            "Read `~/.agylite/youtube/voice.md` if it exists (`agylite youtube voice init` creates it from the template). "
+            "If it is still the unfilled template, ask for it, or proceed and mark the output **generic voice**.")
+YT_TOOL = (re.compile(r"python3 (hookscore|title|deadair|chapters|retention|swipe)\.py"), r"agylite youtube \1")
+YT_REL = (re.compile(r"`\.\./yt-(?:script|package)/(hookscore|title)\.py`"), r"`agylite youtube \1`")
+YT_BARE = (re.compile(r"`(hookscore|title|chapters)\.py`"), r"`agylite youtube \1`")
+YT_SLASH = (re.compile(r"`/(yt-[a-z]+)`"), r"`agylite skill load ytagent/\1`")
+YT_WHISPER = (re.compile(r"No transcript yet\? Ask for one, or produce one first - `whisper`, `faster-whisper`, or the "
+                         r"caption\ntrack YouTube generates on an unlisted upload all work\."),
+              "No transcript yet? Ask for one, or take the caption track YouTube generates (also on an unlisted\n"
+              "upload): `agylite research video <url> --subs`. Agylite does not transcribe audio.")
+YT_COLLECT = (re.compile(r"Collect them however the user prefers - `yt-dlp --flat-playlist -J`\nagainst a channel URL is "
+                         r"the fastest, the public page works, a manual list works\."),
+              "Collect them however the user prefers - `agylite research channel <channel-url> --n 30 --swipe\n"
+              "collected.json` (once per channel; it appends) is the fastest, the public page works, a manual list works.")
+
+# MP5 §3.2 — Archify: commands run through `agylite diagram` (the bundled bin/archify.mjs from the working directory),
+# explainer pages only on request (never proactive or always-on, never a mode offer), and Agylite owns updates (the
+# wrapper disables Archify's update check). The authoring method, schemas, quality profiles and repair contract stay.
+ARCHIFY = [
+    (re.compile(r"node bin/archify\.mjs"), "agylite diagram"),
+    (re.compile(r" Replace `bin/archify\.mjs` in every command with the installed package's absolute path, or its path "
+                r"relative to your working directory; CLI input and output paths resolve from that directory\."),
+     " Run Archify as `agylite diagram <command> …` (Agylite runs the bundled `bin/archify.mjs` from your working "
+     "directory); CLI input and output paths resolve from that directory."),
+    (re.compile(r", or proactively when the user's rules opt in with an \[archify explainer: \.\.\.\] line\. Not for"),
+     ". Not for"),
+    (re.compile(r" A page made on request ends its reply with the one-line mode offer under Output\."), ""),
+    (re.compile(r"^- A rules line in context changes this\. `\[archify explainer: proactive\]`.*\n", re.M),
+     "- Explainer pages are made only when the user asks for one: never unasked, and never offer a mode.\n"),
+    (re.compile(r"^- In every mode a page needs", re.M), "- A page needs"),
+    (re.compile(r"\n`finalize` includes a bounded update check in its delivery receipt; see Update awareness\.\n"), ""),
+    (re.compile(r"^`finalize` and standalone `deliver` include `update` in their receipts\..*\n", re.M),
+     "Agylite manages Archify updates; ignore update notices in receipts.\n"),
+    (re.compile(r" Keep the required update notice under Update awareness\."), ""),
+    (re.compile(r"\n\nAfter an explainer made on request, when no `\[archify explainer: \.\.\.\]` line is in context, "
+                r"end the reply with one optional line offering the proactive mode.*\Z", re.S), "\n"),
+]
+
 # (repo, path) -> [(pattern, replacement)]
 REWRITES = {
+    ("ytagent", "skills/yt-script/SKILL.md"): [YT_TOOL, YT_VOICE, YT_BARE],
+    ("ytagent", "skills/yt-package/SKILL.md"): [YT_TOOL, YT_VOICE, YT_BARE],
+    ("ytagent", "skills/yt-edit/SKILL.md"): [YT_TOOL, YT_WHISPER],
+    ("ytagent", "skills/yt-chapters/SKILL.md"): [YT_TOOL, YT_BARE],
+    ("ytagent", "skills/yt-retention/SKILL.md"): [YT_TOOL, YT_SLASH],
+    ("ytagent", "skills/yt-viral/SKILL.md"): [YT_TOOL, YT_COLLECT],
+    ("ytagent", "skills/yt-audit/SKILL.md"): [YT_VOICE, YT_REL, YT_SLASH],
+    ("ytagent", "skills/yt-shorts/SKILL.md"): [YT_REL],
+    ("ytagent", "skills/yt-plan/SKILL.md"): [YT_VOICE, YT_SLASH],
+    ("ytagent", "skills/yt-comment/SKILL.md"): [YT_VOICE],
+    ("ytagent", "templates/voice.md"): [(re.compile(r"Copy this to `~/\.claude/youtube/voice\.md`"),
+                                         "`agylite youtube voice init` copies this to `~/.agylite/youtube/voice.md`; fill it in")],
+    ("ytagent", "skills/yt-seo/SKILL.md"): [YT_VOICE, YT_SLASH],
+    ("archify", "archify/SKILL.md"): ARCHIFY,
     # P13 (D-027/D-035/D-038): no MCP and no browser automation as a data source; parse artifacts the user provides.
     ("addy", "agents/web-performance-auditor.md"): [
         (re.compile(r", `npx -p chrome-devtools-mcp chrome-devtools lighthouse_audit --output-format=json` "

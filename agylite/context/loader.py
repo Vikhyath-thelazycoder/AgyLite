@@ -59,6 +59,30 @@ def _describe(path: str, text: str):
     return name or (parts[-2] if parts[-1].startswith("SKILL.md") else parts[-1]), desc[:300]
 
 
+def guide_entries(root: Path | None = None) -> dict:
+    """{capability id: index entry} for the Agylite-authored guides (MP5 §1.4): `capabilities/<id>/GUIDE.md`, read
+    from the installed engine like CARD.md, loaded as the capability's primary skill `agylite/<domain>-<sub>`."""
+    import hashlib
+
+    from ..registry import loader as registry
+    out = {}
+    for cid, card in registry.load_cards(root).items():
+        if not card.get("guide"):
+            continue
+        path = registry.capabilities_dir(root) / cid / card["guide"]
+        if not path.is_file():
+            continue
+        data = path.read_bytes()
+        text = data.decode("utf-8", errors="replace")
+        rel = f"capabilities/{cid}/{card['guide']}"
+        name, desc = _describe(rel, text)
+        out[cid] = {"path": rel, "kind": "skill", "bytes": len(data), "sha256": hashlib.sha256(data).hexdigest(),
+                    "tokens": est_tokens(len(data)), "name": name, "description": desc,
+                    "sections": [s.as_dict() for s in split_sections(text)], "file": str(path),
+                    "skill_id": "agylite/" + cid.replace("/", "-")}
+    return out
+
+
 def build_context_index(bundle_dir: Path):
     index = json.loads((bundle_dir / "index.json").read_text(encoding="utf-8"))
     out = {}
@@ -108,6 +132,7 @@ class ContextLoader:
             self.cache = SessionCache(project.data_dir / "sessions" / session_id / "context-cache.json",
                                       project.project_id, session_id)
         self._index = None
+        self._guides = None
 
     # ── bundle ──────────────────────────────────────────────────────────────────────────────────────────────────
     def require_bundle(self) -> Path:
@@ -122,15 +147,26 @@ class ContextLoader:
             self._index = load_context_index(bundle, self.home or bundle.parent.parent)
         return self._index
 
+    @property
+    def guides(self):
+        if self._guides is None:
+            self._guides = guide_entries()
+        return self._guides
+
     def files_of(self, cid: str):
-        return self.index["capabilities"].get(cid, [])
+        guide = self.guides.get(cid)
+        return ([guide] if guide else []) + self.index["capabilities"].get(cid, [])
 
     def bundle_entry(self, path: str):
-        for entries in self.index["capabilities"].values():
+        for entries in [list(self.guides.values()), *self.index["capabilities"].values()]:
             for e in entries:
                 if e["path"] == path:
                     return e
         return None
+
+    def source(self, entry) -> Path:
+        """Where an index entry's file lives: the bundle, or the engine for an authored guide."""
+        return Path(entry["file"]) if entry.get("file") else self.require_bundle() / entry["path"]
 
     # ── reads ───────────────────────────────────────────────────────────────────────────────────────────────────
     def cached(self, key: str, *, sha256=None, stat=None, sections=()):

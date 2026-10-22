@@ -281,10 +281,10 @@ def _skill(args):
     loader = ContextLoader(project, _session_id(args), current_bundle(), use_cache=not args.no_cache)
     try:
         if args.skill_cmd == "list":
-            for cid, entries in sorted(loader.index["capabilities"].items()):
+            for cid in sorted(set(loader.index["capabilities"]) | set(loader.guides)):
                 if args.capability and cid != args.capability:
                     continue
-                for e in entries:
+                for e in loader.files_of(cid):
                     if e["kind"] == "skill":
                         print(f"{levels.skill_id(e):48} {cid:34} ~{e['tokens']} tokens")
             return 0
@@ -297,8 +297,8 @@ def _skill(args):
     except ContextError as exc:
         print(f"agylite skill: {exc}", file=sys.stderr)
         return 1
-    loader.finish(active_capabilities=[next((c for c, es in loader.index["capabilities"].items()
-                                              if any(x["path"] == entry["path"] for x in es)), "")])
+    loader.finish(active_capabilities=[next((c for c in sorted(set(loader.index["capabilities"]) | set(loader.guides))
+                                              if any(x["path"] == entry["path"] for x in loader.files_of(c))), "")])
     sys.stdout.write(text)
     return 0
 
@@ -700,10 +700,11 @@ def _runtime_cmd(args):
     if args.runtime_cmd == "status":
         from .runtimes import uiux
         from .runtimes import brag, seo
-        from .runtimes import designlang, taste
+        from .runtimes import archify, designlang, research, taste, youtube
         _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home), uiux.health(bundle),
                              taste.health(bundle, home), designlang.health(home), seo.health(home, bundle),
-                             brag.health(home, bundle)]}, args.json)
+                             brag.health(home, bundle), archify.health(bundle), youtube.health(bundle, home),
+                             research.health(home, bundle)]}, args.json)
         return 0
     if args.runtime_cmd == "unlazy-hook":
         before = unlazy.stop_hook_commands()
@@ -723,6 +724,16 @@ def _runtime_cmd(args):
         try:
             _print(brag.install_music(home, bundle), args.json)
         except (brag.BragError, OSError) as exc:
+            print(f"agylite runtime install: {exc}", file=sys.stderr)
+            return 1
+        return 0
+    if args.name == "research":   # MP5 §1.2: Agent-Reach at the audited commit + constraints.txt; no extras
+        import subprocess
+
+        from .runtimes import research
+        try:
+            _print(research.install(home, bundle), args.json)
+        except (research.ResearchError, OSError, subprocess.CalledProcessError) as exc:
             print(f"agylite runtime install: {exc}", file=sys.stderr)
             return 1
         return 0
@@ -816,6 +827,176 @@ def _gates_cmd(args):
         return 2
     print(p.stdout, end="")
     print(p.stderr, end="", file=sys.stderr)
+    return p.returncode
+
+
+def _research_cmd(args):
+    """MP5 §1.2: read-only research through the allow-listed tools; credentials only via `enable` (hidden input)."""
+    import getpass
+    import json as _json
+    import re as _re
+
+    from .paths import agylite_home, current_bundle
+    from .research import secrets, web
+    from .runtimes import research as rr
+    home, bundle, cmd = agylite_home(), current_bundle(), args.research_cmd
+    as_json = getattr(args, "json", False)
+
+    def out(data, text):
+        print(_json.dumps(data, indent=1, ensure_ascii=False) if as_json else text)
+
+    def tool_output(p, name):
+        if p.returncode:
+            print(f"agylite research {name}: {(p.stderr or p.stdout).strip()[-400:]}", file=sys.stderr)
+            return p.returncode
+        print(p.stdout, end="")
+        return 0
+
+    try:
+        if cmd == "doctor":
+            rows = rr.doctor(home, bundle)
+            out(rows, "\n".join(f"{k}: {v}" for k, v in rows.items()))
+            return 0
+        if cmd == "enable":
+            names = secrets.CHANNELS[args.channel]
+            print(f"Enabling {args.channel} (read-only). Research then reads as your account: keep volume low; you "
+                  f"accept the platform's terms-of-service risk. Paste the cookie value(s) from your browser's "
+                  f"developer tools (Application → Cookies); input is hidden. Never a password.")
+            values = {n: getpass.getpass(f"{n}: ").strip() for n in names}
+            rr.add_extra(home, bundle, args.channel, log=lambda m: print(m, file=sys.stderr))
+            where = secrets.store(home, args.channel, values)
+            print(f"{args.channel}: enabled (stored in {'the macOS Keychain' if where == 'keychain' else '~/.agylite/secrets/research.env, mode 0600'})")
+            return 0
+        if cmd == "disable":
+            removed = secrets.delete(home, args.channel)
+            print(f"{args.channel}: disabled" + (" (credentials deleted)" if removed else " (nothing was stored)"))
+            return 0
+        if cmd == "read":
+            if not args.direct:
+                marker = rr.tmp_dir(home) / f".jina-warned-{_session_id(args) or 'default'}"
+                if not marker.exists():
+                    print("agylite research: the page URL is sent to r.jina.ai (use --direct to read it on this "
+                          "machine)", file=sys.stderr)
+                    marker.touch()
+            page = web.read(args.url, direct=args.direct)
+            slug = _re.sub(r"[^a-z0-9]+", "-", args.url.lower().split("://", 1)[-1])[:80].strip("-")
+            path = rr.tmp_dir(home) / f"read-{slug}.md"
+            path.write_text(page["text"], encoding="utf-8")
+            text = page["text"] if len(page["text"]) <= args.max_chars else (
+                page["text"][: args.max_chars] + f"\n\n[… {len(page['text']) - args.max_chars} more characters in {path}]")
+            out({**page, "file": str(path)},
+                f"# {page['title'] or args.url}\nsource: {args.url} (via {page['via']}) · full text: {path}\n\n{text}")
+            return 0
+        if cmd == "rss":
+            feed = rr.rss(home, bundle, args.feed, args.limit)
+            out(feed, f"# {feed['title']}\n" + ("".join(f"- {e['title']} — {e['link']} ({e['published']})\n"
+                                                      for e in feed["entries"]) or f"(no entries {feed['error']})"))
+            return 0
+        if cmd == "video":
+            if not (args.subs or args.meta or args.comments):
+                args.meta = True
+            r = rr.video(home, bundle, args.url, subs=args.subs, meta=args.meta, comments=args.comments)
+            lines = []
+            if r.get("meta"):
+                m = r["meta"]
+                lines += [f"# {m['title']}", f"channel: {m['channel'] or m['uploader']} · date: {m['upload_date']} · "
+                          f"duration: {m['duration']}s · views: {m['view_count']}", f"url: {m['webpage_url'] or args.url}"]
+                lines += [f"chapter {c['at']} {c['title']}" for c in m.get("chapters") or []]
+                lines += ["", (m.get("description") or "").strip()]
+            for k in ("meta_error", "subs_error"):
+                if r.get(k):
+                    lines.append(f"[{k.split('_')[0]} unavailable: {r[k]}]")
+            if r.get("transcript"):
+                lines += ["", f"## transcript ({r['subtitle_file']}, repeated caption lines removed)"]
+                lines += [f"[{x['at']}] {x['text']}" for x in r["transcript"]]
+            if r.get("comments") is not None:
+                lines += ["", f"## top comments ({len(r['comments'])}, best-effort)"]
+                lines += [f"- ({c['likes']}) {c['author']}: {c['text']}" for c in r["comments"]]
+            lines += ["", "files: " + ", ".join(r["files"])] if r["files"] else []
+            out(r, "\n".join(lines))
+            return 0
+        if cmd == "video-search":
+            rows = rr.video_search(home, bundle, args.query, args.n)
+            out(rows, "".join(f"- {v['title']} — {v['channel']} · {v['views']} views · {v['url']}\n" for v in rows))
+            return 0
+        if cmd == "channel":
+            data = rr.channel(home, bundle, args.url, args.n)
+            rows = web.swipe_rows(data, args.url)
+            if args.swipe:
+                target = (_project_ref(args).root / args.swipe) if not Path(args.swipe).is_absolute() else Path(args.swipe)
+                have = _json.loads(target.read_text(encoding="utf-8")) if target.is_file() else []
+                seen = {r["url"] for r in have}
+                have += [r for r in rows if r["url"] not in seen]
+                target.write_text(_json.dumps(have, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+                print(f"{target}: {len(rows)} videos from {rows[0]['channel'] if rows else args.url} "
+                      f"({len(have)} in the file); next: agylite youtube swipe {target} --min 2.0")
+                return 0
+            out(rows, "".join(f"- {r['views']:>10,} views · {r['title']} · {r['url']}\n" for r in rows)
+                or "(no videos with view counts)")
+            return 0
+        if cmd == "github":
+            rows = rr.github(home, bundle, args.query, args.type, args.n)
+            out(rows, "".join(f"- {r.get('fullName') or r.get('title') or r.get('path')} — "
+                              f"{r.get('description') or (r.get('repository') or {}).get('nameWithOwner', '')} "
+                              f"{('★' + str(r['stargazersCount'])) if 'stargazersCount' in r else ''} {r.get('url')}\n"
+                              for r in rows))
+            return 0
+        if cmd == "x":
+            return tool_output(rr.x(home, bundle, args.query, args.n), "x")
+        if cmd == "reddit":
+            if not (args.query or args.read):
+                print("agylite research reddit: give a query or --read <post-id>", file=sys.stderr)
+                return 2
+            return tool_output(rr.reddit(home, bundle, args.query, sub=args.sub, n=args.n, read=args.read), "reddit")
+    except (rr.ResearchError, web.ReadError, secrets.SecretError) as exc:
+        print(f"agylite research {cmd}: {exc}", file=sys.stderr)
+        return 1
+    return 2
+
+
+def _youtube_cmd(args):
+    """MP5 §2.3: one stdlib tool from the bundle, run in the project, exit code preserved; `voice init` never overwrites."""
+    from .paths import agylite_home, current_bundle
+    from .runtimes import youtube
+    project = _project_ref(args)
+    bundle, home = current_bundle(), agylite_home()
+    try:
+        if args.tool == "status":
+            _print(youtube.health(bundle, home), "--json" in args.args)
+            return 0
+        if args.tool == "voice":
+            action = (args.args or ["status"])[0]
+            if action not in ("init", "status"):
+                print("agylite youtube voice: use `init` or `status`", file=sys.stderr)
+                return 2
+            info = (youtube.voice_init(bundle, home) if action == "init" else
+                    {"voice": str(youtube.voice_path(home)), "status": youtube.voice_status(bundle, home)})
+            if action == "init":
+                print(f"{info['voice']}: {'created from the template' if info['created'] else info['status']}")
+                print(info["next"])
+            else:
+                _print(info, "--json" in args.args)
+            return 0
+        return youtube.run(bundle, args.tool, args.args, cwd=project.root).returncode
+    except youtube.YouTubeError as exc:
+        print(f"agylite youtube: {exc}", file=sys.stderr)
+        return 1
+
+
+def _diagram_cmd(args):
+    """MP5 §3.3: `agylite diagram <archify-command> …` with the exit code preserved; `status` reports node/Chrome."""
+    from .paths import current_bundle
+    from .runtimes import archify
+    project = _project_ref(args)
+    if args.args[:1] == ["status"]:
+        _print(archify.health(current_bundle()), "--json" in args.args)
+        return 0
+    try:
+        p, info = archify.run(current_bundle(), args.args, cwd=project.root,
+                              log=lambda m: print(f"agylite diagram: {m}", file=sys.stderr))
+    except archify.ArchifyError as exc:
+        print(f"agylite diagram: {exc}", file=sys.stderr)
+        return 1
     return p.returncode
 
 
@@ -921,14 +1102,16 @@ def _verify_cmd(args):
     if args.plan:
         impact, selected = engine.plan_for(project, args.paths, full=args.all, kinds=kinds,
                                            include_e2e=args.include_e2e, bundle_dir=current_bundle(),
-                                           inspect=getattr(args, "inspect", None))
+                                           inspect=getattr(args, "inspect", None),
+                                           diagrams=getattr(args, "diagram", None))
         _print(engine.describe(selected, impact), args.json)
         return 0
     try:
         record, rel, results = engine.verify(project, args.paths, full=args.all, kinds=kinds,
                                              include_e2e=args.include_e2e, task=args.task,
                                              bundle_dir=current_bundle(), timeout=args.timeout,
-                                             session_id=_session_id(args), inspect=getattr(args, "inspect", None))
+                                             session_id=_session_id(args), inspect=getattr(args, "inspect", None),
+                                             diagrams=getattr(args, "diagram", None))
     except evidence.EvidenceError as exc:
         print(f"agylite verify: {exc}", file=sys.stderr)
         return 1
@@ -1363,7 +1546,7 @@ def build_parser():
     onoff.add_argument("--enable", action="store_true")
     onoff.add_argument("--disable", action="store_true")
     q = rsub.add_parser("install", help="Install a runtime from the active bundle (network: pip dependencies)")
-    q.add_argument("name", choices=("graphify", "seo", "brag", "designlang"))
+    q.add_argument("name", choices=("graphify", "seo", "brag", "designlang", "research"))
     q.add_argument("--browser", action="store_true", help="seo: add the browser extra (Playwright + Chromium, large)")
     q.add_argument("--reports", action="store_true", help="seo: add the PDF reports extra")
     q.add_argument("--json", action="store_true", help="JSON output")
@@ -1385,9 +1568,11 @@ def build_parser():
                            help="exception: record a browser-exception request (runs nothing)")
             p.add_argument("--reason", help="With exception: why local verification is insufficient")
             p.add_argument("--kind", action="append",
-                           choices=("test", "security", "typecheck", "lint", "build", "e2e", "design"))
+                           choices=("test", "security", "typecheck", "lint", "build", "e2e", "design", "diagram"))
             p.add_argument("--inspect", help="Design changes: the page Taste inspect opens (URL or file; default: "
                                              "the project's index.html or dist/index.html)")
+            p.add_argument("--diagram", action="append", help="A delivered Archify page to check again (Archify check "
+                                                              "+ Chrome browser-check; repeatable)")
         p.add_argument("--paths", nargs="*", help="Changed files (default: git working-tree changes)")
         p.add_argument("--plan", action="store_true", help="Show the selected checks without running them")
         p.add_argument("--all", action="store_true", help="Full suites instead of impacted tests")
@@ -1509,6 +1694,69 @@ def build_parser():
     q.add_argument("script", choices=("draw", "inspect", "lint", "scenes", "assets", "status"))
     q.add_argument("args", nargs=argparse.REMAINDER, help="Passed to the script (e.g. --sector, --options 3)")
     p.set_defaults(func=_design_cmd)
+
+    p = sub.add_parser("diagram", help="Archify diagrams: any archify command (finalize, validate, guide, check, "
+                                       "browser-check …) run from the project root, plus `status` (MP5 §3)")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.add_argument("args", nargs=argparse.REMAINDER, help="Archify command and its arguments")
+    p.set_defaults(func=_diagram_cmd)
+
+    p = sub.add_parser("research", help="Read-only research: read | rss | video | video-search | channel | github | x | "
+                                        "reddit | doctor | enable | disable (MP5 §1; discovery is the host's web search)")
+    rsub2 = p.add_subparsers(dest="research_cmd", required=True)
+    q = rsub2.add_parser("read", help="A page as text via r.jina.ai, or --direct on this machine")
+    q.add_argument("url")
+    q.add_argument("--direct", action="store_true", help="Plain HTTP GET + text extraction here (no third party)")
+    q.add_argument("--max-chars", type=int, default=60000, help="Print at most this much (the full text is saved)")
+    q.add_argument("--session")
+    project_arg(q)
+    q = rsub2.add_parser("rss", help="A feed's latest entries (feedparser)")
+    q.add_argument("feed")
+    q.add_argument("--limit", type=int, default=10)
+    project_arg(q)
+    q = rsub2.add_parser("video", help="YouTube metadata (default), --subs transcript, --comments N (yt-dlp, no download)")
+    q.add_argument("url")
+    q.add_argument("--subs", action="store_true")
+    q.add_argument("--meta", action="store_true")
+    q.add_argument("--comments", type=int, default=0)
+    project_arg(q)
+    q = rsub2.add_parser("video-search", help="Search YouTube (yt-dlp ytsearch)")
+    q.add_argument("query")
+    q.add_argument("--n", type=int, default=5)
+    project_arg(q)
+    q = rsub2.add_parser("channel", help="A channel's recent uploads; --swipe FILE appends yt-viral rows")
+    q.add_argument("url")
+    q.add_argument("--n", type=int, default=30)
+    q.add_argument("--swipe", help="Append {channel,title,views,url,duration} rows to this JSON file")
+    project_arg(q)
+    q = rsub2.add_parser("github", help="gh search repos | code | issues")
+    q.add_argument("query")
+    q.add_argument("--type", default="repos", choices=("repos", "code", "issues"))
+    q.add_argument("--n", type=int, default=10)
+    project_arg(q)
+    q = rsub2.add_parser("x", help="Search X (opt-in: `agylite research enable x`; ≤ 20 results)")
+    q.add_argument("query")
+    q.add_argument("--n", type=int, default=10)
+    project_arg(q)
+    q = rsub2.add_parser("reddit", help="Search Reddit or --read a post (opt-in: `agylite research enable reddit`; ≤ 25)")
+    q.add_argument("query", nargs="?")
+    q.add_argument("--sub", help="Only this subreddit")
+    q.add_argument("--read", help="A post id: the post and its comments")
+    q.add_argument("--n", type=int, default=10)
+    project_arg(q)
+    q = rsub2.add_parser("doctor", help="Allowed channels only: web, rss, video, github, x, reddit")
+    project_arg(q)
+    for name in ("enable", "disable"):
+        q = rsub2.add_parser(name, help=f"{name.title()} X or Reddit (cookie values, hidden input; disable deletes them)")
+        q.add_argument("channel", choices=("x", "reddit"))
+    p.set_defaults(func=_research_cmd)
+
+    p = sub.add_parser("youtube", help="YouTube tools (youtube-agent-skill): hookscore | title | deadair | chapters | "
+                                       "retention | swipe | voice init|status | status (MP5 §2; nothing renders or uploads)")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.add_argument("tool", choices=("hookscore", "title", "deadair", "chapters", "retention", "swipe", "voice", "status"))
+    p.add_argument("args", nargs=argparse.REMAINDER, help="Passed to the tool (e.g. --hook \"…\", transcript.srt --json)")
+    p.set_defaults(func=_youtube_cmd)
 
     p = sub.add_parser("codebase", help="Code graph (Graphify): affected files + related tests, scoped queries")
     csub = p.add_subparsers(dest="codebase_cmd", required=True)

@@ -2,6 +2,7 @@
 L3 deep reference (explicit only). Every assembly respects config/budgets.yaml and goes through the ContextLoader."""
 import fnmatch
 import os
+from pathlib import Path
 
 from .. import __version__
 from ..registry import loader as registry
@@ -116,7 +117,10 @@ def domain_context(loader, cids, budgets, root=None):
 
 
 def priority_rank(path, priority):
-    """Index of the first `sources_priority` glob matching `path`; unmatched files rank after every glob (MP1 F5)."""
+    """Index of the first `sources_priority` glob matching `path`; unmatched files rank after every glob (MP1 F5).
+    An authored guide (MP5 §1.4) ranks first: it is the capability's own instructions."""
+    if path.startswith("capabilities/"):
+        return -1
     return next((i for i, g in enumerate(priority) if fnmatch.fnmatchcase(path, g)), len(priority))
 
 
@@ -150,6 +154,8 @@ def capability_entries(loader, cid, priority=()) -> list:
 
 def skill_id(entry) -> str:
     """`<upstream>/<skill name>` (e.g. `ponytail/ponytail-review`, `taste/design-taste-frontend`)."""
+    if entry.get("skill_id"):
+        return entry["skill_id"]
     parts = entry["path"].split("/")
     folder = parts[-2] if parts[-1].startswith("SKILL.md") and len(parts) > 3 else parts[-1]
     return f"{parts[1]}/{entry.get('name') or folder}"
@@ -164,6 +170,8 @@ def primary_skill(entries, query=None, priority=()):
 def skill_unit(loader, entry) -> dict:
     """The skill's folder (relative links resolve there) and its other bundled files, read on demand."""
     folder = entry["path"].rsplit("/", 1)[0]
+    if entry.get("file"):   # an authored guide is one file
+        return {"folder": folder, "files": []}
     files = sorted({e["path"]: e for es in loader.index["capabilities"].values() for e in es
                     if e["path"].startswith(folder + "/") and e["path"] != entry["path"]}.values(),
                    key=lambda e: e["path"])
@@ -180,9 +188,10 @@ def whole_skill(loader, entry, level="L2") -> tuple:
         loader.note_hit(entry["path"], level, ["all"])
         body = _cached_marker(entry["path"], ["all"])
     else:
-        body = loader.read(bundle / entry["path"], display=entry["path"], level=level).rstrip() + "\n"
+        body = loader.read(loader.source(entry), display=entry["path"], level=level).rstrip() + "\n"
         loader.record(entry["path"], level=level, sha256=entry["sha256"], sections=["all"], sent_bytes=nbytes(body))
-    tail = f"Skill folder: {bundle / unit['folder']} (this skill's relative paths resolve here)\n"
+    where = Path(entry["file"]).parent if entry.get("file") else bundle / unit["folder"]
+    tail = f"Skill folder: {where} (this skill's relative paths resolve here)\n"
     if unit["files"]:
         tail += ("Files of this skill (read when the skill says so, e.g. `agylite context --file <path>`): "
                  + ", ".join(f"{e['path']} (~{e['tokens']})" for e in unit["files"][:40])
@@ -224,8 +233,8 @@ def capability_context(loader, cids, budgets, query=None, priorities=None, whole
 
 
 def find_skill(loader, sid: str):
-    """The bundled SKILL.md entry whose skill id is `sid`, else None."""
-    for entries in loader.index["capabilities"].values():
+    """The bundled SKILL.md (or authored guide) entry whose skill id is `sid`, else None."""
+    for entries in [list(loader.guides.values()), *loader.index["capabilities"].values()]:
         for e in entries:
             if e["kind"] == "skill" and skill_id(e) == sid:
                 return e
@@ -249,7 +258,7 @@ def deep_reference(loader, path: str, budgets, sections=None, query=None):
         loader.note_hit(path, "L3", ids)
         text = _cached_marker(path, ids)
     else:
-        raw = loader.read(loader.require_bundle() / path, display=path, level="L3")
+        raw = loader.read(loader.source(entry), display=path, level="L3")
         if chosen:
             text = render(raw, chosen, truncated, limit)
         else:

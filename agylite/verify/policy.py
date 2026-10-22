@@ -31,7 +31,7 @@ def state_block(cfg):
 
 def policy_problems(cfg, cards):
     """Policy violations: wrong mode, a switched-on mechanism, or an enabled capability that needs a browser outside
-    the scoped SEO/media domains (diagnostics, spec §41)."""
+    the scoped domains or capabilities of `scoped_browser_use` (diagnostics, spec §41)."""
     p = []
     if cfg.get("mode") != MODE:
         p.append(f"verification mode is {cfg.get('mode')!r}; policy requires {MODE}")
@@ -40,7 +40,8 @@ def policy_problems(cfg, cards):
     scoped = set(cfg.get("scoped_browser_use") or {})
     for cid, card in cards.items():
         domain = cid.split("/", 1)[0]
-        if card.get("enabled") and card.get("requires_browser", "none") != "none" and domain not in scoped:
+        if (card.get("enabled") and card.get("requires_browser", "none") != "none" and domain not in scoped
+                and cid not in scoped):
             p.append(f"{cid}: browser visual verification active but policy requires {MODE}")
         if card.get("runtime_status") == "DISABLED_BY_POLICY" and card.get("enabled"):
             p.append(f"{cid}: DISABLED_BY_POLICY capability is enabled")

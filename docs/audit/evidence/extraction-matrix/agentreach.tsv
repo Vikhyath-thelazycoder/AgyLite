@@ -1,0 +1,122 @@
+decision	reason	capability	bytes	path
+EXCLUDE	REPO_META		646	.env.example
+EXCLUDE	REPO_META		2927	.github/workflows/pytest.yml
+EXCLUDE	REPO_META		199	.gitignore
+EXCLUDE	DOC_ASSET		2136	.openteams/specs/2026-07-10-agent-skills-hub-friend-link-design.html
+EXCLUDE	DOC_ASSET		4797	.openteams/specs/2026-08-04-readme-partner-section-design.html
+EXCLUDE	REPO_META		7596	CHANGELOG.md
+EXCLUDE	REPO_META		2258	CONTRIBUTING.md
+COPY	LICENSE	research/web	1067	LICENSE
+REFERENCE	Usage reference for the runtime wrapper		22830	README.md
+EXCLUDE	REPO_META		1307	SECURITY.md
+EXCLUDE	PRODUCT_RUNTIME		212	agent_reach/__init__.py
+EXCLUDE	BROWSER_POLICY		429	agent_reach/backends/__init__.py
+EXCLUDE	BROWSER_POLICY		7942	agent_reach/backends/opencli.py
+EXCLUDE	PRODUCT_RUNTIME		1519	agent_reach/channels/__init__.py
+EXCLUDE	BROWSER_POLICY		1495	agent_reach/channels/_opencli_site.py
+EXCLUDE	PRODUCT_RUNTIME		3048	agent_reach/channels/base.py
+EXCLUDE	OUT_OF_DOMAIN		4610	agent_reach/channels/bilibili.py
+EXCLUDE	OUT_OF_DOMAIN		14515	agent_reach/channels/boss.py
+EXCLUDE	MCP		1623	agent_reach/channels/exa_search.py
+EXCLUDE	BROWSER_POLICY		443	agent_reach/channels/facebook.py
+EXCLUDE	PRODUCT_RUNTIME		4767	agent_reach/channels/github.py
+EXCLUDE	BROWSER_POLICY		456	agent_reach/channels/instagram.py
+EXCLUDE	MCP		2612	agent_reach/channels/linkedin.py
+EXCLUDE	MCP		5356	agent_reach/channels/mcporter.py
+EXCLUDE	PRODUCT_RUNTIME		6322	agent_reach/channels/reddit.py
+EXCLUDE	PRODUCT_RUNTIME		958	agent_reach/channels/rss.py
+EXCLUDE	PRODUCT_RUNTIME		5249	agent_reach/channels/twitter.py
+EXCLUDE	OUT_OF_DOMAIN		11831	agent_reach/channels/v2ex.py
+EXCLUDE	PRODUCT_RUNTIME		2505	agent_reach/channels/web.py
+EXCLUDE	OUT_OF_DOMAIN		11717	agent_reach/channels/xiaohongshu.py
+EXCLUDE	OUT_OF_DOMAIN		2443	agent_reach/channels/xiaoyuzhou.py
+EXCLUDE	OUT_OF_DOMAIN		10605	agent_reach/channels/xueqiu.py
+EXCLUDE	PRODUCT_RUNTIME		5429	agent_reach/channels/youtube.py
+EXCLUDE	PRODUCT_RUNTIME		89749	agent_reach/cli.py
+EXCLUDE	PRODUCT_RUNTIME		7390	agent_reach/config.py
+EXCLUDE	BROWSER_POLICY		16398	agent_reach/cookie_extract.py
+EXCLUDE	PRODUCT_RUNTIME		1277	agent_reach/core.py
+EXCLUDE	PRODUCT_RUNTIME		5304	agent_reach/doctor.py
+EXCLUDE	MCP		1277	agent_reach/guides/setup-exa.md
+EXCLUDE	PAID_API		1221	agent_reach/guides/setup-groq.md
+EXCLUDE	PRODUCT_RUNTIME		1441	agent_reach/guides/setup-reddit.md
+EXCLUDE	PRODUCT_RUNTIME		2911	agent_reach/guides/setup-twitter.md
+EXCLUDE	OUT_OF_DOMAIN		2586	agent_reach/guides/setup-xiaohongshu.md
+EXCLUDE	MCP		24	agent_reach/integrations/__init__.py
+EXCLUDE	MCP		2247	agent_reach/integrations/mcp_server.py
+EXCLUDE	PRODUCT_RUNTIME		4019	agent_reach/probe.py
+EXCLUDE	PAID_API		13161	agent_reach/scripts/transcribe_xiaoyuzhou.sh
+REFERENCE	Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file		8636	agent_reach/skill/SKILL.md
+REFERENCE	Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file		8294	agent_reach/skill/SKILL_en.md
+EXCLUDE	OUT_OF_DOMAIN		9249	agent_reach/skill/references/career.md
+REFERENCE	Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file		1383	agent_reach/skill/references/dev.md
+EXCLUDE	OUT_OF_DOMAIN		1474	agent_reach/skill/references/finance.md
+REFERENCE	Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file		1066	agent_reach/skill/references/search.md
+REFERENCE	Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file		10521	agent_reach/skill/references/social.md
+REFERENCE	Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file		5515	agent_reach/skill/references/video.md
+REFERENCE	Source of the Agylite-authored English guides (MP5 §1.3): translating and removing MCP, the Chinese platforms and the update nag rewrites most of each file		1087	agent_reach/skill/references/web.md
+EXCLUDE	PAID_API		16108	agent_reach/transcribe.py
+EXCLUDE	PRODUCT_RUNTIME		7197	agent_reach/utils/paths.py
+EXCLUDE	PRODUCT_RUNTIME		706	agent_reach/utils/process.py
+EXCLUDE	PRODUCT_RUNTIME		1138	agent_reach/utils/text.py
+EXCLUDE	PRODUCT_RUNTIME		3700	agent_reach/utils/url.py
+EXCLUDE	MCP		178	config/mcporter.json
+PRESERVE	Tested dependency pins: the research runtime installs with -c constraints.txt (MP5 §1.2)	research/web	329	constraints.txt
+REFERENCE	Usage reference for the runtime wrapper		21927	docs/README_en.md
+EXCLUDE	TRANSLATION		21946	docs/README_ja.md
+EXCLUDE	TRANSLATION		20790	docs/README_ko.md
+EXCLUDE	DOC_ASSET		62369	docs/assets/logo-1.png
+EXCLUDE	DOC_ASSET		1572	docs/assets/logo-1.svg
+EXCLUDE	DOC_ASSET		92351	docs/assets/logo-2.png
+EXCLUDE	DOC_ASSET		2533	docs/assets/logo-2.svg
+EXCLUDE	DOC_ASSET		48799	docs/assets/logo-3.png
+EXCLUDE	DOC_ASSET		1558	docs/assets/logo-3.svg
+EXCLUDE	DOC_ASSET		37174	docs/assets/sponsors/astraflow.png
+EXCLUDE	DOC_ASSET		4458	docs/assets/sponsors/browseract.png
+EXCLUDE	DOC_ASSET		23725	docs/assets/sponsors/coreclaw.png
+EXCLUDE	DOC_ASSET		3458	docs/assets/sponsors/tencent-cloud.svg
+REFERENCE	Usage reference for the runtime wrapper		2249	docs/cookie-export.md
+REFERENCE	Usage reference for the runtime wrapper		636	docs/dependency-locking.md
+EXCLUDE	INSTALLER		22167	docs/install.md
+REFERENCE	Usage reference for the runtime wrapper		4136	docs/troubleshooting.md
+EXCLUDE	INSTALLER		4974	docs/update.md
+EXCLUDE	DOC_ASSET		148332	docs/wechat-group-qr.jpg
+REFERENCE	Usage reference for the runtime wrapper		2333	llms.txt
+EXCLUDE	PRODUCT_RUNTIME		2160	pyproject.toml
+EXCLUDE	UPSTREAM_DEV		2315	scripts/sync-upstream.sh
+EXCLUDE	UPSTREAM_DEV		2727	test.sh
+EXCLUDE	UPSTREAM_DEV		3388	tests/conftest.py
+EXCLUDE	UPSTREAM_DEV		8843	tests/test_auth_guidance_policy.py
+EXCLUDE	UPSTREAM_DEV		10818	tests/test_boss_channel.py
+EXCLUDE	UPSTREAM_DEV		7153	tests/test_channel_contracts.py
+EXCLUDE	UPSTREAM_DEV		65038	tests/test_channels.py
+EXCLUDE	UPSTREAM_DEV		17925	tests/test_cli.py
+EXCLUDE	UPSTREAM_DEV		11361	tests/test_config.py
+EXCLUDE	UPSTREAM_DEV		6189	tests/test_cookie_extract_perms.py
+EXCLUDE	UPSTREAM_DEV		6822	tests/test_cookie_security.py
+EXCLUDE	UPSTREAM_DEV		715	tests/test_core.py
+EXCLUDE	UPSTREAM_DEV		10392	tests/test_doctor.py
+EXCLUDE	UPSTREAM_DEV		4993	tests/test_doctor_credential_boundaries.py
+EXCLUDE	UPSTREAM_DEV		1192	tests/test_home_isolation.py
+EXCLUDE	UPSTREAM_DEV		1339	tests/test_integration_script.py
+EXCLUDE	UPSTREAM_DEV		2810	tests/test_mcp_server.py
+EXCLUDE	UPSTREAM_DEV		4596	tests/test_mcporter_config.py
+EXCLUDE	UPSTREAM_DEV		6230	tests/test_opencli_backend.py
+EXCLUDE	UPSTREAM_DEV		3516	tests/test_opencode_skill.py
+EXCLUDE	UPSTREAM_DEV		40315	tests/test_p0_cli.py
+EXCLUDE	UPSTREAM_DEV		1273	tests/test_paths.py
+EXCLUDE	UPSTREAM_DEV		20874	tests/test_private_file_writes.py
+EXCLUDE	UPSTREAM_DEV		4139	tests/test_probe.py
+EXCLUDE	UPSTREAM_DEV		498	tests/test_process.py
+EXCLUDE	UPSTREAM_DEV		7147	tests/test_reddit_channel.py
+EXCLUDE	UPSTREAM_DEV		3119	tests/test_scrub_credentials.py
+EXCLUDE	UPSTREAM_DEV		11098	tests/test_skill_command.py
+EXCLUDE	UPSTREAM_DEV		32193	tests/test_transcribe.py
+EXCLUDE	UPSTREAM_DEV		5437	tests/test_twitter_channel.py
+EXCLUDE	UPSTREAM_DEV		5023	tests/test_url_security.py
+EXCLUDE	UPSTREAM_DEV		11272	tests/test_v2ex_channel.py
+EXCLUDE	UPSTREAM_DEV		7524	tests/test_web_channel.py
+EXCLUDE	UPSTREAM_DEV		4965	tests/test_xhs_format.py
+EXCLUDE	UPSTREAM_DEV		9699	tests/test_xiaoyuzhou_install.py
+EXCLUDE	UPSTREAM_DEV		9277	tests/test_xueqiu_channel.py
+EXCLUDE	UPSTREAM_DEV		8904	tests/test_youtube_channel.py

@@ -327,27 +327,69 @@ design-direction); (2) **skill loading** — the agent loads the skill only some
 Fix (owner, 2026-10-22: right after this benchmark): route page/site/screen builds to design/design-direction first,
 deliver the primary skill's text in the prompt hook, then re-run the AgyLite arm only with `--reuse-from` this run.
 
+### MP4 re-measure after the fixes (2026-10-22, AgyLite arm only, `--reuse-from`, Opus 5.5, n = 1)
+
+Fixes 7e6fad9 (page/site/screen builds route to Taste first) and cff519f (the prompt hook carries the whole primary
+skill, the MP3 open fix). The no-skill and original arms are reused from the earlier runs.
+
+| Suite | Before | After | Cost (AgyLite arm) | What the traces show |
+|---|---|---|---|---|
+| design-taste | REGRESSED: inspector 0.68, judge 0.32 | inspector **0.955 same**, lint 1, judge **0.919** (inconclusive at n = 1) | $7.45 | every eval routes to Taste first and gets it whole; the 10.7k-token hook output is long enough that Claude Code saves it to a file and the agent reads it with `sed` |
+| eng-pocock | 0.372 retained | **0.709** (near) | $1.61 | Pocock skills delivered whole; grilling/to-spec cells still score 0.2–0.5; one to-tickets prompt routed to gstack/ship |
+| eng-addy | 0 (= no skill) | **0** (= no skill) | $0.96 | the skill text arrives (1.9–3.1k tokens per prompt), but Addy's TDD, debugging and review tasks route to the MP3 primaries `pocock/tdd`, `pocock/diagnosing-bugs` and `ponytail/ponytail-review`, so Addy's own skill never loads — a design choice (one best primary per capability), not a loading bug |
+
+Carried into Phase 9 (owner decision needed): per-upstream parity vs one best primary per capability. With one primary,
+the suite of every upstream that is not the primary for its task can never reach "same" — Addy here, and any later
+overlap. Options: route by upstream on the upstream's own trigger phrases, load two primaries for overlapping tasks, or
+accept the chosen primary and measure the capability instead of the upstream.
+
+## Phase 6: new domains (MP5: research, YouTube, diagrams) — code DONE on `impl/p6-new-domains` (2026-10-22)
+
+### MP5 report
+
+| Item | Test that proves it | Notes |
+|---|---|---|
+| §1.3/§2.2/§3.2 upstreams `agentreach` (Panniantong/Agent-Reach@94f06c1), `ytagent` (Jakeschincariol/youtube-agent-skill@a2feb21), `archify` (tt-a1i/archify@25cf370): pins, hashes, scans, licenses, notices, rules, tracking (monthly / monthly / weekly, self-tests) | `test_security` (20 pins), extraction matrix 0 open gaps | Deviation: the YouTube upstream key is `ytagent`, not `youtube` (the domain is `youtube`; capability ids never carry upstream names) |
+| §1.4 domain `research` (web, social, video, code, synthesis); Agylite-authored `GUIDE.md` per channel (< 1,000 tokens), loaded as skills `agylite/research-<x>` (new card field `guide`, schema + registry checks); synthesis = Pocock `research` (now bundled) | `test_registry`, Tier 0 T0.2 | `research/web` is `mixed` (it owns the Agent-Reach LICENSE + constraints.txt) |
+| §1.2 research runtime: Agent-Reach at the audited commit (`--no-deps`) + constraints.txt; `agylite research read/rss/video/video-search/channel/github/x/reddit/doctor/enable/disable`; Jina guard; secrets in Keychain (stdin, never argv) or 0600 file | `tests/research/test_research.py` (20) | twitter-cli and rdt-cli read browser cookies on their own when credentials are missing/stale: both are installed without `browser-cookie3`, children get a private empty HOME (deleted) and a PATH without `uv`; yt-dlp `--no-cookies-from-browser --ignore-config` |
+| §2.3 domain `youtube` (script, packaging, repurpose, analytics, channel-ops, seo); `agylite youtube hookscore/title/deadair/chapters/retention/swipe`, `voice init/status`; rewrites (voice path, tools, `/yt-x`, transcripts via research, no whisper) | `tests/youtube/test_youtube.py` (golden outputs), bundle self-test | `research channel --swipe collected.json` feeds `youtube swipe` (yt-viral's input format) |
+| §3 `engineering/diagrams` + `agylite diagram` (Archify CLI from the bundle, update check off, credentials stripped); rewrites (commands, explainers on demand only, Agylite owns updates) | `tests/diagram/test_archify.py`, self-test validates 24 examples | Deviation: all JSON examples kept (Archify's doctor/compare/guide read them), only the 12 MB rendered pages excluded |
+| Owner decision 2026-10-22: Archify's headless Chrome **browser-check runs on every diagram whenever Chrome is present** (`BROWSER_SCOPED_CAPABILITIES`, `config/verification.yaml` `diagram_verification` + `scoped_browser_use`, the verify guard's one scoped gate); without Chrome finalize runs validate → deliver → check and `verify --diagram` records browser-check BLOCKED | `TestVerifyGate`, real run: finalize + browser-check PASS at 1440/1600/1920/2048 | |
+| §1.5/§2.4/§3.3 routing: `RESEARCH_CHANGE`, `YOUTUBE_CHANGE`, rules (research, research-report, research-lookup, research-social, research-video, research-youtube, yt-*, diagram, diagram-kinds, diagram-repo), new `url_hosts` rule condition; diagrams are `DOCUMENTATION_CHANGE` | 16 MP5 scenarios + OOD set 55/55 | Deviations: bare `channel`, `thumbnail`, `retention`, `subscribers`, `timestamps`, `timeline`, `find out`, `look up` count only next to a video / web / diagram word (they also name app features); "Edit this footage…" → `youtube/repurpose` (edit decision list, no rendering), media keeps launch videos |
+| Entry skills `agylite-research`, `agylite-youtube`, `agylite-diagrams`; adapters rendered; Agent Office seats Scout and Creator; L0 ≈ 1,126 tokens (budget 1,500) | adapters render, `test_dashboard` | |
+
+### Phase 6 gate (temporary engine home `home-p6`, bundle `8880741f98e6`, 2,994 files, fetched over the network)
+
+```
+unittest discover -s tests     → Ran 435 tests — OK (skipped=3)
+agylite doctor                 → 62 passed, 0 failed, 4 warnings
+agylite validate               → 23 passed, 0 failed
+agylite benchmark --compare    → routing 48/48; route p95 0.62 ms; L1+L2 p95 98 ms
+benchmark --quality --tier 0   → PASS (OOD 55/55; self-tests unlazy, uiuxpromax, taste, youtube, archify exit 0)
+```
+
+Sign-off (real network): `runtime install research` 13 s; `research doctor`; `research read` via Jina and `--direct`;
+`rss` (hnrss); `video --meta/--subs/--comments` ("Me at the zoo"); `video-search`; `channel --swipe` × 2 → `youtube
+swipe`; `youtube voice init` (twice, idempotent); `youtube hookscore`; `diagram validate` and `finalize` with
+browser-check; `verify --diagram` PASSED with receipts as artefacts. `github` not run: `gh` is not installed here.
+
+MP5 paid suites (YouTube, Archify, research): next, at the end of this master prompt (owner rule).
+
 ## RESUME FROM
 
-<!-- mp4-progress:start -->
-**Phase 5 (MP4 design) — code done, gate green, measured (see "MP4 Tier 1 measurement"). NOW: the fixes the paid test
-found, approved by the owner (2026-10-22), before MP5.** Branch `impl/p5-design`; every green commit is fast-forwarded
-to `main` and pushed. Worktree: the session scratchpad `wt-p5`; temporary engine home `home-p5` (bundle
-`22bf70be985e`, designlang runtime installed).
+<!-- mp5-progress:start -->
+**Phase 6 (MP5) — code done, gate green (see "Phase 6"). NOW: MP5's paid Tier 1 suites, then sign-off and stop for
+the owner.** Branch `impl/p6-new-domains`; worktree `wt-p6` and engine home `home-p6` in the session scratchpad
+`b01a3d4b-…/scratchpad` (bundle `8880741f98e6`, research runtime installed).
 
 Left (in order):
-1. Routing: page / site / screen / app-screen builds route to design/design-direction (Taste) first, not
-   engineering/implementation or design/frontend only; the three Taste eval prompts as routing scenarios.
-2. Skill loading (MP3 open fix): the prompt hook carries the primary skill's text (within a budget), not only the
-   `agylite skill load` command.
-3. Gate; commit + push on `OK`.
-4. Re-measure the AgyLite arm only: `agylite benchmark --quality --tier 1 --suite design-taste --arms agylite --yes-spend
-   --reuse-from <home-p5>/benchmarks/quality/20261022T042203Z-design-taste` (3 sessions + judge); then eng-addy and
-   eng-pocock the same way (MP3 runs). Record in the ledger.
-5. MP4 sign-off in this log, push, stop for the owner's go-ahead on MP5.
+1. Paid suites: `diagram-archify` (exists, MP2); build the `youtube` and `research` suites if missing, then run all three
+   (three arms, n = 1). Record in the ledger; fix or carry errors.
+2. MP5 sign-off in this log, fast-forward `main`, push, stop for the owner's go-ahead on MP6.
 
-Open items carried: after MP6, run every test and build the results website.
-<!-- mp4-progress:end -->
+Carried: the Addy / one-primary question (see "MP4 re-measure") for Phase 9; after MP6, run every test and build the
+results website.
+<!-- mp5-progress:end -->
 
 How to work (any phase):
 1. Read `/Users/vikhyathmgowda007/Developer/os/MASTER_PROMPT_4_DESIGN_BEST_OF_BEST.md` and IMPLEMENTATION_PLAN §2.2.

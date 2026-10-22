@@ -76,7 +76,7 @@ class Router:
         text = normalize(masked)  # rules, tags, BM25 and the change type see `urlref`, never a domain name (F1)
         limits = self.cfg.get("limits") or {}
         confident = limits.get("confident_score", 2)
-        hits = match_rules(text, self.cfg, project.stage, has_urls=bool(urls)) + match_paths(paths, self.cfg)
+        hits = match_rules(text, self.cfg, project.stage, has_urls=bool(urls), urls=urls) + match_paths(paths, self.cfg)
         selected, suppressed, extra = select_capabilities(text, self.cards, self.cfg, self.hierarchy, hits,
                                                           project.stage, requested, project.stack)
 

@@ -13,7 +13,7 @@ sys.path.insert(0, ROOT_DIR)
 from agylite.cli import main  # noqa: E402
 from agylite.registry import generate, loader, schema  # noqa: E402
 
-EXPECTED_CAPABILITIES = 64  # D-035: + testing/evidence; MP4 §2.5: + design/inspiration-extract
+EXPECTED_CAPABILITIES = 76  # D-035: + testing/evidence; MP4 §2.5: + design/inspiration-extract; MP5: + 5 research, 6 youtube, engineering/diagrams
 def _expected_bundled_files():
     """Bundled files per the generated extraction summary (COPY + ADAPT + PRESERVE + GENERATED, MP3 §2.1). Upstream updates (P28) change the
     number; these tests check that provenance, registry and licenses all agree with the audited extraction matrix."""
@@ -75,7 +75,8 @@ class TestRegistrySource(unittest.TestCase):
         self.assertEqual(set(exc["web_qa_modes"].values()), {"DISABLED_BY_POLICY"})
         self.assertNotIn("FALLBACK", schema.WEB_QA_CLASSES)
         outside = [cid for cid, c in self.cards.items()
-                   if c["requires_browser"] != "none" and cid.split("/")[0] not in schema.BROWSER_SCOPED_DOMAINS]
+                   if c["requires_browser"] != "none" and cid.split("/")[0] not in schema.BROWSER_SCOPED_DOMAINS
+                   and cid not in schema.BROWSER_SCOPED_CAPABILITIES]
         self.assertEqual(outside, [])
 
     def test_browser_need_outside_scoped_domains_rejected(self):

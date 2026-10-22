@@ -1,3 +1,3 @@
 # Domain engineering (spec §5). Capability order is the registry order; one directory per entry.
 purpose: Plan, build, review and ship software with completion discipline.
-capabilities: [principles, planning, architecture, implementation, backend, frontend, security, performance, review, debugging, simplicity, completion, release, migration, documentation, ai-systems, stack-packs]
+capabilities: [principles, planning, architecture, implementation, backend, frontend, security, performance, review, debugging, simplicity, completion, release, migration, documentation, diagrams, ai-systems, stack-packs]

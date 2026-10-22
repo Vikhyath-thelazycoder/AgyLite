@@ -1,0 +1,25 @@
+# engineering/diagrams — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP5 §3: Archify renders validated architecture, workflow, sequence, data-flow, lifecycle, ERD, class, tree, timeline
+# and waterfall diagrams as standalone HTML (agylite diagram). Repo diagrams add codebase/repository-understanding by
+# routing rule, not as a static dependency.
+name: Diagrams
+description: Architecture, sequence, flow, ERD, class, tree, timeline and waterfall diagrams as checked HTML (Archify)
+intent_tags: [diagram, architecture diagram, sequence diagram, flowchart, erd, class diagram, mind map, mermaid]
+origin: bundled
+runtime_type: node
+requires_network: false
+requires_browser: fallback   # Archify browser-check in headless Chrome; required when Chrome is present
+requires_codebase_analysis: false
+context_level: L2
+security_class: local-exec
+cache_strategy: project
+activation_conditions:
+  when: [the request asks to draw, map or visualise a system, flow, schema or history]
+verification_requirements: [agylite diagram finalize --json exits 0 (validate, deliver, check, browser-check when Chrome is present), every node of a repo diagram cites files]
+dependencies: []
+related_capabilities: [engineering/architecture, codebase/repository-understanding]
+conflicts: []
+fallback_capability: null
+sources_priority: [files/archify/archify/SKILL.md]
+enabled: true

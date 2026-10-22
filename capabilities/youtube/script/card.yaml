@@ -1,0 +1,23 @@
+# youtube/script — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP5 §2.3: yt-script from youtube-agent-skill (agylite youtube hookscore).
+name: Script
+description: Hook options scored against 21 formulas, then the spoken script with on-screen beats
+intent_tags: [youtube script, video script, script for my video, hook for my video, intro hook, opening line for my video]
+origin: bundled
+runtime_type: python-stdlib
+requires_network: false
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: local-exec
+cache_strategy: static
+activation_conditions:
+  when: [the request asks for a video script or hook]
+verification_requirements: [two scored hooks and the beat-by-beat script, nothing published]
+dependencies: []
+related_capabilities: [youtube/packaging]
+conflicts: []
+fallback_capability: null
+sources_priority: [files/ytagent/skills/yt-script/SKILL.md]
+enabled: true

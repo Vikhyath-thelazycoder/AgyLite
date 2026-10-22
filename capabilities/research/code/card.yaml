@@ -1,0 +1,22 @@
+# research/code — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+name: Code research
+description: GitHub repositories, code and issues through the gh CLI (read-only)
+intent_tags: [github repos, github issues, search github, open source alternatives, compare libraries]
+origin: os-native
+guide: GUIDE.md
+runtime_type: os-native
+requires_network: true
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: run
+activation_conditions:
+  when: [the request asks about repositories, libraries or issues on GitHub]
+verification_requirements: [each repo or issue is cited by URL, gh missing is reported]
+dependencies: []
+related_capabilities: [research/synthesis]
+conflicts: []
+fallback_capability: null
+enabled: true

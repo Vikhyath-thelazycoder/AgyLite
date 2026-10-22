@@ -11,7 +11,7 @@ from .classify import CHANGE_TYPES, find_phrases
 
 PROJECT_STAGES = ("new", "existing", "unknown")
 RULE_KEYS = {"id", "description", "any", "regex", "require_any", "unless", "project", "select", "suppress",
-             "pipeline", "explicit", "weight", "browser_exception", "requires_urls"}
+             "pipeline", "explicit", "weight", "browser_exception", "requires_urls", "url_hosts"}
 
 
 @dataclass
@@ -88,8 +88,11 @@ def validate_routing(cfg, cards, hierarchy):
         unknown = set(rule) - RULE_KEYS
         if unknown:
             p.append(f"rule {rid}: unknown keys {sorted(unknown)}")
-        if not rule.get("any") and not rule.get("regex"):
-            p.append(f"rule {rid}: needs `any` keywords or `regex`")
+        if not rule.get("any") and not rule.get("regex") and not rule.get("url_hosts"):
+            p.append(f"rule {rid}: needs `any` keywords, `regex` or `url_hosts`")
+        if "url_hosts" in rule and not (isinstance(rule["url_hosts"], list) and all(
+                isinstance(h, str) and h and "/" not in h for h in rule["url_hosts"])):
+            p.append(f"rule {rid}: url_hosts must be a list of host names")
         if "requires_urls" in rule and not isinstance(rule["requires_urls"], bool):
             p.append(f"rule {rid}: requires_urls must be true or false")
         for rx in rule.get("regex") or []:
@@ -135,10 +138,21 @@ def validate_routing(cfg, cards, hierarchy):
     return p
 
 
-def match_rules(text: str, cfg, stage: str, has_urls=False):
+def url_host(url: str) -> str:
+    host = re.sub(r"^https?://", "", url, flags=re.I).split("/", 1)[0].split("?", 1)[0].split(":", 1)[0].lower()
+    return host[4:] if host.startswith("www.") else host
+
+
+def host_matches(host: str, wanted) -> bool:
+    return any(host == h or host.endswith("." + h) for h in wanted)
+
+
+def match_rules(text: str, cfg, stage: str, has_urls=False, urls=()):
     """Every rule whose conditions hold for normalized `text`, the project stage and (MP4 §2.5 `requires_urls`) whether
-    the request carries URLs."""
+    the request carries URLs. MP5 §1.5 `url_hosts`: a URL on one of these hosts (or a subdomain) matches the rule like
+    a keyword does (URLs are masked out of `text`, so a host never matches as a word)."""
     hits = []
+    hosts = [url_host(u) for u in urls]
     for rule in cfg.get("rules") or []:
         if rule.get("project") and stage not in rule["project"]:
             continue
@@ -146,6 +160,7 @@ def match_rules(text: str, cfg, stage: str, has_urls=False):
             continue
         matched = find_phrases(text, rule.get("any") or [])
         matched += [f"/{rx}/" for rx in rule.get("regex") or [] if re.search(rx, text)]
+        matched += sorted({f"url:{h}" for h in hosts if host_matches(h, rule.get("url_hosts") or ())})
         if not matched:
             continue
         if rule.get("require_any") and not find_phrases(text, rule["require_any"]):

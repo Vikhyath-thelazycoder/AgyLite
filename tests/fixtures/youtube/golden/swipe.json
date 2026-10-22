@@ -1,0 +1,23 @@
+{
+ "outliers": [
+  {
+   "channel": "Desk Lab",
+   "title": "The $20 lamp that changed my desk",
+   "views": 54000,
+   "median": 12000,
+   "multiple": 4.5,
+   "formula": "Unclassified",
+   "url": "https://www.youtube.com/watch?v=De1"
+  },
+  {
+   "channel": "Quiet Rooms",
+   "title": "The $20 lamp that changed my desk",
+   "views": 13500,
+   "median": 3000,
+   "multiple": 4.5,
+   "formula": "Unclassified",
+   "url": "https://www.youtube.com/watch?v=Qu1"
+  }
+ ],
+ "skipped_thin_channels": []
+}

@@ -1,0 +1,23 @@
+# research/social — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP5 §1.2: X and Reddit read through twitter-cli / rdt-cli only after the owner enables them (cookie opt-in).
+name: Social research
+description: What people say on X and Reddit (opt-in, read-only, low volume); otherwise web sources
+intent_tags: [tweets, community opinion, subreddit]   # reddit / twitter / hacker news are routing rules
+origin: os-native
+guide: GUIDE.md
+runtime_type: python-isolated
+requires_network: true
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: run
+activation_conditions:
+  when: [the request asks what people say on X, Reddit or forums]
+verification_requirements: [each quote links to its post, disabled channels are reported instead of guessed]
+dependencies: [research/web]
+related_capabilities: [research/synthesis]
+conflicts: []
+fallback_capability: null
+enabled: true

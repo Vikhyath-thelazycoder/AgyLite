@@ -1,0 +1,3 @@
+# Domain research (MP5 §1). Capability order is the registry order; one directory per entry.
+purpose: "Read the web, video and community sources and write a sourced report — read-only, never posts."
+capabilities: [web, social, video, code, synthesis]

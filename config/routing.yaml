@@ -16,6 +16,11 @@ version: 2
 change_types:
   order:
     - {type: SECURITY_CHANGE, keywords: [security, secure, vulnerability, auth, authentication, authorization, csrf, xss, injection, secret, owasp, harden, hardening, permission]}
+    # MP5 §1.5 / §2.4: research before SEO, YouTube before SEO and media. YouTube keeps only unambiguous words: bare
+    # `channel`, `thumbnail`, `retention` and `subscribers` (MP5's list) also name app features (a notifications
+    # channel, image thumbnails, data retention, newsletter subscribers), so they count only in YouTube phrases.
+    - {type: RESEARCH_CHANGE, keywords: [research, what are people saying, what do people think, reviews of, compare online, summarise this video, summarize this video, summarise this youtube video, summarize this youtube video, transcript, investigate online]}
+    - {type: YOUTUBE_CHANGE, keywords: [youtube, yt, shorts, youtube channel, my channel, video thumbnail, youtube thumbnail, audience retention, youtube subscribers, video script, script for my video, my video, my videos]}
     - {type: SEO_CHANGE, keywords: [seo, rank, ranking, search console, sitemap, robots, ai search, aeo, geo, schema markup, backlinks, ai-generated answers, ai generated answers, answer engine]}
     - {type: MEDIA_CHANGE, keywords: [video, demo, deck, slides, presentation, launch post, showcase, screen recording]}
     - {type: OBSERVABILITY_CHANGE, keywords: [logging, logs, metrics, tracing, telemetry, monitoring, observability]}
@@ -25,7 +30,7 @@ change_types:
     - {type: REFACTOR, keywords: [refactor, restructure, reorganize, clean up, cleanup, simplify, modernize, rename]}
     - {type: DESIGN_CHANGE, keywords: [design, premium, look, looks, feel, redesign, layout, typography, font, color, spacing, visual, ui, ux, landing page, overlap, overlaps]}
     - {type: INFRA_CHANGE, keywords: [deploy, deployment, ci, docker, kubernetes, infrastructure, pipeline, hosting, terraform]}
-    - {type: DOCUMENTATION_CHANGE, keywords: [document, docs, documentation, readme, adr, changelog]}
+    - {type: DOCUMENTATION_CHANGE, keywords: [document, docs, documentation, readme, adr, changelog, diagram, mind map, flowchart, flow chart, mermaid]}
     - {type: PLAN_CHANGE, keywords: [plan, roadmap, phase, reprioritize, milestone, scope]}
     - {type: FEATURE_CHANGE, keywords: [change, update, modify, improve, adjust, tweak, extend, rework]}
     - {type: NEW_FEATURE, keywords: [add, build, create, implement, new, introduce, support, integrate, make]}
@@ -36,7 +41,9 @@ change_types:
            # describe what the page shows; "no screenshots" describes missing assets, not a request to take any.
            '\b(?:spending|pricing|price|payment|meal|budget|savings|subscription|billing|data|current|paid|free)\s+plans?\b',
            "\\bplan's\\b",
-           '\bno\s+(?:\w+\s+){0,2}(?:screenshots?|photos?|photographs?|images?)\b']
+           '\bno\s+(?:\w+\s+){0,2}(?:screenshots?|photos?|photographs?|images?)\b',
+           # MP5 §1.5: SEO research is SEO work, not the research domain.
+           '\b(?:keyword|seo|serp|competitor|backlink)\s+research\b']
   default_by_domain:
     engineering: FEATURE_CHANGE
     codebase: FEATURE_CHANGE
@@ -45,6 +52,8 @@ change_types:
     seo: SEO_CHANGE
     media: MEDIA_CHANGE
     observability: OBSERVABILITY_CHANGE
+    research: RESEARCH_CHANGE
+    youtube: YOUTUBE_CHANGE
   fallback: FEATURE_CHANGE
 
 # Guidance precedence (config/priorities.yaml conflict_hierarchy). The first matching pattern assigns the role; the
@@ -98,7 +107,7 @@ rules:
     any: &new_product [saas, new app, new application, from scratch, new project, mvp, greenfield, build me, build a, build an]
     # A request that is just the product description ("a small Python CLI todo app …", "create an API for …").
     regex: &new_product_rx ['^(?:task:\s*)?(?:(?:please\s+)?(?:build|create|make|write|develop|implement|scaffold|start)\s+)?(?:me\s+)?(?:a|an)\s+(?:[\w-]+\s+){0,6}?(?:app|application|cli|tool|program|script|service|api|bot|game|library|website|web app|dashboard)\b']
-    unless: &new_product_unless [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit]
+    unless: &new_product_unless [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit, youtube, shorts, my channel, diagram, mind map]
     project: [new, unknown]
     select: [engineering/planning, engineering/architecture, engineering/implementation, testing/strategy]
     weight: 3
@@ -119,7 +128,7 @@ rules:
     regex: *new_product_rx
     require_any: [saas, web, website, web app, webapp, api, server, backend, users, user accounts, account, accounts, login, log in, sign in, signup, sign up, auth, authentication, payment, payments, checkout, multi-tenant, cloud, online, marketplace, booking, bookings, mobile, admin]
     # A static page (MP4 Tier 1: "Static HTML/CSS/JS") has no users, accounts or network exposure to secure.
-    unless: [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit,
+    unless: [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit, youtube, shorts, my channel, diagram, mind map,
              static html, static site, static page, static website, plain html, html/css/js, html/css]
     project: [new, unknown]
     select: [engineering/security]
@@ -200,13 +209,15 @@ rules:
   - id: flow-check
     description: Check that a user flow works with deterministic local tests (no browser)
     any: [check whether, check that, check if, verify, does it work, still work, works]
+    unless: [diagram, sequence diagram, flowchart, flow chart, mind map]
     require_any: [flow, login, log in, sign in, signup, sign up, checkout, logout, form, page, endpoint, api]
     select: [testing/local-verification]
     weight: 3
 
   - id: auth-flow
-    description: Login / session flows need security testing
+    description: Login / session flows need security testing (a diagram of the flow is not a change to it)
     any: [login, log in, sign in, signup, sign up, logout, session, password reset]
+    unless: [diagram, sequence diagram, flowchart, flow chart, mind map]
     select: [testing/security]
     weight: 2
 
@@ -248,6 +259,7 @@ rules:
   - id: media
     description: Launch video, demo or showcase material; never backend/database work
     any: [launch video, promo video, product video, video plan, explainer video, demo video, walkthrough video, launch post, product launch]
+    unless: [youtube, shorts, my channel, youtube channel]   # MP5 §2.4: creator work is the youtube domain
     select: [media/launch-video]
     suppress: [engineering, codebase, testing, seo]
     weight: 4
@@ -330,6 +342,144 @@ rules:
     description: Deep-module architecture review (Pocock improve-codebase-architecture)
     any: [deep module, deepen, deepening, shallow module, improve the architecture, architecture review, refactor the architecture, module boundaries]
     select: [engineering/architecture, codebase/impact-analysis]
+    weight: 3
+
+  # ── MP5 §1.5: research (read-only; discovery is the host's web search) ──────────────────────────────────────────
+  - id: research
+    description: Research a question from web, community and video sources (research/web leads — its guide carries the
+      method and the report rule — so it outranks the channel rules below)
+    any: &research_any [research, what are people saying, what do people think, reviews of, compare online, investigate online, reddit, twitter, hacker news]
+    url_hosts: &research_hosts [x.com, twitter.com, reddit.com, news.ycombinator.com]
+    # SEO research stays SEO; researching this repository is codebase work.
+    unless: &research_unless [keyword research, seo research, serp research, competitor research, backlink research, search volume, this codebase, this repo, our codebase, the codebase, our code]
+    select: [research/web]
+    suppress: [seo, engineering, design, media]
+    weight: 6
+
+  - id: research-report
+    description: The same research ends in one sourced report (Pocock's research discipline)
+    any: *research_any
+    url_hosts: *research_hosts
+    unless: *research_unless
+    select: [research/synthesis]
+    weight: 4
+
+  - id: research-lookup
+    description: "`look up` / `find out` are research only when the request points at the web (engineers find out why tests fail)"
+    any: [look up, find out]
+    require_any: [online, on the web, the internet, the web, websites, articles, sources, news, reddit, twitter, youtube, forums]
+    unless: *research_unless
+    select: [research/web, research/synthesis]
+    suppress: [seo, engineering, design, media]
+    weight: 6
+
+  - id: research-social
+    description: What people say on X/Twitter, Reddit and forums (opt-in channels)
+    any: [reddit, twitter, tweets, what are people saying, community opinion, hacker news]
+    url_hosts: [x.com, twitter.com, reddit.com]
+    unless: *research_unless
+    select: [research/social]
+    weight: 4
+
+  - id: research-video
+    description: A video, its transcript or captions, or a YouTube link
+    any: [youtube video, this video, this youtube video, transcript, subtitles, captions of, summarise this video, summarize this video, summarise this youtube video, summarize this youtube video]
+    url_hosts: [youtube.com, youtu.be]
+    select: [research/video]
+    weight: 4
+
+  - id: research-youtube
+    description: Research that names YouTube as a source
+    any: [youtube]
+    require_any: [research, what are people saying, what do people think, reviews of, compare online, look up, find out]
+    unless: *research_unless
+    select: [research/video]
+    weight: 4
+
+  # ── MP5 §2.4: YouTube creator work (writes; never renders, cuts or uploads) ─────────────────────────────────────
+  - id: yt-script
+    description: A video script or hook
+    any: [youtube script, video script, script for my video, hook for my video, intro hook, opening line for my video]
+    select: [youtube/script]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  - id: yt-packaging
+    description: Titles and thumbnails as one unit
+    any: [youtube title, video title, youtube thumbnail, video thumbnail, title and thumbnail, click-through, ctr]
+    regex: ['\btitles?\b.*\b(?:my channel|youtube|my video|my videos)\b', '\b(?:youtube|video)\b.*\btitles?\b']
+    select: [youtube/packaging]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  - id: yt-repurpose
+    description: Shorts, edit decision lists and chapters from a transcript (no rendering)
+    any: [shorts, youtube shorts, short-form, vertical clips, clip this, dead air, edit decision list, edl, cut this video, edit this video, edit this footage, cut this footage, edit my video, tighten this video]
+    select: [youtube/repurpose]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  - id: yt-repurpose-video
+    description: Chapters, timestamps or repurposing — only for a video
+    any: [chapters, timestamps, repurpose]
+    require_any: [youtube, video, videos, podcast, episode, footage]
+    select: [youtube/repurpose]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  - id: yt-analytics
+    description: Retention drops, outliers in the niche, channel audits
+    any: [audience retention, why do people leave, what's working in my niche, channel audit, audit my channel, my channel isn't growing]
+    select: [youtube/analytics]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  - id: yt-analytics-video
+    description: Retention and outliers — only for videos or a channel
+    any: [retention, outliers]
+    require_any: [youtube, video, videos, channel, viewers]
+    select: [youtube/analytics]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  - id: yt-channel-ops
+    description: Upload plans and comment replies
+    any: [content plan, upload schedule, posting plan, reply to comments, comment section]
+    require_any: [youtube, channel, video, videos]
+    select: [youtube/channel-ops]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  - id: yt-seo
+    description: Video description, tags and YouTube search wording
+    any: [youtube seo, video description, youtube tags]
+    require_any: [youtube, video]
+    select: [youtube/seo]
+    suppress: [media, seo, engineering, design]
+    weight: 4
+
+  # ── MP5 §3.3: diagrams (Archify) ───────────────────────────────────────────────────────────────────────────────
+  - id: diagram
+    description: Draw, map or visualise a system, flow, schema or history as a checked diagram
+    any: [diagram, architecture diagram, sequence diagram, flowchart, flow chart, erd, entity relationship, class diagram, data flow diagram, dataflow diagram, state diagram, lifecycle diagram, visualize the architecture, visualise the architecture, map the architecture, mind map, mermaid]
+    select: [engineering/diagrams]
+    suppress: [design, media, seo]
+    weight: 4
+
+  - id: diagram-kinds
+    description: Timelines, waterfalls and data flows are diagrams only when asked to draw or chart one
+    any: [timeline, waterfall, data flow, dataflow]
+    require_any: [draw, diagram, chart, visualize, visualise, map, sketch, picture of]
+    select: [engineering/diagrams]
+    suppress: [design, media, seo]
+    weight: 4
+
+  - id: diagram-repo
+    description: A diagram of this codebase starts from the code graph (every node cites files)
+    any: [diagram, mind map, map the architecture, visualize the architecture, visualise the architecture, flowchart]
+    require_any: [this repo, this codebase, the codebase, our codebase, the repo, our repo, this project, the code]
+    project: [existing, unknown]
+    select: [codebase/repository-understanding]
     weight: 3
 
 # File-path signals (spec §15 "file paths"): a changed path matching a glob selects capabilities (strong).

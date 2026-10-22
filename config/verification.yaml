@@ -55,8 +55,21 @@ design_verification:
     - agylite design taste lint <changed style/markup files>
     - agylite design taste inspect <page> (0 FAIL at 1440/768/390; screenshots recorded with sha256)
 
-# Browser use that is not verification stays inside its own domain and never becomes engineering evidence.
+# Diagrams (MP5 §3.3, owner approval 2026-10-22): a diagram task is done when Archify's own deterministic gate passes —
+# `agylite diagram finalize … --json` exits 0: validate, deliver, strict provenance check and a headless Chrome
+# browser-check of the rendered page. The browser-check runs whenever Chrome is present (required, never skipped by
+# choice); without Chrome it is recorded as NOT_RUN (BLOCKED), never as a pass. Its receipts and any screenshots are
+# evidence with their sha256, next to the passing command.
+diagram_verification:
+  commands:
+    - agylite diagram finalize <type> <candidate.json> <output.html> --json (validate, deliver, check, browser-check)
+    - agylite diagram check <output.html> --json --require-provenance
+    - agylite diagram browser-check <output.html> --json --require-provenance (Chrome present)
+
+# Browser use outside verification stays inside its own domain (or capability) and never becomes engineering evidence;
+# the Archify browser-check above is the one capability-scoped exception, and it is evidence for diagrams only.
 scoped_browser_use:
   seo: BeyondSEO capture/rendering inside the isolated SEO runtime (P16)
   media: Brag/launch-video rendering (P17); product showcase output is not verification evidence
   design: designlang reads inspiration sites (MP4 §2) and Taste inspect checks pages (MP4 §1, IMPLEMENTATION_PLAN §2.2)
+  engineering/diagrams: Archify finalize/browser-check renders each diagram in headless Chrome (MP5 §3.3, owner 2026-10-22)

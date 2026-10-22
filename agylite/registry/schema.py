@@ -17,7 +17,8 @@ SPEC_FIELDS = (
 GENERATED_FIELDS = ("capability_id", "domain", "subdomain", "source_repositories", "source_paths", "version",
                     "commit_sha", "license", "integration_type", "token_cost_estimate")
 # sources_priority (MP1 F5): bundle-path globs, the capability's primary source first; validated against the bundle.
-EXTRA_FIELDS = ("origin", "web_qa_class", "web_qa_modes", "runtime_status", "sources_priority")
+# guide (MP5 §1.4): an Agylite-authored GUIDE.md next to the card, loaded as the capability's primary skill.
+EXTRA_FIELDS = ("origin", "web_qa_class", "web_qa_modes", "runtime_status", "sources_priority", "guide")
 AUTHORED_FIELDS = tuple(f for f in SPEC_FIELDS if f not in GENERATED_FIELDS) + EXTRA_FIELDS
 
 ORIGINS = {"bundled", "os-native", "mixed"}
@@ -34,6 +35,9 @@ RUNTIME_STATUSES = {"ACTIVE", "DISABLED_BY_POLICY"}
 # Only these domains may declare a browser need, and only for their own output (SEO capture, media rendering) —
 # never as verification (D-035). Every other domain is requires_browser: none.
 BROWSER_SCOPED_DOMAINS = {"seo", "media", "design"}   # design: MP4 + IMPLEMENTATION_PLAN §2.2 (designlang reads sites; Taste inspect)
+# Single capabilities outside those domains that may drive a browser for their own deterministic gate (owner approval
+# 2026-10-22): Archify's finalize runs a headless Chrome browser-check on every rendered diagram (MP5 §3.3).
+BROWSER_SCOPED_CAPABILITIES = {"engineering/diagrams"}
 HOST_STATUSES = {"NOT_VERIFIED", "FILES_PRESENT", "RUNTIME_VERIFIED", "UNSUPPORTED"}
 ID = re.compile(r"^[a-z][a-z0-9-]*/[a-z][a-z0-9-]*$")
 SHA1 = re.compile(r"^[0-9a-f]{40}$")
@@ -81,6 +85,11 @@ def validate_card(cid, card, ids):
     prio = card.get("sources_priority")
     if prio is not None and not (_str_list(prio, non_empty=True) and all(g.startswith("files/") for g in prio)):
         p.append(f"{cid}: sources_priority must be a non-empty list of bundle path globs (files/…)")
+    guide = card.get("guide")
+    if guide is not None and guide != "GUIDE.md":
+        p.append(f"{cid}: guide must be GUIDE.md (the authored file next to card.yaml)")
+    if guide is not None and card["origin"] == "bundled":
+        p.append(f"{cid}: an authored guide makes the capability os-native or mixed, not bundled")
 
     act = card["activation_conditions"]
     if not isinstance(act, dict) or act.get("mode") not in ACTIVATION_MODES or not _str_list(act.get("when"), True):
@@ -121,8 +130,9 @@ def validate_card(cid, card, ids):
         p.append(f"{cid}: runtime_status must be in {sorted(RUNTIME_STATUSES)}")
     if status == "DISABLED_BY_POLICY" and card["enabled"]:
         p.append(f"{cid}: runtime_status DISABLED_BY_POLICY requires enabled: false")
-    if card["requires_browser"] != "none" and domain not in BROWSER_SCOPED_DOMAINS:
-        p.append(f"{cid}: requires_browser must be none outside {sorted(BROWSER_SCOPED_DOMAINS)} (local test-first, D-035)")
+    if card["requires_browser"] != "none" and domain not in BROWSER_SCOPED_DOMAINS and cid not in BROWSER_SCOPED_CAPABILITIES:
+        p.append(f"{cid}: requires_browser must be none outside {sorted(BROWSER_SCOPED_DOMAINS)} and "
+                 f"{sorted(BROWSER_SCOPED_CAPABILITIES)} (local test-first, D-035)")
 
     # Declared needs must agree with the security class.
     if card["requires_network"] is True and card["security_class"] in ("read-only", "local-exec"):

@@ -21,6 +21,17 @@
   "note": null,
   "repository": "msitarzewski/agency-agents"
  },
+ "agentreach": {
+  "attribution": "Copyright (c) 2025 Agent Eyes",
+  "bundled_files": 2,
+  "commit_sha": "94f06c1969dfc1834001269d79d3ad0972d9dee6",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "Panniantong/Agent-Reach"
+ },
  "appllama": {
   "attribution": "Copyright (c) 2026 Antmind Ventures Private Limited (appllama.io)",
   "bundled_files": 4,
@@ -31,6 +42,18 @@
   ],
   "note": null,
   "repository": "Appllama/appllama-skills"
+ },
+ "archify": {
+  "attribution": "Copyright (c) 2026 tt-a1i (Archify)",
+  "bundled_files": 189,
+  "commit_sha": "25cf37080fc8b1dbe758a4efc3935b55f3327083",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE",
+   "THIRD_PARTY_NOTICES.md"
+  ],
+  "note": null,
+  "repository": "tt-a1i/archify"
  },
  "beacon": {
   "attribution": "Copyright (c) 2026 Asymptote Labs",
@@ -136,7 +159,7 @@
  },
  "pocock": {
   "attribution": "Copyright (c) 2026 Matt Pocock",
-  "bundled_files": 32,
+  "bundled_files": 33,
   "commit_sha": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
   "license": "MIT",
   "license_files": [
@@ -188,5 +211,16 @@
   ],
   "note": null,
   "repository": "Leonxlnx/unlazy"
+ },
+ "ytagent": {
+  "attribution": "Copyright (c) 2026 Jake Schincariol",
+  "bundled_files": 20,
+  "commit_sha": "a2feb2104981a375ffd4f87ee04f4f5344ac43c6",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "Jakeschincariol/youtube-agent-skill"
  }
 }

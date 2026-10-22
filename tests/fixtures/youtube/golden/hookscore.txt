@@ -1,0 +1,11 @@
+
+  I quit my job to build an AI agent and lost $40k in 90 days
+  -----------------------------------------------------------
+    SPECIFICITY   84  ################
+    ADDRESS       26  #####
+    STAKES        88  #################
+    CURIOSITY     24  ####
+    BREVITY      100  ####################
+    VERDICT       48  WEAK
+    formula      Unclassified  (no formula matched - that is usually a summary, not a hook)
+    weakest      CURIOSITY - cut the half of the sentence that answers itself

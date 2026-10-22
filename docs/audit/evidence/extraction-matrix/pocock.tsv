@@ -116,7 +116,7 @@ COPY	Level 3 (prototype keeps LOGIC.md/UI.md: closure)	engineering/planning	6036
 COPY	Level 3 (prototype keeps LOGIC.md/UI.md: closure)	engineering/planning	2931	skills/engineering/prototype/SKILL.md
 COPY	Level 3 (prototype keeps LOGIC.md/UI.md: closure)	engineering/planning	6913	skills/engineering/prototype/UI.md
 EXCLUDE	HOST_PORT		100	skills/engineering/prototype/agents/openai.yaml
-REFERENCE	Research domain arrives in MP5; until then reachable through `agylite skills get pocock/research`		794	skills/engineering/research/SKILL.md
+COPY	MP5 §1.4: primary-source research discipline (primary of research/synthesis)	research/synthesis	794	skills/engineering/research/SKILL.md
 EXCLUDE	HOST_PORT		94	skills/engineering/research/agents/openai.yaml
 EXCLUDE	OUT_OF_DOMAIN		4369	skills/engineering/retro/SKILL.md
 EXCLUDE	HOST_PORT		146	skills/engineering/retro/agents/openai.yaml

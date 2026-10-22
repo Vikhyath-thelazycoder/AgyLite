@@ -238,3 +238,97 @@ scenarios:
     request: Make our pricing page look like https://www.notion.so/pricing
     stage: existing
     expect: [design/inspiration-extract]
+
+  # ── MP5: research, YouTube, diagrams (master prompt §1.5, §2.4, §3.4) ─────────────────────────────────────────────
+  - id: mp5-research-platforms
+    request: Research the best vector databases on Reddit, Twitter and YouTube
+    stage: unknown
+    expect: [research/web, research/social, research/video]
+    forbid: [seo/, engineering/backend]
+    change_type: RESEARCH_CHANGE
+
+  - id: mp5-video-summary
+    request: Summarise this YouTube video for me https://youtu.be/xyz
+    stage: unknown
+    expect: [research/video]
+    forbid: [media/]
+
+  - id: mp5-hn-reddit
+    request: What are people saying about Bun 2 on Hacker News and Reddit?
+    stage: unknown
+    expect: [research/social, research/web]
+
+  - id: mp5-find-out-is-debugging
+    request: Find out why the login test fails
+    stage: existing
+    expect: [engineering/debugging]
+    forbid: [research/]
+    change_type: BUG_FIX
+
+  - id: mp5-yt-script
+    request: Write a YouTube script
+    stage: unknown
+    expect: [youtube/script]
+    forbid: [seo/, media/, engineering/]
+    change_type: YOUTUBE_CHANGE
+
+  - id: mp5-yt-script-title
+    request: Write a YouTube script and title for my channel
+    stage: unknown
+    expect: [youtube/script, youtube/packaging]
+    forbid: [seo/]
+
+  - id: mp5-yt-shorts
+    request: Turn this long podcast video into 5 vertical shorts with captions
+    stage: unknown
+    expect: [youtube/repurpose]
+    forbid: [media/launch-video]
+
+  - id: mp5-yt-retention
+    request: Why do people leave my video at 0:45?
+    stage: unknown
+    expect: [youtube/analytics]
+
+  - id: mp5-launch-video-unchanged
+    request: Make a launch video plan for our product.
+    stage: unknown
+    expect: [media/launch-video]
+    forbid: [youtube/]
+
+  # Decision (MP5 §2.4 last row): editing footage is creator work, so youtube/repurpose answers it with an edit decision
+  # list and the entry skill's "no rendering" note; media (Brag) keeps launch and promo videos.
+  - id: mp5-edit-footage
+    request: Edit this footage into a 60 second explainer
+    stage: unknown
+    expect: [youtube/repurpose]
+    forbid: [media/]
+
+  - id: mp5-app-words-stay-engineering
+    request: Add timestamps to the log lines
+    stage: existing
+    expect: [engineering/implementation]
+    forbid: [youtube/, research/]
+
+  - id: mp5-mind-map
+    request: Make a mind map of this repo
+    stage: existing
+    expect: [engineering/diagrams, codebase/repository-understanding]
+    forbid: [engineering/security, engineering/backend]
+    change_type: DOCUMENTATION_CHANGE
+
+  - id: mp5-architecture-diagram
+    request: Draw an architecture diagram of this codebase
+    stage: existing
+    expect: [engineering/diagrams, engineering/architecture, codebase/repository-understanding]
+
+  - id: mp5-sequence-diagram
+    request: Sequence diagram of the login flow
+    stage: unknown
+    expect: [engineering/diagrams]
+    forbid: [testing/security]
+
+  - id: mp5-timeline-component
+    request: Add a timeline component to the dashboard
+    stage: existing
+    expect: [engineering/implementation]
+    forbid: [engineering/diagrams]

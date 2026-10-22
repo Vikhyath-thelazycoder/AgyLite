@@ -1,0 +1,23 @@
+# youtube/analytics — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# MP5 §2.3: yt-retention, yt-viral, yt-audit from youtube-agent-skill (agylite youtube retention, swipe).
+name: Analytics
+description: Retention drops, outliers in the niche and a channel audit that ends in one fix
+intent_tags: [audience retention, why do people leave, channel audit, audit my channel, what's working in my niche]
+origin: bundled
+runtime_type: python-stdlib
+requires_network: optional
+requires_browser: none
+requires_codebase_analysis: false
+context_level: L2
+security_class: network
+cache_strategy: static
+activation_conditions:
+  when: [the request asks why a video or channel performs as it does]
+verification_requirements: [numbers come from the export or yt-dlp lists, never invented; audit ends in one fix]
+dependencies: [research/video]
+related_capabilities: [youtube/packaging]
+conflicts: []
+fallback_capability: null
+sources_priority: [files/ytagent/skills/yt-retention/SKILL.md, files/ytagent/skills/yt-viral/SKILL.md, files/ytagent/skills/yt-audit/SKILL.md]
+enabled: true

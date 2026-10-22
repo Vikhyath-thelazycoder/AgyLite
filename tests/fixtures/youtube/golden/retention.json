@@ -1,0 +1,46 @@
+{
+ "points": 21,
+ "start": 100.0,
+ "hook_leak": 30.0,
+ "end": 25.0,
+ "cliffs": [
+  {
+   "from": 40.0,
+   "to": 45.0,
+   "lost": 12.0,
+   "at_seconds": 48.0
+  },
+  {
+   "from": 0.0,
+   "to": 5.0,
+   "lost": 12.0,
+   "at_seconds": 0.0
+  },
+  {
+   "from": 90.0,
+   "to": 95.0,
+   "lost": 11.0,
+   "at_seconds": 108.0
+  },
+  {
+   "from": 5.0,
+   "to": 10.0,
+   "lost": 8.0,
+   "at_seconds": 6.0
+  },
+  {
+   "from": 10.0,
+   "to": 15.0,
+   "lost": 6.0,
+   "at_seconds": 12.0
+  }
+ ],
+ "slide_per_unit": 0.614,
+ "said": {
+  "40.0": "Never put the window behind the monitor, the glare kills you. Never put the window behind the monitor, it will glare. A cheap lamp with a wa",
+  "0.0": "Most people set up their home office completely wrong.",
+  "90.0": "That is the whole checklist, it is in the description. If you change one thing this week, change the light.",
+  "5.0": "Most people set up their home office completely wrong. Today I will fix yours in three steps. um",
+  "10.0": "Today I will fix yours in three steps. um Step one is the desk height and the monitor height."
+ }
+}
