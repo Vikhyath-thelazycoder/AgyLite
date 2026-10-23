@@ -307,6 +307,8 @@ rules:
   - id: release
     description: Shipping and release readiness
     any: [release, ship it, ship this, deploy to production, go live, launch to production, cut a release]
+    # Phase 9: "slower in release 2.3.0" names when a regression appeared, not release work
+    unless: [in release, since release, after release, before release, from release, introduced in release]
     select: [engineering/release, testing/release-verification]
     weight: 3
 
@@ -333,11 +335,36 @@ rules:
     suppress: [media, seo, design]
     weight: 4
 
-  - id: spec-tickets
-    description: Spec synthesis and tracer-bullet tickets (Pocock to-spec / to-tickets)
-    any: [write a spec, turn this into a spec, to spec, into a spec, break this into tickets, tracer bullet, tracer-bullet, vertical slices, split into tasks]
+  # D-050 `skill`: the rule names the skill it means, ahead of the capability's first sources_priority entry (Phase 9:
+  # "turn it into a spec" loaded grilling, "break … into tickets" routed to documentation).
+  - id: to-spec
+    description: Spec synthesis (Pocock to-spec)
+    any: [write a spec, turn this into a spec, turn it into a spec, to spec, into a spec, spec from]
     select: [engineering/planning]
+    skill: files/pocock/skills/engineering/to-spec/SKILL.md
     weight: 3
+
+  - id: to-tickets
+    description: Tracer-bullet tickets (Pocock to-tickets)
+    any: [into tickets, break this into tickets, tracer bullet, tracer-bullet, vertical slices, split into tasks, into issues]
+    select: [engineering/planning]
+    skill: files/pocock/skills/engineering/to-tickets/SKILL.md
+    weight: 4
+
+  # Phase 9: in an existing project "a diff that adds an endpoint" fired existing-feature (weight 2 + tag) above the
+  # review tags, so Addy's review eval loaded the implementation skill.
+  - id: code-review
+    description: Review of a diff, PR or change (Ponytail review leads; Addy code-review-and-quality alongside, D-050)
+    any: [review the diff, review this diff, review the provided diff, review my diff, review this pr, review the pr, review my pr, review this pull request, code review, structured review, review this change, review the change, review my code, review this code]
+    select: [engineering/review]
+    weight: 4
+
+  # Phase 9: "Fix it test-first" had no rule (unmatched); test-first work leads with Pocock tdd (Addy TDD alongside).
+  - id: tdd
+    description: Test-first work (Pocock tdd)
+    any: [test-first, test first, tdd, red-green, red green refactor, failing test first]
+    select: [testing/strategy]
+    weight: 4
 
   - id: diagnose
     description: Diagnosis loop for hard bugs, flakes and regressions (Pocock diagnosing-bugs)

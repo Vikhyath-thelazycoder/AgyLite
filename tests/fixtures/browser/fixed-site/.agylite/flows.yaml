@@ -1,0 +1,6 @@
+flows:
+  - name: add to cart
+    steps:
+      - goto: /
+      - click: {role: button, name: Add to cart}
+      - expect_text: Added to cart

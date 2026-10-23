@@ -267,6 +267,25 @@ scenarios:
     expect: [engineering/planning]
     forbid: [media/, testing/local-verification]
 
+  # ── Phase 9 parity traces (eng-addy / eng-pocock prompts that routed to the wrong skill, D-050) ─────────────────
+  - id: ood-review-diff-adds
+    request: Review the provided diff that adds a user-search endpoint. Deliver a structured review.   # addy: code-review-and-quality
+    stage: existing
+    expect: [engineering/review]
+  - id: ood-fix-test-first
+    request: Discount codes over 100% make cart totals negative. Fix it test-first.   # before: unmatched
+    stage: existing
+    expect: [testing/strategy]
+  - id: ood-slower-in-release
+    request: parseLog got about 10x slower in release 2.3.0. Diagnose it.   # before: release work loaded gstack/ship
+    stage: existing
+    expect: [engineering/debugging]
+    forbid: [testing/release-verification]
+  - id: ood-into-tickets
+    request: Break docs/specs/export.md into tickets.   # before: documentation first
+    stage: existing
+    expect: [engineering/planning]
+
   # ── Nothing in Agylite covers this ────────────────────────────────────────────────────────────────────────────
   - id: ood-unmatched-recipe
     request: Translate my grandmother's recipe into Italian

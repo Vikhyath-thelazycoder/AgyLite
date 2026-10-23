@@ -21,7 +21,9 @@ from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, se
 # 5: urls (MP1 F1) — URLs/domains found in the request; matching sees the placeholder `urlref` in their place;
 #    unmatched + fallback_guidance (MP1 F4) — nothing fits, so the agent uses principles only;
 #    whole_skills (Plan B) — the capabilities whose primary skill loads whole (one, or two across domains).
-ROUTE_SCHEMA_VERSION = 6
+# 7: skill_hints (D-050) — {capability: bundle path} of the skill a matched rule names; it leads that capability's
+#    sources_priority (e.g. "into tickets" → Pocock to-tickets, not the planning capability's first skill).
+ROUTE_SCHEMA_VERSION = 7
 
 
 @dataclass
@@ -178,6 +180,9 @@ class Router:
             "confidence": confidence,
             "unmatched": unmatched,
             "whole_skills": whole,
+            # the heaviest rule's hint is written last, so it wins a capability two rules name
+            "skill_hints": {h.select[0]: h.skill for h in sorted(hits, key=lambda h: h.weight)
+                            if h.skill and h.select[0] in ids},
             "fallback_guidance": list(UNMATCHED_GUIDANCE) if unmatched else [],
             "duration_ms": round((time.perf_counter() - start) * 1000, 3),
         }

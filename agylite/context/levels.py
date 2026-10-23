@@ -4,7 +4,10 @@ import fnmatch
 import os
 from pathlib import Path
 
+import yaml
+
 from .. import __version__
+from ..paths import repo_root
 from ..registry import loader as registry
 from ..routing.fallback_bm25 import BM25
 from .budget import Budget
@@ -141,6 +144,24 @@ def _rank_files(entries, query, priority=()):
 def source_priorities(root=None):
     """{capability id: its card's sources_priority globs}."""
     return {cid: card.get("sources_priority") or [] for cid, card in registry.load_cards(root).items()}
+
+
+def skill_overlaps(root=None) -> list:
+    """[(lead path, also path)] from config/priorities.yaml `skill_overlaps` (option 2, D-050)."""
+    path = (root or repo_root()) / "config" / "priorities.yaml"
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {} if path.is_file() else {}
+    return [(o["lead"], o["also"]) for o in data.get("skill_overlaps") or []]
+
+
+def overlap_pair(loader, entry, overlaps):
+    """(lead entry, partner entry) when `entry` is one side of an overlap whose other side is bundled, else None."""
+    for lead, also in overlaps:
+        if entry["path"] in (lead, also):
+            other = loader.bundle_entry(also if entry["path"] == lead else lead)
+            if other is None:
+                return None
+            return (entry, other) if entry["path"] == lead else (other, entry)
+    return None
 
 
 def capability_entries(loader, cid, priority=()) -> list:

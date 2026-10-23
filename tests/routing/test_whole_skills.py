@@ -40,5 +40,41 @@ class TestWholeSkills(unittest.TestCase):
         self.assertEqual(self.router.route("Translate my grandmother's recipe into Italian")["whole_skills"], [])
 
 
+
+class TestSkillHints(unittest.TestCase):
+    """D-050 / Phase 9 diagnosis item 3: the eng-pocock and eng-addy traces loaded the wrong original skill."""
+    POCOCK = "files/pocock/skills/engineering/"
+
+    @classmethod
+    def setUpClass(cls):
+        cls.router = Router()
+
+    def route(self, text):
+        return self.router.route(text, project=ProjectFacts(stage="existing"))
+
+    def test_spec_and_tickets_name_their_pocock_skill(self):
+        r = self.route("We've already discussed tagging in NOTES-DISCUSSION.md. Turn it into a spec and save it.")
+        self.assertEqual(r["skill_hints"], {"engineering/planning": self.POCOCK + "to-spec/SKILL.md"})
+        r = self.route("Break docs/specs/export.md into tickets.")
+        self.assertEqual(r["whole_skills"][0], "engineering/planning")
+        self.assertEqual(r["skill_hints"], {"engineering/planning": self.POCOCK + "to-tickets/SKILL.md"})
+        self.assertEqual(self.route("Grill me on my plan to move note storage to a server.")["skill_hints"], {})
+
+    def test_reviewing_a_diff_that_adds_code_is_a_review(self):
+        r = self.route("Review the provided diff that adds a user-search endpoint. Deliver a structured review.")
+        self.assertEqual(r["whole_skills"][0], "engineering/review")
+
+    def test_test_first_fix_routes_to_testing_strategy(self):
+        r = self.route("Discount codes over 100% make cart totals negative. Fix it test-first.")
+        self.assertFalse(r["unmatched"])
+        self.assertEqual(r["whole_skills"][0], "testing/strategy")
+
+    def test_a_version_named_in_a_regression_is_not_release_work(self):
+        r = self.route("parseLog got about 10x slower in release 2.3.0. Diagnose it.")
+        self.assertEqual(r["whole_skills"][0], "engineering/debugging")
+        self.assertNotIn("testing/release-verification", [c["id"] for c in r["capabilities"]])
+        self.assertIn("engineering/release", [c["id"] for c in self.route("Cut a release for 2.4")["capabilities"]])
+
+
 if __name__ == "__main__":
     unittest.main()

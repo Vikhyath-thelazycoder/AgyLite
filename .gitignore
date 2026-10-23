@@ -31,3 +31,5 @@ coverage/
 
 # Agylite local verification evidence
 .agylite/
+# …except the browser fixtures' flow files, which the tests read (Phase 9: they were never committed)
+!tests/fixtures/browser/*/.agylite/

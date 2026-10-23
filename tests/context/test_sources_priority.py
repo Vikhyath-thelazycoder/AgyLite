@@ -10,7 +10,7 @@ ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "../.."))
 sys.path.insert(0, ROOT_DIR)
 
 from agylite.context.levels import _rank_files  # noqa: E402
-from agylite.registry.generate import sources_priority_problems  # noqa: E402
+from agylite.registry.generate import skill_path_problems, sources_priority_problems  # noqa: E402
 from agylite.registry.schema import validate_card  # noqa: E402
 from agylite.registry import loader  # noqa: E402
 
@@ -44,6 +44,18 @@ class TestValidation(unittest.TestCase):
 
     def tearDown(self):
         self.tmp.cleanup()
+
+    def test_overlap_and_rule_skill_paths_must_be_bundled(self):
+        """D-050: the real skill_overlaps and rule `skill` paths are checked against the bundle index."""
+        problems = skill_path_problems(self.bundle)
+        self.assertTrue(any(p.startswith("skill_overlaps: files/pocock/skills/engineering/tdd/SKILL.md") for p in problems))
+        self.assertTrue(any(p.startswith("rule to-tickets skill: ") for p in problems))
+        from agylite.context.levels import skill_overlaps
+        from agylite.routing.rules import load_routing
+        files = {p: {} for pair in skill_overlaps() for p in pair}
+        files.update({r["skill"]: {} for r in load_routing()["rules"] if r.get("skill")})
+        (self.bundle / "index.json").write_text(json.dumps({"files": files}), encoding="utf-8")
+        self.assertEqual(skill_path_problems(self.bundle), [])
 
     def test_glob_matching_nothing_fails(self):
         cards = {"engineering/completion": {"sources_priority": ["files/unlazy/c/SKILL.md", "files/gone/SKILL.md"]}}

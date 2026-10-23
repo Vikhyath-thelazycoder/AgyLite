@@ -54,6 +54,7 @@ semantic_results:
 prompt_hook:
   max_tokens: 800
   primary_skill_max_tokens: 12000
+  overlap_skill_max_tokens: 6000
   why: >-
     Pilot 2026-10-21 (AUDIT_REPORT §9): the agent made 0 agylite calls on small, clear tasks, so the SessionStart
     suggestion alone left AgyLite equal to no skill. The owner decided to auto-route every prompt; 800 fits the route
@@ -61,4 +62,6 @@ prompt_hook:
     primary_skill_max_tokens (MP3/MP4 Tier 1, owner 2026-10-22): the agent still ran `agylite skill load` in 0 of 37
     MP3 sessions and 2 of 3 design sessions, so the first whole skill now rides in the hook, never truncated, once per
     session (later prompts get a marker). 12,000 fits the design and engineering primaries (Taste ≈ 9,700); larger
-    skills (gstack ship, investigate) stay a load command.
+    skills (gstack ship, investigate) stay a load command. overlap_skill_max_tokens (option 2, owner 2026-10-22, D-050):
+    when the first skill has a config/priorities.yaml `skill_overlaps` partner from another upstream, the partner rides
+    along whole too; 6,000 fits every listed partner (Addy code-review-and-quality ≈ 5,250 is the largest).

@@ -50,3 +50,17 @@ domain_defaults:
   seo: {priority: 50, activation: on-demand}
   media: {priority: 50, activation: on-demand}
   observability: {priority: 50, activation: internal}
+
+# Overlapping skills (owner decision 2026-10-22, option 2; D-050): when one job has a skill in more than one upstream,
+# both load whole — `lead` first and named as the one that wins a disagreement, `also` next to it — instead of one
+# primary per capability, which left Addy's own suite equal to no skill. Either side may be the routed primary; the
+# pair loads the same way. `prompt_hook.overlap_skill_max_tokens` caps the partner. Paths are bundle paths, checked
+# against the bundle by `agylite validate`.
+skill_overlaps:
+  - {lead: files/pocock/skills/engineering/tdd/SKILL.md, also: files/addy/skills/test-driven-development/SKILL.md}
+  - {lead: files/pocock/skills/engineering/diagnosing-bugs/SKILL.md, also: files/addy/skills/debugging-and-error-recovery/SKILL.md}
+  - {lead: files/ponytail/skills/ponytail-review/SKILL.md, also: files/addy/skills/code-review-and-quality/SKILL.md}
+  - {lead: files/pocock/skills/engineering/to-spec/SKILL.md, also: files/addy/skills/spec-driven-development/SKILL.md}
+  - {lead: files/pocock/skills/engineering/to-tickets/SKILL.md, also: files/addy/skills/planning-and-task-breakdown/SKILL.md}
+  - {lead: files/pocock/skills/productivity/grilling/SKILL.md, also: files/addy/skills/interview-me/SKILL.md}
+  - {lead: files/ponytail/skills/ponytail/SKILL.md, also: files/addy/skills/code-simplification/SKILL.md}

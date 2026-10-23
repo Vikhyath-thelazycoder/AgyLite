@@ -250,6 +250,7 @@ def check(root: Path | None = None, bundle_dir: Path | None = None):
         else:
             problems += [f"bundle {bundle_dir.name}: {p}" for p in schema.validate_registry(reg, names)]
         problems += sources_priority_problems(cards, bundle_dir)
+        problems += skill_path_problems(bundle_dir, root)
     return problems
 
 
@@ -267,3 +268,14 @@ def sources_priority_problems(cards, bundle_dir: Path):
     return [f"{cid}: sources_priority {g} matches no file of {cid} in bundle {bundle_dir.name}"
             for cid, card in cards.items() for g in card.get("sources_priority") or []
             if not any(fnmatch.fnmatchcase(p, g) for p in by_cap.get(cid, [])) and not (exact(g) and g in files)]
+
+
+def skill_path_problems(bundle_dir: Path, root=None):
+    """D-050: every `skill_overlaps` path (config/priorities.yaml) and rule `skill` (config/routing.yaml) must be a
+    file of the bundle, so an upstream rename fails the check instead of silently dropping the overlap or hint."""
+    from ..context.levels import skill_overlaps
+    from ..routing.rules import load_routing
+    files = json.loads((bundle_dir / "index.json").read_text(encoding="utf-8")).get("files") or {}
+    named = [("skill_overlaps", p) for pair in skill_overlaps(root) for p in pair]
+    named += [(f"rule {r['id']} skill", r["skill"]) for r in load_routing(root).get("rules") or [] if r.get("skill")]
+    return [f"{where}: {path} is not in bundle {bundle_dir.name}" for where, path in named if path not in files]

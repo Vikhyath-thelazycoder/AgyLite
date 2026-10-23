@@ -81,6 +81,40 @@ class TestPromptHook(unittest.TestCase):
                       out)
         self.assertNotIn("## Cookies", out)
 
+    def overlap(self, pairs, partner_limit=None):
+        """The hook output with `skill_overlaps` replaced by `pairs` (fixture skills are ~1.5k tokens)."""
+        from agylite.context.budget import load_budgets
+        from tests.context.fixtures import make_bundle
+        make_bundle(self.home)
+        budgets = load_budgets()
+        if partner_limit is not None:
+            budgets["prompt_hook"]["overlap_skill_max_tokens"] = partner_limit
+        with mock.patch("agylite.context.levels.skill_overlaps", return_value=pairs), \
+                mock.patch("agylite.context.budget.load_budgets", return_value=budgets):
+            return self.hook({"prompt": PROMPT})[1]
+
+    def test_overlapping_skill_of_another_upstream_loads_whole_with_a_lead(self):
+        """Option 2 (owner 2026-10-22, D-050): one job, two upstreams → both skills whole, the lead named and first."""
+        hard, other = "files/alpha/skills/hardening/SKILL.md", "files/beta/skills/test-security/SKILL.md"
+        out = self.overlap([(hard, other)])
+        self.assertIn("The whole skills alpha/hardening and beta/test-security follow (one job, two upstreams); "
+                      "follow both before the first edit, and where they disagree follow alpha/hardening.", out)
+        self.assertIn("## Cookies", out)
+        self.assertIn("## Authz tests", out)                     # the partner, whole
+        self.assertLess(out.index("(skill alpha/hardening, whole)"), out.index("(skill beta/test-security, whole)"))
+
+    def test_routed_skill_on_the_also_side_still_puts_the_lead_first(self):
+        hard, other = "files/alpha/skills/hardening/SKILL.md", "files/beta/skills/test-security/SKILL.md"
+        out = self.overlap([(other, hard)])
+        self.assertIn("where they disagree follow beta/test-security.", out)
+        self.assertLess(out.index("(skill beta/test-security, whole)"), out.index("(skill alpha/hardening, whole)"))
+
+    def test_partner_over_its_budget_is_left_out(self):
+        out = self.overlap([("files/alpha/skills/hardening/SKILL.md", "files/beta/skills/test-security/SKILL.md")],
+                           partner_limit=10)
+        self.assertIn("The whole skill alpha/hardening follows;", out)
+        self.assertNotIn("## Authz tests", out)
+
     def test_compose_is_the_hook_text_without_side_effects(self):
         """The token report measures the hook with compose(): same text, no events, no fired marker."""
         from agylite.context import prompt_hook
