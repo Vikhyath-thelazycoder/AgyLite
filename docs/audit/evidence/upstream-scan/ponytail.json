@@ -1,54 +1,58 @@
 {
  "repo": "ponytail",
- "head": "c982cd411abb53323c4baa1baa3c2f020b8d0b08",
+ "head": "09c434ab73ca43761c5d8b0c5d341926c2fba710",
  "totals": {
-  "files": 169,
-  "bytes": 1819128,
+  "files": 214,
+  "bytes": 12066966,
   "submodules": []
  },
  "top_dirs": {
-  "benchmarks": 35,
-  "tests": 16,
-  "(root)": 15,
-  "assets": 14,
+  "assets": 53,
+  "benchmarks": 30,
+  "tests": 22,
+  "hooks": 20,
+  "(root)": 12,
   "examples": 12,
-  "hooks": 12,
   ".opencode": 9,
-  ".github": 6,
+  ".github": 7,
+  "skills": 7,
   ".openclaw": 6,
   "commands": 6,
-  "ponytail-mcp": 6,
   "scripts": 6,
-  "skills": 6,
+  "i18n": 4,
   "pi-extension": 4,
-  "docs": 3,
   ".agents": 2,
   ".claude-plugin": 2,
+  "docs": 2,
   ".clinerules": 1,
   ".codex-plugin": 1,
   ".cursor": 1,
   ".devin-plugin": 1,
   ".grok-plugin": 1,
+  ".kimi-plugin": 1,
   ".kiro": 1,
   ".qoder-plugin": 1,
   ".qoder": 1,
   ".windsurf": 1
  },
  "extensions": {
-  ".md": 58,
-  ".js": 47,
-  ".json": 20,
+  ".md": 60,
+  ".js": 45,
+  ".png": 41,
+  ".json": 21,
+  ".py": 7,
   ".svg": 7,
-  ".png": 7,
-  ".py": 6,
-  ".yaml": 6,
   ".toml": 6,
+  ".jpg": 5,
+  ".yaml": 5,
+  ".ts": 4,
   ".yml": 3,
   "(none)": 2,
-  ".mjs": 2,
+  ".tsx": 2,
   ".mdc": 1,
-  ".example": 1,
   ".cjs": 1,
+  ".mjs": 1,
+  ".example": 1,
   ".ps1": 1,
   ".sh": 1
  },
@@ -70,11 +74,12 @@
   ".github/plugin/marketplace.json",
   ".github/plugin/plugin.json",
   ".grok-plugin/marketplace.json",
+  ".kimi-plugin/plugin.json",
   ".qoder-plugin/plugin.json",
   "package.json",
   "pi-extension/package.json",
   "plugin.json",
-  "ponytail-mcp/package.json"
+  "skills/plugin.json"
  ],
  "mcp_files": [],
  "installers": [
@@ -88,74 +93,74 @@
   {
    "path": ".openclaw/skills/ponytail-audit/SKILL.md",
    "name": "ponytail-audit",
-   "description": "Audit the whole repo for over-engineering. A ranked list of what to delete, simplify, or replace with stdlib or native features.",
-   "bytes": 1708
+   "description": "Quality audit of the whole repo: bugs, security, real load, missing tests, speed, and what to delete. Most important first.",
+   "bytes": 5250
   },
   {
    "path": ".openclaw/skills/ponytail-debt/SKILL.md",
    "name": "ponytail-debt",
-   "description": "Harvest every ponytail: shortcut comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report.",
-   "bytes": 1589
+   "description": "Harvest every shortcut: comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report.",
+   "bytes": 1745
   },
   {
    "path": ".openclaw/skills/ponytail-gain/SKILL.md",
    "name": "ponytail-gain",
-   "description": "Show ponytail measured impact as a scoreboard: less code, less cost, more speed, from the benchmark medians. One-shot display.",
-   "bytes": 1853
+   "description": "Show ponytail measured impact as a scoreboard: less code, less cost, more speed, from the agentic benchmark averages. One-shot display.",
+   "bytes": 2199
   },
   {
    "path": ".openclaw/skills/ponytail-help/SKILL.md",
    "name": "ponytail-help",
    "description": "Quick reference for ponytail's modes, skills, and commands. One-shot display.",
-   "bytes": 2776
+   "bytes": 3186
   },
   {
    "path": ".openclaw/skills/ponytail-review/SKILL.md",
    "name": "ponytail-review",
-   "description": "Review a diff for over-engineering. Finds what to delete: reinvented stdlib, needless deps, speculative abstractions. One line per finding.",
-   "bytes": 2312
+   "description": "Quality review of a diff: bugs, security, real load, missing tests, speed, and what to delete. Each finding says what goes wrong and how to fix it.",
+   "bytes": 4976
   },
   {
    "path": ".openclaw/skills/ponytail/SKILL.md",
    "name": "ponytail",
-   "description": "Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests.",
-   "bytes": 5957
+   "description": "Lazy senior dev mode for any coding task: the smallest change that fully solves it, and a reply a busy human understands in one read.",
+   "bytes": 3267
   },
   {
    "path": "skills/ponytail-audit/SKILL.md",
    "name": "ponytail-audit",
    "description": ">",
-   "bytes": 1926
+   "bytes": 5417
   },
   {
    "path": "skills/ponytail-debt/SKILL.md",
    "name": "ponytail-debt",
    "description": ">",
-   "bytes": 1793
+   "bytes": 1769
   },
   {
    "path": "skills/ponytail-gain/SKILL.md",
    "name": "ponytail-gain",
    "description": ">",
-   "bytes": 1973
+   "bytes": 2164
   },
   {
    "path": "skills/ponytail-help/SKILL.md",
    "name": "ponytail-help",
    "description": ">",
-   "bytes": 2839
+   "bytes": 3188
   },
   {
    "path": "skills/ponytail-review/SKILL.md",
    "name": "ponytail-review",
    "description": ">",
-   "bytes": 2577
+   "bytes": 5143
   },
   {
    "path": "skills/ponytail/SKILL.md",
    "name": "ponytail",
    "description": ">",
-   "bytes": 6637
+   "bytes": 3496
   }
  ],
  "agents": [],
@@ -164,14 +169,22 @@
   "files": []
  },
  "hooks": {
-  "count": 12,
+  "count": 20,
   "files": [
+   "hooks/band/board.ts",
+   "hooks/band/logo.ts",
+   "hooks/band/metrics.ts",
+   "hooks/band/register.tsx",
+   "hooks/band/types.d.ts",
+   "hooks/claude-band.json",
    "hooks/claude-codex-hooks.json",
    "hooks/copilot-hooks.json",
    "hooks/cursor-hooks.json",
    "hooks/ponytail-activate.js",
+   "hooks/ponytail-band-import.js",
    "hooks/ponytail-config.js",
    "hooks/ponytail-instructions.js",
+   "hooks/ponytail-map.js",
    "hooks/ponytail-mode-tracker.js",
    "hooks/ponytail-runtime.js",
    "hooks/ponytail-statusline.ps1",
@@ -182,58 +195,64 @@
  },
  "indicators": {
   "mcp": {
-   "count": 4,
+   "count": 1,
    "files": [
-    "ponytail-mcp/README.md",
-    "ponytail-mcp/index.js",
-    "ponytail-mcp/package.json",
     "tests/grok-plugin.test.js"
    ]
   },
   "network": {
-   "count": 7,
+   "count": 4,
    "files": [
     "benchmarks/agentic/judge.py",
     "benchmarks/agentic/tasks.py",
-    "benchmarks/benchmark-local.py",
-    "benchmarks/claude-email.js",
-    "benchmarks/model-email.js",
-    "benchmarks/robustness-audit.js",
+    "hooks/band/register.tsx",
     "tests/correctness.test.js"
    ]
   },
   "telemetry": {
-   "count": 6,
+   "count": 5,
    "files": [
     "benchmarks/agentic/tasks.py",
     "benchmarks/correctness.js",
     "benchmarks/promptfooconfig.gemini.yaml",
     "benchmarks/promptfooconfig.gpt-newest.yaml",
-    "benchmarks/promptfooconfig.yaml",
-    "benchmarks/prompts.json"
+    "benchmarks/promptfooconfig.yaml"
    ]
   },
   "background": {
-   "count": 2,
+   "count": 3,
    "files": [
     "benchmarks/agentic/run.py",
+    "hooks/ponytail-mode-tracker.js",
     "tests/correctness.test.js"
    ]
   },
   "browser": {
-   "count": 1,
+   "count": 3,
    "files": [
+    "benchmarks/agentic/answer.py",
+    "benchmarks/agentic/judge.py",
     "benchmarks/agentic/run.py"
    ]
   },
   "shell_exec": {
-   "count": 12,
+   "count": 22,
    "files": [
+    "benchmarks/agentic/answer.py",
+    "benchmarks/agentic/complete.py",
+    "benchmarks/agentic/judge.py",
     "benchmarks/agentic/run.py",
     "benchmarks/agentic/tasks.py",
     "benchmarks/correctness.js",
-    "benchmarks/robustness-audit.js",
+    "hooks/band/metrics.ts",
+    "hooks/ponytail-activate.js",
+    "hooks/ponytail-band-import.js",
+    "hooks/ponytail-map.js",
+    "hooks/ponytail-mode-tracker.js",
     "scripts/publish-openclaw-skills.js",
+    "tests/activation-map.test.js",
+    "tests/band-import.test.js",
+    "tests/band.test.tsx",
     "tests/commands.test.js",
     "tests/cursor-hooks.test.js",
     "tests/hermes-plugin.test.js",
@@ -244,32 +263,33 @@
    ]
   },
   "env_secrets": {
-   "count": 28,
+   "count": 29,
    "files": [
     ".gitignore",
     ".opencode/plugins/ponytail.mjs",
     "__init__.py",
-    "benchmarks/agentic/complete.py",
     "benchmarks/agentic/judge.py",
     "benchmarks/agentic/run.py",
     "benchmarks/agentic/tasks.py",
     "benchmarks/behavior.yaml",
-    "benchmarks/claude-email.js",
     "benchmarks/correctness.js",
-    "benchmarks/model-email.js",
     "benchmarks/promptfooconfig.gemini.yaml",
-    "benchmarks/promptfooconfig.gpt.yaml",
     "benchmarks/promptfooconfig.yaml",
-    "benchmarks/robustness-audit.js",
     "hooks/claude-codex-hooks.json",
     "hooks/copilot-hooks.json",
+    "hooks/ponytail-activate.js",
+    "hooks/ponytail-band-import.js",
     "hooks/ponytail-config.js",
+    "hooks/ponytail-map.js",
     "hooks/ponytail-runtime.js",
     "hooks/ponytail-subagent.js",
     "pi-extension/test/extension.test.js",
     "pi-extension/test/helpers.test.js",
     "scripts/check-versions.js",
+    "scripts/uninstall.js",
+    "tests/band-import.test.js",
     "tests/correctness.test.js",
+    "tests/hermes-plugin.test.js",
     "tests/hooks-windows.test.js",
     "tests/hooks.test.js",
     "tests/opencode-plugin.test.js",
@@ -277,12 +297,13 @@
    ]
   },
   "home_writes": {
-   "count": 13,
+   "count": 14,
    "files": [
     ".opencode/plugins/ponytail.mjs",
     "__init__.py",
     "benchmarks/agentic/run.py",
     "hooks/ponytail-activate.js",
+    "hooks/ponytail-band-import.js",
     "hooks/ponytail-config.js",
     "hooks/ponytail-runtime.js",
     "hooks/ponytail-statusline.ps1",
@@ -303,18 +324,13 @@
    ]
   },
   "llm_api": {
-   "count": 11,
+   "count": 6,
    "files": [
     ".claude-plugin/marketplace.json",
-    "benchmarks/agentic/complete.py",
     "benchmarks/agentic/judge.py",
     "benchmarks/behavior.yaml",
-    "benchmarks/claude-email.js",
-    "benchmarks/model-email.js",
     "benchmarks/promptfooconfig.gpt-newest.yaml",
-    "benchmarks/promptfooconfig.gpt.yaml",
     "benchmarks/promptfooconfig.yaml",
-    "benchmarks/robustness-audit.js",
     "hooks/ponytail-runtime.js"
    ]
   }

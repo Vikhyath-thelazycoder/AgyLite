@@ -48,7 +48,7 @@ ADAPT	Token architecture	design/design-system	14756	.claude/skills/design-system
 ADAPT	Token architecture	design/design-system	1895	.claude/skills/design-system/scripts/tests/test_validate_tokens.py
 ADAPT	Token architecture	design/design-system	5942	.claude/skills/design-system/scripts/validate-tokens.cjs
 ADAPT	Token architecture	design/design-system	7184	.claude/skills/design-system/templates/design-tokens-starter.json
-ADAPT	UI styling and design guidance	design/frontend	14126	.claude/skills/design/SKILL.md
+ADAPT	UI styling and design guidance	design/frontend	14196	.claude/skills/design/SKILL.md
 ADAPT	UI styling and design guidance	design/frontend	13385	.claude/skills/design/data/cip/deliverables.csv
 ADAPT	UI styling and design guidance	design/frontend	4935	.claude/skills/design/data/cip/industries.csv
 ADAPT	UI styling and design guidance	design/frontend	5205	.claude/skills/design/data/cip/mockup-contexts.csv
@@ -59,7 +59,7 @@ ADAPT	UI styling and design guidance	design/frontend	13274	.claude/skills/design
 ADAPT	UI styling and design guidance	design/frontend	13678	.claude/skills/design/data/logo/styles.csv
 ADAPT	UI styling and design guidance	design/frontend	4993	.claude/skills/design/references/banner-sizes-and-styles.md
 ADAPT	UI styling and design guidance	design/frontend	1735	.claude/skills/design/references/cip-deliverable-guide.md
-ADAPT	UI styling and design guidance	design/frontend	4301	.claude/skills/design/references/cip-design.md
+ADAPT	UI styling and design guidance	design/frontend	4385	.claude/skills/design/references/cip-design.md
 ADAPT	UI styling and design guidance	design/frontend	2493	.claude/skills/design/references/cip-prompt-engineering.md
 ADAPT	UI styling and design guidance	design/frontend	2357	.claude/skills/design/references/cip-style-guide.md
 ADAPT	UI styling and design guidance	design/frontend	5778	.claude/skills/design/references/design-routing.md
@@ -76,14 +76,16 @@ ADAPT	UI styling and design guidance	design/frontend	2691	.claude/skills/design/
 ADAPT	UI styling and design guidance	design/frontend	1742	.claude/skills/design/references/slides.md
 ADAPT	UI styling and design guidance	design/frontend	11294	.claude/skills/design/references/social-photos-design.md
 ADAPT	UI styling and design guidance	design/frontend	8062	.claude/skills/design/scripts/cip/core.py
-ADAPT	UI styling and design guidance	design/frontend	19647	.claude/skills/design/scripts/cip/generate.py
+ADAPT	UI styling and design guidance	design/frontend	20631	.claude/skills/design/scripts/cip/generate.py
 ADAPT	UI styling and design guidance	design/frontend	13941	.claude/skills/design/scripts/cip/render-html.py
 ADAPT	UI styling and design guidance	design/frontend	4524	.claude/skills/design/scripts/cip/search.py
-ADAPT	UI styling and design guidance	design/frontend	17151	.claude/skills/design/scripts/icon/generate.py
+ADAPT	UI styling and design guidance	design/frontend	18999	.claude/skills/design/scripts/icon/generate.py
 ADAPT	UI styling and design guidance	design/frontend	6023	.claude/skills/design/scripts/logo/core.py
-ADAPT	UI styling and design guidance	design/frontend	27346	.claude/skills/design/scripts/logo/generate.py
+ADAPT	UI styling and design guidance	design/frontend	29116	.claude/skills/design/scripts/logo/generate.py
 ADAPT	UI styling and design guidance	design/frontend	4745	.claude/skills/design/scripts/logo/search.py
-ADAPT	UI styling and design guidance	design/frontend	10380	.claude/skills/design/scripts/logo/tests/test_generate.py
+ADAPT	UI styling and design guidance	design/frontend	16414	.claude/skills/design/scripts/logo/tests/test_generate.py
+ADAPT	UI styling and design guidance	design/frontend	4996	.claude/skills/design/scripts/tests/test_cip_generate.py
+ADAPT	UI styling and design guidance	design/frontend	7024	.claude/skills/design/scripts/tests/test_icon_generate.py
 ADAPT	Slides	media/presentation	1720	.claude/skills/slides/SKILL.md
 ADAPT	Slides	media/presentation	2580	.claude/skills/slides/references/copywriting-formulas.md
 ADAPT	Slides	media/presentation	153	.claude/skills/slides/references/create.md
@@ -261,7 +263,7 @@ EXCLUDE	DUPLICATE		7425	.claude/skills/ui-ux-pro-max/scripts/tests/test_style_ta
 EXCLUDE	DUPLICATE		5874	.claude/skills/ui-ux-pro-max/scripts/tests/test_text_layout_resilience.py
 EXCLUDE	DUPLICATE		7701	.claude/skills/ui-ux-pro-max/scripts/tests/test_web_stack_freshness.py
 EXCLUDE	DUPLICATE		52230	.claude/skills/ui-ux-pro-max/scripts/validate_data.py
-EXCLUDE	REPO_META		392	.gitattributes
+EXCLUDE	REPO_META		1206	.gitattributes
 EXCLUDE	REPO_META		1157	.github/ISSUE_TEMPLATE/bug_report.yml
 EXCLUDE	REPO_META		731	.github/ISSUE_TEMPLATE/feature_request.yml
 EXCLUDE	REPO_META		650	.github/PULL_REQUEST_TEMPLATE.md
@@ -277,15 +279,16 @@ EXCLUDE	REPO_META		5562	CLAUDE.md
 EXCLUDE	REPO_META		2110	CODE_OF_CONDUCT.md
 EXCLUDE	REPO_META		5403	CONTRIBUTING.md
 COPY	LICENSE	design/design-system	1075	LICENSE
+EXCLUDE	REPO_META		43838	README.az.md
 EXCLUDE	REPO_META		35313	README.id.md
 EXCLUDE	REPO_META		33248	README.ko.md
-EXCLUDE	REPO_META		37857	README.md
+EXCLUDE	REPO_META		39932	README.md
 EXCLUDE	REPO_META		40937	README.vi.md
 EXCLUDE	REPO_META		34114	README.zh.md
 EXCLUDE	REPO_META		1499	SECURITY.md
 EXCLUDE	INSTALLER		36	cli/.gitignore
 EXCLUDE	INSTALLER		39	cli/.npmignore
-EXCLUDE	INSTALLER		3420	cli/README.md
+EXCLUDE	INSTALLER		3477	cli/README.md
 EXCLUDE	INSTALLER		11046	cli/assets/data/app-interface.csv
 EXCLUDE	INSTALLER		2392	cli/assets/data/catalog-summary.json
 EXCLUDE	INSTALLER		23365	cli/assets/data/charts.csv
@@ -403,7 +406,7 @@ EXCLUDE	INSTALLER		14756	cli/assets/skills/design-system/scripts/slide_search_co
 EXCLUDE	INSTALLER		1895	cli/assets/skills/design-system/scripts/tests/test_validate_tokens.py
 EXCLUDE	INSTALLER		5942	cli/assets/skills/design-system/scripts/validate-tokens.cjs
 EXCLUDE	INSTALLER		7184	cli/assets/skills/design-system/templates/design-tokens-starter.json
-EXCLUDE	INSTALLER		14126	cli/assets/skills/design/SKILL.md
+EXCLUDE	INSTALLER		14196	cli/assets/skills/design/SKILL.md
 EXCLUDE	INSTALLER		13385	cli/assets/skills/design/data/cip/deliverables.csv
 EXCLUDE	INSTALLER		4935	cli/assets/skills/design/data/cip/industries.csv
 EXCLUDE	INSTALLER		5205	cli/assets/skills/design/data/cip/mockup-contexts.csv
@@ -414,7 +417,7 @@ EXCLUDE	INSTALLER		13274	cli/assets/skills/design/data/logo/industries.csv
 EXCLUDE	INSTALLER		13678	cli/assets/skills/design/data/logo/styles.csv
 EXCLUDE	INSTALLER		4993	cli/assets/skills/design/references/banner-sizes-and-styles.md
 EXCLUDE	INSTALLER		1735	cli/assets/skills/design/references/cip-deliverable-guide.md
-EXCLUDE	INSTALLER		4301	cli/assets/skills/design/references/cip-design.md
+EXCLUDE	INSTALLER		4385	cli/assets/skills/design/references/cip-design.md
 EXCLUDE	INSTALLER		2493	cli/assets/skills/design/references/cip-prompt-engineering.md
 EXCLUDE	INSTALLER		2357	cli/assets/skills/design/references/cip-style-guide.md
 EXCLUDE	INSTALLER		5778	cli/assets/skills/design/references/design-routing.md
@@ -431,14 +434,16 @@ EXCLUDE	INSTALLER		2691	cli/assets/skills/design/references/slides-strategies.md
 EXCLUDE	INSTALLER		1742	cli/assets/skills/design/references/slides.md
 EXCLUDE	INSTALLER		11294	cli/assets/skills/design/references/social-photos-design.md
 EXCLUDE	INSTALLER		8062	cli/assets/skills/design/scripts/cip/core.py
-EXCLUDE	INSTALLER		19647	cli/assets/skills/design/scripts/cip/generate.py
+EXCLUDE	INSTALLER		20631	cli/assets/skills/design/scripts/cip/generate.py
 EXCLUDE	INSTALLER		13941	cli/assets/skills/design/scripts/cip/render-html.py
 EXCLUDE	INSTALLER		4524	cli/assets/skills/design/scripts/cip/search.py
-EXCLUDE	INSTALLER		17151	cli/assets/skills/design/scripts/icon/generate.py
+EXCLUDE	INSTALLER		18999	cli/assets/skills/design/scripts/icon/generate.py
 EXCLUDE	INSTALLER		6023	cli/assets/skills/design/scripts/logo/core.py
-EXCLUDE	INSTALLER		27346	cli/assets/skills/design/scripts/logo/generate.py
+EXCLUDE	INSTALLER		29116	cli/assets/skills/design/scripts/logo/generate.py
 EXCLUDE	INSTALLER		4745	cli/assets/skills/design/scripts/logo/search.py
-EXCLUDE	INSTALLER		10380	cli/assets/skills/design/scripts/logo/tests/test_generate.py
+EXCLUDE	INSTALLER		16414	cli/assets/skills/design/scripts/logo/tests/test_generate.py
+EXCLUDE	INSTALLER		4996	cli/assets/skills/design/scripts/tests/test_cip_generate.py
+EXCLUDE	INSTALLER		7024	cli/assets/skills/design/scripts/tests/test_icon_generate.py
 EXCLUDE	INSTALLER		1720	cli/assets/skills/slides/SKILL.md
 EXCLUDE	INSTALLER		2580	cli/assets/skills/slides/references/copywriting-formulas.md
 EXCLUDE	INSTALLER		153	cli/assets/skills/slides/references/create.md
@@ -471,12 +476,14 @@ EXCLUDE	INSTALLER		1458	cli/assets/templates/platforms/codebuddy.json
 EXCLUDE	INSTALLER		1458	cli/assets/templates/platforms/codewhale.json
 EXCLUDE	INSTALLER		1446	cli/assets/templates/platforms/codex.json
 EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/continue.json
-EXCLUDE	INSTALLER		1497	cli/assets/templates/platforms/copilot.json
+EXCLUDE	INSTALLER		1488	cli/assets/templates/platforms/copilot.json
 EXCLUDE	INSTALLER		1449	cli/assets/templates/platforms/cursor.json
 EXCLUDE	INSTALLER		1480	cli/assets/templates/platforms/droid.json
 EXCLUDE	INSTALLER		1453	cli/assets/templates/platforms/gemini.json
 EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/kilocode.json
+EXCLUDE	INSTALLER		1453	cli/assets/templates/platforms/kimi.json
 EXCLUDE	INSTALLER		1450	cli/assets/templates/platforms/kiro.json
+EXCLUDE	INSTALLER		1453	cli/assets/templates/platforms/openclaw.json
 EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/opencode.json
 EXCLUDE	INSTALLER		1446	cli/assets/templates/platforms/qoder.json
 EXCLUDE	INSTALLER		1452	cli/assets/templates/platforms/roocode.json
@@ -487,33 +494,36 @@ EXCLUDE	INSTALLER		1455	cli/assets/templates/platforms/windsurf.json
 EXCLUDE	INSTALLER		1446	cli/assets/templates/platforms/zcode.json
 EXCLUDE	INSTALLER		5611	cli/bun.lock
 EXCLUDE	INSTALLER		14830	cli/package-lock.json
-EXCLUDE	INSTALLER		2433	cli/package.json
+EXCLUDE	INSTALLER		2435	cli/package.json
 EXCLUDE	INSTALLER		373	cli/playwright.config.ts
 EXCLUDE	INSTALLER		1024	cli/scripts/build.mjs
 EXCLUDE	INSTALLER		429	cli/scripts/run-python.mjs
 EXCLUDE	INSTALLER		7396	cli/scripts/sync-assets.mjs
 EXCLUDE	INSTALLER		7781	cli/src/commands/init.ts
-EXCLUDE	INSTALLER		5565	cli/src/commands/uninstall.ts
+EXCLUDE	INSTALLER		5822	cli/src/commands/uninstall.ts
 EXCLUDE	INSTALLER		3910	cli/src/commands/update.ts
 EXCLUDE	INSTALLER		1322	cli/src/commands/versions.ts
 EXCLUDE	INSTALLER		3390	cli/src/index.ts
-EXCLUDE	INSTALLER		2419	cli/src/types/index.ts
-EXCLUDE	INSTALLER		4178	cli/src/utils/detect.ts
+EXCLUDE	INSTALLER		2557	cli/src/types/index.ts
+EXCLUDE	INSTALLER		4929	cli/src/utils/detect.ts
 EXCLUDE	INSTALLER		4144	cli/src/utils/extract.ts
 EXCLUDE	INSTALLER		4000	cli/src/utils/github.ts
 EXCLUDE	INSTALLER		441	cli/src/utils/logger.ts
-EXCLUDE	INSTALLER		13904	cli/src/utils/template.ts
+EXCLUDE	INSTALLER		16711	cli/src/utils/template.ts
 EXCLUDE	INSTALLER		5205	cli/tests/e2e/agent-query-contract.spec.ts
 EXCLUDE	INSTALLER		2243	cli/tests/e2e/banner-design-path-contract.spec.ts
-EXCLUDE	INSTALLER		2525	cli/tests/e2e/dry-run.spec.ts
+EXCLUDE	INSTALLER		7984	cli/tests/e2e/copilot-skills.spec.ts
+EXCLUDE	INSTALLER		989	cli/tests/e2e/detect.spec.ts
+EXCLUDE	INSTALLER		3480	cli/tests/e2e/dry-run.spec.ts
+EXCLUDE	INSTALLER		2166	cli/tests/e2e/kimi-skills.spec.ts
 EXCLUDE	INSTALLER		1240	cli/tests/e2e/preview.spec.ts
-EXCLUDE	INSTALLER		1607	cli/tests/e2e/template-script-paths.spec.ts
+EXCLUDE	INSTALLER		2313	cli/tests/e2e/template-script-paths.spec.ts
 EXCLUDE	INSTALLER		396	cli/tsconfig.json
 EXCLUDE	REPO_META		3307	docs/journals/260812-1844-search-data-quality-planning.md
 EXCLUDE	REPO_META		2913	docs/journals/260813-0816-phase-6-accessibility-refresh.md
 EXCLUDE	REPO_META		3263	docs/journals/260813-1622-phase-7-web-stack-freshness.md
 EXCLUDE	REPO_META		3245	docs/journals/260813-1800-search-data-overhaul-completion.md
-EXCLUDE	REPO_META		0	"docs/\344\270\211\344\270\252 data-scripts-templates \347\232\204\345\214\272\345\210\253.md"
+EXCLUDE	REPO_META		1774	"docs/\344\270\211\344\270\252 data-scripts-templates \347\232\204\345\214\272\345\210\253.md"
 EXCLUDE	PRODUCT_RUNTIME		52	gallery/.gitignore
 EXCLUDE	PRODUCT_RUNTIME		414	gallery/app/globals.css
 EXCLUDE	PRODUCT_RUNTIME		572	gallery/app/layout.tsx
@@ -645,12 +655,14 @@ PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/de
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1458	src/ui-ux-pro-max/templates/platforms/codewhale.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1446	src/ui-ux-pro-max/templates/platforms/codex.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1455	src/ui-ux-pro-max/templates/platforms/continue.json
-PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1497	src/ui-ux-pro-max/templates/platforms/copilot.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1488	src/ui-ux-pro-max/templates/platforms/copilot.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1449	src/ui-ux-pro-max/templates/platforms/cursor.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1480	src/ui-ux-pro-max/templates/platforms/droid.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1453	src/ui-ux-pro-max/templates/platforms/gemini.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1455	src/ui-ux-pro-max/templates/platforms/kilocode.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1453	src/ui-ux-pro-max/templates/platforms/kimi.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1450	src/ui-ux-pro-max/templates/platforms/kiro.json
+PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1453	src/ui-ux-pro-max/templates/platforms/openclaw.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1455	src/ui-ux-pro-max/templates/platforms/opencode.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1446	src/ui-ux-pro-max/templates/platforms/qoder.json
 PRESERVE	Stdlib design-intelligence engine + CSV data + tests (164 OK)	design/design-system	1452	src/ui-ux-pro-max/templates/platforms/roocode.json

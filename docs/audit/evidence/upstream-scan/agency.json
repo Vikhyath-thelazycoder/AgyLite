@@ -1,16 +1,16 @@
 {
  "repo": "agency",
- "head": "d3f71c4bb8922d3eea7576237a870dd59b3cdd52",
+ "head": "4e3ac3ca6604c75113f52c695dbddcc7af928b46",
  "totals": {
-  "files": 381,
-  "bytes": 4830924,
+  "files": 383,
+  "bytes": 4876340,
   "submodules": []
  },
  "top_dirs": {
   "engineering": 65,
   "specialized": 59,
+  "scripts": 39,
   "marketing": 37,
-  "scripts": 37,
   "game-development": 21,
   "integrations": 20,
   "strategy": 17,
@@ -34,7 +34,7 @@
  },
  "extensions": {
   ".md": 329,
-  ".sh": 29,
+  ".sh": 31,
   ".yml": 9,
   ".json": 4,
   ".py": 4,
@@ -65,12 +65,8 @@
  },
  "indicators": {
   "mcp": {
-   "count": 3,
-   "files": [
-    "integrations/mcp-memory/README.md",
-    "integrations/mcp-memory/setup.sh",
-    "specialized/specialized-mcp-builder.md"
-   ]
+   "count": 0,
+   "files": []
   },
   "network": {
    "count": 0,
@@ -89,42 +85,24 @@
    "files": []
   },
   "shell_exec": {
-   "count": 2,
-   "files": [
-    "scripts/check-hermes-config-rewrite.py",
-    "scripts/check-runbooks.sh"
-   ]
+   "count": 0,
+   "files": []
   },
   "env_secrets": {
-   "count": 2,
-   "files": [
-    "scripts/check-agent-originality.sh",
-    "scripts/test-convert-outputs.sh"
-   ]
+   "count": 0,
+   "files": []
   },
   "home_writes": {
-   "count": 7,
-   "files": [
-    "integrations/mcp-memory/setup.sh",
-    "scripts/check-hermes-config-rewrite.py",
-    "scripts/convert.sh",
-    "scripts/install.sh",
-    "scripts/test-install-hermes-destination.sh",
-    "scripts/test-install-parallel-logs.sh",
-    "scripts/test-install.sh"
-   ]
+   "count": 0,
+   "files": []
   },
   "self_update": {
-   "count": 1,
-   "files": [
-    "integrations/mcp-memory/setup.sh"
-   ]
+   "count": 0,
+   "files": []
   },
   "llm_api": {
-   "count": 1,
-   "files": [
-    "scripts/convert.sh"
-   ]
+   "count": 0,
+   "files": []
   }
  }
 }

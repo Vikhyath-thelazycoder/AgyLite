@@ -20,8 +20,8 @@
   },
   "agency": {
    "EXCLUDE": {
-    "files": 303,
-    "bytes": 3735461
+    "files": 304,
+    "bytes": 3743197
    },
    "COPY": {
     "files": 1,
@@ -29,7 +29,7 @@
    },
    "ADAPT": {
     "files": 76,
-    "bytes": 1116757
+    "bytes": 1120711
    },
    "REFERENCE": {
     "files": 2,
@@ -92,20 +92,20 @@
   },
   "beacon": {
    "EXCLUDE": {
-    "files": 1668,
-    "bytes": 53674955
+    "files": 1905,
+    "bytes": 55446700
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "REFERENCE": {
-    "files": 83,
-    "bytes": 1255742
+    "files": 101,
+    "bytes": 1277511
    },
    "ADAPT": {
     "files": 77,
-    "bytes": 237207
+    "bytes": 239347
    }
   },
   "beyondseo": {
@@ -164,8 +164,8 @@
   },
   "ecc": {
    "EXCLUDE": {
-    "files": 3862,
-    "bytes": 57305824
+    "files": 3931,
+    "bytes": 58044060
    },
    "COPY": {
     "files": 1,
@@ -173,11 +173,11 @@
    },
    "ADAPT": {
     "files": 392,
-    "bytes": 2292294
+    "bytes": 2294246
    },
    "REFERENCE": {
-    "files": 280,
-    "bytes": 1356528
+    "files": 285,
+    "bytes": 1416638
    },
    "PRESERVE": {
     "files": 18,
@@ -187,15 +187,15 @@
   "graphify": {
    "EXCLUDE": {
     "files": 385,
-    "bytes": 14143406
+    "bytes": 14150172
    },
    "COPY": {
     "files": 3,
     "bytes": 12761
    },
    "PRESERVE": {
-    "files": 650,
-    "bytes": 10592020
+    "files": 657,
+    "bytes": 10670371
    },
    "REFERENCE": {
     "files": 37,
@@ -240,8 +240,8 @@
   },
   "opendesign": {
    "EXCLUDE": {
-    "files": 12451,
-    "bytes": 285331073
+    "files": 13119,
+    "bytes": 297171125
    },
    "COPY": {
     "files": 467,
@@ -252,8 +252,8 @@
     "bytes": 38935
    },
    "ADAPT": {
-    "files": 49,
-    "bytes": 343334
+    "files": 65,
+    "bytes": 360495
    }
   },
   "pocock": {
@@ -276,8 +276,8 @@
   },
   "ponytail": {
    "EXCLUDE": {
-    "files": 151,
-    "bytes": 10241478
+    "files": 165,
+    "bytes": 11745644
    },
    "COPY": {
     "files": 13,
@@ -285,7 +285,7 @@
    },
    "REFERENCE": {
     "files": 30,
-    "bytes": 260596
+    "bytes": 261050
    },
    "GENERATED": {
     "files": 1,
@@ -293,7 +293,7 @@
    },
    "ADAPT": {
     "files": 5,
-    "bytes": 18068
+    "bytes": 17989
    }
   },
   "taste": {
@@ -320,20 +320,20 @@
   },
   "uiuxpromax": {
    "EXCLUDE": {
-    "files": 410,
-    "bytes": 11842293
+    "files": 418,
+    "bytes": 11933313
    },
    "ADAPT": {
-    "files": 190,
-    "bytes": 6403368
+    "files": 192,
+    "bytes": 6426178
    },
    "COPY": {
     "files": 1,
     "bytes": 1075
    },
    "PRESERVE": {
-    "files": 83,
-    "bytes": 3605728
+    "files": 85,
+    "bytes": 3608625
    }
   },
   "unlazy": {
@@ -383,9 +383,9 @@
  },
  "capabilities": {
   "codebase/repository-understanding": {
-   "files": 669,
-   "bytes": 10735205,
-   "est_tokens": 2683801,
+   "files": 676,
+   "bytes": 10813556,
+   "est_tokens": 2703389,
    "sources": [
     "agency",
     "ecc",
@@ -424,8 +424,8 @@
   },
   "design/design-review": {
    "files": 25,
-   "bytes": 234168,
-   "est_tokens": 58542,
+   "bytes": 234669,
+   "est_tokens": 58667,
    "sources": [
     "agency",
     "gstack",
@@ -433,9 +433,9 @@
    ]
   },
   "design/design-system": {
-   "files": 570,
-   "bytes": 9516466,
-   "est_tokens": 2379116,
+   "files": 572,
+   "bytes": 9519363,
+   "est_tokens": 2379840,
    "sources": [
     "ecc",
     "opendesign",
@@ -443,9 +443,9 @@
    ]
   },
   "design/frontend": {
-   "files": 150,
-   "bytes": 6168704,
-   "est_tokens": 1542176,
+   "files": 152,
+   "bytes": 6191514,
+   "est_tokens": 1547878,
    "sources": [
     "appllama",
     "opendesign",
@@ -462,9 +462,9 @@
    ]
   },
   "design/motion": {
-   "files": 16,
-   "bytes": 182166,
-   "est_tokens": 45541,
+   "files": 32,
+   "bytes": 199327,
+   "est_tokens": 49831,
    "sources": [
     "appllama",
     "ecc",
@@ -500,8 +500,8 @@
   },
   "engineering/ai-systems": {
    "files": 12,
-   "bytes": 143370,
-   "est_tokens": 35842,
+   "bytes": 143529,
+   "est_tokens": 35882,
    "sources": [
     "agency",
     "ecc"
@@ -520,8 +520,8 @@
   },
   "engineering/backend": {
    "files": 9,
-   "bytes": 112978,
-   "est_tokens": 28244,
+   "bytes": 113650,
+   "est_tokens": 28412,
    "sources": [
     "agency",
     "ecc"
@@ -557,8 +557,8 @@
   },
   "engineering/documentation": {
    "files": 10,
-   "bytes": 116429,
-   "est_tokens": 29107,
+   "bytes": 117372,
+   "est_tokens": 29343,
    "sources": [
     "addy",
     "agency",
@@ -569,8 +569,8 @@
   },
   "engineering/frontend": {
    "files": 5,
-   "bytes": 67584,
-   "est_tokens": 16896,
+   "bytes": 67934,
+   "est_tokens": 16983,
    "sources": [
     "addy",
     "agency",
@@ -607,8 +607,8 @@
   },
   "engineering/planning": {
    "files": 52,
-   "bytes": 494014,
-   "est_tokens": 123503,
+   "bytes": 494035,
+   "est_tokens": 123508,
    "sources": [
     "addy",
     "agency",
@@ -628,8 +628,8 @@
   },
   "engineering/release": {
    "files": 42,
-   "bytes": 383571,
-   "est_tokens": 95892,
+   "bytes": 385504,
+   "est_tokens": 96376,
    "sources": [
     "addy",
     "agency",
@@ -653,8 +653,8 @@
   },
   "engineering/security": {
    "files": 33,
-   "bytes": 447062,
-   "est_tokens": 111765,
+   "bytes": 448083,
+   "est_tokens": 112020,
    "sources": [
     "addy",
     "agency",
@@ -664,8 +664,8 @@
   },
   "engineering/simplicity": {
    "files": 23,
-   "bytes": 96743,
-   "est_tokens": 24185,
+   "bytes": 96664,
+   "est_tokens": 24166,
    "sources": [
     "addy",
     "agency",
@@ -676,8 +676,8 @@
   },
   "engineering/stack-packs": {
    "files": 253,
-   "bytes": 1486504,
-   "est_tokens": 371626,
+   "bytes": 1486501,
+   "est_tokens": 371625,
    "sources": [
     "ecc"
    ]
@@ -719,8 +719,8 @@
   },
   "observability/risk-detection": {
    "files": 78,
-   "bytes": 238278,
-   "est_tokens": 59569,
+   "bytes": 240418,
+   "est_tokens": 60104,
    "sources": [
     "beacon"
    ]
@@ -917,8 +917,8 @@
   },
   "testing/release-verification": {
    "files": 4,
-   "bytes": 32047,
-   "est_tokens": 8011,
+   "bytes": 32132,
+   "est_tokens": 8033,
    "sources": [
     "agency",
     "ecc"
@@ -926,8 +926,8 @@
   },
   "testing/strategy": {
    "files": 18,
-   "bytes": 189126,
-   "est_tokens": 47281,
+   "bytes": 189350,
+   "est_tokens": 47337,
    "sources": [
     "addy",
     "agency",

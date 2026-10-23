@@ -2,10 +2,10 @@ decision	reason	capability	bytes	path
 EXCLUDE	UPSTREAM_DEV		247	.dockerignore
 EXCLUDE	UPSTREAM_DEV		353	.gitattributes
 EXCLUDE	UPSTREAM_DEV		813	.github/CODEOWNERS
-EXCLUDE	UPSTREAM_DEV		1226	.github/DISCUSSION_TEMPLATE/q-a.yml
+EXCLUDE	UPSTREAM_DEV		1224	.github/DISCUSSION_TEMPLATE/q-a.yml
 EXCLUDE	UPSTREAM_DEV		19	.github/FUNDING.yml
 EXCLUDE	UPSTREAM_DEV		2297	.github/ISSUE_TEMPLATE/bug_report.yml
-EXCLUDE	UPSTREAM_DEV		714	.github/ISSUE_TEMPLATE/config.yml
+EXCLUDE	UPSTREAM_DEV		712	.github/ISSUE_TEMPLATE/config.yml
 EXCLUDE	UPSTREAM_DEV		1925	.github/ISSUE_TEMPLATE/feature_request.yml
 EXCLUDE	UPSTREAM_DEV		1476	.github/PULL_REQUEST_TEMPLATE.md
 EXCLUDE	UPSTREAM_DEV		11	.github/TEAM_MEMBERS
@@ -13,23 +13,23 @@ EXCLUDE	UPSTREAM_DEV		4492	.github/workflows/ci.yml
 EXCLUDE	UPSTREAM_DEV		5288	.github/workflows/pr-management.yml
 EXCLUDE	UPSTREAM_DEV		1850	.github/workflows/publish.yml
 EXCLUDE	UPSTREAM_DEV		2213	.github/workflows/release-graph.yml
-EXCLUDE	UPSTREAM_DEV		2433	.github/workflows/welcome.yml
+EXCLUDE	UPSTREAM_DEV		2431	.github/workflows/welcome.yml
 EXCLUDE	UPSTREAM_DEV		894	.gitignore
 EXCLUDE	UPSTREAM_DEV		850	.pre-commit-config.yaml
 EXCLUDE	UPSTREAM_DEV		563	AGENTS.md
 EXCLUDE	UPSTREAM_DEV		8723	ARCHITECTURE.md
 EXCLUDE	UPSTREAM_DEV		8887	BENCHMARKS.md
-EXCLUDE	UPSTREAM_DEV		540244	CHANGELOG.md
-EXCLUDE	UPSTREAM_DEV		4805	CODE_OF_CONDUCT.md
-EXCLUDE	UPSTREAM_DEV		10244	CONTRIBUTING.md
+EXCLUDE	UPSTREAM_DEV		547216	CHANGELOG.md
+EXCLUDE	UPSTREAM_DEV		4803	CODE_OF_CONDUCT.md
+EXCLUDE	UPSTREAM_DEV		10242	CONTRIBUTING.md
 EXCLUDE	UPSTREAM_DEV		881	Dockerfile
 COPY	LICENSE	codebase/repository-understanding	11358	LICENSE
 COPY	LICENSE	codebase/repository-understanding	1068	LICENSE-MIT
 COPY	LICENSE	codebase/repository-understanding	335	NOTICE
-EXCLUDE	UPSTREAM_DEV		34777	README.md
+EXCLUDE	UPSTREAM_DEV		34771	README.md
 EXCLUDE	UPSTREAM_DEV		1839	RELEASING.md
 EXCLUDE	UPSTREAM_DEV		4066	SECURITY.md
-EXCLUDE	UPSTREAM_DEV		1591	SUPPORT.md
+EXCLUDE	UPSTREAM_DEV		1587	SUPPORT.md
 EXCLUDE	UPSTREAM_DEV		511488	docs/community/graphguild-banner.jpg
 EXCLUDE	UPSTREAM_DEV		20623	docs/demo-path.svg
 EXCLUDE	UPSTREAM_DEV		6604807	docs/discord-banner.png
@@ -43,39 +43,39 @@ EXCLUDE	UPSTREAM_DEV		146843	docs/logo.png
 EXCLUDE	UPSTREAM_DEV		6629	docs/node-summaries-rfc.md
 EXCLUDE	UPSTREAM_DEV		40697	docs/superpowers/plans/2026-05-04-incremental-updates-dedup.md
 EXCLUDE	UPSTREAM_DEV		5746	docs/superpowers/specs/2026-05-04-incremental-updates-dedup-design.md
-EXCLUDE	UPSTREAM_DEV		41960	docs/translations/README.ar-SA.md
-EXCLUDE	UPSTREAM_DEV		36597	docs/translations/README.cs-CZ.md
-EXCLUDE	UPSTREAM_DEV		35470	docs/translations/README.da-DK.md
-EXCLUDE	UPSTREAM_DEV		37154	docs/translations/README.de-DE.md
-EXCLUDE	UPSTREAM_DEV		49825	docs/translations/README.el-GR.md
-EXCLUDE	UPSTREAM_DEV		37106	docs/translations/README.es-ES.md
-EXCLUDE	UPSTREAM_DEV		46546	docs/translations/README.fa-IR.md
-EXCLUDE	UPSTREAM_DEV		36289	docs/translations/README.fi-FI.md
-EXCLUDE	UPSTREAM_DEV		37873	docs/translations/README.fil-PH.md
-EXCLUDE	UPSTREAM_DEV		37815	docs/translations/README.fr-FR.md
-EXCLUDE	UPSTREAM_DEV		40603	docs/translations/README.he-IL.md
-EXCLUDE	UPSTREAM_DEV		56726	docs/translations/README.hi-IN.md
-EXCLUDE	UPSTREAM_DEV		38554	docs/translations/README.hu-HU.md
-EXCLUDE	UPSTREAM_DEV		35658	docs/translations/README.id-ID.md
-EXCLUDE	UPSTREAM_DEV		36611	docs/translations/README.it-IT.md
-EXCLUDE	UPSTREAM_DEV		41854	docs/translations/README.ja-JP.md
-EXCLUDE	UPSTREAM_DEV		38248	docs/translations/README.ko-KR.md
-EXCLUDE	UPSTREAM_DEV		36043	docs/translations/README.nl-NL.md
-EXCLUDE	UPSTREAM_DEV		35375	docs/translations/README.no-NO.md
-EXCLUDE	UPSTREAM_DEV		36836	docs/translations/README.pl-PL.md
-EXCLUDE	UPSTREAM_DEV		36610	docs/translations/README.pt-BR.md
-EXCLUDE	UPSTREAM_DEV		37281	docs/translations/README.ro-RO.md
-EXCLUDE	UPSTREAM_DEV		50505	docs/translations/README.ru-RU.md
-EXCLUDE	UPSTREAM_DEV		35612	docs/translations/README.sv-SE.md
-EXCLUDE	UPSTREAM_DEV		55811	docs/translations/README.th-TH.md
-EXCLUDE	UPSTREAM_DEV		37193	docs/translations/README.tr-TR.md
-EXCLUDE	UPSTREAM_DEV		48633	docs/translations/README.uk-UA.md
-EXCLUDE	UPSTREAM_DEV		36999	docs/translations/README.uz-UZ.md
-EXCLUDE	UPSTREAM_DEV		39573	docs/translations/README.vi-VN.md
-EXCLUDE	UPSTREAM_DEV		34302	docs/translations/README.zh-CN.md
-EXCLUDE	UPSTREAM_DEV		34096	docs/translations/README.zh-TW.md
+EXCLUDE	UPSTREAM_DEV		41954	docs/translations/README.ar-SA.md
+EXCLUDE	UPSTREAM_DEV		36591	docs/translations/README.cs-CZ.md
+EXCLUDE	UPSTREAM_DEV		35464	docs/translations/README.da-DK.md
+EXCLUDE	UPSTREAM_DEV		37148	docs/translations/README.de-DE.md
+EXCLUDE	UPSTREAM_DEV		49819	docs/translations/README.el-GR.md
+EXCLUDE	UPSTREAM_DEV		37100	docs/translations/README.es-ES.md
+EXCLUDE	UPSTREAM_DEV		46540	docs/translations/README.fa-IR.md
+EXCLUDE	UPSTREAM_DEV		36283	docs/translations/README.fi-FI.md
+EXCLUDE	UPSTREAM_DEV		37867	docs/translations/README.fil-PH.md
+EXCLUDE	UPSTREAM_DEV		37809	docs/translations/README.fr-FR.md
+EXCLUDE	UPSTREAM_DEV		40597	docs/translations/README.he-IL.md
+EXCLUDE	UPSTREAM_DEV		56720	docs/translations/README.hi-IN.md
+EXCLUDE	UPSTREAM_DEV		38548	docs/translations/README.hu-HU.md
+EXCLUDE	UPSTREAM_DEV		35652	docs/translations/README.id-ID.md
+EXCLUDE	UPSTREAM_DEV		36605	docs/translations/README.it-IT.md
+EXCLUDE	UPSTREAM_DEV		41848	docs/translations/README.ja-JP.md
+EXCLUDE	UPSTREAM_DEV		38242	docs/translations/README.ko-KR.md
+EXCLUDE	UPSTREAM_DEV		36037	docs/translations/README.nl-NL.md
+EXCLUDE	UPSTREAM_DEV		35369	docs/translations/README.no-NO.md
+EXCLUDE	UPSTREAM_DEV		36830	docs/translations/README.pl-PL.md
+EXCLUDE	UPSTREAM_DEV		36604	docs/translations/README.pt-BR.md
+EXCLUDE	UPSTREAM_DEV		37275	docs/translations/README.ro-RO.md
+EXCLUDE	UPSTREAM_DEV		50499	docs/translations/README.ru-RU.md
+EXCLUDE	UPSTREAM_DEV		35606	docs/translations/README.sv-SE.md
+EXCLUDE	UPSTREAM_DEV		55805	docs/translations/README.th-TH.md
+EXCLUDE	UPSTREAM_DEV		37187	docs/translations/README.tr-TR.md
+EXCLUDE	UPSTREAM_DEV		48627	docs/translations/README.uk-UA.md
+EXCLUDE	UPSTREAM_DEV		36993	docs/translations/README.uz-UZ.md
+EXCLUDE	UPSTREAM_DEV		39567	docs/translations/README.vi-VN.md
+EXCLUDE	UPSTREAM_DEV		34296	docs/translations/README.zh-CN.md
+EXCLUDE	UPSTREAM_DEV		34090	docs/translations/README.zh-TW.md
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	1424	graphify/__init__.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	48496	graphify/__main__.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	48895	graphify/__main__.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	4143	graphify/_minhash.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	15596	graphify/affected.py
 EXCLUDE	HOST_PORT		1516	graphify/always_on/agents-md.md
@@ -87,24 +87,24 @@ EXCLUDE	HOST_PORT		1014	graphify/always_on/vscode-instructions.md
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	33728	graphify/analyze.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	4574	graphify/benchmark.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	142207	graphify/build.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	93661	graphify/cache.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	94055	graphify/cache.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	83274	graphify/callflow_html.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	6783	graphify/cargo_introspect.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	265442	graphify/cli.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	266729	graphify/cli.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	22185	graphify/cluster.py
 EXCLUDE	HOST_PORT		407	graphify/command-kilo.md
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	12010	graphify/cross_repo_calls.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	12423	graphify/cross_repo_calls.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	3395	graphify/cross_repo_types.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	1814	graphify/csharp_dispatch.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	79609	graphify/dedup.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	136362	graphify/detect.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	137879	graphify/detect.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	15990	graphify/diagnostics.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	63702	graphify/export.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	25	graphify/exporters/__init__.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	606	graphify/exporters/base.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	8387	graphify/exporters/graphdb.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	36205	graphify/exporters/html.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	521806	graphify/extract.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	526702	graphify/extract.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	5123	graphify/extractors/MIGRATION.md
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	3083	graphify/extractors/__init__.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	8511	graphify/extractors/apex.py
@@ -117,7 +117,7 @@ PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS 
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	31260	graphify/extractors/dart.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	19781	graphify/extractors/dm.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	22052	graphify/extractors/elixir.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	544863	graphify/extractors/engine.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	549311	graphify/extractors/engine.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	14309	graphify/extractors/erlang.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	19945	graphify/extractors/fortran.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	38820	graphify/extractors/go.py
@@ -132,12 +132,12 @@ PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS 
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	29857	graphify/extractors/powershell.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	20919	graphify/extractors/r.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	8207	graphify/extractors/razor.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	189515	graphify/extractors/resolution.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	189743	graphify/extractors/resolution.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	12040	graphify/extractors/robot.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	48374	graphify/extractors/rust.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	3926	graphify/extractors/sln.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	29883	graphify/extractors/solidity.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	40777	graphify/extractors/sql.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	49244	graphify/extractors/sql.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	20315	graphify/extractors/terraform.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	17767	graphify/extractors/vbnet.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	16043	graphify/extractors/verilog.py
@@ -147,13 +147,13 @@ PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS 
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	8935	graphify/google_workspace.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	55871	graphify/hooks.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	4685	graphify/ids.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	13955	graphify/ingest.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	124862	graphify/install.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	14114	graphify/ingest.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	125229	graphify/install.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	8865	graphify/interface_dispatch.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	178836	graphify/llm.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	214	graphify/manifest.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	13168	graphify/manifest_ingest.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	9624	graphify/markdown_resolution.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	13425	graphify/manifest_ingest.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	12757	graphify/markdown_resolution.py
 PRESERVE	EXCEPTION to MCP exclusion: unconditionally imported by extract.py; parses MCP config files as graph data; no server/client/config/runtime (§2.1 satisfied)	codebase/repository-understanding	13184	graphify/mcp_ingest.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	8262	graphify/multigraph_compat.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	5843	graphify/pascal_resolution.py
@@ -169,9 +169,9 @@ PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS 
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	3396	graphify/resolver_registry.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	23150	graphify/ruby_resolution.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	13947	graphify/scip_ingest.py
-PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	18727	graphify/security.py
+PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	19215	graphify/security.py
 PRESERVE	Isolated Graphify runtime; hook/install/watch/serve disabled by the OS wrapper (SEC-08)	codebase/repository-understanding	14892	graphify/semantic_cleanup.py
-PRESERVE	EXCEPTION to MCP exclusion (D-037): query/path/explain import its graph search helpers; mcp/starlette are imported only inside serve()/serve_http(), the mcp extra is never installed and the OS wrapper blocks `serve`	codebase/repository-understanding	146860	graphify/serve.py
+PRESERVE	EXCEPTION to MCP exclusion (D-037): query/path/explain import its graph search helpers; mcp/starlette are imported only inside serve()/serve_http(), the mcp extra is never installed and the OS wrapper blocks `serve`	codebase/repository-understanding	149033	graphify/serve.py
 EXCLUDE	HOST_PORT		47268	graphify/skill-agents.md
 EXCLUDE	HOST_PORT		58785	graphify/skill-aider.md
 EXCLUDE	HOST_PORT		47268	graphify/skill-amp.md
@@ -479,7 +479,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	23811	tests/t
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8405	tests/test_claude_md.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	1998	tests/test_cli_broken_pipe.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	50986	tests/test_cli_export.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	1347	tests/test_cli_help.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2403	tests/test_cli_help.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2038	tests/test_cloud_cta.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8304	tests/test_cluster.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	6413	tests/test_cluster_ambiguous_scale.py
@@ -500,7 +500,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2074	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	13343	tests/test_cross_extension_reexport_self_cycle.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4805	tests/test_cross_language_call_resolution.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4397	tests/test_cross_repo_external_call_guards.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	25327	tests/test_cross_repo_member_calls.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	26738	tests/test_cross_repo_member_calls.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5402	tests/test_cross_repo_shared_types.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	9541	tests/test_csharp_call_site_generic_args.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2571	tests/test_csharp_delegate_declarations.py
@@ -550,7 +550,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	10629	tests/t
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	10454	tests/test_external_stub_endpoints.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	273255	tests/test_extract.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5739	tests/test_extract_cache_location.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	66938	tests/test_extract_cli.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	69323	tests/test_extract_cli.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	18663	tests/test_extract_code_only_cli.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3081	tests/test_extract_path_memo.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7181	tests/test_extract_php_closures.py
@@ -574,7 +574,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4298	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8876	tests/test_go_interface_methods.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4532	tests/test_go_package_type_fold.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	18226	tests/test_go_qualified_resolution.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8442	tests/test_go_receiver_member_calls.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8532	tests/test_go_receiver_member_calls.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2999	tests/test_god_nodes_cli.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4433	tests/test_god_nodes_exclude_hubs.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4138	tests/test_google_workspace.py
@@ -618,10 +618,10 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3687	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4910	tests/test_indirect_dispatch_getattr.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	6759	tests/test_inferred_confidence_rubric.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4051	tests/test_ingest.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	9288	tests/test_ingest_url_type.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	10516	tests/test_ingest_url_type.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	9887	tests/test_inherited_field_receivers.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2644	tests/test_injection_sentinel_coverage.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	73449	tests/test_install.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	75546	tests/test_install.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7310	tests/test_install_hook_identity.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7058	tests/test_install_line_endings.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	22713	tests/test_install_references.py
@@ -643,8 +643,10 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	17448	tests/t
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3285	tests/test_js_exported_fn_call_resolution.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2485	tests/test_js_exported_scalar_bindings.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	85266	tests/test_js_import_resolution.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4193	tests/test_js_member_call_bare_name_fallback.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7893	tests/test_js_member_collisions.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5411	tests/test_js_module_level_anonymous_calls.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	1617	tests/test_js_require_binding_shadow.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4014	tests/test_js_this_member_expressions.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	1843	tests/test_js_walk_order.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	11885	tests/test_jsconfig_baseurl.py
@@ -671,9 +673,9 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	12807	tests/t
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5094	tests/test_lost_saved_semantic_nodes.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5934	tests/test_lua_import.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3846	tests/test_lua_method_calls.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	10758	tests/test_manifest_ingest.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	12204	tests/test_manifest_ingest.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2054	tests/test_manifest_tomli_required.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	12139	tests/test_markdown_code_spans.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	16474	tests/test_markdown_code_spans.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4625	tests/test_mcp_graph_view_cache.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	12059	tests/test_mcp_ingest.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	6481	tests/test_merge_chunks_validation.py
@@ -682,7 +684,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5826	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3521	tests/test_minhash.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	1750	tests/test_multigraph_compat.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	16490	tests/test_multigraph_diagnostics.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	83775	tests/test_multilang.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	83733	tests/test_multilang.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2486	tests/test_no_cluster_run_only_keys.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5045	tests/test_no_cluster_undeclared_endpoints.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	6434	tests/test_no_dedup_flag.py
@@ -690,7 +692,8 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8811	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3171	tests/test_non_regular_files.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4833	tests/test_non_string_node_ids.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4099	tests/test_objc_callable_markers.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5156	tests/test_objc_category_interfaces.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	6666	tests/test_objc_category_interfaces.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3897	tests/test_objc_category_portable_ids.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	10478	tests/test_objc_enum_declarations.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5486	tests/test_objc_field_table_remap.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4170	tests/test_objc_member_calls.py
@@ -711,6 +714,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4832	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5068	tests/test_oversized_document_slicing.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2588	tests/test_owned_type_sources.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5966	tests/test_package_json_subpath_imports.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	1953	tests/test_parked_call_site_file.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	9679	tests/test_partial_cache.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8149	tests/test_partial_extraction_warning.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	14843	tests/test_pascal.py
@@ -726,7 +730,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4130	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7418	tests/test_phantom_external_import.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	13010	tests/test_php_language_construct_calls.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4487	tests/test_php_object_creation.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8090	tests/test_php_receiver_member_calls.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8180	tests/test_php_receiver_member_calls.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8106	tests/test_php_static_call_resolution.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	9908	tests/test_php_type_resolution.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4037	tests/test_php_unparsed_casts.py
@@ -789,7 +793,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5624	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5126	tests/test_scala_type_definition.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	57438	tests/test_scip_ingest.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7783	tests/test_search_hook.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	19406	tests/test_security.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	20216	tests/test_security.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3834	tests/test_semantic_cache_basename_recovery.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7747	tests/test_semantic_cache_out_root.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	15509	tests/test_semantic_cleanup.py
@@ -797,8 +801,8 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2878	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3881	tests/test_semantic_id_remap_root.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	6923	tests/test_semantic_origin_stamp.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7461	tests/test_semantic_similarity.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	86760	tests/test_serve.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	22784	tests/test_serve_http.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	88706	tests/test_serve.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	23716	tests/test_serve_http.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	7967	tests/test_settings_merge.py
 EXCLUDE	Tests of the excluded skill generator tools/skillgen (closure trace P25; upstream added more in the first P28 update and in 0.9.93)		19841	tests/test_skill_auto_refresh.py
 EXCLUDE	Tests of the excluded skill generator tools/skillgen (closure trace P25; upstream added more in the first P28 update and in 0.9.93)		8607	tests/test_skill_code_only_incremental_update.py
@@ -815,6 +819,9 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8411	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	11087	tests/test_source_file_encoding.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3843	tests/test_source_key_memoization.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	8395	tests/test_sourceless_call_targets.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3244	tests/test_sql_cross_file_tables.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2882	tests/test_sql_go_batches.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	12375	tests/test_sql_tsql_procedures.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	14744	tests/test_src_layout_import_resolution.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4738	tests/test_stale_prune.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2204	tests/test_stat_index_husk.py
@@ -848,7 +855,7 @@ PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	5718	tests/te
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	2768	tests/test_ts_namespace.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3084	tests/test_ts_new_expression_calls.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	4190	tests/test_ts_parse_warning.py
-PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	28505	tests/test_ts_receiver_member_calls.py
+PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	28775	tests/test_ts_receiver_member_calls.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	15171	tests/test_type_only_import_cycles.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	6510	tests/test_typescript_enum_members.py
 PRESERVE	Runtime self-test (P12)	codebase/repository-understanding	3818	tests/test_typescript_module_extensions.py

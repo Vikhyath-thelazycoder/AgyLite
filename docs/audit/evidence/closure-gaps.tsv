@@ -53,3 +53,4 @@ opendesign	design-systems/README.md	_schema/AGENTS.md	design-systems/_schema/AGE
 opendesign	design-systems/README.md	docs/design-systems.md	docs/design-systems.md	EXCLUDE	ACCEPTED: Contributor doc mention; format is self-evident from DESIGN.md + tokens
 opendesign	design-systems/README.md	scripts/sync-design-systems.ts	scripts/sync-design-systems.ts	EXCLUDE	ACCEPTED: Upstream sync tooling mention
 ponytail	examples/README.md	../benchmarks/	benchmarks/	REFERENCE	ACCEPTED: Mention of benchmark results
+ponytail	hooks/ponytail-instructions.js	./ponytail-config	hooks/ponytail-config.js	EXCLUDE	ACCEPTED: Generator input (ponytail-lite reads it at build time with inputs:); neither file ships, RULESET-lite.md does

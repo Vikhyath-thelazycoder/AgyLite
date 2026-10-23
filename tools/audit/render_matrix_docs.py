@@ -26,6 +26,14 @@ LICENSES = {
 }
 
 
+def license_of(repo):
+    """The hand-written label above, else the license recorded in third_party/licenses.json (newer upstreams)."""
+    if repo in LICENSES:
+        return LICENSES[repo]
+    with open(os.path.join(os.path.dirname(EVIDENCE), "..", "..", "third_party", "licenses.json"), encoding="utf-8") as f:
+        return json.load(f).get(repo, {}).get("license", "?")
+
+
 def group_prefix(path):
     parts = path.split("/")
     if len(parts) == 1:
@@ -64,7 +72,7 @@ def main():
            "|---|---|---|---:|---:|---|---|---|---|"]
     for (repo, cap, prefix, dec), (n, b) in sorted(rows.items(), key=lambda kv: (kv[0][1], kv[0][0], kv[0][2])):
         runtime = caps.get(cap, {}).get("runtime_type", "")
-        out.append(f"| {repo} | {cap} | `{prefix}` | {n} | {b / 1024:.1f} | {dec} | {runtime} | {LICENSES[repo]} | `{pins[repo][:7]}` |")
+        out.append(f"| {repo} | {cap} | `{prefix}` | {n} | {b / 1024:.1f} | {dec} | {runtime} | {license_of(repo)} | `{pins[repo][:7]}` |")
     tot_n = sum(v[0] for v in rows.values())
     tot_b = sum(v[1] for v in rows.values())
     out += ["", f"**Total bundled: {tot_n} files, {tot_b / 1e6:.1f} MB** across {len({k[1] for k in rows})} capabilities."]

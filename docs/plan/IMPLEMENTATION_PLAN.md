@@ -456,6 +456,30 @@ complete on the branch; release (merge to main, tag v2.0.0, reinstall in hosts) 
 
 ## Resume here (next session)
 
+### Progress checklist (owner request 2026-10-23)
+
+Done (on `main`):
+- [x] Phase 0 setup · Phase 1 MP1 critical fixes · Phase 2 MP2 benchmarks · Phase 3 Plan B whole skills
+- [x] Phase 4 MP3 engineering (+ skill-loading fix: the prompt hook carries the whole primary skill)
+- [x] Phase 5 MP4 design (+ re-measure: design-taste inspector same / judge 0.92, pocock 0.71)
+- [x] Phase 6 MP5 research, YouTube, Archify diagrams (paid: research same, archify = original, youtube 0.49 at n = 1)
+- [x] Phase 7 browser verification on (D-049; gstack /qa installed: telemetry off, no global hooks)
+- [x] Phase 8 MP6 update workflow (review → benchmark → owner approval)
+
+- [x] The 7 owner-approved upstream updates (2026-10-23): agency, beacon, ecc, graphify, opendesign, uiuxpromax,
+      ponytail — re-reviewed and approved one at a time, pins written into the repo, evidence/notices/cards
+      regenerated, bundle 1bcd9beb5094 (self-tests pass), every gate green, pushed
+
+Still to do:
+- [ ] Phase 9 parity loop: option 2 (overlapping skills load both primaries, owner 2026-10-22); fix gstack's
+      review-rewrite drift, then review/approve gstack; addy after its Tier 1 run
+- [ ] Phase 9 paid re-runs (≈ $40–50): eng-addy + eng-pocock (after option 2), youtube n = 3, diagram-archify n = 3,
+      design-taste, research with a less-known video
+- [ ] Final: every test incl. every paid suite (≈ $80–120 at n = 3; tell the owner the total first), then the results
+      website (per task: plain Claude vs the original skill vs AgyLite — code, grader checks, answer, score, cost) and
+      `PARITY_REPORT.md`
+
+
 **Parity upgrade (2026-10-21 →, plan in `/Users/vikhyathmgowda007/Developer/os/IMPLEMENTATION_PLAN.md`, Phases 0–9):**
 Phases 0–4 done and on `main` (MP1 critical fixes, MP2 quality benchmarks, Plan B whole skills, MP3 engineering).
 Phase 5 (MP4 design) is done: both fixes landed and the AgyLite-only re-measure moved design-taste from regressed to

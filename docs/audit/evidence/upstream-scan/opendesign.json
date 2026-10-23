@@ -1,25 +1,25 @@
 {
  "repo": "opendesign",
- "head": "53231d40b778d88eba23f35547bf99485d3ae9fc",
+ "head": "e03d5c23f308c39f4de7c057568df66c29a84385",
  "totals": {
-  "files": 12940,
-  "bytes": 290590952,
+  "files": 13657,
+  "bytes": 303358418,
   "submodules": []
  },
  "top_dirs": {
-  "apps": 4064,
+  "apps": 4475,
   "design-systems": 4015,
-  "plugins": 1829,
-  "design-templates": 747,
-  "packages": 450,
-  "skills": 358,
-  "tools": 292,
-  "e2e": 256,
-  "docs": 246,
-  ".github": 130,
+  "plugins": 1900,
+  "design-templates": 754,
+  "packages": 483,
+  "skills": 455,
+  "e2e": 298,
+  "tools": 294,
+  "docs": 286,
+  ".github": 141,
   "prompt-templates": 107,
   "specs": 100,
-  "scripts": 51,
+  "scripts": 53,
   "clipper": 48,
   "shells": 44,
   "mocks": 43,
@@ -35,34 +35,35 @@
   "figma-plugin": 5,
   "story": 2,
   ".claude-plugin": 1,
-  ".looper-attachments": 1
+  ".looper-attachments": 1,
+  "ui-audit": 1
  },
  "extensions": {
-  ".ts": 3602,
-  ".html": 2467,
-  ".md": 2254,
-  ".json": 1859,
-  ".tsx": 1057,
-  ".css": 536,
-  ".png": 239,
-  "(none)": 119,
+  ".ts": 3975,
+  ".html": 2476,
+  ".md": 2357,
+  ".json": 1872,
+  ".tsx": 1145,
+  ".css": 554,
+  ".png": 266,
+  "(none)": 133,
+  ".py": 118,
   ".woff2": 106,
-  ".py": 103,
   ".mjs": 82,
+  ".js": 79,
   ".svg": 75,
-  ".js": 71,
+  ".yml": 70,
   ".webp": 69,
-  ".yml": 67,
-  ".jpg": 47,
+  ".jpg": 53,
   ".sh": 46,
   ".yaml": 33,
+  ".txt": 25,
   ".mp4": 24,
+  ".ttf": 22,
   ".ps1": 17,
-  ".txt": 11,
+  ".mp3": 10,
   ".jsonl": 9,
-  ".jsx": 6,
-  ".ttf": 5,
-  ".mp3": 5
+  ".jsx": 6
  },
  "host_dirs": [
   ".claude",
@@ -102,6 +103,7 @@
   "pnpm-workspace.yaml",
   "shells/terminal/package.json",
   "skills/chat-motion-overlay/assets/remotion-template/package.json",
+  "skills/oil-motion/scripts/requirements.txt",
   "tools/dev/package.json",
   "tools/pack/docker-compose.yml",
   "tools/pack/package.json",
@@ -161,6 +163,7 @@
  "license_files": [
   "LICENSE",
   "apps/desktop/vendor/dom-to-pptx/LICENSE",
+  "design-templates/aster-atelier/LICENSE",
   "design-templates/guizang-ppt/LICENSE",
   "design-templates/html-ppt-zhangzara-8-bit-orbit/LICENSE",
   "design-templates/html-ppt-zhangzara-biennale-yellow/LICENSE",
@@ -226,16 +229,31 @@
   "plugins/_official/examples/webgl-pixel-reveal-gallery/LICENSE",
   "plugins/community/hallmark/LICENSE",
   "plugins/community/humanize-ppt/LICENSE",
+  "skills/animate/LICENSE",
   "skills/brandkit/LICENSE",
   "skills/brutalist-skill/LICENSE",
   "skills/emil-design-eng/LICENSE",
   "skills/frontend-design/LICENSE.txt",
   "skills/gpt-tasteskill/LICENSE",
+  "skills/gsap-core/LICENSE",
+  "skills/gsap-frameworks/LICENSE",
+  "skills/gsap-performance/LICENSE",
+  "skills/gsap-plugins/LICENSE",
+  "skills/gsap-react/LICENSE",
+  "skills/gsap-scrolltrigger/LICENSE",
+  "skills/gsap-timeline/LICENSE",
+  "skills/gsap-utils/LICENSE",
   "skills/hatch-pet/LICENSE.txt",
+  "skills/huashu-art-motion/LICENSE",
+  "skills/huashu-art-motion/references/license.md",
   "skills/image-to-code-skill/LICENSE",
   "skills/imagegen-frontend-mobile/LICENSE",
   "skills/imagegen-frontend-web/LICENSE",
   "skills/minimalist-skill/LICENSE",
+  "skills/motion-lab/LICENSE",
+  "skills/motion-lab/references/license.md",
+  "skills/oil-motion/LICENSE",
+  "skills/oil-motion/references/license.md",
   "skills/output-skill/LICENSE",
   "skills/redesign-skill/LICENSE",
   "skills/review-animations/LICENSE",
@@ -243,6 +261,7 @@
   "skills/stitch-skill/LICENSE",
   "skills/taste-skill-v1/LICENSE",
   "skills/taste-skill/LICENSE",
+  "skills/ui-animation/LICENSE",
   "skills/web-clone/LICENSE",
   "skills/web-design-guidelines/LICENSE",
   "skills/writing-guidelines/LICENSE",
@@ -260,6 +279,12 @@
    "name": "sample-plugin",
    "description": "Phase 1 sample plugin synthesizing a SKILL.md frontmatter for backwards-compat tests.",
    "bytes": 691
+  },
+  {
+   "path": "design-templates/aster-atelier/SKILL.md",
+   "name": "aster-atelier",
+   "description": "Use this template when the user wants an artistic creative-studio website with classical imagery, cobalt skies, elegant serif typography and cinematic scrolling.",
+   "bytes": 3785
   },
   {
    "path": "design-templates/audio-jingle/SKILL.md",
@@ -1750,6 +1775,36 @@
    "bytes": 3708
   },
   {
+   "path": "plugins/_official/examples/motion-future/SKILL.md",
+   "name": "motion-future",
+   "description": "The Future Is Already Here \u2014 motion design template. A 20-second electric-blue tech reel, rebuilt from the viral original: 3D cubes, a word tunnel, liquid chrome type, a FUTURE.EXE desktop, a countdown, glass objects and a chrome FUTURE her",
+   "bytes": 7604
+  },
+  {
+   "path": "plugins/_official/examples/motion-product-promo/SKILL.md",
+   "name": "motion-product-promo",
+   "description": "Product Promo \u2014 motion design template. A 15-second product promo rebuilt from the viral original with a fictional brand: a halftone mascot asks 'Got something to sell?', product cards pop onto blue, a phone store fills in, a checkout board",
+   "bytes": 8358
+  },
+  {
+   "path": "plugins/_official/examples/motion-showreel/SKILL.md",
+   "name": "motion-showreel",
+   "description": "Motion Designer Showreel \u2014 motion design template. A 15-second motion designer showreel at 128 BPM, rebuilt from the viral original: an Open Design mark opener, a stretching wordmark, six easing curves, a morphing shape, a truchet field, a ",
+   "bytes": 7253
+  },
+  {
+   "path": "plugins/_official/examples/motion-ui-morph/SKILL.md",
+   "name": "motion-ui-morph",
+   "description": "One-Shape UI Motion \u2014 motion design template. A 14-second code-only UI motion piece, rebuilt from the viral original: one shape morphs from a button into a loader, player, slider, toggle, tabs, chart, command palette and toast, driven by a ",
+   "bytes": 6320
+  },
+  {
+   "path": "plugins/_official/examples/motion-visual-lesson/SKILL.md",
+   "name": "motion-visual-lesson",
+   "description": "Bring Ideas to Life (\u8ba9\u7075\u611f\u6210\u771f) \u2014 a 20-second OpenDesign paper story, with interactive prototypes, websites, PPT, posters and motion films collected into a book of possibilities.",
+   "bytes": 10550
+  },
+  {
    "path": "plugins/_official/examples/od-plugin-contribute-open-design/SKILL.md",
    "name": "od-plugin-contribute-open-design",
    "description": "Open a pull request adding a local OpenDesign plugin to the OpenDesign community catalog using gh CLI.",
@@ -2160,8 +2215,8 @@
   {
    "path": "plugins/_official/scenarios/od-next-strategy/SKILL.md",
    "name": "od-next-strategy",
-   "description": "Bundled OD Next V2 strategy entrypoint for route-locked planning and Build execution.",
-   "bytes": 1149
+   "description": "Bundled OD Next V2 strategy entrypoint for request-led planning and Build execution.",
+   "bytes": 1166
   },
   {
    "path": "plugins/_official/scenarios/od-nextjs-export/SKILL.md",
@@ -2510,6 +2565,12 @@
    "name": "algorithmic-art",
    "description": "|",
    "bytes": 1409
+  },
+  {
+   "path": "skills/animate/SKILL.md",
+   "name": "animate",
+   "description": "Implement purposeful interface animations: easing, springs, interruption, exits, and reduced motion. Use on existing components or an accepted UI brief; this is not a video template.",
+   "bytes": 12476
   },
   {
    "path": "skills/apple-hig/SKILL.md",
@@ -2947,49 +3008,49 @@
    "path": "skills/gsap-core/SKILL.md",
    "name": "gsap-core",
    "description": "|",
-   "bytes": 15075
+   "bytes": 15330
   },
   {
    "path": "skills/gsap-frameworks/SKILL.md",
    "name": "gsap-frameworks",
    "description": "|",
-   "bytes": 10581
+   "bytes": 10918
   },
   {
    "path": "skills/gsap-performance/SKILL.md",
    "name": "gsap-performance",
    "description": "|",
-   "bytes": 4457
+   "bytes": 4725
   },
   {
    "path": "skills/gsap-plugins/SKILL.md",
    "name": "gsap-plugins",
    "description": "|",
-   "bytes": 21908
+   "bytes": 22158
   },
   {
    "path": "skills/gsap-react/SKILL.md",
    "name": "gsap-react",
    "description": "|",
-   "bytes": 6867
+   "bytes": 7114
   },
   {
    "path": "skills/gsap-scrolltrigger/SKILL.md",
    "name": "gsap-scrolltrigger",
    "description": "|",
-   "bytes": 18799
+   "bytes": 19046
   },
   {
    "path": "skills/gsap-timeline/SKILL.md",
    "name": "gsap-timeline",
    "description": "|",
-   "bytes": 4702
+   "bytes": 4951
   },
   {
    "path": "skills/gsap-utils/SKILL.md",
    "name": "gsap-utils",
    "description": "|",
-   "bytes": 12403
+   "bytes": 12664
   },
   {
    "path": "skills/hand-drawn-diagrams/SKILL.md",
@@ -3008,6 +3069,12 @@
    "name": "html-ppt-retro-quarterly-review",
    "description": "|",
    "bytes": 2267
+  },
+  {
+   "path": "skills/huashu-art-motion/SKILL.md",
+   "name": "huashu-art-motion",
+   "description": "\u8f85\u52a9\u827a\u672f\u52a8\u753b\u4e0e\u89e3\u8bf4\u4efb\u52a1\uff1a35 \u79cd\u827a\u672f\u98ce\u683c\u914d\u65b9\u30019 \u79cd\u89e3\u8bf4\u8bed\u6cd5\u3001\u5206\u955c\u4e0e\u786e\u5b9a\u6027 Canvas \u7ed8\u5236\u5de5\u5177\u3002\u6309\u5bbf\u4e3b\u65f6\u95f4\u8f74\u5b9e\u73b0\uff0c\u7d20\u6750\u4e0e\u5bfc\u51fa\u4f7f\u7528\u5bbf\u4e3b\u80fd\u529b\u3002",
+   "bytes": 5650
   },
   {
    "path": "skills/image-enhancer/SKILL.md",
@@ -3094,6 +3161,18 @@
    "bytes": 4469
   },
   {
+   "path": "skills/motion-design/SKILL.md",
+   "name": "motion-design",
+   "description": "Apply motion craft to an active task: refine a brief, beat map, visual continuity, typography, pacing, and timeline implementation. Use when planning or improving motion graphics; the host task owns artifact creation, output format, and exp",
+   "bytes": 23517
+  },
+  {
+   "path": "skills/motion-lab/SKILL.md",
+   "name": "motion-lab",
+   "description": "\u4e3a\u5f53\u524d\u7f51\u9875\u6216\u7ec4\u4ef6\u67e5\u627e\u3001\u9009\u578b\u548c\u6539\u9020\u52a8\u6548\u3002\u5305\u542b 160 \u4e2a\u6848\u4f8b\u7684 HTML/CSS/JS\u3001\u53c2\u6570\u4e0e\u4e2d\u82f1\u6587\u7d22\u5f15\uff0c\u8986\u76d6\u57fa\u7840\u3001\u6587\u5b57\u3001\u4ea4\u4e92\u548c\u9ad8\u7ea7\u52a8\u6548\u3002",
+   "bytes": 4074
+  },
+  {
    "path": "skills/nanobanana-ppt/SKILL.md",
    "name": "nanobanana-ppt",
    "description": "|",
@@ -3103,7 +3182,13 @@
    "path": "skills/od-next-media-inputs/SKILL.md",
    "name": "od-next-media-inputs",
    "description": "|",
-   "bytes": 4473
+   "bytes": 6736
+  },
+  {
+   "path": "skills/oil-motion/SKILL.md",
+   "name": "oil-motion",
+   "description": "\u5904\u7406\u89c6\u9891\u548c\u5e8f\u5217\u5e27\uff0c\u7f16\u8bd1\u6eda\u52a8\u3001\u6307\u9488\u3001\u62d6\u52a8\u4e0e\u72b6\u6001\u9a71\u52a8\u7684\u7f51\u9875\u52a8\u6548\uff1b\u5185\u542b\u672c\u5730\u5a92\u4f53\u5904\u7406\u811a\u672c\u548c\u8fd0\u884c\u65f6\u3002\u65b0\u7d20\u6750\u751f\u6210\u4f7f\u7528\u5bbf\u4e3b\u5de5\u5177\u3002",
+   "bytes": 12440
   },
   {
    "path": "skills/output-skill/SKILL.md",
@@ -3352,6 +3437,12 @@
    "bytes": 1169
   },
   {
+   "path": "skills/ui-animation/SKILL.md",
+   "name": "ui-animation",
+   "description": "Implement, review, and measure UI motion. Reconstruct easing, springs and gestures from a recording using bundled frame extraction, tracking and curve-fitting tools when available.",
+   "bytes": 24512
+  },
+  {
    "path": "skills/ui-skills/SKILL.md",
    "name": "ui-skills",
    "description": "|",
@@ -3514,7 +3605,7 @@
  },
  "indicators": {
   "mcp": {
-   "count": 200,
+   "count": 196,
    "files": [
     "CHANGELOG.md",
     "apps/daemon/package.json",
@@ -3575,11 +3666,11 @@
     "apps/daemon/tests/mcp-spawn.test.ts",
     "apps/daemon/tests/memory-llm-dedupe.test.ts",
     "apps/daemon/tests/observability/task-observation-rollout.test.ts",
-    "apps/daemon/tests/od-next-automatic-simple-server.test.ts"
+    "apps/daemon/tests/opend-2627-nonzero-acp-exit.test.ts"
    ]
   },
   "network": {
-   "count": 501,
+   "count": 541,
    "files": [
     ".claude/skills/od-contribute/install.sh",
     ".claude/skills/od-contribute/scripts/discover-doc-gaps.sh",
@@ -3609,9 +3700,10 @@
     ".github/workflows/release-exact.yml",
     ".github/workflows/release-prerelease.yml",
     ".github/workflows/release-rollback.yml",
+    ".github/workflows/release-stable-docker.yml",
     ".github/workflows/release-stable.yml",
+    ".github/workflows/release-withdraw.yml",
     "apps/daemon/src/artifacts/create.ts",
-    "apps/daemon/src/brands/safe-fetch.ts",
     "apps/daemon/src/byok-tools.ts",
     "apps/daemon/src/cli.ts",
     "apps/daemon/src/collab/account-billing-summary-cache.ts",
@@ -3639,12 +3731,11 @@
     "apps/daemon/src/plugins/share-helpers.ts",
     "apps/daemon/src/research/tavily.ts",
     "apps/daemon/src/routes/chat.ts",
-    "apps/daemon/src/routes/media.ts",
-    "apps/daemon/src/routes/memory.ts"
+    "apps/daemon/src/routes/media.ts"
    ]
   },
   "telemetry": {
-   "count": 493,
+   "count": 523,
    "files": [
     ".github/workflows/main-prerelease-win-smoke.yml",
     ".github/workflows/refresh-plugin-popularity.yml",
@@ -3675,6 +3766,7 @@
     "apps/daemon/src/langfuse-trace.ts",
     "apps/daemon/src/mcp-observability.ts",
     "apps/daemon/src/mcp.ts",
+    "apps/daemon/src/media/stock-telemetry.ts",
     "apps/daemon/src/memory.ts",
     "apps/daemon/src/migration/index.ts",
     "apps/daemon/src/migration/update-apply-observations.ts",
@@ -3686,6 +3778,7 @@
     "apps/daemon/src/observability/task-observation-aggregation.ts",
     "apps/daemon/src/observability/task-observation-otlp-exporter.ts",
     "apps/daemon/src/observability/task-observation-rollout.ts",
+    "apps/daemon/src/observability/task-telemetry-receipt.ts",
     "apps/daemon/src/orbit.ts",
     "apps/daemon/src/plugins/installer.ts",
     "apps/daemon/src/prompt-telemetry.ts",
@@ -3703,13 +3796,11 @@
     "apps/daemon/src/routes/runs.ts",
     "apps/daemon/src/routes/telemetry.ts",
     "apps/daemon/src/routes/vela.ts",
-    "apps/daemon/src/run-analytics-observability.ts",
-    "apps/daemon/src/run-diagnostics.ts",
-    "apps/daemon/src/run-failure-classification.ts"
+    "apps/daemon/src/run-analytics-observability.ts"
    ]
   },
   "background": {
-   "count": 1968,
+   "count": 2047,
    "files": [
     ".claude-plugin/marketplace.json",
     ".claude/skills/od-contribute/scripts/discover-doc-gaps.sh",
@@ -3731,6 +3822,7 @@
     ".github/workflows/cut-release.yml",
     ".github/workflows/dsh-upstream-drift.yml",
     ".github/workflows/e2e-coverage-reminder.yml",
+    ".github/workflows/finalize-release.yml",
     ".github/workflows/main-prerelease-win-smoke.yml",
     ".github/workflows/metrics.yml",
     ".github/workflows/notify-daily-feishu.yml",
@@ -3769,12 +3861,11 @@
     "apps/daemon/src/amr-stderr-filter.ts",
     "apps/daemon/src/analytics.ts",
     "apps/daemon/src/app-config.ts",
-    "apps/daemon/src/app-version.ts",
-    "apps/daemon/src/artifact-focus-marker.ts"
+    "apps/daemon/src/app-version.ts"
    ]
   },
   "browser": {
-   "count": 389,
+   "count": 438,
    "files": [
     ".github/ISSUE_TEMPLATE/preview-v0.8.0-feedback.yml",
     ".github/actions/bake-previews/action.yml",
@@ -3817,29 +3908,29 @@
     "apps/daemon/src/routes/project/index.ts",
     "apps/daemon/src/routes/runs.ts",
     "apps/daemon/src/routes/telemetry.ts",
+    "apps/daemon/src/routes/vela.ts",
+    "apps/daemon/src/runtimes/auth.ts",
+    "apps/daemon/src/runtimes/chat-prompt-inputs.ts",
     "apps/daemon/src/runtimes/chat-run-messages.ts",
     "apps/daemon/src/runtimes/defs/amp.ts",
+    "apps/daemon/src/runtimes/defs/antigravity.ts",
     "apps/daemon/src/runtimes/defs/atomcode.ts",
     "apps/daemon/src/runtimes/defs/claude.ts",
     "apps/daemon/src/runtimes/defs/copilot.ts",
     "apps/daemon/src/runtimes/defs/cursor-agent.ts",
     "apps/daemon/src/runtimes/defs/grok-build.ts",
+    "apps/daemon/src/runtimes/json-event-stream.ts",
     "apps/daemon/src/runtimes/od-next-exact-input.ts",
     "apps/daemon/src/runtimes/opencode-log.ts",
     "apps/daemon/src/runtimes/plain-stream.ts",
     "apps/daemon/src/server.ts",
     "apps/daemon/tests/browser-use-diagnostics.test.ts",
     "apps/daemon/tests/claude-design-import.test.ts",
-    "apps/daemon/tests/cli-lint.test.ts",
-    "apps/daemon/tests/cli-run-steer.test.ts",
-    "apps/daemon/tests/cli-startup.test.ts",
-    "apps/daemon/tests/cli-templates.test.ts",
-    "apps/daemon/tests/daemon-lifecycle.test.ts",
-    "apps/daemon/tests/export-cli-routing.test.ts"
+    "apps/daemon/tests/cli-lint.test.ts"
    ]
   },
   "shell_exec": {
-   "count": 668,
+   "count": 752,
    "files": [
     ".github/scripts/agent-pr-explore-sandbox.sh",
     ".github/scripts/convergence.py",
@@ -3847,6 +3938,7 @@
     ".github/scripts/pack.py",
     ".github/scripts/postinstall.py",
     ".github/scripts/r2.ts",
+    ".github/scripts/release/bump-policy.ts",
     ".github/scripts/release/resolve-daily-beta-recovery.ts",
     ".github/scripts/release/resolve-patch-cut.ts",
     ".github/scripts/rerun_infra_cancel.py",
@@ -3871,6 +3963,7 @@
     "apps/daemon/src/api-token-auth.ts",
     "apps/daemon/src/app-config.ts",
     "apps/daemon/src/artifacts/deliverable-syntax-quotes.ts",
+    "apps/daemon/src/artifacts/motion-delivery.ts",
     "apps/daemon/src/artifacts/text-suppression.ts",
     "apps/daemon/src/automation-proposals.ts",
     "apps/daemon/src/automation-routine-evolution.ts",
@@ -3885,30 +3978,29 @@
     "apps/daemon/src/brands/seed.ts",
     "apps/daemon/src/browser-sessions.ts",
     "apps/daemon/src/browser/browser-open.ts",
+    "apps/daemon/src/chat-artifacts/motion-cover.ts",
     "apps/daemon/src/chat-artifacts/store.ts",
     "apps/daemon/src/chat-artifacts/video-cover.ts",
     "apps/daemon/src/cli.ts",
     "apps/daemon/src/codex-cli.ts",
     "apps/daemon/src/codex-config-normalize.ts",
     "apps/daemon/src/collab/collab-cloud-error.ts",
+    "apps/daemon/src/collab/comment-file-retirements.ts",
+    "apps/daemon/src/collab/comment-inbound-store.ts",
     "apps/daemon/src/collab/comment-relay-outbox.ts",
+    "apps/daemon/src/collab/comment-relay-publication-mapping.ts",
+    "apps/daemon/src/collab/owned-content-store.ts",
     "apps/daemon/src/collab/public-file-failure.ts",
-    "apps/daemon/src/collab/public-file-publication-store.ts",
-    "apps/daemon/src/collab/sync-snapshot-store.ts",
-    "apps/daemon/src/connectionTest.ts",
-    "apps/daemon/src/conversation-fork-title.ts",
-    "apps/daemon/src/critique/orchestrator.ts",
-    "apps/daemon/src/critique/parsers/v1.ts",
-    "apps/daemon/src/critique/persistence.ts",
-    "apps/daemon/src/daemon-url.ts"
+    "apps/daemon/src/collab/public-file-publication-store.ts"
    ]
   },
   "env_secrets": {
-   "count": 820,
+   "count": 872,
    "files": [
     ".claude/skills/od-contribute/scripts/check-prereqs.sh",
     ".claude/skills/od-contribute/scripts/config.sh",
     ".github/actions/bake-previews/action.yml",
+    ".github/actions/defer-pack-cache/action.yml",
     ".github/actions/setup-workspace/action.yml",
     ".github/scripts/agent-pr-explore-local.sh",
     ".github/scripts/agent-pr-explore-sandbox.sh",
@@ -3924,6 +4016,7 @@
     ".github/scripts/publish_whats_new.py",
     ".github/scripts/release.py",
     ".github/scripts/release/build-mac.sh",
+    ".github/scripts/release/bump-policy.ts",
     ".github/scripts/release/cache/mac.sh",
     ".github/scripts/release/github/cleanup-artifacts.sh",
     ".github/scripts/release/publish-beta-common.ps1",
@@ -3963,13 +4056,11 @@
     ".github/workflows/dsh-upstream-drift.yml",
     ".github/workflows/e2e-coverage-reminder.yml",
     ".github/workflows/finalize-release.yml",
-    ".github/workflows/fork-pr-workflow-approval.yml",
-    ".github/workflows/main-prerelease-win-smoke.yml",
-    ".github/workflows/metrics.yml"
+    ".github/workflows/fork-pr-workflow-approval.yml"
    ]
   },
   "home_writes": {
-   "count": 124,
+   "count": 125,
    "files": [
     ".claude/skills/od-contribute/install.sh",
     ".claude/skills/od-contribute/scripts/config.sh",
@@ -4034,12 +4125,13 @@
    ]
   },
   "self_update": {
-   "count": 28,
+   "count": 32,
    "files": [
     ".claude/skills/od-contribute/install.sh",
     ".github/scripts/agent-pr-explore-local.sh",
     ".github/scripts/provision-agent-pr-explore-runner.sh",
     ".github/scripts/release/assets/win.ps1",
+    ".github/workflows/release-withdraw.yml",
     "apps/daemon/src/connectionTest.ts",
     "apps/daemon/src/runtimes/defs/atomcode.ts",
     "apps/daemon/src/runtimes/defs/grok-build.ts",
@@ -4059,15 +4151,18 @@
     "mocks/scripts/upload-recording.sh",
     "packages/platform/src/toolchain.ts",
     "packages/platform/tests/index.test.ts",
+    "plugins/_official/examples/motion-future/assets/three.min.js",
     "plugins/_official/examples/open-design-homepage/assets/_next/static/chunks/1098c2541054fc77.js",
     "plugins/_official/examples/open-design-homepage/assets/_next/static/chunks/1ed7a178f7acd3df.js",
     "plugins/community/humanize-ppt/scripts/humanize_ppt_v2.py",
     "skills/pptx-html-fidelity-audit/scripts/extract_pptx.py",
-    "skills/pptx-html-fidelity-audit/scripts/verify_layout.py"
+    "skills/pptx-html-fidelity-audit/scripts/verify_layout.py",
+    "skills/ui-animation/scripts/fit_curves.py",
+    "skills/ui-animation/scripts/track_motion.py"
    ]
   },
   "llm_api": {
-   "count": 465,
+   "count": 474,
    "files": [
     ".claude-plugin/marketplace.json",
     ".github/scripts/provision-agent-pr-explore-runner.sh",
@@ -4107,6 +4202,7 @@
     "apps/daemon/src/run-analytics-observability.ts",
     "apps/daemon/src/run-failure-classification.ts",
     "apps/daemon/src/runtimes/auth.ts",
+    "apps/daemon/src/runtimes/byok-cli.ts",
     "apps/daemon/src/runtimes/byok-opencode.ts",
     "apps/daemon/src/runtimes/codex-model-preflight.ts",
     "apps/daemon/src/runtimes/defs/amr.ts",
@@ -4127,8 +4223,7 @@
     "apps/daemon/tests/acp.test.ts",
     "apps/daemon/tests/agent-protocol/tool-execution-lifecycle.test.ts",
     "apps/daemon/tests/aihubmix-asset-ssrf.test.ts",
-    "apps/daemon/tests/amr-acp-integration.test.ts",
-    "apps/daemon/tests/app-config.test.ts"
+    "apps/daemon/tests/amr-acp-integration.test.ts"
    ]
   }
  }

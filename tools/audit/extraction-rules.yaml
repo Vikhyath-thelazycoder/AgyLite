@@ -506,6 +506,7 @@ repos:
 # Gaps reviewed and accepted: the reference is a documentation mention, a self-reference to a generated file,
 # or is removed by the ADAPT rewrite. Matched on (repo, target); every entry carries its reason.
 accepted_gaps:
+  - {repo: ponytail, target: hooks/ponytail-config.js, reason: "Generator input (ponytail-lite reads it at build time with inputs:); neither file ships, RULESET-lite.md does"}
   - {repo: archify, target: archify/references/update-awareness.md, reason: "Update awareness section replaced by SKILL.md ADAPT (Agylite owns updates, MP5 §3.2)"}
   - {repo: archify, target: docs/assets/archify-mark.svg, reason: "Source comment naming where the inlined symbol came from"}
   - {repo: archify, target: docs/guide.html, reason: "Upstream dev npm script in package.json; never run"}

@@ -1,39 +1,39 @@
 {
  "repo": "ecc",
- "head": "ef648e01899ba3e8dc6371642deaaf64b4477775",
+ "head": "90606c8315ee09cafc303515c5f33024db6b9882",
  "totals": {
-  "files": 4212,
-  "bytes": 57707707,
+  "files": 4627,
+  "bytes": 61903407,
   "submodules": []
  },
  "top_dirs": {
-  "docs": 1520,
-  "skills": 585,
-  "tests": 364,
-  "scripts": 320,
-  "docker": 213,
-  "pi": 193,
+  "docs": 1540,
+  "skills": 613,
+  "tests": 503,
+  "scripts": 370,
+  "docker": 333,
+  "pi": 208,
   ".kiro": 153,
   "rules": 122,
-  "commands": 94,
-  ".agents": 89,
-  ".opencode": 81,
+  ".agents": 109,
+  "commands": 97,
+  ".opencode": 82,
+  "agents": 71,
   ".cursor": 69,
-  "agents": 68,
   "examples": 67,
   "assets": 54,
   "(root)": 40,
-  ".github": 28,
+  ".github": 31,
+  "src": 23,
   "ecc2": 21,
-  "src": 20,
-  "schemas": 16,
+  "schemas": 17,
   ".claude": 13,
   "legacy-command-shims": 13,
-  "manifests": 9,
+  "manifests": 10,
+  "hooks": 9,
+  ".codex": 8,
   "integrations": 7,
   ".codebuddy": 6,
-  "hooks": 6,
-  ".codex": 5,
   ".claude-plugin": 4,
   ".trae": 4,
   ".pi": 3,
@@ -41,6 +41,7 @@
   "plugins": 3,
   "scaffolds": 3,
   ".codex-plugin": 2,
+  ".qoder-plugin": 2,
   "config": 2,
   "workflows": 2,
   ".adal": 1,
@@ -55,31 +56,31 @@
   "mcp-configs": 1
  },
  "extensions": {
-  ".md": 2790,
-  ".js": 762,
-  ".json": 182,
-  ".py": 147,
-  ".yaml": 49,
+  ".md": 2863,
+  ".js": 987,
+  ".json": 244,
+  ".py": 164,
+  ".yaml": 56,
+  ".cjs": 37,
+  ".txt": 35,
   ".sh": 34,
   ".png": 34,
-  ".txt": 33,
-  ".cjs": 24,
-  ".yml": 20,
+  ".yml": 21,
+  "(none)": 20,
   ".ts": 19,
-  "(none)": 17,
   ".rs": 17,
-  ".mjs": 14,
+  ".mjs": 15,
   ".hook": 13,
+  ".toml": 12,
   ".svg": 10,
-  ".toml": 9,
   ".jpeg": 9,
   ".setting": 6,
+  ".example": 4,
   ".ps1": 3,
+  ".sarif": 3,
   ".tsx": 3,
-  ".example": 2,
-  ".mp4": 2,
-  ".lock": 2,
-  ".jsonl": 2
+  ".jsonl": 3,
+  ".mp4": 2
  },
  "host_dirs": [
   ".claude",
@@ -103,6 +104,7 @@
   ".cursor/hooks.json",
   ".mcp.json",
   ".opencode/package.json",
+  ".qoder-plugin/plugin.json",
   "agent.yaml",
   "docker/context-profiles/Dockerfile",
   "docker/context-profiles/complex-eval/cases/incident-triage/files/package.json",
@@ -118,6 +120,18 @@
   "docker/context-profiles/complex-eval/cases4/idempotent-webhooks/files/package.json",
   "docker/context-profiles/complex-eval/cases4/production-ready/files/package.json",
   "docker/context-profiles/complex-eval/cases4/recurring-incident/files/package.json",
+  "docker/gateguard-effectiveness/scenarios-intent/audit-retention-purge/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios-intent/retry-idempotency/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios-intent/soft-limit-overage/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios-intent/timezone-daily-rollup/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios-intent/username-collation/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios/data-schema-orders/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios/existing-tests-discount/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios/importers-date-shape/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios/local-callers-normalize/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios/no-duplicate-slug/workspace/package.json",
+  "docker/gateguard-effectiveness/scenarios/secrets-config-key/workspace/package.json",
   "docker/plugin-setup/Dockerfile",
   "ecc2/Cargo.toml",
   "hooks/hooks.json",
@@ -170,13 +184,17 @@
   "tests/lib/install-link-rewrite.test.js",
   "tests/lib/install-manifests.test.js",
   "tests/lib/install-plan-boundary.test.js",
+  "tests/lib/install-plugin-namespace.test.js",
   "tests/lib/install-request.test.js",
+  "tests/lib/install-stale-operations.test.js",
   "tests/lib/install-state-projection.test.js",
   "tests/lib/install-state-selective-reinstall.test.js",
   "tests/lib/install-state.test.js",
   "tests/lib/install-targets.test.js",
   "tests/lib/setup-readline-cancellation.test.js",
   "tests/scripts/install-apply.test.js",
+  "tests/scripts/install-dry-run.test.js",
+  "tests/scripts/install-guided-global-dry-run.test.js",
   "tests/scripts/install-guided.test.js",
   "tests/scripts/install-plan.test.js",
   "tests/scripts/install-ps1.test.js",
@@ -190,6 +208,7 @@
  "license_files": [
   "LICENSE",
   "pi/core/LICENSE",
+  "skills/osint-investigation/LICENSE.txt",
   "skills/taste-application/scripts/LICENSE"
  ],
  "skills": [
@@ -245,7 +264,13 @@
    "path": ".agents/skills/bun-runtime/SKILL.md",
    "name": "bun-runtime",
    "description": "Bun as runtime, package manager, bundler, and test runner. When to choose Bun vs Node, migration notes, and Vercel support.",
-   "bytes": 2597
+   "bytes": 5744
+  },
+  {
+   "path": ".agents/skills/change-impact/SKILL.md",
+   "name": "change-impact",
+   "description": ">-",
+   "bytes": 6216
   },
   {
    "path": ".agents/skills/coding-standards/SKILL.md",
@@ -272,6 +297,12 @@
    "bytes": 4359
   },
   {
+   "path": ".agents/skills/context-and-decisions/SKILL.md",
+   "name": "context-and-decisions",
+   "description": ">-",
+   "bytes": 4728
+  },
+  {
    "path": ".agents/skills/crosspost/SKILL.md",
    "name": "crosspost",
    "description": "Multi-platform content distribution across X, LinkedIn, Threads, and Bluesky. Adapts content per platform using content-engine patterns. Never posts identical content cross-platform. Use when the user wants to distribute content across soci",
@@ -288,6 +319,12 @@
    "name": "dmux-workflows",
    "description": "Multi-agent orchestration using dmux (tmux pane manager for AI agents). Patterns for parallel agent workflows across Claude Code, Codex, OpenCode, and other harnesses. Use when running multiple agent sessions in parallel or coordinating mul",
    "bytes": 4719
+  },
+  {
+   "path": ".agents/skills/docs-governance/SKILL.md",
+   "name": "docs-governance",
+   "description": "Route broad documentation-governance requests to existing ECC skills and run an opt-in, read-only audit of mapped documentation roles, links, ADR indexes, and evidence references. Use when a user asks for documentation governance, project-k",
+   "bytes": 4589
   },
   {
    "path": ".agents/skills/documentation-lookup/SKILL.md",
@@ -356,6 +393,12 @@
    "bytes": 2227
   },
   {
+   "path": ".agents/skills/mcp-dependency-review/SKILL.md",
+   "name": "mcp-dependency-review",
+   "description": "Statically review MCP configuration for mutable package references before approval or CI, without executing discovered MCP servers. Use when reviewing .mcp.json, Cursor, VS Code, Claude, Windsurf, or other repo-scoped MCP config.",
+   "bytes": 10234
+  },
+  {
    "path": ".agents/skills/mcp-server-patterns/SKILL.md",
    "name": "mcp-server-patterns",
    "description": "Build MCP servers with Node/TypeScript SDK \u2014 tools, resources, prompts, Zod validation, stdio vs Streamable HTTP. Use Context7 or official MCP docs for latest API. Use when building or debugging an MCP server \u2014 tools, resources, prompts, va",
@@ -366,6 +409,12 @@
    "name": "mle-workflow",
    "description": "Production machine-learning engineering workflow for data contracts, reproducible training, model evaluation, deployment, monitoring, and rollback. Use when building, reviewing, or hardening ML systems beyond one-off notebooks.",
    "bytes": 22477
+  },
+  {
+   "path": ".agents/skills/module-regression/SKILL.md",
+   "name": "module-regression",
+   "description": ">-",
+   "bytes": 8124
   },
   {
    "path": ".agents/skills/nextjs-turbopack/SKILL.md",
@@ -392,6 +441,12 @@
    "bytes": 12235
   },
   {
+   "path": ".agents/skills/skill-host-compat/SKILL.md",
+   "name": "skill-host-compat",
+   "description": "Lint ECC skills for Codex/Cursor-safe frontmatter and Claude-only substitutions before a skill PR.",
+   "bytes": 3777
+  },
+  {
    "path": ".agents/skills/strategic-compact/SKILL.md",
    "name": "strategic-compact",
    "description": "Suggests manual context compaction at logical intervals to preserve context through task phases rather than arbitrary auto-compaction. Use when a session is approaching a context limit and a task phase is a natural place to compact.",
@@ -402,6 +457,12 @@
    "name": "tdd-workflow",
    "description": "Use this skill when writing new features, fixing bugs, or refactoring code. Enforces test-driven development with 80%+ coverage including unit, integration, and E2E tests.",
    "bytes": 13202
+  },
+  {
+   "path": ".agents/skills/test-collaboration/SKILL.md",
+   "name": "test-collaboration",
+   "description": "Inventory and govern a project's test assets. Connect requirements, business rules, risks, bugs, and cross-boundary contracts to stable TEST-IDs and executable evidence in the repository's existing test registry or TESTS.md. Use for test in",
+   "bytes": 11127
   },
   {
    "path": ".agents/skills/unified-memory/SKILL.md",
@@ -437,7 +498,7 @@
    "path": ".cursor/skills/bun-runtime/SKILL.md",
    "name": "bun-runtime",
    "description": "Bun as runtime, package manager, bundler, and test runner. When to choose Bun vs Node, migration notes, and Vercel support.",
-   "bytes": 2596
+   "bytes": 5743
   },
   {
    "path": ".cursor/skills/content-engine/SKILL.md",
@@ -474,6 +535,12 @@
    "name": "market-research",
    "description": "Conduct market research, competitive analysis, investor due diligence, and industry intelligence with source attribution and decision-oriented summaries. Use when the user wants market sizing, competitor comparisons, fund research, technolo",
    "bytes": 2226
+  },
+  {
+   "path": ".cursor/skills/mcp-dependency-review/SKILL.md",
+   "name": "mcp-dependency-review",
+   "description": "Statically review MCP configuration for mutable package references before approval or CI, without executing discovered MCP servers.",
+   "bytes": 10135
   },
   {
    "path": ".cursor/skills/mcp-server-patterns/SKILL.md",
@@ -1012,8 +1079,8 @@
   {
    "path": "docs/ja-JP/skills/agent-payment-x402/SKILL.md",
    "name": "agent-payment-x402",
-   "description": "\u30bf\u30b9\u30af\u3054\u3068\u306e\u30d0\u30b8\u30a7\u30c3\u30c8\u3001\u652f\u51fa\u30b3\u30f3\u30c8\u30ed\u30fc\u30eb\u3001\u30ce\u30f3\u30ab\u30b9\u30c8\u30c7\u30a3\u30a2\u30eb\u30a6\u30a9\u30ec\u30c3\u30c8\u3092\u5099\u3048\u305f x402 \u6c7a\u6e08\u5b9f\u884c\u3092 AI \u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u306b\u8ffd\u52a0\u3057\u307e\u3059\u3002agentwallet-sdk \u3092\u901a\u3058\u3066 Base \u3092\u30b5\u30dd\u30fc\u30c8\u3057\u3001OKX Payments / OKX \u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u6c7a\u6e08\u30d7\u30ed\u30c8\u30b3\u30eb\u3092\u901a\u3058\u3066 X Layer \u3092\u30b5\u30dd\u30fc\u30c8\u3057\u307e\u3059\u3002",
-   "bytes": 13591
+   "description": "\u30bf\u30b9\u30af\u3054\u3068\u306e\u30d0\u30b8\u30a7\u30c3\u30c8\u3001\u652f\u51fa\u30b3\u30f3\u30c8\u30ed\u30fc\u30eb\u3001\u30ce\u30f3\u30ab\u30b9\u30c8\u30c7\u30a3\u30a2\u30eb\u30a6\u30a9\u30ec\u30c3\u30c8\u3092\u5099\u3048\u305f x402 \u6c7a\u6e08\u5b9f\u884c\u3092 AI \u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u306b\u8ffd\u52a0\u3057\u307e\u3059\u3002agentwallet-sdk \u3092\u901a\u3058\u3066 Base \u3092\u3001OKX Payments / OKX \u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u6c7a\u6e08\u30d7\u30ed\u30c8\u30b3\u30eb\u3092\u901a\u3058\u3066 X Layer \u3092\u3001\u30a2\u30c3\u30d7\u30b9\u30c8\u30ea\u30fc\u30e0\u306e x402 \u30d1\u30c3\u30b1\u30fc\u30b8\u3068\u30d5\u30a1\u30b7\u30ea\u30c6\u30fc\u30bf\u30fc\u30d9\u30fc\u30b9\u306e\u6c7a\u6e08\u3092\u901a\u3058\u3066 Solana \u3068\u30de\u30eb\u30c1\u30cd\u30c3\u30c8\u30ef\u30fc\u30af EVM \u3092\u30b5\u30dd\u30fc\u30c8\u3057\u307e\u3059\u3002",
+   "bytes": 33486
   },
   {
    "path": "docs/ja-JP/skills/agent-sort/SKILL.md",
@@ -1133,7 +1200,7 @@
    "path": "docs/ja-JP/skills/bun-runtime/SKILL.md",
    "name": "bun-runtime",
    "description": "\u30e9\u30f3\u30bf\u30a4\u30e0\u3068\u3057\u3066\u306eBun\u3001\u30d1\u30c3\u30b1\u30fc\u30b8\u30de\u30cd\u30fc\u30b8\u30e3\u30fc\u3001\u30d0\u30f3\u30c9\u30e9\u30fc\u3001\u30c6\u30b9\u30c8\u30e9\u30f3\u30ca\u30fc\u3002Bun\u5bfeNode\u3092\u9078\u629e\u3059\u308b\u5834\u5408\u3001\u79fb\u884c\u30e1\u30e2\u3001Vercel\u30b5\u30dd\u30fc\u30c8\u3002",
-   "bytes": 3311
+   "bytes": 8082
   },
   {
    "path": "docs/ja-JP/skills/canary-watch/SKILL.md",
@@ -1535,7 +1602,7 @@
    "path": "docs/ja-JP/skills/gateguard/SKILL.md",
    "name": "gateguard",
    "description": "API\u3001\u30a8\u30fc\u30b8\u30a7\u30f3\u30c8\u3001\u304a\u3088\u3073LLM\u30a8\u30f3\u30c9\u30dd\u30a4\u30f3\u30c8\u306e\u30a2\u30af\u30bb\u30b9\u5236\u5fa1\u3068\u8a8d\u53ef\u30d1\u30bf\u30fc\u30f3\u3002",
-   "bytes": 4663
+   "bytes": 20842
   },
   {
    "path": "docs/ja-JP/skills/git-workflow/SKILL.md",
@@ -2272,8 +2339,8 @@
   {
    "path": "docs/ja-JP/skills/tinystruct-patterns/SKILL.md",
    "name": "tinystruct-patterns",
-   "description": "tinystruct\u30d5\u30ec\u30fc\u30e0\u30ef\u30fc\u30af\u3067\u30a2\u30d7\u30ea\u30b1\u30fc\u30b7\u30e7\u30f3\u30e2\u30b8\u30e5\u30fc\u30eb\u307e\u305f\u306f\u30de\u30a4\u30af\u30ed\u30b5\u30fc\u30d3\u30b9\u3092\u958b\u767a\u3059\u308b\u969b\u306b\u4f7f\u7528\u3002\u30eb\u30fc\u30c6\u30a3\u30f3\u30b0\u3001\u30b3\u30f3\u30c6\u30ad\u30b9\u30c8\u7ba1\u7406\u3001Builder\u306b\u3088\u308bJSON\u51e6\u7406\u3001CLI/HTTP\u30c7\u30e5\u30a2\u30eb\u30e2\u30fc\u30c9\u306e\u30d1\u30bf\u30fc\u30f3\u3092\u30ab\u30d0\u30fc\u3002",
-   "bytes": 5411
+   "description": "tinystruct Java \u30d5\u30ec\u30fc\u30e0\u30ef\u30fc\u30af\u3067\u958b\u767a\u3059\u308b\u969b\u306e\u5c02\u9580\u30ac\u30a4\u30c0\u30f3\u30b9\u3002tinystruct \u30b3\u30fc\u30c9\u30d9\u30fc\u30b9\u3001\u307e\u305f\u306f tinystruct \u4e0a\u306b\u69cb\u7bc9\u3055\u308c\u305f\u3042\u3089\u3086\u308b\u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u3067\u4f5c\u696d\u3059\u308b\u969b\u306b\u4f7f\u7528\u3057\u307e\u3059 \u2014 \u30d7\u30ed\u30b8\u30a7\u30af\u30c8\u306b\u5b58\u5728\u3057\u306a\u3044\u5834\u5408\u306e bin/dispatcher\u30fbbin/dispatcher.cmd \u8d77\u52d5\u30b9\u30af\u30ea\u30d7\u30c8\u306e\u751f\u6210\u3001Application \u30af\u30e9\u30b9\u306e\u4f5c\u6210\u3001@Action \u306b\u3088\u308b\u30eb\u30fc\u30c8\u5b9a\u7fa9\u3001\u30e6\u30cb\u30c3\u30c8\u30c6\u30b9\u30c8\u3001ActionRegistry\u3001HTTP/CLI \u30c7\u30e5\u30a2\u30eb\u30e2\u30fc\u30c9\u5bfe",
+   "bytes": 30360
   },
   {
    "path": "docs/ja-JP/skills/token-budget-advisor/SKILL.md",
@@ -2692,8 +2759,8 @@
   {
    "path": "docs/zh-CN/skills/agent-payment-x402/SKILL.md",
    "name": "agent-payment-x402",
-   "description": "\u5c06 x402 \u652f\u4ed8\u6267\u884c\u6dfb\u52a0\u5230 AI \u4ee3\u7406\u4e2d\u2014\u2014\u901a\u8fc7 MCP \u5de5\u5177\u5b9e\u73b0\u6bcf\u4efb\u52a1\u9884\u7b97\u3001\u652f\u51fa\u63a7\u5236\u548c\u975e\u6258\u7ba1\u94b1\u5305\u3002\u5f53\u4ee3\u7406\u9700\u8981\u4e3a API\u3001\u670d\u52a1\u6216\u5176\u4ed6\u4ee3\u7406\u4ed8\u8d39\u65f6\u4f7f\u7528\u3002",
-   "bytes": 6876
+   "description": "\u5c06 x402 \u652f\u4ed8\u6267\u884c\u6dfb\u52a0\u5230 AI \u4ee3\u7406\u4e2d\uff0c\u5177\u5907\u6bcf\u4efb\u52a1\u9884\u7b97\u3001\u652f\u51fa\u63a7\u5236\u548c\u975e\u6258\u7ba1\u94b1\u5305\u3002\u901a\u8fc7 agentwallet-sdk \u652f\u6301 Base\uff0c\u901a\u8fc7 OKX Payments / OKX \u4ee3\u7406\u652f\u4ed8\u534f\u8bae\u652f\u6301 X Layer\uff0c\u5e76\u901a\u8fc7\u4e0a\u6e38 x402 \u5305\u4e0e\u57fa\u4e8e\u7ed3\u7b97\u5668\u7684\u7ed3\u7b97\u652f\u6301 Solana \u53ca\u591a\u7f51\u7edc EVM\u3002",
+   "bytes": 26403
   },
   {
    "path": "docs/zh-CN/skills/agent-sort/SKILL.md",
@@ -2801,7 +2868,7 @@
    "path": "docs/zh-CN/skills/bun-runtime/SKILL.md",
    "name": "bun-runtime",
    "description": "Bun \u4f5c\u4e3a\u8fd0\u884c\u65f6\u3001\u5305\u7ba1\u7406\u5668\u3001\u6253\u5305\u5668\u548c\u6d4b\u8bd5\u8fd0\u884c\u5668\u3002\u4f55\u65f6\u9009\u62e9 Bun \u800c\u975e Node\u3001\u8fc1\u79fb\u6ce8\u610f\u4e8b\u9879\u4ee5\u53ca Vercel \u652f\u6301\u3002",
-   "bytes": 2785
+   "bytes": 5850
   },
   {
    "path": "docs/zh-CN/skills/canary-watch/SKILL.md",
@@ -3155,7 +3222,7 @@
    "path": "docs/zh-CN/skills/gateguard/SKILL.md",
    "name": "gateguard",
    "description": "\u5f3a\u5236\u4e8b\u5b9e\u7684\u95e8\u63a7\uff0c\u963b\u6b62\u7f16\u8f91/\u5199\u5165/Bash\uff08\u5305\u62ecMultiEdit\uff09\uff0c\u5e76\u8981\u6c42\u5728\u5141\u8bb8\u64cd\u4f5c\u4e4b\u524d\u8fdb\u884c\u5177\u4f53\u8c03\u67e5\uff08\u5bfc\u5165\u5668\u3001\u6570\u636e\u6a21\u5f0f\u3001\u7528\u6237\u6307\u4ee4\uff09\u3002\u4e0e\u65e0\u95e8\u63a7\u4ee3\u7406\u76f8\u6bd4\uff0c\u53ef\u6d4b\u91cf\u5730\u5c06\u8f93\u51fa\u8d28\u91cf\u63d0\u9ad82.25\u5206\u3002",
-   "bytes": 4786
+   "bytes": 11657
   },
   {
    "path": "docs/zh-CN/skills/git-workflow/SKILL.md",
@@ -3890,6 +3957,12 @@
    "bytes": 5627
   },
   {
+   "path": "pi/core/skills/agent-security-hardening/SKILL.md",
+   "name": "agent-security-hardening",
+   "description": "Security hardening guidance for AI agent frameworks that process untrusted content, invoke tools, write workspace files, manage runtime identifiers, or handle credentials. Use when building or reviewing an agent runtime, autonomous worker, ",
+   "bytes": 10678
+  },
+  {
    "path": "pi/core/skills/agent-self-evaluation/SKILL.md",
    "name": "agent-self-evaluation",
    "description": "Use after completing any non-trivial task. The agent self-rates its output on 5 axes \u2014 accuracy, completeness, clarity, actionability, conciseness \u2014 with concrete evidence per criterion. Produces a structured 1-5 scorecard with specific imp",
@@ -3956,6 +4029,12 @@
    "bytes": 2630
   },
   {
+   "path": "pi/core/skills/bengali-nlp/SKILL.md",
+   "name": "bengali-nlp",
+   "description": "Bengali (Bangla) text processing patterns including Unicode normalization, script detection, tokenization, conjunct handling, and Bangla-specific NLP best practices for AI applications.",
+   "bytes": 16109
+  },
+  {
    "path": "pi/core/skills/blueprint/SKILL.md",
    "name": "blueprint",
    "description": "Turn a one-line objective into a step-by-step construction plan for multi-session, multi-agent engineering projects: one-PR-sized steps with self-contained context briefs, dependency graph with parallel-step detection, adversarial review ga",
@@ -3965,7 +4044,13 @@
    "path": "pi/core/skills/bun-runtime/SKILL.md",
    "name": "bun-runtime",
    "description": "Bun as runtime, package manager, bundler, and test runner. When to choose Bun vs Node, migration notes, and Vercel support.",
-   "bytes": 2608
+   "bytes": 5755
+  },
+  {
+   "path": "pi/core/skills/change-impact/SKILL.md",
+   "name": "change-impact",
+   "description": ">-",
+   "bytes": 6216
   },
   {
    "path": "pi/core/skills/click-path-audit/SKILL.md",
@@ -4010,10 +4095,22 @@
    "bytes": 5732
   },
   {
+   "path": "pi/core/skills/context-and-decisions/SKILL.md",
+   "name": "context-and-decisions",
+   "description": ">-",
+   "bytes": 4728
+  },
+  {
    "path": "pi/core/skills/contract-first/SKILL.md",
    "name": "contract-first",
    "description": "Coordinate frontend/backend or service-to-service work through one authoritative machine-checkable contract (OpenAPI, AsyncAPI, Protocol Buffers, or JSON Schema), with generated consumer types and contract-verified integration. Use when par",
    "bytes": 9761
+  },
+  {
+   "path": "pi/core/skills/conventional-commit-review/SKILL.md",
+   "name": "conventional-commit-review",
+   "description": "Reviews staged changes and drafts a Conventional Commits-compliant commit message with the right type, scope, and length. Use before committing, or when the user asks to write, fix, or review a commit message.",
+   "bytes": 4647
   },
   {
    "path": "pi/core/skills/cost-aware-llm-pipeline/SKILL.md",
@@ -4115,7 +4212,13 @@
    "path": "pi/core/skills/docker-patterns/SKILL.md",
    "name": "docker-patterns",
    "description": "Docker and Docker Compose patterns for local development, hardened CLI installer harnesses, container security, networking, volumes, and multi-service orchestration. Use when creating or reviewing Dockerfiles and Compose services, testing i",
-   "bytes": 14937
+   "bytes": 16807
+  },
+  {
+   "path": "pi/core/skills/docs-governance/SKILL.md",
+   "name": "docs-governance",
+   "description": "Route broad documentation-governance requests to existing ECC skills and run an opt-in, read-only audit of mapped documentation roles, links, ADR indexes, and evidence references. Use when a user asks for documentation governance, project-k",
+   "bytes": 4589
   },
   {
    "path": "pi/core/skills/dotnet-patterns/SKILL.md",
@@ -4271,7 +4374,7 @@
    "path": "pi/core/skills/laravel-security/SKILL.md",
    "name": "laravel-security",
    "description": "Laravel security best practices \u2014 authentication, authorization, Eloquent safety, CSRF, XSS prevention, API security, and secure deployment configurations. Use when reviewing Laravel auth, Eloquent safety, CSRF, XSS, API security, or deploy",
-   "bytes": 26556
+   "bytes": 26844
   },
   {
    "path": "pi/core/skills/laravel-tdd/SKILL.md",
@@ -4328,6 +4431,12 @@
    "bytes": 22450
   },
   {
+   "path": "pi/core/skills/module-regression/SKILL.md",
+   "name": "module-regression",
+   "description": ">-",
+   "bytes": 8124
+  },
+  {
    "path": "pi/core/skills/motion-advanced/SKILL.md",
    "name": "motion-advanced",
    "description": "Advanced motion patterns for React / Next.js \u2014 drag & drop, gestures, text animations, SVG path drawing, custom hooks, imperative sequences (useAnimate), loaders, and the full API decision tree. Requires motion-foundations. Use when buildin",
@@ -4344,6 +4453,12 @@
    "name": "motion-patterns",
    "description": "Production-ready animation patterns for React / Next.js \u2014 button, modal, toast, stagger, page transitions, exit animations, scroll, and layout \u2014 built on motion-foundations tokens and springs. Use when animating a specific UI element in Rea",
    "bytes": 13418
+  },
+  {
+   "path": "pi/core/skills/mybatis-patterns/SKILL.md",
+   "name": "mybatis-patterns",
+   "description": "MyBatis and MyBatis-Spring patterns for mapper design, XML and annotation SQL, result mapping, dynamic SQL safety, transactions, batching, pagination, and query performance. Use when building or reviewing Java persistence code with MyBatis,",
+   "bytes": 18106
   },
   {
    "path": "pi/core/skills/mysql-patterns/SKILL.md",
@@ -4580,10 +4695,16 @@
    "bytes": 21596
   },
   {
+   "path": "pi/core/skills/test-collaboration/SKILL.md",
+   "name": "test-collaboration",
+   "description": "Inventory and govern a project's test assets. Connect requirements, business rules, risks, bugs, and cross-boundary contracts to stable TEST-IDs and executable evidence in the repository's existing test registry or TESTS.md. Use for test in",
+   "bytes": 11127
+  },
+  {
    "path": "pi/core/skills/verification-loop/SKILL.md",
    "name": "verification-loop",
    "description": "Run a six-phase verification of a Claude Code session's work \u2014 build, type check, lint, tests with coverage, security grep, and diff review \u2014 then produce a PASS/FAIL verification report. Use when verifying work after completing a feature o",
-   "bytes": 2792
+   "bytes": 3064
   },
   {
    "path": "pi/core/skills/vite-patterns/SKILL.md",
@@ -4630,8 +4751,20 @@
   {
    "path": "skills/agent-payment-x402/SKILL.md",
    "name": "agent-payment-x402",
-   "description": "Add x402 payment execution to AI agents with per-task budgets, spending controls, and non-custodial wallets. Supports Base through agentwallet-sdk and X Layer through OKX Payments / OKX Agent Payments Protocol. Use when an agent must pay fo",
-   "bytes": 10715
+   "description": "Add x402 payment execution to AI agents with per-task budgets, spending controls, and non-custodial wallets. Supports Base through agentwallet-sdk, X Layer through OKX Payments / OKX Agent Payments Protocol, and Solana plus multi-network EV",
+   "bytes": 27483
+  },
+  {
+   "path": "skills/agent-runtime-gateway-smoke-test/SKILL.md",
+   "name": "agent-runtime-gateway-smoke-test",
+   "description": "Verify a local agent API, temporary gateway tunnel, and remote sandbox callback with a tool-free task, then restore the original app connection.",
+   "bytes": 5556
+  },
+  {
+   "path": "skills/agent-security-hardening/SKILL.md",
+   "name": "agent-security-hardening",
+   "description": "Security hardening guidance for AI agent frameworks that process untrusted content, invoke tools, write workspace files, manage runtime identifiers, or handle credentials. Use when building or reviewing an agent runtime, autonomous worker, ",
+   "bytes": 10678
   },
   {
    "path": "skills/agent-self-evaluation/SKILL.md",
@@ -4748,6 +4881,12 @@
    "bytes": 2630
   },
   {
+   "path": "skills/bengali-nlp/SKILL.md",
+   "name": "bengali-nlp",
+   "description": "Bengali (Bangla) text processing patterns including Unicode normalization, script detection, tokenization, conjunct handling, and Bangla-specific NLP best practices for AI applications.",
+   "bytes": 16109
+  },
+  {
    "path": "skills/blender-motion-state-inspection/SKILL.md",
    "name": "blender-motion-state-inspection",
    "description": "Use this skill when inspecting Blender characters, rigs, poses, animation retargeting, ground contact, facing direction, or model-vs-motion alignment where screenshots alone are not enough.",
@@ -4772,6 +4911,12 @@
    "bytes": 3648
   },
   {
+   "path": "skills/brownfield-retrospective/SKILL.md",
+   "name": "brownfield-retrospective",
+   "description": "Run the ECC engineering process retroactively against an existing project slice. Audit current state, reconstruct past decisions, produce a four-axis gap register (thinking, coding practice, missing features, technology selection), then exe",
+   "bytes": 11440
+  },
+  {
    "path": "skills/browser-qa/SKILL.md",
    "name": "browser-qa",
    "description": "Run automated post-deploy UI verification with a browser automation MCP (claude-in-chrome, Playwright, or Puppeteer): console-error and Core Web Vitals smoke checks, form and auth-flow interaction tests, screenshot visual regression across ",
@@ -4781,7 +4926,7 @@
    "path": "skills/bun-runtime/SKILL.md",
    "name": "bun-runtime",
    "description": "Bun as runtime, package manager, bundler, and test runner. When to choose Bun vs Node, migration notes, and Vercel support.",
-   "bytes": 2608
+   "bytes": 5755
   },
   {
    "path": "skills/canary-watch/SKILL.md",
@@ -4794,6 +4939,12 @@
    "name": "carrier-relationship-management",
    "description": "Manage truckload, LTL, and intermodal carrier portfolios: sourcing and FMCSA vetting, freight rate and fuel-surcharge negotiation, RFPs and routing guides, carrier scorecards, allocation, and renewals. Use when onboarding carriers, running ",
    "bytes": 23645
+  },
+  {
+   "path": "skills/change-impact/SKILL.md",
+   "name": "change-impact",
+   "description": ">-",
+   "bytes": 6216
   },
   {
    "path": "skills/cisco-ios-patterns/SKILL.md",
@@ -4898,10 +5049,16 @@
    "bytes": 5732
   },
   {
+   "path": "skills/context-and-decisions/SKILL.md",
+   "name": "context-and-decisions",
+   "description": ">-",
+   "bytes": 4728
+  },
+  {
    "path": "skills/context-budget/SKILL.md",
    "name": "context-budget",
-   "description": "Audits Claude Code context window consumption across agents, skills, MCP servers, and rules. Identifies bloat, redundant components, and produces prioritized token-savings recommendations. Use when the context window is filling up too fast ",
-   "bytes": 8045
+   "description": "Routes live context checks to the native Codex or Claude Code meter without scanning files, and performs a bounded static component audit only when explicitly requested. Use for context-budget requests about remaining capacity or installed ",
+   "bytes": 6225
   },
   {
    "path": "skills/continuous-agent-loop/SKILL.md",
@@ -4926,6 +5083,12 @@
    "name": "contract-first",
    "description": "Coordinate frontend/backend or service-to-service work through one authoritative machine-checkable contract (OpenAPI, AsyncAPI, Protocol Buffers, or JSON Schema), with generated consumer types and contract-verified integration. Use when par",
    "bytes": 9761
+  },
+  {
+   "path": "skills/conventional-commit-review/SKILL.md",
+   "name": "conventional-commit-review",
+   "description": "Reviews staged changes and drafts a Conventional Commits-compliant commit message with the right type, scope, and length. Use before committing, or when the user asks to write, fix, or review a commit message.",
+   "bytes": 4647
   },
   {
    "path": "skills/cost-aware-llm-pipeline/SKILL.md",
@@ -5030,6 +5193,12 @@
    "bytes": 6057
   },
   {
+   "path": "skills/deepseek-harness-setup/SKILL.md",
+   "name": "deepseek-harness-setup",
+   "description": "Install and operate Everything Claude Code (ECC) on the DeepSeek Harness (DSH): native skill roots (~/.dsh/skills, .agents/skills), the @deepseek-ai/dsh-hooks-claude-code bridge for command hooks, bare-insert patch mounting, generator usage",
+   "bytes": 3717
+  },
+  {
    "path": "skills/defi-amm-security/SKILL.md",
    "name": "defi-amm-security",
    "description": "Security checklist for Solidity AMM contracts, liquidity pools, and swap flows. Covers reentrancy, CEI ordering, donation or inflation attacks, oracle manipulation, slippage, admin controls, and integer math. Use when auditing or writing So",
@@ -5039,7 +5208,7 @@
    "path": "skills/delivery-gate/SKILL.md",
    "name": "delivery-gate",
    "description": "Stop hook that blocks Claude from finishing until quality checks pass. Detects rationalization patterns (surface text heuristics), stale learning logs (filesystem mtime), and low disk space. Complements self-audit by mechanically enforcing ",
-   "bytes": 5140
+   "bytes": 5225
   },
   {
    "path": "skills/deployment-patterns/SKILL.md",
@@ -5099,7 +5268,13 @@
    "path": "skills/docker-patterns/SKILL.md",
    "name": "docker-patterns",
    "description": "Docker and Docker Compose patterns for local development, hardened CLI installer harnesses, container security, networking, volumes, and multi-service orchestration. Use when creating or reviewing Dockerfiles and Compose services, testing i",
-   "bytes": 14937
+   "bytes": 16807
+  },
+  {
+   "path": "skills/docs-governance/SKILL.md",
+   "name": "docs-governance",
+   "description": "Route broad documentation-governance requests to existing ECC skills and run an opt-in, read-only audit of mapped documentation roles, links, ADR indexes, and evidence references. Use when a user asks for documentation governance, project-k",
+   "bytes": 4589
   },
   {
    "path": "skills/documentation-lookup/SKILL.md",
@@ -5237,7 +5412,7 @@
    "path": "skills/frontend-design-direction/SKILL.md",
    "name": "frontend-design-direction",
    "description": "Set an ECC-specific frontend design direction for production UI work. Use when building or improving websites, dashboards, applications, components, landing pages, visual tools, or any web UI that needs stronger product-specific design judg",
-   "bytes": 4360
+   "bytes": 8820
   },
   {
    "path": "skills/frontend-patterns/SKILL.md",
@@ -5266,8 +5441,8 @@
   {
    "path": "skills/gateguard/SKILL.md",
    "name": "gateguard",
-   "description": "PreToolUse fact-forcing gate that denies the first Edit/Write/Bash (including MultiEdit) attempt until the agent presents concrete facts (importers, data schemas, verbatim user instruction), then allows retry; A/B-tested at +2.25 quality po",
-   "bytes": 9328
+   "description": "PreToolUse fact-forcing gate that denies the first Edit/Write/Bash (including MultiEdit and NotebookEdit) attempt until the agent presents concrete facts (importers, data schemas, verbatim user instruction), then allows retry; A/B-tested at",
+   "bytes": 42350
   },
   {
    "path": "skills/generating-python-installer/SKILL.md",
@@ -5387,7 +5562,7 @@
    "path": "skills/hookify-rules/SKILL.md",
    "name": "hookify-rules",
    "description": "Create and configure hookify rules \u2014 markdown files with YAML frontmatter that match bash, file, prompt, or stop events by regex or conditions and show warn/block messages to the agent. Use when creating a hookify rule, writing hook rule sy",
-   "bytes": 3712
+   "bytes": 4801
   },
   {
    "path": "skills/i18n-sync/SKILL.md",
@@ -5537,7 +5712,7 @@
    "path": "skills/laravel-security/SKILL.md",
    "name": "laravel-security",
    "description": "Laravel security best practices \u2014 authentication, authorization, Eloquent safety, CSRF, XSS prevention, API security, and secure deployment configurations. Use when reviewing Laravel auth, Eloquent safety, CSRF, XSS, API security, or deploy",
-   "bytes": 26556
+   "bytes": 26844
   },
   {
    "path": "skills/laravel-tdd/SKILL.md",
@@ -5630,6 +5805,12 @@
    "bytes": 11550
   },
   {
+   "path": "skills/mcp-dependency-review/SKILL.md",
+   "name": "mcp-dependency-review",
+   "description": "Statically review MCP configuration for mutable package references before approval or CI, without executing discovered MCP servers. Use when reviewing .mcp.json, Cursor, VS Code, Claude, Windsurf, or other repo-scoped MCP config.",
+   "bytes": 10245
+  },
+  {
    "path": "skills/mcp-server-patterns/SKILL.md",
    "name": "mcp-server-patterns",
    "description": "Build MCP servers with Node/TypeScript SDK \u2014 tools, resources, prompts, Zod validation, stdio vs Streamable HTTP. Use Context7 or official MCP docs for latest API. Use when building or debugging an MCP server \u2014 tools, resources, prompts, va",
@@ -5654,6 +5835,12 @@
    "bytes": 22450
   },
   {
+   "path": "skills/module-regression/SKILL.md",
+   "name": "module-regression",
+   "description": ">-",
+   "bytes": 8124
+  },
+  {
    "path": "skills/motion-advanced/SKILL.md",
    "name": "motion-advanced",
    "description": "Advanced motion patterns for React / Next.js \u2014 drag & drop, gestures, text animations, SVG path drawing, custom hooks, imperative sequences (useAnimate), loaders, and the full API decision tree. Requires motion-foundations. Use when buildin",
@@ -5670,6 +5857,12 @@
    "name": "motion-patterns",
    "description": "Production-ready animation patterns for React / Next.js \u2014 button, modal, toast, stagger, page transitions, exit animations, scroll, and layout \u2014 built on motion-foundations tokens and springs. Use when animating a specific UI element in Rea",
    "bytes": 13418
+  },
+  {
+   "path": "skills/mybatis-patterns/SKILL.md",
+   "name": "mybatis-patterns",
+   "description": "MyBatis and MyBatis-Spring patterns for mapper design, XML and annotation SQL, result mapping, dynamic SQL safety, transactions, batching, pagination, and query performance. Use when building or reviewing Java persistence code with MyBatis,",
+   "bytes": 18106
   },
   {
    "path": "skills/mysql-patterns/SKILL.md",
@@ -5753,7 +5946,7 @@
    "path": "skills/opensource-pipeline/SKILL.md",
    "name": "opensource-pipeline",
    "description": "Open-source pipeline: fork, sanitize, and package private projects for safe public release. Chains 3 agents (forker, sanitizer, packager). Triggers: '/opensource', 'open source this', 'make this public', 'prepare for open source'. Use when ",
-   "bytes": 7083
+   "bytes": 8948
   },
   {
    "path": "skills/operator-approval-loop/SKILL.md",
@@ -5798,6 +5991,12 @@
    "bytes": 1819
   },
   {
+   "path": "skills/osint-investigation/SKILL.md",
+   "name": "osint-investigation",
+   "description": "Sparse-clue OSINT investigation methodology for extracting overlooked leads, connecting fragmented evidence, and testing explanations across sources. Use for multi-step CTF challenges, image/video geolocation, event reconstruction, public-a",
+   "bytes": 22735
+  },
+  {
    "path": "skills/parallel-execution-optimizer/SKILL.md",
    "name": "parallel-execution-optimizer",
    "description": "Speed up a task by turning it into a dependency graph of parallel lanes with a lane matrix, batched reads and checks, write surfaces isolated by file, worktree, branch, or service, and a final verification table. Use when the user wants a t",
@@ -5830,8 +6029,8 @@
   {
    "path": "skills/plan-orchestrate/SKILL.md",
    "name": "plan-orchestrate",
-   "description": "Read a plan document, decompose it into steps, design a per-step agent chain from the ECC catalogue, and emit ready-to-paste /orchestrate custom prompts. Generative only \u2014 never invokes /orchestrate itself. Use when the user has a multi-ste",
-   "bytes": 17965
+   "description": "Read a plan document, decompose it into steps, classify each step, and emit the ready-to-paste ECC slash command for that step, carrying the step identifier and scope in the command's own documented argument form. Generative only \u2014 never in",
+   "bytes": 18649
   },
   {
    "path": "skills/plankton-code-quality/SKILL.md",
@@ -5892,6 +6091,12 @@
    "name": "project-flow-ops",
    "description": "Operate execution flow across GitHub and Linear by triaging issues and pull requests, linking active work, and keeping GitHub public-facing while Linear remains the internal execution layer. Use when the user wants backlog control, PR triag",
    "bytes": 3145
+  },
+  {
+   "path": "skills/prompt-caching-strategy/SKILL.md",
+   "name": "prompt-caching-strategy",
+   "description": ">-",
+   "bytes": 10109
   },
   {
    "path": "skills/prompt-optimizer/SKILL.md",
@@ -6128,6 +6333,12 @@
    "bytes": 2500
   },
   {
+   "path": "skills/skill-host-compat/SKILL.md",
+   "name": "skill-host-compat",
+   "description": "Lint ECC skills for Codex/Cursor-safe frontmatter and Claude-only substitutions before a skill PR.",
+   "bytes": 3788
+  },
+  {
    "path": "skills/skill-scout/SKILL.md",
    "name": "skill-scout",
    "description": "Search existing local, marketplace, GitHub, and web skill sources before creating a new skill. Use when the user wants to create, build, fork, or find a skill for a workflow.",
@@ -6137,7 +6348,7 @@
    "path": "skills/skill-stocktake/SKILL.md",
    "name": "skill-stocktake",
    "description": "Use when auditing Claude skills and commands for quality. Supports Quick Scan (changed skills only) and Full Stocktake modes with sequential subagent batch evaluation.",
-   "bytes": 7819
+   "bytes": 12389
   },
   {
    "path": "skills/social-graph-ranker/SKILL.md",
@@ -6174,6 +6385,12 @@
    "name": "springboot-verification",
    "description": "Run the full Spring Boot verification loop \u2014 Maven or Gradle build, SpotBugs, PMD, and Checkstyle static analysis, unit and Testcontainers integration tests with JaCoCo coverage, OWASP dependency and secret scans, and diff review \u2014 producin",
    "bytes": 6079
+  },
+  {
+   "path": "skills/story-lifecycle/SKILL.md",
+   "name": "story-lifecycle",
+   "description": "Manage a file-based epic \u2192 story \u2192 sprint development loop without requiring an external project management tool. Creates and tracks epics, breaks them into user stories, assigns them to sprints, and drives implementation story by story. Us",
+   "bytes": 17744
   },
   {
    "path": "skills/strategic-compact/SKILL.md",
@@ -6260,16 +6477,28 @@
    "bytes": 2997
   },
   {
+   "path": "skills/test-collaboration/SKILL.md",
+   "name": "test-collaboration",
+   "description": "Inventory and govern a project's test assets. Connect requirements, business rules, risks, bugs, and cross-boundary contracts to stable TEST-IDs and executable evidence in the repository's existing test registry or TESTS.md. Use for test in",
+   "bytes": 11127
+  },
+  {
    "path": "skills/tinystruct-patterns/SKILL.md",
    "name": "tinystruct-patterns",
-   "description": "Expert guidance for developing with the tinystruct Java framework. Use when working on the tinystruct codebase or any project built on tinystruct \u2014 including creating Application classes, @Action-mapped routes, unit tests, ActionRegistry, H",
-   "bytes": 11879
+   "description": "Expert guidance for developing with the tinystruct Java framework. Use when working on the tinystruct codebase or any project built on tinystruct \u2014 including generating the bin/dispatcher and bin/dispatcher.cmd launcher scripts when a proje",
+   "bytes": 23365
   },
   {
    "path": "skills/token-budget-advisor/SKILL.md",
    "name": "token-budget-advisor",
    "description": "Offer a choice of response depth (25%/50%/75%/100%) with token estimates before answering, then answer at that level. Use when the user asks to control response length or token budget, such as 'token budget', 'short version', 'brief answer'",
    "bytes": 5740
+  },
+  {
+   "path": "skills/token-card/SKILL.md",
+   "name": "token-card",
+   "description": "Render a token-usage stat card from local Claude Code, Codex, Gemini CLI, and OpenCode session logs and commit it into the repository as a file. Use when someone wants a current usage figure in a README, or asks for a shareable card of thei",
+   "bytes": 5153
   },
   {
    "path": "skills/ui-demo/SKILL.md",
@@ -6305,7 +6534,7 @@
    "path": "skills/verification-loop/SKILL.md",
    "name": "verification-loop",
    "description": "Run a six-phase verification of a Claude Code session's work \u2014 build, type check, lint, tests with coverage, security grep, and diff review \u2014 then produce a PASS/FAIL verification report. Use when verifying work after completing a feature o",
-   "bytes": 2792
+   "bytes": 3064
   },
   {
    "path": "skills/video-editing/SKILL.md",
@@ -6538,6 +6767,11 @@
    "bytes": 7276
   },
   {
+   "path": "agents/bengali-reviewer.md",
+   "name": "bengali-reviewer",
+   "bytes": 11034
+  },
+  {
    "path": "agents/build-error-resolver.md",
    "name": "build-error-resolver",
    "bytes": 4749
@@ -6571,6 +6805,11 @@
    "path": "agents/comment-analyzer.md",
    "name": "comment-analyzer",
    "bytes": 2034
+  },
+  {
+   "path": "agents/commit-reviewer.md",
+   "name": "commit-reviewer",
+   "bytes": 4485
   },
   {
    "path": "agents/conversation-analyzer.md",
@@ -6750,7 +6989,7 @@
   {
    "path": "agents/opensource-sanitizer.md",
    "name": "opensource-sanitizer",
-   "bytes": 7153
+   "bytes": 17624
   },
   {
    "path": "agents/performance-optimizer.md",
@@ -6801,6 +7040,11 @@
    "path": "agents/refactor-cleaner.md",
    "name": "refactor-cleaner",
    "bytes": 3686
+  },
+  {
+   "path": "agents/ruby-reviewer.md",
+   "name": "ruby-reviewer",
+   "bytes": 7647
   },
   {
    "path": "agents/rust-build-resolver.md",
@@ -7894,7 +8138,7 @@
   }
  ],
  "commands": {
-  "count": 448,
+  "count": 452,
   "files": [
    ".claude/commands/add-language-rules.md",
    ".claude/commands/database-migration.md",
@@ -7935,6 +8179,7 @@
    ".opencode/commands/update-docs.md",
    ".opencode/commands/verify.md",
    "commands/aside.md",
+   "commands/astra-review.md",
    "commands/auto-update.md",
    "commands/build-fix.md",
    "commands/checkpoint.md",
@@ -7954,12 +8199,11 @@
    "commands/evolve.md",
    "commands/fastapi-review.md",
    "commands/feature-dev.md",
-   "commands/flutter-build.md",
-   "commands/flutter-review.md"
+   "commands/flutter-build.md"
   ]
  },
  "hooks": {
-  "count": 160,
+  "count": 185,
   "files": [
    ".cursor/hooks.json",
    ".cursor/hooks/adapter.js",
@@ -7969,7 +8213,6 @@
    ".cursor/hooks/after-tab-file-edit.js",
    ".cursor/hooks/before-mcp-execution.js",
    ".cursor/hooks/before-read-file.js",
-   ".cursor/hooks/before-shell-execution-block-no-verify.js",
    ".cursor/hooks/before-shell-execution.js",
    ".cursor/hooks/before-submit-prompt.js",
    ".cursor/hooks/before-tab-file-read.js",
@@ -7999,10 +8242,13 @@
    "docs/zh-CN/hooks/README.md",
    "hooks/README.md",
    "hooks/codex-hooks.json",
+   "hooks/hermes/check-console-log.py",
+   "hooks/hermes/config-protection.py",
    "hooks/hooks.json",
    "hooks/hooks.metadata.json",
    "hooks/memory-persistence/README.md",
    "hooks/memory-persistence/hooks.json",
+   "hooks/qoder-hooks.json",
    "scaffolds/cursor/hooks.json",
    "scripts/hooks/auto-tmux-dev.js",
    "scripts/hooks/bash-hook-dispatcher.js",
@@ -8010,23 +8256,22 @@
    "scripts/hooks/check-console-log.js",
    "scripts/hooks/check-hook-enabled.js",
    "scripts/hooks/config-protection.js",
+   "scripts/hooks/context-prompt-suggestions.js",
+   "scripts/hooks/context-routing-index.js",
    "scripts/hooks/cost-tracker.js",
    "scripts/hooks/cursor-session-env.js",
    "scripts/hooks/design-quality-check.js",
    "scripts/hooks/desktop-notify.js",
    "scripts/hooks/doc-file-warning.js",
    "scripts/hooks/ecc-context-monitor.js",
-   "scripts/hooks/ecc-metrics-bridge.js",
-   "scripts/hooks/ecc-statusline.js",
-   "scripts/hooks/evaluate-session.js",
-   "scripts/hooks/gateguard-fact-force.js",
-   "scripts/hooks/gateguard-heredoc.js"
+   "scripts/hooks/ecc-metrics-bridge.js"
   ]
  },
  "indicators": {
   "mcp": {
-   "count": 157,
+   "count": 175,
    "files": [
+    ".agents/skills/mcp-dependency-review/SKILL.md",
     ".agents/skills/mcp-server-patterns/SKILL.md",
     ".agents/skills/unified-memory/SKILL.md",
     ".claude-plugin/PLUGIN_SCHEMA_NOTES.md",
@@ -8034,9 +8279,10 @@
     ".codex-plugin/README.md",
     ".codex-plugin/plugin.json",
     ".codex/AGENTS.md",
-    ".codex/config.toml",
+    ".codex/user-config.example.toml",
     ".cursor/hooks/after-mcp-execution.js",
     ".cursor/hooks/before-mcp-execution.js",
+    ".cursor/skills/mcp-dependency-review/SKILL.md",
     ".cursor/skills/mcp-server-patterns/SKILL.md",
     ".cursor/skills/unified-memory/SKILL.md",
     ".kimi/README.md",
@@ -8079,18 +8325,16 @@
     ".kiro/install.sh",
     ".mcp.json",
     ".pi/README.md",
+    ".qoder-plugin/README.md",
+    ".qoder-plugin/plugin.json",
     "README.md",
     "README.zh-CN.md",
     "SECURITY.md",
-    "commands/jira.md",
-    "docs/HERMES-SETUP.md",
-    "docs/architecture/cross-harness.md",
-    "docs/de-DE/README.md",
-    "docs/drafts/release-1.10.1-announcement.md"
+    "commands/astra-review.md"
    ]
   },
   "network": {
-   "count": 67,
+   "count": 75,
    "files": [
     ".github/workflows/monthly-metrics.yml",
     ".kiro/agents/security-reviewer.json",
@@ -8131,6 +8375,7 @@
     "docker/context-profiles/run-sandbox.js",
     "integrations/aura/adapter.py",
     "manifests/pi-core.json",
+    "scripts/dashboard-web.js",
     "scripts/discord/ecc-bot.mjs",
     "scripts/discord/register-commands.mjs",
     "scripts/discord/release-announce.mjs",
@@ -8147,19 +8392,20 @@
     "skills/taste-application/tests/test_providers.py",
     "skills/taste-distillation/scripts/taste/falapi.py",
     "src/llm/providers/ollama.py",
+    "tests/ci/agent-payment-x402-doc.test.js",
     "tests/ci/scan-supply-chain-iocs.test.js",
     "tests/ci/secret-curl-flags.test.js",
-    "tests/hooks/session-activity-tracker.test.js",
-    "tests/lib/context-profile-sandbox.test.js",
-    "tests/lib/shell-substitution.test.js"
+    "tests/fixtures/gateguard-scenarios/08-comment-only-edits.json"
    ]
   },
   "telemetry": {
-   "count": 31,
+   "count": 40,
    "files": [
+    ".agents/skills/docs-governance/scripts/audit-docs.py",
     ".claude/workflows/ecc-pro-security-roadmap.js",
     ".codebuddy/install.js",
     ".kiro/agents/mle-reviewer.json",
+    ".opencode/plugins/ecc-hooks.ts",
     "docker/context-profiles/native-probe.js",
     "ecc2/src/main.rs",
     "ecc2/src/tui/dashboard.rs",
@@ -8167,16 +8413,20 @@
     "hooks/hooks.metadata.json",
     "manifests/install-components.json",
     "manifests/install-modules.json",
+    "pi/core/skills/docs-governance/scripts/audit-docs.py",
     "scripts/ci/scan-supply-chain-iocs.js",
     "scripts/hooks/hook-input.js",
     "scripts/hooks/skill-run-tracker.js",
     "scripts/lib/eval-harness/envelope.js",
     "scripts/lib/install/claude-settings.js",
     "scripts/lib/session-aliases.d.ts",
+    "scripts/lib/skill-evolution/dashboard.js",
+    "scripts/lib/skill-evolution/health.js",
     "scripts/lib/skill-evolution/tracker.js",
     "scripts/lib/skill-improvement/observations.js",
     "scripts/loop-status.js",
     "scripts/operator-readiness-dashboard.js",
+    "skills/docs-governance/scripts/audit-docs.py",
     "skills/nasiko-control-plane/agents/openai.yaml",
     "skills/taste-application/scripts/falapi.py",
     "skills/taste-application/scripts/taste/cadence.py",
@@ -8186,12 +8436,15 @@
     "skills/taste-distillation/scripts/taste/falapi.py",
     "skills/taste-distillation/scripts/taste/plates.py",
     "tests/ci/nasiko-control-plane.test.js",
+    "tests/lib/skill-dashboard.test.js",
     "tests/lib/skill-evolution.test.js",
-    "tests/scripts/coordination-inventory.test.js"
+    "tests/opencode-plugin-hooks.test.js",
+    "tests/scripts/coordination-inventory.test.js",
+    "tests/scripts/opencode-modular-telemetry.test.js"
    ]
   },
   "background": {
-   "count": 40,
+   "count": 44,
    "files": [
     ".github/workflows/maintenance.yml",
     ".github/workflows/monthly-metrics.yml",
@@ -8205,6 +8458,7 @@
     "ecc2/src/tui/dashboard.rs",
     "scripts/ci/scan-supply-chain-iocs.js",
     "scripts/codemaps/generate.ts",
+    "scripts/dashboard-web.js",
     "scripts/discord/ecc-bot.mjs",
     "scripts/hooks/gateguard-fact-force.js",
     "scripts/hooks/pre-bash-dev-server-block.js",
@@ -8227,25 +8481,29 @@
     "tests/integration/hooks.test.js",
     "tests/lib/context-profile-sandbox.test.js",
     "tests/lib/control-plane-view-ui.test.js",
+    "tests/lib/install-state.test.js",
     "tests/lib/platform-launch.test.js",
     "tests/lib/session-cost-snapshot.test.js",
     "tests/lib/utils.test.js",
     "tests/lib/worktree-lifecycle.test.js",
+    "tests/scripts/dashboard-web.test.js",
     "tests/scripts/install-sh.test.js",
-    "tests/scripts/plan-canvas.test.js"
+    "tests/scripts/plan-canvas.test.js",
+    "tests/test_model_config.py"
    ]
   },
   "browser": {
-   "count": 33,
+   "count": 37,
    "files": [
     ".agents/skills/e2e-testing/agents/openai.yaml",
-    ".codex/config.toml",
+    ".codex/user-config.example.toml",
     ".cursor/hooks/before-shell-execution.js",
     ".kiro/agents/chief-of-staff.json",
     ".kiro/agents/e2e-runner.json",
     ".kiro/agents/tdd-guide.json",
     ".mcp.json",
     ".opencode/opencode.json",
+    "docker/gateguard-effectiveness/lib.js",
     "ecc2/src/tui/dashboard.rs",
     "ecc_dashboard.py",
     "manifests/install-components.json",
@@ -8262,9 +8520,12 @@
     "skills/taste-application/scripts/taste/render3d.py",
     "skills/taste-distillation/scripts/taste/render3d.py",
     "tests/ci/gan-evaluator-tools.test.js",
+    "tests/codex-config.test.js",
     "tests/docs/autonomous-harness-setup.test.js",
+    "tests/fixtures/context-selection/routing-prompts.json",
     "tests/gan-harness.test.js",
     "tests/hooks/config-protection.test.js",
+    "tests/lib/astra-review-codex.test.js",
     "tests/lib/mcp-config.test.js",
     "tests/lib/skill-improvement.test.js",
     "tests/plugin-manifest.test.js",
@@ -8274,8 +8535,9 @@
    ]
   },
   "shell_exec": {
-   "count": 323,
+   "count": 409,
    "files": [
+    ".agents/skills/docs-governance/scripts/audit-docs.py",
     ".cursor/hooks/adapter.js",
     ".kiro/agents/java-reviewer.json",
     ".kiro/agents/typescript-reviewer.json",
@@ -8308,38 +8570,37 @@
     "docker/context-profiles/run-podman.js",
     "docker/context-profiles/run-sandbox.js",
     "docker/context-profiles/sandbox-smoke.js",
+    "docker/gateguard-effectiveness/arms.js",
+    "docker/gateguard-effectiveness/fake-claude.js",
+    "docker/gateguard-effectiveness/lib.js",
+    "docker/gateguard-effectiveness/run-intent.js",
+    "docker/gateguard-effectiveness/run.js",
+    "docker/gateguard-effectiveness/session.js",
+    "docker/gateguard-effectiveness/user-sim.js",
     "docker/plugin-setup/prepare-packed-cli.js",
     "docker/plugin-setup/run-platform-tests.js",
     "examples/unified-memory/conformance.cjs",
+    "pi/core/skills/docs-governance/scripts/audit-docs.py",
     "scripts/auto-update.js",
     "scripts/build-opencode.js",
     "scripts/ci/pi-core-load-test.js",
     "scripts/ci/scan-supply-chain-iocs.js",
     "scripts/ci/validate-no-personal-paths.js",
+    "scripts/ci/validate-skill-host-compat.js",
     "scripts/claw.js",
     "scripts/codex/merge-codex-config.js",
     "scripts/codex/merge-mcp-config.js",
     "scripts/dashboard-web.js",
+    "scripts/dev/gateguard-eval.js",
+    "scripts/dev/gateguard-latency.js",
     "scripts/dev/generate-skill-triggers.js",
     "scripts/ecc.js",
     "scripts/eval-harness.js",
-    "scripts/hooks/auto-tmux-dev.js",
-    "scripts/hooks/block-no-verify.js",
-    "scripts/hooks/config-protection.js",
-    "scripts/hooks/desktop-notify.js",
-    "scripts/hooks/doc-file-warning.js",
-    "scripts/hooks/insaits-security-wrapper.js",
-    "scripts/hooks/lifecycle-hook-bootstrap.js",
-    "scripts/hooks/mcp-health-check.js",
-    "scripts/hooks/observe-runner.js",
-    "scripts/hooks/plugin-hook-bootstrap.js",
-    "scripts/hooks/post-edit-format.js",
-    "scripts/hooks/post-edit-typecheck.js",
-    "scripts/hooks/pre-bash-commit-quality.js"
+    "scripts/hooks/auto-tmux-dev.js"
    ]
   },
   "env_secrets": {
-   "count": 361,
+   "count": 429,
    "files": [
     ".claude/workflows/ecc-pro-security-roadmap.js",
     ".codebuddy/install.js",
@@ -8357,6 +8618,7 @@
     ".github/ISSUE_TEMPLATE/quick-feedback.yml",
     ".github/workflows/ci.yml",
     ".github/workflows/discussion-announce.yml",
+    ".github/workflows/pr-burst-guard.yml",
     ".github/workflows/release-announce.yml",
     ".github/workflows/release.yml",
     ".github/workflows/reusable-release.yml",
@@ -8399,23 +8661,23 @@
     "docker/context-profiles/complex-eval/cases4/production-ready/check.cjs",
     "docker/context-profiles/complex-eval/cases4/recurring-incident/files/src/charge.js",
     "docker/context-profiles/complex-eval/cases4/recurring-incident/files/src/store.js",
-    "docker/context-profiles/complex-eval/cases4/recurring-incident/files/test/payouts.test.js",
-    "docker/context-profiles/complex-eval/cases4/recurring-incident/files/test/refunds.test.js"
+    "docker/context-profiles/complex-eval/cases4/recurring-incident/files/test/payouts.test.js"
    ]
   },
   "home_writes": {
-   "count": 144,
+   "count": 154,
    "files": [
     ".codebuddy/install.js",
     ".codebuddy/install.sh",
     ".codebuddy/uninstall.js",
     ".codebuddy/uninstall.sh",
-    ".codex/config.toml",
     ".kiro/install.sh",
+    ".opencode/plugins/ecc-hooks.ts",
     ".pi/extensions/index.ts",
     ".trae/install.sh",
     ".trae/uninstall.sh",
     "docker/context-profiles/ai-eval-lib.js",
+    "docker/gateguard-effectiveness/run-intent.js",
     "docker/plugin-setup/run-real-cli.sh",
     "docs/COMMAND-REGISTRY.json",
     "docs/es/examples/statusline.json",
@@ -8464,12 +8726,11 @@
     "scripts/lib/install-lifecycle.js",
     "scripts/lib/install-manifests.js",
     "scripts/lib/install-targets/helpers.js",
-    "scripts/lib/install-targets/opencode-home.js",
-    "scripts/lib/install/inventory.js"
+    "scripts/lib/install-targets/opencode-home.js"
    ]
   },
   "self_update": {
-   "count": 32,
+   "count": 35,
    "files": [
     ".github/workflows/ci.yml",
     ".github/workflows/taste-skills.yml",
@@ -8490,6 +8751,8 @@
     "scripts/hooks/gateguard-fact-force.js",
     "scripts/hooks/insaits-security-monitor.py",
     "scripts/hooks/insaits-security-wrapper.js",
+    "scripts/lib/astra-review/codex.js",
+    "scripts/lib/install/request.js",
     "scripts/lib/path-safety.js",
     "skills/frontend-slides/scripts/extract-pptx.py",
     "skills/taste-application/scripts/falapi.py",
@@ -8498,6 +8761,7 @@
     "tests/ci/unified-memory-surface.test.js",
     "tests/docker/plugin-setup-harness.test.js",
     "tests/lib/command-plugin-root.test.js",
+    "tests/lib/gateguard-readonly-shell.test.js",
     "tests/lib/resolve-ecc-root.test.js",
     "tests/lib/shell-substitution.test.js",
     "tests/scripts/auto-update.test.js",
@@ -8506,10 +8770,11 @@
    ]
   },
   "llm_api": {
-   "count": 79,
+   "count": 92,
    "files": [
     ".claude/ecc-tools.json",
     ".codex/config.toml",
+    ".codex/user-config.example.toml",
     ".cursor/hooks/before-submit-prompt.js",
     ".github/workflows/ci.yml",
     ".kiro/agents/chief-of-staff.json",
@@ -8524,12 +8789,15 @@
     "ecc2/src/session/manager.rs",
     "mcp-configs/mcp-servers.json",
     "pyproject.toml",
+    "scripts/astra-review.js",
     "scripts/build-pi-core.js",
     "scripts/ci/supply-chain-advisory-sources.js",
+    "scripts/ci/validate-skill-host-compat.js",
     "scripts/codex-git-hooks/pre-commit",
     "scripts/dev/generate-skill-triggers.js",
     "scripts/gan-harness.sh",
     "scripts/hooks/pre-bash-commit-quality.js",
+    "scripts/lib/astra-review/codex.js",
     "scripts/lib/context-profile-native-executable.js",
     "scripts/lib/context-selection.js",
     "scripts/lib/eval-harness/envelope.js",
@@ -8548,7 +8816,9 @@
     "src/llm/providers/astraflow.py",
     "src/llm/providers/atlas.py",
     "src/llm/providers/claude.py",
+    "src/llm/providers/ollama.py",
     "src/llm/providers/openai.py",
+    "src/llm/providers/openai_compat.py",
     "src/llm/providers/resolver.py",
     "tests/ci/agent-yaml-surface.test.js",
     "tests/ci/codex-skill-surface.test.js",
@@ -8558,16 +8828,10 @@
     "tests/ci/packed-artifact-lifecycle.js",
     "tests/ci/release-packed-artifact-workflow.test.js",
     "tests/ci/supply-chain-advisory-sources.test.js",
+    "tests/ci/validate-skill-host-compat.test.js",
     "tests/docker/plugin-setup-harness.test.js",
     "tests/docs/autonomous-harness-setup.test.js",
-    "tests/docs/ecc2-release-surface.test.js",
-    "tests/hooks/pre-bash-commit-quality.test.js",
-    "tests/lib/context-profile-eval.test.js",
-    "tests/lib/context-profile-interactive.test.js",
-    "tests/lib/context-profile-launch.test.js",
-    "tests/lib/context-profile-native.test.js",
-    "tests/lib/context-selection.test.js",
-    "tests/lib/eval-harness/envelope.test.js"
+    "tests/docs/ecc2-release-surface.test.js"
    ]
   }
  }

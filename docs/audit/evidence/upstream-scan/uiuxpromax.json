@@ -1,18 +1,18 @@
 {
  "repo": "uiuxpromax",
- "head": "09170eec67eefd46a7ae85de61b40c194020f997",
+ "head": "28327f2f214d31bbd7555ed0c012a5df6484ed96",
  "totals": {
-  "files": 682,
-  "bytes": 21840310,
+  "files": 696,
+  "bytes": 21969191,
   "submodules": []
  },
  "top_dirs": {
-  ".claude": 260,
-  "cli": 225,
-  "src": 93,
+  ".claude": 262,
+  "cli": 233,
+  "src": 96,
   "gallery": 35,
   "stack": 24,
-  "(root)": 14,
+  "(root)": 15,
   "scripts": 10,
   ".github": 9,
   "docs": 4,
@@ -23,13 +23,13 @@
   "screenshots": 1
  },
  "extensions": {
-  ".md": 144,
+  ".md": 145,
   ".csv": 144,
-  ".json": 106,
-  ".py": 103,
+  ".json": 112,
+  ".py": 107,
   ".ttf": 54,
   ".txt": 33,
-  ".ts": 25,
+  ".ts": 28,
   ".tsx": 18,
   ".cjs": 14,
   ".yml": 9,
@@ -96,7 +96,7 @@
    "path": ".claude/skills/design/SKILL.md",
    "name": "design",
    "description": "Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles, Gemini, Atlas Cloud, or MuAPI AI), corporate identity program (50 deliverables, CIP mockups), HTML presentations (Chart.js), banner design (2",
-   "bytes": 14126
+   "bytes": 14196
   },
   {
    "path": ".claude/skills/slides/SKILL.md",
@@ -138,7 +138,7 @@
    "path": "cli/assets/skills/design/SKILL.md",
    "name": "design",
    "description": "Comprehensive design skill: brand identity, design tokens, UI styling, logo generation (55 styles, Gemini, Atlas Cloud, or MuAPI AI), corporate identity program (50 deliverables, CIP mockups), HTML presentations (Chart.js), banner design (2",
-   "bytes": 14126
+   "bytes": 14196
   },
   {
    "path": "cli/assets/skills/slides/SKILL.md",
@@ -213,7 +213,7 @@
    ]
   },
   "browser": {
-   "count": 20,
+   "count": 23,
    "files": [
     ".github/workflows/check-asset-sync.yml",
     ".github/workflows/release.yml",
@@ -224,7 +224,10 @@
     "cli/playwright.config.ts",
     "cli/tests/e2e/agent-query-contract.spec.ts",
     "cli/tests/e2e/banner-design-path-contract.spec.ts",
+    "cli/tests/e2e/copilot-skills.spec.ts",
+    "cli/tests/e2e/detect.spec.ts",
     "cli/tests/e2e/dry-run.spec.ts",
+    "cli/tests/e2e/kimi-skills.spec.ts",
     "cli/tests/e2e/preview.spec.ts",
     "cli/tests/e2e/template-script-paths.spec.ts",
     "gallery/package-lock.json",
@@ -274,7 +277,7 @@
    ]
   },
   "env_secrets": {
-   "count": 34,
+   "count": 39,
    "files": [
     ".claude/skills/design-system/scripts/fetch-background.py",
     ".claude/skills/design-system/scripts/html-token-validator.py",
@@ -283,6 +286,8 @@
     ".claude/skills/design/scripts/icon/generate.py",
     ".claude/skills/design/scripts/logo/generate.py",
     ".claude/skills/design/scripts/logo/tests/test_generate.py",
+    ".claude/skills/design/scripts/tests/test_cip_generate.py",
+    ".claude/skills/design/scripts/tests/test_icon_generate.py",
     ".claude/skills/ui-ux-pro-max/data/phosphor-icons-upstream.json",
     ".claude/skills/ui-ux-pro-max/scripts/design_system.py",
     ".claude/skills/ui-ux-pro-max/scripts/tests/test_catalog_refresh.py",
@@ -301,8 +306,11 @@
     "cli/assets/skills/design/scripts/icon/generate.py",
     "cli/assets/skills/design/scripts/logo/generate.py",
     "cli/assets/skills/design/scripts/logo/tests/test_generate.py",
+    "cli/assets/skills/design/scripts/tests/test_cip_generate.py",
+    "cli/assets/skills/design/scripts/tests/test_icon_generate.py",
     "cli/playwright.config.ts",
     "cli/src/utils/github.ts",
+    "cli/tests/e2e/copilot-skills.spec.ts",
     "scripts/refresh-google-fonts.py",
     "src/ui-ux-pro-max/data/phosphor-icons-upstream.json",
     "src/ui-ux-pro-max/scripts/design_system.py",
@@ -313,7 +321,7 @@
    ]
   },
   "home_writes": {
-   "count": 16,
+   "count": 17,
    "files": [
     ".claude/skills/design-system/scripts/fetch-background.py",
     ".claude/skills/design-system/scripts/html-token-validator.py",
@@ -330,6 +338,7 @@
     "cli/assets/skills/design/scripts/logo/generate.py",
     "cli/src/commands/uninstall.ts",
     "cli/src/utils/template.ts",
+    "cli/tests/e2e/copilot-skills.spec.ts",
     "src/ui-ux-pro-max/scripts/tests/test_skill_script_paths.py"
    ]
   },

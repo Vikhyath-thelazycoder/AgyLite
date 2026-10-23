@@ -28,6 +28,8 @@ EXCLUDE	HOST_PORT		259	.agents/skills/brand-voice/agents/openai.yaml
 EXCLUDE	HOST_PORT		1063	.agents/skills/brand-voice/references/voice-profile-schema.md
 EXCLUDE	HOST_PORT		5744	.agents/skills/bun-runtime/SKILL.md
 EXCLUDE	HOST_PORT		257	.agents/skills/bun-runtime/agents/openai.yaml
+EXCLUDE	HOST_PORT		6216	.agents/skills/change-impact/SKILL.md
+EXCLUDE	HOST_PORT		313	.agents/skills/change-impact/agents/openai.yaml
 EXCLUDE	HOST_PORT		12855	.agents/skills/coding-standards/SKILL.md
 EXCLUDE	HOST_PORT		270	.agents/skills/coding-standards/agents/openai.yaml
 EXCLUDE	HOST_PORT		12004	.agents/skills/competitive-platform-analysis/SKILL.md
@@ -36,6 +38,9 @@ EXCLUDE	HOST_PORT		8477	.agents/skills/competitive-report-structure/SKILL.md
 EXCLUDE	HOST_PORT		312	.agents/skills/competitive-report-structure/agents/openai.yaml
 EXCLUDE	HOST_PORT		4359	.agents/skills/content-engine/SKILL.md
 EXCLUDE	HOST_PORT		274	.agents/skills/content-engine/agents/openai.yaml
+EXCLUDE	HOST_PORT		4728	.agents/skills/context-and-decisions/SKILL.md
+EXCLUDE	HOST_PORT		313	.agents/skills/context-and-decisions/agents/openai.yaml
+EXCLUDE	HOST_PORT		749	.agents/skills/context-and-decisions/templates/context.example.md
 EXCLUDE	HOST_PORT		3436	.agents/skills/crosspost/SKILL.md
 EXCLUDE	HOST_PORT		247	.agents/skills/crosspost/agents/openai.yaml
 EXCLUDE	HOST_PORT		4583	.agents/skills/deep-research/SKILL.md
@@ -76,6 +81,9 @@ EXCLUDE	MCP		3977	.agents/skills/mcp-server-patterns/SKILL.md
 EXCLUDE	MCP		269	.agents/skills/mcp-server-patterns/agents/openai.yaml
 EXCLUDE	HOST_PORT		22477	.agents/skills/mle-workflow/SKILL.md
 EXCLUDE	HOST_PORT		254	.agents/skills/mle-workflow/agents/openai.yaml
+EXCLUDE	HOST_PORT		8124	.agents/skills/module-regression/SKILL.md
+EXCLUDE	HOST_PORT		325	.agents/skills/module-regression/agents/openai.yaml
+EXCLUDE	HOST_PORT		1665	.agents/skills/module-regression/templates/REGRESSION.example.md
 EXCLUDE	HOST_PORT		2163	.agents/skills/nextjs-turbopack/SKILL.md
 EXCLUDE	HOST_PORT		268	.agents/skills/nextjs-turbopack/agents/openai.yaml
 EXCLUDE	HOST_PORT		8580	.agents/skills/plan-canvas/SKILL.md
@@ -90,6 +98,9 @@ EXCLUDE	HOST_PORT		6583	.agents/skills/strategic-compact/SKILL.md
 EXCLUDE	HOST_PORT		272	.agents/skills/strategic-compact/agents/openai.yaml
 EXCLUDE	HOST_PORT		13202	.agents/skills/tdd-workflow/SKILL.md
 EXCLUDE	HOST_PORT		268	.agents/skills/tdd-workflow/agents/openai.yaml
+EXCLUDE	HOST_PORT		11127	.agents/skills/test-collaboration/SKILL.md
+EXCLUDE	HOST_PORT		341	.agents/skills/test-collaboration/agents/openai.yaml
+EXCLUDE	HOST_PORT		5149	.agents/skills/test-collaboration/templates/TESTS.example.md
 EXCLUDE	HOST_PORT		7860	.agents/skills/unified-memory/SKILL.md
 EXCLUDE	HOST_PORT		281	.agents/skills/unified-memory/agents/openai.yaml
 EXCLUDE	HOST_PORT		2572	.agents/skills/verification-loop/SKILL.md
@@ -129,7 +140,9 @@ EXCLUDE	HOST_PORT		320	.codex/agents/docs-researcher.toml
 EXCLUDE	HOST_PORT		318	.codex/agents/explorer.toml
 EXCLUDE	HOST_PORT		298	.codex/agents/reviewer.toml
 EXCLUDE	HOST_PORT		1990	.codex/config.toml
-EXCLUDE	HOST_PORT		4086	.codex/user-config.example.toml
+EXCLUDE	HOST_PORT		126	.codex/strict.config.toml
+EXCLUDE	HOST_PORT		4120	.codex/user-config.example.toml
+EXCLUDE	HOST_PORT		123	.codex/yolo.config.toml
 EXCLUDE	HOST_PORT		3356	.cursor/hooks.json
 EXCLUDE	HOST_PORT		8406	.cursor/hooks/adapter.js
 EXCLUDE	HOST_PORT		1081	.cursor/hooks/after-file-edit.js
@@ -209,20 +222,23 @@ EXCLUDE	OUT_OF_DOMAIN		333	.github/ISSUE_TEMPLATE/copilot-task.md
 EXCLUDE	OUT_OF_DOMAIN		1158	.github/ISSUE_TEMPLATE/feature-request.yml
 EXCLUDE	OUT_OF_DOMAIN		2653	.github/ISSUE_TEMPLATE/install-problem.yml
 EXCLUDE	OUT_OF_DOMAIN		1996	.github/ISSUE_TEMPLATE/quick-feedback.yml
+EXCLUDE	OUT_OF_DOMAIN		7335	.github/PR_MODERATION.md
 EXCLUDE	OUT_OF_DOMAIN		2250	.github/PULL_REQUEST_TEMPLATE.md
 EXCLUDE	OUT_OF_DOMAIN		4592	.github/copilot-instructions.md
 EXCLUDE	OUT_OF_DOMAIN		2155	.github/dependabot.yml
+EXCLUDE	OUT_OF_DOMAIN		151	.github/pr-burst-policy.json
 EXCLUDE	OUT_OF_DOMAIN		2104	.github/prompts/build-fix.prompt.md
 EXCLUDE	OUT_OF_DOMAIN		1571	.github/prompts/plan.prompt.md
 EXCLUDE	OUT_OF_DOMAIN		2015	.github/prompts/refactor.prompt.md
 EXCLUDE	OUT_OF_DOMAIN		2359	.github/prompts/security-review.prompt.md
 EXCLUDE	OUT_OF_DOMAIN		1542	.github/prompts/tdd.prompt.md
 EXCLUDE	OUT_OF_DOMAIN		355	.github/release.yml
-EXCLUDE	OUT_OF_DOMAIN		14740	.github/workflows/ci.yml
+EXCLUDE	OUT_OF_DOMAIN		17196	.github/workflows/ci.yml
 EXCLUDE	OUT_OF_DOMAIN		1583	.github/workflows/discussion-announce.yml
 EXCLUDE	OUT_OF_DOMAIN		2900	.github/workflows/generator-generic-ossf-slsa3-publish.yml
 EXCLUDE	OUT_OF_DOMAIN		1633	.github/workflows/maintenance.yml
 EXCLUDE	OUT_OF_DOMAIN		6815	.github/workflows/monthly-metrics.yml
+EXCLUDE	OUT_OF_DOMAIN		1272	.github/workflows/pr-burst-guard.yml
 EXCLUDE	OUT_OF_DOMAIN		1045	.github/workflows/release-announce.yml
 EXCLUDE	OUT_OF_DOMAIN		13945	.github/workflows/release.yml
 EXCLUDE	OUT_OF_DOMAIN		13269	.github/workflows/reusable-release.yml
@@ -234,7 +250,7 @@ EXCLUDE	OUT_OF_DOMAIN		1513	.gitignore
 EXCLUDE	OUT_OF_DOMAIN		110	.gitleaksignore
 EXCLUDE	HOST_PORT		528	.hermes/README.md
 EXCLUDE	HOST_PORT		2521	.kimi/README.md
-EXCLUDE	HOST_PORT		33234	.kiro/README.md
+EXCLUDE	HOST_PORT		33237	.kiro/README.md
 EXCLUDE	HOST_PORT		6641	.kiro/agents/architect.json
 EXCLUDE	HOST_PORT		6280	.kiro/agents/architect.md
 EXCLUDE	HOST_PORT		4012	.kiro/agents/build-error-resolver.json
@@ -406,7 +422,7 @@ EXCLUDE	HOST_PORT		2522	.opencode/commands/go-test.md
 EXCLUDE	HOST_PORT		3051	.opencode/commands/harness-audit.md
 EXCLUDE	HOST_PORT		1465	.opencode/commands/instinct-export.md
 EXCLUDE	HOST_PORT		1509	.opencode/commands/instinct-import.md
-EXCLUDE	HOST_PORT		1791	.opencode/commands/instinct-status.md
+EXCLUDE	HOST_PORT		1920	.opencode/commands/instinct-status.md
 EXCLUDE	HOST_PORT		1351	.opencode/commands/learn.md
 EXCLUDE	HOST_PORT		884	.opencode/commands/loop-start.md
 EXCLUDE	HOST_PORT		455	.opencode/commands/loop-status.md
@@ -490,11 +506,11 @@ EXCLUDE	OUT_OF_DOMAIN		763	.vscode/settings.json
 EXCLUDE	OUT_OF_DOMAIN		25	.yarnrc.yml
 EXCLUDE	HOST_PORT		917	.zed/settings.json
 EXCLUDE	OUT_OF_DOMAIN		13204	AGENTS.md
-EXCLUDE	OUT_OF_DOMAIN		21213	CHANGELOG.md
-EXCLUDE	OUT_OF_DOMAIN		3936	CLAUDE.md
+EXCLUDE	OUT_OF_DOMAIN		22349	CHANGELOG.md
+EXCLUDE	OUT_OF_DOMAIN		4421	CLAUDE.md
 EXCLUDE	OUT_OF_DOMAIN		5208	CODE_OF_CONDUCT.md
 EXCLUDE	OUT_OF_DOMAIN		13726	COMMANDS-QUICK-REF.md
-EXCLUDE	OUT_OF_DOMAIN		15629	CONTRIBUTING.md
+EXCLUDE	OUT_OF_DOMAIN		16525	CONTRIBUTING.md
 COPY	LICENSE	engineering/planning	1071	LICENSE
 EXCLUDE	OUT_OF_DOMAIN		115595	README.md
 EXCLUDE	TRANSLATION		38234	README.zh-CN.md
@@ -502,9 +518,9 @@ EXCLUDE	OUT_OF_DOMAIN		7168	SECURITY.md
 EXCLUDE	OUT_OF_DOMAIN		1100	SOUL.md
 EXCLUDE	OUT_OF_DOMAIN		2163	SPONSORING.md
 EXCLUDE	OUT_OF_DOMAIN		4753	SPONSORS.md
-EXCLUDE	OUT_OF_DOMAIN		11773	TROUBLESHOOTING.md
+EXCLUDE	OUT_OF_DOMAIN		11875	TROUBLESHOOTING.md
 EXCLUDE	OUT_OF_DOMAIN		6	VERSION
-EXCLUDE	OUT_OF_DOMAIN		5621	agent.yaml
+EXCLUDE	OUT_OF_DOMAIN		5710	agent.yaml
 ADAPT	Accessibility	design/accessibility	7339	agents/a11y-architect.md
 EXCLUDE	OUT_OF_DOMAIN		9117	agents/agent-evaluator.md
 ADAPT	Architecture	engineering/architecture	7276	agents/architect.md
@@ -632,7 +648,7 @@ EXCLUDE	OUT_OF_DOMAIN		7654	assets/images/sponsors/serpapi-logo-light-mode.svg
 EXCLUDE	OUT_OF_DOMAIN		934	assets/star-history-data.tsv
 EXCLUDE	HOST_PORT		5946	commands/aside.md
 EXCLUDE	HOST_PORT		9103	commands/astra-review.md
-EXCLUDE	HOST_PORT		1935	commands/auto-update.md
+EXCLUDE	HOST_PORT		2250	commands/auto-update.md
 EXCLUDE	HOST_PORT		2423	commands/build-fix.md
 EXCLUDE	HOST_PORT		1622	commands/checkpoint.md
 EXCLUDE	HOST_PORT		8339	commands/code-review.md
@@ -667,7 +683,7 @@ EXCLUDE	HOST_PORT		484	commands/hookify-list.md
 EXCLUDE	HOST_PORT		1554	commands/hookify.md
 EXCLUDE	HOST_PORT		1645	commands/instinct-export.md
 EXCLUDE	HOST_PORT		2839	commands/instinct-import.md
-EXCLUDE	HOST_PORT		2648	commands/instinct-status.md
+EXCLUDE	HOST_PORT		2963	commands/instinct-status.md
 EXCLUDE	HOST_PORT		3069	commands/jira.md
 EXCLUDE	HOST_PORT		4351	commands/kotlin-build.md
 EXCLUDE	HOST_PORT		3628	commands/kotlin-review.md
@@ -678,11 +694,11 @@ EXCLUDE	HOST_PORT		1332	commands/loop-start.md
 EXCLUDE	HOST_PORT		2617	commands/loop-status.md
 EXCLUDE	HOST_PORT		4064	commands/marketing-campaign.md
 EXCLUDE	HOST_PORT		697	commands/model-route.md
-EXCLUDE	HOST_PORT		5604	commands/multi-backend.md
-EXCLUDE	HOST_PORT		11067	commands/multi-execute.md
-EXCLUDE	HOST_PORT		5712	commands/multi-frontend.md
-EXCLUDE	HOST_PORT		10048	commands/multi-plan.md
-EXCLUDE	HOST_PORT		8063	commands/multi-workflow.md
+EXCLUDE	HOST_PORT		5568	commands/multi-backend.md
+EXCLUDE	HOST_PORT		11013	commands/multi-execute.md
+EXCLUDE	HOST_PORT		5676	commands/multi-frontend.md
+EXCLUDE	HOST_PORT		10030	commands/multi-plan.md
+EXCLUDE	HOST_PORT		8027	commands/multi-workflow.md
 EXCLUDE	HOST_PORT		1173	commands/orch-add-feature.md
 EXCLUDE	HOST_PORT		1309	commands/orch-build-mvp.md
 EXCLUDE	HOST_PORT		1388	commands/orch-change-feature.md
@@ -717,11 +733,11 @@ EXCLUDE	HOST_PORT		7003	commands/rust-test.md
 EXCLUDE	HOST_PORT		8515	commands/santa-loop.md
 EXCLUDE	HOST_PORT		9702	commands/save-session.md
 EXCLUDE	HOST_PORT		2757	commands/security-scan.md
-EXCLUDE	HOST_PORT		14834	commands/sessions.md
+EXCLUDE	HOST_PORT		16844	commands/sessions.md
 EXCLUDE	HOST_PORT		1675	commands/setup-pm.md
 EXCLUDE	HOST_PORT		6992	commands/skill-create.md
-EXCLUDE	HOST_PORT		4245	commands/skill-health.md
-EXCLUDE	HOST_PORT		2860	commands/skill-host-compat.md
+EXCLUDE	HOST_PORT		5567	commands/skill-health.md
+EXCLUDE	HOST_PORT		3488	commands/skill-host-compat.md
 EXCLUDE	HOST_PORT		2742	commands/test-coverage.md
 EXCLUDE	HOST_PORT		1133	commands/token-card.md
 EXCLUDE	HOST_PORT		2488	commands/update-codemaps.md
@@ -736,7 +752,7 @@ EXCLUDE	OUT_OF_DOMAIN		527	contexts/review.md
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		1274	docker/context-profiles/Dockerfile
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		4243	docker/context-profiles/README.md
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		87178	docker/context-profiles/ai-corpus.json
-REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		50339	docker/context-profiles/ai-eval-lib.js
+REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		54389	docker/context-profiles/ai-eval-lib.js
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		4390	docker/context-profiles/ai-eval.js
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		31260	docker/context-profiles/complex-corpus-v2.json
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		48699	docker/context-profiles/complex-corpus-v3.json
@@ -937,16 +953,16 @@ REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		85
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		2761	docker/context-profiles/run-podman.js
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		16975	docker/context-profiles/run-sandbox.js
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		10372	docker/context-profiles/sandbox-smoke.js
-EXCLUDE	OUT_OF_DOMAIN		3067	docker/gateguard-effectiveness/README.md
-EXCLUDE	OUT_OF_DOMAIN		2834	docker/gateguard-effectiveness/arm-patch.js
+EXCLUDE	OUT_OF_DOMAIN		4026	docker/gateguard-effectiveness/README.md
+EXCLUDE	OUT_OF_DOMAIN		2888	docker/gateguard-effectiveness/arm-patch.js
 EXCLUDE	OUT_OF_DOMAIN		4695	docker/gateguard-effectiveness/arms.js
-EXCLUDE	OUT_OF_DOMAIN		12208	docker/gateguard-effectiveness/coverage.js
+EXCLUDE	OUT_OF_DOMAIN		12124	docker/gateguard-effectiveness/coverage.js
 EXCLUDE	OUT_OF_DOMAIN		4471	docker/gateguard-effectiveness/evidence.js
-EXCLUDE	OUT_OF_DOMAIN		3249	docker/gateguard-effectiveness/fake-claude.js
-EXCLUDE	OUT_OF_DOMAIN		6933	docker/gateguard-effectiveness/intent-eval.js
-EXCLUDE	OUT_OF_DOMAIN		19541	docker/gateguard-effectiveness/lib.js
-EXCLUDE	OUT_OF_DOMAIN		18858	docker/gateguard-effectiveness/run-intent.js
-EXCLUDE	OUT_OF_DOMAIN		10850	docker/gateguard-effectiveness/run.js
+EXCLUDE	OUT_OF_DOMAIN		3698	docker/gateguard-effectiveness/fake-claude.js
+EXCLUDE	OUT_OF_DOMAIN		7717	docker/gateguard-effectiveness/intent-eval.js
+EXCLUDE	OUT_OF_DOMAIN		20821	docker/gateguard-effectiveness/lib.js
+EXCLUDE	OUT_OF_DOMAIN		18726	docker/gateguard-effectiveness/run-intent.js
+EXCLUDE	OUT_OF_DOMAIN		11252	docker/gateguard-effectiveness/run.js
 EXCLUDE	OUT_OF_DOMAIN		1403	docker/gateguard-effectiveness/scenarios-intent/audit-retention-purge/grader.cjs
 EXCLUDE	OUT_OF_DOMAIN		649	docker/gateguard-effectiveness/scenarios-intent/audit-retention-purge/intent.json
 EXCLUDE	OUT_OF_DOMAIN		625	docker/gateguard-effectiveness/scenarios-intent/audit-retention-purge/naive/src/audit.js
@@ -955,7 +971,10 @@ EXCLUDE	OUT_OF_DOMAIN		435	docker/gateguard-effectiveness/scenarios-intent/audit
 EXCLUDE	OUT_OF_DOMAIN		24	docker/gateguard-effectiveness/scenarios-intent/audit-retention-purge/workspace/config/retention.json
 EXCLUDE	OUT_OF_DOMAIN		79	docker/gateguard-effectiveness/scenarios-intent/audit-retention-purge/workspace/package.json
 EXCLUDE	OUT_OF_DOMAIN		230	docker/gateguard-effectiveness/scenarios-intent/audit-retention-purge/workspace/src/audit.js
-EXCLUDE	OUT_OF_DOMAIN		837	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/grader.cjs
+EXCLUDE	OUT_OF_DOMAIN		188	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/decoy-constant/src/export.js
+EXCLUDE	OUT_OF_DOMAIN		273	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/decoy-keys/src/export.js
+EXCLUDE	OUT_OF_DOMAIN		373	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/decoy-mutates/src/export.js
+EXCLUDE	OUT_OF_DOMAIN		1928	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/grader.cjs
 EXCLUDE	OUT_OF_DOMAIN		677	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/intent.json
 EXCLUDE	OUT_OF_DOMAIN		294	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/naive/src/export.js
 EXCLUDE	OUT_OF_DOMAIN		460	docker/gateguard-effectiveness/scenarios-intent/csv-export-delimiter/reference/src/export.js
@@ -1051,10 +1070,11 @@ EXCLUDE	OUT_OF_DOMAIN		45	docker/gateguard-effectiveness/scenarios/secrets-confi
 EXCLUDE	OUT_OF_DOMAIN		19	docker/gateguard-effectiveness/scenarios/secrets-config-key/workspace/dot-gitignore
 EXCLUDE	OUT_OF_DOMAIN		45	docker/gateguard-effectiveness/scenarios/secrets-config-key/workspace/package.json
 EXCLUDE	OUT_OF_DOMAIN		860	docker/gateguard-effectiveness/scenarios/secrets-config-key/workspace/src/config.js
-EXCLUDE	OUT_OF_DOMAIN		6545	docker/gateguard-effectiveness/session.js
+EXCLUDE	OUT_OF_DOMAIN		6596	docker/gateguard-effectiveness/session.js
 EXCLUDE	OUT_OF_DOMAIN		3924	docker/gateguard-effectiveness/user-sim.js
 EXCLUDE	OUT_OF_DOMAIN		1312	docker/plugin-setup/Dockerfile
-EXCLUDE	OUT_OF_DOMAIN		2238	docker/plugin-setup/compose.yaml
+EXCLUDE	OUT_OF_DOMAIN		1916	docker/plugin-setup/codex-auth-relay.js
+EXCLUDE	OUT_OF_DOMAIN		2630	docker/plugin-setup/compose.yaml
 EXCLUDE	OUT_OF_DOMAIN		3120	docker/plugin-setup/interactive-plan.js
 EXCLUDE	OUT_OF_DOMAIN		5051	docker/plugin-setup/prepare-packed-cli.js
 EXCLUDE	OUT_OF_DOMAIN		876	docker/plugin-setup/resolve-project-dir.js
@@ -1065,7 +1085,7 @@ EXCLUDE	OUT_OF_DOMAIN		2038	docker/plugin-setup/verify-install-plan.js
 EXCLUDE	OUT_OF_DOMAIN		5598	docs/ANTIGRAVITY-GUIDE.md
 EXCLUDE	OUT_OF_DOMAIN		13995	docs/ASTRA-REVIEW-GUIDE.md
 EXCLUDE	OUT_OF_DOMAIN		3910	docs/ATLAS-CLOUD-GUIDE.md
-EXCLUDE	OUT_OF_DOMAIN		7490	docs/CODEX-NAVIGATION-GUIDE.md
+EXCLUDE	OUT_OF_DOMAIN		8179	docs/CODEX-NAVIGATION-GUIDE.md
 EXCLUDE	OUT_OF_DOMAIN		5453	docs/COMMAND-AGENT-MAP.md
 EXCLUDE	OUT_OF_DOMAIN		38854	docs/COMMAND-REGISTRY.json
 EXCLUDE	OUT_OF_DOMAIN		5879	docs/DEEPSEEK-HARNESS-GUIDE.md
@@ -1080,13 +1100,14 @@ EXCLUDE	OUT_OF_DOMAIN		1590	docs/JOYCODE-GUIDE.md
 EXCLUDE	OUT_OF_DOMAIN		1521	docs/LANE-RULES.md
 EXCLUDE	OUT_OF_DOMAIN		6560	docs/MANUAL-ADAPTATION-GUIDE.md
 EXCLUDE	OUT_OF_DOMAIN		3199	docs/MCP-CONNECTOR-POLICY.md
-EXCLUDE	OUT_OF_DOMAIN		3078	docs/MIGRATION-1X-TO-2.0.md
+EXCLUDE	OUT_OF_DOMAIN		3075	docs/MIGRATION-1X-TO-2.0.md
 EXCLUDE	OUT_OF_DOMAIN		7257	docs/PLAN-PRD-PATTERN.md
 EXCLUDE	OUT_OF_DOMAIN		2979	docs/QWEN-GUIDE.md
 EXCLUDE	OUT_OF_DOMAIN		7881	docs/ROADMAP.md
 EXCLUDE	OUT_OF_DOMAIN		25907	docs/SELECTIVE-INSTALL-ARCHITECTURE.md
 EXCLUDE	OUT_OF_DOMAIN		18414	docs/SKILL-DEVELOPMENT-GUIDE.md
 EXCLUDE	OUT_OF_DOMAIN		4233	docs/SKILL-PLACEMENT-POLICY.md
+EXCLUDE	OUT_OF_DOMAIN		1430	docs/STATUSLINE.md
 EXCLUDE	OUT_OF_DOMAIN		5534	docs/TROUBLESHOOTING.md
 EXCLUDE	OUT_OF_DOMAIN		6787	docs/ar/GLOSSARY.md
 EXCLUDE	OUT_OF_DOMAIN		11893	docs/ar/README.md
@@ -1111,7 +1132,7 @@ EXCLUDE	OUT_OF_DOMAIN		5744	docs/control-plane/TCAS-HOOK.md
 EXCLUDE	OUT_OF_DOMAIN		8905	docs/control-plane/VIEW-CONTRACT.md
 EXCLUDE	OUT_OF_DOMAIN		3055	docs/de-DE/GLOSSARY.md
 EXCLUDE	OUT_OF_DOMAIN		90524	docs/de-DE/README.md
-EXCLUDE	OUT_OF_DOMAIN		7149	docs/design/agent-proximity.md
+EXCLUDE	OUT_OF_DOMAIN		9697	docs/design/agent-proximity.md
 EXCLUDE	OUT_OF_DOMAIN		1161797	docs/design/assets/plan-canvas-demo.png
 EXCLUDE	OUT_OF_DOMAIN		8836	docs/design/context-carriers.md
 EXCLUDE	OUT_OF_DOMAIN		21836	docs/design/context-carriers.tdd.md
@@ -1135,7 +1156,7 @@ EXCLUDE	TRANSLATION		6055	docs/es/SECURITY.md
 EXCLUDE	TRANSLATION		2193	docs/es/SPONSORING.md
 EXCLUDE	TRANSLATION		3972	docs/es/SPONSORS.md
 EXCLUDE	TRANSLATION		3350	docs/es/TERMINOLOGY.md
-EXCLUDE	TRANSLATION		11585	docs/es/TROUBLESHOOTING.md
+EXCLUDE	TRANSLATION		11695	docs/es/TROUBLESHOOTING.md
 EXCLUDE	TRANSLATION		8527	docs/es/agents/architect.md
 EXCLUDE	TRANSLATION		5738	docs/es/agents/build-error-resolver.md
 EXCLUDE	TRANSLATION		7756	docs/es/agents/chief-of-staff.md
@@ -1273,10 +1294,10 @@ EXCLUDE	OUT_OF_DOMAIN		4559	docs/fixes/HOOK-FIX-20260421.md
 EXCLUDE	OUT_OF_DOMAIN		1491	docs/fixes/apply-hook-fix.sh
 EXCLUDE	OUT_OF_DOMAIN		7111	docs/fixes/install_hook_wrapper.ps1
 EXCLUDE	OUT_OF_DOMAIN		7514	docs/fixes/patch_settings_cl_v2_simple.ps1
-EXCLUDE	OUT_OF_DOMAIN		18412	docs/gateguard/change-profile.md
-EXCLUDE	OUT_OF_DOMAIN		31769	docs/gateguard/design-notes.md
+EXCLUDE	OUT_OF_DOMAIN		19617	docs/gateguard/change-profile.md
+EXCLUDE	OUT_OF_DOMAIN		33736	docs/gateguard/design-notes.md
 EXCLUDE	OUT_OF_DOMAIN		18971	docs/gateguard/evaluation.md
-EXCLUDE	OUT_OF_DOMAIN		32900	docs/gateguard/question-effectiveness.md
+EXCLUDE	OUT_OF_DOMAIN		34367	docs/gateguard/question-effectiveness.md
 EXCLUDE	OUT_OF_DOMAIN		2757	docs/hook-bug-workarounds.md
 EXCLUDE	TRANSLATION		11721	docs/ja-JP/AGENTS.md
 EXCLUDE	TRANSLATION		17953	docs/ja-JP/ASTRA-REVIEW-GUIDE.md
@@ -1293,7 +1314,7 @@ EXCLUDE	TRANSLATION		7242	docs/ja-JP/SECURITY.md
 EXCLUDE	TRANSLATION		1678	docs/ja-JP/SOUL.md
 EXCLUDE	TRANSLATION		2634	docs/ja-JP/SPONSORING.md
 EXCLUDE	TRANSLATION		2797	docs/ja-JP/SPONSORS.md
-EXCLUDE	TRANSLATION		12638	docs/ja-JP/TROUBLESHOOTING.md
+EXCLUDE	TRANSLATION		12772	docs/ja-JP/TROUBLESHOOTING.md
 EXCLUDE	TRANSLATION		10153	docs/ja-JP/agents/a11y-architect.md
 EXCLUDE	TRANSLATION		8418	docs/ja-JP/agents/architect.md
 EXCLUDE	TRANSLATION		15092	docs/ja-JP/agents/build-error-resolver.md
@@ -1357,7 +1378,7 @@ EXCLUDE	TRANSLATION		11459	docs/ja-JP/agents/typescript-reviewer.md
 EXCLUDE	TRANSLATION		2968	docs/ja-JP/commands/README.md
 EXCLUDE	TRANSLATION		7295	docs/ja-JP/commands/aside.md
 EXCLUDE	TRANSLATION		11817	docs/ja-JP/commands/astra-review.md
-EXCLUDE	TRANSLATION		2236	docs/ja-JP/commands/auto-update.md
+EXCLUDE	TRANSLATION		2365	docs/ja-JP/commands/auto-update.md
 EXCLUDE	TRANSLATION		863	docs/ja-JP/commands/build-fix.md
 EXCLUDE	TRANSLATION		2185	docs/ja-JP/commands/checkpoint.md
 EXCLUDE	TRANSLATION		2057	docs/ja-JP/commands/claw.md
@@ -1391,7 +1412,7 @@ EXCLUDE	TRANSLATION		660	docs/ja-JP/commands/hookify-list.md
 EXCLUDE	TRANSLATION		1569	docs/ja-JP/commands/hookify.md
 EXCLUDE	TRANSLATION		2866	docs/ja-JP/commands/instinct-export.md
 EXCLUDE	TRANSLATION		4513	docs/ja-JP/commands/instinct-import.md
-EXCLUDE	TRANSLATION		3955	docs/ja-JP/commands/instinct-status.md
+EXCLUDE	TRANSLATION		4084	docs/ja-JP/commands/instinct-status.md
 EXCLUDE	TRANSLATION		3550	docs/ja-JP/commands/jira.md
 EXCLUDE	TRANSLATION		5161	docs/ja-JP/commands/kotlin-build.md
 EXCLUDE	TRANSLATION		4705	docs/ja-JP/commands/kotlin-review.md
@@ -1401,11 +1422,11 @@ EXCLUDE	TRANSLATION		2042	docs/ja-JP/commands/learn.md
 EXCLUDE	TRANSLATION		1358	docs/ja-JP/commands/loop-start.md
 EXCLUDE	TRANSLATION		3643	docs/ja-JP/commands/loop-status.md
 EXCLUDE	TRANSLATION		899	docs/ja-JP/commands/model-route.md
-EXCLUDE	TRANSLATION		7037	docs/ja-JP/commands/multi-backend.md
-EXCLUDE	TRANSLATION		13973	docs/ja-JP/commands/multi-execute.md
-EXCLUDE	TRANSLATION		7154	docs/ja-JP/commands/multi-frontend.md
-EXCLUDE	TRANSLATION		12285	docs/ja-JP/commands/multi-plan.md
-EXCLUDE	TRANSLATION		9557	docs/ja-JP/commands/multi-workflow.md
+EXCLUDE	TRANSLATION		7001	docs/ja-JP/commands/multi-backend.md
+EXCLUDE	TRANSLATION		13835	docs/ja-JP/commands/multi-execute.md
+EXCLUDE	TRANSLATION		7118	docs/ja-JP/commands/multi-frontend.md
+EXCLUDE	TRANSLATION		12225	docs/ja-JP/commands/multi-plan.md
+EXCLUDE	TRANSLATION		9458	docs/ja-JP/commands/multi-workflow.md
 EXCLUDE	TRANSLATION		4274	docs/ja-JP/commands/orchestrate.md
 EXCLUDE	TRANSLATION		6525	docs/ja-JP/commands/plan-prd.md
 EXCLUDE	TRANSLATION		9302	docs/ja-JP/commands/plan.md
@@ -1436,7 +1457,7 @@ EXCLUDE	TRANSLATION		3460	docs/ja-JP/commands/security-scan.md
 EXCLUDE	TRANSLATION		9697	docs/ja-JP/commands/sessions.md
 EXCLUDE	TRANSLATION		2016	docs/ja-JP/commands/setup-pm.md
 EXCLUDE	TRANSLATION		5478	docs/ja-JP/commands/skill-create.md
-EXCLUDE	TRANSLATION		4465	docs/ja-JP/commands/skill-health.md
+EXCLUDE	TRANSLATION		5455	docs/ja-JP/commands/skill-health.md
 EXCLUDE	TRANSLATION		9804	docs/ja-JP/commands/tdd.md
 EXCLUDE	TRANSLATION		916	docs/ja-JP/commands/test-coverage.md
 EXCLUDE	TRANSLATION		950	docs/ja-JP/commands/update-codemaps.md
@@ -1992,7 +2013,7 @@ EXCLUDE	TRANSLATION		2007	docs/tr/SECURITY.md
 EXCLUDE	TRANSLATION		2048	docs/tr/SPONSORING.md
 EXCLUDE	TRANSLATION		2225	docs/tr/SPONSORS.md
 EXCLUDE	TRANSLATION		9151	docs/tr/TERMINOLOGY.md
-EXCLUDE	TRANSLATION		10680	docs/tr/TROUBLESHOOTING.md
+EXCLUDE	TRANSLATION		10791	docs/tr/TROUBLESHOOTING.md
 EXCLUDE	TRANSLATION		6846	docs/tr/agents/architect.md
 EXCLUDE	TRANSLATION		4470	docs/tr/agents/build-error-resolver.md
 EXCLUDE	TRANSLATION		6371	docs/tr/agents/chief-of-staff.md
@@ -2032,19 +2053,19 @@ EXCLUDE	TRANSLATION		3906	docs/tr/commands/go-review.md
 EXCLUDE	TRANSLATION		6109	docs/tr/commands/go-test.md
 EXCLUDE	TRANSLATION		1813	docs/tr/commands/instinct-export.md
 EXCLUDE	TRANSLATION		3011	docs/tr/commands/instinct-import.md
-EXCLUDE	TRANSLATION		2748	docs/tr/commands/instinct-status.md
+EXCLUDE	TRANSLATION		2877	docs/tr/commands/instinct-status.md
 EXCLUDE	TRANSLATION		5901	docs/tr/commands/learn-eval.md
 EXCLUDE	TRANSLATION		1904	docs/tr/commands/learn.md
-EXCLUDE	TRANSLATION		5922	docs/tr/commands/multi-backend.md
-EXCLUDE	TRANSLATION		11736	docs/tr/commands/multi-execute.md
-EXCLUDE	TRANSLATION		5983	docs/tr/commands/multi-frontend.md
-EXCLUDE	TRANSLATION		10505	docs/tr/commands/multi-plan.md
-EXCLUDE	TRANSLATION		8511	docs/tr/commands/multi-workflow.md
+EXCLUDE	TRANSLATION		5886	docs/tr/commands/multi-backend.md
+EXCLUDE	TRANSLATION		11598	docs/tr/commands/multi-execute.md
+EXCLUDE	TRANSLATION		5947	docs/tr/commands/multi-frontend.md
+EXCLUDE	TRANSLATION		10445	docs/tr/commands/multi-plan.md
+EXCLUDE	TRANSLATION		8412	docs/tr/commands/multi-workflow.md
 EXCLUDE	TRANSLATION		5802	docs/tr/commands/orchestrate.md
 EXCLUDE	TRANSLATION		4113	docs/tr/commands/plan.md
 EXCLUDE	TRANSLATION		7089	docs/tr/commands/pm2.md
 EXCLUDE	TRANSLATION		3301	docs/tr/commands/refactor-clean.md
-EXCLUDE	TRANSLATION		15310	docs/tr/commands/sessions.md
+EXCLUDE	TRANSLATION		16502	docs/tr/commands/sessions.md
 EXCLUDE	TRANSLATION		1792	docs/tr/commands/setup-pm.md
 EXCLUDE	TRANSLATION		4907	docs/tr/commands/skill-create.md
 EXCLUDE	TRANSLATION		9112	docs/tr/commands/tdd.md
@@ -2137,7 +2158,7 @@ EXCLUDE	TRANSLATION		1654	docs/zh-CN/SECURITY.md
 EXCLUDE	TRANSLATION		17363	docs/zh-CN/SKILL-DEVELOPMENT-GUIDE.md
 EXCLUDE	TRANSLATION		1634	docs/zh-CN/SPONSORING.md
 EXCLUDE	TRANSLATION		2050	docs/zh-CN/SPONSORS.md
-EXCLUDE	TRANSLATION		9490	docs/zh-CN/TROUBLESHOOTING.md
+EXCLUDE	TRANSLATION		9588	docs/zh-CN/TROUBLESHOOTING.md
 EXCLUDE	TRANSLATION		5508	docs/zh-CN/agents/architect.md
 EXCLUDE	TRANSLATION		3687	docs/zh-CN/agents/build-error-resolver.md
 EXCLUDE	TRANSLATION		5572	docs/zh-CN/agents/chief-of-staff.md
@@ -2186,7 +2207,7 @@ EXCLUDE	TRANSLATION		2856	docs/zh-CN/agents/tdd-guide.md
 EXCLUDE	TRANSLATION		820	docs/zh-CN/agents/type-design-analyzer.md
 EXCLUDE	TRANSLATION		7744	docs/zh-CN/agents/typescript-reviewer.md
 EXCLUDE	TRANSLATION		5764	docs/zh-CN/commands/aside.md
-EXCLUDE	TRANSLATION		1898	docs/zh-CN/commands/auto-update.md
+EXCLUDE	TRANSLATION		2027	docs/zh-CN/commands/auto-update.md
 EXCLUDE	TRANSLATION		2367	docs/zh-CN/commands/build-fix.md
 EXCLUDE	TRANSLATION		1638	docs/zh-CN/commands/checkpoint.md
 EXCLUDE	TRANSLATION		1523	docs/zh-CN/commands/claw.md
@@ -2217,7 +2238,7 @@ EXCLUDE	TRANSLATION		509	docs/zh-CN/commands/hookify-list.md
 EXCLUDE	TRANSLATION		1188	docs/zh-CN/commands/hookify.md
 EXCLUDE	TRANSLATION		1619	docs/zh-CN/commands/instinct-export.md
 EXCLUDE	TRANSLATION		2773	docs/zh-CN/commands/instinct-import.md
-EXCLUDE	TRANSLATION		2590	docs/zh-CN/commands/instinct-status.md
+EXCLUDE	TRANSLATION		2719	docs/zh-CN/commands/instinct-status.md
 EXCLUDE	TRANSLATION		2871	docs/zh-CN/commands/jira.md
 EXCLUDE	TRANSLATION		4360	docs/zh-CN/commands/kotlin-build.md
 EXCLUDE	TRANSLATION		3550	docs/zh-CN/commands/kotlin-review.md
@@ -2227,11 +2248,11 @@ EXCLUDE	TRANSLATION		1579	docs/zh-CN/commands/learn.md
 EXCLUDE	TRANSLATION		890	docs/zh-CN/commands/loop-start.md
 EXCLUDE	TRANSLATION		443	docs/zh-CN/commands/loop-status.md
 EXCLUDE	TRANSLATION		553	docs/zh-CN/commands/model-route.md
-EXCLUDE	TRANSLATION		5340	docs/zh-CN/commands/multi-backend.md
-EXCLUDE	TRANSLATION		10561	docs/zh-CN/commands/multi-execute.md
-EXCLUDE	TRANSLATION		5373	docs/zh-CN/commands/multi-frontend.md
-EXCLUDE	TRANSLATION		9157	docs/zh-CN/commands/multi-plan.md
-EXCLUDE	TRANSLATION		7605	docs/zh-CN/commands/multi-workflow.md
+EXCLUDE	TRANSLATION		5304	docs/zh-CN/commands/multi-backend.md
+EXCLUDE	TRANSLATION		10423	docs/zh-CN/commands/multi-execute.md
+EXCLUDE	TRANSLATION		5337	docs/zh-CN/commands/multi-frontend.md
+EXCLUDE	TRANSLATION		9097	docs/zh-CN/commands/multi-plan.md
+EXCLUDE	TRANSLATION		7506	docs/zh-CN/commands/multi-workflow.md
 EXCLUDE	TRANSLATION		5354	docs/zh-CN/commands/orchestrate.md
 EXCLUDE	TRANSLATION		3368	docs/zh-CN/commands/plan.md
 EXCLUDE	TRANSLATION		6739	docs/zh-CN/commands/pm2.md
@@ -2255,10 +2276,10 @@ EXCLUDE	TRANSLATION		3972	docs/zh-CN/commands/rust-review.md
 EXCLUDE	TRANSLATION		7091	docs/zh-CN/commands/rust-test.md
 EXCLUDE	TRANSLATION		6323	docs/zh-CN/commands/santa-loop.md
 EXCLUDE	TRANSLATION		9698	docs/zh-CN/commands/save-session.md
-EXCLUDE	TRANSLATION		18065	docs/zh-CN/commands/sessions.md
+EXCLUDE	TRANSLATION		19555	docs/zh-CN/commands/sessions.md
 EXCLUDE	TRANSLATION		1605	docs/zh-CN/commands/setup-pm.md
 EXCLUDE	TRANSLATION		4387	docs/zh-CN/commands/skill-create.md
-EXCLUDE	TRANSLATION		4014	docs/zh-CN/commands/skill-health.md
+EXCLUDE	TRANSLATION		4725	docs/zh-CN/commands/skill-health.md
 EXCLUDE	TRANSLATION		8288	docs/zh-CN/commands/tdd.md
 EXCLUDE	TRANSLATION		2654	docs/zh-CN/commands/test-coverage.md
 EXCLUDE	TRANSLATION		2288	docs/zh-CN/commands/update-codemaps.md
@@ -2276,7 +2297,7 @@ EXCLUDE	TRANSLATION		5029	docs/zh-CN/examples/saas-nextjs-CLAUDE.md
 EXCLUDE	TRANSLATION		3140	docs/zh-CN/examples/user-CLAUDE.md
 EXCLUDE	TRANSLATION		8345	docs/zh-CN/hooks/README.md
 EXCLUDE	TRANSLATION		2009	docs/zh-CN/plugins/README.md
-EXCLUDE	TRANSLATION		4246	docs/zh-CN/rules/README.md
+EXCLUDE	TRANSLATION		4237	docs/zh-CN/rules/README.md
 EXCLUDE	TRANSLATION		1802	docs/zh-CN/rules/common/agents.md
 EXCLUDE	TRANSLATION		3247	docs/zh-CN/rules/common/code-review.md
 EXCLUDE	TRANSLATION		1391	docs/zh-CN/rules/common/coding-style.md
@@ -2693,10 +2714,10 @@ EXCLUDE	OUT_OF_DOMAIN		5770	examples/unified-memory/evidence.test.cjs
 EXCLUDE	OUT_OF_DOMAIN		3301	examples/user-CLAUDE.md
 EXCLUDE	OUT_OF_DOMAIN		2593	greptile.json
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		14903	hooks/README.md
-REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		1614	hooks/codex-hooks.json
+REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		1949	hooks/codex-hooks.json
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		2575	hooks/hermes/check-console-log.py
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		4754	hooks/hermes/config-protection.py
-REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		37424	hooks/hooks.json
+REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		46469	hooks/hooks.json
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		5961	hooks/hooks.metadata.json
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		2259	hooks/memory-persistence/README.md
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		1574	hooks/memory-persistence/hooks.json
@@ -2713,7 +2734,7 @@ EXCLUDE	OUT_OF_DOMAIN		6277	integrations/aura/tests/test_adapter.py
 EXCLUDE	HOST_PORT		525	legacy-command-shims/README.md
 EXCLUDE	HOST_PORT		643	legacy-command-shims/commands/agent-sort.md
 EXCLUDE	HOST_PORT		903	legacy-command-shims/commands/claw.md
-EXCLUDE	HOST_PORT		703	legacy-command-shims/commands/context-budget.md
+EXCLUDE	HOST_PORT		923	legacy-command-shims/commands/context-budget.md
 EXCLUDE	HOST_PORT		765	legacy-command-shims/commands/devfleet.md
 EXCLUDE	HOST_PORT		688	legacy-command-shims/commands/docs.md
 EXCLUDE	HOST_PORT		709	legacy-command-shims/commands/e2e.md
@@ -2729,14 +2750,14 @@ EXCLUDE	OUT_OF_DOMAIN		475	manifests/context-profiles/full@1.json
 EXCLUDE	OUT_OF_DOMAIN		488	manifests/context-profiles/lean@1.json
 EXCLUDE	OUT_OF_DOMAIN		25	manifests/install-assets/claude-project-scripts-package.json
 EXCLUDE	OUT_OF_DOMAIN		25	manifests/install-assets/commonjs-scripts-package.json
-EXCLUDE	OUT_OF_DOMAIN		20783	manifests/install-components.json
-EXCLUDE	OUT_OF_DOMAIN		35017	manifests/install-modules.json
-EXCLUDE	OUT_OF_DOMAIN		3050	manifests/install-profiles.json
-EXCLUDE	OUT_OF_DOMAIN		24249	manifests/pi-core.json
+EXCLUDE	OUT_OF_DOMAIN		21507	manifests/install-components.json
+EXCLUDE	OUT_OF_DOMAIN		37786	manifests/install-modules.json
+EXCLUDE	OUT_OF_DOMAIN		3194	manifests/install-profiles.json
+EXCLUDE	OUT_OF_DOMAIN		24491	manifests/pi-core.json
 EXCLUDE	MCP		10352	mcp-configs/mcp-servers.json
 EXCLUDE	OUT_OF_DOMAIN		111000	package-lock.json
-EXCLUDE	OUT_OF_DOMAIN		21084	package.json
-EXCLUDE	HOST_PORT		16870	pi/core/CURATION.md
+EXCLUDE	OUT_OF_DOMAIN		21248	package.json
+EXCLUDE	HOST_PORT		16999	pi/core/CURATION.md
 EXCLUDE	HOST_PORT		1071	pi/core/LICENSE
 EXCLUDE	HOST_PORT		1136	pi/core/README.md
 EXCLUDE	HOST_PORT		5946	pi/core/commands/aside.md
@@ -2775,7 +2796,7 @@ EXCLUDE	HOST_PORT		3545	pi/core/skills/agent-self-evaluation/examples/high-score
 EXCLUDE	HOST_PORT		3702	pi/core/skills/agent-self-evaluation/examples/low-score-example.md
 EXCLUDE	HOST_PORT		5820	pi/core/skills/agent-self-evaluation/references/evaluation-criteria.md
 EXCLUDE	HOST_PORT		2500	pi/core/skills/agent-self-evaluation/references/hook-integration.md
-EXCLUDE	HOST_PORT		14975	pi/core/skills/agent-self-evaluation/scripts/evaluate.py
+EXCLUDE	HOST_PORT		15334	pi/core/skills/agent-self-evaluation/scripts/evaluate.py
 EXCLUDE	HOST_PORT		3485	pi/core/skills/agent-self-evaluation/templates/evaluation-report.md
 EXCLUDE	HOST_PORT		1830	pi/core/skills/agentic-engineering/SKILL.md
 EXCLUDE	HOST_PORT		1454	pi/core/skills/ai-first-engineering/SKILL.md
@@ -2825,6 +2846,7 @@ EXCLUDE	HOST_PORT		2630	pi/core/skills/benchmark/SKILL.md
 EXCLUDE	HOST_PORT		16109	pi/core/skills/bengali-nlp/SKILL.md
 EXCLUDE	HOST_PORT		5153	pi/core/skills/blueprint/SKILL.md
 EXCLUDE	HOST_PORT		5755	pi/core/skills/bun-runtime/SKILL.md
+EXCLUDE	HOST_PORT		6216	pi/core/skills/change-impact/SKILL.md
 EXCLUDE	HOST_PORT		7975	pi/core/skills/click-path-audit/SKILL.md
 EXCLUDE	HOST_PORT		10731	pi/core/skills/clickhouse-io/SKILL.md
 EXCLUDE	HOST_PORT		8030	pi/core/skills/code-tour/SKILL.md
@@ -2832,6 +2854,8 @@ EXCLUDE	HOST_PORT		8235	pi/core/skills/codebase-onboarding/SKILL.md
 EXCLUDE	HOST_PORT		12866	pi/core/skills/coding-standards/SKILL.md
 EXCLUDE	HOST_PORT		8229	pi/core/skills/compose-multiplatform-patterns/SKILL.md
 EXCLUDE	HOST_PORT		5732	pi/core/skills/content-hash-cache-pattern/SKILL.md
+EXCLUDE	HOST_PORT		4728	pi/core/skills/context-and-decisions/SKILL.md
+EXCLUDE	HOST_PORT		749	pi/core/skills/context-and-decisions/templates/context.example.md
 EXCLUDE	HOST_PORT		9761	pi/core/skills/contract-first/SKILL.md
 EXCLUDE	HOST_PORT		4647	pi/core/skills/conventional-commit-review/SKILL.md
 EXCLUDE	HOST_PORT		5992	pi/core/skills/cost-aware-llm-pipeline/SKILL.md
@@ -2850,7 +2874,7 @@ EXCLUDE	HOST_PORT		21116	pi/core/skills/django-patterns/SKILL.md
 EXCLUDE	HOST_PORT		17269	pi/core/skills/django-security/SKILL.md
 EXCLUDE	HOST_PORT		21031	pi/core/skills/django-tdd/SKILL.md
 EXCLUDE	HOST_PORT		11733	pi/core/skills/django-verification/SKILL.md
-EXCLUDE	HOST_PORT		14937	pi/core/skills/docker-patterns/SKILL.md
+EXCLUDE	HOST_PORT		16807	pi/core/skills/docker-patterns/SKILL.md
 EXCLUDE	HOST_PORT		4589	pi/core/skills/docs-governance/SKILL.md
 EXCLUDE	HOST_PORT		4011	pi/core/skills/docs-governance/references/artifact-role-contract.md
 EXCLUDE	HOST_PORT		26968	pi/core/skills/docs-governance/scripts/audit-docs.py
@@ -2890,6 +2914,8 @@ EXCLUDE	HOST_PORT		4795	pi/core/skills/make-interfaces-feel-better/SKILL.md
 EXCLUDE	MCP		4192	pi/core/skills/mcp-server-patterns/SKILL.md
 EXCLUDE	HOST_PORT		3899	pi/core/skills/ml-adoption-playbook/SKILL.md
 EXCLUDE	HOST_PORT		22450	pi/core/skills/mle-workflow/SKILL.md
+EXCLUDE	HOST_PORT		8124	pi/core/skills/module-regression/SKILL.md
+EXCLUDE	HOST_PORT		1665	pi/core/skills/module-regression/templates/REGRESSION.example.md
 EXCLUDE	HOST_PORT		18800	pi/core/skills/motion-advanced/SKILL.md
 EXCLUDE	HOST_PORT		9797	pi/core/skills/motion-foundations/SKILL.md
 EXCLUDE	HOST_PORT		13418	pi/core/skills/motion-patterns/SKILL.md
@@ -2934,6 +2960,8 @@ EXCLUDE	HOST_PORT		8117	pi/core/skills/swift-concurrency-6-2/SKILL.md
 EXCLUDE	HOST_PORT		6112	pi/core/skills/swift-protocol-di-testing/SKILL.md
 EXCLUDE	HOST_PORT		7039	pi/core/skills/swiftui-patterns/SKILL.md
 EXCLUDE	HOST_PORT		21596	pi/core/skills/tdd-workflow/SKILL.md
+EXCLUDE	HOST_PORT		11127	pi/core/skills/test-collaboration/SKILL.md
+EXCLUDE	HOST_PORT		5149	pi/core/skills/test-collaboration/templates/TESTS.example.md
 EXCLUDE	HOST_PORT		3064	pi/core/skills/verification-loop/SKILL.md
 EXCLUDE	HOST_PORT		17115	pi/core/skills/vite-patterns/SKILL.md
 EXCLUDE	HOST_PORT		13182	pi/core/skills/vue-patterns/SKILL.md
@@ -2941,7 +2969,7 @@ EXCLUDE	HOST_PORT		2082	plugins/README.md
 EXCLUDE	HOST_PORT		1958	plugins/ecc/.codex-plugin/plugin.json
 EXCLUDE	HOST_PORT		2081	plugins/ecc/README.md
 EXCLUDE	OUT_OF_DOMAIN		1992	pyproject.toml
-ADAPT	Cross-language rules	engineering/stack-packs	5694	rules/README.md
+ADAPT	Cross-language rules	engineering/stack-packs	5691	rules/README.md
 ADAPT	Language rule packs	engineering/stack-packs	5212	rules/angular/coding-style.md
 ADAPT	Language rule packs	engineering/stack-packs	845	rules/angular/hooks.md
 ADAPT	Language rule packs	engineering/stack-packs	6508	rules/angular/patterns.md
@@ -3089,18 +3117,19 @@ EXCLUDE	OUT_OF_DOMAIN		11973	scripts/auto-update.js
 EXCLUDE	OUT_OF_DOMAIN		733	scripts/build-opencode.js
 EXCLUDE	OUT_OF_DOMAIN		16592	scripts/build-pi-core.js
 EXCLUDE	OUT_OF_DOMAIN		4827	scripts/catalog.js
-EXCLUDE	OUT_OF_DOMAIN		30506	scripts/ci/catalog.js
+EXCLUDE	OUT_OF_DOMAIN		30201	scripts/ci/catalog.js
 EXCLUDE	OUT_OF_DOMAIN		4730	scripts/ci/check-hooks-schema-keys.js
 EXCLUDE	OUT_OF_DOMAIN		7509	scripts/ci/check-unicode-safety.js
 EXCLUDE	OUT_OF_DOMAIN		8687	scripts/ci/generate-command-registry.js
 EXCLUDE	OUT_OF_DOMAIN		3370	scripts/ci/pi-core-load-test.js
+EXCLUDE	OUT_OF_DOMAIN		13068	scripts/ci/pr-burst-guard.js
 EXCLUDE	OUT_OF_DOMAIN		27515	scripts/ci/scan-supply-chain-iocs.js
 EXCLUDE	OUT_OF_DOMAIN		15506	scripts/ci/supply-chain-advisory-sources.js
 EXCLUDE	OUT_OF_DOMAIN		3591	scripts/ci/validate-agents.js
 EXCLUDE	OUT_OF_DOMAIN		10508	scripts/ci/validate-carrier-closure.js
 EXCLUDE	OUT_OF_DOMAIN		6118	scripts/ci/validate-commands.js
 EXCLUDE	OUT_OF_DOMAIN		2654	scripts/ci/validate-context-profiles.js
-EXCLUDE	OUT_OF_DOMAIN		13635	scripts/ci/validate-hooks.js
+EXCLUDE	OUT_OF_DOMAIN		15865	scripts/ci/validate-hooks.js
 EXCLUDE	OUT_OF_DOMAIN		8666	scripts/ci/validate-install-manifests.js
 EXCLUDE	OUT_OF_DOMAIN		2482	scripts/ci/validate-no-personal-paths.js
 EXCLUDE	OUT_OF_DOMAIN		1798	scripts/ci/validate-rules.js
@@ -3112,17 +3141,17 @@ EXCLUDE	OUT_OF_DOMAIN		16269	scripts/claw.js
 PRESERVE	Run by agents/doc-updater (closure)	engineering/documentation	10212	scripts/codemaps/generate.ts
 EXCLUDE	OUT_OF_DOMAIN		2838	scripts/codex-git-hooks/pre-commit
 EXCLUDE	OUT_OF_DOMAIN		12872	scripts/codex-git-hooks/pre-push
-EXCLUDE	OUT_OF_DOMAIN		7165	scripts/codex/check-codex-global-state.sh
+EXCLUDE	OUT_OF_DOMAIN		7381	scripts/codex/check-codex-global-state.sh
 EXCLUDE	OUT_OF_DOMAIN		7394	scripts/codex/check-plugin-cache.js
 EXCLUDE	OUT_OF_DOMAIN		2591	scripts/codex/install-global-git-hooks.sh
 EXCLUDE	OUT_OF_DOMAIN		2084	scripts/codex/legacy-sync-state.js
-EXCLUDE	OUT_OF_DOMAIN		9552	scripts/codex/merge-codex-config.js
+EXCLUDE	OUT_OF_DOMAIN		9512	scripts/codex/merge-codex-config.js
 EXCLUDE	OUT_OF_DOMAIN		13013	scripts/codex/merge-mcp-config.js
 EXCLUDE	OUT_OF_DOMAIN		13383	scripts/consult.js
 EXCLUDE	OUT_OF_DOMAIN		1562	scripts/control-pane.js
 EXCLUDE	OUT_OF_DOMAIN		1959	scripts/coordination-inventory.js
 EXCLUDE	OUT_OF_DOMAIN		74395	scripts/dashboard-web.js
-EXCLUDE	OUT_OF_DOMAIN		30845	scripts/dev/gateguard-eval.js
+EXCLUDE	OUT_OF_DOMAIN		31395	scripts/dev/gateguard-eval.js
 EXCLUDE	OUT_OF_DOMAIN		10628	scripts/dev/gateguard-latency.js
 EXCLUDE	OUT_OF_DOMAIN		8759	scripts/dev/generate-skill-triggers.js
 EXCLUDE	OUT_OF_DOMAIN		3203	scripts/discord/announcement-core.mjs
@@ -3143,7 +3172,7 @@ EXCLUDE	OUT_OF_DOMAIN		3401	scripts/harness-adapter-compliance.js
 EXCLUDE	OUT_OF_DOMAIN		35789	scripts/harness-audit.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		4967	scripts/hooks/auto-tmux-dev.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		5679	scripts/hooks/bash-hook-dispatcher.js
-REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		46613	scripts/hooks/block-no-verify.js
+REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		52694	scripts/hooks/block-no-verify.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		2476	scripts/hooks/check-console-log.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		295	scripts/hooks/check-hook-enabled.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		8406	scripts/hooks/config-protection.js
@@ -3156,9 +3185,9 @@ REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-co
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		3696	scripts/hooks/doc-file-warning.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		10319	scripts/hooks/ecc-context-monitor.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		9944	scripts/hooks/ecc-metrics-bridge.js
-REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		5427	scripts/hooks/ecc-statusline.js
+REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		8220	scripts/hooks/ecc-statusline.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		2980	scripts/hooks/evaluate-session.js
-REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		94370	scripts/hooks/gateguard-fact-force.js
+REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		97053	scripts/hooks/gateguard-fact-force.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		9028	scripts/hooks/gateguard-heredoc.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		10865	scripts/hooks/governance-capture.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		3072	scripts/hooks/hook-input-limits.js
@@ -3167,7 +3196,7 @@ REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-co
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		29591	scripts/hooks/hookify-runtime.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		8580	scripts/hooks/insaits-security-monitor.py
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		3955	scripts/hooks/insaits-security-wrapper.js
-REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		16909	scripts/hooks/lib/shell-scan.js
+REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		21115	scripts/hooks/lib/shell-scan.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		4524	scripts/hooks/lifecycle-hook-bootstrap.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		29625	scripts/hooks/mcp-health-check.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		5852	scripts/hooks/observe-runner.js
@@ -3196,14 +3225,14 @@ REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-co
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		12120	scripts/hooks/run-with-flags.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		17213	scripts/hooks/session-activity-tracker.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		1901	scripts/hooks/session-end-marker.js
-REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		14401	scripts/hooks/session-end.js
+REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		14857	scripts/hooks/session-end.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		3761	scripts/hooks/session-start-bootstrap.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		31231	scripts/hooks/session-start.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		6086	scripts/hooks/skill-run-tracker.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		9821	scripts/hooks/stop-format-typecheck.js
 REFERENCE	Hook behaviors; config-protection/format-typecheck/cost-tracker/pre-compact re-implemented as opt-in OS hooks (SEC-01)		10518	scripts/hooks/suggest-compact.js
 EXCLUDE	OUT_OF_DOMAIN		10178	scripts/install-apply.js
-EXCLUDE	OUT_OF_DOMAIN		13122	scripts/install-guided.js
+EXCLUDE	OUT_OF_DOMAIN		13362	scripts/install-guided.js
 EXCLUDE	OUT_OF_DOMAIN		9067	scripts/install-plan.js
 EXCLUDE	OUT_OF_DOMAIN		11328	scripts/ito.js
 EXCLUDE	OUT_OF_DOMAIN		6308	scripts/lib/agent-compress.js
@@ -3214,17 +3243,18 @@ EXCLUDE	OUT_OF_DOMAIN		14188	scripts/lib/agent-proximity/distance.js
 EXCLUDE	OUT_OF_DOMAIN		5028	scripts/lib/agent-proximity/graph.js
 EXCLUDE	OUT_OF_DOMAIN		7755	scripts/lib/agent-proximity/index.js
 EXCLUDE	OUT_OF_DOMAIN		11253	scripts/lib/agent-proximity/projection.js
+EXCLUDE	OUT_OF_DOMAIN		18847	scripts/lib/agent-proximity/shadow-trail.js
 EXCLUDE	OUT_OF_DOMAIN		2460	scripts/lib/agent-tool-map.js
 EXCLUDE	OUT_OF_DOMAIN		2211	scripts/lib/agent-tools.js
 EXCLUDE	OUT_OF_DOMAIN		10140	scripts/lib/astra-review/codex.js
 EXCLUDE	OUT_OF_DOMAIN		5816	scripts/lib/astra-review/fix.js
 EXCLUDE	OUT_OF_DOMAIN		9696	scripts/lib/astra-review/prompt.js
 EXCLUDE	OUT_OF_DOMAIN		16105	scripts/lib/astra-review/scope.js
-EXCLUDE	OUT_OF_DOMAIN		3186	scripts/lib/atomic-write.js
+EXCLUDE	OUT_OF_DOMAIN		3345	scripts/lib/atomic-write.js
 EXCLUDE	OUT_OF_DOMAIN		1454	scripts/lib/claude-commit-attribution.js
 EXCLUDE	OUT_OF_DOMAIN		5883	scripts/lib/claude-dry-run-sandbox.js
 EXCLUDE	OUT_OF_DOMAIN		21463	scripts/lib/claude-plugin-setup.js
-EXCLUDE	OUT_OF_DOMAIN		12049	scripts/lib/claude-scope-migration.js
+EXCLUDE	OUT_OF_DOMAIN		15683	scripts/lib/claude-scope-migration.js
 EXCLUDE	OUT_OF_DOMAIN		23392	scripts/lib/codex-legacy-sync.js
 EXCLUDE	OUT_OF_DOMAIN		14801	scripts/lib/codex-plugin-setup.js
 EXCLUDE	OUT_OF_DOMAIN		779	scripts/lib/compute-sponsor.js
@@ -3240,10 +3270,10 @@ EXCLUDE	OUT_OF_DOMAIN		2192	scripts/lib/context-profile-proposal.js
 EXCLUDE	OUT_OF_DOMAIN		7018	scripts/lib/context-profile-store-fs.js
 EXCLUDE	OUT_OF_DOMAIN		17384	scripts/lib/context-profile-store.js
 EXCLUDE	OUT_OF_DOMAIN		9957	scripts/lib/context-profile-support.js
-EXCLUDE	OUT_OF_DOMAIN		7213	scripts/lib/context-profiles.js
+EXCLUDE	OUT_OF_DOMAIN		7866	scripts/lib/context-profiles.js
 EXCLUDE	OUT_OF_DOMAIN		9788	scripts/lib/context-retrieval.js
 EXCLUDE	OUT_OF_DOMAIN		11782	scripts/lib/context-routing-index.js
-EXCLUDE	OUT_OF_DOMAIN		19220	scripts/lib/context-selection.js
+EXCLUDE	OUT_OF_DOMAIN		27737	scripts/lib/context-selection.js
 EXCLUDE	OUT_OF_DOMAIN		3068	scripts/lib/control-pane/actions.js
 EXCLUDE	OUT_OF_DOMAIN		15886	scripts/lib/control-pane/control-plane-view-ui.js
 EXCLUDE	OUT_OF_DOMAIN		15363	scripts/lib/control-pane/control-plane-view.js
@@ -3253,7 +3283,7 @@ EXCLUDE	OUT_OF_DOMAIN		11278	scripts/lib/control-pane/proximity.js
 EXCLUDE	OUT_OF_DOMAIN		13199	scripts/lib/control-pane/server.js
 EXCLUDE	OUT_OF_DOMAIN		23044	scripts/lib/control-pane/state.js
 EXCLUDE	OUT_OF_DOMAIN		26373	scripts/lib/control-pane/ui.js
-EXCLUDE	OUT_OF_DOMAIN		3588	scripts/lib/control-pane/work-item-mutations.js
+EXCLUDE	OUT_OF_DOMAIN		3798	scripts/lib/control-pane/work-item-mutations.js
 EXCLUDE	OUT_OF_DOMAIN		2366	scripts/lib/control-pane/work-item-runner.js
 EXCLUDE	OUT_OF_DOMAIN		1733	scripts/lib/control-pane/work-item-worker.js
 EXCLUDE	OUT_OF_DOMAIN		14532	scripts/lib/coordination-inventory.js
@@ -3272,18 +3302,18 @@ PRESERVE	Run by skills/eval-harness (closure)	testing/regression	4205	scripts/li
 EXCLUDE	OUT_OF_DOMAIN		1067	scripts/lib/feedback-links.js
 EXCLUDE	OUT_OF_DOMAIN		937	scripts/lib/file-tail.js
 EXCLUDE	OUT_OF_DOMAIN		19268	scripts/lib/gateguard-change-profile.js
-EXCLUDE	OUT_OF_DOMAIN		17378	scripts/lib/gateguard-code-lexer.js
-EXCLUDE	OUT_OF_DOMAIN		21078	scripts/lib/gateguard-file-context.js
+EXCLUDE	OUT_OF_DOMAIN		19088	scripts/lib/gateguard-code-lexer.js
+EXCLUDE	OUT_OF_DOMAIN		24347	scripts/lib/gateguard-file-context.js
 EXCLUDE	OUT_OF_DOMAIN		4141	scripts/lib/gateguard-metrics.js
 EXCLUDE	OUT_OF_DOMAIN		6325	scripts/lib/gateguard-readonly-shell.js
-EXCLUDE	OUT_OF_DOMAIN		21052	scripts/lib/gateguard-search-evidence.js
-EXCLUDE	OUT_OF_DOMAIN		16385	scripts/lib/gateguard-search-filters.js
+EXCLUDE	OUT_OF_DOMAIN		23826	scripts/lib/gateguard-search-evidence.js
+EXCLUDE	OUT_OF_DOMAIN		25200	scripts/lib/gateguard-search-filters.js
 EXCLUDE	OUT_OF_DOMAIN		3957	scripts/lib/gateguard-state.js
-EXCLUDE	OUT_OF_DOMAIN		19433	scripts/lib/gateguard-target-class.js
+EXCLUDE	OUT_OF_DOMAIN		20107	scripts/lib/gateguard-target-class.js
 EXCLUDE	OUT_OF_DOMAIN		10383	scripts/lib/gateguard-turn-scan.js
 EXCLUDE	OUT_OF_DOMAIN		2195	scripts/lib/github-coordination.js
 EXCLUDE	OUT_OF_DOMAIN		15393	scripts/lib/github-coordination/actions.js
-EXCLUDE	OUT_OF_DOMAIN		4522	scripts/lib/github-coordination/gh-api.js
+EXCLUDE	OUT_OF_DOMAIN		4568	scripts/lib/github-coordination/gh-api.js
 EXCLUDE	OUT_OF_DOMAIN		3972	scripts/lib/github-coordination/parsing.js
 EXCLUDE	OUT_OF_DOMAIN		3773	scripts/lib/github-coordination/policy.js
 EXCLUDE	OUT_OF_DOMAIN		8983	scripts/lib/github-coordination/state.js
@@ -3298,20 +3328,20 @@ EXCLUDE	OUT_OF_DOMAIN		917	scripts/lib/hook-session.js
 EXCLUDE	OUT_OF_DOMAIN		11269	scripts/lib/hooks-config.js
 EXCLUDE	OUT_OF_DOMAIN		6640	scripts/lib/inspection.js
 EXCLUDE	OUT_OF_DOMAIN		18607	scripts/lib/install-executor.js
-EXCLUDE	OUT_OF_DOMAIN		68321	scripts/lib/install-lifecycle.js
+EXCLUDE	OUT_OF_DOMAIN		69893	scripts/lib/install-lifecycle.js
 EXCLUDE	OUT_OF_DOMAIN		24426	scripts/lib/install-manifests.js
 EXCLUDE	OUT_OF_DOMAIN		1506	scripts/lib/install-state-store-sync.js
 EXCLUDE	OUT_OF_DOMAIN		12681	scripts/lib/install-state.js
 EXCLUDE	OUT_OF_DOMAIN		289	scripts/lib/install-targets/adal-project.js
 EXCLUDE	OUT_OF_DOMAIN		3847	scripts/lib/install-targets/antigravity-project.js
-EXCLUDE	OUT_OF_DOMAIN		2875	scripts/lib/install-targets/claude-home.js
-EXCLUDE	OUT_OF_DOMAIN		3304	scripts/lib/install-targets/claude-project.js
+EXCLUDE	OUT_OF_DOMAIN		3356	scripts/lib/install-targets/claude-home.js
+EXCLUDE	OUT_OF_DOMAIN		3955	scripts/lib/install-targets/claude-project.js
 EXCLUDE	OUT_OF_DOMAIN		1403	scripts/lib/install-targets/codebuddy-project.js
 EXCLUDE	OUT_OF_DOMAIN		1789	scripts/lib/install-targets/codex-home.js
 EXCLUDE	OUT_OF_DOMAIN		3925	scripts/lib/install-targets/copilot-project.js
 EXCLUDE	OUT_OF_DOMAIN		7043	scripts/lib/install-targets/cursor-project.js
 EXCLUDE	OUT_OF_DOMAIN		297	scripts/lib/install-targets/gemini-project.js
-EXCLUDE	OUT_OF_DOMAIN		13679	scripts/lib/install-targets/helpers.js
+EXCLUDE	OUT_OF_DOMAIN		13803	scripts/lib/install-targets/helpers.js
 EXCLUDE	OUT_OF_DOMAIN		291	scripts/lib/install-targets/hermes-home.js
 EXCLUDE	OUT_OF_DOMAIN		1395	scripts/lib/install-targets/joycode-project.js
 EXCLUDE	OUT_OF_DOMAIN		3603	scripts/lib/install-targets/kimi-project.js
@@ -3322,11 +3352,11 @@ EXCLUDE	OUT_OF_DOMAIN		2832	scripts/lib/install-targets/registry.js
 EXCLUDE	OUT_OF_DOMAIN		1379	scripts/lib/install-targets/zed-project.js
 EXCLUDE	OUT_OF_DOMAIN		2161	scripts/lib/install/antigravity-agent.js
 EXCLUDE	OUT_OF_DOMAIN		11811	scripts/lib/install/antigravity-legacy-migration.js
-EXCLUDE	OUT_OF_DOMAIN		46333	scripts/lib/install/apply.js
+EXCLUDE	OUT_OF_DOMAIN		46510	scripts/lib/install/apply.js
 EXCLUDE	OUT_OF_DOMAIN		7294	scripts/lib/install/claude-settings-lock.js
 EXCLUDE	OUT_OF_DOMAIN		23537	scripts/lib/install/claude-settings.js
 EXCLUDE	OUT_OF_DOMAIN		13588	scripts/lib/install/claude-skill-migration.js
-EXCLUDE	OUT_OF_DOMAIN		2272	scripts/lib/install/codex-user-config.js
+EXCLUDE	OUT_OF_DOMAIN		2340	scripts/lib/install/codex-user-config.js
 EXCLUDE	OUT_OF_DOMAIN		2859	scripts/lib/install/config.js
 EXCLUDE	OUT_OF_DOMAIN		9678	scripts/lib/install/contained-fs.js
 EXCLUDE	OUT_OF_DOMAIN		2639	scripts/lib/install/content-transform.js
@@ -3339,11 +3369,11 @@ EXCLUDE	OUT_OF_DOMAIN		4732	scripts/lib/install/json-ops.js
 EXCLUDE	OUT_OF_DOMAIN		6043	scripts/lib/install/link-rewrite.js
 EXCLUDE	OUT_OF_DOMAIN		5650	scripts/lib/install/opencode-install-lock.js
 EXCLUDE	OUT_OF_DOMAIN		13266	scripts/lib/install/opencode-legacy-migration.js
-EXCLUDE	OUT_OF_DOMAIN		4113	scripts/lib/install/opencode-script-boundary.js
+EXCLUDE	OUT_OF_DOMAIN		6486	scripts/lib/install/opencode-script-boundary.js
 EXCLUDE	OUT_OF_DOMAIN		7444	scripts/lib/install/ownership-guard.js
 EXCLUDE	OUT_OF_DOMAIN		12706	scripts/lib/install/plan.js
 EXCLUDE	OUT_OF_DOMAIN		782	scripts/lib/install/plugin-namespace.js
-EXCLUDE	OUT_OF_DOMAIN		6156	scripts/lib/install/request.js
+EXCLUDE	OUT_OF_DOMAIN		6421	scripts/lib/install/request.js
 EXCLUDE	OUT_OF_DOMAIN		2143	scripts/lib/install/runtime.js
 EXCLUDE	OUT_OF_DOMAIN		10832	scripts/lib/install/stale-operations-reconciliation.js
 EXCLUDE	OUT_OF_DOMAIN		6239	scripts/lib/instinct-relevance.js
@@ -3361,7 +3391,7 @@ EXCLUDE	OUT_OF_DOMAIN		10536	scripts/lib/memory-vault-format.js
 EXCLUDE	OUT_OF_DOMAIN		25966	scripts/lib/memory-vault.js
 EXCLUDE	OUT_OF_DOMAIN		2324	scripts/lib/missing-dependency.js
 EXCLUDE	OUT_OF_DOMAIN		19850	scripts/lib/multi-harness-setup.js
-EXCLUDE	OUT_OF_DOMAIN		24422	scripts/lib/nasiko-release.js
+EXCLUDE	OUT_OF_DOMAIN		25985	scripts/lib/nasiko-release.js
 EXCLUDE	OUT_OF_DOMAIN		6073	scripts/lib/observer-sessions.js
 EXCLUDE	OUT_OF_DOMAIN		898	scripts/lib/opencode-paths.js
 EXCLUDE	OUT_OF_DOMAIN		7546	scripts/lib/orchestration-session.js
@@ -3374,9 +3404,9 @@ EXCLUDE	OUT_OF_DOMAIN		29914	scripts/lib/plan-canvas/server.js
 EXCLUDE	OUT_OF_DOMAIN		8997	scripts/lib/plan-canvas/sessions.js
 EXCLUDE	OUT_OF_DOMAIN		32345	scripts/lib/plan-canvas/ui.js
 EXCLUDE	OUT_OF_DOMAIN		5109	scripts/lib/platform-launch.js
-EXCLUDE	OUT_OF_DOMAIN		70203	scripts/lib/powershell-destructive-command.js
+EXCLUDE	OUT_OF_DOMAIN		76460	scripts/lib/powershell-destructive-command.js
 EXCLUDE	OUT_OF_DOMAIN		15450	scripts/lib/project-detect.js
-EXCLUDE	OUT_OF_DOMAIN		7707	scripts/lib/resolve-ecc-root.js
+EXCLUDE	OUT_OF_DOMAIN		8226	scripts/lib/resolve-ecc-root.js
 EXCLUDE	OUT_OF_DOMAIN		6222	scripts/lib/resolve-formatter.js
 EXCLUDE	OUT_OF_DOMAIN		19719	scripts/lib/session-adapters/canonical-session.js
 EXCLUDE	OUT_OF_DOMAIN		4438	scripts/lib/session-adapters/claude-history.js
@@ -3391,13 +3421,13 @@ EXCLUDE	OUT_OF_DOMAIN		17106	scripts/lib/session-cost-snapshot.js
 EXCLUDE	OUT_OF_DOMAIN		4405	scripts/lib/session-manager.d.ts
 EXCLUDE	OUT_OF_DOMAIN		16008	scripts/lib/session-manager.js
 EXCLUDE	OUT_OF_DOMAIN		1968	scripts/lib/shell-split.js
-EXCLUDE	OUT_OF_DOMAIN		14915	scripts/lib/shell-substitution.js
+EXCLUDE	OUT_OF_DOMAIN		11741	scripts/lib/shell-substitution.js
 EXCLUDE	OUT_OF_DOMAIN		13778	scripts/lib/skill-evolution/dashboard.js
-EXCLUDE	OUT_OF_DOMAIN		8843	scripts/lib/skill-evolution/health.js
+EXCLUDE	OUT_OF_DOMAIN		8889	scripts/lib/skill-evolution/health.js
 EXCLUDE	OUT_OF_DOMAIN		381	scripts/lib/skill-evolution/index.js
 EXCLUDE	OUT_OF_DOMAIN		4790	scripts/lib/skill-evolution/provenance.js
-EXCLUDE	OUT_OF_DOMAIN		6081	scripts/lib/skill-evolution/tracker.js
-EXCLUDE	OUT_OF_DOMAIN		6209	scripts/lib/skill-evolution/versioning.js
+EXCLUDE	OUT_OF_DOMAIN		6658	scripts/lib/skill-evolution/tracker.js
+EXCLUDE	OUT_OF_DOMAIN		13852	scripts/lib/skill-evolution/versioning.js
 EXCLUDE	OUT_OF_DOMAIN		2523	scripts/lib/skill-improvement/amendify.js
 EXCLUDE	OUT_OF_DOMAIN		1869	scripts/lib/skill-improvement/evaluate.js
 EXCLUDE	OUT_OF_DOMAIN		3769	scripts/lib/skill-improvement/health.js
@@ -3408,6 +3438,7 @@ EXCLUDE	OUT_OF_DOMAIN		10290	scripts/lib/state-store/install-state-projection.js
 EXCLUDE	OUT_OF_DOMAIN		5698	scripts/lib/state-store/migrations.js
 EXCLUDE	OUT_OF_DOMAIN		26831	scripts/lib/state-store/queries.js
 EXCLUDE	OUT_OF_DOMAIN		2175	scripts/lib/state-store/schema.js
+EXCLUDE	OUT_OF_DOMAIN		11233	scripts/lib/statusline-render.js
 EXCLUDE	OUT_OF_DOMAIN		2197	scripts/lib/terminal-spinner.js
 EXCLUDE	OUT_OF_DOMAIN		4768	scripts/lib/terminal-welcome.js
 EXCLUDE	OUT_OF_DOMAIN		18241	scripts/lib/tmux-worktree-orchestrator.js
@@ -3424,7 +3455,7 @@ EXCLUDE	MCP		21574	scripts/memory-mcp.mjs
 EXCLUDE	OUT_OF_DOMAIN		14974	scripts/memory.js
 EXCLUDE	OUT_OF_DOMAIN		6017	scripts/nasiko.js
 EXCLUDE	OUT_OF_DOMAIN		16099	scripts/observability-readiness.js
-EXCLUDE	OUT_OF_DOMAIN		55632	scripts/operator-readiness-dashboard.js
+EXCLUDE	OUT_OF_DOMAIN		54681	scripts/operator-readiness-dashboard.js
 EXCLUDE	OUT_OF_DOMAIN		4666	scripts/orchestrate-codex-worker.sh
 EXCLUDE	OUT_OF_DOMAIN		2873	scripts/orchestrate-worktrees.js
 EXCLUDE	OUT_OF_DOMAIN		1604	scripts/orchestration-status.js
@@ -3445,10 +3476,10 @@ EXCLUDE	OUT_OF_DOMAIN		14644	scripts/setup.js
 EXCLUDE	OUT_OF_DOMAIN		8243	scripts/skill-create-output.js
 EXCLUDE	OUT_OF_DOMAIN		3437	scripts/skills-health.js
 EXCLUDE	OUT_OF_DOMAIN		17685	scripts/status.js
-EXCLUDE	OUT_OF_DOMAIN		19715	scripts/sync-ecc-to-codex.sh
+EXCLUDE	OUT_OF_DOMAIN		20158	scripts/sync-ecc-to-codex.sh
 EXCLUDE	OUT_OF_DOMAIN		6962	scripts/uninstall.js
 EXCLUDE	OUT_OF_DOMAIN		1683	scripts/welcome.js
-EXCLUDE	OUT_OF_DOMAIN		16565	scripts/work-items.js
+EXCLUDE	OUT_OF_DOMAIN		16602	scripts/work-items.js
 EXCLUDE	OUT_OF_DOMAIN		4865	scripts/worktree-lifecycle.js
 ADAPT	Accessibility	design/accessibility	6546	skills/accessibility/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		10278	skills/agent-architecture-audit/SKILL.md
@@ -3463,7 +3494,7 @@ EXCLUDE	OUT_OF_DOMAIN		3545	skills/agent-self-evaluation/examples/high-score-exa
 EXCLUDE	OUT_OF_DOMAIN		3702	skills/agent-self-evaluation/examples/low-score-example.md
 EXCLUDE	OUT_OF_DOMAIN		5820	skills/agent-self-evaluation/references/evaluation-criteria.md
 EXCLUDE	OUT_OF_DOMAIN		2500	skills/agent-self-evaluation/references/hook-integration.md
-EXCLUDE	OUT_OF_DOMAIN		14975	skills/agent-self-evaluation/scripts/evaluate.py
+EXCLUDE	OUT_OF_DOMAIN		15334	skills/agent-self-evaluation/scripts/evaluate.py
 EXCLUDE	OUT_OF_DOMAIN		3485	skills/agent-self-evaluation/templates/evaluation-report.md
 EXCLUDE	OUT_OF_DOMAIN		5922	skills/agent-sort/SKILL.md
 ADAPT	AI/LLM systems	engineering/ai-systems	1830	skills/agentic-engineering/SKILL.md
@@ -3537,6 +3568,7 @@ ADAPT	D-049: E2E and browser QA methods (secondary)	testing/browser-verification
 ADAPT	Language/framework packs	engineering/stack-packs	5755	skills/bun-runtime/SKILL.md
 ADAPT	Release	engineering/release	3128	skills/canary-watch/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		23645	skills/carrier-relationship-management/SKILL.md
+REFERENCE	Overlaps Graphify impact analysis; evaluate with MP2		6216	skills/change-impact/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		5305	skills/cisco-ios-patterns/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		5011	skills/ck/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		1304	skills/ck/commands/forget.mjs
@@ -3563,7 +3595,9 @@ EXCLUDE	OUT_OF_DOMAIN		7979	skills/configure-ecc/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		5477	skills/connections-optimizer/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4370	skills/content-engine/SKILL.md
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		5732	skills/content-hash-cache-pattern/SKILL.md
-REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		8045	skills/context-budget/SKILL.md
+EXCLUDE	SUPERSEDED		4728	skills/context-and-decisions/SKILL.md
+EXCLUDE	SUPERSEDED		749	skills/context-and-decisions/templates/context.example.md
+REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		6225	skills/context-budget/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		1190	skills/continuous-agent-loop/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		14149	skills/continuous-learning-v2/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		19899	skills/continuous-learning-v2/agents/observer-loop.sh
@@ -3571,12 +3605,12 @@ EXCLUDE	OUT_OF_DOMAIN		6892	skills/continuous-learning-v2/agents/observer.md
 EXCLUDE	OUT_OF_DOMAIN		6392	skills/continuous-learning-v2/agents/session-guardian.sh
 EXCLUDE	OUT_OF_DOMAIN		8643	skills/continuous-learning-v2/agents/start-observer.sh
 EXCLUDE	OUT_OF_DOMAIN		135	skills/continuous-learning-v2/config.json
-EXCLUDE	OUT_OF_DOMAIN		28114	skills/continuous-learning-v2/hooks/observe.sh
+EXCLUDE	OUT_OF_DOMAIN		28603	skills/continuous-learning-v2/hooks/observe.sh
 EXCLUDE	OUT_OF_DOMAIN		11036	skills/continuous-learning-v2/scripts/detect-project.sh
-EXCLUDE	OUT_OF_DOMAIN		91144	skills/continuous-learning-v2/scripts/instinct-cli.py
+EXCLUDE	OUT_OF_DOMAIN		91252	skills/continuous-learning-v2/scripts/instinct-cli.py
 EXCLUDE	OUT_OF_DOMAIN		1010	skills/continuous-learning-v2/scripts/lib/homunculus-dir.sh
 EXCLUDE	OUT_OF_DOMAIN		2256	skills/continuous-learning-v2/scripts/migrate-homunculus.sh
-EXCLUDE	OUT_OF_DOMAIN		51338	skills/continuous-learning-v2/scripts/test_parse_instinct.py
+EXCLUDE	OUT_OF_DOMAIN		53213	skills/continuous-learning-v2/scripts/test_parse_instinct.py
 EXCLUDE	OUT_OF_DOMAIN		4536	skills/continuous-learning/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		391	skills/continuous-learning/config.json
 EXCLUDE	OUT_OF_DOMAIN		2391	skills/continuous-learning/evaluate-session.sh
@@ -3604,7 +3638,7 @@ ADAPT	Migrations	engineering/migration	12034	skills/database-migrations/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		6057	skills/deep-research/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		3717	skills/deepseek-harness-setup/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		5390	skills/defi-amm-security/SKILL.md
-ADAPT	Verification before completion	testing/release-verification	5140	skills/delivery-gate/SKILL.md
+ADAPT	Verification before completion	testing/release-verification	5225	skills/delivery-gate/SKILL.md
 ADAPT	Verification before completion	testing/release-verification	7826	skills/delivery-gate/hooks/quality-gate.py
 ADAPT	Release	engineering/release	11113	skills/deployment-patterns/SKILL.md
 ADAPT	Design systems	design/design-system	2815	skills/design-system/SKILL.md
@@ -3615,7 +3649,7 @@ ADAPT	Language/framework packs	engineering/stack-packs	17269	skills/django-secur
 ADAPT	Language/framework packs	engineering/stack-packs	21031	skills/django-tdd/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	11733	skills/django-verification/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		6336	skills/dmux-workflows/SKILL.md
-ADAPT	Release	engineering/release	14937	skills/docker-patterns/SKILL.md
+ADAPT	Release	engineering/release	16807	skills/docker-patterns/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4589	skills/docs-governance/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4011	skills/docs-governance/references/artifact-role-contract.md
 EXCLUDE	OUT_OF_DOMAIN		26968	skills/docs-governance/scripts/audit-docs.py
@@ -3655,7 +3689,7 @@ ADAPT	Presentations	media/presentation	2917	skills/frontend-slides/scripts/extra
 ADAPT	Presentations	media/presentation	4037	skills/frontend-slides/viewport-base.css
 ADAPT	Language/framework packs	engineering/stack-packs	7941	skills/fsharp-testing/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		12431	skills/gan-style-harness/SKILL.md
-EXCLUDE	OUT_OF_DOMAIN		40609	skills/gateguard/SKILL.md
+EXCLUDE	OUT_OF_DOMAIN		42350	skills/gateguard/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		30327	skills/generating-python-installer/SKILL.md
 ADAPT	Release	engineering/release	15308	skills/git-workflow/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		6202	skills/github-ops/SKILL.md
@@ -3735,6 +3769,8 @@ EXCLUDE	MCP		4192	skills/mcp-server-patterns/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		2896	skills/messages-ops/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		3899	skills/ml-adoption-playbook/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		22450	skills/mle-workflow/SKILL.md
+REFERENCE	Candidates for testing/regression and testing/strategy L3		8124	skills/module-regression/SKILL.md
+REFERENCE	Candidates for testing/regression and testing/strategy L3		1665	skills/module-regression/templates/REGRESSION.example.md
 ADAPT	Motion	design/motion	18800	skills/motion-advanced/SKILL.md
 ADAPT	Motion	design/motion	9797	skills/motion-foundations/SKILL.md
 ADAPT	Motion	design/motion	13418	skills/motion-patterns/SKILL.md
@@ -3871,18 +3907,19 @@ EXCLUDE	OUT_OF_DOMAIN		1974	skills/skill-comply/prompts/scenario_generator.md
 EXCLUDE	OUT_OF_DOMAIN		1645	skills/skill-comply/prompts/spec_generator.md
 EXCLUDE	OUT_OF_DOMAIN		360	skills/skill-comply/pyproject.toml
 EXCLUDE	OUT_OF_DOMAIN		0	skills/skill-comply/scripts/__init__.py
-EXCLUDE	OUT_OF_DOMAIN		2414	skills/skill-comply/scripts/classifier.py
+EXCLUDE	OUT_OF_DOMAIN		2738	skills/skill-comply/scripts/classifier.py
 EXCLUDE	OUT_OF_DOMAIN		7767	skills/skill-comply/scripts/grader.py
 EXCLUDE	OUT_OF_DOMAIN		2777	skills/skill-comply/scripts/parser.py
 EXCLUDE	OUT_OF_DOMAIN		6470	skills/skill-comply/scripts/report.py
 EXCLUDE	OUT_OF_DOMAIN		4294	skills/skill-comply/scripts/run.py
-EXCLUDE	OUT_OF_DOMAIN		9114	skills/skill-comply/scripts/runner.py
+EXCLUDE	OUT_OF_DOMAIN		10108	skills/skill-comply/scripts/runner.py
 EXCLUDE	OUT_OF_DOMAIN		1835	skills/skill-comply/scripts/scenario_generator.py
 EXCLUDE	OUT_OF_DOMAIN		2202	skills/skill-comply/scripts/spec_generator.py
 EXCLUDE	OUT_OF_DOMAIN		411	skills/skill-comply/scripts/utils.py
+EXCLUDE	OUT_OF_DOMAIN		3188	skills/skill-comply/tests/test_classifier.py
 EXCLUDE	OUT_OF_DOMAIN		18148	skills/skill-comply/tests/test_grader.py
 EXCLUDE	OUT_OF_DOMAIN		3140	skills/skill-comply/tests/test_parser.py
-EXCLUDE	OUT_OF_DOMAIN		12265	skills/skill-comply/tests/test_runner.py
+EXCLUDE	OUT_OF_DOMAIN		22352	skills/skill-comply/tests/test_runner.py
 EXCLUDE	OUT_OF_DOMAIN		3788	skills/skill-host-compat/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4486	skills/skill-scout/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		12389	skills/skill-stocktake/SKILL.md
@@ -3895,6 +3932,8 @@ ADAPT	Language/framework packs	engineering/stack-packs	10047	skills/springboot-p
 ADAPT	Language/framework packs	engineering/stack-packs	8133	skills/springboot-security/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	3786	skills/springboot-tdd/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	6079	skills/springboot-verification/SKILL.md
+EXCLUDE	SUPERSEDED		17744	skills/story-lifecycle/SKILL.md
+EXCLUDE	SUPERSEDED		24131	skills/story-lifecycle/scripts/ledger.js
 REFERENCE	Design input for the OS context engine and token metrics (P9, P18)		8608	skills/strategic-compact/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	4906	skills/swift-actor-persistence/SKILL.md
 ADAPT	Language/framework packs	engineering/stack-packs	8117	skills/swift-concurrency-6-2/SKILL.md
@@ -4006,6 +4045,8 @@ EXCLUDE	OUT_OF_DOMAIN		2539	skills/terminal-opener/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		219	skills/terminal-opener/agents/openai.yaml
 EXCLUDE	OUT_OF_DOMAIN		11931	skills/terminal-opener/scripts/open-terminal.js
 EXCLUDE	OUT_OF_DOMAIN		2997	skills/terminal-ops/SKILL.md
+REFERENCE	Candidates for testing/regression and testing/strategy L3		11127	skills/test-collaboration/SKILL.md
+REFERENCE	Candidates for testing/regression and testing/strategy L3		5149	skills/test-collaboration/templates/TESTS.example.md
 EXCLUDE	OUT_OF_DOMAIN		23365	skills/tinystruct-patterns/SKILL.md
 EXCLUDE	OUT_OF_DOMAIN		4283	skills/tinystruct-patterns/references/architecture.md
 EXCLUDE	OUT_OF_DOMAIN		1893	skills/tinystruct-patterns/references/data-handling.md
@@ -4064,14 +4105,16 @@ EXCLUDE	ALWAYS_ON		583	src/llm/prompt/__init__.py
 EXCLUDE	ALWAYS_ON		4459	src/llm/prompt/builder.py
 EXCLUDE	ALWAYS_ON		1428	src/llm/prompt/templates/__init__.py
 EXCLUDE	ALWAYS_ON		583	src/llm/providers/__init__.py
-EXCLUDE	ALWAYS_ON		5449	src/llm/providers/astraflow.py
-EXCLUDE	ALWAYS_ON		5502	src/llm/providers/atlas.py
-EXCLUDE	ALWAYS_ON		5371	src/llm/providers/claude.py
+EXCLUDE	ALWAYS_ON		5503	src/llm/providers/astraflow.py
+EXCLUDE	ALWAYS_ON		5556	src/llm/providers/atlas.py
+EXCLUDE	ALWAYS_ON		5513	src/llm/providers/claude.py
 EXCLUDE	ALWAYS_ON		108	src/llm/providers/constants.py
-EXCLUDE	ALWAYS_ON		4945	src/llm/providers/ollama.py
-EXCLUDE	ALWAYS_ON		4436	src/llm/providers/openai.py
+EXCLUDE	ALWAYS_ON		407	src/llm/providers/model_config.py
+EXCLUDE	ALWAYS_ON		9012	src/llm/providers/ollama.py
+EXCLUDE	ALWAYS_ON		5630	src/llm/providers/openai.py
 EXCLUDE	ALWAYS_ON		2697	src/llm/providers/openai_compat.py
-EXCLUDE	ALWAYS_ON		2614	src/llm/providers/resolver.py
+EXCLUDE	ALWAYS_ON		2522	src/llm/providers/reasoning.py
+EXCLUDE	ALWAYS_ON		4532	src/llm/providers/resolver.py
 EXCLUDE	ALWAYS_ON		202	src/llm/tools/__init__.py
 EXCLUDE	ALWAYS_ON		5921	src/llm/tools/executor.py
 EXCLUDE	OUT_OF_DOMAIN		0	tests/__init__.py
@@ -4080,7 +4123,7 @@ EXCLUDE	OUT_OF_DOMAIN		9350	tests/ci/agent-payment-x402-doc.test.js
 EXCLUDE	OUT_OF_DOMAIN		4469	tests/ci/agent-security-hardening-skill.test.js
 EXCLUDE	OUT_OF_DOMAIN		3695	tests/ci/agent-yaml-surface.test.js
 EXCLUDE	OUT_OF_DOMAIN		8337	tests/ci/bengali-language-surface.test.js
-EXCLUDE	OUT_OF_DOMAIN		16036	tests/ci/catalog.test.js
+EXCLUDE	OUT_OF_DOMAIN		18003	tests/ci/catalog.test.js
 EXCLUDE	OUT_OF_DOMAIN		2267	tests/ci/code-reviewer-false-positive-guard.test.js
 EXCLUDE	OUT_OF_DOMAIN		4231	tests/ci/codex-skill-surface.test.js
 EXCLUDE	OUT_OF_DOMAIN		5688	tests/ci/command-registry.test.js
@@ -4100,9 +4143,11 @@ EXCLUDE	OUT_OF_DOMAIN		23612	tests/ci/nasiko-control-plane.test.js
 EXCLUDE	OUT_OF_DOMAIN		6607	tests/ci/no-personal-paths.test.js
 EXCLUDE	OUT_OF_DOMAIN		33051	tests/ci/packed-artifact-lifecycle.js
 EXCLUDE	OUT_OF_DOMAIN		5749	tests/ci/packed-artifact-lifecycle.test.js
+EXCLUDE	OUT_OF_DOMAIN		5050	tests/ci/pr-burst-guard-workflow.test.js
+EXCLUDE	OUT_OF_DOMAIN		12727	tests/ci/pr-burst-guard.test.js
 EXCLUDE	OUT_OF_DOMAIN		2149	tests/ci/release-announce-workflow.test.js
 EXCLUDE	OUT_OF_DOMAIN		40464	tests/ci/release-packed-artifact-workflow.test.js
-EXCLUDE	OUT_OF_DOMAIN		9210	tests/ci/run-all.test.js
+EXCLUDE	OUT_OF_DOMAIN		14647	tests/ci/run-all.test.js
 EXCLUDE	OUT_OF_DOMAIN		18263	tests/ci/scan-supply-chain-iocs.test.js
 EXCLUDE	OUT_OF_DOMAIN		2728	tests/ci/secret-curl-flags.test.js
 EXCLUDE	OUT_OF_DOMAIN		10252	tests/ci/supply-chain-advisory-sources.test.js
@@ -4112,16 +4157,18 @@ EXCLUDE	OUT_OF_DOMAIN		1881	tests/ci/unified-memory-surface.test.js
 EXCLUDE	OUT_OF_DOMAIN		6033	tests/ci/validate-agents-tools.test.js
 EXCLUDE	OUT_OF_DOMAIN		21974	tests/ci/validate-skill-host-compat.test.js
 EXCLUDE	OUT_OF_DOMAIN		18483	tests/ci/validate-workflow-security.test.js
-EXCLUDE	OUT_OF_DOMAIN		172691	tests/ci/validators.test.js
-EXCLUDE	OUT_OF_DOMAIN		11730	tests/codex-config.test.js
+EXCLUDE	OUT_OF_DOMAIN		173488	tests/ci/validators.test.js
+EXCLUDE	OUT_OF_DOMAIN		11840	tests/codex-config.test.js
 EXCLUDE	OUT_OF_DOMAIN		2804	tests/codex-native-hooks.test.js
 EXCLUDE	OUT_OF_DOMAIN		2822	tests/commands/command-frontmatter.test.js
 EXCLUDE	OUT_OF_DOMAIN		8762	tests/commands/learn-skill-discovery.test.js
+EXCLUDE	OUT_OF_DOMAIN		3214	tests/commands/multi-model-wrapper-tokens.test.js
 EXCLUDE	OUT_OF_DOMAIN		2183	tests/commands/plan-command.test.js
 EXCLUDE	OUT_OF_DOMAIN		239	tests/conftest.py
-EXCLUDE	OUT_OF_DOMAIN		21393	tests/docker/gateguard-effectiveness.test.js
-EXCLUDE	OUT_OF_DOMAIN		34673	tests/docker/gateguard-intent.test.js
-EXCLUDE	OUT_OF_DOMAIN		14577	tests/docker/plugin-setup-harness.test.js
+EXCLUDE	OUT_OF_DOMAIN		3978	tests/docker/codex-auth-relay.test.js
+EXCLUDE	OUT_OF_DOMAIN		31660	tests/docker/gateguard-effectiveness.test.js
+EXCLUDE	OUT_OF_DOMAIN		42154	tests/docker/gateguard-intent.test.js
+EXCLUDE	OUT_OF_DOMAIN		14665	tests/docker/plugin-setup-harness.test.js
 EXCLUDE	OUT_OF_DOMAIN		3614	tests/docs/antigravity-guide.test.js
 EXCLUDE	OUT_OF_DOMAIN		2210	tests/docs/autonomous-harness-setup.test.js
 EXCLUDE	OUT_OF_DOMAIN		1365	tests/docs/canary-watch.test.js
@@ -4142,6 +4189,10 @@ EXCLUDE	OUT_OF_DOMAIN		4247	tests/docs/platform-value-loop.test.js
 EXCLUDE	OUT_OF_DOMAIN		1349	tests/docs/release-2.2-copy.test.js
 EXCLUDE	OUT_OF_DOMAIN		770	tests/docs/release-2.2-launch-runbook.test.js
 EXCLUDE	OUT_OF_DOMAIN		4433	tests/docs/stale-pr-salvage-ledger.test.js
+EXCLUDE	OUT_OF_DOMAIN		10275	tests/docs/story-lifecycle-errors.test.js
+EXCLUDE	OUT_OF_DOMAIN		44150	tests/docs/story-lifecycle-ledger.test.js
+EXCLUDE	OUT_OF_DOMAIN		8253	tests/docs/story-lifecycle-skill.test.js
+EXCLUDE	OUT_OF_DOMAIN		10060	tests/docs/story-lifecycle-table-projection.test.js
 EXCLUDE	OUT_OF_DOMAIN		23562	tests/fixtures/context-eval-references.json
 EXCLUDE	OUT_OF_DOMAIN		12459	tests/fixtures/context-selection/routing-prompts.json
 EXCLUDE	OUT_OF_DOMAIN		88	tests/fixtures/docker-plugin-project/package.json
@@ -4168,6 +4219,7 @@ EXCLUDE	OUT_OF_DOMAIN		34897	tests/fixtures/gateguard-scenarios/17-bypass-commen
 EXCLUDE	OUT_OF_DOMAIN		10449	tests/fixtures/gateguard-scenarios/18-exported-members.json
 EXCLUDE	OUT_OF_DOMAIN		16818	tests/fixtures/gateguard-scenarios/19-notebook-edits.json
 EXCLUDE	OUT_OF_DOMAIN		9449	tests/fixtures/gateguard-scenarios/20-hard-linked-targets.json
+EXCLUDE	OUT_OF_DOMAIN		43850	tests/fixtures/gateguard-scenarios/21-bypass-filter-forms.json
 EXCLUDE	OUT_OF_DOMAIN		654	tests/fixtures/opencode-ts-loader.mjs
 EXCLUDE	OUT_OF_DOMAIN		657	tests/fixtures/run-guided-install-pty.js
 EXCLUDE	OUT_OF_DOMAIN		1288	tests/fixtures/session-start-alias-read-preload.cjs
@@ -4175,10 +4227,10 @@ EXCLUDE	OUT_OF_DOMAIN		3891	tests/fixtures/tasteforge-video/final-contract.json
 EXCLUDE	OUT_OF_DOMAIN		483	tests/fixtures/tasteforge-video/reject-continue-without-anchor.json
 EXCLUDE	OUT_OF_DOMAIN		392	tests/fixtures/tasteforge-video/reject-dry-run-false.json
 EXCLUDE	OUT_OF_DOMAIN		16124	tests/gan-harness.test.js
-EXCLUDE	OUT_OF_DOMAIN		11127	tests/hermes-hooks.test.js
+EXCLUDE	OUT_OF_DOMAIN		11464	tests/hermes-hooks.test.js
 EXCLUDE	OUT_OF_DOMAIN		5331	tests/hooks/auto-tmux-dev.test.js
 EXCLUDE	OUT_OF_DOMAIN		7387	tests/hooks/bash-hook-dispatcher.test.js
-EXCLUDE	OUT_OF_DOMAIN		94209	tests/hooks/block-no-verify.test.js
+EXCLUDE	OUT_OF_DOMAIN		95133	tests/hooks/block-no-verify.test.js
 EXCLUDE	OUT_OF_DOMAIN		3420	tests/hooks/check-hook-enabled.test.js
 EXCLUDE	OUT_OF_DOMAIN		11044	tests/hooks/claude-config-dir-routing.test.js
 EXCLUDE	OUT_OF_DOMAIN		20417	tests/hooks/config-protection.test.js
@@ -4194,9 +4246,12 @@ EXCLUDE	OUT_OF_DOMAIN		10257	tests/hooks/detect-project-worktree.test.js
 EXCLUDE	OUT_OF_DOMAIN		10835	tests/hooks/doc-file-warning.test.js
 EXCLUDE	OUT_OF_DOMAIN		11044	tests/hooks/ecc-context-monitor.test.js
 EXCLUDE	OUT_OF_DOMAIN		28221	tests/hooks/ecc-metrics-bridge.test.js
+EXCLUDE	OUT_OF_DOMAIN		7233	tests/hooks/ecc-statusline-late.test.js
+EXCLUDE	OUT_OF_DOMAIN		4348	tests/hooks/ecc-statusline-project-plugins.test.js
+EXCLUDE	OUT_OF_DOMAIN		3010	tests/hooks/ecc-statusline-usage.test.js
 EXCLUDE	OUT_OF_DOMAIN		5475	tests/hooks/ecc-statusline.test.js
 EXCLUDE	OUT_OF_DOMAIN		16730	tests/hooks/evaluate-session.test.js
-EXCLUDE	OUT_OF_DOMAIN		354892	tests/hooks/gateguard-fact-force.test.js
+EXCLUDE	OUT_OF_DOMAIN		357180	tests/hooks/gateguard-fact-force.test.js
 EXCLUDE	OUT_OF_DOMAIN		15981	tests/hooks/gateguard-metrics.test.js
 EXCLUDE	OUT_OF_DOMAIN		2833	tests/hooks/gateguard-scenarios.test.js
 EXCLUDE	OUT_OF_DOMAIN		26208	tests/hooks/governance-capture.test.js
@@ -4216,7 +4271,9 @@ EXCLUDE	OUT_OF_DOMAIN		4815	tests/hooks/migrate-homunculus-home-escape.test.js
 EXCLUDE	OUT_OF_DOMAIN		4576	tests/hooks/observe-entrypoint-allowlist.test.js
 EXCLUDE	OUT_OF_DOMAIN		2655	tests/hooks/observe-entrypoint-security.test.js
 EXCLUDE	OUT_OF_DOMAIN		16496	tests/hooks/observe-nosurvive-warning.test.js
-EXCLUDE	OUT_OF_DOMAIN		9174	tests/hooks/observe-signal-counter-race.test.js
+EXCLUDE	OUT_OF_DOMAIN		1245	tests/hooks/observe-secret-redaction-environment.test.js
+EXCLUDE	OUT_OF_DOMAIN		3293	tests/hooks/observe-secret-redaction.test.js
+EXCLUDE	OUT_OF_DOMAIN		13525	tests/hooks/observe-signal-counter-race.test.js
 EXCLUDE	OUT_OF_DOMAIN		7313	tests/hooks/observe-signal-timeout.test.js
 EXCLUDE	OUT_OF_DOMAIN		8689	tests/hooks/observe-subdirectory-detection.test.js
 EXCLUDE	OUT_OF_DOMAIN		13428	tests/hooks/observer-loop-archive.test.js
@@ -4236,6 +4293,7 @@ EXCLUDE	OUT_OF_DOMAIN		5075	tests/hooks/pre-bash-reminders.test.js
 EXCLUDE	OUT_OF_DOMAIN		2381	tests/hooks/pre-bash-tmux-reminder.test.js
 EXCLUDE	OUT_OF_DOMAIN		4945	tests/hooks/pre-compact.test.js
 EXCLUDE	OUT_OF_DOMAIN		12302	tests/hooks/quality-gate.test.js
+EXCLUDE	OUT_OF_DOMAIN		4077	tests/hooks/registered-profile-root.test.js
 EXCLUDE	OUT_OF_DOMAIN		18425	tests/hooks/run-with-flags-no-output.test.js
 EXCLUDE	OUT_OF_DOMAIN		5436	tests/hooks/run-with-flags-truncation.test.js
 EXCLUDE	OUT_OF_DOMAIN		23806	tests/hooks/session-activity-tracker.test.js
@@ -4251,24 +4309,27 @@ EXCLUDE	OUT_OF_DOMAIN		10344	tests/integration/plan-canvas-e2e.test.js
 EXCLUDE	OUT_OF_DOMAIN		12802	tests/lib/agent-compress.test.js
 EXCLUDE	OUT_OF_DOMAIN		26904	tests/lib/agent-data-home.test.js
 EXCLUDE	OUT_OF_DOMAIN		8680	tests/lib/agent-proximity-projection.test.js
+EXCLUDE	OUT_OF_DOMAIN		12783	tests/lib/agent-proximity-shadow-trail.test.js
 EXCLUDE	OUT_OF_DOMAIN		8332	tests/lib/agent-proximity.test.js
+EXCLUDE	OUT_OF_DOMAIN		5422	tests/lib/agent-tool-map.test.js
 EXCLUDE	OUT_OF_DOMAIN		27533	tests/lib/antigravity-legacy-migration.test.js
 EXCLUDE	OUT_OF_DOMAIN		13847	tests/lib/astra-review-codex.test.js
 EXCLUDE	OUT_OF_DOMAIN		4100	tests/lib/astra-review-fix.test.js
 EXCLUDE	OUT_OF_DOMAIN		6222	tests/lib/astra-review-prompt.test.js
 EXCLUDE	OUT_OF_DOMAIN		23041	tests/lib/astra-review-scope.test.js
-EXCLUDE	OUT_OF_DOMAIN		10518	tests/lib/atomic-write.test.js
+EXCLUDE	OUT_OF_DOMAIN		12197	tests/lib/atomic-write.test.js
 EXCLUDE	OUT_OF_DOMAIN		4438	tests/lib/changed-files-store.test.js
 EXCLUDE	OUT_OF_DOMAIN		3361	tests/lib/claude-commit-attribution.test.js
 EXCLUDE	OUT_OF_DOMAIN		4955	tests/lib/claude-history-alias-unavailable.test.js
 EXCLUDE	OUT_OF_DOMAIN		28367	tests/lib/claude-plugin-setup.test.js
-EXCLUDE	OUT_OF_DOMAIN		22073	tests/lib/claude-scope-migration.test.js
+EXCLUDE	OUT_OF_DOMAIN		33561	tests/lib/claude-scope-migration.test.js
 EXCLUDE	OUT_OF_DOMAIN		3328	tests/lib/claude-settings-array.test.js
 EXCLUDE	OUT_OF_DOMAIN		6494	tests/lib/claude-settings-lock.test.js
 EXCLUDE	OUT_OF_DOMAIN		40408	tests/lib/claude-settings.test.js
 EXCLUDE	OUT_OF_DOMAIN		26137	tests/lib/codex-legacy-sync.test.js
 EXCLUDE	OUT_OF_DOMAIN		22345	tests/lib/codex-plugin-setup.test.js
-EXCLUDE	OUT_OF_DOMAIN		5067	tests/lib/command-plugin-root.test.js
+EXCLUDE	OUT_OF_DOMAIN		11092	tests/lib/command-plugin-root.test.js
+EXCLUDE	OUT_OF_DOMAIN		3123	tests/lib/compute-sponsor.test.js
 EXCLUDE	OUT_OF_DOMAIN		15078	tests/lib/context-carrier-fixture.test.js
 EXCLUDE	OUT_OF_DOMAIN		19719	tests/lib/context-carriers.test.js
 EXCLUDE	OUT_OF_DOMAIN		12953	tests/lib/context-pack-registry.test.js
@@ -4276,7 +4337,7 @@ EXCLUDE	OUT_OF_DOMAIN		3112	tests/lib/context-profile-auto-launch.test.js
 EXCLUDE	OUT_OF_DOMAIN		6503	tests/lib/context-profile-eval-corpus.test.js
 EXCLUDE	OUT_OF_DOMAIN		39231	tests/lib/context-profile-eval.test.js
 EXCLUDE	OUT_OF_DOMAIN		6802	tests/lib/context-profile-interactive.test.js
-EXCLUDE	OUT_OF_DOMAIN		8526	tests/lib/context-profile-launch.test.js
+EXCLUDE	OUT_OF_DOMAIN		18503	tests/lib/context-profile-launch.test.js
 EXCLUDE	OUT_OF_DOMAIN		14670	tests/lib/context-profile-native-claude.test.js
 EXCLUDE	OUT_OF_DOMAIN		21277	tests/lib/context-profile-native.test.js
 EXCLUDE	OUT_OF_DOMAIN		2046	tests/lib/context-profile-proposal.test.js
@@ -4288,21 +4349,22 @@ EXCLUDE	OUT_OF_DOMAIN		11879	tests/lib/context-resources.test.js
 EXCLUDE	OUT_OF_DOMAIN		6136	tests/lib/context-retrieval.test.js
 EXCLUDE	OUT_OF_DOMAIN		16699	tests/lib/context-routing-index.test.js
 EXCLUDE	OUT_OF_DOMAIN		2896	tests/lib/context-selection-admission.test.js
-EXCLUDE	OUT_OF_DOMAIN		20794	tests/lib/context-selection.test.js
+EXCLUDE	OUT_OF_DOMAIN		41677	tests/lib/context-selection.test.js
 EXCLUDE	OUT_OF_DOMAIN		2756	tests/lib/control-pane-actions.test.js
 EXCLUDE	OUT_OF_DOMAIN		14562	tests/lib/control-pane-contention.test.js
 EXCLUDE	OUT_OF_DOMAIN		3783	tests/lib/control-pane-message-sink.test.js
-EXCLUDE	OUT_OF_DOMAIN		18086	tests/lib/control-pane-proximity.test.js
+EXCLUDE	OUT_OF_DOMAIN		18284	tests/lib/control-pane-proximity.test.js
 EXCLUDE	OUT_OF_DOMAIN		28267	tests/lib/control-pane-state.test.js
 EXCLUDE	OUT_OF_DOMAIN		32302	tests/lib/control-pane-ui.test.js
 EXCLUDE	OUT_OF_DOMAIN		4521	tests/lib/control-plane-view-ui-a11y.test.js
 EXCLUDE	OUT_OF_DOMAIN		28066	tests/lib/control-plane-view-ui.test.js
 EXCLUDE	OUT_OF_DOMAIN		16886	tests/lib/control-plane-view.test.js
 EXCLUDE	OUT_OF_DOMAIN		17042	tests/lib/copilot-install-target.test.js
+EXCLUDE	OUT_OF_DOMAIN		4013	tests/lib/cursor-agent-names.test.js
 EXCLUDE	OUT_OF_DOMAIN		10479	tests/lib/dry-run.test.js
 EXCLUDE	OUT_OF_DOMAIN		4768	tests/lib/eval-harness/canonical.test.js
 EXCLUDE	OUT_OF_DOMAIN		27173	tests/lib/eval-harness/capsule.test.js
-EXCLUDE	OUT_OF_DOMAIN		8321	tests/lib/eval-harness/cli.test.js
+EXCLUDE	OUT_OF_DOMAIN		9194	tests/lib/eval-harness/cli.test.js
 EXCLUDE	OUT_OF_DOMAIN		8848	tests/lib/eval-harness/envelope.test.js
 EXCLUDE	OUT_OF_DOMAIN		4545	tests/lib/eval-harness/gate.test.js
 EXCLUDE	OUT_OF_DOMAIN		1824	tests/lib/eval-harness/helpers.js
@@ -4310,18 +4372,20 @@ EXCLUDE	OUT_OF_DOMAIN		19294	tests/lib/eval-harness/receipt.test.js
 EXCLUDE	OUT_OF_DOMAIN		8016	tests/lib/eval-harness/replay.test.js
 EXCLUDE	OUT_OF_DOMAIN		8685	tests/lib/eval-harness/retrospective.test.js
 EXCLUDE	OUT_OF_DOMAIN		9682	tests/lib/eval-harness/security.test.js
+EXCLUDE	OUT_OF_DOMAIN		4742	tests/lib/feedback-links.test.js
 EXCLUDE	OUT_OF_DOMAIN		1997	tests/lib/file-tail.test.js
 EXCLUDE	OUT_OF_DOMAIN		43632	tests/lib/gateguard-change-profile.test.js
-EXCLUDE	OUT_OF_DOMAIN		3513	tests/lib/gateguard-code-lexer.test.js
+EXCLUDE	OUT_OF_DOMAIN		4136	tests/lib/gateguard-code-lexer.test.js
 EXCLUDE	OUT_OF_DOMAIN		2711	tests/lib/gateguard-file-context.test.js
 EXCLUDE	OUT_OF_DOMAIN		6071	tests/lib/gateguard-metrics.test.js
 EXCLUDE	OUT_OF_DOMAIN		8223	tests/lib/gateguard-readonly-shell.test.js
-EXCLUDE	OUT_OF_DOMAIN		10487	tests/lib/gateguard-search-evidence.test.js
-EXCLUDE	OUT_OF_DOMAIN		3587	tests/lib/gateguard-search-filters.test.js
+EXCLUDE	OUT_OF_DOMAIN		15549	tests/lib/gateguard-search-evidence.test.js
+EXCLUDE	OUT_OF_DOMAIN		9664	tests/lib/gateguard-search-filters.test.js
 EXCLUDE	OUT_OF_DOMAIN		3610	tests/lib/gateguard-state.test.js
-EXCLUDE	OUT_OF_DOMAIN		35186	tests/lib/gateguard-target-class.test.js
+EXCLUDE	OUT_OF_DOMAIN		36559	tests/lib/gateguard-target-class.test.js
 EXCLUDE	OUT_OF_DOMAIN		18239	tests/lib/gateguard-turn-scan.test.js
 EXCLUDE	OUT_OF_DOMAIN		10324	tests/lib/github-coordination-branches.test.js
+EXCLUDE	OUT_OF_DOMAIN		3222	tests/lib/github-coordination-gh-api.test.js
 EXCLUDE	OUT_OF_DOMAIN		10736	tests/lib/github-coordination-policy.test.js
 EXCLUDE	OUT_OF_DOMAIN		7910	tests/lib/github-coordination-store.test.js
 EXCLUDE	OUT_OF_DOMAIN		11337	tests/lib/github-coordination.test.js
@@ -4337,26 +4401,27 @@ EXCLUDE	OUT_OF_DOMAIN		1092	tests/lib/helpers/mini-test-runner.js
 EXCLUDE	OUT_OF_DOMAIN		1620	tests/lib/helpers/session-alias-worker.js
 EXCLUDE	OUT_OF_DOMAIN		591	tests/lib/helpers/settings-lock-worker.js
 EXCLUDE	OUT_OF_DOMAIN		9745	tests/lib/helpers/state-store-worker.js
-EXCLUDE	OUT_OF_DOMAIN		1440	tests/lib/helpers/windows-test-env.js
+EXCLUDE	OUT_OF_DOMAIN		2532	tests/lib/helpers/windows-test-env.js
 EXCLUDE	OUT_OF_DOMAIN		12968	tests/lib/hook-consent.test.js
 EXCLUDE	OUT_OF_DOMAIN		3119	tests/lib/hook-session.test.js
 EXCLUDE	OUT_OF_DOMAIN		9779	tests/lib/inspection.test.js
 EXCLUDE	OUT_OF_DOMAIN		34596	tests/lib/install-claude-skill-migration.test.js
-EXCLUDE	OUT_OF_DOMAIN		22776	tests/lib/install-codex-config-preservation.test.js
+EXCLUDE	OUT_OF_DOMAIN		22934	tests/lib/install-codex-config-preservation.test.js
 EXCLUDE	OUT_OF_DOMAIN		6301	tests/lib/install-config.test.js
 EXCLUDE	OUT_OF_DOMAIN		62734	tests/lib/install-executor.test.js
 EXCLUDE	OUT_OF_DOMAIN		152455	tests/lib/install-lifecycle.test.js
 EXCLUDE	OUT_OF_DOMAIN		9720	tests/lib/install-link-rewrite.test.js
-EXCLUDE	OUT_OF_DOMAIN		40944	tests/lib/install-manifests.test.js
+EXCLUDE	OUT_OF_DOMAIN		41068	tests/lib/install-manifests.test.js
 EXCLUDE	OUT_OF_DOMAIN		4819	tests/lib/install-plan-boundary.test.js
 EXCLUDE	OUT_OF_DOMAIN		2797	tests/lib/install-plugin-namespace.test.js
-EXCLUDE	OUT_OF_DOMAIN		8997	tests/lib/install-request.test.js
+EXCLUDE	OUT_OF_DOMAIN		11450	tests/lib/install-request.test.js
 EXCLUDE	OUT_OF_DOMAIN		27896	tests/lib/install-stale-operations.test.js
 EXCLUDE	OUT_OF_DOMAIN		12956	tests/lib/install-state-projection.test.js
 EXCLUDE	OUT_OF_DOMAIN		4616	tests/lib/install-state-selective-reinstall.test.js
 EXCLUDE	OUT_OF_DOMAIN		17108	tests/lib/install-state.test.js
-EXCLUDE	OUT_OF_DOMAIN		56974	tests/lib/install-targets.test.js
+EXCLUDE	OUT_OF_DOMAIN		58616	tests/lib/install-targets.test.js
 EXCLUDE	OUT_OF_DOMAIN		8581	tests/lib/instinct-relevance.test.js
+EXCLUDE	OUT_OF_DOMAIN		3735	tests/lib/invocation-environment.test.js
 EXCLUDE	OUT_OF_DOMAIN		10008	tests/lib/llm-summary.test.js
 EXCLUDE	OUT_OF_DOMAIN		16828	tests/lib/locale-install.test.js
 EXCLUDE	OUT_OF_DOMAIN		4423	tests/lib/loopback-guard.test.js
@@ -4392,7 +4457,7 @@ EXCLUDE	OUT_OF_DOMAIN		9946	tests/lib/session-adapters-opencode.test.js
 EXCLUDE	OUT_OF_DOMAIN		33125	tests/lib/session-adapters.test.js
 EXCLUDE	OUT_OF_DOMAIN		3755	tests/lib/session-aliases-concurrency.test.js
 EXCLUDE	OUT_OF_DOMAIN		3706	tests/lib/session-aliases-read.test.js
-EXCLUDE	OUT_OF_DOMAIN		87646	tests/lib/session-aliases.test.js
+EXCLUDE	OUT_OF_DOMAIN		87721	tests/lib/session-aliases.test.js
 EXCLUDE	OUT_OF_DOMAIN		10253	tests/lib/session-bridge.test.js
 EXCLUDE	OUT_OF_DOMAIN		22075	tests/lib/session-cost-snapshot.test.js
 EXCLUDE	OUT_OF_DOMAIN		131285	tests/lib/session-manager.test.js
@@ -4400,19 +4465,21 @@ EXCLUDE	OUT_OF_DOMAIN		785	tests/lib/setup-readline-cancellation.test.js
 EXCLUDE	OUT_OF_DOMAIN		3912	tests/lib/shell-split.test.js
 EXCLUDE	OUT_OF_DOMAIN		9887	tests/lib/shell-substitution.test.js
 EXCLUDE	OUT_OF_DOMAIN		28983	tests/lib/skill-dashboard.test.js
-EXCLUDE	OUT_OF_DOMAIN		25130	tests/lib/skill-evolution.test.js
+EXCLUDE	OUT_OF_DOMAIN		21940	tests/lib/skill-evolution-storage.test.js
+EXCLUDE	OUT_OF_DOMAIN		32052	tests/lib/skill-evolution.test.js
 EXCLUDE	OUT_OF_DOMAIN		6368	tests/lib/skill-improvement.test.js
-EXCLUDE	OUT_OF_DOMAIN		8103	tests/lib/state-store-concurrency.test.js
+EXCLUDE	OUT_OF_DOMAIN		8352	tests/lib/state-store-concurrency.test.js
 EXCLUDE	OUT_OF_DOMAIN		39634	tests/lib/state-store-persistence.test.js
 EXCLUDE	OUT_OF_DOMAIN		22349	tests/lib/state-store-read-cache.test.js
 EXCLUDE	OUT_OF_DOMAIN		39022	tests/lib/state-store.test.js
+EXCLUDE	OUT_OF_DOMAIN		10776	tests/lib/statusline-render.test.js
 EXCLUDE	OUT_OF_DOMAIN		5011	tests/lib/terminal-spinner.test.js
 EXCLUDE	OUT_OF_DOMAIN		5659	tests/lib/terminal-welcome.test.js
 EXCLUDE	OUT_OF_DOMAIN		14139	tests/lib/tmux-worktree-orchestrator.test.js
 EXCLUDE	OUT_OF_DOMAIN		13740	tests/lib/transcript-context.test.js
-EXCLUDE	OUT_OF_DOMAIN		135241	tests/lib/utils.test.js
+EXCLUDE	OUT_OF_DOMAIN		135400	tests/lib/utils.test.js
 EXCLUDE	OUT_OF_DOMAIN		3801	tests/lib/windows-bash.test.js
-EXCLUDE	OUT_OF_DOMAIN		2527	tests/lib/windows-test-env.test.js
+EXCLUDE	OUT_OF_DOMAIN		7251	tests/lib/windows-test-env.test.js
 EXCLUDE	OUT_OF_DOMAIN		10218	tests/lib/work-item-runner.test.js
 EXCLUDE	OUT_OF_DOMAIN		12373	tests/lib/worktree-lifecycle.test.js
 EXCLUDE	OUT_OF_DOMAIN		4390	tests/opencode-config.test.js
@@ -4426,17 +4493,18 @@ EXCLUDE	OUT_OF_DOMAIN		4879	tests/pi/pi-hook-runtime.test.js
 EXCLUDE	OUT_OF_DOMAIN		14645	tests/pi/pi-package-manifest.test.js
 EXCLUDE	OUT_OF_DOMAIN		36273	tests/plugin-manifest.test.js
 EXCLUDE	OUT_OF_DOMAIN		7060	tests/qoder-plugin.test.js
-EXCLUDE	OUT_OF_DOMAIN		7122	tests/run-all.js
+EXCLUDE	OUT_OF_DOMAIN		11000	tests/run-all.js
 EXCLUDE	OUT_OF_DOMAIN		12825	tests/scripts/astra-review.test.js
-EXCLUDE	OUT_OF_DOMAIN		17976	tests/scripts/auto-update.test.js
+EXCLUDE	OUT_OF_DOMAIN		22051	tests/scripts/auto-update.test.js
 EXCLUDE	OUT_OF_DOMAIN		14972	tests/scripts/build-opencode.test.js
 EXCLUDE	OUT_OF_DOMAIN		2315	tests/scripts/build-pi-core.test.js
 EXCLUDE	OUT_OF_DOMAIN		3513	tests/scripts/catalog.test.js
 EXCLUDE	OUT_OF_DOMAIN		8452	tests/scripts/check-unicode-safety.test.js
 EXCLUDE	OUT_OF_DOMAIN		13057	tests/scripts/claw.test.js
-EXCLUDE	OUT_OF_DOMAIN		51140	tests/scripts/codex-hooks.test.js
+EXCLUDE	OUT_OF_DOMAIN		51480	tests/scripts/codex-hooks.test.js
+EXCLUDE	OUT_OF_DOMAIN		13704	tests/scripts/command-runtime.test.js
 EXCLUDE	OUT_OF_DOMAIN		8475	tests/scripts/consult.test.js
-EXCLUDE	OUT_OF_DOMAIN		27451	tests/scripts/control-pane.test.js
+EXCLUDE	OUT_OF_DOMAIN		27922	tests/scripts/control-pane.test.js
 EXCLUDE	OUT_OF_DOMAIN		7297	tests/scripts/coordination-goals.test.js
 EXCLUDE	OUT_OF_DOMAIN		11465	tests/scripts/coordination-inventory.test.js
 EXCLUDE	OUT_OF_DOMAIN		11941	tests/scripts/council-multi-model.test.js
@@ -4449,16 +4517,17 @@ EXCLUDE	OUT_OF_DOMAIN		11323	tests/scripts/ecc-universal-bin.test.js
 EXCLUDE	OUT_OF_DOMAIN		14616	tests/scripts/ecc.test.js
 EXCLUDE	OUT_OF_DOMAIN		6752	tests/scripts/eval-harness-package.test.js
 EXCLUDE	OUT_OF_DOMAIN		2825	tests/scripts/feedback.test.js
-EXCLUDE	OUT_OF_DOMAIN		11727	tests/scripts/gateguard-eval.test.js
+EXCLUDE	OUT_OF_DOMAIN		13730	tests/scripts/gateguard-eval.test.js
 EXCLUDE	OUT_OF_DOMAIN		3509	tests/scripts/gateguard-latency.test.js
 EXCLUDE	OUT_OF_DOMAIN		6679	tests/scripts/gateguard-report.test.js
 EXCLUDE	OUT_OF_DOMAIN		4836	tests/scripts/gemini-adapt-agents.test.js
 EXCLUDE	OUT_OF_DOMAIN		704	tests/scripts/generate-skill-triggers.test.js
-EXCLUDE	OUT_OF_DOMAIN		11701	tests/scripts/github-coordination.test.js
+EXCLUDE	OUT_OF_DOMAIN		12711	tests/scripts/github-coordination.test.js
 EXCLUDE	OUT_OF_DOMAIN		3036	tests/scripts/harness-audit-consumer-boundary.test.js
 EXCLUDE	OUT_OF_DOMAIN		44856	tests/scripts/harness-audit.test.js
-EXCLUDE	OUT_OF_DOMAIN		73588	tests/scripts/install-apply.test.js
+EXCLUDE	OUT_OF_DOMAIN		75085	tests/scripts/install-apply.test.js
 EXCLUDE	OUT_OF_DOMAIN		5451	tests/scripts/install-dry-run.test.js
+EXCLUDE	OUT_OF_DOMAIN		2050	tests/scripts/install-guided-global-dry-run.test.js
 EXCLUDE	OUT_OF_DOMAIN		15676	tests/scripts/install-guided.test.js
 EXCLUDE	OUT_OF_DOMAIN		7369	tests/scripts/install-plan.test.js
 EXCLUDE	OUT_OF_DOMAIN		14645	tests/scripts/install-ps1.test.js
@@ -4483,7 +4552,7 @@ EXCLUDE	OUT_OF_DOMAIN		34445	tests/scripts/operator-readiness-dashboard.test.js
 EXCLUDE	OUT_OF_DOMAIN		6386	tests/scripts/orchestrate-codex-worker.test.js
 EXCLUDE	OUT_OF_DOMAIN		2113	tests/scripts/orchestration-status.test.js
 EXCLUDE	OUT_OF_DOMAIN		9779	tests/scripts/ownership-guard.test.js
-EXCLUDE	OUT_OF_DOMAIN		70187	tests/scripts/plan-canvas.test.js
+EXCLUDE	OUT_OF_DOMAIN		70636	tests/scripts/plan-canvas.test.js
 EXCLUDE	OUT_OF_DOMAIN		16088	tests/scripts/platform-audit.test.js
 EXCLUDE	OUT_OF_DOMAIN		5130	tests/scripts/plugin-install-without-node-modules.test.js
 EXCLUDE	OUT_OF_DOMAIN		3073	tests/scripts/post-bash-command-log.test.js
@@ -4499,22 +4568,23 @@ EXCLUDE	OUT_OF_DOMAIN		6289	tests/scripts/release-heading.test.js
 EXCLUDE	OUT_OF_DOMAIN		5072	tests/scripts/release-publish.test.js
 EXCLUDE	OUT_OF_DOMAIN		12083	tests/scripts/release-video-suite.test.js
 EXCLUDE	OUT_OF_DOMAIN		9072	tests/scripts/release.test.js
-EXCLUDE	OUT_OF_DOMAIN		13716	tests/scripts/repair.test.js
+EXCLUDE	OUT_OF_DOMAIN		13783	tests/scripts/repair.test.js
 EXCLUDE	OUT_OF_DOMAIN		12106	tests/scripts/session-inspect.test.js
 EXCLUDE	OUT_OF_DOMAIN		1442	tests/scripts/setup-options.test.js
 EXCLUDE	OUT_OF_DOMAIN		16596	tests/scripts/setup-package-manager.test.js
-EXCLUDE	OUT_OF_DOMAIN		36070	tests/scripts/setup.test.js
+EXCLUDE	OUT_OF_DOMAIN		36105	tests/scripts/setup.test.js
 EXCLUDE	OUT_OF_DOMAIN		23042	tests/scripts/skill-create-output.test.js
 EXCLUDE	OUT_OF_DOMAIN		17017	tests/scripts/skill-stocktake-discovery.test.js
 EXCLUDE	OUT_OF_DOMAIN		6527	tests/scripts/skill-stocktake-save-results.test.js
 EXCLUDE	OUT_OF_DOMAIN		6531	tests/scripts/sync-ecc-to-codex.test.js
 EXCLUDE	OUT_OF_DOMAIN		6149	tests/scripts/trae-install.test.js
-EXCLUDE	OUT_OF_DOMAIN		31646	tests/scripts/uninstall.test.js
+EXCLUDE	OUT_OF_DOMAIN		31655	tests/scripts/uninstall.test.js
 EXCLUDE	OUT_OF_DOMAIN		19780	tests/scripts/validate-carrier-closure.test.js
 EXCLUDE	OUT_OF_DOMAIN		3859	tests/scripts/welcome.test.js
-EXCLUDE	OUT_OF_DOMAIN		4982	tests/scripts/work-items.test.js
+EXCLUDE	OUT_OF_DOMAIN		6862	tests/scripts/work-items.test.js
 EXCLUDE	OUT_OF_DOMAIN		21107	tests/skills/build-agreement.test.js
-EXCLUDE	OUT_OF_DOMAIN		12843	tests/skills/desk-pattern-skills.test.js
+EXCLUDE	OUT_OF_DOMAIN		2423	tests/skills/context-budget.test.js
+EXCLUDE	OUT_OF_DOMAIN		12963	tests/skills/desk-pattern-skills.test.js
 EXCLUDE	OUT_OF_DOMAIN		3439	tests/skills/docker-patterns.test.js
 EXCLUDE	OUT_OF_DOMAIN		2936	tests/skills/docs-governance.test.js
 EXCLUDE	OUT_OF_DOMAIN		7192	tests/skills/frontend-design-direction.test.js
@@ -4526,16 +4596,20 @@ EXCLUDE	OUT_OF_DOMAIN		14800	tests/skills/repo-scan-install.test.js
 EXCLUDE	OUT_OF_DOMAIN		30124	tests/skills/sanitizer-unreadable.test.js
 EXCLUDE	OUT_OF_DOMAIN		17210	tests/skills/terminal-opener.test.js
 EXCLUDE	OUT_OF_DOMAIN		22336	tests/skills/test_approval_delivery_claims.py
+EXCLUDE	OUT_OF_DOMAIN		7355	tests/test_agent_self_evaluation.py
 EXCLUDE	OUT_OF_DOMAIN		5374	tests/test_astraflow_provider.py
 EXCLUDE	OUT_OF_DOMAIN		5943	tests/test_atlas_provider.py
 EXCLUDE	OUT_OF_DOMAIN		3654	tests/test_builder.py
-EXCLUDE	OUT_OF_DOMAIN		5122	tests/test_claude_provider.py
+EXCLUDE	OUT_OF_DOMAIN		6525	tests/test_claude_provider.py
 EXCLUDE	OUT_OF_DOMAIN		33515	tests/test_docs_governance_audit.py
 EXCLUDE	OUT_OF_DOMAIN		4437	tests/test_executor.py
 EXCLUDE	OUT_OF_DOMAIN		1891	tests/test_invariant_runner.py
-EXCLUDE	OUT_OF_DOMAIN		9012	tests/test_provider_tools.py
-EXCLUDE	OUT_OF_DOMAIN		3568	tests/test_resolver.py
+EXCLUDE	OUT_OF_DOMAIN		8046	tests/test_model_config.py
+EXCLUDE	OUT_OF_DOMAIN		19126	tests/test_provider_tools.py
+EXCLUDE	OUT_OF_DOMAIN		10036	tests/test_reasoning.py
+EXCLUDE	OUT_OF_DOMAIN		13652	tests/test_resolver.py
 EXCLUDE	OUT_OF_DOMAIN		2085	tests/test_selector.py
+EXCLUDE	OUT_OF_DOMAIN		10879	tests/test_selector_workflows.py
 EXCLUDE	OUT_OF_DOMAIN		3613	tests/test_taste_blender.py
 EXCLUDE	OUT_OF_DOMAIN		4472	tests/test_taste_mint3d.py
 EXCLUDE	OUT_OF_DOMAIN		10351	tests/test_taste_overlays.py

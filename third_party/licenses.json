@@ -13,7 +13,7 @@
  "agency": {
   "attribution": "Copyright (c) 2025 AgentLand Contributors",
   "bundled_files": 77,
-  "commit_sha": "f99f6aa910a442b0197b768ce0ea7751e35e2060",
+  "commit_sha": "4e3ac3ca6604c75113f52c695dbddcc7af928b46",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -58,7 +58,7 @@
  "beacon": {
   "attribution": "Copyright (c) 2026 Asymptote Labs",
   "bundled_files": 78,
-  "commit_sha": "24628397aad97f178cf16a36184ac7537e8007de",
+  "commit_sha": "cfbd7b1d721664e3b1b5ca2fca5eac4327532c07",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -103,7 +103,7 @@
  "ecc": {
   "attribution": "Copyright (c) 2026 Affaan Mustafa",
   "bundled_files": 411,
-  "commit_sha": "2d515e4fc2ddef97354769812cf3f7b9ec4e5124",
+  "commit_sha": "90606c8315ee09cafc303515c5f33024db6b9882",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -113,8 +113,8 @@
  },
  "graphify": {
   "attribution": "Copyright (c) 2026 Safi Shamsi",
-  "bundled_files": 661,
-  "commit_sha": "b90b9df7949bd04a15b40a1624af85d0a9cfdf04",
+  "bundled_files": 668,
+  "commit_sha": "c588b72d936927790a87ad009955078ed40562a3",
   "license": "Apache-2.0",
   "license_files": [
    "LICENSE",
@@ -148,8 +148,8 @@
  },
  "opendesign": {
   "attribution": "Copyright 2026 Open Design contributors",
-  "bundled_files": 516,
-  "commit_sha": "17e255959703a3fad7c8eb7f7b70dcafccc5629a",
+  "bundled_files": 532,
+  "commit_sha": "e03d5c23f308c39f4de7c057568df66c29a84385",
   "license": "Apache-2.0",
   "license_files": [
    "LICENSE"
@@ -171,7 +171,7 @@
  "ponytail": {
   "attribution": "Copyright (c) 2026 DietrichGebert",
   "bundled_files": 19,
-  "commit_sha": "9b58c1ffb790c075ca32e70a89cf1d80588f4abf",
+  "commit_sha": "09c434ab73ca43761c5d8b0c5d341926c2fba710",
   "license": "MIT",
   "license_files": [
    "LICENSE"
@@ -192,8 +192,8 @@
  },
  "uiuxpromax": {
   "attribution": "Copyright (c) 2024 Next Level Builder",
-  "bundled_files": 274,
-  "commit_sha": "67803eac81607188194aea9842a723b89326d90d",
+  "bundled_files": 278,
+  "commit_sha": "28327f2f214d31bbd7555ed0c012a5df6484ed96",
   "license": "MIT",
   "license_files": [
    "LICENSE"

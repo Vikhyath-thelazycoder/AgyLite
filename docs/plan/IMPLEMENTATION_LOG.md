@@ -465,13 +465,30 @@ agylite benchmark --compare    → routing 49/49
 benchmark --quality --tier 0   → PASS
 ```
 
+## Owner-approved upstream updates (2026-10-23)
+
+The owner approved the 7 SECURITY_FAST_TRACK upstreams of the 2026-10-22 review. Each was re-reviewed against the
+Phase 7 rules and approved one at a time (`agylite update --review --repo X` → `--approve X`): uiuxpromax 67803ea →
+28327f2 (9 commits), ponytail 9b58c1f → 09c434a (44), graphify b90b9df → c588b72 (35), opendesign 17e2559 → e03d5c2
+(68), agency f99f6aa → 4e3ac3c (57), beacon 2462839 → cfbd7b1 (298), ecc 2d515e4 → 90606c8 (171; the first attempt
+hit a transient `git ls-remote` failure and was retried). Then `agylite update --promote`, rescans (from shallow
+clones; the blobless staging made the scanner fetch every blob), extraction matrix, matrix docs, notices and cards.
+
+- Ponytail's `hooks/ponytail-instructions.js` now requires `./ponytail-config`: both are generator inputs read at
+  build time (RULESET-lite.md ships, neither file does) → accepted gap.
+- `tools/audit/render_matrix_docs.py` had a hand-written license table without the MP4/MP5 upstreams; it now falls
+  back to `third_party/licenses.json`.
+
+Gate: bundle 1bcd9beb5094 known-good, self-tests unlazy/uiuxpromax/taste/youtube/archify exit 0; 455 tests OK; doctor
+64/0; validate 23/0; Tier 0 PASS; routing 49/49. Not applied: addy (ADOPT_AFTER_TIER1, waits for its Tier 1 run),
+gstack (NEEDS_RULES: review/SKILL.md rewrite drift).
+
 ## RESUME FROM
 
 <!-- p7-progress:start -->
-**Phase 7 (browser verification, D-049) — DONE (see "Phase 7"). NOW: apply the owner's approvals (2026-10-23) of the 7
-SECURITY_FAST_TRACK upstream updates — agency, beacon, ecc, graphify, opendesign, uiuxpromax, ponytail — one at a time
-(re-review → approve → promote → regenerate evidence → full gate → push); addy waits for its Tier 1 run, gstack for its
-review-rewrite fix. Then Phase 9 (parity loop, option 2 first), then every test + the results website.**
+**Phase 7 (browser verification, D-049) and the 7 owner-approved upstream updates are DONE. NOW: Phase 9 (parity
+loop): option 2 first, then the gstack rewrite fix + review, addy's Tier 1 run, the paid re-runs; then every test + the
+results website. The progress checklist is in IMPLEMENTATION_PLAN.md → "Resume here".**
 <!-- p7-progress:end -->
 
 How to work (any phase):
