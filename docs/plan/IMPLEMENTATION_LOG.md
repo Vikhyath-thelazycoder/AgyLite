@@ -483,12 +483,35 @@ Gate: bundle 1bcd9beb5094 known-good, self-tests unlazy/uiuxpromax/taste/youtube
 64/0; validate 23/0; Tier 0 PASS; routing 49/49. Not applied: addy (ADOPT_AFTER_TIER1, waits for its Tier 1 run),
 gstack (NEEDS_RULES: review/SKILL.md rewrite drift).
 
+## Phase 9: parity loop — code DONE on `impl/p9-parity-loop` (2026-10-23)
+
+| Item | Test that proves it | Notes |
+|---|---|---|
+| Option 2 (owner 2026-10-22, D-050): `skill_overlaps` in config/priorities.yaml (Pocock tdd / diagnosing-bugs / to-spec / to-tickets / grilling, Ponytail review / ponytail ↔ their Addy counterparts); the hook carries both whole, lead first and named (`prompt_hook.overlap_skill_max_tokens` 6,000) | `test_prompt_hook` (overlap, reversed side, partner over budget) | eng-addy's 6 prompts now get Addy's skill next to the lead; before, never |
+| Diagnosis item 3 (traces): rule `skill:` + route `skill_hints` (schema 7); rules `to-spec`, `to-tickets`, `code-review`, `tdd`; `release` ignores "in release 2.3.0" | `TestSkillHints`, OOD +4 (59/59) | before: to-spec → grilling, to-tickets → Addy docs, "review the diff that adds…" → implementation, "fix it test-first" unmatched, "slower in release 2.3.0" → gstack/ship |
+| `agylite validate` checks overlap and hint paths against the bundle | `test_overlap_and_rule_skill_paths_must_be_bundled` | |
+| gstack review rewrite (MP6 NEEDS_RULES): the D-035 text ("never open a browser") contradicted D-049 and drifted; now only the anchor line points at gstack's own install, upstream text verbatim; `qa/sections/exploratory.md` accepted gap (GSTACK_INSTALL) | `test_gstack_review_qa_points_at_gstacks_install_in_both_upstream_wordings` | re-review 5cb5e1c → b04cc35: SECURITY_FAST_TRACK, candidate c12a18c20c27, Tier 0 PASS — **not approved** (owner) |
+| Found: the bundle id ignores transform code, so an edited rewrite reused the old bundle text; TRANSFORM_VERSION 6 → 7 and a test pins the transform sources' hash to the version | `TestTransformVersion` | |
+| Found: the browser fixtures' `.agylite/flows.yaml` were never committed (`.gitignore` `.agylite/`), so Phase 7's fixture tests failed on a clean checkout | `test_browser` | |
+| research `youtube-transcript` task: a little-known video (EI4rvzpTDj8, ~44k views; 110 °F at 1:07, Minnesota at 2:21) instead of "Me at the zoo" | grader accepts the transcript answer, rejects a guess | |
+| addy re-review 1be8e34 → aeac41d: ADOPT_AFTER_TIER1, candidate fdf51ff600ac, Tier 0 PASS | — | the eng-addy original arm already runs aeac41d, so the AgyLite arm on this candidate is the like-for-like run |
+
+### Phase 9 gate (engine home `home-p9`, bundle 70c7149c3e1b, self-tests unlazy/uiuxpromax/taste/youtube/archify exit 0)
+
+```
+unittest discover -s tests     → Ran 465 tests — OK (skipped=10)
+agylite doctor                 → 64 passed, 0 failed, 3 warnings
+agylite validate               → 23 passed, 0 failed
+agylite benchmark --compare    → routing 49/49
+benchmark --quality --tier 0   → PASS (OOD 59/59)
+```
+
 ## RESUME FROM
 
 <!-- p7-progress:start -->
-**Phase 7 (browser verification, D-049) and the 7 owner-approved upstream updates are DONE. NOW: Phase 9 (parity
-loop): option 2 first, then the gstack rewrite fix + review, addy's Tier 1 run, the paid re-runs; then every test + the
-results website. The progress checklist is in IMPLEMENTATION_PLAN.md → "Resume here".**
+**Phase 9 code is DONE (see "Phase 9: parity loop" below). NOW: the owner's go-ahead for the Phase 9 paid re-runs and
+the gstack / addy approvals; then the parity loop on the results, every test + the results website. The progress
+checklist is in IMPLEMENTATION_PLAN.md → "Resume here". Engine home for Phase 9: `home-p9` (bundle 70c7149c3e1b).**
 <!-- p7-progress:end -->
 
 How to work (any phase):

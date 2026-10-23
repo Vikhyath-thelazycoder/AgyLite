@@ -17,10 +17,12 @@ TASKS = {
              lambda a: bool(re.search(r"\bTrue\b", a)) and "docs.python.org" in a and re.search(r"charref|character reference", a, re.I)),
     "rss": ("List the titles and links of the 3 newest items in the RSS feed https://hnrss.org/frontpage.",
             lambda a: len(set(re.findall(r"https?://[^\s)\]>]+", a)) - {"https://hnrss.org/frontpage"}) >= 3),
-    "youtube-transcript": ("In the YouTube video https://www.youtube.com/watch?v=jNQXAC9IVRw, what animals is the "
-                           "speaker standing in front of, and what does he say is cool about them? Quote him with "
-                           "the timestamp.",
-                           lambda a: re.search(r"elephant", a, re.I) and re.search(r"trunk", a, re.I)
+    # Phase 9: "Me at the zoo" was famous enough for plain Claude to answer from memory; this one (a small baking
+    # channel, ~44k views) can only be answered from its transcript (110 °F / 43 °C at 1:07, Minnesota at 2:21).
+    "youtube-transcript": ("In the YouTube video https://www.youtube.com/watch?v=EI4rvzpTDj8, what is the hottest water "
+                           "the speaker says you may feed a sourdough starter with, and in which US state did the "
+                           "speaker make a starter from scratch in winter? Quote the speaker with the timestamps.",
+                           lambda a: re.search(r"\b110\b", a) and re.search(r"minnesota", a, re.I)
                            and re.search(r"\b0?0?:?\d{1,2}:\d{2}\b|\b\d+\s*s(ec(onds?)?)?\b", a)),
     "github": ("Find the GitHub repository of the Archify diagram tool by the user tt-a1i. What license is it "
                "under, and what is the repository's URL?",

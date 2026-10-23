@@ -471,10 +471,15 @@ Done (on `main`):
       regenerated, bundle 1bcd9beb5094 (self-tests pass), every gate green, pushed
 
 Still to do:
-- [ ] Phase 9 parity loop: option 2 (overlapping skills load both primaries, owner 2026-10-22); fix gstack's
-      review-rewrite drift, then review/approve gstack; addy after its Tier 1 run
-- [ ] Phase 9 paid re-runs (≈ $40–50): eng-addy + eng-pocock (after option 2), youtube n = 3, diagram-archify n = 3,
-      design-taste, research with a less-known video
+- [x] Phase 9 code (2026-10-23, df4ed7c + e14ba43 + this commit): option 2 (D-050: overlapping skills load both
+      primaries; rules name their skill; to-spec/to-tickets/code-review/tdd/release routing fixes from the traces);
+      gstack review rewrite fixed for D-049 (NEEDS_RULES → SECURITY_FAST_TRACK, candidate c12a18c20c27, Tier 0 PASS);
+      TRANSFORM_VERSION 7 + guard test; browser fixture flows committed; research transcript task on a little-known
+      video; addy re-reviewed (ADOPT_AFTER_TIER1, candidate fdf51ff600ac). Bundle 70c7149c3e1b, gate green
+- [ ] Owner approvals waiting: gstack@b04cc35 (SECURITY_FAST_TRACK); addy@aeac41d after its Tier 1 run
+- [ ] Phase 9 paid re-runs (≈ $35–50, owner approval asked 2026-10-23): eng-addy + eng-pocock AgyLite arm on the addy
+      candidate (option 2 + addy update in one run), youtube n = 3, diagram-archify n = 3, research (new video),
+      design-taste AgyLite arm (optional)
 - [ ] Final: every test incl. every paid suite (≈ $80–120 at n = 3; tell the owner the total first), then the results
       website (per task: plain Claude vs the original skill vs AgyLite — code, grader checks, answer, score, cost) and
       `PARITY_REPORT.md`
