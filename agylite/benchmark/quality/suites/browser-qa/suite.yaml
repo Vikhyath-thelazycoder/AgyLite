@@ -1,0 +1,14 @@
+# IMPLEMENTATION_PLAN §5 browser-qa: gstack /qa (the original) vs AgyLite (which routes "QA the site" to the same /qa
+# from gstack's own install, D-049) vs plain Claude Code, on tests/fixtures/browser/broken-site (5 planted defects:
+# a console error on load, a 404 image, horizontal overflow at 390 px, a button whose click does nothing, an image
+# without alt text). Scored without a model: defects named in the report, and defects still present afterwards per
+# Agylite's own browser check (`agylite browser-check`, the fixture's flow). The fixture's "planted" comments are
+# stripped from the workspace copy, and the prompt states the button's expected text as a one-line spec.
+name: browser-qa
+runner: browser_qa_runner
+tasks: [broken-site]
+metrics: {defects_reported: higher, defects_fixed: higher}
+target: same
+credits:
+  - {repository: garrytan/gstack, license: MIT, commit: b04cc35832183a89ed71eed628de15a6f315a1a8,
+     used: "the qa skill and its browse daemon, from gstack's own install (the original arm, invoked as /qa)"}
