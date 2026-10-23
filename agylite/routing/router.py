@@ -17,11 +17,11 @@ from .fallback_bm25 import BM25
 from .rules import load_hierarchy, load_routing, match_paths, match_rules, role_of
 from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, select_capabilities
 
-# 2: browser disabled|exception-requested, verification_mode (D-035). 3: impact (P12). 4: lifecycle (P13).
+# 2: browser, verification_mode (D-035; 6: D-049 browser = required | not-needed). 3: impact (P12). 4: lifecycle (P13).
 # 5: urls (MP1 F1) — URLs/domains found in the request; matching sees the placeholder `urlref` in their place;
 #    unmatched + fallback_guidance (MP1 F4) — nothing fits, so the agent uses principles only;
 #    whole_skills (Plan B) — the capabilities whose primary skill loads whole (one, or two across domains).
-ROUTE_SCHEMA_VERSION = 5
+ROUTE_SCHEMA_VERSION = 6
 
 
 @dataclass
@@ -134,8 +134,10 @@ class Router:
         lifecycle = (steps_for(self.lifecycle, change_type, project.stage, capabilities=ids)
                      if set(domains) & LIFECYCLE_DOMAINS or "design/inspiration-extract" in ids else None)
         pipeline = next((h.pipeline for h in hits if h.pipeline), None) or domains
-        # D-035: browser verification is disabled by policy; an explicit request is only surfaced, never activated.
-        browser = "exception-requested" if any(h.browser_exception for h in hits) else "disabled"
+        # D-049: UI work (design, browser verification or QA routed) is done only after the browser check passes.
+        native = any(h.rule == "mobile-native" for h in hits)   # a native app has no web page to check
+        browser = ("required" if any(c in all_ids for c in ("testing/browser-verification", "testing/browser-qa"))
+                   or (any(domain_of(c) == "design" for c in all_ids) and not native) else "not-needed")
         confidence = ("high" if any(c.strong for c in selected) and best >= confident else
                       "medium" if selected and best >= confident else
                       "low" if selected else "none")

@@ -46,7 +46,7 @@ def _routing_problems(root: Path):
 # Files that must never be planned into a bundle (D-034 Appllama exclusions, D-035 browser verification).
 FORBIDDEN_BUNDLE_PATHS = ("appllama:skills/appllama-usage/", "appllama:.mcp.json", "appllama:mcp.json",
                           "appllama:skills/appllama-app-design-skill/references/simulator-loop.md",
-                          "addy:skills/browser-testing-with-devtools/", "ecc:skills/browser-qa/", "ecc:agents/e2e-runner.md",
+                          # D-049: gstack's browser skills run from gstack's own install, never from the bundle
                           "gstack:qa/sections/browser-", "gstack:design-review/")
 
 
@@ -139,17 +139,17 @@ def run(root: Path, online=False, unittests=True) -> int:
             "Simplicity review is explicit-only with the lowest priority", "Simplicity activation/priority invalid")
     r.end_section()
 
-    r.section("🧪 Verification Policy (local test-first, D-035)")
+    r.section("🧪 Verification Policy (tests and browser, D-049)")
     from ..verify import policy
     try:
         cfg = policy.load_policy(root)
         policy_problems = policy.policy_problems(cfg, cards)
     except (OSError, TypeError, ValueError) as exc:
         cfg, policy_problems = {}, [f"{type(exc).__name__}: {exc}"]
-    r.check(not policy_problems, f"Verification mode {cfg.get('mode')}; design work adds Taste inspect (MP4); Chrome "
-            "DevTools and visual browser QA disabled; no enabled capability needs a browser outside SEO/media/design",
+    r.check(not policy_problems, f"Verification mode {cfg.get('mode')}: tests for every change, plus the browser check "
+            "(screenshots at 1440/768/390, console, network, overflow, flows, Taste inspect) for UI work",
             "Verification policy violated: " + "; ".join(policy_problems[:3]))
-    r.check(not _forbidden_bundled(root), "No MCP config, appllama-usage, simulator loop or browser-QA file in the bundle plan",
+    r.check(not _forbidden_bundled(root), "No MCP config, appllama-usage, simulator loop or gstack browser-skill copy in the bundle plan",
             "Forbidden files in the bundle plan: " + ", ".join(_forbidden_bundled(root)[:3]))
     r.end_section()
 

@@ -17,7 +17,7 @@ description: Architecture, sequence, workflow, data-flow, lifecycle, ERD, class,
 
 Explainer pages are made only when the user asks for one. Agylite manages Archify updates.
 
-Verification policy: local test-first (`config/verification.yaml`); the one browser use is Archify's own
-browser-check of the rendered diagram (`diagram_verification`) — no Chrome DevTools, screenshots in context or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049); for diagrams that is Archify's own
+browser-check of the rendered page (`diagram_verification`); no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

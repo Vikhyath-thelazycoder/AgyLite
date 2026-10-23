@@ -18,6 +18,6 @@ video. If asked to edit or render, say that video editing is not part of Agylite
 (`yt-edit`) and Shorts picks (`yt-shorts`) to apply in the user's editor. Nothing publishes: the skills write, the
 creator uploads.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

@@ -75,3 +75,23 @@ jobs:
             exit 1
           fi
           echo "✅ No vendor copies confirmed"
+
+  # D-049 (IMPLEMENTATION_PLAN §4.1): the browser check must FAIL the broken fixture site and PASS the fixed one.
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Engine home
+        run: echo "AGYLITE_HOME=$RUNNER_TEMP/agylite" >> "$GITHUB_ENV"
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - uses: actions/setup-node@v4
+        with: {node-version: "22"}
+      - name: Install Agylite and the browser runtime
+        run: |
+          pip install -e .
+          agylite runtime install browser
+          (cd "$AGYLITE_HOME/runtimes/browser-"*/ && PLAYWRIGHT_BROWSERS_PATH="$PWD/browsers" npx playwright install-deps chromium)
+      - name: Browser fixture tests
+        run: python -m unittest tests.browser.test_browser -v

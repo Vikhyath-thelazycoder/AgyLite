@@ -22,8 +22,9 @@ agylite registry check                 # cards, CARD.md and the bundle's registr
 
 ## States
 
-- `enabled: false` cannot be routed. `testing/browser-exception` is `DISABLED_BY_POLICY` (D-035): routing can only
-  report that the user asked for a browser; nothing is activated.
+- `enabled: false` cannot be routed; a `DISABLED_BY_POLICY` capability can never be enabled. Since D-049 browser
+  verification is the enabled `testing/browser-verification` (and `testing/browser-qa` for gstack `/qa`); D-035's
+  `testing/browser-exception` is gone.
 - `engineering/simplicity` (Ponytail-derived) is explicit-only: it runs only when the user asks for it.
 
 ## Adding a capability

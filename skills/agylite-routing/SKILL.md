@@ -39,10 +39,10 @@ hosts, or the hook is off), route yourself with step 1.
    - `fallbacks` apply only when the primary capability cannot decide.
    - `impact` (existing projects): run its `command` first and work from the files and tests it returns
      (`agylite-codebase` skill); never read the whole repository.
-   - `verification_mode` is always `local-test-first` (`config/verification.yaml`): verify with tests, types, lint,
-     build and recorded evidence. Never open Chrome, use DevTools, or take or inspect screenshots to verify.
-   - `browser`: `disabled` → no browser at all; `exception-requested` → the user explicitly asked to see the page: run
-     local verification, give them the URL to open themselves, and record the exception with its reason.
+   - `verification_mode` is `tests-and-browser` (`config/verification.yaml`, D-049): verify with tests, types, lint,
+     build and recorded evidence, and for UI work also with the browser check.
+   - `browser`: `required` → UI work: done only when `agylite verify --browser` passes too (screenshots at
+     1440/768/390, console, network, overflow, flows; you may read the screenshots); `not-needed` → tests only.
    - `pipeline` gives the domain order for multi-domain work (e.g. SEO audit → engineering → testing).
    - `confidence: low` (BM25 fallback): confirm the intent with the user before acting.
    - `unmatched: true`: tell the user in one line that no Agylite capability covers this request, then do the work

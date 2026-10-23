@@ -22,6 +22,6 @@ Rules: guidance order is the route's `capabilities` order (user requirements →
 → methodology → specialists → review → simplicity). Verify locally (tests, types, lint, build); never by browser
 or screenshot. Simplicity review only when the user asks for it.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

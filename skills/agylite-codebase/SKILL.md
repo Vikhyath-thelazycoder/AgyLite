@@ -40,6 +40,6 @@ first; never read or paste the whole repository.
   process, no MCP, no LLM extraction).
 - New projects have no codebase step; start from requirements instead.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

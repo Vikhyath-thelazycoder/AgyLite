@@ -4,8 +4,8 @@
 2. gstack runtime paths: `~/.claude/skills/gstack/<p>` → `$AGYLITE_BUNDLE/files/gstack/<p>` when that file is
    bundled; steps that call gstack's own runtime (bin/ tools, browse/, state root, telemetry, upgrade) are removed
    from code blocks and marked in prose — that tooling is not part of the OS (state → `agylite plan`/`events`).
-3. Verification policy (engineering/testing/codebase capabilities): lines that describe browser or screenshot
-   verification steps are annotated with the local test-first policy (config/verification.yaml).
+3. (Until D-049) browser/screenshot steps were annotated as disabled; browser verification is on now, so the upstream
+   text stays as written.
 
 Deterministic and idempotent; every change is reported in the file's build notes.
 """
@@ -23,12 +23,6 @@ RUNTIME_TOKEN = re.compile(HOME_PREFIX + r"(?:/[^\s`'\")]*)?|\bbrowse/bin/[\w-]+
                            r"global-discover|decision-search|shortcut|diff-scope|base-control|design-[\w-]+|"
                            r"developer-profile|question-preference|redact|owned|health|cso[\w-]*|"
                            r"discover-stderr|review-[\w-]+|doc-release-[\w-]*)\b")
-BROWSER_STEP = re.compile(r"chrome-devtools|take_screenshot|\bbrowse/bin/|playwright screenshot|page\.screenshot|"
-                          r"qa-playwright-capture|screenshot (?:testing|diffs?|comparison)|visual regression",
-                          re.I)
-POLICY_NOTE = (" *[Agylite: browser/screenshot verification is disabled (config/verification.yaml); verify with "
-               "local tests, types, lint and build, and record command + exit code + counts as evidence.]*")
-VERIFY_DOMAINS = ("engineering", "testing", "codebase", "design")
 HEADER = ("> **Agylite adaptation (D-038):** paths under `$AGYLITE_BUNDLE/files/…` are bundle files (load one "
           "with `agylite context --file files/…`). gstack's own runtime (bin/ tools, browse, state root, "
           "telemetry, upgrade, skill hooks) is not part of the OS: steps that needed it are marked *removed*; record progress with "
@@ -199,17 +193,6 @@ def _adapt_gstack(text, bundled: set, notes: list):
     return "\n".join(out)
 
 
-def _annotate_browser(text, notes: list):
-    out, n = [], 0
-    for line in text.split("\n"):
-        if BROWSER_STEP.search(line) and POLICY_NOTE not in line:
-            line = line.rstrip() + POLICY_NOTE
-            n += 1
-        out.append(line)
-    if n:
-        notes.append(f"verification policy annotated on {n} lines")
-    return "\n".join(out)
-
 
 def _insert_header(text):
     if text.startswith("---\n"):
@@ -232,8 +215,6 @@ def adapt(repo, path, text, capability, bundled: set):
         return text, notes
     if repo == "gstack":
         text = _adapt_gstack(text, bundled, notes)
-    if capability.split("/", 1)[0] in VERIFY_DOMAINS:
-        text = _annotate_browser(text, notes)
     if repo == "gstack" and notes and HEADER not in text:
         text = _insert_header(text)
     return text, notes

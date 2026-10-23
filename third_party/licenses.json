@@ -1,7 +1,7 @@
 {
  "addy": {
   "attribution": "Copyright (c) 2025 Addy Osmani",
-  "bundled_files": 42,
+  "bundled_files": 43,
   "commit_sha": "1be8e34187e34647bb83adc3a1323b26ae6f6abe",
   "license": "MIT",
   "license_files": [
@@ -12,7 +12,7 @@
  },
  "agency": {
   "attribution": "Copyright (c) 2025 AgentLand Contributors",
-  "bundled_files": 75,
+  "bundled_files": 77,
   "commit_sha": "f99f6aa910a442b0197b768ce0ea7751e35e2060",
   "license": "MIT",
   "license_files": [
@@ -102,7 +102,7 @@
  },
  "ecc": {
   "attribution": "Copyright (c) 2026 Affaan Mustafa",
-  "bundled_files": 408,
+  "bundled_files": 411,
   "commit_sha": "2d515e4fc2ddef97354769812cf3f7b9ec4e5124",
   "license": "MIT",
   "license_files": [

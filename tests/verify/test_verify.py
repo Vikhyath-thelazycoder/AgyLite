@@ -125,9 +125,9 @@ class TestRun(Base):
         r = run.run_check(["definitely-not-a-tool-xyz"], self.root)
         self.assertEqual(r["result"], "BLOCKED")
 
-    def test_browser_commands_refused(self):
-        with self.assertRaises(ValueError):
-            run.run_check(["npx", "chrome-devtools", "lighthouse_audit"], self.root)
+    def test_browser_commands_are_ordinary_checks(self):
+        r = run.run_check([sys.executable, "-c", "print('chrome-devtools screenshot ok')"], self.root)   # D-049
+        self.assertEqual(r["result"], "PASSED")
 
     def test_evidence_rejects_visual_claims(self):
         bad = {"result": "PASSED", "checks": [{"command": ["manual"], "exit_code": 0, "result": "PASSED",
@@ -136,21 +136,20 @@ class TestRun(Base):
 
 
 class TestCli(Base):
-    def test_plan_and_exception_records_only(self):
+    def test_plan_and_browser_flag(self):
         out = io.StringIO()
         with contextlib.redirect_stdout(out):
             self.assertEqual(main(["verify", "--plan", "--paths", "app/webhook.py", "--json",
                                    "--project", str(self.root)]), 0)
         self.assertIn("tests/test_webhook_signature.py", out.getvalue())
-        main(["project", "init", "--existing", "--project", str(self.root)])
-        with mock.patch("subprocess.run") as sp, contextlib.redirect_stdout(io.StringIO()):
-            self.assertEqual(main(["verify", "exception", "--reason", "drag-and-drop feel needs a human",
+        out = io.StringIO()   # D-049: --browser adds the browser check (BLOCKED when the runtime is missing)
+        from agylite.runtimes import browser
+        with mock.patch.object(browser, "health", return_value={"status": "not-installed"}), \
+                contextlib.redirect_stdout(out):
+            self.assertEqual(main(["verify", "--plan", "--browser", "--paths", "app/webhook.py", "--json",
                                    "--project", str(self.root)]), 0)
-            sp.assert_not_called()
-        data = (self.root / ".agylite" / "verification.yaml").read_text(encoding="utf-8")
-        self.assertIn("drag-and-drop feel needs a human", data)
-        with contextlib.redirect_stderr(io.StringIO()):
-            self.assertEqual(main(["verify", "exception", "--project", str(self.root)]), 2)
+        self.assertIn("browser check", out.getvalue())
+        self.assertIn("NOT_RUN: browser runtime missing", out.getvalue())
 
     def test_verify_updates_state(self):
         main(["project", "init", "--existing", "--project", str(self.root)])

@@ -87,8 +87,8 @@ class TestEndToEndOffline(unittest.TestCase):
         route = json.loads(out)
         caps = [c["id"] for c in route["capabilities"]]
         self.assertIn("engineering/security", caps)
-        self.assertEqual(route["verification_mode"], "local-test-first")
-        self.assertEqual(route["browser"], "disabled")
+        self.assertEqual(route["verification_mode"], "tests-and-browser")
+        self.assertEqual(route["browser"], "not-needed")   # D-049: backend change, no UI
         self.assertEqual(route["lifecycle"][0]["step"], "UNDERSTAND")
         self.assertIn("agylite codebase affected", route["impact"]["command"])
 
@@ -117,7 +117,7 @@ class TestEndToEndOffline(unittest.TestCase):
 
         project = detect(self.root, home=self.home)
         seats = {s["id"]: s for s in Office(project).agents()["seats"]}
-        self.assertEqual(seats["browser"]["state"], "disabled")
+        self.assertNotEqual(seats["browser"]["state"], "disabled")   # D-049: an ordinary seat now
         self.assertIn(seats["security"]["state"], ("working", "idle"))
         self.assertEqual(seats["qa"]["say"], "verify: PASSED")
 
@@ -126,7 +126,7 @@ class TestEndToEndOffline(unittest.TestCase):
                   "VERIFICATION_STARTED", "VERIFICATION_PASSED", "TASK_STARTED"):
             self.assertIn(k, kinds)
         state = (self.root / ".agylite" / "state.yaml").read_text(encoding="utf-8")
-        self.assertIn("local-test-first", state)
+        self.assertIn("tests-and-browser", state)
         self.assertFalse((self.root / ".vikhyath").exists())
         host = json.loads((self.home / "hosts" / "claude-code.json").read_text(encoding="utf-8"))
         self.assertEqual(host["bootstraps"], 1)

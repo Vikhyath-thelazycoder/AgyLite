@@ -32,7 +32,7 @@ scenarios:
     request: Audit my website's SEO.
     stage: unknown
     expect: [seo/auditing, seo/technical, seo/content, seo/evidence, seo/reporting, runtime/SEO crawler]
-    forbid: [engineering/, design/, media/, testing/browser-exception]
+    forbid: [engineering/, design/, media/]
     change_type: SEO_CHANGE
 
   - id: s14-ai-search
@@ -48,56 +48,56 @@ scenarios:
     expect: [engineering/planning, engineering/architecture, design/design-direction, security baseline, testing/strategy]
     forbid: [codebase/, seo/, media/]
 
-  # ── Spec §23A.14 web QA, under the local test-first policy (D-035): browser is never selected ────────────────
+  # ── Spec §23A.14 web QA under D-049 (tests and browser; D-035's browser exception is gone) ─────────────────
   - id: s23a-login-flow
     request: Check whether the login flow works.
     stage: existing
-    expect: [testing/integration, testing/security, testing/evidence]
-    forbid: [testing/browser-exception, seo/, media/]
-    browser: disabled
+    expect: [testing/integration, testing/security, testing/evidence, testing/browser-verification]
+    forbid: [seo/, media/]
+    browser: required
 
   - id: s23a-mobile-overlap
     request: Check whether the mobile header overlaps the hero.
     stage: existing
-    expect: [design/visual-quality, testing/responsive, design/frontend]
-    forbid: [testing/browser-exception, seo/, media/]
-    browser: disabled
+    expect: [design/visual-quality, testing/responsive, design/frontend, testing/browser-verification]
+    forbid: [seo/, media/]
+    browser: required
 
   - id: s23a-explicit-visual
     request: Open the website and show me what it looks like.
     stage: existing
-    expect: [testing/local-verification]
-    forbid: [testing/browser-exception, seo/, media/, engineering/]
-    browser: exception-requested
+    expect: [testing/browser-verification]
+    forbid: [seo/, media/, engineering/]
+    browser: required
 
   - id: s23a-technical-seo
     request: Audit the site's technical SEO.
     stage: unknown
     expect: [seo/auditing, seo/technical, seo/evidence]
     forbid: [testing/, engineering/]
-    browser: disabled
+    browser: not-needed
 
-  # ── Verification-policy routing examples (D-034, D-035) ───────────────────────────────────────────────────────
+  # ── Verification-policy routing examples (D-034, D-049) ───────────────────────────────────────────────────────
   - id: vp-payment-webhook
     request: Fix the payment webhook.
     stage: existing
     expect: [engineering/backend, engineering/security, codebase/impact-analysis, testing/local-verification, testing/security, testing/evidence]
-    forbid: [testing/browser-exception, design/, media/, seo/]
-    browser: disabled
+    forbid: [design/, media/, seo/]
+    browser: not-needed
 
   - id: vp-react-website
     request: Build a React website.
     stage: new
     expect: [engineering/frontend, design/frontend, testing/strategy]
-    forbid: [testing/browser-exception, codebase/, media/]
-    browser: disabled
+    forbid: [codebase/, media/]
+    browser: required
 
   - id: vp-react-native-app
     request: Build a React Native application.
     stage: new
     expect: [design/frontend, engineering/frontend, testing/local-verification, testing/evidence]
-    forbid: [testing/browser-exception, seo/, media/, codebase/]
-    browser: disabled
+    forbid: [seo/, media/, codebase/]
+    browser: not-needed
 
   # ── Spec §70 end-to-end scenarios ─────────────────────────────────────────────────────────────────────────────
   - id: s70-a-new-saas

@@ -22,4 +22,4 @@ ADAPT	Voice file path (MP5 §2.2)	youtube/seo	2176	skills/yt-seo/SKILL.md
 ADAPT	Tool paths; transcripts via agylite research video (MP5 §2.2)	youtube/repurpose	1516	skills/yt-shorts/SKILL.md
 ADAPT	Voice file, tool paths, channel lists via agylite research channel (MP5 §2.2)	youtube/analytics	1748	skills/yt-viral/SKILL.md
 PRESERVE	Runtime behind agylite youtube retention / swipe	youtube/analytics	3573	skills/yt-viral/swipe.py
-COPY	Template for agylite youtube voice init	youtube/script	1140	templates/voice.md
+ADAPT	Template for agylite youtube voice init (its own path → ~/.agylite/youtube/voice.md)	youtube/script	1140	templates/voice.md

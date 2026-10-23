@@ -5,7 +5,7 @@ Local test-first verification: discover and select the smallest sufficient test 
 - **Use when:** verify, check whether, works, login flow, checkout flow, user flow, login, checkout …
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime os-native; network local-only; codebase analysis first
-- **Loads:** 10 bundled files; entry points: click-path-audit
+- **Loads:** 9 bundled files
 - **Done means:** selected checks (tests, types, lint, build) executed with machine-readable results recorded by testing/evidence · no browser, Chrome DevTools or screenshot step (D-035)
 - **Web QA class:** CORE
 - **Related:** testing/strategy, codebase/impact-analysis · **Fallback:** —

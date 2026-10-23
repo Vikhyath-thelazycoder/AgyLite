@@ -117,21 +117,6 @@ def record_verification(project, task: str | None, result: str, evidence: str | 
     return entry
 
 
-def record_browser_exception(project, reason: str, requested_by: str = "user"):
-    """Log an explicit, per-project browser-exception request (testing/browser-exception, D-035). It enables nothing:
-    the user operates any browser and screenshots never enter model context. Stored only in this project."""
-    if not reason or not reason.strip():
-        raise StateError("a browser exception needs the reason local verification was insufficient")
-    entry = {"reason": reason.strip(), "requested_by": requested_by, "at": now(), "screenshots_in_context": False}
-    path = checked(project, project.state_dir / VERIFICATION_FILE, "write")
-    with project_lock(project, "verification"):
-        data = read_yaml(path) or {"schema_version": SCHEMA_VERSION, "results": []}
-        data.setdefault("browser_exceptions", []).append(entry)
-        write_yaml(path, data)
-    emit(project, "BROWSER_EXCEPTION_REQUESTED", severity="medium", capabilities=["testing/browser-exception"],
-         details={"reason": entry["reason"], "requested_by": requested_by, "screenshots_in_context": False})
-    return entry
-
 
 def summary_lines(state, index=None, pending=()):
     """Compact lines for L0 (spec §19.1): stage/stack, phase + active tasks, pending questions, last verification."""
@@ -154,7 +139,7 @@ def summary_lines(state, index=None, pending=()):
             by[q["priority"]] = by.get(q["priority"], 0) + 1
         lines.append("pending questions: " + ", ".join(f"{n} {p}" for p, n in by.items()))
     ver = state.get("verification") or {}
-    lines.append(f"verification: {ver.get('mode') or policy.MODE} (no browser/Chrome DevTools/screenshots)")
+    lines.append(f"verification: {ver.get('mode') or policy.MODE} (UI work also needs `agylite verify --browser`)")
     last = ver.get("last")
     if last:
         lines.append(" ".join(f"last verification: {last['result']} {last.get('task') or ''} at {last['at']}".split()))

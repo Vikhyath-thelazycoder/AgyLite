@@ -25,9 +25,7 @@ beyondseo	docs/setup.md	agent-installation.md	docs/agent-installation.md	REFEREN
 beyondseo	references/capabilities.md	../docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
 beyondseo	scripts/run.py	docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
 ecc	rules/README.md	./install.sh	install.sh	EXCLUDE	ACCEPTED: rules/README install instructions replaced by OS stack-pack activation in ADAPT
-ecc	rules/react/testing.md	../../skills/e2e-testing/SKILL.md	skills/e2e-testing/SKILL.md	EXCLUDE	ACCEPTED: See-also link from React testing docs; browser E2E skill excluded by the local test-first policy (D-035); running a project's own E2E suite stays an ordinary test command
 ecc	skills/angular-developer/SKILL.md	references/mcp.md	skills/angular-developer/references/mcp.md	EXCLUDE	ACCEPTED: Angular MCP-server how-to excluded (§2.1); link removed when the stack pack is adapted
-ecc	skills/react-testing/SKILL.md	../e2e-testing/SKILL.md	skills/e2e-testing/SKILL.md	EXCLUDE	ACCEPTED: See-also link from React testing docs; browser E2E skill excluded by the local test-first policy (D-035); running a project's own E2E suite stays an ordinary test command
 gstack	NOTICE.md	scripts/resolvers/design.ts	scripts/resolvers/design.ts	REFERENCE	ACCEPTED: TS import/notice mention; catalogue converted to data at bundle build
 gstack	careful/bin/hook-extract.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh
 gstack	freeze/bin/freeze-state.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh

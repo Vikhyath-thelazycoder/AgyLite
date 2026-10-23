@@ -373,9 +373,9 @@ EXCLUDE	OUT_OF_DOMAIN		26545	support/support-legal-compliance-checker.md
 EXCLUDE	OUT_OF_DOMAIN		25647	support/support-support-responder.md
 ADAPT	Accessibility auditor role	testing/accessibility	16228	testing/testing-accessibility-auditor.md
 ADAPT	API testing	testing/local-verification	13840	testing/testing-api-tester.md
-EXCLUDE	BROWSER_POLICY		8910	testing/testing-evidence-collector.md
+ADAPT	D-049: screenshot evidence and reality-check roles (secondary)	testing/browser-verification	8910	testing/testing-evidence-collector.md
 ADAPT	Performance role	testing/performance	13185	testing/testing-performance-benchmarker.md
-EXCLUDE	BROWSER_POLICY		10854	testing/testing-reality-checker.md
+ADAPT	D-049: screenshot evidence and reality-check roles (secondary)	testing/browser-verification	10854	testing/testing-reality-checker.md
 ADAPT	Testing roles	testing/strategy	12706	testing/testing-test-automation-engineer.md
 ADAPT	Test-result analysis before completion claims	testing/release-verification	16017	testing/testing-test-results-analyzer.md
 ADAPT	Testing roles	testing/strategy	18825	testing/testing-tool-evaluator.md

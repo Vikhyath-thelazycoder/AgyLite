@@ -27,7 +27,8 @@ reason_codes:
   HOST_SPECIFIC_TOOL: "Requires a proprietary tool not available to the OS (e.g. Figma, Aside)"
   LICENSE: "License/notice file (carried verbatim with bundled content, D-002)"
   UNAUDITED_DEPENDENCY: "Requires an external package outside the audited upstream set (spec §43)"
-  BROWSER_POLICY: "Browser/Chrome DevTools/screenshot/simulator-recording verification; disabled by the local test-first policy (D-035, config/verification.yaml)"
+  BROWSER_POLICY: "Browser use Agylite still forbids: simulator screen recordings and logged-in browser sessions or cookie reading (D-049 keeps these off; browser verification itself is on)"
+  GSTACK_INSTALL: "Runs from gstack's own install (agylite runtime install gstack, D-049), not from the bundle"
   PAID_SERVICE: "Requires a paid account, credits or a remote proprietary service (D-034)"
 
 repos:
@@ -121,7 +122,8 @@ repos:
       - {paths: ["skills/shipping-and-launch/**", "skills/ci-cd-and-automation/**", "skills/git-workflow-and-versioning/**", "skills/observability-and-instrumentation/**"], decision: ADAPT, capability: engineering/release, reason: "Release and production readiness"}
       - {paths: ["skills/deprecation-and-migration/**"], decision: ADAPT, capability: engineering/migration, reason: "Deprecation and migration"}
       - {paths: ["skills/test-driven-development/**"], decision: ADAPT, capability: testing/strategy, reason: "TDD loop"}
-      - {paths: ["skills/browser-testing-with-devtools/**"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["skills/browser-testing-with-devtools/SKILL.md"], decision: ADAPT, capability: testing/browser-verification, reason: "D-049 primary: Chrome DevTools MCP setup → the chrome-devtools CLI + agylite verify --browser; untrusted-page-content rules verbatim"}
+      - {paths: ["skills/browser-testing-with-devtools/**"], decision: COPY, capability: testing/browser-verification, reason: "D-049: skill references"}
       - {paths: ["skills/context-engineering/**"], decision: REFERENCE, reason: "Design input for the OS context engine (P9)"}
       - {paths: ["skills/using-agent-skills/**"], decision: EXCLUDE, reason: SUPERSEDED}
       - {paths: ["docs/agents.md"], decision: COPY, capability: engineering/review, reason: "Agent usage doc linked from all 4 agents (closure)"}
@@ -144,7 +146,7 @@ repos:
       - {paths: ["design/*.md"], decision: ADAPT, capability: design/design-review, reason: "Design specialist roles (subcapability set in P3)"}
       - {paths: ["testing/testing-accessibility-auditor.md"], decision: ADAPT, capability: testing/accessibility, reason: "Accessibility auditor role"}
       - {paths: ["testing/testing-performance-benchmarker.md"], decision: ADAPT, capability: testing/performance, reason: "Performance role"}
-      - {paths: ["testing/testing-evidence-collector.md", "testing/testing-reality-checker.md"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["testing/testing-evidence-collector.md", "testing/testing-reality-checker.md"], decision: ADAPT, capability: testing/browser-verification, reason: "D-049: screenshot evidence and reality-check roles (secondary)"}
       - {paths: ["testing/testing-api-tester.md"], decision: ADAPT, capability: testing/local-verification, reason: "API testing"}
       - {paths: ["testing/testing-test-results-analyzer.md"], decision: ADAPT, capability: testing/release-verification, reason: "Test-result analysis before completion claims"}
       - {paths: ["testing/*.md"], decision: ADAPT, capability: testing/strategy, reason: "Testing roles"}
@@ -180,12 +182,12 @@ repos:
       - {paths: ["lib/cso/**"], decision: REFERENCE, reason: "Bun qualification runtime (docker images); CSO methodology is bundled from cso/"}
       - {paths: ["office-hours/**", "spec/**"], decision: ADAPT, capability: engineering/planning, reason: "Requirements intake and spec workflows (.tmpl + sections)"}
       - {paths: ["plan-eng-review/**", "plan-ceo-review/**"], decision: ADAPT, capability: engineering/planning, reason: "Plan review perspectives"}
-      - {paths: ["design-review/**"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["design-review/**"], decision: EXCLUDE, reason: GSTACK_INSTALL}
       - {paths: ["plan-design-review/**", "design-consultation/**"], decision: ADAPT, capability: design/design-review, reason: "Design review and consultation method (browse/screenshot steps dropped by the renderer, D-035)"}
       - {paths: ["lib/design-catalog.ts"], decision: ADAPT, capability: design/visual-quality, reason: "Anti-pattern catalogue (Apache-derived per NOTICE)"}
       - {paths: ["review/**"], decision: ADAPT, capability: engineering/review, reason: "Pre-landing review + checklists + specialists"}
       - {paths: ["investigate/**"], decision: ADAPT, capability: engineering/debugging, reason: "Root-cause investigation"}
-      - {paths: ["qa/SKILL.md.tmpl", "qa-only/SKILL.md.tmpl", "qa/sections/browser-setup.md*", "qa/sections/browser-verify.md*", "qa/sections/exploratory.md*", "qa-only/sections/exploratory.md*", "qa/sections/qa-patterns.md*", "qa/templates/qa-report-template.md"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["qa/SKILL.md.tmpl", "qa-only/SKILL.md.tmpl", "qa/sections/browser-setup.md*", "qa/sections/browser-verify.md*", "qa/sections/exploratory.md*", "qa-only/sections/exploratory.md*", "qa/sections/qa-patterns.md*", "qa/templates/qa-report-template.md"], decision: EXCLUDE, reason: GSTACK_INSTALL}
       - {paths: ["qa/**", "qa-only/**"], decision: ADAPT, capability: testing/local-verification, reason: "QA methodology, issue taxonomy, test bootstrap, reporting (no browser steps)"}
       - {paths: ["cso/**"], decision: ADAPT, capability: engineering/security, reason: "Security audit phases (CSO)"}
       - {paths: ["ship/**", "document-release/**", "canary/**"], decision: ADAPT, capability: engineering/release, reason: "Ship/release/canary methodology"}
@@ -238,8 +240,8 @@ repos:
       - {paths: ["skills/codebase-onboarding/**", "skills/code-tour/**", "skills/repo-scan/**", "skills/workspace-surface-audit/**", "agents/code-explorer.md", "agents/spec-miner.md"], decision: ADAPT, capability: codebase/repository-understanding, reason: "Codebase understanding"}
       # testing
       - {paths: ["skills/tdd-workflow/**", "agents/tdd-guide.md"], decision: ADAPT, capability: testing/strategy, reason: "TDD"}
-      - {paths: ["skills/click-path-audit/**"], decision: ADAPT, capability: testing/local-verification, reason: "State-transition tracing of user touchpoints (no browser)"}
-      - {paths: ["skills/e2e-testing/**", "skills/browser-qa/**", "agents/e2e-runner.md"], decision: EXCLUDE, reason: BROWSER_POLICY}
+      - {paths: ["skills/click-path-audit/**"], decision: ADAPT, capability: testing/browser-verification, reason: "D-049: click-path audit, secondary of browser verification"}
+      - {paths: ["skills/e2e-testing/**", "skills/browser-qa/**", "agents/e2e-runner.md"], decision: ADAPT, capability: testing/browser-verification, reason: "D-049: E2E and browser QA methods (secondary)"}
       - {paths: ["skills/ai-regression-testing/**", "skills/eval-harness/**"], decision: ADAPT, capability: testing/regression, reason: "Regression and eval harness"}
       - {paths: ["skills/benchmark/**", "skills/benchmark-methodology/**"], decision: ADAPT, capability: testing/performance, reason: "Benchmarks"}
       # design

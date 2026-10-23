@@ -16,8 +16,8 @@ browser policy, verification mode, method and confidence.
 7. BM25 over CARD.md only when nothing scored confidently; such routes report `confidence: low`.
 
 Output fields added later: `impact` (P12) — the `agylite codebase affected` command and the 12-file code surface;
-`lifecycle` (P13) — the ordered steps for the change type; `browser: disabled | exception-requested` and
-`verification_mode: local-test-first` (D-035).
+`lifecycle` (P13) — the ordered steps for the change type; `browser: required | not-needed` and
+`verification_mode: tests-and-browser` (D-049; was `disabled | exception-requested` under D-035).
 
 ## Guarantees
 

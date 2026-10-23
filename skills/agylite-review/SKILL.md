@@ -22,6 +22,6 @@ description: Pre-merge code review of the current change — scope drift, correc
 The `engineering/simplicity` capability (Ponytail's audit/debt/gain skills) loads only when the user asks for
 simplification.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

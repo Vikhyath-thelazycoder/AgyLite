@@ -15,9 +15,9 @@ def _now():
 
 
 def plan_for(project, paths=None, *, full=False, kinds=None, include_e2e=False, bundle_dir=None, inspect=None,
-             diagrams=None):
+             diagrams=None, browser=False, url=None, flows=None):
     from ..codebase import affected
-    from . import design, diagram
+    from . import browser as browser_check, design, diagram
     checks = detect.detect(project.root)
     impact = None if full else affected(project, paths, bundle_dir=bundle_dir)
     selected = select.plan(checks, impact, full=full, kinds=kinds, include_e2e=include_e2e)
@@ -27,6 +27,10 @@ def plan_for(project, paths=None, *, full=False, kinds=None, include_e2e=False, 
     if not kinds or "diagram" in kinds:   # MP5 §3.3: delivered diagrams pass Archify check + Chrome browser-check
         changed = (impact or {}).get("changed") or list(paths or [])
         selected += diagram.checks(project, changed, named=diagrams)
+    if not kinds or "browser" in kinds or browser:   # D-049: UI work also needs the browser check
+        changed = (impact or {}).get("changed") or list(paths or [])
+        selected += browser_check.checks(project, changed, requested=browser or bool(kinds and "browser" in kinds),
+                                         url=url, flows=flows)
     return impact, selected
 
 
@@ -54,11 +58,12 @@ def active_task(project):
 
 
 def verify(project, paths=None, *, full=False, kinds=None, include_e2e=False, task=None, bundle_dir=None,
-           timeout=run.DEFAULT_TIMEOUT, session_id=None, inspect=None, diagrams=None):
-    from . import design, diagram
+           timeout=run.DEFAULT_TIMEOUT, session_id=None, inspect=None, diagrams=None, browser=False, url=None,
+           flows=None):
+    from . import browser as browser_check, design, diagram
     task = task or active_task(project)
     impact, selected = plan_for(project, paths, full=full, kinds=kinds, include_e2e=include_e2e, bundle_dir=bundle_dir,
-                                inspect=inspect, diagrams=diagrams)
+                                inspect=inspect, diagrams=diagrams, browser=browser, url=url, flows=flows)
     emit(project, "VERIFICATION_STARTED", session_id=session_id, capabilities=["testing/local-verification"],
          details={"checks": len(selected), "task": task})
     results = []
@@ -73,13 +78,16 @@ def verify(project, paths=None, *, full=False, kinds=None, include_e2e=False, ta
             r.update(design.inspect_result(project.root, r))
         if c.kind == "diagram":
             r.update(diagram.result(project.root, why))
+        if c.kind == "browser":
+            r.update(browser_check.result(project.root, r))
         if r["result"] == "FAILED" and c.kind in RERUN_KINDS:
             again = run.run_check(cmd, project.root, timeout)
             r["rerun"] = {"exit_code": again["exit_code"], "result": again["result"]}
             r["flaky"] = again["result"] == "PASSED"   # flaky stays FAILED until fixed
         r.update({"kind": c.kind, "name": c.name, "reason": why, "tests": tests, "at": _now()})
         results.append(r)
-    record = {"schema_version": 1, "mode": "local-test-first", "task": task, "result": evidence.overall(results),
+    from . import policy
+    record = {"schema_version": 1, "mode": policy.MODE, "task": task, "result": evidence.overall(results),
               "impact": describe(selected, impact)["impact"],
               "checks": [{k: v for k, v in r.items() if k != "output_tail"} for r in results], "at": _now()}
     rel = evidence.write(project, record)

@@ -13,7 +13,7 @@ sys.path.insert(0, ROOT_DIR)
 from agylite.cli import main  # noqa: E402
 from agylite.registry import generate, loader, schema  # noqa: E402
 
-EXPECTED_CAPABILITIES = 77  # D-035: + testing/evidence; MP4 §2.5: + design/inspiration-extract; MP5: + 5 research, 6 youtube, engineering/diagrams; MP6: + observability/updates
+EXPECTED_CAPABILITIES = 78  # D-035: + testing/evidence; MP4 §2.5: + design/inspiration-extract; MP5: + 5 research, 6 youtube, engineering/diagrams; MP6: + observability/updates; D-049: browser-exception → browser-verification + browser-qa
 def _expected_bundled_files():
     """Bundled files per the generated extraction summary (COPY + ADAPT + PRESERVE + GENERATED, MP3 §2.1). Upstream updates (P28) change the
     number; these tests check that provenance, registry and licenses all agree with the audited extraction matrix."""
@@ -63,28 +63,23 @@ class TestRegistrySource(unittest.TestCase):
 
     def test_web_qa_classes_recorded(self):
         testing = {cid: c for cid, c in self.cards.items() if cid.startswith("testing/")}
-        self.assertEqual(len(testing), 9)
+        self.assertEqual(len(testing), 10)
         self.assertTrue(all(c["web_qa_class"] in schema.WEB_QA_CLASSES for c in testing.values()))
         self.assertEqual(testing["testing/local-verification"]["web_qa_class"], "CORE")
 
-    def test_browser_verification_disabled_by_policy(self):
-        # D-035: the only browser card is disabled, has no sources, and every mode is DISABLED_BY_POLICY.
-        exc = self.cards["testing/browser-exception"]
-        self.assertFalse(exc["enabled"])
-        self.assertEqual(exc["runtime_status"], "DISABLED_BY_POLICY")
-        self.assertEqual(set(exc["web_qa_modes"].values()), {"DISABLED_BY_POLICY"})
-        self.assertNotIn("FALLBACK", schema.WEB_QA_CLASSES)
-        outside = [cid for cid, c in self.cards.items()
-                   if c["requires_browser"] != "none" and cid.split("/")[0] not in schema.BROWSER_SCOPED_DOMAINS
-                   and cid not in schema.BROWSER_SCOPED_CAPABILITIES]
-        self.assertEqual(outside, [])
+    def test_browser_verification_is_on(self):
+        # D-049 (supersedes D-035): browser verification is an enabled CORE capability; gstack QA sits next to it.
+        bv = self.cards["testing/browser-verification"]
+        self.assertTrue(bv["enabled"])
+        self.assertEqual((bv["web_qa_class"], bv["requires_browser"]), ("CORE", "required-for-output"))
+        self.assertEqual(bv["sources_priority"][0], "files/addy/skills/browser-testing-with-devtools/SKILL.md")
+        self.assertTrue(self.cards["testing/browser-qa"]["enabled"])
+        self.assertNotIn("testing/browser-exception", self.cards)
 
-    def test_browser_need_outside_scoped_domains_rejected(self):
+    def test_disabled_by_policy_cannot_be_enabled(self):
         cards = loader.load_cards()
-        cards["testing/regression"]["requires_browser"] = "fallback"
-        cards["testing/browser-exception"]["enabled"] = True
+        cards["testing/regression"]["runtime_status"] = "DISABLED_BY_POLICY"
         p = schema.validate_cards(cards)
-        self.assertTrue(any("testing/regression: requires_browser must be none" in x for x in p), p)
         self.assertTrue(any("DISABLED_BY_POLICY requires enabled: false" in x for x in p), p)
 
     def test_card_docs_within_l1_budget(self):
@@ -122,8 +117,7 @@ class TestGeneratedRegistry(unittest.TestCase):
     def test_provenance_fields_are_derived(self):
         caps = self.reg["capabilities"]
         self.assertEqual(sum(e["token_cost_estimate"]["bundled_files"] for e in caps.values()), EXPECTED_BUNDLED_FILES)
-        self.assertEqual(caps["testing/browser-exception"]["token_cost_estimate"]["bundled_files"], 0)
-        self.assertEqual(caps["testing/browser-exception"]["runtime_status"], "DISABLED_BY_POLICY")
+        self.assertEqual(caps["testing/browser-qa"]["token_cost_estimate"]["bundled_files"], 0)   # os-native guide
         self.assertEqual(caps["design/frontend"]["runtime_status"], "ACTIVE")
         self.assertIn("Appllama/appllama-skills", caps["design/frontend"]["source_repositories"])
         self.assertIn("Appllama/appllama-skills", caps["design/motion"]["source_repositories"])

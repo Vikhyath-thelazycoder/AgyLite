@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lamp shop</title>
+<style>body{font-family:system-ui;margin:0;padding:16px} .banner{max-width:640px;background:#eee;padding:12px;box-sizing:border-box}
+img{max-width:100%;height:auto}</style></head>
+<body>
+  <h1>Lamp shop</h1>
+  <div class="banner">Free shipping on every lamp this week</div>
+  <img src="lamp.svg" alt="A brass desk lamp" width="120" height="120">
+  <p id="status">Cart is empty</p>
+  <button type="button" id="add">Add to cart</button>
+  <script>
+    document.getElementById("add").addEventListener("click", () => {
+      document.getElementById("status").textContent = "Added to cart";
+    });
+  </script>
+</body>
+</html>

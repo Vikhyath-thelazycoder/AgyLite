@@ -1,7 +1,6 @@
 """Run selected checks locally and turn their output into results (P15, D-035): exit code + parsed counts + a short
-diagnosis from the failing output. A missing tool is BLOCKED (not FAILED); nothing here can start a browser, except
-the one capability-scoped gate config/verification.yaml allows: `agylite diagram check|browser-check` (Archify's own
-headless Chrome check of a delivered diagram, MP5 §3.3, owner approval 2026-10-22)."""
+diagnosis from the failing output. A missing tool is BLOCKED (not FAILED). Browser checks are ordinary checks since
+D-049 (`agylite browser-check`, Archify's `diagram check|browser-check`)."""
 import re
 import subprocess
 import time
@@ -50,23 +49,9 @@ def diagnose(output: str, limit=12) -> list:
     return lines[:limit]
 
 
-SCOPED_GATES = (("diagram", "check"), ("diagram", "browser-check"))
-
-
-def scoped_gate(command) -> bool:
-    """`… -m agylite.cli diagram [--project p] check|browser-check …`: the scoped browser gate (config/verification.yaml)."""
-    args = list(command)
-    if "agylite.cli" not in args:
-        return False
-    rest = args[args.index("agylite.cli") + 1:]
-    if rest[:1] == ["diagram"] and rest[1:2] == ["--project"]:
-        rest = rest[:1] + rest[3:]
-    return tuple(rest[:2]) in SCOPED_GATES
 
 
 def run_check(command, cwd, timeout=DEFAULT_TIMEOUT) -> dict:
-    if not scoped_gate(command) and any(m in " ".join(command).lower() for m in ("chrome", "screenshot")):
-        raise ValueError("browser/screenshot commands are not verification (config/verification.yaml)")
     start = time.perf_counter()
     try:
         p = subprocess.run(command, cwd=cwd, capture_output=True, text=True, timeout=timeout)

@@ -37,7 +37,7 @@ seats:
   - {id: sectest, name: Sec tests, room: qa, x: 76, y: 178, caps: [testing/security]}
   - {id: perf, name: Perf, room: qa, x: 22, y: 236, caps: [testing/performance]}
   - {id: scout, name: Scout, room: qa, x: 128, y: 178, caps: [research/web, research/social, research/video, research/code, research/synthesis]}   # MP5 §1
-  - {id: browser, name: Browser QA, room: qa, x: 96, y: 236, caps: [testing/browser-exception], fixed: disabled}
+  - {id: browser, name: Browser QA, room: qa, x: 96, y: 236, caps: [testing/browser-verification, testing/browser-qa]}
   - {id: seo, name: SEO, room: seomedia, x: 176, y: 178, caps: [seo/auditing, seo/technical, seo/on-page, seo/website-work, seo/runtime, seo/evidence, seo/reporting]}
   - {id: research, name: Research, room: seomedia, x: 228, y: 178, caps: [seo/keyword-research, seo/competitor-research, seo/research, seo/strategy, seo/backlinks-reputation, seo/local]}
   - {id: aisearch, name: AI Search, room: seomedia, x: 280, y: 178, caps: [seo/ai-search, seo/entity, seo/content]}

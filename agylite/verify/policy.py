@@ -1,7 +1,7 @@
-"""The global verification policy (`config/verification.yaml`, D-035) and its diagnostics.
+"""The global verification policy (`config/verification.yaml`, D-049 superseding D-035) and its diagnostics.
 
-One policy for every project and host: local test-first; browser visual verification, Chrome DevTools and screenshot
-verification are disabled. Projects may only *record* a browser exception in their own state (P11 isolation).
+One policy for every project and host: tests, types, lint and build for every change, AND a browser check (`agylite
+verify --browser`) for UI and website work. Only the simulator recording loop stays disabled.
 """
 from pathlib import Path
 
@@ -9,10 +9,8 @@ import yaml
 
 from ..paths import repo_root
 
-MODE = "local-test-first"
-# MP4 §3.3: browser_visual_verification and screenshot_verification are on for design work (Taste inspect); the rest
-# stays off until Phase 7 (IMPLEMENTATION_PLAN §2.2).
-MUST_BE_DISABLED = ("chrome_devtools", "screenshot_comparison", "visual_browser_qa", "simulator_recording_loop")
+MODE = "tests-and-browser"
+MUST_BE_DISABLED = ("simulator_recording_loop",)
 
 
 def load_policy(root: Path | None = None):
@@ -23,26 +21,21 @@ def load_policy(root: Path | None = None):
 def state_block(cfg):
     """The policy part of a project's `state.yaml` verification block (spec: verification mode + disabled switches)."""
     off = cfg.get("disabled") or {}
-    return {"mode": cfg.get("mode"),
-            "browser_visual_verification": "disabled" if off.get("browser_visual_verification") else "enabled",
-            "chrome_devtools": "disabled" if off.get("chrome_devtools") else "enabled",
-            "screenshot_verification": "disabled" if off.get("screenshot_verification") else "enabled"}
+    return {"mode": cfg.get("mode"), "browser_verification": "enabled" if cfg.get("browser_verification") else "disabled",
+            "simulator_recording_loop": "disabled" if off.get("simulator_recording_loop") else "enabled"}
 
 
 def policy_problems(cfg, cards):
-    """Policy violations: wrong mode, a switched-on mechanism, or an enabled capability that needs a browser outside
-    the scoped domains or capabilities of `scoped_browser_use` (diagnostics, spec §41)."""
+    """Policy violations: wrong mode, a switched-on disabled mechanism, no browser_verification section, or a
+    disabled-by-policy capability that is enabled (diagnostics, spec §41)."""
     p = []
     if cfg.get("mode") != MODE:
         p.append(f"verification mode is {cfg.get('mode')!r}; policy requires {MODE}")
     off = cfg.get("disabled") or {}
     p += [f"verification policy: {k} must be disabled" for k in MUST_BE_DISABLED if off.get(k) is not True]
-    scoped = set(cfg.get("scoped_browser_use") or {})
+    if not cfg.get("browser_verification"):
+        p.append("verification policy: browser_verification (D-049) is missing")
     for cid, card in cards.items():
-        domain = cid.split("/", 1)[0]
-        if (card.get("enabled") and card.get("requires_browser", "none") != "none" and domain not in scoped
-                and cid not in scoped):
-            p.append(f"{cid}: browser visual verification active but policy requires {MODE}")
         if card.get("runtime_status") == "DISABLED_BY_POLICY" and card.get("enabled"):
             p.append(f"{cid}: DISABLED_BY_POLICY capability is enabled")
         if card.get("web_qa_class") == "DISABLED_BY_POLICY" and card.get("runtime_status") != "DISABLED_BY_POLICY":

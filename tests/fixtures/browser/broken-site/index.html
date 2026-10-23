@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lamp shop</title>
+<style>body{font-family:system-ui;margin:0;padding:16px} .banner{width:640px;background:#eee;padding:12px}</style></head>
+<body>
+  <h1>Lamp shop</h1>
+  <div class="banner">Free shipping on every lamp this week</div>
+  <img src="missing-lamp.png">
+  <p id="status">Cart is empty</p>
+  <button type="button" id="add">Add to cart</button>
+  <script>
+    document.getElementById("add").addEventListener("click", () => {});   // planted: the click does nothing
+    window.addEventListener("load", () => { undefinedFunction(); });     // planted: console error on load
+  </script>
+</body>
+</html>

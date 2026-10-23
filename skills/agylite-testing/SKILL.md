@@ -17,10 +17,10 @@ description: Verify a change locally and test-first — impacted tests, types, l
    record the result.
 
 Never verify by opening a browser, using Chrome DevTools or taking or reading screenshots. The project's own
-headless E2E script runs only with `--include-e2e`. If only a human can judge something (look and feel), report
-it as NOT_TESTED, or record a browser exception with `agylite verify exception --reason "…"` (the user operates
-the browser; nothing is captured).
+headless E2E script runs only with `--include-e2e`. UI work also runs the browser check: `agylite verify --browser [--url …]
+[--flows .agylite/flows.yaml]` (automatic for style/markup changes; write the task's flows as plain steps). QA requests
+go to gstack `/qa`. If only a human can judge something (look and feel), report it as NOT_TESTED.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

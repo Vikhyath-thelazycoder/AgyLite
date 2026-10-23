@@ -441,17 +441,38 @@ benchmark --quality --tier 0   → PASS
 
 Nothing was approved: the owner approves (`agylite update --pending` lists 8 approvable candidates).
 
+## Phase 7: browser verification (IMPLEMENTATION_PLAN §2.2, D-049) — DONE on `impl/p7-browser` (2026-10-23)
+
+Owner decisions (2026-10-22): gstack telemetry **off**; install gstack **with its optional global hooks skipped**.
+
+| Item | Test that proves it | Notes |
+|---|---|---|
+| Policy `tests-and-browser` (D-049 supersedes D-035; D-035's text unchanged): `config/verification.yaml` `browser_verification`, only `simulator_recording_loop` disabled; policy, validate, state, schema (any domain may need a browser), router (`browser: required \| not-needed`, schema 6), engine evidence mode, dashboard seat, entry skills and docs | updated tests (registry, project, dashboard, routing `s23a-*`/`vp-*`, verify, integration) in the same change | the domain transform no longer appends "browser verification is disabled" to browser steps (closer to upstream text) |
+| `testing/browser-verification` (enabled, CORE): Addy `browser-testing-with-devtools` ADAPT — MCP setup → `agylite verify --browser` + the `chrome-devtools` CLI of chrome-devtools-mcp@1.12.0 (`--isolated --headless --usageStatistics=false`), every MCP tool mapped, Security Boundaries verbatim; ECC click-path-audit, e2e-testing, browser-qa, e2e-runner; Agency evidence-collector + reality-checker | `test_each_rewrite_applies` | chrome-devtools sends Google usage statistics by default: always off |
+| `testing/browser-qa` → gstack `/qa` (rule `browser-qa`: QA, test the site, click through) | scenarios | deviation: a separate capability (the plan put gstack under browser-verification, whose primary is Addy) |
+| Browser runtime `agylite runtime install browser` (Playwright 1.64.0 + Chromium, throwaway context per viewport) and `agylite verify --browser [--url] [--flows]` / `agylite browser-check`: serves index.html or starts preview/dev/start, screenshots 1440/768/390, console + page errors, failed same-origin requests, overflow at 390 px, images without alt, flows (plain steps; scripts refused), evidence + report.json with sha256; automatic for style/markup changes; BLOCKED without the runtime | `tests/browser/test_browser.py` (7) | the old "verify may not start a browser" guard is gone |
+| §4.1 fixtures: `broken-site` FAILS with all 5 planted defects (+ the 404's console line); `fixed-site` PASSES with 3 screenshots and matching hashes; CI `browser` job (actionlint clean) | `TestFixtureSites` | |
+| gstack full: `agylite runtime install gstack` — Bun 1.4.4 (Homebrew), `~/.claude/skills/gstack` at the pinned 5cb5e1c, `gstack-config set telemetry off` + `update_check false`, `./setup --host claude --no-plan-tune-hooks --no-timeline-stop-hook`; `~/.claude/settings.json` **unchanged** (diffed) | real install | gstack ships ~60 skills into `~/.claude/skills/` (incl. setup-browser-cookies, scrape, setup-gbrain, which registers MCP if the owner runs it); "outside reviews" (Codex passes in /review and /ship) left at gstack's default |
+| gstack `/qa` on `broken-site` (real session, $1.39): found and fixed all 5 planted defects (missing alt reported inside the 404-image defect), re-verified, health 86 → 100 | session transcript | Aside not installed → gstack's own headless browser |
+
+### Phase 7 gate (temporary engine home `home-p6`, bundle `aead351f7a0e`, built from a fresh fetch)
+
+```
+unittest discover -s tests     → Ran 455 tests — OK (skipped=3)
+agylite doctor                 → 64 passed, 0 failed, 3 warnings
+agylite validate               → 23 passed, 0 failed
+agylite benchmark --compare    → routing 49/49
+benchmark --quality --tier 0   → PASS
+```
+
 ## RESUME FROM
 
-<!-- mp6-progress:start -->
-**Phase 8 (MP6) — DONE (see "Phase 8"). NOW: stop for the owner** — (1) which reviewed upstream updates to approve
-(`agylite update --pending`; review report `home-p6/updates/review-2026-10-22/REPORT.md`; gstack needs its review
-rewrite updated first), then (2) Phase 7 (browser verification, IMPLEMENTATION_PLAN §2.2) and (3) Phase 9 (parity
-loop). Owner request after MP6: run every test incl. every paid suite and build the results website.
-
-Carried into Phase 9: option 2 (load both primaries for overlapping skills) + the eng-addy / eng-pocock AgyLite-arm
-re-run; youtube and diagram-archify at n = 3; research with a less-known video.
-<!-- mp6-progress:end -->
+<!-- p7-progress:start -->
+**Phase 7 (browser verification, D-049) — DONE (see "Phase 7"). NOW: apply the owner's approvals (2026-10-23) of the 7
+SECURITY_FAST_TRACK upstream updates — agency, beacon, ecc, graphify, opendesign, uiuxpromax, ponytail — one at a time
+(re-review → approve → promote → regenerate evidence → full gate → push); addy waits for its Tier 1 run, gstack for its
+review-rewrite fix. Then Phase 9 (parity loop, option 2 first), then every test + the results website.**
+<!-- p7-progress:end -->
 
 How to work (any phase):
 1. Read `/Users/vikhyathmgowda007/Developer/os/MASTER_PROMPT_4_DESIGN_BEST_OF_BEST.md` and IMPLEMENTATION_PLAN §2.2.

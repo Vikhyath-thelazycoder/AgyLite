@@ -18,6 +18,6 @@ description: SEO audits, AI-search readiness, keyword/competitor/backlink resear
 
 SEO captures are SEO evidence only, never engineering verification. `watch` is blocked.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

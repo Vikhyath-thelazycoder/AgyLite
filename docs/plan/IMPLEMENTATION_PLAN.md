@@ -463,8 +463,10 @@ inspector same / judge 0.92 and eng-pocock from 0.37 to 0.71; eng-addy stays at 
 Pocock/Ponytail primaries (owner decision carried into Phase 9). Phase 6 (MP5: research, YouTube, Archify diagrams) code
 is done and signed off (paid: research same, diagram-archify equal to the original, youtube hook score 0.49 at n = 1).
 Phase 8 (MP6) is done: upstream updates are review → benchmark → owner approval (`agylite update --review`, `--approve`,
-`--pending`); a real review found 8 approvable candidates and 1 NEEDS_RULES, none approved. **Next: the owner's
-approvals, Phase 7 (browser), Phase 9 (parity loop, incl. option 2), then every test + the results website.** The step-by-step resume point, gate commands and every
+`--pending`); a real review found 8 approvable candidates and 1 NEEDS_RULES, none approved. Phase 7
+(browser verification, D-049) is done: tests and browser for UI work, gstack /qa installed (telemetry off, no global
+hooks). **Next: the 7 approved security fast-track updates, Phase 9 (parity loop, option 2 first), then every test +
+the results website.** The step-by-step resume point, gate commands and every
 report are in `docs/plan/IMPLEMENTATION_LOG.md` → "RESUME FROM"; benchmark results in `docs/plan/PARITY_LEDGER.md`.
 Paid Tier 1 sessions (`claude -p`) run only with the owner's approval.
 

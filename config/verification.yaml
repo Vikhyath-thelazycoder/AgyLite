@@ -1,50 +1,49 @@
-# Agylite verification policy — the ONE source of truth (D-035). Global; read by the router, project state,
-# diagnostics and every host adapter (P19–P22 receive this same policy; no adapter may override it).
-# Per-project browser exceptions live only in <project>/.agylite/verification.yaml (isolated per project, P11).
+# Agylite verification policy — the ONE source of truth (D-049, superseding D-035). Global; read by the router, project
+# state, diagnostics and every host adapter (P19–P22 receive this same policy; no adapter may override it).
 
-version: 1
-mode: local-test-first
+version: 2
+# D-049 (IMPLEMENTATION_PLAN §2.2, owner decision; supersedes D-035): tests AND a browser check for UI work.
+mode: tests-and-browser
 
-# Disabled verification mechanisms. `agylite validate` fails if any of them is switched on here, if an enabled
-# capability declares them, or if a routing rule can select a DISABLED_BY_POLICY capability.
+# Disabled mechanisms. `agylite validate` fails if any of them is switched on here.
 disabled:
-  browser_visual_verification: false   # MP4 §3.3 + IMPLEMENTATION_PLAN §2.2: Taste inspect checks design work (below)
-  chrome_devtools: true                # Phase 7 (§2.2) enables the rest of browser verification
-  screenshot_verification: false       # inspect screenshots are evidence with their sha256, never instead of tests
-  screenshot_comparison: true
-  visual_browser_qa: true
-  simulator_recording_loop: true
+  simulator_recording_loop: true      # Appllama's simulator screen recordings stay out (no CLI equivalent)
 
 # Default pipeline (spec: IMPLEMENT → TEST → STATIC → SECURITY → INTEGRATION → ACCEPTANCE → EVIDENCE → STATE UPDATE).
 pipeline: [implement, test, static, security, integration, acceptance, evidence, state-update]
 
 # Check kinds in run order. Selection is by change impact (codebase/impact-analysis), smallest sufficient set first;
 # the full suite runs only for release verification.
-checks: [unit, integration, regression, api, state-dom, security, accessibility, performance, typecheck, lint, build]
+checks: [unit, integration, regression, api, state-dom, security, accessibility, performance, typecheck, lint, build, browser]
 
 # What counts as evidence: a command with its exit code and counts. Never "looks correct" or a screenshot alone; design
 # inspect screenshots are artefacts (path + sha256) next to a passing command.
 evidence:
   required_fields: [command, exit_code, result, at]
-  optional_fields: [suite, passed, failed, skipped, duration_ms, report, artifact_sha256, artifacts, fails, warns]
+  optional_fields: [suite, passed, failed, skipped, duration_ms, report, artifact_sha256, artifacts, fails, warns, defects]
   results: [PASSED, FAILED, NOT_TESTED, BLOCKED]
-  forbidden: [screenshot, visual inspection, "looks correct"]
+  artifacts: [screenshot, console.json, network.json, flows.json, report.json]   # each with its sha256
+  forbidden: ["a screenshot alone", "visual inspection alone", "looks correct"]
 
 # Running a project's OWN existing E2E suite headlessly (e.g. `npx playwright test`) is an ordinary test command whose
-# counts are evidence. The OS never drives a browser itself, never adds screenshot/visual-diff assertions and never
-# puts screenshots into model context.
+# counts are evidence.
 
-# The only browser path: an explicit, logged, per-project exception (testing/browser-exception, DISABLED_BY_POLICY).
-browser_exception:
-  requires_all:
-    - local deterministic checks cannot verify the behaviour
-    - no equivalent test exists
-    - the user explicitly asked for browser-level validation
-  rules:
-    - the user operates the browser; the agent does not navigate, click or capture
-    - screenshots are never sent into model context
-    - the reason local verification was insufficient is recorded (BROWSER_EXCEPTION_REQUESTED event)
-  scope: project  # recorded in that project's .agylite/verification.yaml only
+# UI or website work (D-049): done only when the project's tests, types, lint and build pass AND the browser check passes.
+# Backend-only work: tests, types, lint, build (unchanged). A screenshot-only "done" is never enough.
+browser_verification:
+  applies_to: [style or markup changes, pages, app screens, user flows]
+  command: agylite verify --browser [--url <url>] [--flows .agylite/flows.yaml]
+  runtime: agylite runtime install browser    # pinned Playwright + its Chromium; a throwaway context per run
+  requires:
+    - screenshots at 1440, 768 and 390 px wide
+    - no console errors and no failed network requests to the app itself
+    - no horizontal overflow at 390 px
+    - the task's key flows (.agylite/flows.yaml) clicked through and asserted
+    - pages and app screens: Taste inspect with 0 FAIL (design_verification)
+  evidence: <project>/.agylite/evidence/browser/<run-id>/ (screenshots, console.json, network.json, flows.json, report.json with sha256)
+  agent_may_read_screenshots: true            # Taste's look-and-fix loop and gstack QA depend on it
+  logged_in_sessions: [gstack]                # only gstack's own Aside flow; never the user's profile elsewhere
+  qa: gstack /qa (testing/browser-qa) when the request says QA, "test the site" or "click through"
 
 # Design work (MP4 §3.3, IMPLEMENTATION_PLAN §2.2, owner decision 2026-10-21): a change that touches style or markup is
 # done only when these pass as well as the project's tests, types, lint and build. A missing node>=22, browser or page
@@ -66,8 +65,7 @@ diagram_verification:
     - agylite diagram check <output.html> --json --require-provenance
     - agylite diagram browser-check <output.html> --json --require-provenance (Chrome present)
 
-# Browser use outside verification stays inside its own domain (or capability) and never becomes engineering evidence;
-# the Archify browser-check above is the one capability-scoped exception, and it is evidence for diagrams only.
+# Browser use that produces output (not verification) stays inside its own runtime.
 scoped_browser_use:
   seo: BeyondSEO capture/rendering inside the isolated SEO runtime (P16)
   media: Brag/launch-video rendering (P17); product showcase output is not verification evidence

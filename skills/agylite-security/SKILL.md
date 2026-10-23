@@ -16,6 +16,6 @@ description: Security-sensitive changes (auth, secrets, payments/webhooks, input
 
 Never paste real secrets into prompts, logs or evidence. No browser or screenshot verification.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

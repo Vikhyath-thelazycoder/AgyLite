@@ -81,9 +81,9 @@ class TestStates(unittest.TestCase):
         self.assertIn("T-2.1", s["planner"]["say"])
 
     def test_policy_states_and_idle_timeout(self):
-        s = self.states([ev("CAPABILITIES_SELECTED", ["testing/browser-exception", "engineering/review"],
+        s = self.states([ev("CAPABILITIES_SELECTED", ["testing/browser-verification", "engineering/review"],
                             minutes_ago=30)])
-        self.assertEqual(s["browser"]["state"], "disabled")       # policy beats events
+        self.assertEqual(s["browser"]["state"], "idle")           # D-049: browser verification is a normal seat
         self.assertEqual(s["simple"]["state"], "off")
         self.assertEqual(s["reviewer"]["state"], "idle")          # 30 min old → back to idle
         s = self.states([ev("CAPABILITIES_SELECTED", ["engineering/simplicity"])])

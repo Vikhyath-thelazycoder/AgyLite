@@ -67,10 +67,10 @@ class TestDomainTransform(unittest.TestCase):
         again, _ = domain.adapt("gstack", "review/SKILL.md", out, "engineering/review", {"review/checklist.md"})
         self.assertEqual(again, out)            # idempotent
 
-    def test_browser_policy_only_in_verification_domains(self):
-        line = "For visual regression, use Playwright screenshots.\n"
+    def test_browser_steps_stay_as_written(self):
+        line = "For visual regression, use Playwright screenshots.\n"   # D-049: no "disabled" annotation any more
         out, notes = domain.adapt("ecc", "rules/react/testing.md", line, "engineering/stack-packs", set())
-        self.assertIn("config/verification.yaml", out)
+        self.assertEqual((out, notes), (line, []))
         out, notes = domain.adapt("brag", "SKILL.md", line, "media/launch-video", set())
         self.assertEqual((out, notes), (line, []))
 

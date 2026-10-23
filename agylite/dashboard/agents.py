@@ -119,8 +119,8 @@ def derive(layout, events, sources=None, now=None):
             set_("beacon", "blocked", f"risk: {d.get('rule') or d.get('title') or 'detected'}", rec)
         elif ev == "ISOLATION_VIOLATION_BLOCKED":
             set_("beacon", "blocked", "blocked a cross-project read", rec)
-        elif ev == "BROWSER_EXCEPTION_REQUESTED":
-            set_("browser", "disabled", "exception recorded (user operates the browser)", rec)
+        elif ev == "BROWSER_EXCEPTION_REQUESTED":   # logs from before D-049
+            set_("browser", "idle", "old browser-exception record (browser verification is on now)", rec)
 
     for s in seats.values():
         if s.get("fixed") and s["state"] not in ("disabled",):

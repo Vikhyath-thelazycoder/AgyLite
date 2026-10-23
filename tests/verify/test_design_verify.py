@@ -87,10 +87,11 @@ class TestDesignVerify(unittest.TestCase):
                                               "sha256": hashlib.sha256(b"png-bytes").hexdigest()}])
         self.assertEqual(record["result"], "FAILED")
 
-    def test_policy_allows_design_browser_checks_only(self):
-        cfg = policy.load_policy()
-        self.assertFalse(cfg["disabled"]["browser_visual_verification"])
-        self.assertTrue(cfg["disabled"]["chrome_devtools"])                 # the rest waits for Phase 7
+    def test_policy_has_browser_and_design_checks(self):
+        cfg = policy.load_policy()   # D-049: tests and browser; Taste inspect stays part of design work
+        self.assertEqual(cfg["mode"], "tests-and-browser")
+        self.assertEqual(set(cfg["disabled"]), {"simulator_recording_loop"})
+        self.assertIn("agylite verify --browser", cfg["browser_verification"]["command"])
         self.assertIn("agylite design taste inspect", " ".join(cfg["design_verification"]["commands"]))
 
 

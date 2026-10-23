@@ -2,8 +2,8 @@
  "repos": {
   "addy": {
    "EXCLUDE": {
-    "files": 56,
-    "bytes": 457824
+    "files": 55,
+    "bytes": 443285
    },
    "REFERENCE": {
     "files": 114,
@@ -14,22 +14,22 @@
     "bytes": 75357
    },
    "ADAPT": {
-    "files": 33,
-    "bytes": 391173
+    "files": 34,
+    "bytes": 405712
    }
   },
   "agency": {
    "EXCLUDE": {
-    "files": 305,
-    "bytes": 3755225
+    "files": 303,
+    "bytes": 3735461
    },
    "COPY": {
     "files": 1,
     "bytes": 1079
    },
    "ADAPT": {
-    "files": 74,
-    "bytes": 1096993
+    "files": 76,
+    "bytes": 1116757
    },
    "REFERENCE": {
     "files": 2,
@@ -164,16 +164,16 @@
   },
   "ecc": {
    "EXCLUDE": {
-    "files": 3865,
-    "bytes": 57323177
+    "files": 3862,
+    "bytes": 57305824
    },
    "COPY": {
     "files": 1,
     "bytes": 1071
    },
    "ADAPT": {
-    "files": 389,
-    "bytes": 2274941
+    "files": 392,
+    "bytes": 2292294
    },
    "REFERENCE": {
     "files": 280,
@@ -364,16 +364,16 @@
     "bytes": 1497
    },
    "COPY": {
-    "files": 2,
-    "bytes": 2213
+    "files": 1,
+    "bytes": 1073
    },
    "REFERENCE": {
     "files": 1,
     "bytes": 5294
    },
    "ADAPT": {
-    "files": 11,
-    "bytes": 21871
+    "files": 12,
+    "bytes": 23011
    },
    "PRESERVE": {
     "files": 7,
@@ -878,13 +878,22 @@
     "agency"
    ]
   },
+  "testing/browser-verification": {
+   "files": 7,
+   "bytes": 59631,
+   "est_tokens": 14907,
+   "sources": [
+    "addy",
+    "agency",
+    "ecc"
+   ]
+  },
   "testing/local-verification": {
-   "files": 10,
-   "bytes": 42231,
-   "est_tokens": 10557,
+   "files": 9,
+   "bytes": 34256,
+   "est_tokens": 8564,
    "sources": [
     "agency",
-    "ecc",
     "gstack"
    ]
   },

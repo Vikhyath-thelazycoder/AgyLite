@@ -180,7 +180,7 @@ EXCLUDE	REPO_META		3614	scripts/validate-skills.js
 EXCLUDE	REPO_META		905	scripts/validate-versions-test.js
 EXCLUDE	REPO_META		919	scripts/validate-versions.js
 ADAPT	Interface design	engineering/architecture	14886	skills/api-and-interface-design/SKILL.md
-EXCLUDE	BROWSER_POLICY		14539	skills/browser-testing-with-devtools/SKILL.md
+ADAPT	D-049 primary: Chrome DevTools MCP setup → the chrome-devtools CLI + agylite verify --browser; untrusted-page-content rules verbatim	testing/browser-verification	14539	skills/browser-testing-with-devtools/SKILL.md
 ADAPT	Release and production readiness	engineering/release	11332	skills/ci-cd-and-automation/SKILL.md
 ADAPT	Multi-axis review	engineering/review	20976	skills/code-review-and-quality/SKILL.md
 ADAPT	Behavior-preserving simplification	engineering/simplicity	13545	skills/code-simplification/SKILL.md

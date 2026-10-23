@@ -90,15 +90,6 @@ class TestPlan(unittest.TestCase):
 
 
 class TestVerifyGate(unittest.TestCase):
-    def test_only_the_diagram_gate_may_name_a_browser(self):
-        gate = [sys.executable, "-m", "agylite.cli", "diagram", "--project", "/p", "browser-check", "/p/x.html", "--json"]
-        self.assertTrue(vrun.scoped_gate(gate))
-        self.assertTrue(vrun.scoped_gate([sys.executable, "-m", "agylite.cli", "diagram", "check", "x.html"]))
-        self.assertFalse(vrun.scoped_gate([sys.executable, "-m", "agylite.cli", "diagram", "preview", "x"]))
-        self.assertFalse(vrun.scoped_gate(["npx", "chrome-devtools", "screenshot"]))
-        with self.assertRaises(ValueError):
-            vrun.run_check(["npx", "chrome-devtools", "screenshot"], ".")
-
     def test_changed_archify_folders_and_named_pages(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp)

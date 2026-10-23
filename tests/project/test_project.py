@@ -318,32 +318,16 @@ class TestVerificationPolicyState(ProjectEnv):
 
     def test_state_records_policy_and_evidence(self):
         ver = state.require_state(self.project)["verification"]
-        self.assertEqual((ver["mode"], ver["browser_visual_verification"], ver["chrome_devtools"],
-                          ver["screenshot_verification"]), ("local-test-first", "enabled", "disabled", "enabled"))
-        # MP4 §3.3: design work adds Taste inspect (browser + hashed screenshots); Chrome DevTools waits for Phase 7
+        # D-049: tests for every change plus the browser check for UI work; only the simulator loop stays off
+        self.assertEqual((ver["mode"], ver["browser_verification"], ver["simulator_recording_loop"]),
+                         ("tests-and-browser", "enabled", "disabled"))
         state.record_verification(self.project, "T-3.1", "PASSED", "python -m unittest: 12 passed")
         ver = state.require_state(self.project)["verification"]
-        self.assertEqual((ver["mode"], ver["last"]["evidence"]), ("local-test-first", "python -m unittest: 12 passed"))
-        self.assertIn("verification: local-test-first (no browser/Chrome DevTools/screenshots)",
+        self.assertEqual((ver["mode"], ver["last"]["evidence"]), ("tests-and-browser", "python -m unittest: 12 passed"))
+        self.assertIn("verification: tests-and-browser (UI work also needs `agylite verify --browser`)",
                       state.summary_lines(state.require_state(self.project)))
 
-    def test_browser_exception_is_logged_per_project(self):
-        other_root = self.root.parent / "shop"
-        (other_root / ".git").mkdir(parents=True)
-        (other_root / ".git" / "HEAD").write_text("ref: refs/heads/main\n")
-        self.assertEqual(run_cli("project", "init", "--project", str(other_root))[0], 0)
-        other = detect(other_root, home=self.home)
-        with self.assertRaises(state.StateError):
-            state.record_browser_exception(self.project, "  ")
-        state.record_browser_exception(self.project, "canvas chart rendering has no DOM to assert on")
-        mine = state.read_yaml(self.project.state_dir / state.VERIFICATION_FILE)
-        self.assertEqual(len(mine["browser_exceptions"]), 1)
-        self.assertFalse(mine["browser_exceptions"][0]["screenshots_in_context"])
-        theirs = state.read_yaml(other.state_dir / state.VERIFICATION_FILE) or {}
-        self.assertNotIn("browser_exceptions", theirs)
-        events = [e["event"] for e in event_log.read(self.project)]
-        self.assertIn("BROWSER_EXCEPTION_REQUESTED", events)
-        self.assertNotIn("BROWSER_EXCEPTION_REQUESTED", [e["event"] for e in event_log.read(other)])
+    # D-049 removed the browser-exception record (browser verification is on); D-035's test lived here.
 
 
 

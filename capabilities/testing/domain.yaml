@@ -1,4 +1,4 @@
 # Domain testing (spec §5). Capability order is the registry order; one directory per entry.
 purpose: "Evidence that implementation meets acceptance criteria \u2014 local and scripted first."
-# Verification is local test-first (D-035, config/verification.yaml); browser-exception is DISABLED_BY_POLICY.
-capabilities: [strategy, local-verification, security, accessibility, performance, regression, release-verification, evidence, browser-exception]
+# Verification is local test-first (D-035, config/verification.yaml); browser-verification, browser-qa is DISABLED_BY_POLICY.
+capabilities: [strategy, local-verification, security, accessibility, performance, regression, release-verification, evidence, browser-verification, browser-qa]

@@ -18,6 +18,6 @@ description: Research a question from the web, YouTube, GitHub and (opt-in) X an
 
 Read-only: nothing here posts, likes, comments or messages, and no browser or logged-in session is used.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

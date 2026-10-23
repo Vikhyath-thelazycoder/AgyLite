@@ -158,8 +158,54 @@ ARCHIFY = [
                 r"end the reply with one optional line offering the proactive mode.*\Z", re.S), "\n"),
 ]
 
+# D-049 (IMPLEMENTATION_PLAN §2.2): Addy's devtools skill drives Chrome through the `chrome-devtools` command line of the
+# pinned chrome-devtools-mcp package (no MCP server is ever configured) and AgyLite's own `agylite verify --browser`.
+# Usage statistics are switched off. The Security Boundaries section (untrusted page content) stays verbatim.
+CDT = "npx -y -p chrome-devtools-mcp@1.12.0 chrome-devtools"
+ADDY_DEVTOOLS_SETUP = f"""## Setting Up Chrome DevTools (Agylite: command line, no MCP server)
+
+Agylite drives Chrome from the command line; it never configures an MCP server.
+
+- **The check that decides "done" for UI work:** `agylite verify --browser [--url <url>] [--flows .agylite/flows.yaml]`
+  (pinned Playwright + Chromium, a throwaway context per run; `agylite runtime install browser` once). It takes
+  screenshots at 1440, 768 and 390 px, collects console errors and failed requests, checks horizontal overflow at
+  390 px, runs the task's flows and writes evidence to `.agylite/evidence/browser/<run-id>/`.
+- **Interactive DevTools for debugging:** the `chrome-devtools` command line of the same package Addy's MCP setup used,
+  pinned, with its own isolated temporary profile and usage statistics off:
+
+```bash
+{CDT} start --isolated --headless --usageStatistics=false
+{CDT} new_page http://localhost:3000
+{CDT} list_console_messages <pageId>
+{CDT} stop
+```
+
+Never pass `--autoConnect` or `--browserUrl` to your own browser profile; see Profile Isolation below.
+
+### Available Tools
+
+| Tool | Command (`{CDT} …`) | When to Use |
+|------|-------------|-------------|
+| **Screenshot** | `take_screenshot <pageId>` (or `agylite verify --browser`) | Visual verification, before/after comparisons |
+| **DOM Inspection** | `take_snapshot <pageId>` | Verify component rendering, check structure |
+| **Console Logs** | `list_console_messages <pageId>`, `get_console_message <pageId> <id>` | Diagnose errors, verify logging |
+| **Network Monitor** | `list_network_requests <pageId>`, `get_network_request <pageId> <id>` | Verify API calls, check payloads |
+| **Performance Trace** | `performance_start_trace`, `performance_stop_trace`, `performance_analyze_insight`, `lighthouse_audit` | Profile load time, identify bottlenecks |
+| **Element Styles** | `get_css_styles <pageId> <uid>` | Debug CSS issues, verify styling |
+| **Accessibility Tree** | `take_snapshot <pageId>` (the snapshot is the accessibility tree) | Verify screen reader experience |
+| **JavaScript Execution** | `evaluate_script` | Read-only state inspection and debugging (see Security Boundaries) |
+
+"""
+ADDY_DEVTOOLS = [
+    (re.compile(r" Requires the chrome-devtools MCP server to be configured\."),
+     " Agylite runs it from the command line (`agylite verify --browser` and the chrome-devtools CLI), never as an MCP "
+     "server."),
+    (_section("Setting Up Chrome DevTools MCP"), ADDY_DEVTOOLS_SETUP),
+]
+
 # (repo, path) -> [(pattern, replacement)]
 REWRITES = {
+    ("addy", "skills/browser-testing-with-devtools/SKILL.md"): ADDY_DEVTOOLS,
     ("ytagent", "skills/yt-script/SKILL.md"): [YT_TOOL, YT_VOICE, YT_BARE],
     ("ytagent", "skills/yt-package/SKILL.md"): [YT_TOOL, YT_VOICE, YT_BARE],
     ("ytagent", "skills/yt-edit/SKILL.md"): [YT_TOOL, YT_WHISPER],

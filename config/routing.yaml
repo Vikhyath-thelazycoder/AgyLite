@@ -193,7 +193,7 @@ rules:
   - id: layout-check
     description: Responsive / layout verification (spec §23A.14 "mobile header overlaps the hero")
     any: [overlap, overlaps, overlapping, responsive, breakpoint, viewport, mobile layout, cut off, misaligned]
-    select: [design/visual-quality, design/frontend, testing/local-verification]
+    select: [design/visual-quality, design/frontend, testing/local-verification, testing/browser-verification]
     suppress: [seo, media, engineering]
     weight: 3
 
@@ -211,7 +211,7 @@ rules:
     any: [check whether, check that, check if, verify, does it work, still work, works]
     unless: [diagram, sequence diagram, flowchart, flow chart, mind map]
     require_any: [flow, login, log in, sign in, signup, sign up, checkout, logout, form, page, endpoint, api]
-    select: [testing/local-verification]
+    select: [testing/local-verification, testing/browser-verification]   # D-049: flows are clicked through too
     weight: 3
 
   - id: auth-flow
@@ -221,15 +221,22 @@ rules:
     select: [testing/security]
     weight: 2
 
-  # An explicit request to see the site never starts an agent browser: local verification runs, and the request is
-  # surfaced as `browser: exception-requested` (recorded per project; the user operates any browser, D-035).
+  # D-049: an explicit request to see the site runs the browser check (screenshots the agent may read).
   - id: explicit-visual
-    description: The user explicitly asks to see the site → local verification + logged browser-exception request
+    description: The user explicitly asks to see the site → the browser check (agylite verify --browser)
     regex: ['\b(open|show me|screenshot|take a screenshot of|look at)\b.*\b(site|website|page|app)\b', '\bwhat (it|the (site|website|page|app)) looks like\b']
-    select: [testing/local-verification]
-    browser_exception: true
+    select: [testing/browser-verification]
     suppress: [engineering, seo, media, design]
     weight: 4
+
+  # D-049: QA, "test the site" and "click through" go to gstack /qa (full, as gstack ships it).
+  - id: browser-qa
+    description: QA a site in a real browser (gstack /qa)
+    any: [qa the site, qa this site, qa the app, qa this page, run qa, do qa, test the site, test the website, test the app in the browser, click through, click-through, exploratory testing, find bugs on the site]
+    regex: ['\bqa\b.*\b(site|website|page|app|url|urlref)\b']
+    select: [testing/browser-qa]
+    suppress: [seo, media, design]
+    weight: 5
 
   # ── SEO (scenarios E, F, G; spec §14) ─────────────────────────────────────────────────────────────────────────
   - id: seo-audit

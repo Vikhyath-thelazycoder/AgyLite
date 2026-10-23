@@ -706,11 +706,11 @@ def _runtime_cmd(args):
     if args.runtime_cmd == "status":
         from .runtimes import uiux
         from .runtimes import brag, seo
-        from .runtimes import archify, designlang, research, taste, youtube
+        from .runtimes import archify, browser as browser_rt, designlang, gstack, research, taste, youtube
         _print({"runtimes": [graphify.health(home, bundle), unlazy.health(home), uiux.health(bundle),
                              taste.health(bundle, home), designlang.health(home), seo.health(home, bundle),
                              brag.health(home, bundle), archify.health(bundle), youtube.health(bundle, home),
-                             research.health(home, bundle)]}, args.json)
+                             research.health(home, bundle), browser_rt.health(home), gstack.health()]}, args.json)
         return 0
     if args.runtime_cmd == "unlazy-hook":
         before = unlazy.stop_hook_commands()
@@ -730,6 +730,14 @@ def _runtime_cmd(args):
         try:
             _print(brag.install_music(home, bundle), args.json)
         except (brag.BragError, OSError) as exc:
+            print(f"agylite runtime install: {exc}", file=sys.stderr)
+            return 1
+        return 0
+    if args.name in ("browser", "gstack"):   # D-049: pinned Playwright + Chromium; gstack full (owner settings)
+        from .runtimes import browser as browser_rt, gstack
+        try:
+            _print((browser_rt if args.name == "browser" else gstack).install(home), args.json)
+        except (browser_rt.BrowserError, gstack.GstackError, OSError) as exc:
             print(f"agylite runtime install: {exc}", file=sys.stderr)
             return 1
         return 0
@@ -960,6 +968,22 @@ def _research_cmd(args):
     return 2
 
 
+def _browser_check_cmd(args):
+    """D-049: the browser check (`agylite verify --browser` runs this); exit 0 PASSED, 1 FAILED, 2 not runnable."""
+    from .paths import agylite_home
+    from .runtimes import browser
+    project = _project_ref(args)
+    try:
+        r = browser.check(project.root, agylite_home(), url=args.url, flows=args.flows)
+    except browser.BrowserError as exc:
+        print(f"agylite browser-check: {exc}", file=sys.stderr)
+        return 2
+    print(f"browser check: {r['result']} ({r['url']}) · evidence {r['dir']}")
+    for d in r["defects"]:
+        print(f"  ✗ {d}")
+    return 0 if r["result"] == "PASSED" else 1
+
+
 def _youtube_cmd(args):
     """MP5 §2.3: one stdlib tool from the bundle, run in the project, exit code preserved; `voice init` never overwrites."""
     from .paths import agylite_home, current_bundle
@@ -1091,25 +1115,13 @@ def _verify_cmd(args):
     from .project import state as pstate
     from .verify import engine, evidence
     project = _project_ref(args)
-    if getattr(args, "action", None) == "exception":   # records only; runs nothing (D-035)
-        if not args.reason:
-            print("agylite verify exception: --reason is required (why local verification is insufficient)",
-                  file=sys.stderr)
-            return 2
-        try:
-            entry = pstate.record_browser_exception(project, args.reason)
-        except pstate.StateError as exc:
-            print(f"agylite verify exception: {exc}", file=sys.stderr)
-            return 1
-        _print({"browser_exception": entry, "note": "recorded only; the user operates any browser, no screenshots "
-                "enter model context"}, args.json)
-        return 0
     kinds = ["test"] if args.command == "test" else (args.kind or None)
     if args.plan:
         impact, selected = engine.plan_for(project, args.paths, full=args.all, kinds=kinds,
                                            include_e2e=args.include_e2e, bundle_dir=current_bundle(),
                                            inspect=getattr(args, "inspect", None),
-                                           diagrams=getattr(args, "diagram", None))
+                                           diagrams=getattr(args, "diagram", None), browser=getattr(args, "browser", False),
+                                           url=getattr(args, "url", None), flows=getattr(args, "flows", None))
         _print(engine.describe(selected, impact), args.json)
         return 0
     try:
@@ -1117,7 +1129,9 @@ def _verify_cmd(args):
                                              include_e2e=args.include_e2e, task=args.task,
                                              bundle_dir=current_bundle(), timeout=args.timeout,
                                              session_id=_session_id(args), inspect=getattr(args, "inspect", None),
-                                             diagrams=getattr(args, "diagram", None))
+                                             diagrams=getattr(args, "diagram", None),
+                                             browser=getattr(args, "browser", False), url=getattr(args, "url", None),
+                                             flows=getattr(args, "flows", None))
     except evidence.EvidenceError as exc:
         print(f"agylite verify: {exc}", file=sys.stderr)
         return 1
@@ -1588,7 +1602,7 @@ def build_parser():
     onoff.add_argument("--enable", action="store_true")
     onoff.add_argument("--disable", action="store_true")
     q = rsub.add_parser("install", help="Install a runtime from the active bundle (network: pip dependencies)")
-    q.add_argument("name", choices=("graphify", "seo", "brag", "designlang", "research"))
+    q.add_argument("name", choices=("graphify", "seo", "brag", "designlang", "research", "browser", "gstack"))
     q.add_argument("--browser", action="store_true", help="seo: add the browser extra (Playwright + Chromium, large)")
     q.add_argument("--reports", action="store_true", help="seo: add the PDF reports extra")
     q.add_argument("--json", action="store_true", help="JSON output")
@@ -1606,11 +1620,12 @@ def build_parser():
                            ("test", "Run only the impacted tests (same as verify --kind test)")):
         p = sub.add_parser(name, help=helptext)
         if name == "verify":
-            p.add_argument("action", nargs="?", choices=("exception",),
-                           help="exception: record a browser-exception request (runs nothing)")
-            p.add_argument("--reason", help="With exception: why local verification is insufficient")
+            p.add_argument("--browser", action="store_true", help="Also run the browser check (D-049; automatic for "
+                                                                       "style/markup changes)")
+            p.add_argument("--url", help="With --browser: the page to check (default: serve or start the project)")
+            p.add_argument("--flows", help="With --browser: flows file (default .agylite/flows.yaml)")
             p.add_argument("--kind", action="append",
-                           choices=("test", "security", "typecheck", "lint", "build", "e2e", "design", "diagram"))
+                           choices=("test", "security", "typecheck", "lint", "build", "e2e", "design", "diagram", "browser"))
             p.add_argument("--inspect", help="Design changes: the page Taste inspect opens (URL or file; default: "
                                              "the project's index.html or dist/index.html)")
             p.add_argument("--diagram", action="append", help="A delivered Archify page to check again (Archify check "
@@ -1803,6 +1818,13 @@ def build_parser():
         q = rsub2.add_parser(name, help=f"{name.title()} X or Reddit (cookie values, hidden input; disable deletes them)")
         q.add_argument("channel", choices=("x", "reddit"))
     p.set_defaults(func=_research_cmd)
+
+    p = sub.add_parser("browser-check", help="The browser check (D-049): screenshots 1440/768/390, console, network, "
+                                             "overflow, alt text, flows; evidence in .agylite/evidence/browser/")
+    p.add_argument("--project", help="Project directory (default: current directory)")
+    p.add_argument("--url", help="Page to check (default: serve index.html or start the preview/dev/start script)")
+    p.add_argument("--flows", help="Flows file (default .agylite/flows.yaml)")
+    p.set_defaults(func=_browser_check_cmd)
 
     p = sub.add_parser("youtube", help="YouTube tools (youtube-agent-skill): hookscore | title | deadair | chapters | "
                                        "retention | swipe | voice init|status | status (MP5 §2; nothing renders or uploads)")

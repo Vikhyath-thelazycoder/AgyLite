@@ -25,6 +25,6 @@ description: Review new upstream commits with the owner — what each changes, w
 Never run Tier 1 without the owner's yes on the cost estimate. Never approve on your own. Rules and rewrites are the
 only way to adapt upstream content; never edit upstream files to make a check pass.
 
-Verification policy: local test-first (`config/verification.yaml`) — no browser, Chrome DevTools, screenshots or MCP.
+Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).
