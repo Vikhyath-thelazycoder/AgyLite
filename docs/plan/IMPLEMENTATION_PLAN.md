@@ -485,8 +485,45 @@ Still to do:
       running out) after 76 sessions, $11.50.** Resume in a new session with "continue the paid test":
       - [x] chunk 1a eng-ponytail 63/63 ($9.40): correct/safe = original, lines 0.955 retained, **cost worse than no
             skill** ($0.163 vs original $0.129, no skill $0.156) — investigate the hook's per-prompt tokens
-      - [ ] chunk 1b eng-addy 12/54 kept → resume (42 sessions): see IMPLEMENTATION_LOG "RESUME FROM"
-      - [ ] chunk 1c eng-pocock 0/90
+      - [~] chunk 1b eng-addy 54/54 run (2026-10-24, $8.42): no skill 0.931 · original 1 · AgyLite 0.986, retained
+            0.8, inconclusive. **But 14 of its 18 AgyLite cells ran the old installed engine** (finding C1-1 below),
+            so only the 4 cells from 2026-10-23 measured candidate 3509e18d39d9 → re-run the AgyLite arm
+      - [~] chunk 1c eng-pocock 16/90 ($2.40), **paused 2026-10-24 by Claude** when C1-1 was found (its 5 AgyLite
+            cells ran the old engine too). Baseline/original cells are valid. Resume after the owner says how
+      - [ ] **Owner rule 2026-10-24: no engine changes until chunks 1–3 have all run; then review and fix all three
+            together.** Findings per chunk go in "Paid-run findings" below
+      - Paid-run findings, chunk 1 (research 2026-10-24, from traces and hook events; nothing changed yet):
+        - **C1-1 (measurement, blocks valid AgyLite numbers):** the plugin launcher (`bin/agylite`) prefers any real
+          `agylite` on PATH over the snapshot under test. When the run's shell has `~/.agylite/core/bin` on PATH (the
+          2026-10-24 resume did), every AgyLite session runs the installed v2.1.6 engine from 2026-10-21: short L0
+          (≈ 1.5k chars, no Ponytail ruleset), no inline skill. Valid: eng-ponytail 63/63 and eng-addy's 4 cells from
+          2026-10-23 (all hook events carry `skills`). Workaround without code: run with that directory off PATH.
+          Fix later: `agylite_arm` pins the launcher to the snapshot, and `check_isolation` fails a session whose L0
+          is not the bundle under test. Check whether earlier paid runs (MP3–MP6) were hit too.
+        - **C1-2 (the biggest cost and quality gap):** the prompt hook's text is over Claude Code's limit for hook output
+          (≈ 10,000 chars), so Claude Code saves it to a file and the agent sees only a preview. New-engine payloads:
+          2,861–7,237 est tokens (11–29k chars) on 20 of 22 routed prompts. The agent opened the file in 1 of 4 valid
+          eng-addy sessions (+1 turn, +12k tokens, $0.25 for that task) and in the other 3 never saw the skill. The
+          code-review severity-label miss is this. Fix: keep the hook under ≈ 9,000 chars. Inline only the lead skill,
+          send the overlap partner as its key rules plus a load command, and leave out the cards when a skill is inlined.
+        - **C1-3 (fixed overhead):** before any skill text, the AgyLite arm's first call is ≈ 4,000 tokens bigger than no
+          skill (33.1k vs 29.1k). That comes from the L0 bootstrap (4.9k chars: nine domain lists, project/session
+          lines, the Ponytail lite ruleset), 14 plugin skill descriptions and 3 agent descriptions in the system prompt,
+          and the route line with up to 3 cards. The original Addy arm adds ≈ 6,000 tokens, but all of it is the
+          skill. Fix: L0 down to the ruleset plus one line, list fewer plugin skills (or make them not
+          model-invocable), and no plugin agents in benchmark sessions unless routed.
+        - **C1-4 (extra turns):** ≈ 1.1 `agylite` Bash calls per eng-addy task ("Done means: agylite verify passes"
+          prompts a verify/route call), and the hook-file Read. Each extra turn re-reads the whole ≈ 35k context.
+          Fix: ask for verify only where the project has a verify config, and never ask for a route call when the
+          hook has already routed.
+        - **C1-5 (routing):** a Ponytail task routed to media/presentation (opendesign/slides). The code-review prompt
+          routed NEW_FEATURE with backend + implementation cards. BUG_FIX adds ecc/ai-regression-testing as a third
+          skill, and TDD prompts load 3 skills. Fix: rules for these phrasings, and at most lead + partner skills.
+        - Why Ponytail's original is cheaper than no skill: its SessionStart ruleset (≈ 3.5k chars, no per-prompt hook)
+          makes the agent write less. AgyLite carries the same lite ruleset but pays C1-2…C1-4 on top.
+      - Chunks 2–3: look for C1-1…C1-5 in each suite (hook size vs the limit, hook-file reads, L0 size, extra
+        turns, routes) and add per-chunk findings here. design-taste's skill (≈ 9,700 tokens) is certainly over
+        the hook limit
       - [ ] chunk 2 research 36, youtube 27, browser-qa 9 (first update the gstack install 5cb5e1c → b04cc35),
             design-extract 27 (≈ $25)
       - [ ] chunk 3 diagram-archify 45, design-taste 27 (≈ $75)

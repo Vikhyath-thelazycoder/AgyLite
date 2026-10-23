@@ -530,8 +530,14 @@ PASS). Original arms: ponytail 09c434a, pocock 5beb35b, addy aeac41d (= the pins
 | Suite | Done | Cost | Run dir (also copied to `~/.agylite/benchmarks/quality/`) |
 |---|---|---:|---|
 | eng-ponytail | 63/63 | $9.40 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T160330Z-eng-ponytail` |
-| eng-addy | 12/54 valid | $2.10 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T163255Z-eng-addy` |
-| eng-pocock | 0/90 | — | not started |
+| eng-addy | 54/54 run, AgyLite 4/18 valid | $8.42 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T163255Z-eng-addy` |
+| eng-pocock | 16/90, AgyLite 0/5 valid, paused | $2.40 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T193809Z-eng-pocock` |
+
+2026-10-24: the resume ran with `~/.agylite/core/bin` on PATH, so the plugin launcher ran the installed v2.1.6 engine
+in every AgyLite session it started (C1-1 in IMPLEMENTATION_PLAN "Paid-run findings"). eng-pocock was paused at 16/90.
+Before resuming, take `~/.agylite/core/bin` off PATH (`export PATH=$(echo "$PATH" | tr : '\n' | grep -v
+'.agylite/core/bin' | paste -sd: -)`), then re-run the invalid AgyLite cells. eng-addy reported no skill 0.931 ·
+original 1 · AgyLite 0.986 (14 of 18 AgyLite cells on the old engine). Cost: baseline $2.35, original $2.95, AgyLite $3.12.
 
 eng-ponytail (n = 3): correct 0.905 / 1 / 1 and safe 0.857 / 1 / 1 (retained 1); source lines 55 / 21.5 / 23 (0.955);
 wrote tests 0.952 / 0.952 / 1; **cost $0.156 / $0.129 / $0.163 per task — AgyLite costs more than no skill**. Verdict
