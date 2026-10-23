@@ -1025,6 +1025,197 @@
    "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/b01a3d4b-b6f1-4cca-b1e6-036516f1a093/scratchpad/home-p6/benchmarks/quality/20261022T163204Z-diagram-archify",
    "fix_applied": "none needed",
    "next_step": "validation 1.0 = original (retained 1), semantic 0.4 = original, first-pass usable 0.2 in all arms; inconclusive only by n=1 noise; Phase 9: n=3"
+  },
+  {
+   "date": "20261023T160330Z",
+   "suite": "eng-ponytail",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "0a1190a8d6a88898fd7569bf2610e399e2668818",
+   "upstream_shas": {
+    "ponytail": "09c434ab73ca43761c5d8b0c5d341926c2fba710"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "correct": {
+     "baseline": 0.9047619047619048,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    },
+    "safe": {
+     "baseline": 0.8571428571428571,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    },
+    "src_loc": {
+     "baseline": 55.0,
+     "upstream": 21.476190476190474,
+     "agylite": 23.0,
+     "retained": 0.955,
+     "verdict": "inconclusive"
+    },
+    "wrote_tests": {
+     "baseline": 0.9523809523809523,
+     "upstream": 0.9523809523809523,
+     "agylite": 1.0,
+     "retained": null,
+     "verdict": "same"
+    },
+    "cost": {
+     "baseline": 0.15568657619047618,
+     "upstream": 0.12905598095238094,
+     "agylite": 0.16264655714285714,
+     "retained": -0.261,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 3.2694,
+    "upstream": 2.7102,
+    "agylite": 3.4156
+   },
+   "agent_seconds": {
+    "baseline": 679.6,
+    "upstream": 467.5,
+    "agylite": 540.9
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 0,
+     "context_loaded": 0,
+     "route_unmatched": 1,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 0,
+     "context_loaded": 0,
+     "route_unmatched": 1,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 0,
+     "context_loaded": 0,
+     "route_unmatched": 1,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T160330Z-eng-ponytail",
+   "fix_applied": "",
+   "next_step": ""
   }
  ],
  "notes": [

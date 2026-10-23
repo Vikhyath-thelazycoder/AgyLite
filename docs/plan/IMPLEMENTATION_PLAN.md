@@ -479,9 +479,18 @@ Still to do:
 - [x] gstack 5cb5e1c → b04cc35 approved by the owner (2026-10-23), promoted, evidence regenerated; bundle 6c8821eb00b7
       (= the approved candidate, byte for byte); gate green
 - [ ] Owner approval waiting: addy@aeac41d after its Tier 1 run
-- [ ] Phase 9 paid re-runs (≈ $35–50; owner 2026-10-23: "not now" — ask again before running): eng-addy + eng-pocock AgyLite arm on the addy
-      candidate (option 2 + addy update in one run), youtube n = 3, diagram-archify n = 3, research (new video),
-      design-taste AgyLite arm (optional)
+- [ ] **Phase 9 full paid run (owner go-ahead 2026-10-23; every suite, all three arms, n = 3, ≈ 378 sessions,
+      ≈ $130; in chunks, the owner says when).** AgyLite arm on the addy candidate 3509e18d39d9 (= bundle 6c8821eb00b7
+      + addy aeac41d; option 2 + gstack b04cc35 + new addy). **Stopped 2026-10-23 16:4xZ on the owner's request (usage
+      running out) after 76 sessions, $11.50.** Resume in a new session with "continue the paid test":
+      - [x] chunk 1a eng-ponytail 63/63 ($9.40): correct/safe = original, lines 0.955 retained, **cost worse than no
+            skill** ($0.163 vs original $0.129, no skill $0.156) — investigate the hook's per-prompt tokens
+      - [ ] chunk 1b eng-addy 12/54 kept → resume (42 sessions): see IMPLEMENTATION_LOG "RESUME FROM"
+      - [ ] chunk 1c eng-pocock 0/90
+      - [ ] chunk 2 research 36, youtube 27, browser-qa 9 (first update the gstack install 5cb5e1c → b04cc35),
+            design-extract 27 (≈ $25)
+      - [ ] chunk 3 diagram-archify 45, design-taste 27 (≈ $75)
+      - [ ] after: approve addy if eng-addy/eng-pocock hold; ledger + PARITY_REPORT.md + results website
 - [ ] Final: every test incl. every paid suite (≈ $80–120 at n = 3; tell the owner the total first), then the results
       website (per task: plain Claude vs the original skill vs AgyLite — code, grader checks, answer, score, cost) and
       `PARITY_REPORT.md`

@@ -520,13 +520,46 @@ benchmark --quality --tier 0   → PASS (OOD 59/59)
 
 Gate (bundle 6c8821eb00b7): 466 tests OK (skipped=3); doctor 64/0; validate 23/0; routing 49/49; Tier 0 PASS (OOD 59/59).
 
+## Phase 9 paid run — resume (stopped 2026-10-23 on the owner's request)
+
+Owner go-ahead 2026-10-23: every suite, all three arms, n = 3, in chunks (chunk 1 = eng-ponytail, eng-addy,
+eng-pocock; then two chunks of 3–4 suites; ask before each chunk). Also built for it: the `browser-qa` suite
+(9279259). AgyLite arm on candidate **3509e18d39d9** (= 6c8821eb00b7 + addy aeac41d, only 7 addy files differ, Tier 0
+PASS). Original arms: ponytail 09c434a, pocock 5beb35b, addy aeac41d (= the pins).
+
+| Suite | Done | Cost | Run dir (also copied to `~/.agylite/benchmarks/quality/`) |
+|---|---|---:|---|
+| eng-ponytail | 63/63 | $9.40 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T160330Z-eng-ponytail` |
+| eng-addy | 12/54 valid | $2.10 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T163255Z-eng-addy` |
+| eng-pocock | 0/90 | — | not started |
+
+eng-ponytail (n = 3): correct 0.905 / 1 / 1 and safe 0.857 / 1 / 1 (retained 1); source lines 55 / 21.5 / 23 (0.955);
+wrote tests 0.952 / 0.952 / 1; **cost $0.156 / $0.129 / $0.163 per task — AgyLite costs more than no skill**. Verdict
+"inconclusive" only by the noise rule. Next fix to look at: the prompt hook's per-prompt tokens (cards + whole skill).
+
+Resume (engine home and checkout: this session's scratchpad `home-p9` and `wt-p9`, both in /tmp — if a reboot cleared
+them, clone a new engine home from `~/.agylite` staging/mirrors, rebuild the bundle from `main`, re-run
+`agylite update --review --repo addy` for a new candidate, and start eng-addy from the copy in ~/.agylite):
+
+```bash
+export AGYLITE_HOME=/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9
+cd <checkout at main with .staging>   # wt-p9: /private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/wt-p9
+B=$AGYLITE_HOME/bundles/3509e18d39d9
+# chunk 1b: eng-addy (dry-run checked: 42 sessions planned, 12 reused)
+PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-addy --runs 3 --bundle $B --yes-spend \
+  --resume $AGYLITE_HOME/benchmarks/quality/20261023T163255Z-eng-addy
+# chunk 1c: eng-pocock (90 sessions)
+PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-pocock --runs 3 --bundle $B --yes-spend
+# chunk 2 (ask first; update the gstack install to b04cc35 before browser-qa): research, youtube, browser-qa, design-extract
+# chunk 3 (ask first): diagram-archify, design-taste
+```
+
 ## RESUME FROM
 
 <!-- p7-progress:start -->
-**Phase 9 code is DONE and gstack b04cc35 is applied (see "Phase 9: parity loop" below). NOW: the Phase 9 paid
-re-runs wait for the owner (2026-10-23: "not now"); addy's approval waits for its Tier 1 run; then the parity loop on
-the results, every test + the results website. The progress checklist is in IMPLEMENTATION_PLAN.md → "Resume here".
-Engine home for Phase 9: `home-p9` (bundle 6c8821eb00b7).**
+**NOW: the Phase 9 full paid run, stopped on the owner's request (usage running out) after 76 sessions. Continue it
+when the owner says "continue the paid test" — exact commands in "Phase 9 paid run — resume" below. The progress
+checklist is in IMPLEMENTATION_PLAN.md → "Resume here".**
 <!-- p7-progress:end -->
 
 How to work (any phase):
