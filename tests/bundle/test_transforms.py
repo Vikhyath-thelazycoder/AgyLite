@@ -137,7 +137,37 @@ Screen-record the entire flow.
 """
 
 
+class TestTransformVersion(unittest.TestCase):
+    """The bundle id hashes rules, pins, licenses and TRANSFORM_VERSION, not transform code: an edited transform with
+    the same version reuses the old bundle and its old text (Phase 9: the gstack review rewrite did not reach the
+    bundle). Editing a transform therefore needs a version bump; record the new sources hash here."""
+    SOURCES = {"7": "444d6039d8272dc8"}
+
+    def test_transform_edits_bump_the_version(self):
+        import hashlib
+        from agylite.bundle.transforms import TRANSFORM_VERSION
+        h = hashlib.sha256()
+        for path in sorted((Path(ROOT_DIR) / "agylite" / "bundle" / "transforms").glob("*.py")):
+            h.update(path.name.encode())
+            h.update(path.read_bytes())
+        self.assertEqual(self.SOURCES.get(TRANSFORM_VERSION), h.hexdigest()[:16],
+                         "agylite/bundle/transforms changed: bump TRANSFORM_VERSION and record the new version "
+                         f"with sources hash {h.hexdigest()[:16]} in SOURCES")
+
+
 class TestRewrites(unittest.TestCase):
+    def test_gstack_review_qa_points_at_gstacks_install_in_both_upstream_wordings(self):
+        """Phase 9: the D-035 pattern drifted (upstream numbered the step); the D-049 rewrite anchors one line."""
+        tail = "- If the caller directory is `review`, Read `../qa/sections/exploratory.md` in full.\n"
+        for head in ("From the installed /review SKILL.md's directory, choose one path:\n",      # 5cb5e1c
+                     "1. From the installed /review SKILL.md's directory, choose one path:\n"):  # 514fbfd and later
+            with self.subTest(head):
+                out = rewrites.apply("gstack", "review/SKILL.md", head + tail)
+                self.assertEqual(out, ("1. " if head.startswith("1. ") else "") + "From the directory of gstack's own installed /review skill (set up by "
+                                 "`agylite runtime install gstack`; this bundled copy has no QA sections), choose one "
+                                 "path:\n" + tail)
+                self.assertNotIn("never open a browser", out)
+
     def test_each_rewrite_applies(self):
         samples = {
             ("unlazy", "SKILL.md"): "Install:\nnode <skill-dir>/scripts/install-hooks.mjs\n",
@@ -181,7 +211,8 @@ class TestRewrites(unittest.TestCase):
             self.assertNotIn("/ponytail-review", out)                      # no Ponytail slash commands (MP3 §2.3)
             for gone in ("Appllama MCP", "simctl", "Higgsfield", "references/performance.md", "sections/exploratory.md",
                          "references/simulator-loop.md", "references/image-assets.md"):
-                self.assertNotIn(gone, out)
+                if (repo, gone) != ("gstack", "sections/exploratory.md"):   # D-049: read from gstack's own install
+                    self.assertNotIn(gone, out)
 
     def test_appllama_keeps_native_rules_and_local_verification(self):
         out = rewrites.apply("appllama", "skills/appllama-app-design-skill/SKILL.md", APPLLAMA_SAMPLE)

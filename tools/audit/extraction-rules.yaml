@@ -529,6 +529,7 @@ accepted_gaps:
   - {repo: gstack, target: docs/designs/HONEST_WORK_GATE_INTEGRITY.md, reason: "Design-rationale mention in review/gate-integrity (upstream 5cb5e1c); chains into gstack TypeScript resolvers"}
   - {repo: gstack, target: scripts/ship-measure.ts, reason: "gstack runtime measurement script named in investigate/sections/flake (upstream 5cb5e1c); gstack runtime is not part of the OS (D-038)"}
   - {repo: gstack, target: docs/state-root.md, reason: "Comment mention in hook-extract.sh"}
+  - {repo: gstack, target: qa/sections/exploratory.md, reason: "D-049: review's exploratory QA reads it from gstack's own install (`agylite runtime install gstack`, rewrite in rewrites.py); excluded here as GSTACK_INSTALL"}
   - {repo: gstack, target: docs/test-value-bar.md, reason: "Mention inside a REFERENCE resolver"}
   - {repo: gstack, target: document-generate/SKILL.md, reason: "Template self-reference to its generated output"}
   - {repo: gstack, target: package.json, reason: "Version-bump example in ship template"}

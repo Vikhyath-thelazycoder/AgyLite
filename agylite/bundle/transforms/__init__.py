@@ -8,7 +8,7 @@ from pathlib import Path
 
 from . import domain, gstack, ponytail, rewrites
 
-TRANSFORM_VERSION = "6"  # 2: strong-anchor gstack rendering. 3: domain adaptation (D-038). 4: + design domain (D-039). 5: + 3 gstack placeholders (P28). 6: GENERATED outputs + pocock rewrites (MP3)
+TRANSFORM_VERSION = "7"  # 2: strong-anchor gstack rendering. 3: domain adaptation (D-038). 4: + design domain (D-039). 5: + 3 gstack placeholders (P28). 6: GENERATED outputs + pocock rewrites (MP3). 7: gstack review QA → gstack's install (D-049, Phase 9)
 
 
 class Transformer:

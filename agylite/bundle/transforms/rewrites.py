@@ -250,15 +250,15 @@ REWRITES = {
         (re.compile(r"(?:^\./install\.sh [^\n]*\n)+", re.M),
          "# Agylite activates these rule packs for the detected stack; no install step is needed.\n"),
     ],
-    # D-035: gstack review embeds browser exploratory QA in its critical pass; point it at local verification instead.
+    # D-049 (browser on; supersedes the D-035 rewrite that replaced this step with "never open a browser"): gstack
+    # review's exploratory QA reads gstack /qa's sections, which are not bundled — `/qa` runs from gstack's own install
+    # (`agylite runtime install gstack`). Only the anchor line changes; it names no home path, which the domain
+    # transform would map into the bundle, so upstream's wording below it stays verbatim
+    # (Phase 9: the old multi-line pattern drifted when upstream numbered the step and reworded its last line).
     ("gstack", "review/SKILL.md"): [
-        (re.compile(r"From the installed /review SKILL\.md's directory, choose one path:\n.*?"
-                    r"(?:Resolve QA's `sections/\.\.\.` and `templates/\.\.\.` paths from that installed QA SKILL\.md "
-                    r"directory|QA's `sections/\.\.\.` and `templates/\.\.\.` paths resolve from installed QA SKILL\.md), "
-                    r"not the caller or product directory\.\n", re.S),   # second form: upstream wording since 5cb5e1c
-         "Exploratory browser QA is disabled by the Agylite verification policy (D-035, config/verification.yaml). "
-         "Verify the changed area with the project's own tests, types, lint and build (`testing/local-verification`) "
-         "and record the results as evidence; never open a browser or inspect screenshots.\n"),
+        (re.compile(r"^(\d+\. )?From the installed /review SKILL\.md's directory, choose one path:$", re.M),
+         r"\1From the directory of gstack's own installed /review skill (set up by `agylite runtime install gstack`; "
+         r"this bundled copy has no QA sections), choose one path:"),
     ],
     # D-034: keep the native-mobile rules no other bundled source has; drop what needs the Appllama MCP/credits,
     # what Taste/ECC already own canonically, and the simulator screenshot/recording loop (D-035).
