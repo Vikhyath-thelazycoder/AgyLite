@@ -485,14 +485,35 @@ Still to do:
       running out) after 76 sessions, $11.50.** Resume in a new session with "continue the paid test":
       - [x] chunk 1a eng-ponytail 63/63 ($9.40): correct/safe = original, lines 0.955 retained, **cost worse than no
             skill** ($0.163 vs original $0.129, no skill $0.156) — investigate the hook's per-prompt tokens
-      - [~] chunk 1b eng-addy 54/54 run (2026-10-24, $8.42): no skill 0.931 · original 1 · AgyLite 0.986, retained
-            0.8, inconclusive. **But 14 of its 18 AgyLite cells ran the old installed engine** (finding C1-1 below),
-            so only the 4 cells from 2026-10-23 measured candidate 3509e18d39d9 → re-run the AgyLite arm
-      - [~] chunk 1c eng-pocock 16/90 ($2.40), **paused 2026-10-24 by Claude** when C1-1 was found (its 5 AgyLite
-            cells ran the old engine too). Baseline/original cells are valid. Resume after the owner says how
-      - [ ] **Owner rule 2026-10-24: no engine changes until chunks 1–3 have all run; then review and fix all three
-            together.** Findings per chunk go in "Paid-run findings" below
-      - Paid-run findings, chunk 1 (research 2026-10-24, from traces and hook events; nothing changed yet):
+      - [x] chunk 1b eng-addy 54/54 done (2026-10-24, $8.38): no skill 0.931 · original 1 · AgyLite 0.986, retained
+            0.8, inconclusive (gain within noise). 12 of its 18 AgyLite cells ran the old installed engine (C1-1).
+            They stay as they are (owner 2026-10-24: **no re-runs now**). Backups `records.before-c1-1.json`
+      - [ ] chunk 1c eng-pocock **20/90 ($2.97), stopped 2026-10-24 (owner's usage limit)**. Cells 1–16 ran on PATH
+            with the installed engine (5 AgyLite cells on the old engine); cells 17–20 ran with `~/.agylite/core/bin`
+            off PATH (the engine under test). **Next session: resume it** (command in IMPLEMENTATION_LOG "Phase 9
+            paid run — resume"); then chunk 1 is over → do the chunk review (below)
+      - [ ] **Owner rules 2026-10-24 for the rest of the paid run:**
+            1. Run chunks 1, 2 and 3 to the end. No re-runs and no engine or code changes in between.
+            2. **After each chunk ends: a gap and cost review** (read-only; no fixes). For every suite in the chunk,
+               compare the three arms and record each finding below as: gap/error → why → proposed fix. Check:
+               (a) score gaps: which grader checks AgyLite missed vs the original, and why (trace: did the agent see
+               the skill?); (b) cost: per-task cost, turns, tool calls, first-call prompt size vs no skill and
+               the original; (c) hook: payload size vs Claude Code's ≈ 10,000-char hook limit, and whether the agent
+               opened the saved hook file; (d) L0 size and the plugin skills/agents listed; (e) extra `agylite`
+               calls; (f) the route (capabilities, skills, change type) per prompt; (g) the engine actually run
+               (L0 has "PONYTAIL MODE" = the engine under test; a ≈ 1.5k-char L0 = old installed engine). Tools:
+               traces in `<run>/traces/*.trace.jsonl.gz`, hook events in `<run>/agylite-home/projects/*/events`.
+            3. Ask the owner before each next chunk.
+            4. **After chunk 3 ends: generate the final report and save it** as `docs/plan/PARITY_REPORT.md`. It
+               covers per suite the scores, retained, verdict and cost of all three arms, every finding (C1…C3), the
+               fix list in order, and which cells ran the old engine. Also update the ledger. Then, with the
+               owner's go-ahead, fix the findings for all three chunks systematically and re-measure only the AgyLite
+               arm (`--arms agylite --reuse-from <run>`)
+      - Chunk 2 note: the browser-qa original arm uses the gstack install (`~/.claude/skills/gstack`, still 5cb5e1c);
+        updating it to b04cc35 was **not** done (owner declined the install mid-session). Ask before chunk 2
+      - Paid-run findings, chunk 1 (early research 2026-10-24 on eng-ponytail and eng-addy; finish the chunk 1
+        review with eng-pocock once it ends; nothing fixed yet). Owner's question: why AgyLite is not at 100% and why
+        it costs more than no skill and the original:
         - **C1-1 (measurement, blocks valid AgyLite numbers):** the plugin launcher (`bin/agylite`) prefers any real
           `agylite` on PATH over the snapshot under test. When the run's shell has `~/.agylite/core/bin` on PATH (the
           2026-10-24 resume did), every AgyLite session runs the installed v2.1.6 engine from 2026-10-21: short L0
@@ -521,9 +542,12 @@ Still to do:
           skill, and TDD prompts load 3 skills. Fix: rules for these phrasings, and at most lead + partner skills.
         - Why Ponytail's original is cheaper than no skill: its SessionStart ruleset (≈ 3.5k chars, no per-prompt hook)
           makes the agent write less. AgyLite carries the same lite ruleset but pays C1-2…C1-4 on top.
-      - Chunks 2–3: look for C1-1…C1-5 in each suite (hook size vs the limit, hook-file reads, L0 size, extra
-        turns, routes) and add per-chunk findings here. design-taste's skill (≈ 9,700 tokens) is certainly over
-        the hook limit
+        - Scores: eng-ponytail AgyLite correct/safe = 1 (the 0.905/0.857 figures are no skill). eng-addy: one miss
+          (code-review run 3, severity labels not from Addy's taxonomy) = C1-2. "Retained 0.8" comes from a tiny
+          upstream gain (0.069), so one miss moves it a lot.
+      - Paid-run findings, chunk 2: (to fill in after chunk 2 ends, same checks (a)–(g))
+      - Paid-run findings, chunk 3: (to fill in after chunk 3 ends; design-taste's skill (≈ 9,700 tokens) is certainly
+        over the hook limit, check C1-2 first)
       - [ ] chunk 2 research 36, youtube 27, browser-qa 9 (first update the gstack install 5cb5e1c → b04cc35),
             design-extract 27 (≈ $25)
       - [ ] chunk 3 diagram-archify 45, design-taste 27 (≈ $75)

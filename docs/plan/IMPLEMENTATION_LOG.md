@@ -530,14 +530,19 @@ PASS). Original arms: ponytail 09c434a, pocock 5beb35b, addy aeac41d (= the pins
 | Suite | Done | Cost | Run dir (also copied to `~/.agylite/benchmarks/quality/`) |
 |---|---|---:|---|
 | eng-ponytail | 63/63 | $9.40 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T160330Z-eng-ponytail` |
-| eng-addy | 54/54 run, AgyLite 4/18 valid | $8.42 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T163255Z-eng-addy` |
-| eng-pocock | 16/90, AgyLite 0/5 valid, paused | $2.40 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T193809Z-eng-pocock` |
+| eng-addy | 54/54 done | $8.38 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T163255Z-eng-addy` |
+| eng-pocock | 20/90, stopped 2026-10-24 | $2.97 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T193809Z-eng-pocock` |
 
-2026-10-24: the resume ran with `~/.agylite/core/bin` on PATH, so the plugin launcher ran the installed v2.1.6 engine
-in every AgyLite session it started (C1-1 in IMPLEMENTATION_PLAN "Paid-run findings"). eng-pocock was paused at 16/90.
-Before resuming, take `~/.agylite/core/bin` off PATH (`export PATH=$(echo "$PATH" | tr : '\n' | grep -v
-'.agylite/core/bin' | paste -sd: -)`), then re-run the invalid AgyLite cells. eng-addy reported no skill 0.931 ·
-original 1 · AgyLite 0.986 (14 of 18 AgyLite cells on the old engine). Cost: baseline $2.35, original $2.95, AgyLite $3.12.
+2026-10-24: the session resumed eng-addy (42 sessions) and started eng-pocock. Then the owner's 5-hour usage limit ran
+out and they stopped the run at eng-pocock 20/90. Chunk 1 total so far: $20.75. Found during the run (C1-1 in
+IMPLEMENTATION_PLAN "Paid-run findings"): with `~/.agylite/core/bin` on PATH the plugin launcher runs the installed
+v2.1.6 engine instead of the snapshot under test. 12 of eng-addy's 18 AgyLite cells and eng-pocock's first 5 AgyLite
+cells ran the old engine. **Owner: no re-runs now. Keep those cells, finish all three chunks, then review and fix.**
+A re-run was started by mistake and stopped. 3 eng-addy AgyLite cells were re-run (new engine) before the stop; the rest
+were restored from `records.before-c1-1.json`, which is the backup next to each run's records.json. eng-pocock cells
+17–20 ran with `~/.agylite/core/bin` off PATH. Keep running it that way so the rest of the run measures the
+candidate. eng-addy: no skill 0.931 · original 1 · AgyLite 0.986, retained 0.8, inconclusive. Cost per arm: $2.35 /
+$2.95 / $3.12.
 
 eng-ponytail (n = 3): correct 0.905 / 1 / 1 and safe 0.857 / 1 / 1 (retained 1); source lines 55 / 21.5 / 23 (0.955);
 wrote tests 0.952 / 0.952 / 1; **cost $0.156 / $0.129 / $0.163 per task — AgyLite costs more than no skill**. Verdict
@@ -551,21 +556,25 @@ them, clone a new engine home from `~/.agylite` staging/mirrors, rebuild the bun
 export AGYLITE_HOME=/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9
 cd <checkout at main with .staging>   # wt-p9: /private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/wt-p9
 B=$AGYLITE_HOME/bundles/3509e18d39d9
-# chunk 1b: eng-addy (dry-run checked: 42 sessions planned, 12 reused)
-PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-addy --runs 3 --bundle $B --yes-spend \
-  --resume $AGYLITE_HOME/benchmarks/quality/20261023T163255Z-eng-addy
-# chunk 1c: eng-pocock (90 sessions)
-PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-pocock --runs 3 --bundle $B --yes-spend
-# chunk 2 (ask first; update the gstack install to b04cc35 before browser-qa): research, youtube, browser-qa, design-extract
-# chunk 3 (ask first): diagram-archify, design-taste
+export PATH=$(echo "$PATH" | tr : '\n' | grep -v '.agylite/core/bin' | paste -sd: -)   # C1-1: run the candidate, not ~/.agylite/core
+# chunk 1b eng-addy: DONE (54/54)
+# chunk 1c: eng-pocock — resume (70 sessions left; dry-run first without --yes-spend)
+PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-pocock --runs 3 --bundle $B --yes-spend \
+  --resume $AGYLITE_HOME/benchmarks/quality/20261023T193809Z-eng-pocock
+# then: chunk 1 review (gaps + cost, read-only) → IMPLEMENTATION_PLAN "Paid-run findings, chunk 1"
+# chunk 2 (ask first; gstack install still 5cb5e1c — ask before updating it to b04cc35): research, youtube, browser-qa,
+#   design-extract → then chunk 2 review → "Paid-run findings, chunk 2"
+# chunk 3 (ask first): diagram-archify, design-taste → chunk 3 review → generate + save docs/plan/PARITY_REPORT.md
 ```
 
 ## RESUME FROM
 
 <!-- p7-progress:start -->
-**NOW: the Phase 9 full paid run, stopped on the owner's request (usage running out) after 76 sessions. Continue it
-when the owner says "continue the paid test" — exact commands in "Phase 9 paid run — resume" below. The progress
-checklist is in IMPLEMENTATION_PLAN.md → "Resume here".**
+**NOW (2026-10-24): the Phase 9 full paid run, stopped at chunk 1c eng-pocock 20/90 (owner's usage limit). Continue
+when the owner says "continue the paid test": resume eng-pocock (commands in "Phase 9 paid run — resume"), then the
+chunk 1 gap and cost review, then ask for chunk 2. Owner rules for the rest of the run: no re-runs and no fixes until
+all three chunks have run; a read-only gap and cost review after each chunk; after chunk 3, generate and save the
+report; then fix everything systematically. The checklist and findings are in IMPLEMENTATION_PLAN.md → "Resume here".**
 <!-- p7-progress:end -->
 
 How to work (any phase):
