@@ -476,8 +476,10 @@ Still to do:
       gstack review rewrite fixed for D-049 (NEEDS_RULES → SECURITY_FAST_TRACK, candidate c12a18c20c27, Tier 0 PASS);
       TRANSFORM_VERSION 7 + guard test; browser fixture flows committed; research transcript task on a little-known
       video; addy re-reviewed (ADOPT_AFTER_TIER1, candidate fdf51ff600ac). Bundle 70c7149c3e1b, gate green
-- [ ] Owner approvals waiting: gstack@b04cc35 (SECURITY_FAST_TRACK); addy@aeac41d after its Tier 1 run
-- [ ] Phase 9 paid re-runs (≈ $35–50, owner approval asked 2026-10-23): eng-addy + eng-pocock AgyLite arm on the addy
+- [x] gstack 5cb5e1c → b04cc35 approved by the owner (2026-10-23), promoted, evidence regenerated; bundle 6c8821eb00b7
+      (= the approved candidate, byte for byte); gate green
+- [ ] Owner approval waiting: addy@aeac41d after its Tier 1 run
+- [ ] Phase 9 paid re-runs (≈ $35–50; owner 2026-10-23: "not now" — ask again before running): eng-addy + eng-pocock AgyLite arm on the addy
       candidate (option 2 + addy update in one run), youtube n = 3, diagram-archify n = 3, research (new video),
       design-taste AgyLite arm (optional)
 - [ ] Final: every test incl. every paid suite (≈ $80–120 at n = 3; tell the owner the total first), then the results

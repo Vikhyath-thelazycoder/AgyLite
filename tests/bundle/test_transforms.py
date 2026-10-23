@@ -65,6 +65,15 @@ class TestGstackRenderer(unittest.TestCase):
         self.assertNotIn("{{", out)
         self.assertTrue(out.startswith(FM))
 
+    def test_only_bundled_templates_teach_expansions(self):
+        """Phase 9: in a full clone, an excluded skill's template taught a placeholder its upstream text; the build
+        must render like the update's sparse fetch, where that skill is absent."""
+        out, unresolved = gstack.Renderer(Path(self._tmp.name), None, bundled=set()).render("other/SKILL.md.tmpl", TMPL)
+        self.assertIn("KEEP_ME", unresolved)
+        self.assertNotIn("KEPT METHODOLOGY TEXT", out)
+        out, _ = gstack.Renderer(Path(self._tmp.name), None, bundled={"demo/SKILL.md"}).render("other/SKILL.md.tmpl", TMPL)
+        self.assertIn("KEPT METHODOLOGY TEXT", out)
+
     def test_unknown_placeholder_is_reported_not_guessed(self):
         tmpl = TMPL.replace("{{KEEP_ME}}", "{{NEVER_GENERATED}}")
         out, unresolved = self.renderer.render("other/SKILL.md.tmpl", tmpl)
@@ -141,7 +150,7 @@ class TestTransformVersion(unittest.TestCase):
     """The bundle id hashes rules, pins, licenses and TRANSFORM_VERSION, not transform code: an edited transform with
     the same version reuses the old bundle and its old text (Phase 9: the gstack review rewrite did not reach the
     bundle). Editing a transform therefore needs a version bump; record the new sources hash here."""
-    SOURCES = {"7": "444d6039d8272dc8"}
+    SOURCES = {"8": "810cd13134fb8f50"}
 
     def test_transform_edits_bump_the_version(self):
         import hashlib

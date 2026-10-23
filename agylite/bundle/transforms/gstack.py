@@ -115,13 +115,18 @@ def _peel(group_tokens, text, library, weak_literals=()):
 
 
 class Renderer:
-    def __init__(self, repo_root: Path, inventory):
+    def __init__(self, repo_root: Path, inventory, bundled=None):
+        """`bundled`: the bundled paths (`.tmpl` stripped). Only those templates teach expansions, so a full clone
+        renders like the update's sparse fetch (Phase 9: an excluded design-review template taught
+        DESIGN_OUTSIDE_VOICES its Codex text, which then replaced the OS-native fallback in plan-design-review)."""
         self.root = Path(repo_root)
         tracked = {p for p, _, _ in inventory} if inventory else None
         self.pairs = {}
         for tmpl in sorted(self.root.glob("**/*.tmpl")):
             rel = tmpl.relative_to(self.root).as_posix()
             gen = tmpl.with_suffix("")
+            if bundled is not None and rel[: -len(".tmpl")] not in bundled:
+                continue
             if gen.is_file() and (tracked is None or rel in tracked):
                 self.pairs[rel] = (tmpl.read_text(encoding="utf-8"), gen.read_text(encoding="utf-8"))
         self.per_file, self.library = {}, {}

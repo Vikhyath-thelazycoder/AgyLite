@@ -506,12 +506,27 @@ agylite benchmark --compare    → routing 49/49
 benchmark --quality --tier 0   → PASS (OOD 59/59)
 ```
 
+### gstack update applied (owner approval 2026-10-23)
+
+`agylite update --approve gstack@b04cc35` (SECURITY_FAST_TRACK, 97 commits, 5 security fixes) → `--promote` → rescan
+(fresh shallow clone at b04cc35), extraction matrix (closure: 0 open), matrix docs, notices, cards.
+
+- Found while rebuilding from the repo pins: a build from a **full** gstack clone rendered `plan-design-review` and
+  `design-consultation` with gstack's Codex "outside voices" and design-daemon board, while the update's sparse fetch
+  (and every earlier bundle) had Agylite's replacements. Cause: the template renderer learned placeholder expansions
+  from every staged template, including the excluded `design-review`. Fix: only bundled templates teach expansions;
+  TRANSFORM_VERSION 8. Proof: the same pins built from the full clone and from the sparse fetch are byte-identical
+  (6c8821eb00b7), and equal to the approved candidate c12a18c20c27.
+
+Gate (bundle 6c8821eb00b7): 466 tests OK (skipped=3); doctor 64/0; validate 23/0; routing 49/49; Tier 0 PASS (OOD 59/59).
+
 ## RESUME FROM
 
 <!-- p7-progress:start -->
-**Phase 9 code is DONE (see "Phase 9: parity loop" below). NOW: the owner's go-ahead for the Phase 9 paid re-runs and
-the gstack / addy approvals; then the parity loop on the results, every test + the results website. The progress
-checklist is in IMPLEMENTATION_PLAN.md → "Resume here". Engine home for Phase 9: `home-p9` (bundle 70c7149c3e1b).**
+**Phase 9 code is DONE and gstack b04cc35 is applied (see "Phase 9: parity loop" below). NOW: the Phase 9 paid
+re-runs wait for the owner (2026-10-23: "not now"); addy's approval waits for its Tier 1 run; then the parity loop on
+the results, every test + the results website. The progress checklist is in IMPLEMENTATION_PLAN.md → "Resume here".
+Engine home for Phase 9: `home-p9` (bundle 6c8821eb00b7).**
 <!-- p7-progress:end -->
 
 How to work (any phase):

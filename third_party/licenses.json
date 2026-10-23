@@ -126,8 +126,8 @@
  },
  "gstack": {
   "attribution": "Copyright (c) 2026 Garry Tan",
-  "bundled_files": 103,
-  "commit_sha": "5cb5e1cfc115e82388df07896664640a1224fe5d",
+  "bundled_files": 105,
+  "commit_sha": "b04cc35832183a89ed71eed628de15a6f315a1a8",
   "license": "MIT",
   "license_files": [
    "LICENSE",

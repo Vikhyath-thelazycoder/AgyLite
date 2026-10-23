@@ -11,18 +11,18 @@ Plan, build, review and ship software with completion discipline.
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
 | `engineering/principles` | Think-before-coding, simplicity-first, surgical changes, goal-driven execution | ecc, karpathy | 4 | 37.5 | 9,608 | L1 | none | False | none | bundled | — |
-| `engineering/planning` | Requirements intake, specs, task breakdown, plan reviews, living implementation plan | addy, agency, ecc, gstack, pocock | 52 | 482.5 | 123,508 | L2 | none | False | none | mixed | — |
+| `engineering/planning` | Requirements intake, specs, task breakdown, plan reviews, living implementation plan | addy, agency, ecc, gstack, pocock | 52 | 483.4 | 123,741 | L2 | none | False | none | mixed | — |
 | `engineering/architecture` | System/interface design, boundaries, ADRs, TRD/ARCHITECTURE docs | addy, agency, ecc, pocock | 21 | 142.5 | 36,488 | L2 | none | False | none | bundled | — |
 | `engineering/implementation` | Incremental, source-grounded, constraint-respecting implementation | addy, agency, pocock | 8 | 85.2 | 21,802 | L2 | none | False | none | bundled | — |
 | `engineering/backend` | Backend patterns, data layer, error handling, payments/realtime specialists | agency, ecc | 9 | 111.0 | 28,412 | L2 | none | False | none | bundled | — |
 | `engineering/frontend` | Frontend engineering: components, state, accessibility in code, responsiveness | addy, agency, ecc | 5 | 66.3 | 16,983 | L2 | none | False | none | bundled | design/frontend |
-| `engineering/security` | Threat-aware hardening, security review, CSO audit, guardrails | addy, agency, ecc, gstack | 33 | 437.6 | 112,020 | L2 | none | False | none | bundled | — |
+| `engineering/security` | Threat-aware hardening, security review, CSO audit, guardrails | addy, agency, ecc, gstack | 33 | 437.6 | 112,034 | L2 | none | False | none | bundled | — |
 | `engineering/performance` | Measured performance optimization | addy, ecc | 4 | 51.7 | 13,240 | L2 | none | False | none | bundled | — |
-| `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack, pocock, ponytail | 32 | 197.1 | 50,449 | L2 | none | False | none | bundled | — |
-| `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack, pocock | 13 | 58.2 | 14,900 | L2 | none | False | none | bundled | — |
+| `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack, pocock, ponytail | 33 | 202.4 | 51,810 | L2 | none | False | none | bundled | — |
+| `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack, pocock | 13 | 59.7 | 15,281 | L2 | none | False | none | bundled | — |
 | `engineering/simplicity` | YAGNI and minimality review (explicit or plan-review time; never always-on) | addy, agency, ecc, gstack, ponytail | 23 | 94.4 | 24,166 | L2 | none | False | none | bundled | — |
 | `engineering/completion` | Acceptance gates, evidence-backed completion states, no-placeholder output | addy, unlazy | 32 | 413.9 | 105,966 | L2 | node | False | none | bundled | — |
-| `engineering/release` | CI/CD, git workflow, shipping, canary, observability-in-app, retros | addy, agency, ecc, gstack, pocock | 42 | 376.5 | 96,376 | L2 | none | False | none | bundled | — |
+| `engineering/release` | CI/CD, git workflow, shipping, canary, observability-in-app, retros | addy, agency, ecc, gstack, pocock | 43 | 381.1 | 97,571 | L2 | none | False | none | bundled | — |
 | `engineering/migration` | Deprecations, schema/data migrations | addy, ecc | 2 | 24.1 | 6,169 | L2 | none | False | none | bundled | — |
 | `engineering/documentation` | Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs | addy, agency, ecc, gstack, pocock | 10 | 114.6 | 29,343 | L2 | none | False | none | mixed | — |
 | `engineering/diagrams` | Architecture, sequence, flow, ERD, class, tree, timeline and waterfall diagrams as checked HTML (Archify) | archify | 189 | 5206.6 | 1,332,878 | L2 | node | False | fallback | bundled | — |
@@ -54,7 +54,7 @@ Product-appropriate, non-generic, accessible interfaces with justified decisions
 | `design/accessibility` | Accessible design baseline and checklist | addy, ecc, opendesign | 6 | 55.7 | 14,251 | L2 | none | False | none | bundled | — |
 | `design/motion` | Purposeful motion, animation discipline, reduced motion (web and React Native gesture/spring motion) | appllama, ecc, opendesign | 32 | 194.7 | 49,831 | L2 | none | False | none | bundled | — |
 | `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics) | appllama, opendesign, taste, uiuxpromax | 152 | 6046.4 | 1,547,878 | L2 | none | False | none | bundled | — |
-| `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 229.2 | 58,667 | L2 | none | False | none | bundled | design/visual-quality |
+| `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 229.5 | 58,757 | L2 | none | False | none | bundled | design/visual-quality |
 | `design/brand` | Brand identity, voice, kits | ecc, opendesign, uiuxpromax | 35 | 213.3 | 54,616 | L2 | none | False | none | bundled | — |
 
 ## testing
@@ -63,7 +63,7 @@ Evidence that implementation meets acceptance criteria — local and scripted fi
 
 | Capability | Purpose | Sources | Files | KB | On-disk est. tokens | Context | Runtime | Network | Browser | Origin | Uses |
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
-| `testing/strategy` | Test strategy, TDD, test value audit (QA: CORE) | addy, agency, ecc, gstack, pocock | 18 | 184.9 | 47,337 | L2 | none | False | none | bundled | — |
+| `testing/strategy` | Test strategy, TDD, test value audit (QA: CORE) | addy, agency, ecc, gstack, pocock | 18 | 185.0 | 47,359 | L2 | none | False | none | bundled | — |
 | `testing/local-verification` | Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns (QA: CORE) | agency, gstack | 9 | 33.5 | 8,564 | L2 | os-native | local-only | none | mixed | testing/evidence |
 | `testing/security` | Authn/authz, input validation, request and dependency checks (QA: CORE) | — | 0 | 0.0 | 0 | L2 | os-native | local-only | none | mixed | engineering/security |
 | `testing/accessibility` | Automated a11y checks (evidence, not WCAG proof) (QA: CORE) | agency | 1 | 15.8 | 4,057 | L2 | os-native | False | none | mixed | design/accessibility |

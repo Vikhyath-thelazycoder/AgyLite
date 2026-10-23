@@ -208,20 +208,20 @@
   },
   "gstack": {
    "EXCLUDE": {
-    "files": 3264,
-    "bytes": 59376625
+    "files": 3579,
+    "bytes": 65022166
    },
    "REFERENCE": {
-    "files": 254,
-    "bytes": 5452730
+    "files": 258,
+    "bytes": 5523020
    },
    "COPY": {
     "files": 3,
     "bytes": 14896
    },
    "ADAPT": {
-    "files": 100,
-    "bytes": 874231
+    "files": 102,
+    "bytes": 887412
    }
   },
   "karpathy": {
@@ -424,8 +424,8 @@
   },
   "design/design-review": {
    "files": 25,
-   "bytes": 234669,
-   "est_tokens": 58667,
+   "bytes": 235029,
+   "est_tokens": 58757,
    "sources": [
     "agency",
     "gstack",
@@ -538,8 +538,8 @@
   },
   "engineering/debugging": {
    "files": 13,
-   "bytes": 59601,
-   "est_tokens": 14900,
+   "bytes": 61126,
+   "est_tokens": 15281,
    "sources": [
     "addy",
     "ecc",
@@ -607,8 +607,8 @@
   },
   "engineering/planning": {
    "files": 52,
-   "bytes": 494035,
-   "est_tokens": 123508,
+   "bytes": 494964,
+   "est_tokens": 123741,
    "sources": [
     "addy",
     "agency",
@@ -627,9 +627,9 @@
    ]
   },
   "engineering/release": {
-   "files": 42,
-   "bytes": 385504,
-   "est_tokens": 96376,
+   "files": 43,
+   "bytes": 390284,
+   "est_tokens": 97571,
    "sources": [
     "addy",
     "agency",
@@ -639,9 +639,9 @@
    ]
   },
   "engineering/review": {
-   "files": 32,
-   "bytes": 201796,
-   "est_tokens": 50449,
+   "files": 33,
+   "bytes": 207242,
+   "est_tokens": 51810,
    "sources": [
     "addy",
     "agency",
@@ -653,8 +653,8 @@
   },
   "engineering/security": {
    "files": 33,
-   "bytes": 448083,
-   "est_tokens": 112020,
+   "bytes": 448136,
+   "est_tokens": 112034,
    "sources": [
     "addy",
     "agency",
@@ -926,8 +926,8 @@
   },
   "testing/strategy": {
    "files": 18,
-   "bytes": 189350,
-   "est_tokens": 47337,
+   "bytes": 189438,
+   "est_tokens": 47359,
    "sources": [
     "addy",
     "agency",

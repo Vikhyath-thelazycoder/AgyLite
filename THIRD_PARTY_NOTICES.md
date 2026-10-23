@@ -17,7 +17,7 @@ Agylite bundles selected content from the upstream projects below (see `tools/au
 | [Manavarya09/design-extract](https://github.com/Manavarya09/design-extract) | `86bdbb5` | MIT | Copyright (c) 2024 Manavarya Singh | 7 | `LICENSE` |
 | [affaan-m/ECC](https://github.com/affaan-m/ECC) | `90606c8` | MIT | Copyright (c) 2026 Affaan Mustafa | 411 | `LICENSE` |
 | [Graphify-Labs/graphify](https://github.com/Graphify-Labs/graphify) | `c588b72` | Apache-2.0 | Copyright (c) 2026 Safi Shamsi | 668 | `LICENSE`, `LICENSE-MIT`, `NOTICE` |
-| [garrytan/gstack](https://github.com/garrytan/gstack) | `5cb5e1c` | MIT | Copyright (c) 2026 Garry Tan | 103 | `LICENSE`, `NOTICE.md`, `licenses/Apache-2.0.txt` |
+| [garrytan/gstack](https://github.com/garrytan/gstack) | `b04cc35` | MIT | Copyright (c) 2026 Garry Tan | 105 | `LICENSE`, `NOTICE.md`, `licenses/Apache-2.0.txt` |
 | [multica-ai/andrej-karpathy-skills](https://github.com/multica-ai/andrej-karpathy-skills) | `2c60614` | MIT | forrestchang and contributors | 2 | — License declared in package metadata; upstream ships no license text. |
 | [nexu-io/open-design](https://github.com/nexu-io/open-design) | `e03d5c2` | Apache-2.0 | Copyright 2026 Open Design contributors | 532 | `LICENSE` |
 | [mattpocock/skills](https://github.com/mattpocock/skills) | `5beb35b` | MIT | Copyright (c) 2026 Matt Pocock | 33 | `LICENSE` |
