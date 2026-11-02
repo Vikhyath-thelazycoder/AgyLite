@@ -489,6 +489,25 @@ Still to do:
   - [ ] Owner idea 2026-11-02, after step 4: a category/subcategory folder view of every skill (security,
         security-audit, design, engineering architecture, agents, YouTube, …) so agents can search and load by
         category; new upstreams sorted into it automatically. Not started; to be designed with the owner
+  - [ ] Step 6 (owner 2026-11-02, after steps 1–5 and the category view) — **backend and AI-systems gap fill.** The
+        2026-11-02 coverage check (`agylite skills search` + grep of cards and staged skills) found these covered:
+        authn/authz, rate limiting, API integration, state management (frontend), caching/Redis, DB indexing,
+        Docker, Kubernetes, CI/CD, Python, testing, monitoring, AI agents, building MCP servers. Partial (only side
+        mentions inside framework skills): system design, scaling, queues, background jobs, WebSockets, RAG, vector
+        DB. Missing: load balancing, microservices, RLM (recursive language models). Unclear: "file tooling" (ask
+        the owner what it means first). Do it the same way as D-051, one topic group at a time, and report after each:
+        1. Find upstream candidates for each gap (prefer an existing pinned upstream). Pin, hash, scan, license, and
+           write the one-owner-per-job overlap plan → `docs/audit/24_BACKEND_AI_GAPS_AUDIT.md`. Write a house skill
+           only where no upstream is good enough.
+        2. Groups and their target capabilities:
+           - `engineering/backend` (distributed systems): system design, microservices, load balancing, scaling,
+             queues (Kafka/RabbitMQ/SQS), background jobs (framework-neutral), WebSockets/realtime
+           - `engineering/ai-systems`: RAG, vector databases and embeddings, RLM
+           - deepen the existing auth coverage with a framework-neutral auth skill (JWT/OAuth/OIDC/sessions)
+             if the audit shows none
+        3. Bundle, then add card entry points, routing rules (route a scenario test for each topic), the overlap test
+           and a validate check. Normal tests stay green.
+        4. Paid suite for the new skills only (no skill / original / AgyLite), with the owner's go-ahead first
 - [x] Phase 9 code (2026-10-23, df4ed7c + e14ba43 + this commit): option 2 (D-050: overlapping skills load both
       primaries; rules name their skill; to-spec/to-tickets/code-review/tdd/release routing fixes from the traces);
       gstack review rewrite fixed for D-049 (NEEDS_RULES → SECURITY_FAST_TRACK, candidate c12a18c20c27, Tier 0 PASS);
@@ -708,3 +727,4 @@ plugin `agylite@agylite-marketplace` installed and runtime-verified. Tests: `pyt
 | 2026-10-11 | Trial | First hands-on trial (docs/TRY_AGYLITE.md) passed; its gaps fixed in v2.1.2: product routing by interface/exposure, phase roll-up + `last_task`, session-tagged and task events, enforced BLOCKING questions, empty template P1, `.agylite/` not a code change. 257 tests. |
 | 2026-10-11 | Trial 2 | Second hands-on trial on v2.1.2 passed with no failures (route high, question gate, T-1.1, phase roll-up, session-tagged events, test-first). Polish in v2.1.3: same-status changes are no-ops; readable `events list`. 259 tests. |
 | 2026-10-22 | Parity Phases 0–4 | MP1 critical fixes (F1–F15, incl. auto-route on every prompt), MP2 quality benchmark (Tier 0 + Tier 1 harness, parity ledger; Tier 1 baselines eng-ponytail and eng-addy INCONCLUSIVE at n = 1, the rest not run), Plan B (whole skills, `skill load`, skill catalog) and MP3 (Pocock upstream, Ponytail lite ruleset in L0, ponytail-review first, Unlazy on every multi-step change, sources_priority everywhere). 357 tests; Tier 0 PASS. Merged to `main` on the owner's request. Next: MP4. Details: IMPLEMENTATION_LOG.md. |
+| 2026-11-02 | Owner plan Step 6 | Backend and AI-systems coverage check; the gaps (system design, microservices, load balancing, scaling, queues, background jobs, WebSockets, RAG, vector DB, RLM; "file tooling" to be clarified) added as Step 6, after the new-upstream steps and the category view. |
