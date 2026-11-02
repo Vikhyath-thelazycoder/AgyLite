@@ -531,7 +531,7 @@ PASS). Original arms: ponytail 09c434a, pocock 5beb35b, addy aeac41d (= the pins
 |---|---|---:|---|
 | eng-ponytail | 63/63 | $9.40 | `~/.agylite/benchmarks/quality/20261023T160330Z-eng-ponytail` |
 | eng-addy | 54/54 | $8.38 | `~/.agylite/benchmarks/quality/20261023T163255Z-eng-addy` |
-| eng-pocock | 85/90, stopped by the owner 2026-11-02 | $13.91 | `~/.agylite/benchmarks/quality/20261023T193809Z-eng-pocock` |
+| eng-pocock | 90/90 (finished 2026-11-02) | $15.08 | `~/.agylite/benchmarks/quality/20261023T193809Z-eng-pocock` |
 
 Candidate bundle under test, permanent copy: `~/.agylite/benchmarks/candidates/3509e18d39d9` (rebuilt 2026-11-02 from
 6c8821eb00b7 + addy aeac41d, same content-addressed id, Tier 0 PASS). Every run uses `--bundle` with this path.
@@ -566,9 +566,7 @@ export PATH=$(echo "$PATH" | tr : '\n' | grep -v '.agylite/core/bin' | paste -sd
 which agylite                                         # must print nothing
 B=~/.agylite/benchmarks/candidates/3509e18d39d9
 Q=~/.agylite/benchmarks/quality
-# chunk 1 (eng-ponytail, eng-addy, eng-pocock): see the status line in RESUME FROM. If eng-pocock is not 90/90:
-PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-pocock --runs 3 --bundle $B --yes-spend \
-  --resume $Q/20261023T193809Z-eng-pocock
+# chunk 1 (eng-ponytail 63/63, eng-addy 54/54, eng-pocock 90/90): DONE and reviewed 2026-11-02 ($32.86)
 # chunk 2 (owner approved 2026-11-02; 99 sessions): dry-run each first (drop --yes-spend, add --dry-run)
 for s in research youtube browser-qa design-extract; do
   PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite $s --runs 3 --bundle $B --yes-spend
@@ -580,19 +578,15 @@ done   # 36 + 27 + 9 + 27 sessions; a stopped suite prints its own --resume comm
 ## RESUME FROM
 
 <!-- p7-progress:start -->
-**2026-11-02 (end of session): owner plan step 1 done (new upstreams staged, D-051, doc 23). Step 2 = the Phase 9
-paid run: chunk 1 is eng-ponytail 63/63, eng-addy 54/54, eng-pocock (see the status line below). The owner said stop
-after chunk 1: chunk 2 was NOT started. Next session: say "continue the paid test" → finish eng-pocock if it is not
-90/90, then chunk 2 (already approved; gstack already rebuilt), then chunk 3, then PARITY_REPORT.md, then step 3
-(fixes). Commands: "Phase 9 paid run — resume" above. Rules: no re-runs and no engine/code changes until chunk 3
-ends; a read-only gap and cost review after each chunk. Findings C1-1…C1-9 and the chunk 1 review are in
-IMPLEMENTATION_PLAN.md → "Resume here".**
-
-eng-pocock status (owner stopped it 2026-11-02): **85/90 saved, $13.91 total; 5 cells left** (the resume command
-in "Phase 9 paid run — resume" runs only those 5). Partial scores, expectations passed: no skill 0.541 · original
-0.804 (26 of 28 graded; 2 tdd cells asked questions instead of acting, C1-9) · AgyLite 0.796, ≈ 0.97 retained;
-cost per task $0.121 / $0.174 / $0.197. Chunk 1 read-only review (with eng-pocock's per-task gaps, e.g. to-spec) is
-still to do once the 5 cells finish.
+**2026-11-02: chunk 1 of the Phase 9 paid run is DONE and reviewed.** eng-ponytail 63/63, eng-addy 54/54,
+eng-pocock 90/90; 207 sessions, $32.86. eng-pocock: no skill 0.532 · original 0.753 · AgyLite 0.768 (retained 1.07,
+inconclusive). Without tdd, where the original only asks questions (C1-9): 0.465 / 0.908 / 0.744. Main gap C1-10:
+the 4.5–5.8k-token hook is saved to a file that the agent opens only on planning prompts, so diagnosing-bugs runs as
+no skill (0.46 vs 0.79). The chunk 1 review (C1-1…C1-12) and the fix order are in IMPLEMENTATION_PLAN.md → "Resume
+here"; the ledger has all three rows. **Next: chunk 2** (research, youtube, browser-qa, design-extract; 99 sessions;
+the owner approved it, but ask before starting), then chunk 3, then PARITY_REPORT.md, then step 3 (fixes). Commands:
+"Phase 9 paid run — resume" above. Rules: no re-runs and no engine/code changes until chunk 3 ends; a read-only gap
+and cost review after each chunk.**
 <!-- p7-progress:end -->
 
 How to work (any phase):

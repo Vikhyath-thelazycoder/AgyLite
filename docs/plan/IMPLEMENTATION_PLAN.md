@@ -478,8 +478,9 @@ Still to do:
         `docs/audit/evidence/candidates/`. Nothing bundled; the paid run's bundle stays frozen. Also: `test_p25`
         ceiling 8,000 → 10,000 bytes (owner: quality first; it failed at 8,005 on clean main)
   - [ ] Step 2 — finish the Phase 9 paid run on the frozen bundle (eng-pocock, then chunks 2 and 3; rules below).
-        2026-11-02: eng-pocock 85/90, chunk 2 not started (owner: stop after chunk 1). Chunk 2 is approved and
-        ready (gstack rebuilt at b04cc35, candidate copied to `~/.agylite/benchmarks/candidates/3509e18d39d9`)
+        2026-11-02: **chunk 1 done (eng-pocock 90/90) and reviewed (C1-10…C1-12, fix order below)**. Chunk 2 is
+        approved and ready (gstack rebuilt at b04cc35, candidate copied to
+        `~/.agylite/benchmarks/candidates/3509e18d39d9`)
   - [ ] Step 3 — PARITY_REPORT.md, fix all findings, run the normal (free) tests
   - [ ] Step 4 — bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
         Elaya Part A as `design/landing-conversion`, overlap test + validate check), normal tests green
@@ -505,10 +506,14 @@ Still to do:
       - [x] chunk 1b eng-addy 54/54 done (2026-10-24, $8.38): no skill 0.931 · original 1 · AgyLite 0.986, retained
             0.8, inconclusive (gain within noise). 12 of its 18 AgyLite cells ran the old installed engine (C1-1).
             They stay as they are (owner 2026-10-24: **no re-runs now**). Backups `records.before-c1-1.json`
-      - [ ] chunk 1c eng-pocock **85/90 ($13.91), stopped by the owner 2026-11-02; 5 cells left (resume command in IMPLEMENTATION_LOG); partial: no skill 0.541 · original 0.804 · AgyLite 0.796**. Cells 1–16 ran on PATH
-            with the installed engine (5 AgyLite cells on the old engine); cells 17–20 ran with `~/.agylite/core/bin`
-            off PATH (the engine under test). **Next session: resume it** (command in IMPLEMENTATION_LOG "Phase 9
-            paid run — resume"); then chunk 1 is over → do the chunk review (below)
+      - [x] chunk 1c eng-pocock **90/90 done 2026-11-02 ($15.08): no skill 0.532 · original 0.753 · AgyLite 0.768,
+            retained 1.07, inconclusive.** The last run did the 5 cells that had never run, plus the 2 ungraded
+            original tdd cells (C1-9). The owner chose to re-run those 2; the old records are in
+            `records.before-finish-2026-11-02.json`. 5 AgyLite cells ran the old engine (C1-1: grilling#1/#2,
+            to-spec#1/#2, to-tickets#1, all run 0)
+      - [x] **Chunk 1 done (2026-11-02): 207 sessions, $32.86** (ponytail $9.40, addy $8.38, pocock $15.08). Ledger
+            rows for all three (the eng-addy row was lost with the /tmp checkout and was rebuilt from its
+            report.json). Chunk 1 review below (C1-1…C1-12)
       - [ ] **Owner rules 2026-10-24 for the rest of the paid run:**
             1. Run chunks 1, 2 and 3 to the end. No re-runs and no engine or code changes in between.
             2. **After each chunk ends: a gap and cost review** (read-only; no fixes). For every suite in the chunk,
@@ -582,7 +587,38 @@ Still to do:
           (tdd#2 upstream run 1): no code, `grading: null`, so the cell is dropped from the mean (not scored 0) and
           `_valid` would re-run it on a later resume. The arm's n shrinks silently. Fix: record such cells as
           "asked instead of acting" with their own count in the report, and decide with the owner whether the grader
-          scores them.
+          scores them. **Update 2026-11-02:** the 2 cells were re-run (owner) and the grader now scores the
+          question-only answers 0. Original tdd = 0.13 (tdd#1 0.27, tdd#2 0/3): headless, it asks for seam
+          confirmation every time. That one task is why AgyLite's suite mean (0.768) beats the original (0.753).
+          Without tdd: no skill 0.465 · original 0.908 · **AgyLite 0.744 (retained ≈ 0.63)**.
+        - **Chunk 1 review, eng-pocock (2026-11-02, read-only; checks (a)–(g) on all 30 AgyLite cells):**
+          - (a)+(c) **C1-10 (the main eng-pocock gap = C1-2 in action):** every new-engine hook payload was
+            4,552–5,802 est tokens (≈ 18–23k chars), so it was always saved to a file. The agent opened that file in
+            10 of 25 new-engine cells: always on planning prompts (grilling, to-spec, to-tickets#1), never on
+            action prompts (diagnosing-bugs, tdd, to-tickets#2). When it opened the file, AgyLite matched the
+            original: to-spec 1.0 vs 0.97, grilling 0.81 vs 0.875, to-tickets#1 0.875 vs 1. When it did not, it
+            behaved like no skill: **diagnosing-bugs 0.46 vs original 0.79 vs no skill 0.33.** It missed "build a
+            red feedback loop before theorising" and "state ranked hypotheses". In tdd#1, 3 of 3 cells missed "name
+            the seam first". Fix = C1-2 (keep the hook under ≈ 9,000 chars, lead skill inline).
+          - (f) **C1-11 (routing adds a 3rd skill, = C1-5):** diagnosing-bugs routes BUG_FIX/FEATURE_CHANGE to
+            pocock/diagnosing-bugs + addy/debugging + **ecc/ai-regression-testing**, and tdd#1 routes NEW_FEATURE
+            + **addy/incremental-implementation**. These are the largest payloads (5.6–5.8k) and exactly the ones
+            the agent never opened. The diagnosing-bugs#2 slowdown prompt routes FEATURE_CHANGE, not BUG_FIX. Fix:
+            at most lead + partner skills; a rule for "is slow"/"slowdown" phrasings.
+          - (b) cost: AgyLite $0.201 per cell vs original $0.181 vs no skill $0.121. First call ≈ 33.0–33.7k tokens
+            vs no skill ≈ 29.5k and original 30.1–33.0k (C1-3). Opening the hook file costs +1–2 turns (grilling
+            3.0–3.7 turns vs original 1.0–1.7). AgyLite is cheaper than the original only on diagnosing-bugs,
+            because it skipped the original's loop (that is the quality gap, not a saving).
+          - (e) `agylite` Bash calls: 0.83 per cell (C1-4). to-tickets#2 makes 2 per cell.
+          - (d)+(g) L0 4,747–4,876 chars with PONYTAIL MODE on 25 cells (engine under test). ≈ 1.5k chars on the 5
+            old-engine cells. Those 5 explain the to-spec dip (old-engine to-spec 0.4/0.2 vs new 1.0/1.0).
+          - **C1-12 (bookkeeping):** a ledger row records the checkout's HEAD when it is appended, not the commit
+            the run started on. The eng-addy row was written into the /tmp checkout and lost (rebuilt
+            2026-11-02). Fix: the run writes its start commit into report.json, and the ledger reads it from there.
+        - **Chunk 1 fix order (for after chunk 3; nothing fixed now):** 1. C1-1 (pin the launcher, isolation check)
+          → 2. C1-2/C1-10 (hook ≤ 9,000 chars, lead skill inline) → 3. C1-5/C1-11 (max two skills, routing rules)
+          → 4. C1-3 (smaller L0 and fewer plugin descriptions) → 5. C1-4 (no needless verify/route calls) → 6. C1-9
+          (asked-instead-of-acting count) → 7. C1-6, C1-7, C1-8, C1-12 (run and bookkeeping robustness)
       - Paid-run findings, chunk 2: (to fill in after chunk 2 ends, same checks (a)–(g))
       - Paid-run findings, chunk 3: (to fill in after chunk 3 ends; design-taste's skill (≈ 9,700 tokens) is certainly
         over the hook limit, check C1-2 first)

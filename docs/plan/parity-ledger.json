@@ -1213,9 +1213,372 @@
     }
    ],
    "errors": [],
-   "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T160330Z-eng-ponytail",
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261023T160330Z-eng-ponytail",
    "fix_applied": "",
    "next_step": ""
+  },
+  {
+   "date": "20261023T163255Z",
+   "suite": "eng-addy",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "f118d2d6c622a1993d715f79714febfc8a8ff23f",
+   "upstream_shas": {
+    "agent-skills": "aeac41d4d005999432bb7312f7ff06383a91d59d"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "expectations_passed": {
+     "baseline": 0.9305555555555556,
+     "upstream": 1.0,
+     "agylite": 0.9861111111111112,
+     "retained": 0.8,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 2.3523,
+    "upstream": 2.9536,
+    "agylite": 3.1157
+   },
+   "agent_seconds": {
+    "baseline": 488.1,
+    "upstream": 536.3,
+    "agylite": 531.1
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T163255Z-eng-addy",
+   "fix_applied": "",
+   "next_step": "12/18 AgyLite cells ran the old installed engine (C1-1); one miss = code-review severity labels (C1-2); fix after chunk 3"
+  },
+  {
+   "date": "20261023T193809Z",
+   "suite": "eng-pocock",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "f118d2d6c622a1993d715f79714febfc8a8ff23f",
+   "upstream_shas": {
+    "skills": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+    "agent-skills": "aeac41d4d005999432bb7312f7ff06383a91d59d"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "expectations_passed": {
+     "baseline": 0.5316666666666666,
+     "upstream": 0.7533333333333334,
+     "agylite": 0.7683333333333333,
+     "retained": 1.068,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 3.6184,
+    "upstream": 5.4419,
+    "agylite": 6.0215
+   },
+   "agent_seconds": {
+    "baseline": 814.8,
+    "upstream": 1484.9,
+    "agylite": 968.0
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261023T193809Z-eng-pocock",
+   "fix_applied": "",
+   "next_step": "planning skills (grilling, to-spec, to-tickets) match the original when the agent opens the saved hook file; diagnosing-bugs 0.46 vs 0.79 and tdd seam naming miss because the 5.6-5.8k-token hook was never opened (C1-2); original tdd asks questions instead of acting, scored 0.13 (C1-9); 5 AgyLite cells old engine (C1-1); fix after chunk 3"
   }
  ],
  "notes": [
