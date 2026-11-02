@@ -1,0 +1,24 @@
+# cfsecurity @ c1c8a8c1471069fb0e188eeaff69b8e8db6564a8
+blob_sha1	bytes	path
+6dbc9ecb3a5b9080e95b962869e8c7ab16cfdc20	1078	LICENSE
+c80305c88cd5087db37f76a0d230c1fc092c864c	6950	README.md
+02ba9039eca4cec811fefc77bce0d7349b379aae	10617	skills/security-audit/AI-AND-LLM.md
+18a2beb4dbb554fb52b0a0293b8bd9108207f8fa	15695	skills/security-audit/ATTACK-CLASSES.md
+8ba673e9e7e3d02f5518aa0219bcbeec7957531b	8594	skills/security-audit/CLIENT-SIDE.md
+5569f76c7740744aa3f60aaa89eaefe275f2e6c9	8291	skills/security-audit/CLOUD-AND-DEPLOYMENT.md
+0cba1fa463b62c9b0caba710a201e29c1eecd0ec	7798	skills/security-audit/DATA-ISOLATION-AND-LIFECYCLE.md
+d6230098651bff6348d3868c11f566bfb1306e7f	8739	skills/security-audit/DESKTOP-MOBILE-AND-LOCAL-IPC.md
+377d4dcfbe88a049379448cd7892717185401597	22446	skills/security-audit/HUNTING.md
+86ff4920752661fc4a31a35ca4f962ace5dd5f48	10513	skills/security-audit/MEMORY-SAFETY-AND-BINARY.md
+b04ab88f852224838fdc9683d9fcccd858b0778a	7483	skills/security-audit/PROTOCOLS-RPC-AND-MESSAGING.md
+1a170a93ab76b93dc5ac268a5b690beb423a8aa9	15902	skills/security-audit/RECONNAISSANCE.md
+6cbbd1e2cfa482068c8279c2f7da9db43d3f54b8	7476	skills/security-audit/RESOURCE-EXHAUSTION-AND-AVAILABILITY.md
+92178dad304d3f63e37582a297026a7874e12c62	22026	skills/security-audit/SKILL.md
+bf96aed0803bc07471483ab129dea86759c3e305	7258	skills/security-audit/SUPPLY-CHAIN-AND-RELEASE.md
+5e200d7387e665e53e0e4190fa4a5814c334c507	17843	skills/security-audit/VALIDATION-AND-REPORTING.md
+1a099fa575cf52a61e9a627f91b61015120fa517	12300	skills/security-audit/WEB-PROTOCOL-AND-AUTH.md
+55815a3687a45fff63d8ebf20068611bd6ad6d9a	14494	skills/security-audit/report-schema.json
+0ef58657bef18b26a92321df6c8e3d31bc8e6659	33522	skills/security-audit/validate-coverage-ledger.cjs
+b1444f57e1b021a61175733b8c356171861c8701	28483	skills/security-audit/validate-coverage-ledger.test.cjs
+2843feceddb7e30bf10d6e4f7bbe6640e4c57799	28806	skills/security-audit/validate-findings.cjs
+8d245b226bbe2fdf28b46b3203b99c2824039d2d	26384	skills/security-audit/validate-findings.test.cjs

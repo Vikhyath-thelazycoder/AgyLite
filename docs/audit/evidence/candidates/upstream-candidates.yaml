@@ -1,0 +1,17 @@
+# Candidate upstreams — staged and audited, NOT pinned into any bundle (D-051).
+# AUDIT INPUT ONLY. Snapshots live in .staging/upstream/<key> (gitignored), cloned with --filter=blob:none.
+# These move into upstream-staging-snapshot.yaml, extraction-rules.yaml, upstreams.yaml and licenses.json only in
+# step 4 of the 2026-11-02 plan (after the Phase 9 paid run ends), so the bundle under test stays frozen.
+# Evidence: candidates/upstream-file-hashes/<key>.tsv and candidates/upstream-scan/<key>.json (tools/audit/scan_upstream.py).
+# Overlap audit and per-file decisions: docs/audit/23_NEW_UPSTREAMS_OVERLAP_AUDIT.md.
+# Captured: 2026-11-02
+
+candidates:
+  elaya:      {repo: elayadesign/ai-design-skills,      branch: main, head: 456d9e0d3e2d84c748bb143c6ca3d90c45e16213, head_date: 2026-11-02, tracked_files: 9,    commits: 16,  size: 0.5M, license: MIT,          license_files: [LICENSE]}
+  cfsecurity: {repo: cloudflare/security-audit-skill,   branch: main, head: c1c8a8c1471069fb0e188eeaff69b8e8db6564a8, head_date: 2026-09-14, tracked_files: 22,   commits: 14,  size: 0.6M, license: MIT,          license_files: [LICENSE]}
+  tob:        {repo: trailofbits/skills,                branch: main, head: 2be6433b39e009cd2b6fd3be1895f6b1faa5af9a, head_date: 2026-10-28, tracked_files: 1598, commits: 232, size: 19M,  license: CC-BY-SA-4.0, license_files: [LICENSE], license_note: "share-alike; non-blocking per D-002, LICENSE and attribution copied with the files"}
+
+proposed_tracking:   # goes into config/upstreams.yaml in step 4
+  elaya:      {track: monthly, branch: main}   # 16 commits, last one on 2026-11-02: young repo, watch before following weekly
+  cfsecurity: {track: weekly,  branch: main}
+  tob:        {track: weekly,  branch: main}

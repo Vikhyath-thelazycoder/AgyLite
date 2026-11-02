@@ -1,0 +1,1182 @@
+{
+ "repo": "tob",
+ "head": "2be6433b39e009cd2b6fd3be1895f6b1faa5af9a",
+ "totals": {
+  "files": 1598,
+  "bytes": 9399009,
+  "submodules": []
+ },
+ "top_dirs": {
+  "plugins": 1576,
+  ".github": 12,
+  "(root)": 9,
+  ".claude-plugin": 1
+ },
+ "extensions": {
+  ".md": 855,
+  ".py": 173,
+  ".yaml": 113,
+  ".json": 111,
+  ".svg": 71,
+  ".sh": 68,
+  "(none)": 25,
+  ".toml": 20,
+  ".js": 18,
+  ".sol": 13,
+  ".bats": 11,
+  ".c": 10,
+  ".lock": 9,
+  ".mjs": 8,
+  ".txt": 8,
+  ".rs": 7,
+  ".stderr": 7,
+  ".stdout": 7,
+  ".yml": 6,
+  ".ql": 5,
+  ".lean": 5,
+  ".yar": 5,
+  ".s": 4,
+  ".h": 3,
+  ".go": 3
+ },
+ "host_dirs": [
+  ".claude-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json",
+  "plugins/agentic-actions-auditor/.claude-plugin/plugin.json",
+  "plugins/audit-context-building/.claude-plugin/plugin.json",
+  "plugins/building-secure-contracts/.claude-plugin/plugin.json",
+  "plugins/burpsuite-project-parser/.claude-plugin/plugin.json",
+  "plugins/c-review/.claude-plugin/plugin.json",
+  "plugins/c-review/scripts/pyproject.toml",
+  "plugins/c-review/scripts/uv.lock",
+  "plugins/chrome-mcp-troubleshooting/.claude-plugin/plugin.json",
+  "plugins/code-improver/.claude-plugin/plugin.json",
+  "plugins/code-improver/tests/fixtures/plugin-dev/.claude-plugin/plugin.json",
+  "plugins/code-improver/tests/fixtures/pr-review-toolkit/.claude-plugin/plugin.json",
+  "plugins/code-improver/tests/fixtures/review-panel/.claude-plugin/plugin.json",
+  "plugins/constant-time-analysis/.claude-plugin/plugin.json",
+  "plugins/constant-time-analysis/pyproject.toml",
+  "plugins/constant-time-analysis/uv.lock",
+  "plugins/culture-index/.claude-plugin/plugin.json",
+  "plugins/culture-index/skills/interpreting-culture-index/scripts/pyproject.toml",
+  "plugins/culture-index/skills/interpreting-culture-index/scripts/uv.lock",
+  "plugins/devcontainer-setup/.claude-plugin/plugin.json",
+  "plugins/devcontainer-setup/skills/devcontainer-setup/resources/Dockerfile",
+  "plugins/differential-review/.claude-plugin/plugin.json",
+  "plugins/dimensional-analysis/.claude-plugin/plugin.json",
+  "plugins/dwarf-expert/.claude-plugin/plugin.json",
+  "plugins/entry-point-analyzer/.claude-plugin/plugin.json",
+  "plugins/firebase-apk-scanner/.claude-plugin/plugin.json",
+  "plugins/fp-check/.claude-plugin/plugin.json",
+  "plugins/fp-check/hooks/hooks.json",
+  "plugins/gh-cli/.claude-plugin/plugin.json",
+  "plugins/gh-cli/hooks/hooks.json",
+  "plugins/git-cleanup/.claude-plugin/plugin.json",
+  "plugins/github-triage/.claude-plugin/plugin.json",
+  "plugins/goal-prompt/.claude-plugin/plugin.json",
+  "plugins/insecure-defaults/.claude-plugin/plugin.json",
+  "plugins/let-fate-decide/.claude-plugin/plugin.json",
+  "plugins/let-fate-decide/skills/let-fate-decide/scripts/pyproject.toml",
+  "plugins/modern-cpp/.claude-plugin/plugin.json",
+  "plugins/modern-python/.claude-plugin/plugin.json",
+  "plugins/modern-python/hooks/hooks.json",
+  "plugins/mutation-testing/.claude-plugin/plugin.json",
+  "plugins/mutation-testing/evals/weak-suite-analysis/fixture/Cargo.toml",
+  "plugins/open-sourcing/.claude-plugin/plugin.json",
+  "plugins/patching-bugs/.claude-plugin/plugin.json",
+  "plugins/patching-bugs/pyproject.toml",
+  "plugins/patching-bugs/uv.lock",
+  "plugins/post-patch-validation/.claude-plugin/plugin.json",
+  "plugins/post-patch-validation/skills/post-patch-validation/scripts/pyproject.toml",
+  "plugins/property-based-testing/.claude-plugin/plugin.json",
+  "plugins/property-based-testing/evals-extra/fixture/requirements.txt",
+  "plugins/regression-hunt/.claude-plugin/plugin.json",
+  "plugins/regression-hunt/pyproject.toml",
+  "plugins/regression-hunt/uv.lock",
+  "plugins/review-walkthrough/.claude-plugin/plugin.json",
+  "plugins/review-walkthrough/skills/review-walkthrough/scripts/pyproject.toml",
+  "plugins/rust-review/.claude-plugin/plugin.json",
+  "plugins/rust-review/scripts/pyproject.toml",
+  "plugins/second-opinion/.claude-plugin/plugin.json",
+  "plugins/semgrep-rule-creator/.claude-plugin/plugin.json",
+  "plugins/semgrep-rule-variant-creator/.claude-plugin/plugin.json",
+  "plugins/sharp-edges/.claude-plugin/plugin.json",
+  "plugins/spec-to-code-compliance/.claude-plugin/plugin.json",
+  "plugins/static-analysis/.claude-plugin/plugin.json",
+  "plugins/static-analysis/skills/codeql/scripts/pyproject.toml",
+  "plugins/supply-chain-risk-auditor/.claude-plugin/plugin.json",
+  "plugins/supply-chain-risk-auditor/evals/fixtures/data-service/pyproject.toml",
+  "plugins/supply-chain-risk-auditor/evals/fixtures/rusty-svc/Cargo.toml",
+  "plugins/supply-chain-risk-auditor/evals/fixtures/shipping-api/package.json",
+  "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/pyproject.toml",
+  "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/uv.lock",
+  "plugins/testing-handbook-skills/.claude-plugin/plugin.json",
+  "plugins/testing-handbook-skills/scripts/pyproject.toml",
+  "plugins/testing-handbook-skills/scripts/uv.lock",
+  "plugins/trailmark/.claude-plugin/plugin.json",
+  "plugins/trailmark/skills/slicing-code-context/scripts/pyproject.toml",
+  "plugins/trailmark/skills/slicing-code-context/scripts/uv.lock",
+  "plugins/variant-analysis/.claude-plugin/plugin.json",
+  "plugins/vulnerability-triage-brocards/.claude-plugin/plugin.json",
+  "plugins/writing-lean-proofs/.claude-plugin/plugin.json",
+  "plugins/yara-authoring/.claude-plugin/plugin.json",
+  "plugins/yara-authoring/skills/yara-rule-authoring/scripts/pyproject.toml",
+  "plugins/yara-authoring/skills/yara-rule-authoring/scripts/uv.lock",
+  "plugins/zeroize-audit/.claude-plugin/plugin.json",
+  "plugins/zeroize-audit/.mcp.json"
+ ],
+ "mcp_files": [
+  "plugins/zeroize-audit/.mcp.json"
+ ],
+ "installers": [
+  "plugins/devcontainer-setup/skills/devcontainer-setup/resources/install.sh",
+  "plugins/gh-cli/hooks/setup-shims.sh",
+  "plugins/modern-python/hooks/setup-shims.sh",
+  "plugins/variant-analysis/tests/setup-gradio.sh"
+ ],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "plugins/agentic-actions-auditor/skills/agentic-actions-auditor/SKILL.md",
+   "name": "agentic-actions-auditor",
+   "description": "Audits GitHub Actions workflows for security vulnerabilities in AI agent integrations including Claude Code Action, Gemini CLI, OpenAI Codex, and GitHub AI Inference. Detects attack vectors where attacker-controlled input reaches AI agents ",
+   "bytes": 21743
+  },
+  {
+   "path": "plugins/audit-context-building/skills/audit-context-building/SKILL.md",
+   "name": "audit-context-building",
+   "description": "Understand a codebase before looking for bugs in it - what each function assumes, what it guarantees, and what it depends on elsewhere. Use when starting an audit, threat model, or architecture review on unfamiliar code, and before any vuln",
+   "bytes": 3991
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/algorand-vulnerability-scanner/SKILL.md",
+   "name": "algorand-vulnerability-scanner",
+   "description": "Scans Algorand smart contracts for 11 common vulnerabilities including rekeying attacks, unchecked transaction fees, missing field validations, and access control issues. Use when auditing Algorand projects (TEAL/PyTeal).",
+   "bytes": 12593
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/audit-prep-assistant/SKILL.md",
+   "name": "audit-prep-assistant",
+   "description": "Prepares codebases for security review using Trail of Bits' checklist. Helps set review goals, runs static analysis tools, increases test coverage, removes dead code, ensures accessibility, and generates documentation (flowcharts, user stor",
+   "bytes": 10010
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/cairo-vulnerability-scanner/SKILL.md",
+   "name": "cairo-vulnerability-scanner",
+   "description": "Scans Cairo/StarkNet smart contracts for 6 critical vulnerabilities including felt252 arithmetic overflow, L1-L2 messaging issues, address conversion problems, and signature replay. Use when auditing StarkNet projects.",
+   "bytes": 13109
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/code-maturity-assessor/SKILL.md",
+   "name": "code-maturity-assessor",
+   "description": "Systematic code maturity assessment using Trail of Bits' 9-category framework. Analyzes codebase for arithmetic safety, auditing practices, access controls, complexity, decentralization, documentation, MEV risks, low-level code, and testing",
+   "bytes": 7297
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/cosmos-vulnerability-scanner/SKILL.md",
+   "name": "cosmos-vulnerability-scanner",
+   "description": "Scans Cosmos SDK blockchain modules and CosmWasm contracts for consensus-critical vulnerabilities \u2014 chain halts, fund loss, state divergence. 25 core + 16 IBC + 10 EVM + 3 CosmWasm patterns. Use when auditing custom x/ modules, reviewing IB",
+   "bytes": 10940
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/guidelines-advisor/SKILL.md",
+   "name": "guidelines-advisor",
+   "description": "Smart contract development advisor based on Trail of Bits' best practices. Analyzes codebase to generate documentation/specifications, review architecture, check upgradeability patterns, assess implementation quality, identify pitfalls, rev",
+   "bytes": 8752
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/secure-workflow-guide/SKILL.md",
+   "name": "secure-workflow-guide",
+   "description": "Guides through Trail of Bits' 5-step secure development workflow. Runs Slither scans, checks special features (upgradeability/ERC conformance/token integration), generates visual security diagrams, helps document security properties for fuz",
+   "bytes": 6745
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/solana-vulnerability-scanner/SKILL.md",
+   "name": "solana-vulnerability-scanner",
+   "description": "Scans Solana programs for 6 critical vulnerabilities including arbitrary CPI, improper PDA validation, missing signer/ownership checks, and sysvar spoofing. Use when auditing Solana/Anchor programs.",
+   "bytes": 14452
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/substrate-vulnerability-scanner/SKILL.md",
+   "name": "substrate-vulnerability-scanner",
+   "description": "Scans Substrate/Polkadot pallets for 7 critical vulnerabilities including arithmetic overflow, panic DoS, incorrect weights, and bad origin checks. Use when auditing Substrate runtimes or FRAME pallets.",
+   "bytes": 12800
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/token-integration-analyzer/SKILL.md",
+   "name": "token-integration-analyzer",
+   "description": "Token integration and implementation analyzer based on Trail of Bits' token integration checklist. Analyzes token implementations for ERC20/ERC721 conformity, checks for 20+ weird token patterns, assesses contract composition and owner priv",
+   "bytes": 12720
+  },
+  {
+   "path": "plugins/building-secure-contracts/skills/ton-vulnerability-scanner/SKILL.md",
+   "name": "ton-vulnerability-scanner",
+   "description": "Scans TON (The Open Network) smart contracts for 3 critical vulnerabilities including integer-as-boolean misuse, fake Jetton contracts, and forward TON without gas checks. Use when auditing FunC contracts.",
+   "bytes": 15091
+  },
+  {
+   "path": "plugins/burpsuite-project-parser/skills/burpsuite-project-parser/SKILL.md",
+   "name": "burpsuite-project-parser",
+   "description": "Searches and explores Burp Suite project files (.burp) from the command line. Use when searching response headers or bodies with regex patterns, extracting security audit findings, dumping proxy history or site map data, or analyzing HTTP t",
+   "bytes": 16675
+  },
+  {
+   "path": "plugins/c-review/skills/c-review/SKILL.md",
+   "name": "c-review",
+   "description": "Performs comprehensive C/C++ security review for memory corruption, integer overflows, race conditions, and platform-specific vulnerabilities. Use when auditing native C/C++ applications, reviewing daemons or services for memory safety, or ",
+   "bytes": 12607
+  },
+  {
+   "path": "plugins/chrome-mcp-troubleshooting/skills/chrome-mcp-troubleshooting/SKILL.md",
+   "name": "chrome-mcp-troubleshooting",
+   "description": "Diagnose and fix Claude in Chrome MCP extension connectivity issues. Use when mcp__claude-in-chrome__* tools fail, return \"Browser extension is not connected\", or behave erratically.",
+   "bytes": 10274
+  },
+  {
+   "path": "plugins/code-improver/skills/code-improver/SKILL.md",
+   "name": "code-improver",
+   "description": "Runs an autonomous review-and-fix improvement loop over any code target \u2014 a skill, plugin, module, or directory \u2014 using a reviewer the user names: any installed skill or agent. Keeps a cross-round findings ledger, escalates when fixes stop ",
+   "bytes": 6487
+  },
+  {
+   "path": "plugins/code-improver/skills/pr-improver/SKILL.md",
+   "name": "pr-improver",
+   "description": "Runs an autonomous review-and-fix improvement loop over the current branch's changes until a PR review comes back clean, scoped mechanically to the directories the branch touched. Reviews are performed by an installed PR-review skill (defau",
+   "bytes": 6705
+  },
+  {
+   "path": "plugins/code-improver/skills/skill-improver/SKILL.md",
+   "name": "skill-improver",
+   "description": "Runs an autonomous review-and-fix improvement loop over a Claude Code skill until a review comes back clean, with a cross-round findings ledger, escalation when fixes stop converging, and a mechanical scope guard. Reviews are performed by t",
+   "bytes": 7419
+  },
+  {
+   "path": "plugins/code-improver/tests/fixtures/pr-review-toolkit/skills/review-pr/SKILL.md",
+   "name": "review-pr",
+   "description": "Reviews the current branch's changes against its base branch as a pull request: correctness of new and modified code, test coverage for it, and documentation accuracy. Use when asked to review a branch, a diff, or a pull request.",
+   "bytes": 1215
+  },
+  {
+   "path": "plugins/code-improver/tests/fixtures/review-panel/skills/panel-review/SKILL.md",
+   "name": "panel-review",
+   "description": "Reviews a code target by launching a panel of specialist auditor agents and merging their reports. Use when asked to run a panel review.",
+   "bytes": 948
+  },
+  {
+   "path": "plugins/constant-time-analysis/skills/constant-time-analysis/SKILL.md",
+   "name": "constant-time-analysis",
+   "description": "Detects timing side-channel vulnerabilities in cryptographic code. Use when implementing or reviewing crypto code, encountering division on secrets, secret-dependent branches, or constant-time programming questions in C, C++, Go, Rust, Swif",
+   "bytes": 13204
+  },
+  {
+   "path": "plugins/culture-index/skills/interpreting-culture-index/SKILL.md",
+   "name": "interpreting-culture-index",
+   "description": "Interprets Culture Index (CI) surveys, behavioral profiles, and personality assessment data. Supports individual profile interpretation, team composition analysis (gas/brake/glue), burnout detection, profile comparison, hiring profiles, man",
+   "bytes": 14303
+  },
+  {
+   "path": "plugins/devcontainer-setup/skills/devcontainer-setup/SKILL.md",
+   "name": "devcontainer-setup",
+   "description": "Creates devcontainers with Claude Code, language-specific tooling (Python/Node/Rust/Go), and persistent volumes. Use when adding devcontainer support to a project, setting up isolated development environments, or configuring sandboxed Claud",
+   "bytes": 8060
+  },
+  {
+   "path": "plugins/differential-review/skills/differential-review/SKILL.md",
+   "name": "differential-review",
+   "description": "Performs security-focused differential review of code changes. Adapts analysis depth to codebase size, uses git blame for context, calculates blast radius by counting callers, checks test coverage of modified code, and generates a markdown ",
+   "bytes": 7439
+  },
+  {
+   "path": "plugins/dimensional-analysis/skills/dimensional-analysis/SKILL.md",
+   "name": "dimensional-analysis",
+   "description": "Audits code for unit and decimal-scaling bugs and annotates it with dimensional comments recording the units of each value. Use when someone asks to audit or review code for unit confusion, decimals or scaling mismatches, WAD/RAY scale erro",
+   "bytes": 9895
+  },
+  {
+   "path": "plugins/dwarf-expert/skills/dwarf-expert/SKILL.md",
+   "name": "dwarf-expert",
+   "description": "Analyzes DWARF debug information in compiled binaries. Use when inspecting .debug_* sections, DIE trees, or DW_TAG_/DW_AT_ entries with dwarfdump/llvm-dwarfdump or readelf, verifying debug info with llvm-dwarfdump --verify, answering DWARF ",
+   "bytes": 6020
+  },
+  {
+   "path": "plugins/entry-point-analyzer/skills/entry-point-analyzer/SKILL.md",
+   "name": "entry-point-analyzer",
+   "description": "Analyzes smart contract codebases to identify state-changing entry points for security auditing. Detects externally callable functions that modify state, categorizes them by access level (public, admin, role-restricted, contract-only), and ",
+   "bytes": 10603
+  },
+  {
+   "path": "plugins/firebase-apk-scanner/skills/firebase-apk-scanner/SKILL.md",
+   "name": "firebase-apk-scanner",
+   "description": "Scans Android APKs for Firebase security misconfigurations including open databases, storage buckets, authentication issues, and exposed cloud functions. Use when analyzing APK files for Firebase vulnerabilities, performing mobile app secur",
+   "bytes": 6753
+  },
+  {
+   "path": "plugins/fp-check/skills/fp-check/SKILL.md",
+   "name": "fp-check",
+   "description": "Systematically verifies suspected security bugs to eliminate false positives, producing a TRUE POSITIVE or FALSE POSITIVE verdict with documented evidence for each. Use when asked whether a specific finding is real, exploitable, or a false ",
+   "bytes": 6747
+  },
+  {
+   "path": "plugins/gh-cli/skills/gh-cli/SKILL.md",
+   "name": "gh-cli",
+   "description": "Enforces authenticated gh CLI workflows over unauthenticated curl, WebFetch, and MCP fetch patterns. Use when working with GitHub URLs, API access, pull requests, or issues.",
+   "bytes": 1242
+  },
+  {
+   "path": "plugins/github-triage/skills/github-triage/SKILL.md",
+   "name": "github-triage",
+   "description": "Triages a repository's open GitHub issues and pull requests via the gh CLI. Optionally reviews and merges ready PRs \u2014 incrementally merging passing automated/bot PRs and maintainer-approved ones, and spawning review subagents for never-revi",
+   "bytes": 23191
+  },
+  {
+   "path": "plugins/goal-prompt/skills/goal-prompt/SKILL.md",
+   "name": "goal-prompt",
+   "description": "Drafts copy-paste-ready /goal commands for goal mode in Claude Code and Codex. Use when the user asks to create, write, rewrite, improve, compress, clean up, or prepare a goal prompt, goal condition, /goal command, goal-mode objective, or c",
+   "bytes": 6171
+  },
+  {
+   "path": "plugins/let-fate-decide/skills/let-fate-decide/SKILL.md",
+   "name": "let-fate-decide",
+   "description": "Draws the 12 Houses of the Zodiac Tarot spread to inject entropy into planning when prompts are vague, ambiguous, or casually delegated. Interprets the spread to guide next steps. Use when the user says 'let fate decide', 'YOLO', 'whatever'",
+   "bytes": 10235
+  },
+  {
+   "path": "plugins/modern-cpp/skills/modern-cpp/SKILL.md",
+   "name": "modern-cpp",
+   "description": "Guides C++ code toward modern idioms (C++20/23/26). Use when writing new C++ code, modernizing legacy patterns, or working on security-critical C++. Replaces raw pointers with smart pointers, SFINAE with concepts, printf with std::print, er",
+   "bytes": 8656
+  },
+  {
+   "path": "plugins/modern-python/skills/modern-python/SKILL.md",
+   "name": "modern-python",
+   "description": "Configures Python projects with modern tooling (uv, ruff, ty). Use when creating projects, writing standalone scripts, or migrating from pip/Poetry/mypy/black.",
+   "bytes": 10015
+  },
+  {
+   "path": "plugins/mutation-testing/skills/mutation-testing/SKILL.md",
+   "name": "mutation-testing",
+   "description": "Configures mewt or muton campaigns, analyzes surviving mutants, and investigates bugs exposed by testing gaps. Use when setting up mutation testing, reviewing campaign results, identifying equivalent mutants, or finding bugs from surviving ",
+   "bytes": 6225
+  },
+  {
+   "path": "plugins/open-sourcing/skills/open-sourcing/SKILL.md",
+   "name": "open-sourcing",
+   "description": "This skill should be used when the user asks to \"open source this project\", \"prepare this repository for public release\", \"make this repo public\", \"check open-source readiness\", \"choose a license for this project\", or \"set up release automa",
+   "bytes": 10454
+  },
+  {
+   "path": "plugins/patching-bugs/skills/implement-patch/SKILL.md",
+   "name": "implement-patch",
+   "description": "Use when a confirmed local bug needs an invariant-level fix, variant search, tests, and one local commit.",
+   "bytes": 3067
+  },
+  {
+   "path": "plugins/patching-bugs/skills/patching-bugs/SKILL.md",
+   "name": "patching-bugs",
+   "description": "Use when a known bug or falsifiable bug hypothesis in a local codebase needs a patch commit and reviewable proof report.",
+   "bytes": 7224
+  },
+  {
+   "path": "plugins/patching-bugs/skills/prove-patch/SKILL.md",
+   "name": "prove-patch",
+   "description": "Use when a local security patch commit needs independent scoped and three-arm proof.",
+   "bytes": 4476
+  },
+  {
+   "path": "plugins/patching-bugs/skills/reproduce-bug/SKILL.md",
+   "name": "reproduce-bug",
+   "description": "Use when a named runtime or compiler bug in a local repository needs independent reproduction.",
+   "bytes": 2899
+  },
+  {
+   "path": "plugins/patching-bugs/skills/validate-bug/SKILL.md",
+   "name": "validate-bug",
+   "description": "Use when a bug PoC package needs an independent rerun and judgment before patching.",
+   "bytes": 1934
+  },
+  {
+   "path": "plugins/post-patch-validation/skills/post-patch-validation/SKILL.md",
+   "name": "post-patch-validation",
+   "description": ">",
+   "bytes": 15336
+  },
+  {
+   "path": "plugins/property-based-testing/skills/property-based-testing/SKILL.md",
+   "name": "property-based-testing",
+   "description": "Writes, reviews, and debugs property-based tests \u2014 Hypothesis, fast-check, proptest, jqwik, rapid, and Echidna or Medusa for Solidity invariants. Use whenever tests should cover a whole input domain instead of a hand-picked list of examples",
+   "bytes": 4306
+  },
+  {
+   "path": "plugins/regression-hunt/skills/adjudicate-regression/SKILL.md",
+   "name": "adjudicate-regression",
+   "description": "Use when deciding whether source and live reproduction evidence establish a new regression or an exclusion.",
+   "bytes": 2643
+  },
+  {
+   "path": "plugins/regression-hunt/skills/hunt-regressions/SKILL.md",
+   "name": "hunt-regressions",
+   "description": "Use when discovering possible regressions from a pinned change and its callers before reproduction.",
+   "bytes": 2091
+  },
+  {
+   "path": "plugins/regression-hunt/skills/prepare-regression/SKILL.md",
+   "name": "prepare-regression",
+   "description": "Use when pinning before/after sources and collecting PR or commit context for a regression investigation.",
+   "bytes": 2059
+  },
+  {
+   "path": "plugins/regression-hunt/skills/regression-hunt/SKILL.md",
+   "name": "regression-hunt",
+   "description": "Use when investigating regressions in PRs or commits, coordinating a regression campaign, or resuming saved progress.",
+   "bytes": 4727
+  },
+  {
+   "path": "plugins/regression-hunt/skills/replay-regression/SKILL.md",
+   "name": "replay-regression",
+   "description": "Use when independently verifying a supplied PoC against fresh live before/after deployments.",
+   "bytes": 2003
+  },
+  {
+   "path": "plugins/regression-hunt/skills/report-regressions/SKILL.md",
+   "name": "report-regressions",
+   "description": "Use when assembling or refreshing an evidence-linked regression report from saved campaign decisions.",
+   "bytes": 2381
+  },
+  {
+   "path": "plugins/regression-hunt/skills/reproduce-regression/SKILL.md",
+   "name": "reproduce-regression",
+   "description": "Use when deploying before/after systems and building a live-system PoC for a regression candidate.",
+   "bytes": 2125
+  },
+  {
+   "path": "plugins/review-walkthrough/skills/review-walkthrough/SKILL.md",
+   "name": "review-walkthrough",
+   "description": "Generates an interactive HTML walkthrough for reviewing code changes. Use only when explicitly called.",
+   "bytes": 6749
+  },
+  {
+   "path": "plugins/rust-review/skills/rust-review/SKILL.md",
+   "name": "rust-review",
+   "description": "Performs comprehensive Rust security review for safe/unsafe boundary issues, memory safety in unsafe blocks, concurrency hazards, panic-induced DoS, FFI safety, and async runtime mistakes. Use when auditing Rust crates, services, or librari",
+   "bytes": 44520
+  },
+  {
+   "path": "plugins/second-opinion/skills/second-opinion/SKILL.md",
+   "name": "second-opinion",
+   "description": "Gets independent code reviews from Codex or Antigravity for uncommitted changes, branch diffs, and commits. Use when the user requests an external review, a second opinion on code, a codex review, a gemini review, an antigravity review, or ",
+   "bytes": 5046
+  },
+  {
+   "path": "plugins/semgrep-rule-creator/skills/semgrep-rule-creator/SKILL.md",
+   "name": "semgrep-rule-creator",
+   "description": "Creates custom Semgrep rules for detecting security vulnerabilities, bug patterns, and code patterns. Use when writing Semgrep rules or building custom static analysis detections.",
+   "bytes": 7320
+  },
+  {
+   "path": "plugins/semgrep-rule-variant-creator/skills/semgrep-rule-variant-creator/SKILL.md",
+   "name": "semgrep-rule-variant-creator",
+   "description": "Creates language variants of existing Semgrep rules. Use when porting a Semgrep rule to specified target languages. Takes an existing rule and target languages as input, produces independent rule+test directories for each language.",
+   "bytes": 13841
+  },
+  {
+   "path": "plugins/sharp-edges/skills/sharp-edges/SKILL.md",
+   "name": "sharp-edges",
+   "description": "Identifies error-prone APIs, dangerous configurations, and footgun designs that enable security mistakes. Use when reviewing API designs, configuration schemas, cryptographic library ergonomics, or evaluating whether code follows 'secure by",
+   "bytes": 11814
+  },
+  {
+   "path": "plugins/spec-to-code-compliance/skills/spec-to-code-compliance/SKILL.md",
+   "name": "spec-to-code-compliance",
+   "description": "Check code against the documentation that specifies it - which requirements hold, which the code contradicts, which are absent, and what the code does that no document mentions. Use when comparing an implementation against a whitepaper, pro",
+   "bytes": 7547
+  },
+  {
+   "path": "plugins/static-analysis/skills/codeql/SKILL.md",
+   "name": "codeql",
+   "description": ">-",
+   "bytes": 18600
+  },
+  {
+   "path": "plugins/static-analysis/skills/sarif-parsing/SKILL.md",
+   "name": "sarif-parsing",
+   "description": ">-",
+   "bytes": 17925
+  },
+  {
+   "path": "plugins/static-analysis/skills/semgrep/SKILL.md",
+   "name": "semgrep",
+   "description": ">-",
+   "bytes": 15678
+  },
+  {
+   "path": "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/SKILL.md",
+   "name": "supply-chain-risk-auditor",
+   "description": "Audits a project's dependencies for supply-chain risk: version-matched advisories for direct dependencies and the full lockfile tree, abandoned or archived upstreams, npm publisher concentration, and install-time script execution. Use when ",
+   "bytes": 6991
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/address-sanitizer/SKILL.md",
+   "name": "address-sanitizer",
+   "description": "Builds and runs code under AddressSanitizer to catch buffer overflows, use-after-free, and other memory errors during fuzzing or tests. Covers -fsanitize=address builds, ASAN_OPTIONS, reading the crash report, LeakSanitizer, and the overhea",
+   "bytes": 11543
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/aflpp/SKILL.md",
+   "name": "aflpp",
+   "description": "Sets up and runs AFL++ for multi-core fuzzing of C/C++ projects built with afl-clang-fast or afl-gcc-fast. Covers instrumentation modes, parallel main and secondary campaigns, persistent mode, corpus minimization, and crash triage. Use when",
+   "bytes": 22454
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/atheris/SKILL.md",
+   "name": "atheris",
+   "description": "Sets up and runs Atheris, the coverage-guided Python fuzzer built on libFuzzer. Covers TestOneInput harnesses, FuzzedDataProvider, instrumenting both pure Python and native C extensions, and running under AddressSanitizer. Use when fuzzing ",
+   "bytes": 14732
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/cargo-fuzz/SKILL.md",
+   "name": "cargo-fuzz",
+   "description": "Sets up and runs cargo-fuzz, the standard fuzzing tool for Cargo-based Rust projects. Covers cargo fuzz init, the nightly toolchain requirement, fuzz_target! harnesses, Arbitrary-derived structured inputs, sanitizer options, cargo fuzz cove",
+   "bytes": 11789
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/constant-time-testing/SKILL.md",
+   "name": "constant-time-testing",
+   "description": "Measures timing side channels in cryptographic implementations by running them, using dudect for statistical analysis and Timecop over Valgrind for dynamic tracing. Covers the formal, symbolic, dynamic, and statistical tool categories and h",
+   "bytes": 21938
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/coverage-analysis/SKILL.md",
+   "name": "coverage-analysis",
+   "description": "Measures and interprets what a fuzzing campaign actually reaches, using llvm-cov, lcov, or a fuzzer's own coverage output. Covers baselining a new campaign, reading coverage reports, and turning uncovered regions into harness, seed, or dict",
+   "bytes": 21004
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/fuzzing-dictionary/SKILL.md",
+   "name": "fuzzing-dictionary",
+   "description": "Builds and applies fuzzing dictionaries so a fuzzer can produce the keywords, magic bytes, and tokens a target expects. Covers extracting tokens from source, headers, binaries, and specifications, dictionary syntax, and wiring one into libF",
+   "bytes": 9954
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/fuzzing-obstacles/SKILL.md",
+   "name": "fuzzing-obstacles",
+   "description": "Patches past the barriers that stop a fuzzer making progress \u2014 checksum and hash verification, magic-value validation, time-based seeds, and other non-deterministic global state. Covers locating the blocking check, neutering it behind a fuz",
+   "bytes": 15822
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/harness-writing/SKILL.md",
+   "name": "harness-writing",
+   "description": "Designs and improves fuzzing harnesses for C/C++ and Rust. Covers mapping raw bytes onto a target API, generating structured inputs, avoiding non-determinism and false crashes, and deciding what to fuzz together. Use when writing a first LL",
+   "bytes": 21244
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/libafl/SKILL.md",
+   "name": "libafl",
+   "description": "Builds custom fuzzers with LibAFL, the modular Rust fuzzing library. Covers composing observers, feedbacks, mutators, schedulers, and executors into a fuzzer for targets the standard tools do not fit. Use when writing a bespoke fuzzer or mu",
+   "bytes": 17143
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/libfuzzer/SKILL.md",
+   "name": "libfuzzer",
+   "description": "Sets up and runs libFuzzer, the coverage-guided fuzzer built into LLVM, on C/C++ code that compiles with Clang. Covers harness structure, -fsanitize=fuzzer builds, corpus and dictionary management, sanitizer integration, and campaign triage",
+   "bytes": 24234
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/ossfuzz/SKILL.md",
+   "name": "ossfuzz",
+   "description": "Enrolls a project in OSS-Fuzz, Google's free continuous fuzzing service for open source, and drives it locally. Covers project.yaml, Dockerfile and build.sh setup, the helper scripts, reproducing OSS-Fuzz crash reports, and the acceptance c",
+   "bytes": 16740
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/ruzzy/SKILL.md",
+   "name": "ruzzy",
+   "description": "Sets up and runs Ruzzy, Trail of Bits' coverage-guided Ruby fuzzer and the only production-ready one for the language. Covers harness structure, fuzzing pure Ruby and the native C extensions in gems, and sanitizer builds. Use when fuzzing a",
+   "bytes": 12164
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/testing-handbook-generator/SKILL.md",
+   "name": "testing-handbook-generator",
+   "description": "Generates Claude Code skills from the Trail of Bits Testing Handbook (appsec.guide), analyzing handbook pages and emitting SKILL.md files with the structure each skill type requires. Use when creating or refreshing a skill from handbook con",
+   "bytes": 14641
+  },
+  {
+   "path": "plugins/testing-handbook-skills/skills/wycheproof/SKILL.md",
+   "name": "wycheproof",
+   "description": "Validates cryptographic implementations against Project Wycheproof's test vectors, which encode known attacks and edge cases across AES, RSA, ECDSA, ECDH, and more. Covers loading test vectors, mapping result flags onto pass and fail expect",
+   "bytes": 20675
+  },
+  {
+   "path": "plugins/trailmark/skills/audit-augmentation/SKILL.md",
+   "name": "audit-augmentation",
+   "description": ">",
+   "bytes": 9335
+  },
+  {
+   "path": "plugins/trailmark/skills/crypto-protocol-diagram/SKILL.md",
+   "name": "crypto-protocol-diagram",
+   "description": "Extracts protocol message flow from source code, RFCs, academic papers, pseudocode, informal prose, ProVerif (.pv), or Tamarin (.spthy) models and generates Mermaid sequenceDiagrams with cryptographic annotations. Use when diagramming a cry",
+   "bytes": 18848
+  },
+  {
+   "path": "plugins/trailmark/skills/diagramming-code/SKILL.md",
+   "name": "diagramming-code",
+   "description": ">",
+   "bytes": 6811
+  },
+  {
+   "path": "plugins/trailmark/skills/genotoxic/SKILL.md",
+   "name": "genotoxic",
+   "description": "Graph-informed mutation testing triage. Parses codebases with Trailmark, runs mutation testing and necessist, then uses survived mutants, unnecessary test statements, and call graph data to identify false positives, missing test coverage, a",
+   "bytes": 13013
+  },
+  {
+   "path": "plugins/trailmark/skills/graph-evolution/SKILL.md",
+   "name": "graph-evolution",
+   "description": ">",
+   "bytes": 13506
+  },
+  {
+   "path": "plugins/trailmark/skills/mermaid-to-proverif/SKILL.md",
+   "name": "mermaid-to-proverif",
+   "description": "Translates Mermaid sequenceDiagrams describing cryptographic protocols into ProVerif formal verification models (.pv files). Use when generating a ProVerif model, formally verifying a protocol, converting a Mermaid diagram to ProVerif, veri",
+   "bytes": 18644
+  },
+  {
+   "path": "plugins/trailmark/skills/slicing-code-context/SKILL.md",
+   "name": "slicing-code-context",
+   "description": "Selects bounded, graph-informed source slices with Trailmark and delegates focused code analysis or patch-proposal work to a smaller subagent. Use when offloading function-, class-, caller-, callee-, call-path-, entrypoint-, or line-focused",
+   "bytes": 8558
+  },
+  {
+   "path": "plugins/trailmark/skills/trailmark-finding-triage/SKILL.md",
+   "name": "trailmark-finding-triage",
+   "description": "Performs graph-assisted triage of a single security finding, SARIF result, weAudit annotation, suspicious function, or report excerpt using Trailmark reachability, entrypoint paths, taint, privilege-boundary, blast-radius, caller/callee, an",
+   "bytes": 7803
+  },
+  {
+   "path": "plugins/trailmark/skills/trailmark-review-gate/SKILL.md",
+   "name": "trailmark-review-gate",
+   "description": "Runs a Trailmark structural review gate over a branch, pull request, fix commit, release diff, or git ref range to detect new entrypoints, new tainted paths, removed validation or authorization calls, privilege-boundary drift, blast-radius ",
+   "bytes": 4451
+  },
+  {
+   "path": "plugins/trailmark/skills/trailmark-structural/SKILL.md",
+   "name": "trailmark-structural",
+   "description": "Runs full Trailmark structural analysis by building a graph, running `preanalysis()`, and reporting hotspots, taint, blast radius, privilege boundaries, attack surface, and version-gated Trailmark 0.4+/0.5+ data such as proxy counts, subgra",
+   "bytes": 6194
+  },
+  {
+   "path": "plugins/trailmark/skills/trailmark-summary/SKILL.md",
+   "name": "trailmark-summary",
+   "description": "Runs a Trailmark summary analysis on a codebase. Returns auto-detected languages, entry point count, and dependency list. Use when vivisect or galvanize needs a quick structural overview. Triggers: trailmark summary, code summary, structura",
+   "bytes": 3701
+  },
+  {
+   "path": "plugins/trailmark/skills/trailmark-variant-neighborhood/SKILL.md",
+   "name": "trailmark-variant-neighborhood",
+   "description": "Expands one confirmed or suspected vulnerability into a Trailmark graph neighborhood of variant candidates by finding sibling functions, shared callers and callees, common sensitive sinks, common entrypoint paths, interface implementations,",
+   "bytes": 4292
+  },
+  {
+   "path": "plugins/trailmark/skills/trailmark/SKILL.md",
+   "name": "trailmark",
+   "description": "Builds and queries multi-language source and binary code graphs for security analysis. Includes pre-analysis passes for blast radius, taint propagation, privilege boundaries, entry point enumeration, proxy/unresolved-call tracking, type/ref",
+   "bytes": 17440
+  },
+  {
+   "path": "plugins/trailmark/skills/vector-forge/SKILL.md",
+   "name": "vector-forge",
+   "description": "Mutation-driven test vector generation. Finds implementations of a cryptographic algorithm or protocol, runs mutation testing to identify escaped mutants, then generates new test vectors that deliberately exercise the uncovered code paths. ",
+   "bytes": 19383
+  },
+  {
+   "path": "plugins/variant-analysis/skills/variant-analysis/SKILL.md",
+   "name": "variant-analysis",
+   "description": "Hunts for the other instances of a bug already found \u2014 the variants of one root cause across a codebase. Use immediately after a vulnerability, logic bug, or bad pattern turns up in a specific file and the question becomes where else it occ",
+   "bytes": 3903
+  },
+  {
+   "path": "plugins/vulnerability-triage-brocards/skills/vulnerability-triage-brocards/SKILL.md",
+   "name": "vulnerability-triage-brocards",
+   "description": ">-",
+   "bytes": 8721
+  },
+  {
+   "path": "plugins/writing-lean-proofs/skills/writing-lean-proofs/SKILL.md",
+   "name": "writing-lean-proofs",
+   "description": "Writes and reviews structured Lean 4 proofs and designs Lean libraries following Mathlib conventions. Use when proving theorems in Lean, formalizing mathematics or specifications in Lean 4, defining new types or definitions in a Lean librar",
+   "bytes": 15997
+  },
+  {
+   "path": "plugins/yara-authoring/skills/yara-rule-authoring/SKILL.md",
+   "name": "yara-rule-authoring",
+   "description": ">",
+   "bytes": 24806
+  },
+  {
+   "path": "plugins/zeroize-audit/skills/zeroize-audit/SKILL.md",
+   "name": "zeroize-audit",
+   "description": "Detects missing zeroization of sensitive data in source code and identifies zeroization removed by compiler optimizations, with assembly-level analysis, and control-flow verification. Use for auditing C/C++/Rust code handling secrets, keys,",
+   "bytes": 26668
+  }
+ ],
+ "agents": [
+  {
+   "path": "plugins/audit-context-building/agents/function-analyzer.md",
+   "name": "function-analyzer",
+   "bytes": 4372
+  },
+  {
+   "path": "plugins/c-review/agents/c-review-worker.md",
+   "name": "c-review-worker",
+   "bytes": 1925
+  },
+  {
+   "path": "plugins/code-improver/agents/fixer.md",
+   "name": "fixer",
+   "bytes": 3058
+  },
+  {
+   "path": "plugins/code-improver/tests/fixtures/plugin-dev/agents/skill-reviewer.md",
+   "name": "skill-reviewer",
+   "bytes": 3722
+  },
+  {
+   "path": "plugins/code-improver/tests/fixtures/review-panel/agents/naming-auditor.md",
+   "name": "naming-auditor",
+   "bytes": 977
+  },
+  {
+   "path": "plugins/code-improver/tests/fixtures/review-panel/agents/todo-auditor.md",
+   "name": "todo-auditor",
+   "bytes": 948
+  },
+  {
+   "path": "plugins/differential-review/agents/adversarial-modeler.md",
+   "name": "adversarial-modeler",
+   "bytes": 5746
+  },
+  {
+   "path": "plugins/dimensional-analysis/agents/arithmetic-scanner.md",
+   "name": "arithmetic-scanner",
+   "bytes": 11046
+  },
+  {
+   "path": "plugins/dimensional-analysis/agents/dimension-annotator.md",
+   "name": "dimension-annotator",
+   "bytes": 8808
+  },
+  {
+   "path": "plugins/dimensional-analysis/agents/dimension-discoverer.md",
+   "name": "dimension-discoverer",
+   "bytes": 7947
+  },
+  {
+   "path": "plugins/dimensional-analysis/agents/dimension-propagator.md",
+   "name": "dimension-propagator",
+   "bytes": 9878
+  },
+  {
+   "path": "plugins/dimensional-analysis/agents/dimension-validator.md",
+   "name": "dimension-validator",
+   "bytes": 12918
+  },
+  {
+   "path": "plugins/fp-check/agents/data-flow-analyzer.md",
+   "name": "data-flow-analyzer",
+   "bytes": 5130
+  },
+  {
+   "path": "plugins/fp-check/agents/exploitability-verifier.md",
+   "name": "exploitability-verifier",
+   "bytes": 5383
+  },
+  {
+   "path": "plugins/fp-check/agents/poc-builder.md",
+   "name": "poc-builder",
+   "bytes": 6710
+  },
+  {
+   "path": "plugins/let-fate-decide/agents/draw.md",
+   "name": "draw",
+   "bytes": 1799
+  },
+  {
+   "path": "plugins/rust-review/agents/rust-review-dedup-judge.md",
+   "name": "rust-review-dedup-judge",
+   "bytes": 20862
+  },
+  {
+   "path": "plugins/rust-review/agents/rust-review-fp-judge.md",
+   "name": "rust-review-fp-judge",
+   "bytes": 23654
+  },
+  {
+   "path": "plugins/rust-review/agents/rust-review-worker.md",
+   "name": "rust-review-worker",
+   "bytes": 32587
+  },
+  {
+   "path": "plugins/sharp-edges/agents/sharp-edges-analyzer.md",
+   "name": "sharp-edges-analyzer",
+   "bytes": 8185
+  },
+  {
+   "path": "plugins/spec-to-code-compliance/agents/spec-compliance-checker.md",
+   "name": "spec-compliance-checker",
+   "bytes": 5854
+  },
+  {
+   "path": "plugins/trailmark/agents/code-slice-worker.md",
+   "name": "code-slice-worker",
+   "bytes": 1912
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/0-preflight.md",
+   "name": "0-preflight",
+   "bytes": 6343
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/1-mcp-resolver.md",
+   "name": "1-mcp-resolver",
+   "bytes": 4208
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/2-source-analyzer.md",
+   "name": "2-source-analyzer",
+   "bytes": 6569
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/2b-rust-source-analyzer.md",
+   "name": "2b-rust-source-analyzer",
+   "bytes": 10035
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/3-tu-compiler-analyzer.md",
+   "name": "3-tu-compiler-analyzer",
+   "bytes": 8877
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/3b-rust-compiler-analyzer.md",
+   "name": "3b-rust-compiler-analyzer",
+   "bytes": 16445
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/4-report-assembler.md",
+   "name": "4-report-assembler",
+   "bytes": 14433
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/5-poc-generator.md",
+   "name": "5-poc-generator",
+   "bytes": 16591
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/5b-poc-validator.md",
+   "name": "5b-poc-validator",
+   "bytes": 3843
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/5c-poc-verifier.md",
+   "name": "5c-poc-verifier",
+   "bytes": 10828
+  },
+  {
+   "path": "plugins/zeroize-audit/agents/6-test-generator.md",
+   "name": "6-test-generator",
+   "bytes": 2970
+  }
+ ],
+ "commands": {
+  "count": 8,
+  "files": [
+   "plugins/burpsuite-project-parser/commands/burp-search.md",
+   "plugins/constant-time-analysis/commands/ct-check.md",
+   "plugins/differential-review/commands/diff-review.md",
+   "plugins/entry-point-analyzer/commands/entry-points.md",
+   "plugins/firebase-apk-scanner/commands/scan-apk.md",
+   "plugins/git-cleanup/commands/git-cleanup.md",
+   "plugins/insecure-defaults/commands/audit.md",
+   "plugins/semgrep-rule-creator/commands/semgrep-rule.md"
+  ]
+ },
+ "hooks": {
+  "count": 28,
+  "files": [
+   "plugins/fp-check/hooks/hooks.json",
+   "plugins/gh-cli/hooks/cleanup-clones.sh",
+   "plugins/gh-cli/hooks/hooks.json",
+   "plugins/gh-cli/hooks/intercept-github-curl.bats",
+   "plugins/gh-cli/hooks/intercept-github-curl.sh",
+   "plugins/gh-cli/hooks/intercept-github-fetch.bats",
+   "plugins/gh-cli/hooks/intercept-github-fetch.sh",
+   "plugins/gh-cli/hooks/matcher.bats",
+   "plugins/gh-cli/hooks/persist-session-id.sh",
+   "plugins/gh-cli/hooks/session-hooks.bats",
+   "plugins/gh-cli/hooks/setup-shims.bats",
+   "plugins/gh-cli/hooks/setup-shims.sh",
+   "plugins/gh-cli/hooks/shims/gh",
+   "plugins/gh-cli/hooks/shims/gh-shim.bats",
+   "plugins/gh-cli/hooks/test_helper.bash",
+   "plugins/modern-python/hooks/hooks.json",
+   "plugins/modern-python/hooks/setup-shims.bats",
+   "plugins/modern-python/hooks/setup-shims.sh",
+   "plugins/modern-python/hooks/shims/pip",
+   "plugins/modern-python/hooks/shims/pip-shim.bats",
+   "plugins/modern-python/hooks/shims/pip3",
+   "plugins/modern-python/hooks/shims/pipx",
+   "plugins/modern-python/hooks/shims/pipx-shim.bats",
+   "plugins/modern-python/hooks/shims/python",
+   "plugins/modern-python/hooks/shims/python-shim.bats",
+   "plugins/modern-python/hooks/shims/python3",
+   "plugins/modern-python/hooks/shims/uv",
+   "plugins/modern-python/hooks/shims/uv-shim.bats"
+  ]
+ },
+ "indicators": {
+  "mcp": {
+   "count": 7,
+   "files": [
+    ".github/scripts/check_claude_loadability.py",
+    ".github/scripts/check_codex_loadability.py",
+    ".github/scripts/validate_plugin_metadata.py",
+    ".gitignore",
+    "AGENTS.md",
+    "plugins/zeroize-audit/.mcp.json",
+    "plugins/zeroize-audit/skills/zeroize-audit/tools/mcp/check_mcp.sh"
+   ]
+  },
+  "network": {
+   "count": 16,
+   "files": [
+    ".claude-plugin/marketplace.json",
+    ".github/workflows/lint.yml",
+    "plugins/code-improver/evals/deep-reviewer/scaffold.sh",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/Dockerfile",
+    "plugins/firebase-apk-scanner/skills/firebase-apk-scanner/scanner.sh",
+    "plugins/firebase-apk-scanner/tests/test_scanner_reports.py",
+    "plugins/gh-cli/.claude-plugin/plugin.json",
+    "plugins/gh-cli/hooks/hooks.json",
+    "plugins/gh-cli/hooks/intercept-github-curl.sh",
+    "plugins/gh-cli/hooks/test_helper.bash",
+    "plugins/supply-chain-risk-auditor/evals/evals.json",
+    "plugins/supply-chain-risk-auditor/evals/fixtures/shipping-api/package.json",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/collect.py",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/model.py",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/render.py",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/sources.py"
+   ]
+  },
+  "telemetry": {
+   "count": 8,
+   "files": [
+    "plugins/property-based-testing/evals-extra/run.sh",
+    "plugins/semgrep-rule-variant-creator/tests/test_skill_describes_the_workflow.py",
+    "plugins/semgrep-rule-variant-creator/tests/test_workflow_contract.py",
+    "plugins/static-analysis/skills/codeql/scripts/test_check_db_quality.py",
+    "plugins/static-analysis/skills/semgrep/scripts/run-scans.sh",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/collect.py",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/model.py",
+    "plugins/zeroize-audit/tests/rust-regression/fixtures/safe_src/negative.rs"
+   ]
+  },
+  "background": {
+   "count": 5,
+   "files": [
+    "plugins/insecure-defaults/workflows/audit.js",
+    "plugins/post-patch-validation/skills/post-patch-validation/scripts/post_patch_validation.py",
+    "plugins/post-patch-validation/tests/test_runner.py",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/test_sources.py",
+    "plugins/variant-analysis/skills/variant-analysis/resources/semgrep/javascript.yaml"
+   ]
+  },
+  "browser": {
+   "count": 6,
+   "files": [
+    "plugins/burpsuite-project-parser/skills/burpsuite-project-parser/scripts/burp-search.sh",
+    "plugins/culture-index/skills/interpreting-culture-index/scripts/check_deps.py",
+    "plugins/culture-index/skills/interpreting-culture-index/scripts/extract_pdf.py",
+    "plugins/culture-index/skills/interpreting-culture-index/scripts/pyproject.toml",
+    "plugins/review-walkthrough/tests/browser-check.mjs",
+    "plugins/writing-lean-proofs/evals/run.sh"
+   ]
+  },
+  "shell_exec": {
+   "count": 78,
+   "files": [
+    ".github/scripts/check_claude_loadability.py",
+    ".github/scripts/check_codex_loadability.py",
+    ".github/scripts/codex_review.py",
+    ".github/scripts/validate_plugin_metadata.py",
+    "plugins/c-review/tests/test_assemble_findings.py",
+    "plugins/c-review/tests/test_enumerate_units.py",
+    "plugins/c-review/tests/test_workflow_args.py",
+    "plugins/c-review/tests/test_workflow_assemble.py",
+    "plugins/c-review/tests/test_workflow_run.py",
+    "plugins/c-review/tests/test_workflow_sweep.py",
+    "plugins/code-improver/evals/ablation/scorecard.py",
+    "plugins/code-improver/evals/pr-mode/scaffold.sh",
+    "plugins/code-improver/evals/test_check_contamination.py",
+    "plugins/code-improver/scripts/collect_metrics.py",
+    "plugins/code-improver/scripts/test_collect_metrics.py",
+    "plugins/constant-time-analysis/ct_analyzer/analyzer.py",
+    "plugins/constant-time-analysis/ct_analyzer/script_analyzers.py",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_analyzer.py",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/post_install.py",
+    "plugins/dwarf-expert/tests/test_skill_contract.py",
+    "plugins/firebase-apk-scanner/tests/test_scanner_reports.py",
+    "plugins/insecure-defaults/tests/seed-coverage.js",
+    "plugins/let-fate-decide/skills/let-fate-decide/scripts/test_draw_cards.py",
+    "plugins/mutation-testing/tests/test_validate_report.py",
+    "plugins/patching-bugs/scripts/arms.py",
+    "plugins/patching-bugs/tests/test_arms.py",
+    "plugins/patching-bugs/tests/test_proof_types.py",
+    "plugins/patching-bugs/tests/test_records.py",
+    "plugins/patching-bugs/tests/test_render.py",
+    "plugins/patching-bugs/tests/test_report_outputs.py",
+    "plugins/patching-bugs/tests/test_s0_report.py",
+    "plugins/patching-bugs/tests/test_terminal_reports.py",
+    "plugins/post-patch-validation/skills/post-patch-validation/scripts/post_patch_validation.py",
+    "plugins/post-patch-validation/tests/test_cli_artifacts.py",
+    "plugins/post-patch-validation/tests/test_eval_cases.py",
+    "plugins/post-patch-validation/tests/test_runner.py",
+    "plugins/post-patch-validation/tests/test_workflow_contract.py",
+    "plugins/regression-hunt/scripts/snapshot.py",
+    "plugins/regression-hunt/tests/test_registry.py",
+    "plugins/regression-hunt/tests/test_report.py",
+    "plugins/regression-hunt/tests/test_snapshot.py",
+    "plugins/review-walkthrough/skills/review-walkthrough/scripts/render_walkthrough.py",
+    "plugins/review-walkthrough/tests/browser-check.mjs",
+    "plugins/review-walkthrough/tests/frontend.test.mjs",
+    "plugins/review-walkthrough/tests/test_eval_graders.py",
+    "plugins/review-walkthrough/tests/test_render_walkthrough.py",
+    "plugins/semgrep-rule-variant-creator/tests/fixtures/python-command-injection-go/python-command-injection-go.go",
+    "plugins/semgrep-rule-variant-creator/tests/fixtures/python-command-injection-go/python-command-injection-go.yaml",
+    "plugins/semgrep-rule-variant-creator/tests/fixtures/python-command-injection-java/python-command-injection-java.yaml",
+    "plugins/semgrep-rule-variant-creator/tests/fixtures/python-command-injection.yaml",
+    "plugins/semgrep-rule-variant-creator/tests/test_port_rule_workflow.py",
+    "plugins/semgrep-rule-variant-creator/tests/test_workflow_contract.py",
+    "plugins/semgrep-rule-variant-creator/workflows/port-rule-to-languages.js",
+    "plugins/static-analysis/skills/codeql/scripts/test_build_log.py",
+    "plugins/static-analysis/skills/codeql/scripts/test_find_databases.py",
+    "plugins/static-analysis/skills/codeql/scripts/test_generation_scripts.py",
+    "plugins/static-analysis/skills/codeql/scripts/test_script_flags.py",
+    "plugins/static-analysis/skills/codeql/scripts/test_shell_blocks.py",
+    "plugins/static-analysis/skills/codeql/scripts/test_verify_query_suite.py",
+    "plugins/static-analysis/skills/codeql/scripts/verify_query_suite.py"
+   ]
+  },
+  "env_secrets": {
+   "count": 90,
+   "files": [
+    ".claude-plugin/marketplace.json",
+    ".github/scripts/check_claude_loadability.py",
+    ".github/scripts/check_codex_loadability.py",
+    ".github/scripts/codex_review.py",
+    ".github/scripts/validate_plugin_metadata.py",
+    ".github/workflows/codex-review.yml",
+    ".gitignore",
+    "plugins/c-review/scripts/check_ledger.py",
+    "plugins/c-review/scripts/enumerate_units.py",
+    "plugins/c-review/tests/test_assemble_findings.py",
+    "plugins/c-review/tests/test_enumerate_units.py",
+    "plugins/c-review/tests/test_workflow_args.py",
+    "plugins/c-review/tests/test_workflow_assemble.py",
+    "plugins/c-review/tests/test_workflow_run.py",
+    "plugins/c-review/tests/test_workflow_sweep.py",
+    "plugins/c-review/workflows/c-review.js",
+    "plugins/constant-time-analysis/ct_analyzer/analyzer.py",
+    "plugins/constant-time-analysis/ct_analyzer/script_analyzers.py",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_analyzer.py",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_samples/bn_excerpt.js",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_samples/decompose_vulnerable.go",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_samples/decompose_vulnerable.rs",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.py",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.rb",
+    "plugins/constant-time-analysis/ct_analyzer/tests/test_samples/vulnerable.ts",
+    "plugins/constant-time-analysis/ct_analyzer/tests/triage_samples/expectations.json",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/devcontainer.json",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/post_install.py",
+    "plugins/firebase-apk-scanner/skills/firebase-apk-scanner/scanner.sh",
+    "plugins/firebase-apk-scanner/tests/test_scanner_reports.py",
+    "plugins/goal-prompt/evals/grounded-migration/scaffold.sh",
+    "plugins/insecure-defaults/.claude-plugin/plugin.json",
+    "plugins/insecure-defaults/references/default-credentials.json",
+    "plugins/insecure-defaults/references/fallback-secrets.json",
+    "plugins/insecure-defaults/references/weak-crypto.json",
+    "plugins/insecure-defaults/tests/harness.js",
+    "plugins/insecure-defaults/workflows/audit.js",
+    "plugins/let-fate-decide/skills/let-fate-decide/scripts/draw_cards.py",
+    "plugins/let-fate-decide/skills/let-fate-decide/scripts/test_draw_cards.py",
+    "plugins/modern-python/skills/modern-python/templates/pre-commit-config.yaml",
+    "plugins/mutation-testing/tests/smoke-test.sh",
+    "plugins/mutation-testing/tests/test_validate_report.py",
+    "plugins/open-sourcing/.claude-plugin/plugin.json",
+    "plugins/open-sourcing/skills/open-sourcing/scripts/check_readiness.sh",
+    "plugins/patching-bugs/tests/test_native_proof.py",
+    "plugins/patching-bugs/tests/test_render.py",
+    "plugins/post-patch-validation/skills/post-patch-validation/scripts/post_patch_validation.py",
+    "plugins/post-patch-validation/tests/test_runner.py",
+    "plugins/semgrep-rule-variant-creator/tests/fixtures/python-command-injection-go/python-command-injection-go.go",
+    "plugins/semgrep-rule-variant-creator/tests/test_port_rule_workflow.py",
+    "plugins/semgrep-rule-variant-creator/tests/test_workflow_contract.py",
+    "plugins/semgrep-rule-variant-creator/tests/workflow-failure-paths.test.mjs",
+    "plugins/static-analysis/skills/codeql/scripts/test_generation_scripts.py",
+    "plugins/static-analysis/skills/semgrep/scripts/run-scans.sh",
+    "plugins/static-analysis/skills/semgrep/scripts/test_merge_sarif.py",
+    "plugins/static-analysis/tests/run_scan_tests.sh",
+    "plugins/static-analysis/workflows/semgrep-scan.js",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/collect.py",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/sources.py",
+    "plugins/supply-chain-risk-auditor/skills/supply-chain-risk-auditor/scripts/test_collect.py"
+   ]
+  },
+  "home_writes": {
+   "count": 11,
+   "files": [
+    ".github/workflows/lint.yml",
+    "plugins/code-improver/workflows/improve.js",
+    "plugins/constant-time-analysis/ct_analyzer/script_analyzers.py",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/.zshrc",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/devcontainer.json",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/install.sh",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/post_install.py",
+    "plugins/static-analysis/workflows/codeql-build.js",
+    "plugins/static-analysis/workflows/semgrep-scan.js",
+    "plugins/variant-analysis/workflows/variants.js",
+    "plugins/writing-lean-proofs/evals/run.sh"
+   ]
+  },
+  "self_update": {
+   "count": 6,
+   "files": [
+    ".github/scripts/validate_plugin_metadata.py",
+    ".github/workflows/lint.yml",
+    "plugins/constant-time-analysis/ct_analyzer/script_analyzers.py",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/Dockerfile",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/install.sh",
+    "plugins/modern-python/hooks/shims/uv"
+   ]
+  },
+  "llm_api": {
+   "count": 12,
+   "files": [
+    ".claude-plugin/marketplace.json",
+    ".github/scripts/validate_plugin_metadata.py",
+    ".github/scripts/validate_skill_interfaces.py",
+    ".github/workflows/codex-review.yml",
+    ".github/workflows/validate.yml",
+    "plugins/agentic-actions-auditor/.claude-plugin/plugin.json",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/Dockerfile",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/devcontainer.json",
+    "plugins/devcontainer-setup/skills/devcontainer-setup/resources/post_install.py",
+    "plugins/mutation-testing/tests/smoke-test.sh",
+    "plugins/mutation-testing/tests/test_validate_report.py",
+    "plugins/testing-handbook-skills/scripts/validate-skills.py"
+   ]
+  }
+ }
+}

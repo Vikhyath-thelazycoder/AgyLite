@@ -471,6 +471,21 @@ Done (on `main`):
       regenerated, bundle 1bcd9beb5094 (self-tests pass), every gate green, pushed
 
 Still to do:
+- **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
+  - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare
+        (`cloudflare/security-audit-skill@c1c8a8c`) and Trail of Bits (`trailofbits/skills@2be6433`): pins, hashes,
+        scans, licenses, one-owner-per-job overlap plan → `docs/audit/23_NEW_UPSTREAMS_OVERLAP_AUDIT.md`,
+        `docs/audit/evidence/candidates/`. Nothing bundled; the paid run's bundle stays frozen. Also: `test_p25`
+        ceiling 8,000 → 10,000 bytes (owner: quality first; it failed at 8,005 on clean main)
+  - [ ] Step 2 — finish the Phase 9 paid run on the frozen bundle (eng-pocock, then chunks 2 and 3; rules below)
+  - [ ] Step 3 — PARITY_REPORT.md, fix all findings, run the normal (free) tests
+  - [ ] Step 4 — bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
+        Elaya Part A as `design/landing-conversion`, overlap test + validate check), normal tests green
+  - [ ] Step 5 — paid suites for the new skills only: `design-elaya` (no skill / Elaya original / AgyLite) and a
+        new security suite (Cloudflare)
+  - [ ] Owner idea 2026-11-02, after step 4: a category/subcategory folder view of every skill (security,
+        security-audit, design, engineering architecture, agents, YouTube, …) so agents can search and load by
+        category; new upstreams sorted into it automatically. Not started; to be designed with the owner
 - [x] Phase 9 code (2026-10-23, df4ed7c + e14ba43 + this commit): option 2 (D-050: overlapping skills load both
       primaries; rules name their skill; to-spec/to-tickets/code-review/tdd/release routing fixes from the traces);
       gstack review rewrite fixed for D-049 (NEEDS_RULES → SECURITY_FAST_TRACK, candidate c12a18c20c27, Tier 0 PASS);

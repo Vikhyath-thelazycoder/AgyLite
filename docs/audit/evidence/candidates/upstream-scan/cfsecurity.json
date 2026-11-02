@@ -1,0 +1,88 @@
+{
+ "repo": "cfsecurity",
+ "head": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+ "totals": {
+  "files": 22,
+  "bytes": 322698,
+  "submodules": []
+ },
+ "top_dirs": {
+  "skills": 20,
+  "(root)": 2
+ },
+ "extensions": {
+  ".md": 16,
+  ".cjs": 4,
+  "(none)": 1,
+  ".json": 1
+ },
+ "host_dirs": [],
+ "manifests": [],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/security-audit/SKILL.md",
+   "name": "security-audit",
+   "description": "Security guidance and vulnerability review for codebases, APIs, services, CLI tools, libraries, and daemons. Use for security questions, focused reviews, vulnerability research, security audits, or pen tests. Run the complete workflow only ",
+   "bytes": 22026
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 2,
+   "files": [
+    "skills/security-audit/validate-coverage-ledger.test.cjs",
+    "skills/security-audit/validate-findings.test.cjs"
+   ]
+  },
+  "env_secrets": {
+   "count": 0,
+   "files": []
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}

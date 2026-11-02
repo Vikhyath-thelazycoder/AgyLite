@@ -1,0 +1,11 @@
+# elaya @ 456d9e0d3e2d84c748bb143c6ca3d90c45e16213
+blob_sha1	bytes	path
+81bcc686b51ab3a4ad3c68e32550db997cc2cb4c	529	.github/workflows/validate-skills.yml
+be4a63e693965430a6cdd6877ae5246db0f317ff	85	.gitignore
+9ff21c8c5b2e713c357d3e15e641172a211eac21	1062	LICENSE
+223941f4daabab1898cecf05a56389ccb173d529	3630	README.md
+9b96a76f7fd801e1f7de31b2df4bcd878c20fe9d	151448	assets/slopscan-banner.png
+2457e1ea99a4e6a7e877bb203697fe4283b87131	4053	scripts/validate_skills.py
+d9aba588919e3dccee89355df8fa8501c2e92eae	22079	skills/figma-designer/SKILL.md
+519a6f2cd6c942c2fb36a906b8ef7d11f78ba6d1	22115	skills/landing-page-design/SKILL.md
+cac136cba80065544ccee779fb8892f96d4b18f8	4981	tests/test_validate_skills.py

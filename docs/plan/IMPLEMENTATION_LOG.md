@@ -570,6 +570,10 @@ PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-poco
 ## RESUME FROM
 
 <!-- p7-progress:start -->
+**2026-11-02: owner plan step 1 done (new upstreams Elaya, Cloudflare, Trail of Bits staged and audited, not
+bundled — D-051, doc 23). Next is step 2 = the paid run below, on the same frozen bundle. Steps 3–5 and the category
+folder idea are in IMPLEMENTATION_PLAN.md → "Resume here".**
+
 **NOW (2026-10-24): the Phase 9 full paid run, stopped at chunk 1c eng-pocock 20/90 (owner's usage limit). Continue
 when the owner says "continue the paid test": resume eng-pocock (commands in "Phase 9 paid run — resume"), then the
 chunk 1 gap and cost review, then ask for chunk 2. Owner rules for the rest of the run: no re-runs and no fixes until

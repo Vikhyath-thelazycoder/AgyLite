@@ -1,0 +1,100 @@
+{
+ "repo": "elaya",
+ "head": "456d9e0d3e2d84c748bb143c6ca3d90c45e16213",
+ "totals": {
+  "files": 9,
+  "bytes": 209982,
+  "submodules": []
+ },
+ "top_dirs": {
+  "(root)": 3,
+  "skills": 2,
+  ".github": 1,
+  "assets": 1,
+  "scripts": 1,
+  "tests": 1
+ },
+ "extensions": {
+  ".md": 3,
+  "(none)": 2,
+  ".py": 2,
+  ".yml": 1,
+  ".png": 1
+ },
+ "host_dirs": [],
+ "manifests": [],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/figma-designer/SKILL.md",
+   "name": "figma-designer",
+   "description": "Design inside Figma the way this designer does: real variables, text styles, auto layout and components, on a fixed visual system (Tailwind type and radius scale, spacing tokens, two-layer color tokens, button and state rules). Use this ski",
+   "bytes": 22079
+  },
+  {
+   "path": "skills/landing-page-design/SKILL.md",
+   "name": "landing-page-design",
+   "description": "Complete system for building high converting landing pages: intake questions, page structure, layout selection, conversion copywriting, SEO, plus strict visual rules for typography, spacing, corner radius, backgrounds, hero layout, icons, a",
+   "bytes": 22115
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 0,
+   "files": []
+  },
+  "env_secrets": {
+   "count": 1,
+   "files": [
+    "scripts/validate_skills.py"
+   ]
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 1,
+   "files": [
+    ".github/workflows/validate-skills.yml"
+   ]
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}
