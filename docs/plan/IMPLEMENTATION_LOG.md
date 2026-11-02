@@ -527,11 +527,14 @@ eng-pocock; then two chunks of 3–4 suites; ask before each chunk). Also built 
 (9279259). AgyLite arm on candidate **3509e18d39d9** (= 6c8821eb00b7 + addy aeac41d, only 7 addy files differ, Tier 0
 PASS). Original arms: ponytail 09c434a, pocock 5beb35b, addy aeac41d (= the pins).
 
-| Suite | Done | Cost | Run dir (also copied to `~/.agylite/benchmarks/quality/`) |
+| Suite | Done | Cost | Run dir (permanent; the /tmp originals are gone) |
 |---|---|---:|---|
-| eng-ponytail | 63/63 | $9.40 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T160330Z-eng-ponytail` |
-| eng-addy | 54/54 done | $8.38 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T163255Z-eng-addy` |
-| eng-pocock | 20/90, stopped 2026-10-24 | $2.97 | `/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9/benchmarks/quality/20261023T193809Z-eng-pocock` |
+| eng-ponytail | 63/63 | $9.40 | `~/.agylite/benchmarks/quality/20261023T160330Z-eng-ponytail` |
+| eng-addy | 54/54 | $8.38 | `~/.agylite/benchmarks/quality/20261023T163255Z-eng-addy` |
+| eng-pocock | 85/90, stopped by the owner 2026-11-02 | $13.91 | `~/.agylite/benchmarks/quality/20261023T193809Z-eng-pocock` |
+
+Candidate bundle under test, permanent copy: `~/.agylite/benchmarks/candidates/3509e18d39d9` (rebuilt 2026-11-02 from
+6c8821eb00b7 + addy aeac41d, same content-addressed id, Tier 0 PASS). Every run uses `--bundle` with this path.
 
 2026-10-24: the session resumed eng-addy (42 sessions) and started eng-pocock. Then the owner's 5-hour usage limit ran
 out and they stopped the run at eng-pocock 20/90. Chunk 1 total so far: $20.75. Found during the run (C1-1 in
@@ -548,37 +551,48 @@ eng-ponytail (n = 3): correct 0.905 / 1 / 1 and safe 0.857 / 1 / 1 (retained 1);
 wrote tests 0.952 / 0.952 / 1; **cost $0.156 / $0.129 / $0.163 per task — AgyLite costs more than no skill**. Verdict
 "inconclusive" only by the noise rule. Next fix to look at: the prompt hook's per-prompt tokens (cards + whole skill).
 
-Resume (engine home and checkout: this session's scratchpad `home-p9` and `wt-p9`, both in /tmp — if a reboot cleared
-them, clone a new engine home from `~/.agylite` staging/mirrors, rebuild the bundle from `main`, re-run
-`agylite update --review --repo addy` for a new candidate, and start eng-addy from the copy in ~/.agylite):
+Resume (2026-11-02 layout; nothing lives in /tmp any more, so a reboot no longer breaks it). The engine code is
+unchanged from 4cc0ff8 through main (only docs and `tests/unit/test_p25.py` changed) and **must stay unchanged until
+chunk 3 ends** (owner rule: no engine or code changes between chunks). Run from the main checkout; each new run
+freezes its own copy of the checkout (`<run>/agylite-plugin`). `~/.agylite/staging` matches all 20 pins and is what
+the run homes link to; the checkout's own `.staging` is stale (C1-7) and is not used. Installed gstack
+(`~/.claude/skills/gstack`) was rebuilt at b04cc35 on 2026-11-02 (`bun install --frozen-lockfile` + `bun run build`;
+`./setup` not run, so no hooks or telemetry), so browser-qa's original arm matches the bundle.
 
 ```bash
-export AGYLITE_HOME=/private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/home-p9
-cd <checkout at main with .staging>   # wt-p9: /private/tmp/claude-501/-Users-vikhyathmgowda007-Developer-vikhyath-ai-engineering-os/0c1adb4b-e048-41d1-aeab-df61d6096ee7/scratchpad/wt-p9
-B=$AGYLITE_HOME/bundles/3509e18d39d9
-export PATH=$(echo "$PATH" | tr : '\n' | grep -v '.agylite/core/bin' | paste -sd: -)   # C1-1: run the candidate, not ~/.agylite/core
-# chunk 1b eng-addy: DONE (54/54)
-# chunk 1c: eng-pocock — resume (70 sessions left; dry-run first without --yes-spend)
+cd ~/Developer/vikhyath-ai-engineering-os            # main checkout
+export AGYLITE_HOME=~/.agylite AGYLITE_NO_AUTO_UPDATE=1
+export PATH=$(echo "$PATH" | tr : '\n' | grep -v '.agylite/core/bin' | paste -sd: -)   # C1-1: run the candidate
+which agylite                                         # must print nothing
+B=~/.agylite/benchmarks/candidates/3509e18d39d9
+Q=~/.agylite/benchmarks/quality
+# chunk 1 (eng-ponytail, eng-addy, eng-pocock): see the status line in RESUME FROM. If eng-pocock is not 90/90:
 PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite eng-pocock --runs 3 --bundle $B --yes-spend \
-  --resume $AGYLITE_HOME/benchmarks/quality/20261023T193809Z-eng-pocock
-# then: chunk 1 review (gaps + cost, read-only) → IMPLEMENTATION_PLAN "Paid-run findings, chunk 1"
-# chunk 2 (ask first; gstack install still 5cb5e1c — ask before updating it to b04cc35): research, youtube, browser-qa,
-#   design-extract → then chunk 2 review → "Paid-run findings, chunk 2"
-# chunk 3 (ask first): diagram-archify, design-taste → chunk 3 review → generate + save docs/plan/PARITY_REPORT.md
+  --resume $Q/20261023T193809Z-eng-pocock
+# chunk 2 (owner approved 2026-11-02; 99 sessions): dry-run each first (drop --yes-spend, add --dry-run)
+for s in research youtube browser-qa design-extract; do
+  PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite $s --runs 3 --bundle $B --yes-spend
+done   # 36 + 27 + 9 + 27 sessions; a stopped suite prints its own --resume command
+# then: chunk 2 review → IMPLEMENTATION_PLAN "Paid-run findings, chunk 2"
+# chunk 3 (72 sessions): diagram-archify (45), design-taste (27) → chunk 3 review → docs/plan/PARITY_REPORT.md
 ```
 
 ## RESUME FROM
 
 <!-- p7-progress:start -->
-**2026-11-02: owner plan step 1 done (new upstreams Elaya, Cloudflare, Trail of Bits staged and audited, not
-bundled — D-051, doc 23). Next is step 2 = the paid run below, on the same frozen bundle. Steps 3–5 and the category
-folder idea are in IMPLEMENTATION_PLAN.md → "Resume here".**
+**2026-11-02 (end of session): owner plan step 1 done (new upstreams staged, D-051, doc 23). Step 2 = the Phase 9
+paid run: chunk 1 is eng-ponytail 63/63, eng-addy 54/54, eng-pocock (see the status line below). The owner said stop
+after chunk 1: chunk 2 was NOT started. Next session: say "continue the paid test" → finish eng-pocock if it is not
+90/90, then chunk 2 (already approved; gstack already rebuilt), then chunk 3, then PARITY_REPORT.md, then step 3
+(fixes). Commands: "Phase 9 paid run — resume" above. Rules: no re-runs and no engine/code changes until chunk 3
+ends; a read-only gap and cost review after each chunk. Findings C1-1…C1-9 and the chunk 1 review are in
+IMPLEMENTATION_PLAN.md → "Resume here".**
 
-**NOW (2026-10-24): the Phase 9 full paid run, stopped at chunk 1c eng-pocock 20/90 (owner's usage limit). Continue
-when the owner says "continue the paid test": resume eng-pocock (commands in "Phase 9 paid run — resume"), then the
-chunk 1 gap and cost review, then ask for chunk 2. Owner rules for the rest of the run: no re-runs and no fixes until
-all three chunks have run; a read-only gap and cost review after each chunk; after chunk 3, generate and save the
-report; then fix everything systematically. The checklist and findings are in IMPLEMENTATION_PLAN.md → "Resume here".**
+eng-pocock status (owner stopped it 2026-11-02): **85/90 saved, $13.91 total; 5 cells left** (the resume command
+in "Phase 9 paid run — resume" runs only those 5). Partial scores, expectations passed: no skill 0.541 · original
+0.804 (26 of 28 graded; 2 tdd cells asked questions instead of acting, C1-9) · AgyLite 0.796, ≈ 0.97 retained;
+cost per task $0.121 / $0.174 / $0.197. Chunk 1 read-only review (with eng-pocock's per-task gaps, e.g. to-spec) is
+still to do once the 5 cells finish.
 <!-- p7-progress:end -->
 
 How to work (any phase):

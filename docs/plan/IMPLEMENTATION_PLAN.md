@@ -477,7 +477,9 @@ Still to do:
         scans, licenses, one-owner-per-job overlap plan → `docs/audit/23_NEW_UPSTREAMS_OVERLAP_AUDIT.md`,
         `docs/audit/evidence/candidates/`. Nothing bundled; the paid run's bundle stays frozen. Also: `test_p25`
         ceiling 8,000 → 10,000 bytes (owner: quality first; it failed at 8,005 on clean main)
-  - [ ] Step 2 — finish the Phase 9 paid run on the frozen bundle (eng-pocock, then chunks 2 and 3; rules below)
+  - [ ] Step 2 — finish the Phase 9 paid run on the frozen bundle (eng-pocock, then chunks 2 and 3; rules below).
+        2026-11-02: eng-pocock 85/90, chunk 2 not started (owner: stop after chunk 1). Chunk 2 is approved and
+        ready (gstack rebuilt at b04cc35, candidate copied to `~/.agylite/benchmarks/candidates/3509e18d39d9`)
   - [ ] Step 3 — PARITY_REPORT.md, fix all findings, run the normal (free) tests
   - [ ] Step 4 — bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
         Elaya Part A as `design/landing-conversion`, overlap test + validate check), normal tests green
@@ -503,7 +505,7 @@ Still to do:
       - [x] chunk 1b eng-addy 54/54 done (2026-10-24, $8.38): no skill 0.931 · original 1 · AgyLite 0.986, retained
             0.8, inconclusive (gain within noise). 12 of its 18 AgyLite cells ran the old installed engine (C1-1).
             They stay as they are (owner 2026-10-24: **no re-runs now**). Backups `records.before-c1-1.json`
-      - [ ] chunk 1c eng-pocock **resumed 2026-11-02 in the `~/.agylite` run dir (C1-6); was 20/90 ($2.97)**. Cells 1–16 ran on PATH
+      - [ ] chunk 1c eng-pocock **85/90 ($13.91), stopped by the owner 2026-11-02; 5 cells left (resume command in IMPLEMENTATION_LOG); partial: no skill 0.541 · original 0.804 · AgyLite 0.796**. Cells 1–16 ran on PATH
             with the installed engine (5 AgyLite cells on the old engine); cells 17–20 ran with `~/.agylite/core/bin`
             off PATH (the engine under test). **Next session: resume it** (command in IMPLEMENTATION_LOG "Phase 9
             paid run — resume"); then chunk 1 is over → do the chunk review (below)
@@ -524,8 +526,8 @@ Still to do:
                fix list in order, and which cells ran the old engine. Also update the ledger. Then, with the
                owner's go-ahead, fix the findings for all three chunks systematically and re-measure only the AgyLite
                arm (`--arms agylite --reuse-from <run>`)
-      - Chunk 2 note: the browser-qa original arm uses the gstack install (`~/.claude/skills/gstack`, still 5cb5e1c);
-        updating it to b04cc35 was **not** done (owner declined the install mid-session). Ask before chunk 2
+      - Chunk 2 note: the browser-qa original arm uses the gstack install (`~/.claude/skills/gstack`); rebuilt at
+        b04cc35 on 2026-11-02 with the owner's approval (`bun install --frozen-lockfile` + `bun run build`, no `./setup`)
       - Paid-run findings, chunk 1 (early research 2026-10-24 on eng-ponytail and eng-addy; finish the chunk 1
         review with eng-pocock once it ends; nothing fixed yet). Owner's question: why AgyLite is not at 100% and why
         it costs more than no skill and the original:
