@@ -503,7 +503,7 @@ Still to do:
       - [x] chunk 1b eng-addy 54/54 done (2026-10-24, $8.38): no skill 0.931 · original 1 · AgyLite 0.986, retained
             0.8, inconclusive (gain within noise). 12 of its 18 AgyLite cells ran the old installed engine (C1-1).
             They stay as they are (owner 2026-10-24: **no re-runs now**). Backups `records.before-c1-1.json`
-      - [ ] chunk 1c eng-pocock **20/90 ($2.97), stopped 2026-10-24 (owner's usage limit)**. Cells 1–16 ran on PATH
+      - [ ] chunk 1c eng-pocock **resumed 2026-11-02 in the `~/.agylite` run dir (C1-6); was 20/90 ($2.97)**. Cells 1–16 ran on PATH
             with the installed engine (5 AgyLite cells on the old engine); cells 17–20 ran with `~/.agylite/core/bin`
             off PATH (the engine under test). **Next session: resume it** (command in IMPLEMENTATION_LOG "Phase 9
             paid run — resume"); then chunk 1 is over → do the chunk review (below)
@@ -560,6 +560,27 @@ Still to do:
         - Scores: eng-ponytail AgyLite correct/safe = 1 (the 0.905/0.857 figures are no skill). eng-addy: one miss
           (code-review run 3, severity labels not from Addy's taxonomy) = C1-2. "Retained 0.8" comes from a tiny
           upstream gain (0.069), so one miss moves it a lot.
+        - **C1-6 (resume fragility, found 2026-11-02):** the run's engine home, checkout and candidate bundle lived in
+          a session scratchpad under /tmp, which a reboot cleared; the run dir copy in `~/.agylite` kept the records
+          and the frozen plugin snapshot but its `agylite-home/{bundles/current,runtimes,staging}` were links into
+          /tmp. Recovered by rebuilding the candidate (`update --review --repo addy --to aeac41d…` on 6c8821eb00b7 →
+          `3509e18d39d9` again, same content-addressed id, Tier 0 PASS), copying it into the run's own
+          `agylite-home/bundles/`, and relinking runtimes/staging to `~/.agylite`. Backup:
+          `records.before-resume-2026-11-02.json`. Fix: `agylite_home_for` copies (not links) a candidate bundle into
+          the run dir, and run dirs never point into a scratchpad.
+        - **C1-7 (staging drift):** the repo checkout's `.staging/upstream` is off its pins on 8 repos (ecc, agency,
+          gstack, ponytail, graphify, opendesign, uiuxpromax, beacon); a candidate build from it fails the audited-hash
+          check. `~/.agylite/staging` matches all 20 pins and was used. Fix: `agylite doctor` reports staging that is
+          off its pins, and `bundle fetch` resets it.
+        - **C1-8 (counter bug, no effect on scores):** `harness.agylite_usage` counts an event named
+          `CAPABILITIES_SELECTED` that the engine never writes; the capabilities are inside `PROMPT_ROUTED`. Every
+          AgyLite cell shows `capabilities_selected: 0` although routing works (e.g. grilling → pocock/grilling +
+          addy/interview-me, 4,826 est tokens). Fix: count `len(PROMPT_ROUTED.capabilities)`.
+        - **C1-9 (grading gap):** Pocock's original `tdd` stops to ask the user two questions before writing a test
+          (tdd#2 upstream run 1): no code, `grading: null`, so the cell is dropped from the mean (not scored 0) and
+          `_valid` would re-run it on a later resume. The arm's n shrinks silently. Fix: record such cells as
+          "asked instead of acting" with their own count in the report, and decide with the owner whether the grader
+          scores them.
       - Paid-run findings, chunk 2: (to fill in after chunk 2 ends, same checks (a)–(g))
       - Paid-run findings, chunk 3: (to fill in after chunk 3 ends; design-taste's skill (≈ 9,700 tokens) is certainly
         over the hook limit, check C1-2 first)
