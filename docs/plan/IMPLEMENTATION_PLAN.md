@@ -481,11 +481,18 @@ Still to do:
         2026-11-02: **chunk 1 done (eng-pocock 90/90) and reviewed (C1-10…C1-12, fix order below)**. Chunk 2 is
         approved and ready (gstack rebuilt at b04cc35, candidate copied to
         `~/.agylite/benchmarks/candidates/3509e18d39d9`)
-  - [ ] Step 3 — PARITY_REPORT.md, fix all findings, run the normal (free) tests
+  - [ ] Step 3 — PARITY_REPORT.md, fix all findings, run the normal (free) tests, re-measure the AgyLite arm only
+        (`--arms agylite --reuse-from <run>`). **Also (owner 2026-11-04): write the new suites for the untested
+        upstreams, dry-run only (no paid sessions):** one combined `design` suite for Open Design + UI UX Pro Max
+        (reuse design-taste's scorer and the Elaya tasks where they fit); an ECC suite only for the capabilities
+        ECC owns (list them first); beyondseo only if the owner uses SEO seriously, otherwise free tests for its
+        deterministic runtime. No paid suite for graphify (deterministic: a free output test), karpathy, unlazy,
+        beacon, agency, appllama, brag — covered by the eng-* suites or free tests
   - [ ] Step 4 — bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
         Elaya Part A as `design/landing-conversion`, overlap test + validate check), normal tests green
-  - [ ] Step 5 — paid suites for the new skills only: `design-elaya` (no skill / Elaya original / AgyLite) and a
-        new security suite (Cloudflare)
+  - [ ] Step 5 — paid suites, one batch and one cost estimate for the owner first: `design-elaya` (no skill / Elaya
+        original / AgyLite), a new security suite (Cloudflare), and the Step 3 suites (Open Design + UI UX Pro Max
+        `design`, ECC, beyondseo if approved). Not before the Step 3 fixes: they would measure the known bugs
   - [ ] Owner idea 2026-11-02, after step 4: a category/subcategory folder view of every skill (security,
         security-audit, design, engineering architecture, agents, YouTube, …) so agents can search and load by
         category; new upstreams sorted into it automatically. Not started; to be designed with the owner
