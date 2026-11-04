@@ -563,16 +563,17 @@ the run homes link to; the checkout's own `.staging` is stale (C1-7) and is not 
 cd ~/Developer/vikhyath-ai-engineering-os            # main checkout
 export AGYLITE_HOME=~/.agylite AGYLITE_NO_AUTO_UPDATE=1
 export PATH=$(echo "$PATH" | tr : '\n' | grep -v '.agylite/core/bin' | paste -sd: -)   # C1-1: run the candidate
-which agylite                                         # must print nothing
+command -v agylite                                    # must print nothing (zsh's `which` prints "not found", C2-4)
 B=~/.agylite/benchmarks/candidates/3509e18d39d9
 Q=~/.agylite/benchmarks/quality
 # chunk 1 (eng-ponytail 63/63, eng-addy 54/54, eng-pocock 90/90): DONE and reviewed 2026-11-02 ($32.86)
 # chunk 2 (owner approved 2026-11-02; 99 sessions): dry-run each first (drop --yes-spend, add --dry-run)
-for s in research youtube browser-qa design-extract; do
-  PYTHONPATH=. python -m agylite.cli benchmark --quality --tier 1 --suite $s --runs 3 --bundle $B --yes-spend
-done   # 36 + 27 + 9 + 27 sessions; a stopped suite prints its own --resume command
-# then: chunk 2 review → IMPLEMENTATION_PLAN "Paid-run findings, chunk 2"
-# chunk 3 (72 sessions): diagram-archify (45), design-taste (27) → chunk 3 review → docs/plan/PARITY_REPORT.md
+# chunk 2 (research, youtube, browser-qa, design-extract; 99 cells): DONE and reviewed 2026-11-04 ($15.97, C2-1…C2-5)
+# chunk 3 (72 sessions, ask the owner first): plugged in, lid open; a non-zero exit only means a non-pass verdict
+for s in diagram-archify design-taste; do
+  caffeinate -ims env PYTHONPATH=. python -u -m agylite.cli benchmark --quality --tier 1 --suite $s --runs 3 --bundle $B --yes-spend
+done   # 45 + 27 sessions; a stopped suite prints its own --resume command
+# then: chunk 3 review → docs/plan/PARITY_REPORT.md
 ```
 
 ## RESUME FROM
@@ -583,8 +584,9 @@ eng-pocock 90/90; 207 sessions, $32.86. eng-pocock: no skill 0.532 · original 0
 inconclusive). Without tdd, where the original only asks questions (C1-9): 0.465 / 0.908 / 0.744. Main gap C1-10:
 the 4.5–5.8k-token hook is saved to a file that the agent opens only on planning prompts, so diagnosing-bugs runs as
 no skill (0.46 vs 0.79). The chunk 1 review (C1-1…C1-12) and the fix order are in IMPLEMENTATION_PLAN.md → "Resume
-here"; the ledger has all three rows. **Next: chunk 2** (research, youtube, browser-qa, design-extract; 99 sessions;
-the owner approved it, but ask before starting), then chunk 3, then PARITY_REPORT.md, then step 3 (fixes). Commands:
+here"; the ledger has all three rows. **Chunk 2 DONE 2026-11-04** (99 cells, $15.97; research
+inconclusive 1/1, youtube regressed 0.467 (C2-1), browser-qa same, design-extract same; review C2-1…C2-5 in the plan).
+**Next: chunk 3** (diagram-archify, design-taste; 72 sessions; ask the owner before starting), then PARITY_REPORT.md, then step 3 (fixes). Commands:
 "Phase 9 paid run — resume" above. Rules: no re-runs and no engine/code changes until chunk 3 ends; a read-only gap
 and cost review after each chunk.**
 <!-- p7-progress:end -->

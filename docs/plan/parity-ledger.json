@@ -1579,6 +1579,392 @@
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261023T193809Z-eng-pocock",
    "fix_applied": "",
    "next_step": "planning skills (grilling, to-spec, to-tickets) match the original when the agent opens the saved hook file; diagnosing-bugs 0.46 vs 0.79 and tdd seam naming miss because the 5.6-5.8k-token hook was never opened (C1-2); original tdd asks questions instead of acting, scored 0.13 (C1-9); 5 AgyLite cells old engine (C1-1); fix after chunk 3"
+  },
+  {
+   "date": "20261103T140925Z",
+   "suite": "research",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "a2ae21dfb6cbbb9395b7477a77f5963ad9b31b50",
+   "upstream_shas": {
+    "Agent-Reach": "94f06c1969dfc1834001269d79d3ad0972d9dee6"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "success": {
+     "baseline": 0.9166666666666666,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 1.6101,
+    "upstream": 1.4925,
+    "agylite": 1.8186
+   },
+   "agent_seconds": {
+    "baseline": 318.9,
+    "upstream": 317.7,
+    "agylite": 230.5
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261103T140925Z-research",
+   "fix_applied": "",
+   "next_step": ""
+  },
+  {
+   "date": "20261104T133241Z",
+   "suite": "youtube",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "a2ae21dfb6cbbb9395b7477a77f5963ad9b31b50",
+   "upstream_shas": {
+    "youtube-agent-skill": "a2feb2104981a375ffd4f87ee04f4f5344ac43c6"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "hook_verdict": {
+     "baseline": 34.111111111111114,
+     "upstream": 71.44444444444444,
+     "agylite": 51.55555555555556,
+     "retained": 0.467,
+     "verdict": "regressed"
+    },
+    "on_screen_beats": {
+     "baseline": 0.3333333333333333,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "same"
+    }
+   },
+   "verdict": "regressed",
+   "cost_usd": {
+    "baseline": 1.5998,
+    "upstream": 3.6945,
+    "agylite": 3.032
+   },
+   "agent_seconds": {
+    "baseline": 484.4,
+    "upstream": 981.2,
+    "agylite": 744.4
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 1,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T133241Z-youtube",
+   "fix_applied": "",
+   "next_step": ""
+  },
+  {
+   "date": "20261104T141003Z",
+   "suite": "browser-qa",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "a2ae21dfb6cbbb9395b7477a77f5963ad9b31b50",
+   "upstream_shas": {
+    "gstack": "b616d6c53dd8fc0d8db210444b44a131b553b83e"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "defects_reported": {
+     "baseline": null,
+     "upstream": null,
+     "agylite": null,
+     "retained": null,
+     "verdict": "missing"
+    },
+    "defects_fixed": {
+     "baseline": null,
+     "upstream": null,
+     "agylite": null,
+     "retained": null,
+     "verdict": "missing"
+    }
+   },
+   "verdict": "missing",
+   "cost_usd": {
+    "baseline": 0,
+    "upstream": 0,
+    "agylite": 0
+   },
+   "agent_seconds": {
+    "baseline": 0.0,
+    "upstream": 0.0,
+    "agylite": 0.0
+   },
+   "agylite_usage": [
+    null,
+    null,
+    null
+   ],
+   "errors": [
+    "broken-site__baseline__0",
+    "broken-site__upstream__0",
+    "broken-site__agylite__0",
+    "broken-site__agylite__1",
+    "broken-site__upstream__1",
+    "broken-site__baseline__1",
+    "broken-site__baseline__2",
+    "broken-site__upstream__2",
+    "broken-site__agylite__2"
+   ],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T141003Z-browser-qa",
+   "fix_applied": "",
+   "next_step": ""
+  },
+  {
+   "date": "20261104T141924Z",
+   "suite": "design-extract",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "a2ae21dfb6cbbb9395b7477a77f5963ad9b31b50",
+   "upstream_shas": {
+    "design-extract": "86bdbb53379d4c1f37ce407f706678c95181ea42"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "color_hit": {
+     "baseline": 0.0,
+     "upstream": 0.6666666666666666,
+     "agylite": 0.6666666666666666,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    },
+    "font_hit": {
+     "baseline": 0.0,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "same"
+    },
+    "design_md_sections": {
+     "baseline": 0.0,
+     "upstream": 8.0,
+     "agylite": 8.0,
+     "retained": 1.0,
+     "verdict": "same"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 0,
+    "upstream": 0,
+    "agylite": 0
+   },
+   "agent_seconds": {
+    "baseline": 0.0,
+    "upstream": 50.2,
+    "agylite": 47.2
+   },
+   "agylite_usage": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T141924Z-design-extract",
+   "fix_applied": "",
+   "next_step": ""
+  },
+  {
+   "date": "20261104T141003Z",
+   "suite": "browser-qa",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "a2ae21dfb6cbbb9395b7477a77f5963ad9b31b50",
+   "upstream_shas": {
+    "gstack": "b616d6c53dd8fc0d8db210444b44a131b553b83e"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "defects_reported": {
+     "baseline": 5.0,
+     "upstream": 5.0,
+     "agylite": 5.0,
+     "retained": null,
+     "verdict": "same"
+    },
+    "defects_fixed": {
+     "baseline": 5.0,
+     "upstream": 5.0,
+     "agylite": 5.0,
+     "retained": null,
+     "verdict": "same"
+    }
+   },
+   "verdict": "same",
+   "cost_usd": {
+    "baseline": 0.6323,
+    "upstream": 1.4033,
+    "agylite": 0.689
+   },
+   "agent_seconds": {
+    "baseline": 182.7,
+    "upstream": 191.6,
+    "agylite": 135.7
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T141003Z-browser-qa",
+   "fix_applied": "",
+   "next_step": ""
   }
  ],
  "notes": [

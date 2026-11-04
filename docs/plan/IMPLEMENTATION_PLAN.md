@@ -638,12 +638,39 @@ Still to do:
           → 2. C1-2/C1-10 (hook ≤ 9,000 chars, lead skill inline) → 3. C1-5/C1-11 (max two skills, routing rules)
           → 4. C1-3 (smaller L0 and fewer plugin descriptions) → 5. C1-4 (no needless verify/route calls) → 6. C1-9
           (asked-instead-of-acting count) → 7. C1-6, C1-7, C1-8, C1-12 (run and bookkeeping robustness)
-      - Paid-run findings, chunk 2: (to fill in after chunk 2 ends, same checks (a)–(g))
+      - Paid-run findings, chunk 2 (2026-11-04, read-only review; nothing fixed). 99 cells, $15.97; every AgyLite
+        trace has "PONYTAIL MODE" in L0 (check (g): the candidate engine ran, C1-1 guard held). Scores no skill /
+        original / AgyLite:
+        - research `20261103T140925Z`: success 0.917 / 1 / 1 (retained 1, inconclusive); $1.61 / $1.49 / $1.82;
+          agent time 319 / 318 / 231 s. Only miss: `github__baseline__1`
+        - youtube `20261104T133241Z`: hook_verdict 34.1 / 71.4 / 51.6 (**retained 0.467, regressed**);
+          on_screen_beats 0.333 / 1 / 1; $1.60 / $3.69 / $3.03
+        - browser-qa `20261104T141003Z`: 5 / 5 / 5 reported and fixed (same; plain Claude already finds all 5);
+          $0.63 / $1.40 / $0.69
+        - design-extract `20261104T141924Z` (no model, $0): color_hit 0 / 0.667 / 0.667, font_hit 0 / 1 / 1,
+          design_md_sections 0 / 8 / 8 (same)
+        - **C2-1 (youtube, the only real regression):** not noise; the original scores 68–74 on all 9 cells, AgyLite
+          40–65. The yt-script text matches the original line for line (only `hookscore.py` → `agylite youtube
+          hookscore`), but AgyLite runs hookscore 4–18 times per cell against the original's 21–30, so it settles on
+          a weaker HOOK line. Likely cause (hypothesis, to test): Ponytail lite in L0 ("least work", "smallest
+          version") cuts the creative search loop short. Fix to try: exempt creative/youtube routes from Ponytail, or
+          the yt-script card states "iterate hookscore until the top two score ≥ 70"; re-measure the AgyLite arm only
+        - **C2-2 (cost, = C1-2/C1-10):** research AgyLite costs $0.33 more than the original for the same score
+          (the per-prompt hook payload); youtube is cheaper than the original only because it iterates less (C2-1)
+        - **C2-3 (gate gap):** browser-qa's browser check needs `~/.agylite/runtimes/browser-1.64.0`; it was not
+          installed, so the first 9 cells failed at $0 before any session. Installed 2026-11-04 (`agylite runtime
+          install browser`, pinned playwright, `--ignore-scripts`) and resumed. Fix: the Tier 1 dry-run checks each
+          suite's runtimes, and the ledger drops (or marks superseded) the stale "missing" browser-qa row 27
+        - **C2-4 (run script):** `benchmark --quality` exits non-zero on any non-pass verdict, so a `|| exit` chain
+          stops after an "inconclusive" suite; and zsh's `which` prints "not found" (non-empty), so the C1-1 guard
+          must use `command -v agylite`. Fix the documented resume commands (IMPLEMENTATION_LOG) to both
+        - **C2-5 (environment):** the Mac slept on battery mid-run; the 600 s session timeout (monotonic clock)
+          does not count sleep, so a session hung ~40 min wall. Run chunk 3 under `caffeinate -ims`, plugged in
+        - browser-qa and design-extract show no upstream gain to retain; no finding
       - Paid-run findings, chunk 3: (to fill in after chunk 3 ends; design-taste's skill (≈ 9,700 tokens) is certainly
         over the hook limit, check C1-2 first)
-      - [ ] chunk 2 research 36, youtube 27, browser-qa 9 (gstack install updated to b04cc35), design-extract 27
-            (99 sessions). Owner 2026-11-04: youtube back in (reverses the 2026-11-03 skip). research resumed from
-            5/36 (`20261103T140925Z-research`), then youtube, browser-qa, design-extract in that order
+      - [x] chunk 2 research 36, youtube 27, browser-qa 9 (gstack install updated to b04cc35), design-extract 27
+            (99 sessions, done 2026-11-04, $15.97). Owner 2026-11-04: youtube back in (reverses the 2026-11-03 skip)
       - [ ] chunk 3 diagram-archify 45, design-taste 27 (≈ $75)
       - [ ] after: approve addy if eng-addy/eng-pocock hold; ledger + PARITY_REPORT.md + results website
 - [ ] Final: every test incl. every paid suite (≈ $80–120 at n = 3; tell the owner the total first), then the results
