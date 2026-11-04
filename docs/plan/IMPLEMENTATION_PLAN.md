@@ -641,8 +641,9 @@ Still to do:
       - Paid-run findings, chunk 2: (to fill in after chunk 2 ends, same checks (a)–(g))
       - Paid-run findings, chunk 3: (to fill in after chunk 3 ends; design-taste's skill (≈ 9,700 tokens) is certainly
         over the hook limit, check C1-2 first)
-      - [ ] chunk 2 research 36, browser-qa 9 (gstack install updated to b04cc35), design-extract 27 (72 sessions).
-            youtube 27 skipped (owner 2026-11-03: a single upstream, low impact; the n = 1 result 0.49 stands)
+      - [ ] chunk 2 research 36, youtube 27, browser-qa 9 (gstack install updated to b04cc35), design-extract 27
+            (99 sessions). Owner 2026-11-04: youtube back in (reverses the 2026-11-03 skip). research resumed from
+            5/36 (`20261103T140925Z-research`), then youtube, browser-qa, design-extract in that order
       - [ ] chunk 3 diagram-archify 45, design-taste 27 (≈ $75)
       - [ ] after: approve addy if eng-addy/eng-pocock hold; ledger + PARITY_REPORT.md + results website
 - [ ] Final: every test incl. every paid suite (≈ $80–120 at n = 3; tell the owner the total first), then the results
