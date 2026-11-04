@@ -581,7 +581,7 @@ done   # 45 + 27 sessions; a stopped suite prints its own --resume command
 <!-- p9-resume:start -->
 ### ▶ RESUME (Phase 9 paid run) — kept current before any usage limit (owner rule 2026-11-04)
 
-**State 2026-11-04 20:50 IST: STOPPED by the owner (usage limit near).** Suites done 7/9 (chunk 1 + chunk 2,
+**State 2026-11-04 (new session): RESUMED — archify resume running, design-taste chained after it.** Earlier: STOPPED by the owner at 20:50 IST (usage limit near). Suites done 7/9 (chunk 1 + chunk 2,
 ≈ $50.5). Chunk 3: diagram-archify 20/45 cells saved ($9.43, no errors, run
 `~/.agylite/benchmarks/quality/20261104T143729Z-diagram-archify`; the cell in progress was killed and is redone on
 resume), design-taste 0/27 (not started). Left: 25 archify + 27 taste sessions, then the chunk 3 review and
