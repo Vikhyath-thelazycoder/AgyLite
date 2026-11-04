@@ -578,6 +578,32 @@ done   # 45 + 27 sessions; a stopped suite prints its own --resume command
 
 ## RESUME FROM
 
+<!-- p9-resume:start -->
+### ▶ RESUME (Phase 9 paid run) — kept current before any usage limit (owner rule 2026-11-04)
+
+**State 2026-11-04 20:55 IST:** suites done 7/9 (chunk 1 + chunk 2, ≈ $50.5). Chunk 3 running:
+diagram-archify 9/45 cells ($4.19, run `~/.agylite/benchmarks/quality/20261104T143729Z-diagram-archify`),
+design-taste 0/27 (not started). Left: 36 archify + 27 taste sessions, then the chunk 3 review and PARITY_REPORT.md.
+
+**To resume, say "continue the paid test"**, or paste this (plugged in, lid open):
+
+```bash
+cd ~/Developer/vikhyath-ai-engineering-os
+export AGYLITE_HOME=~/.agylite AGYLITE_NO_AUTO_UPDATE=1
+export PATH=$(echo "$PATH" | tr : '\n' | grep -v -e '.agylite/core/bin' -e 'plugins/cache/agylite' | paste -sd: -)
+command -v agylite && echo "STOP: a launcher is still on PATH"     # must print nothing
+B=~/.agylite/benchmarks/candidates/3509e18d39d9
+A=$(ls -td ~/.agylite/benchmarks/quality/*diagram-archify | head -1)   # the stopped run (keeps its finished cells)
+caffeinate -ims env PYTHONPATH=. python -u -m agylite.cli benchmark --quality --tier 1 --suite diagram-archify --runs 3 --bundle $B --resume $A --yes-spend
+# design-taste: if a *design-taste run dir exists from 2026-11-04 on, add --resume <that dir>; otherwise start fresh:
+caffeinate -ims env PYTHONPATH=. python -u -m agylite.cli benchmark --quality --tier 1 --suite design-taste --runs 3 --bundle $B --yes-spend
+```
+
+A usage-limit stop is safe: finished cells stay in `records.json`, the run writes `report.json` with
+`"verdict": "stopped"` and its own `--resume` command. A non-zero exit after a finished suite only means a non-pass
+verdict. The harness sees the limit only when a session is refused (it cannot read a percentage).
+<!-- p9-resume:end -->
+
 <!-- p7-progress:start -->
 **2026-11-02: chunk 1 of the Phase 9 paid run is DONE and reviewed.** eng-ponytail 63/63, eng-addy 54/54,
 eng-pocock 90/90; 207 sessions, $32.86. eng-pocock: no skill 0.532 · original 0.753 · AgyLite 0.768 (retained 1.07,
