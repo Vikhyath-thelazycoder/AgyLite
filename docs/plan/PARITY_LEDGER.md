@@ -27,6 +27,7 @@ near 0.70–0.90 · regressed < 0.70 or worse than no skill · inconclusive with
 | 20261104T141003Z | browser-qa | 3 | 3509e18d39d9 | a2ae21df | claude-opus-5-5 | defects_reported: — / — / — (—, missing)<br>defects_fixed: — / — / — (—, missing) | **missing** | $0.00 / $0.00 / $0.00 | — | — |
 | 20261104T141924Z | design-extract | 3 | 3509e18d39d9 | a2ae21df | claude-opus-5-5 | color_hit: 0 / 0.667 / 0.667 (1, inconclusive)<br>font_hit: 0 / 1 / 1 (1, same)<br>design_md_sections: 0 / 8 / 8 (1, same) | **inconclusive** | $0.00 / $0.00 / $0.00 | — | — |
 | 20261104T141003Z | browser-qa | 3 | 3509e18d39d9 | a2ae21df | claude-opus-5-5 | defects_reported: 5 / 5 / 5 (—, same)<br>defects_fixed: 5 / 5 / 5 (—, same) | **same** | $0.63 / $1.40 / $0.69 | — | — |
+| 20261104T143729Z | diagram-archify | 3 | 3509e18d39d9 | 2556dd81 | claude-opus-5-5 | first_pass_usable: 0 / 0.133 / 0 (0, inconclusive)<br>semantic: 0.0667 / 0.333 / 0.2 (0.5, inconclusive)<br>validation: 0.533 / 1 / 1 (1, inconclusive) | **inconclusive** | $5.88 / $6.97 / $7.73 | — | — |
 
 ## Notes
 

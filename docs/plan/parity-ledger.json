@@ -1965,6 +1965,147 @@
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T141003Z-browser-qa",
    "fix_applied": "",
    "next_step": ""
+  },
+  {
+   "date": "20261104T143729Z",
+   "suite": "diagram-archify",
+   "n": 3,
+   "bundle": "3509e18d39d9",
+   "agylite_commit": "2556dd8172777454fb060f02e22d7bbf3d9a8f81",
+   "upstream_shas": {
+    "archify": "25cf37080fc8b1dbe758a4efc3935b55f3327083"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "first_pass_usable": {
+     "baseline": 0.0,
+     "upstream": 0.13333333333333333,
+     "agylite": 0.0,
+     "retained": 0.0,
+     "verdict": "inconclusive"
+    },
+    "semantic": {
+     "baseline": 0.06666666666666667,
+     "upstream": 0.3333333333333333,
+     "agylite": 0.2,
+     "retained": 0.5,
+     "verdict": "inconclusive"
+    },
+    "validation": {
+     "baseline": 0.5333333333333333,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": 1.0,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 5.8824,
+    "upstream": 6.9697,
+    "agylite": 7.7334
+   },
+   "agent_seconds": {
+    "baseline": 1103.9,
+    "upstream": 1057.6,
+    "agylite": 1224.2
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 0
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T143729Z-diagram-archify",
+   "fix_applied": "",
+   "next_step": ""
   }
  ],
  "notes": [
