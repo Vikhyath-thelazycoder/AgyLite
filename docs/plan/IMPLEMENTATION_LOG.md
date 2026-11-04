@@ -581,9 +581,9 @@ done   # 45 + 27 sessions; a stopped suite prints its own --resume command
 <!-- p9-resume:start -->
 ### ▶ RESUME (Phase 9 paid run) — kept current before any usage limit (owner rule 2026-11-04)
 
-**State 2026-11-04 20:55 IST:** suites done 7/9 (chunk 1 + chunk 2, ≈ $50.5). Chunk 3 running:
-diagram-archify 9/45 cells ($4.19, run `~/.agylite/benchmarks/quality/20261104T143729Z-diagram-archify`),
-design-taste 0/27 (not started). Left: 36 archify + 27 taste sessions, then the chunk 3 review and PARITY_REPORT.md.
+**State 2026-11-04 20:45 IST (running, not stopped):** suites done 7/9 (chunk 1 + chunk 2, ≈ $50.5). Chunk 3:
+diagram-archify 19/45 cells ($8.79, no errors, run `~/.agylite/benchmarks/quality/20261104T143729Z-diagram-archify`),
+design-taste 0/27 (not started). Left: 26 archify + 27 taste sessions, then the chunk 3 review and PARITY_REPORT.md.
 
 **To resume, say "continue the paid test"**, or paste this (plugged in, lid open):
 
