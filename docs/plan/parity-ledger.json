@@ -2112,6 +2112,7 @@
   "20261021T172159Z eng-pocock: stopped by a usage limit after 9/30 cells; resume: `agylite benchmark --quality --tier 1 --suite eng-pocock --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261021T172159Z-eng-pocock`",
   "Correction to the 20261021T172159Z eng-pocock note: that stop was a false positive of the usage-limit detector (the agent's rate-limiter spec mentioned HTTP 429), fixed in c1db1da. 9/30 cells were recorded; the run was not resumed.",
   "2026-10-21: the owner withdrew permission for paid Tier 1 sessions. eng-pocock (9/30), design-taste and diagram-archify baselines are not run; eng-addy keeps one ungraded cell (debugging#1, original arm). These suites are reported as not measured, never as Same.",
-  "design-extract, youtube, browser-qa, research and routing (Tier 1) wait for their instruments and AgyLite capabilities (Phases 5-7), and for paid sessions to be allowed again."
+  "design-extract, youtube, browser-qa, research and routing (Tier 1) wait for their instruments and AgyLite capabilities (Phases 5-7), and for paid sessions to be allowed again.",
+  "20261104T182103Z design-taste: stopped by a usage limit after 10/27 cells; resume: `agylite benchmark --quality --tier 1 --suite design-taste --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T182103Z-design-taste`"
  ]
 }
