@@ -581,7 +581,7 @@ done   # 45 + 27 sessions; a stopped suite prints its own --resume command
 <!-- p9-resume:start -->
 ### ▶ RESUME (Phase 9 paid run) — kept current before any usage limit (owner rule 2026-11-04)
 
-**State 2026-11-05: diagram-archify DONE 45/45 (inconclusive; validation 1 = original, semantic 0.2 vs 0.333, first_pass 0 vs 0.133; AgyLite $7.73 vs original $6.97). design-taste stopped by a usage limit at 10/27, resumed 2026-11-05, stopped again at 13/27 when the Claude Code session ended, RESUMED again 2026-11-05 (log resume-20261105b.log) in `/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T182103Z-design-taste` — if stopped again, resume with `--resume` on that dir.** Earlier: STOPPED by the owner at 20:50 IST (usage limit near). Suites done 7/9 (chunk 1 + chunk 2,
+**State 2026-11-05 15:06 IST: chunk 3 DONE — the paid run is COMPLETE (9/9 suites). diagram-archify 45/45 (inconclusive; AgyLite $7.73 vs original $6.97). design-taste 27/27 (inconclusive; inspector_fail 6.78/0/0 same, lint_fail 11.8/0.111/0 same, judge 6.5/6.96/6.97 retained 1.04; $6.87/$20.94/$22.07), run `~/.agylite/benchmarks/quality/20261104T182103Z-design-taste`. Next: chunk 3 review → docs/plan/PARITY_REPORT.md, then step 3 (fixes). Review notes: original arm has inspector_fail=None on task 1+2 round 2, and task 7 round 2 cost only $0.83 (lint 1) — check traces.** Earlier: STOPPED by the owner at 20:50 IST (usage limit near). Suites done 7/9 (chunk 1 + chunk 2,
 ≈ $50.5). Chunk 3: diagram-archify 20/45 cells saved ($9.43, no errors, run
 `~/.agylite/benchmarks/quality/20261104T143729Z-diagram-archify`; the cell in progress was killed and is redone on
 resume), design-taste 0/27 (not started). Left: 25 archify + 27 taste sessions, then the chunk 3 review and
