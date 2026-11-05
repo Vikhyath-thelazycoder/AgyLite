@@ -2105,7 +2105,7 @@
    "errors": [],
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T143729Z-diagram-archify",
    "fix_applied": "",
-   "next_step": ""
+   "next_step": "no-skill arm leaked: 11/15 cells found Archify outside the workspace and all 8 validation passes are leaked cells; clean no-skill validation 0/4 (C3-2). AgyLite misses the separate auth participant in cache-miss 3/3 (C3-3); web-runtime first-pass gap rests on the model visual reviewer (C3-4). Fix C3-2 isolation, then re-measure all arms"
   },
   {
    "date": "20261104T182103Z",
@@ -2210,7 +2210,7 @@
    "errors": [],
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T182103Z-design-taste",
    "fix_applied": "",
-   "next_step": ""
+   "next_step": "AgyLite = original on inspector, lint and judge; 2 original inspector values lost to a stdout parse (both 0 in report.json, C3-1); 1 original cell never invoked its skill (C3-7); task 1 routes an extra Addy skill + 4 engineering cards and scores like no skill (C3-5); AgyLite +5% cost (C3-6)"
   }
  ],
  "notes": [
@@ -2218,6 +2218,7 @@
   "Correction to the 20261021T172159Z eng-pocock note: that stop was a false positive of the usage-limit detector (the agent's rate-limiter spec mentioned HTTP 429), fixed in c1db1da. 9/30 cells were recorded; the run was not resumed.",
   "2026-10-21: the owner withdrew permission for paid Tier 1 sessions. eng-pocock (9/30), design-taste and diagram-archify baselines are not run; eng-addy keeps one ungraded cell (debugging#1, original arm). These suites are reported as not measured, never as Same.",
   "design-extract, youtube, browser-qa, research and routing (Tier 1) wait for their instruments and AgyLite capabilities (Phases 5-7), and for paid sessions to be allowed again.",
-  "20261104T182103Z design-taste: stopped by a usage limit after 10/27 cells; resume: `agylite benchmark --quality --tier 1 --suite design-taste --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T182103Z-design-taste`"
+  "20261104T182103Z design-taste: stopped by a usage limit after 10/27 cells; resume: `agylite benchmark --quality --tier 1 --suite design-taste --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T182103Z-design-taste`",
+  "20261104T182103Z design-taste: resumed 2026-11-05 and finished 27/27 (stopped once more at 13/27 when the Claude Code session that launched it closed)."
  ]
 }

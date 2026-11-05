@@ -674,11 +674,64 @@ Still to do:
         - **C2-5 (environment):** the Mac slept on battery mid-run; the 600 s session timeout (monotonic clock)
           does not count sleep, so a session hung ~40 min wall. Run chunk 3 under `caffeinate -ims`, plugged in
         - browser-qa and design-extract show no upstream gain to retain; no finding
-      - Paid-run findings, chunk 3: (to fill in after chunk 3 ends; design-taste's skill (≈ 9,700 tokens) is certainly
-        over the hook limit, check C1-2 first)
+      - Paid-run findings, chunk 3 (2026-11-05, read-only review; nothing fixed). 72 cells, $70.46; every AgyLite
+        trace has "PONYTAIL MODE" in L0 (check (g): the engine under test ran in all 24 AgyLite cells). Scores no
+        skill / original / AgyLite:
+        - diagram-archify `20261104T143729Z`: validation 0.533 / 1 / 1 (retained 1), semantic 0.067 / 0.333 / 0.2
+          (0.5), first_pass_usable 0 / 0.133 / 0; inconclusive; $5.88 / $6.97 / $7.73
+        - design-taste `20261104T182103Z`: inspector_fail 6.78 / 0 / 0 (same), lint_fail 11.8 / 0.111 / 0 (same),
+          judge 6.5 / 6.96 / 6.97 (retained 1.04, inconclusive: the original's gain is within noise); $6.87 / $20.94 /
+          $22.07. Per task judge: 1 → 6.48 / 6.88 / 6.5, 2 → 6.5 / 7.13 / 7.3, 7 → 6.52 / 6.85 / 7.12
+        - **C3-1 (measurement, design-taste):** the original arm's `inspector_fail` is `None` on 1#2 and 2#2 (n drops
+          to 7). `taste_runner.measure` parses inspect.mjs's stdout; those two reports are the largest (50–55 KB), so
+          the stdout JSON was most likely cut off. The saved `pages/<cell>/inspect/report.json` has 0 FAIL in both.
+          The verdict does not change. Fix: read `<out>/report.json` instead of stdout
+        - **C3-2 (validity, diagram-archify, the biggest finding):** the no-skill arm is not isolated. The prompt
+          says "Use the Archify skill in this repository". The empty no-skill workspace has none, so the agent
+          searched the home folder in 15/15 cells and found Archify in 11 (the `~/Developer/os/archify` clone, the
+          agylite marketplace plugin, `~/.agylite/bundles`): it read its SKILL.md and ran its CLI. All 8 no-skill
+          validation passes are leaked cells; the 4 clean cells score 0. The original's and AgyLite's real gain is
+          larger than the report shows. No other paid run's no-skill traces touched skill sources (checked all 10).
+          Fix: the harness hides `~/Developer/os`, `~/.claude/plugins`, `~/.agylite` and `~/.claude/skills` from
+          every arm except where that arm needs them (temporary HOME or deny rules), and `check_isolation` fails a
+          no-skill cell that reads a skill source; then re-run diagram-archify (all arms)
+        - **C3-3 (AgyLite gap, archify semantic):** cache-miss.sequence AgyLite 0/3 vs original 2/3. All 3 AgyLite
+          candidates draw "the API validates the JWT" as a step inside the API with no `auth` participant. The case
+          requires api → auth "verify JWT". Both arms read the same bundled example, and it has `auth`. Hypothesis
+          (to test with C2-1): Ponytail lite ("smallest version") makes the agent leave out a participant that the
+          prompt does not name; the SECURITY_CHANGE route (C3-5) does not help. Fix: test exempting diagram and
+          creative routes from Ponytail, then re-measure the AgyLite arm only
+        - **C3-4 (archify first pass, noise):** web-runtime first_pass_usable AgyLite 0/3 vs original 2/3. Every
+          AgyLite cell is semantic and validation 1 and fails only the model visual reviewer's `label-overlap`. Both
+          arms used Archify's CLI the same way (validate 0–2, no visual-check). Treat it as reviewer noise at n=3;
+          no fix
+        - **C3-5 (routing, = C1-5/C1-11):** archify prompts route as MEDIA_CHANGE or SECURITY_CHANGE (when they say
+          JWT/auth) with 3–5 engineering cards (security, implementation, backend, review); the skill is right
+          (archify only). design-taste: task 7 routes Taste alone and has the best AgyLite judge (retained 1.82). Task
+          1 routes DESIGN_CHANGE + `addy/incremental-implementation` + 4 engineering cards and scores as no skill
+          (6.5, retained 0.04). Task 2 adds `pocock/improve-codebase-architecture`. Judge spread is wide (5.8–7.4),
+          so this is not proven, but it matches C1-11. Fix: diagram and page prompts route one skill, a
+          diagram/design change type and no engineering cards
+        - **C3-6 (cost and hook, = C1-2/C1-3):** hook payloads are 10.7–11.0k est tokens (design-taste) and
+          5.5–5.6k (archify): always over the limit and saved to a file. Unlike eng-pocock, the agent opened the
+          file in every AgyLite cell (1–2 grep/sed reads), so it saw the skill. First call 33.7–33.9k tokens vs
+          29.8–30.2k for no skill and the original (+3.6–3.9k, C1-3). Cost per cell: design-taste $2.45 vs original
+          $2.33 (+5%), archify $0.52 vs $0.46 (+11%); turns are the same (39.8 vs 39.2). The 10–20 `agylite design
+          taste` calls per cell are Taste's lint/inspect loop (the original runs the same checks through node), not
+          overhead; one stray `agylite verify` and one `agylite context` call in 9 cells (C1-4)
+        - **C3-7 (arm validity, design-taste original):** 7#2 of the original arm never invoked `taste-skill` (14
+          turns, $0.83, lint 1, judge 6.5, like no skill), so 1 of 9 original cells is really a no-skill cell. Claude
+          Code's built-in `dataviz` skill was invoked by 2 no-skill task 7 cells. The built-ins are present in every
+          arm, so this is noted only. Fix: the report counts original cells with empty `skill_loads` as "skill not
+          used" and the owner decides whether they are re-run
+        - **C3-8 (operations):** the resumed run died when the Claude Code session that launched it closed (13/27).
+          Fix: start paid runs detached (`nohup` / a separate terminal) and say so in the resume block. The live log
+          prints `judge_overall None` because the judge runs after every cell has finished (cosmetic)
+        - **Chunk 3 fix order (after the owner's go-ahead):** C3-2 first (it decides whether archify can be
+          trusted), then C3-1 and C3-7 (measurement), then C3-5 together with C1-5/C1-11, C3-3 together with C2-1, C3-8
       - [x] chunk 2 research 36, youtube 27, browser-qa 9 (gstack install updated to b04cc35), design-extract 27
             (99 sessions, done 2026-11-04, $15.97). Owner 2026-11-04: youtube back in (reverses the 2026-11-03 skip)
-      - [ ] chunk 3 diagram-archify 45, design-taste 27 (≈ $75)
+      - [x] chunk 3 diagram-archify 45, design-taste 27 (72 sessions, done 2026-11-05, $70.46; review C3-1…C3-8)
       - [ ] after: approve addy if eng-addy/eng-pocock hold; ledger + PARITY_REPORT.md + results website
 - [ ] Final: every test incl. every paid suite (≈ $80–120 at n = 3; tell the owner the total first), then the results
       website (per task: plain Claude vs the original skill vs AgyLite — code, grader checks, answer, score, cost) and
