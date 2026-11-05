@@ -477,11 +477,16 @@ Still to do:
         scans, licenses, one-owner-per-job overlap plan → `docs/audit/23_NEW_UPSTREAMS_OVERLAP_AUDIT.md`,
         `docs/audit/evidence/candidates/`. Nothing bundled; the paid run's bundle stays frozen. Also: `test_p25`
         ceiling 8,000 → 10,000 bytes (owner: quality first; it failed at 8,005 on clean main)
-  - [ ] Step 2 — finish the Phase 9 paid run on the frozen bundle (eng-pocock, then chunks 2 and 3; rules below).
-        2026-11-02: **chunk 1 done (eng-pocock 90/90) and reviewed (C1-10…C1-12, fix order below)**. Chunk 2 is
-        approved and ready (gstack rebuilt at b04cc35, candidate copied to
-        `~/.agylite/benchmarks/candidates/3509e18d39d9`)
-  - [ ] Step 3 — PARITY_REPORT.md, fix all findings, run the normal (free) tests, re-measure the AgyLite arm only
+  - [x] Step 2 — finish the Phase 9 paid run on the frozen bundle. **DONE 2026-11-05:** chunks 1–3, 9 suites,
+        378 sessions, $119.29; every chunk reviewed (C1-1…C1-12, C2-1…C2-5, C3-1…C3-8)
+  - [ ] Step 3 — **PAUSED by the owner 2026-11-05, before any fix.** Done: `docs/plan/PARITY_REPORT.md` (results,
+        findings, fix order). Not started: every code fix. Already handled outside code: C1-6 (run recovered by
+        hand), C1-9 (grader scores question-only answers 0), C2-3 (browser runtime installed), C2-4 (resume
+        commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
+        **Resume with the report's fix order, step 1 = measurement: C3-2 (isolate arms from home-folder skill
+        sources), C1-1, C3-1, C3-7, C1-9 count**; then hook ≤ 9,000 chars (C1-2), routing (C1-5/C3-5), Ponytail
+        exemption test (C2-1/C3-3), overhead (C1-3/C1-4), robustness. Ask the owner before starting.
+        Then: fix all findings, run the normal (free) tests, re-measure the AgyLite arm only
         (`--arms agylite --reuse-from <run>`). **Also (owner 2026-11-04): write the new suites for the untested
         upstreams, dry-run only (no paid sessions):** one combined `design` suite for Open Design + UI UX Pro Max
         (reuse design-taste's scorer and the Elaya tasks where they fit); an ECC suite only for the capabilities
