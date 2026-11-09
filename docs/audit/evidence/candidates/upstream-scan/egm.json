@@ -1,0 +1,580 @@
+{
+ "repo": "egm",
+ "head": "b7d9e2706fb96314a0a3123684f53cedd97e7d79",
+ "totals": {
+  "files": 301,
+  "bytes": 3293867,
+  "submodules": []
+ },
+ "top_dirs": {
+  "distributions": 66,
+  "site": 51,
+  "skills": 38,
+  "docs": 33,
+  "tests": 29,
+  ".github": 14,
+  ".claude-plugin": 13,
+  ".cursor-plugin": 11,
+  "(root)": 11,
+  "agents": 10,
+  "com.github.copilot": 9,
+  "resources": 7,
+  ".gemini": 2,
+  "scripts": 2,
+  ".agents": 1,
+  ".codex-plugin": 1,
+  ".plugin": 1,
+  "adapters": 1,
+  "assets": 1
+ },
+ "extensions": {
+  ".md": 150,
+  ".svg": 29,
+  ".py": 28,
+  ".yaml": 22,
+  ".json": 16,
+  ".astro": 14,
+  ".png": 10,
+  ".yml": 9,
+  "(none)": 8,
+  ".mjs": 5,
+  ".woff2": 2,
+  ".css": 2,
+  ".mdc": 1,
+  ".toml": 1,
+  ".txt": 1,
+  ".xml": 1,
+  ".html": 1,
+  ".cjs": 1
+ },
+ "host_dirs": [
+  ".claude-plugin",
+  ".codex-plugin",
+  ".cursor-plugin",
+  ".agents",
+  ".gemini"
+ ],
+ "manifests": [
+  ".agents/plugins/marketplace.json",
+  ".claude-plugin/marketplace.json",
+  ".claude-plugin/plugin.json",
+  ".codex-plugin/plugin.json",
+  ".cursor-plugin/plugin.json",
+  ".plugin/plugin.json",
+  "distributions/claude/.claude-plugin/plugin.json",
+  "distributions/claude/plugin.json",
+  "plugin.json",
+  "pyproject.toml",
+  "site/package.json",
+  "tests/integration/opencode-ci/package.json"
+ ],
+ "mcp_files": [],
+ "installers": [
+  "adapters/opencode/install.py"
+ ],
+ "license_files": [
+  "LICENSE",
+  "distributions/claude/LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "distributions/claude/skills/egm-bootstrap/SKILL.md",
+   "name": "egm-bootstrap",
+   "description": "Bootstrap directory README.md files across a repository subtree.",
+   "bytes": 23889
+  },
+  {
+   "path": "distributions/claude/skills/egm-brainstorm/SKILL.md",
+   "name": "egm-brainstorm",
+   "description": ">-",
+   "bytes": 15205
+  },
+  {
+   "path": "distributions/claude/skills/egm-draft/SKILL.md",
+   "name": "egm-draft",
+   "description": ">-",
+   "bytes": 17479
+  },
+  {
+   "path": "distributions/claude/skills/egm-drift-report/SKILL.md",
+   "name": "egm-drift-report",
+   "description": ">-",
+   "bytes": 3169
+  },
+  {
+   "path": "distributions/claude/skills/egm-resolve/SKILL.md",
+   "name": "egm-resolve",
+   "description": ">-",
+   "bytes": 8541
+  },
+  {
+   "path": "distributions/claude/skills/egm-review-loop/SKILL.md",
+   "name": "egm-review-loop",
+   "description": ">-",
+   "bytes": 10325
+  },
+  {
+   "path": "distributions/claude/skills/egm-review/SKILL.md",
+   "name": "egm-review",
+   "description": ">-",
+   "bytes": 24257
+  },
+  {
+   "path": "skills/egm-bootstrap/SKILL.md",
+   "name": "egm-bootstrap",
+   "description": "Bootstrap directory README.md files across a repository subtree.",
+   "bytes": 23889
+  },
+  {
+   "path": "skills/egm-brainstorm/SKILL.md",
+   "name": "egm-brainstorm",
+   "description": ">-",
+   "bytes": 15205
+  },
+  {
+   "path": "skills/egm-draft/SKILL.md",
+   "name": "egm-draft",
+   "description": ">-",
+   "bytes": 17479
+  },
+  {
+   "path": "skills/egm-drift-report/SKILL.md",
+   "name": "egm-drift-report",
+   "description": ">-",
+   "bytes": 3169
+  },
+  {
+   "path": "skills/egm-resolve/SKILL.md",
+   "name": "egm-resolve",
+   "description": ">-",
+   "bytes": 8541
+  },
+  {
+   "path": "skills/egm-review-loop/SKILL.md",
+   "name": "egm-review-loop",
+   "description": ">-",
+   "bytes": 10325
+  },
+  {
+   "path": "skills/egm-review/SKILL.md",
+   "name": "egm-review",
+   "description": ">-",
+   "bytes": 24257
+  }
+ ],
+ "agents": [
+  {
+   "path": ".claude-plugin/agents/bootstrap_orchestrator.md",
+   "name": "egm-bootstrap-orchestrator",
+   "bytes": 921
+  },
+  {
+   "path": ".claude-plugin/agents/codebase_details.md",
+   "name": "egm-codebase-details",
+   "bytes": 666
+  },
+  {
+   "path": ".claude-plugin/agents/comprehension.md",
+   "name": "egm-comprehension",
+   "bytes": 657
+  },
+  {
+   "path": ".claude-plugin/agents/design_critic.md",
+   "name": "egm-design",
+   "bytes": 641
+  },
+  {
+   "path": ".claude-plugin/agents/implementation_readiness.md",
+   "name": "egm-implementation-readiness",
+   "bytes": 673
+  },
+  {
+   "path": ".claude-plugin/agents/inventive_catalyst.md",
+   "name": "egm-inventive-catalyst",
+   "bytes": 687
+  },
+  {
+   "path": ".claude-plugin/agents/structural.md",
+   "name": "egm-structural",
+   "bytes": 639
+  },
+  {
+   "path": ".claude-plugin/agents/style.md",
+   "name": "egm-style",
+   "bytes": 628
+  },
+  {
+   "path": ".claude-plugin/agents/synthesizer.md",
+   "name": "egm-synthesizer",
+   "bytes": 1214
+  },
+  {
+   "path": ".claude-plugin/agents/zoom_out.md",
+   "name": "egm-zoom-out",
+   "bytes": 637
+  },
+  {
+   "path": ".cursor-plugin/agents/codebase_details.md",
+   "name": "egm-codebase-details",
+   "bytes": 736
+  },
+  {
+   "path": ".cursor-plugin/agents/comprehension.md",
+   "name": "egm-comprehension",
+   "bytes": 739
+  },
+  {
+   "path": ".cursor-plugin/agents/design_critic.md",
+   "name": "egm-design",
+   "bytes": 722
+  },
+  {
+   "path": ".cursor-plugin/agents/implementation_readiness.md",
+   "name": "egm-implementation-readiness",
+   "bytes": 760
+  },
+  {
+   "path": ".cursor-plugin/agents/inventive_catalyst.md",
+   "name": "egm-inventive-catalyst",
+   "bytes": 774
+  },
+  {
+   "path": ".cursor-plugin/agents/structural.md",
+   "name": "egm-structural",
+   "bytes": 726
+  },
+  {
+   "path": ".cursor-plugin/agents/style.md",
+   "name": "egm-style",
+   "bytes": 713
+  },
+  {
+   "path": ".cursor-plugin/agents/zoom_out.md",
+   "name": "egm-zoom-out",
+   "bytes": 724
+  },
+  {
+   "path": "agents/bootstrap_orchestrator.md",
+   "name": "egm-bootstrap-orchestrator",
+   "bytes": 1706
+  },
+  {
+   "path": "agents/codebase_details.md",
+   "name": "egm-codebase-details",
+   "bytes": 4683
+  },
+  {
+   "path": "agents/comprehension.md",
+   "name": "egm-comprehension",
+   "bytes": 4748
+  },
+  {
+   "path": "agents/design_critic.md",
+   "name": "egm-design",
+   "bytes": 3843
+  },
+  {
+   "path": "agents/implementation_readiness.md",
+   "name": "egm-implementation-readiness",
+   "bytes": 3929
+  },
+  {
+   "path": "agents/inventive_catalyst.md",
+   "name": "egm-inventive-catalyst",
+   "bytes": 7355
+  },
+  {
+   "path": "agents/structural.md",
+   "name": "egm-structural",
+   "bytes": 3954
+  },
+  {
+   "path": "agents/style.md",
+   "name": "egm-style",
+   "bytes": 4879
+  },
+  {
+   "path": "agents/synthesizer.md",
+   "name": "egm-synthesizer",
+   "bytes": 4860
+  },
+  {
+   "path": "agents/zoom_out.md",
+   "name": "egm-zoom-out",
+   "bytes": 4903
+  },
+  {
+   "path": "com.github.copilot/agents/egm-codebase-details.agent.md",
+   "name": "egm-codebase-details",
+   "bytes": 1295
+  },
+  {
+   "path": "com.github.copilot/agents/egm-comprehension.agent.md",
+   "name": "egm-comprehension",
+   "bytes": 1280
+  },
+  {
+   "path": "com.github.copilot/agents/egm-design.agent.md",
+   "name": "egm-design",
+   "bytes": 1274
+  },
+  {
+   "path": "com.github.copilot/agents/egm-implementation-readiness.agent.md",
+   "name": "egm-implementation-readiness",
+   "bytes": 1304
+  },
+  {
+   "path": "com.github.copilot/agents/egm-inventive-catalyst.agent.md",
+   "name": "egm-inventive-catalyst",
+   "bytes": 1293
+  },
+  {
+   "path": "com.github.copilot/agents/egm-structural.agent.md",
+   "name": "egm-structural",
+   "bytes": 1270
+  },
+  {
+   "path": "com.github.copilot/agents/egm-style.agent.md",
+   "name": "egm-style",
+   "bytes": 1259
+  },
+  {
+   "path": "com.github.copilot/agents/egm-zoom-out.agent.md",
+   "name": "egm-zoom-out",
+   "bytes": 1269
+  },
+  {
+   "path": "com.github.copilot/agents/egm.agent.md",
+   "name": "egm",
+   "bytes": 1053
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/bootstrap_orchestrator.md",
+   "name": "egm-bootstrap-orchestrator",
+   "bytes": 921
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/codebase_details.md",
+   "name": "egm-codebase-details",
+   "bytes": 666
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/comprehension.md",
+   "name": "egm-comprehension",
+   "bytes": 657
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/design_critic.md",
+   "name": "egm-design",
+   "bytes": 641
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/implementation_readiness.md",
+   "name": "egm-implementation-readiness",
+   "bytes": 673
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/inventive_catalyst.md",
+   "name": "egm-inventive-catalyst",
+   "bytes": 687
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/structural.md",
+   "name": "egm-structural",
+   "bytes": 639
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/style.md",
+   "name": "egm-style",
+   "bytes": 628
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/synthesizer.md",
+   "name": "egm-synthesizer",
+   "bytes": 1214
+  },
+  {
+   "path": "distributions/claude/.claude-plugin/agents/zoom_out.md",
+   "name": "egm-zoom-out",
+   "bytes": 637
+  },
+  {
+   "path": "distributions/claude/agents/bootstrap_orchestrator.md",
+   "name": "egm-bootstrap-orchestrator",
+   "bytes": 1706
+  },
+  {
+   "path": "distributions/claude/agents/codebase_details.md",
+   "name": "egm-codebase-details",
+   "bytes": 4683
+  },
+  {
+   "path": "distributions/claude/agents/comprehension.md",
+   "name": "egm-comprehension",
+   "bytes": 4748
+  },
+  {
+   "path": "distributions/claude/agents/design_critic.md",
+   "name": "egm-design",
+   "bytes": 3843
+  },
+  {
+   "path": "distributions/claude/agents/implementation_readiness.md",
+   "name": "egm-implementation-readiness",
+   "bytes": 3929
+  },
+  {
+   "path": "distributions/claude/agents/inventive_catalyst.md",
+   "name": "egm-inventive-catalyst",
+   "bytes": 7355
+  },
+  {
+   "path": "distributions/claude/agents/structural.md",
+   "name": "egm-structural",
+   "bytes": 3954
+  },
+  {
+   "path": "distributions/claude/agents/style.md",
+   "name": "egm-style",
+   "bytes": 4879
+  },
+  {
+   "path": "distributions/claude/agents/synthesizer.md",
+   "name": "egm-synthesizer",
+   "bytes": 4860
+  },
+  {
+   "path": "distributions/claude/agents/zoom_out.md",
+   "name": "egm-zoom-out",
+   "bytes": 4903
+  }
+ ],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 5,
+   "files": [
+    "docs/copilot.md",
+    "scripts/pack_plugin.py",
+    "tests/integration/test_claude.py",
+    "tests/unit/test_copilot_adapter.py",
+    "tests/unit/test_packaging.py"
+   ]
+  },
+  "network": {
+   "count": 5,
+   "files": [
+    ".github/workflows/copilot-native.yml",
+    ".github/workflows/cursor-native.yml",
+    "site/package-lock.json",
+    "site/scripts/verify-analytics.mjs",
+    "tests/integration/test_codex.py"
+   ]
+  },
+  "telemetry": {
+   "count": 6,
+   "files": [
+    ".github/workflows/tests.yml",
+    "site/package-lock.json",
+    "site/scripts/verify-analytics.mjs",
+    "site/tests/analytics.test.mjs",
+    "skills/egm-brainstorm/test_scenarios.yaml",
+    "skills/egm-draft/test_scenarios.yaml"
+   ]
+  },
+  "background": {
+   "count": 4,
+   "files": [
+    "skills/egm-brainstorm/test_scenarios.yaml",
+    "tests/integration/copilot_controlled_probe.py",
+    "tests/integration/opencode_native_probe.py",
+    "tests/unit/test_copilot_adapter.py"
+   ]
+  },
+  "browser": {
+   "count": 5,
+   "files": [
+    "site/package-lock.json",
+    "site/package.json",
+    "site/scripts/capture.mjs",
+    "site/scripts/verify-analytics.mjs",
+    "tests/unit/test_copilot_adapter.py"
+   ]
+  },
+  "shell_exec": {
+   "count": 9,
+   "files": [
+    "tests/integration/copilot_controlled_probe.py",
+    "tests/integration/opencode_native_probe.py",
+    "tests/integration/test_claude.py",
+    "tests/integration/test_codex.py",
+    "tests/unit/test_ci_workflow.py",
+    "tests/unit/test_copilot_adapter.py",
+    "tests/unit/test_cursor.py",
+    "tests/unit/test_cursor_child_reads.py",
+    "tests/unit/test_scope_advisory.py"
+   ]
+  },
+  "env_secrets": {
+   "count": 14,
+   "files": [
+    ".github/workflows/release.yml",
+    ".github/workflows/tests.yml",
+    "site/package-lock.json",
+    "site/scripts/capture.mjs",
+    "site/scripts/verify-analytics.mjs",
+    "site/tests/analytics.test.mjs",
+    "tests/integration/opencode_native_probe.py",
+    "tests/integration/test_claude.py",
+    "tests/integration/test_codex.py",
+    "tests/unit/test_ci_workflow.py",
+    "tests/unit/test_copilot_adapter.py",
+    "tests/unit/test_cursor.py",
+    "tests/unit/test_opencode_adapter.py",
+    "tests/unit/test_packaging.py"
+   ]
+  },
+  "home_writes": {
+   "count": 2,
+   "files": [
+    "tests/integration/test_claude.py",
+    "tests/integration/test_codex.py"
+   ]
+  },
+  "self_update": {
+   "count": 8,
+   "files": [
+    ".github/workflows/cursor-native.yml",
+    ".github/workflows/release.yml",
+    ".github/workflows/tests.yml",
+    "adapters/opencode/install.py",
+    "tests/integration/copilot_controlled_probe.py",
+    "tests/unit/test_ci_workflow.py",
+    "tests/unit/test_copilot_adapter.py",
+    "tests/unit/test_opencode_adapter.py"
+   ]
+  },
+  "llm_api": {
+   "count": 10,
+   "files": [
+    "distributions/claude/plugin.json",
+    "plugin.json",
+    "scripts/pack_plugin.py",
+    "scripts/prepare_release.py",
+    "tests/integration/opencode_native_probe.py",
+    "tests/integration/test_codex.py",
+    "tests/unit/test_copilot_adapter.py",
+    "tests/unit/test_harnesses.py",
+    "tests/unit/test_packaging.py",
+    "tests/unit/test_releases.py"
+   ]
+  }
+ }
+}

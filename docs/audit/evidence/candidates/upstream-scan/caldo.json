@@ -1,0 +1,89 @@
+{
+ "repo": "caldo",
+ "head": "f3cf47774975a7d9fca45730babf4ff7ad765ada",
+ "totals": {
+  "files": 4,
+  "bytes": 11376,
+  "submodules": []
+ },
+ "top_dirs": {
+  "(root)": 2,
+  ".claude-plugin": 1,
+  "skills": 1
+ },
+ "extensions": {
+  ".md": 2,
+  ".json": 1,
+  "(none)": 1
+ },
+ "host_dirs": [
+  ".claude-plugin"
+ ],
+ "manifests": [
+  ".claude-plugin/marketplace.json"
+ ],
+ "mcp_files": [],
+ "installers": [],
+ "license_files": [
+  "LICENSE"
+ ],
+ "skills": [
+  {
+   "path": "skills/untangle-codebase/SKILL.md",
+   "name": "untangle-codebase",
+   "description": "Untangle a whole codebase in one pass, so agents working in it read less per change, break less without noticing, and debug faster.",
+   "bytes": 8881
+  }
+ ],
+ "agents": [],
+ "commands": {
+  "count": 0,
+  "files": []
+ },
+ "hooks": {
+  "count": 0,
+  "files": []
+ },
+ "indicators": {
+  "mcp": {
+   "count": 0,
+   "files": []
+  },
+  "network": {
+   "count": 0,
+   "files": []
+  },
+  "telemetry": {
+   "count": 0,
+   "files": []
+  },
+  "background": {
+   "count": 0,
+   "files": []
+  },
+  "browser": {
+   "count": 0,
+   "files": []
+  },
+  "shell_exec": {
+   "count": 0,
+   "files": []
+  },
+  "env_secrets": {
+   "count": 0,
+   "files": []
+  },
+  "home_writes": {
+   "count": 0,
+   "files": []
+  },
+  "self_update": {
+   "count": 0,
+   "files": []
+  },
+  "llm_api": {
+   "count": 0,
+   "files": []
+  }
+ }
+}
