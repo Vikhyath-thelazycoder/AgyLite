@@ -196,6 +196,10 @@ Nothing is added to the always-loaded L0 (`test_p25` ceiling unchanged).
 
 ## 6. Step 4b checklist (when the plan reaches it)
 
+The full, detailed Step 4b instructions, including the multi-agent upgrade (synthesizer merge for every review,
+resolve gate, re-check loop, drift check, host subagent flag), are in `docs/plan/IMPLEMENTATION_PLAN.md`, section
+"Step 4b — Astryx, Caldo, EGM and the multi-agent review upgrade (detailed)". The list below is the short version.
+
 1. Move the three pins from `candidates/` into `upstream-staging-snapshot.yaml`, `extraction-rules.yaml`,
    `config/upstreams.yaml` (tracking as proposed), `licenses.json`; regenerate hashes and notices.
 2. Astryx: extraction rules per §2.3/§2.4; house skill + card `design/react-design-system`. Side-by-side read of

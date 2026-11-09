@@ -503,7 +503,10 @@ Still to do:
         records as references). Caldo `untangle-codebase` = whole-codebase refactor entry point of
         `engineering/architecture`. EGM = new `engineering/spec-review` (fresh-context review of specs before code) +
         `egm-drift-report` in `engineering/documentation`. Routing fixes for hero/landing, "design doc" ≠ visual design,
-        "untangle … agents" ≠ ai-systems
+        "untangle … agents" ≠ ai-systems. **Plus the multi-agent upgrade** (owner 2026-11-10): 9 Goldfish reviewer
+        agents, one synthesizer merge for every multi-reviewer review, a resolve gate for findings, a re-check loop with
+        a decision log, a drift check after features, and no fake fresh review on hosts without subagents.
+        **Full instructions: section "Step 4b — … (detailed)" below, before "Change history".**
   - [ ] Step 5 — paid suites, one batch and one cost estimate for the owner first: `design-elaya` (no skill / Elaya
         original / AgyLite), a new security suite (Cloudflare), `spec-review` (EGM, doc 24 §6; Astryx joins the
         combined `design` suite as React-app tasks; owner 2026-11-10: dry run + cost estimate first), and the Step 3 suites (Open Design + UI UX Pro Max
@@ -785,6 +788,204 @@ MP5 skills) depends on the same skill loading. Details: IMPLEMENTATION_LOG.md �
 Earlier state (v2.x release, 2026-10-11): `main` released v2.0.0 → v2.1.x; central install in `~/.agylite`; Claude Code
 plugin `agylite@agylite-marketplace` installed and runtime-verified. Tests: `python -m unittest discover -s tests`.
 
+## Step 4b — Astryx, Caldo, EGM and the multi-agent review upgrade (detailed) · PLANNED (owner 2026-11-10, D-052)
+
+**Read this whole section before starting Step 4b.** It is written so a future session can carry it out without this
+conversation. Audit and evidence: `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md` (per-file verdicts),
+`docs/audit/evidence/candidates/` (pins, hashes, scans). Staged clones: `.staging/upstream/{astryx,caldo,egm}`
+(gitignored; re-clone at the pinned commit if missing: `git clone --filter=blob:none <repo> <key> && git -C <key>
+checkout <pin>`; Astryx is 648 MB, so use `--depth 1` and fetch the pin).
+
+### 4b.0 Where this sits in the order (owner 2026-11-10)
+
+1. Step 3: the parity fixes found by the Phase 9 paid run (paused; ask the owner before starting), then the free
+   tests, then re-measure the AgyLite arm only.
+2. Step 4: bundle Elaya, Cloudflare and Trail of Bits (doc 23).
+3. **Step 4b (this section), in the same bundle rebuild as Step 4:** Astryx, Caldo, EGM and the agent upgrade.
+   Do Step 4 first inside the rebuild: Cloudflare becomes the security-review owner, and 4b.5 has it join the review
+   merge as one of the reviewers.
+4. Step 5: one batch of paid suites with **one cost estimate for the owner first** (dry run only until approved).
+5. The category folder view, then Step 6 (backend and AI-systems gaps, audit doc **25**).
+
+Do not start 4b before Step 3 is done: the paid-run bundle stays frozen until its fixes are measured.
+
+### 4b.1 Why these three repos (what each one is best at)
+
+| Rank | Repo | Best part | What Agylite gains |
+|---|---|---|---|
+| 1 | **EGM** (google/elephant-goldfish-model, Apache-2.0) | fresh-context reviewers + an Elephant that resolves their findings | the first independent review of a spec or plan **before** code; a real multi-agent pattern (Agylite has only 3 agents today) |
+| 2 | **Caldo** (caldoai/skills, MIT) | `untangle-codebase`: whole-codebase refactor loop with a decision log | a whole-codebase restructuring job no bundled skill does |
+| 3 | **Astryx** (meta/astryx, MIT) | a full React 19 design system + framework-neutral layout rules | a React baseline for projects with no design system; 9 layout-rule records nothing else covers |
+
+Terms used below:
+- **Elephant**: the main session. It holds the conversation and the project context, writes the document, and
+  decides what to do with findings.
+- **Goldfish**: a subagent started with **no** conversation history. It reads only the target document and the files
+  it cites, so it catches what the conversation took for granted.
+- **Synthesizer**: an agent that takes several reviewers' reports, removes duplicates, ranks the findings and maps
+  each one to an action.
+- **Resolve**: the Elephant's pass over the merged findings. It keeps what was right (with the reason), fixes what
+  was wrong, and asks the owner only at real decisions.
+
+### 4b.2 Agents and subagents (the core of 4b)
+
+Today `agents/` holds `engineering-architect.md`, `production-reviewer.md` and `security-reviewer.md`. Each agent file
+must have frontmatter `name: <file stem>` and `description:` (`tests/engineering/test_engineering.py::
+test_agents_have_frontmatter`). **EGM's files are named by role (`zoom_out.md`) but declare `name: egm-zoom-out`, so
+rename every file to its `name:` when bundling** (`agents/egm-zoom-out.md`, …).
+
+**A. Nine Goldfish reviewers** (bundled from `egm/agents/`, ADAPT paths only; LICENSE + Apache NOTICE copied):
+
+| Agent file | Looks for | Used in |
+|---|---|---|
+| `egm-zoom-out` | too complex, YAGNI, existing code that could be reused | spec review stages 1 and 4 |
+| `egm-inventive-catalyst` | contradictions solved by a compromise instead of a better design (TRIZ) | stage 1, in parallel with zoom-out |
+| `egm-comprehension` | undefined terms, acronyms, gaps a newcomer would trip on | stage 2 (spawned directly, not through the synthesizer) |
+| `egm-design` (file `design_critic.md`) | scale, cost, failure modes, unmitigated risk | stage 3 |
+| `egm-structural` | heading hierarchy, template compliance | stage 3; review-loop |
+| `egm-style` | clarity, brevity, filler words | stages 3 and 5; review-loop |
+| `egm-implementation-readiness` | decisions left to the implementer, steps that are not actionable | stage 5 |
+| `egm-codebase-details` | doc claims that do not match the code; reuse missed | stage 5 |
+| `egm-synthesizer` | merges parallel reviewers, dedupes, ranks 🔴 blocker / 🟡 major / 🟢 nit, traceability matrix | every multi-reviewer stage |
+
+Each reviewer checks against a standard in `egm/resources/document_standards/` (bundle the folder with them).
+`egm-bootstrap-orchestrator` → REFERENCE (README bootstrap is a duplicate job).
+
+**B. One merged review (synthesizer for every Agylite review).** Today a review request can load several reviewers
+that each write their own report: Ponytail review + gstack review (with its "review army" of stack specialists,
+`gstack/review/sections/review-army.md`), plus the three Agylite agents when they are called. Change:
+- When a review runs more than one reviewer (spec review, or a code review that adds security/architecture/
+  production), they run **in parallel as fresh subagents** and `egm-synthesizer` merges their reports into one ranked
+  list with a traceability table. Reviewers for a code review: Ponytail review (lead, unchanged),
+  `engineering-architect`, `security-reviewer` (which now uses Cloudflare `security-audit`, doc 23),
+  `production-reviewer`. Only the ones the route selects run.
+- gstack's review-army dispatch becomes REFERENCE for Agylite routes (one owner per job: the merge is the job). gstack
+  `review` stays loaded for its checklist content, not for dispatching agents.
+- Single-reviewer reviews stay as they are: no synthesizer and no extra cost.
+
+**C. Resolve gate for every finding list** (`egm-resolve`, whole skill). After any merged review, spec or code, the
+Elephant goes through each finding. It either keeps the current choice with a one-line reason (the finding was
+wrong) or applies the fix. It asks the owner only where the finding is a real trade-off. It never applies every
+suggestion blindly. Record the outcome per finding in the review report (kept / fixed / asked).
+
+**D. Re-check loop with a decision log (from Caldo).** For whole-codebase refactors (Caldo) and any multi-batch change:
+after each batch, `agylite verify`, then fresh subagents scan again for the four problem kinds (special cases,
+hidden links, needless links, surplus). Stop when they find nothing worth fixing. Each round is appended to a
+decision log in the project's plan (problem → fix → files), so a context reset or compaction loses nothing. This
+replaces Caldo's "do not stop until done" with Agylite's lifecycle: plan step → batch → verify → re-check → log.
+
+**E. Drift check after features land** (`egm-drift-report`, entry point of `engineering/documentation`). After a
+feature's last task, or on request ("check docs vs code", "did we drift from the plan"), one agent compares the
+plan/spec/README with the code and reports **only the differences**: missing features, missing fields, hard-coded
+values where logic was planned, a different pattern or library than designed. "No drift detected" when clean.
+gstack `document-release` keeps its job (updating docs after a release); drift reporting is new.
+
+**F. No fake fresh review.** If the host has no subagent tool (check per host adapter: Claude Code `Agent`, Codex
+`spawn_agent`, Antigravity `invoke_subagent`), spec review and merged review **stop and say so**. A review in the
+same context is not a Goldfish review (EGM's own rule). Add a host-capability flag so the route can say this before
+it starts, not halfway through.
+
+**Cost rule for A–E:** a full spec review spawns about 9 subagents. Agylite **suggests** it on `FEATURE` /
+`ARCHITECTURE_CHANGE` routes after `to-spec`, and runs it only on request or with the owner's yes. Never on bug fixes
+(EGM: no design docs for bug fixes). Record the subagent count and tokens per review with the existing observability
+events (`observability/token-metrics`) so the Step 5 estimate is grounded.
+
+### 4b.3 New and changed capabilities
+
+| Capability | New/changed | Loads (whole) | Intent tags / routing |
+|---|---|---|---|
+| `engineering/spec-review` | **new** | `egm-review` (lead) + `egm-resolve`; agents A; standards | review a design doc / spec / plan / RFC before implementing, fresh-eyes review, goldfish review |
+| `engineering/review` | changed | unchanged skills + synthesizer merge (B) + resolve (C) | unchanged |
+| `engineering/documentation` | changed | + entry point `egm-drift-report` | drift, docs vs code, did we follow the plan |
+| `engineering/architecture` | changed | + entry point Caldo `untangle-codebase` via a routing rule with `skill:` (D-050 hint) | untangle, restructure/refactor the whole codebase, make the codebase easier for agents, reduce coupling across the codebase. Pocock `improve-codebase-architecture` stays primary for everything else |
+| `design/react-design-system` | **new** | house skill ≈ 2 KB (below) | React + components/theme/design system, **and** `package.json` has React ≥ 19 **and** no shadcn/Radix/MUI/Chakra/Mantine/Ant |
+| `design/visual-quality`, `ux`, `typography`, `frontend` | changed | + Astryx records as references (doc 24 §2.3) | unchanged |
+| `design/design-system` | routing only | unchanged (UI UX Pro Max) | also routed on hero section / landing page, so `landing.csv` (32 hero patterns) is queried |
+
+REFERENCE only (searchable and loadable by name, never routed): `egm-brainstorm`, `egm-draft` (Pocock `grilling` /
+`to-spec` own those jobs), `egm-bootstrap` (ECC onboarding + Graphify), gstack review-army dispatch, and Astryx's
+typography-hierarchy, color-emphasis, motion, ordered-collection-reordering and agentic-states. `reduced-motion` and
+`bidirectionality` also stay REFERENCE unless the 4b.4 side-by-side check shows a gap.
+
+### 4b.4 The combined design system (four upstreams, one owner per job)
+
+| Job | Owner |
+|---|---|
+| direction, composition, page structure, anti-slop, polish | **Taste** |
+| hero and landing patterns, section order, CTA placement, palettes, font pairing (queried databases) | **UI UX Pro Max** |
+| conversion strategy and copy of a landing page | Elaya Part A (doc 23) |
+| craft rules: typography, color, accessibility, RTL, UX laws, forms, motion discipline, required states | **Open Design** |
+| React implementation on a design system | **Astryx** (`design/react-design-system`) |
+| layout rules missing elsewhere: spatial hierarchy, control rhythm, concentric shape, elevation, iconography, template composition, per-state visuals, mobile typography | **Astryx** records |
+
+House skill `design/react-design-system` must say:
+1. Detect first: React version and existing design system in `package.json`. If another system is present, stop
+   and use it. Below React 19, suggest Astryx, never install it.
+2. Install project-local: `npm i @astryxdesign/core @astryxdesign/theme-neutral @stylexjs/stylex` and
+   `npm i -D @astryxdesign/cli`, then `npx astryx init --features agents` (writes the project's `AGENTS.md` block).
+3. Look things up on demand: `npx astryx docs <component|topic>`. Never paste the whole catalog into context.
+4. Theme by overriding CSS custom properties. `swizzle` (take over a component's source) only when an override
+   cannot do it. Style overrides through `className` in whatever the project uses (Tailwind, CSS modules).
+5. Never the global CLI mode (`install-once`, `init --global`): it writes to the home folder.
+6. Taste still leads the look; Open Design + Astryx records are the checklist.
+
+Side-by-side check to do in 4b (record the result in doc 24 §2.3): Astryx `reduced-motion` (12.7 KB) vs Open Design
+`accessibility-baseline`, and Astryx `bidirectionality` (15.3 KB) vs Open Design `rtl-and-bidi`. Swap only for a real
+gap: Open Design's files are already measured.
+
+### 4b.5 Files to touch (checklist)
+
+1. Pins → `docs/audit/evidence/upstream-staging-snapshot.yaml`; extraction rules → `tools/audit/extraction-rules.yaml`
+   (per doc 24 §2.3/§2.4, §3, §4); tracking → `config/upstreams.yaml` (`astryx: releases`, `caldo: monthly`,
+   `egm: weekly`); licenses → `third_party/licenses.json`; regenerate hashes, notices, cards
+   (`agylite/registry/generate.py`).
+2. Agents: `agents/egm-*.md` (9, renamed per 4b.2), path ADAPTs (`${CLAUDE_PLUGIN_ROOT}/docs/claude.md`,
+   `resources/…` → bundle paths).
+3. Cards: `capabilities/engineering/spec-review/{card.yaml,CARD.md}`, `capabilities/design/react-design-system/…`;
+   entry points added to documentation and architecture cards.
+4. Routing (`config/routing.yaml`): spec-review rule; untangle rule with `skill:` hint; drift rule; hero/landing adds
+   `design/design-system`; "design doc / design document / spec / RFC" must **not** select visual `design/*`;
+   "agents" inside "for agents to work in" must not select `engineering/ai-systems`.
+5. Review merge + resolve: where the review lifecycle builds its reviewer list (prompt hook / route output), add the
+   parallel-subagent + synthesizer step for more than one reviewer, and the resolve step after it.
+6. Host capability flag for subagents (4b.2 F) in the host adapters.
+7. Overlap test + `agylite validate` check (same as doc 23): every REFERENCE path above is never routed; every
+   agent named in a skill exists in `agents/`.
+
+### 4b.6 Tests (free, must pass before the bundle is accepted)
+
+- One routing scenario test each: hero section, React settings page (with and without an existing design system),
+  untangle the codebase for agents, review this design doc before implementing, check docs vs code drift.
+- Today's misroutes become regression tests: "review this design doc …" must not route `design/*`; "untangle …
+  agents" must not route `engineering/ai-systems`; "hero section" must route `design/design-system`.
+- `test_agents_have_frontmatter` covers the 9 new agents; a new test checks that each agent named in
+  `egm-review` / `egm-review-loop` exists.
+- Rewrite tests: no `${CLAUDE_PLUGIN_ROOT}` left in bundled EGM files; Astryx records have no internal frontmatter
+  (`owners`, `review_triggers`); the React skill contains the "no global mode" rule.
+- `test_p25` (always-loaded ceiling) unchanged: nothing in 4b goes into L0.
+- `python -m unittest discover -s tests`, `agylite validate`, `agylite doctor`, bundle self-tests green.
+
+### 4b.7 Paid suites (Step 5 batch; owner: dry run + cost estimate first, then ask)
+
+- `spec-review`: specs with planted gaps (undefined term, missing failure mode, a step left to the implementer, a
+  doc claim that contradicts the code). Arms: no skill / EGM original / AgyLite. Graded on planted gaps found,
+  false findings, and the resolve outcome. EGM's own `skills/*/test_scenarios.yaml` are the seed set.
+- `design` (combined Open Design + UI UX Pro Max suite from Step 3): add React-app tasks for Astryx; take ideas for
+  the scorer from Astryx `internal/vibe-tests` (design judge). Ideas only, never the code: it calls the Gemini API.
+- Merged review: measured inside the existing eng-* suites (findings count, duplicates, tokens), not a new suite.
+- Caldo: free tests only. A whole-codebase refactor per session would cost too much to run.
+
+### 4b.8 Risks and how to apply the lessons later
+
+- **Cost**: spec review and merged review multiply subagents. Keep them suggested, not automatic, and log the tokens.
+- **Overlap creep**: every new upstream after this follows the same steps. Stage → pin/hash/scan → per-file verdict
+  (NEW / DUPLICATE / CONFLICT / EXCLUDE) → one owner per job → REFERENCE for the rest → overlap test. Doc 23 and
+  doc 24 are the templates.
+- **Fresh context is the point**: never "review" in the same context and call it independent (4b.2 F).
+- **Prefer an upstream's own runtime over copying its source** when the source is large and versioned (Astryx CLI,
+  designlang). The bundle stays small, and the knowledge matches the user's installed version.
+- **Young repos** (Caldo: 3 commits; Astryx: beta) track monthly or by releases until they settle.
+
 ## Change history
 
 | Date | Phase | Change |
@@ -832,3 +1033,4 @@ plugin `agylite@agylite-marketplace` installed and runtime-verified. Tests: `pyt
 | 2026-10-22 | Parity Phases 0–4 | MP1 critical fixes (F1–F15, incl. auto-route on every prompt), MP2 quality benchmark (Tier 0 + Tier 1 harness, parity ledger; Tier 1 baselines eng-ponytail and eng-addy INCONCLUSIVE at n = 1, the rest not run), Plan B (whole skills, `skill load`, skill catalog) and MP3 (Pocock upstream, Ponytail lite ruleset in L0, ponytail-review first, Unlazy on every multi-step change, sources_priority everywhere). 357 tests; Tier 0 PASS. Merged to `main` on the owner's request. Next: MP4. Details: IMPLEMENTATION_LOG.md. |
 | 2026-11-02 | Owner plan Step 6 | Backend and AI-systems coverage check; the gaps (system design, microservices, load balancing, scaling, queues, background jobs, WebSockets, RAG, vector DB, RLM; "file tooling" to be clarified) added as Step 6, after the new-upstream steps and the category view. |
 | 2026-11-10 | Step 4b audit | Astryx, Caldo and EGM staged, pinned, scanned and audited (D-052, `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`); nothing bundled. Step 4b added after Step 4; Step 6's audit doc renumbered to 25. |
+| 2026-11-10 | Step 4b plan | Detailed Step 4b section written (owner: everything explained so later sessions can use and learn from it): agents and subagents (9 EGM reviewers, synthesizer merge, resolve gate, re-check loop with decision log, drift check, host subagent flag), capabilities, the four-upstream design split, files, tests, paid-suite plan, risks. Order: Step 3 → Step 4 + 4b in one rebuild → Step 5. |
