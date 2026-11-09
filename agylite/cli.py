@@ -348,7 +348,9 @@ def _bootstrap(args):
     from .adapters import record_runtime
     record_runtime(args.host, project.project_id)   # host really ran the OS (P19–P22 RUNTIME_VERIFIED evidence)
     if record.get("new"):
-        emit(project, "SESSION_STARTED", session_id=sid, host=args.host, details={"root": str(project.root)})
+        # engine = the source tree that ran: the quality harness checks it is the snapshot under test (C1-1)
+        emit(project, "SESSION_STARTED", session_id=sid, host=args.host,
+             details={"root": str(project.root), "engine": str(Path(__file__).resolve().parent.parent)})
     emit(project, "PROJECT_DETECTED", session_id=sid, host=args.host,
          details={"name": project.name, "origin": project.origin})
     st = pstate.load_state(project)

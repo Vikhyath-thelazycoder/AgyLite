@@ -55,6 +55,7 @@ class ArmSetup:
     env: dict = field(default_factory=dict)
     plugins: tuple = ()           # expected plugin names besides Claude Code's builtins
     project_skills: tuple = ()    # skill folders copied into <workspace>/.claude/skills/
+    reads: tuple = ()             # skill sources outside the workspace this arm's skill itself uses (C3-2)
 
 
 def fresh_workspace(prefix: str) -> Path:
@@ -101,7 +102,7 @@ def plugin_snapshot(run_dir: Path) -> Path:
 
 def agylite_arm(run_dir: Path, python: str | None = None) -> ArmSetup:
     home = agylite_home_for(run_dir)
-    env = {"AGYLITE_HOME": str(home), "AGYLITE_NO_AUTO_UPDATE": "1"}
+    env = {"AGYLITE_HOME": str(home), "AGYLITE_NO_AUTO_UPDATE": "1", "AGYLITE_PLUGIN_SOURCE": "1"}
     if python:
         env["AGYLITE_PYTHON"] = python
     return ArmSetup("agylite", args=["--plugin-dir", str(plugin_snapshot(run_dir))], env=env, plugins=("agylite",))
@@ -138,9 +139,92 @@ def check_isolation(trace_lines, arm: ArmSetup) -> dict:
             "skills": len(init.get("skills") or [])}
 
 
+# Skill sources outside a workspace (C3-2): a no-skill cell that reads one is not a no-skill cell.
+def skill_sources() -> list:
+    from .suites import upstreams_dir
+    claude, home = Path.home() / ".claude", agylite_home()
+    # only the engine home's skill-bearing folders: user data there (youtube/voice.md, projects) is not a skill
+    return [upstreams_dir(), claude / "plugins", claude / "skills", repo_root() / ".staging", repo_root() / "new",
+            *(home / d for d in ("bundles", "benchmarks/candidates", "benchmarks/quality", "core", "src", "staging",
+                                 "runtimes"))]   # benchmarks/quality: other runs' answers are off limits too
+
+
+def _under(p: Path, root: Path) -> bool:
+    return p == root or root in p.parents
+
+
+def allowed_reads(arm: ArmSetup, workspace: Path) -> list:
+    """What the arm itself uses: its workspace, plugin dirs, copied skills, declared reads and its engine home."""
+    paths = [Path(workspace), *map(Path, arm.reads), *map(Path, arm.project_skills)]
+    args = list(arm.args)
+    paths += [Path(args[i + 1]) for i, a in enumerate(args[:-1]) if a == "--plugin-dir"]
+    home = arm.env.get("AGYLITE_HOME")
+    if home and Path(home).is_dir():   # the per-run home links the real bundles/runtimes (agylite_home_for)
+        paths.append(Path(home))
+        for p in Path(home).iterdir():
+            if p.is_symlink():
+                paths.append(p)
+            elif p.is_dir():
+                paths += [q for q in p.iterdir() if q.is_symlink()]
+    return [p.resolve() for p in paths]
+
+
+def skill_source_denies(arm: ArmSetup, workspace: Path) -> list:
+    """Read rules (Claude Code applies them to Grep and Glob too) hiding every skill source the arm does not use.
+    shortcut: Bash can still read them, so skill_source_reads checks the trace; switch to a temporary HOME if leaks
+    keep invalidating cells."""
+    allowed, rules = allowed_reads(arm, workspace), []
+    for root in (r.resolve() for r in skill_sources()):
+        if not any(_under(a, root) for a in allowed):
+            rules.append(f"Read(/{root}/**)")
+        elif root not in allowed and root.is_dir():
+            rules += [f"Read(/{c}/**)" for c in sorted(root.iterdir()) if c.is_dir()
+                      and not any(_under(a, c.resolve()) or _under(c.resolve(), a) for a in allowed)]
+    return rules
+
+
+PATH_TOKEN = re.compile(r"(?<![\w.~/-])(?:~|/)[^\s'\"`;|&<>(){}*?$]*")
+SEARCH_CMD = re.compile(r"(?:^|[\s;|&(])(?:find|rg|fd|locate|mdfind|tree|grep\s+-\w*[rR]|ls\s+-\w*R)\b")
+
+
+def skill_source_reads(trace_lines, arm: ArmSetup, workspace: Path) -> list:
+    """Tool calls that read a skill source the arm does not use, or search a folder that holds one."""
+    roots = [r.resolve() for r in skill_sources()]
+    allowed = allowed_reads(arm, workspace)
+    hits = set()
+    for line in trace_lines:
+        try:
+            e = json.loads(line)
+        except ValueError:
+            continue
+        if e.get("type") != "assistant":
+            continue
+        for c in (e.get("message") or {}).get("content") or []:
+            if c.get("type") != "tool_use":
+                continue
+            inp, name = c.get("input") or {}, c.get("name")
+            search = name in ("Glob", "Grep") or (name == "Bash" and SEARCH_CMD.search(inp.get("command") or ""))
+            for key in ("file_path", "path", "notebook_path", "command"):
+                for tok in PATH_TOKEN.findall(str(inp.get(key) or "")):
+                    p = Path(os.path.expanduser(tok)).resolve()
+                    if any(_under(p, a) for a in allowed):
+                        continue
+                    # a search over a folder holding the arm's own sources (AgyLite looking for its bundle) is not a
+                    # leak by itself; reading another source from what it finds still is
+                    own = any(_under(a, p) for a in allowed)
+                    if any(_under(p, r) for r in roots) or (search and not own and any(_under(r, p) for r in roots)):
+                        hits.add(f"{name} {tok}")
+    return sorted(hits)[:10]
+
+
+EDIT_TOOLS = {"Write", "Edit", "MultiEdit", "NotebookEdit"}
+
+
 def summarize_trace(trace_lines) -> dict:
-    """Cost, time, turns, tool calls and Agylite usage from a stream-json trace."""
-    out = {"cost": None, "duration_ms": None, "turns": None, "agylite_calls": [], "tool_calls": 0, "skill_loads": []}
+    """Cost, time, turns, tool calls and Agylite usage from a stream-json trace. `asked`: no file edited and the
+    answer ends on a question (C1-9)."""
+    out = {"cost": None, "duration_ms": None, "turns": None, "agylite_calls": [], "tool_calls": 0, "skill_loads": [],
+           "edits": 0, "asked": False}
     for line in trace_lines:
         try:
             e = json.loads(line)
@@ -156,9 +240,14 @@ def summarize_trace(trace_lines) -> dict:
                     out["agylite_calls"].append(cmd[:200])
                 if c.get("name") == "Skill":
                     out["skill_loads"].append((c.get("input") or {}).get("skill"))
+                if c.get("name") in EDIT_TOOLS:
+                    out["edits"] += 1
         elif e.get("type") == "result":
+            text = e.get("result") or ""
+            last = next((x for x in reversed(text.strip().split("\n\n")) if x.strip()), "")
             out.update(cost=e.get("total_cost_usd"), duration_ms=e.get("duration_ms"), turns=e.get("num_turns"),
-                       result=e.get("result", "")[:4000])
+                       result=text[:4000], asked="?" in last)
+    out["asked"] = out["asked"] and out["edits"] == 0
     return out
 
 
@@ -170,6 +259,9 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
         dest = workspace / ".claude" / "skills" / Path(skill).name
         shutil.copytree(skill, dest, dirs_exist_ok=True)
     cmd = base_cmd(model) + ["--permission-mode", permission_mode] + list(arm.args) + list(extra_args)
+    denies = skill_source_denies(arm, workspace)
+    if denies:
+        cmd += ["--disallowedTools", ",".join(denies)]
     if allowed_tools:
         cmd += ["--allowedTools", allowed_tools]
     if append_system:
@@ -188,6 +280,9 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
         rec["init"] = check_isolation(lines, arm)
     except IsolationError as exc:
         rec["isolation_error"] = str(exc)
+    leaks = skill_source_reads(lines, arm, workspace)
+    if leaks and not rec.get("isolation_error"):
+        rec["isolation_error"] = f"arm {arm.name} read a skill source it does not use: {'; '.join(leaks)}"
     rec.update(summarize_trace(lines))
     if out_dir is not None:
         out_dir.mkdir(parents=True, exist_ok=True)
@@ -219,7 +314,8 @@ def require_spend(yes_spend: bool, sessions: int, max_sessions: int | None):
 
 def agylite_usage(home: Path, workspace: Path) -> dict:
     """What Agylite did in one session, from the arm's own event log: prompt routes, context loads, unmatched."""
-    counts = {"prompt_routed": 0, "context_loaded": 0, "route_unmatched": 0, "capabilities_selected": 0}
+    counts = {"prompt_routed": 0, "context_loaded": 0, "route_unmatched": 0, "capabilities_selected": 0,
+              "sessions": 0, "engines": []}
     target = str(Path(workspace).resolve())
     for log in Path(home).glob("projects/*/events/*.jsonl"):
         lines = log.read_text(encoding="utf-8").splitlines()
@@ -230,6 +326,20 @@ def agylite_usage(home: Path, workspace: Path) -> dict:
             continue
         for e in events:
             key = e["event"].lower()
-            if key in counts:
+            if key in counts and key not in ("sessions", "engines"):
                 counts[key] += 1
+            if e["event"] == "SESSION_STARTED":
+                counts["sessions"] += 1
+                counts["engines"].append(e.get("details", {}).get("engine"))
     return counts
+
+
+def engine_error(usage: dict, snapshot: Path):
+    """None when every session in the workspace ran the snapshot under test (C1-1); else why the cell is invalid."""
+    if not usage.get("sessions"):
+        return "the AgyLite engine never started in this workspace (no SESSION_STARTED)"
+    want = str(Path(snapshot).resolve())
+    wrong = [e for e in usage.get("engines") or [] if not e or str(Path(e).resolve()) != want]
+    if wrong:
+        return f"engine {wrong[0] or 'without an engine field (an older install)'} is not the snapshot {want}"
+    return None

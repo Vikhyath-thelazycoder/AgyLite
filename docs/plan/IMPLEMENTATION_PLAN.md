@@ -483,6 +483,26 @@ Still to do:
         findings, fix order). Not started: every code fix. Already handled outside code: C1-6 (run recovered by
         hand), C1-9 (grader scores question-only answers 0), C2-3 (browser runtime installed), C2-4 (resume
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
+        **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
+        4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
+        - [x] **Part 1 — measurement (2026-11-10).** C1-1: `bin/agylite` honours `AGYLITE_PLUGIN_SOURCE=1` (skips
+          `$AGYLITE_HOME/core` and PATH), the AgyLite arm sets it, `SESSION_STARTED` records `details.engine`, and
+          `harness.engine_error` makes a cell invalid when the engine is not the run's snapshot (or never started).
+          C3-2: `harness.skill_sources` (upstream clones, `~/.claude/plugins|skills`, the checkout's `.staging`/`new`,
+          the engine home's bundles/candidates/quality/core/src/staging/runtimes); every session gets
+          `--disallowedTools Read(//<source>/**)` for sources it does not use, and `skill_source_reads` scans every tool
+          call (Bash included): a read of such a source, or a search of a folder holding one, is an isolation error.
+          Arms declare what they use (`ArmSetup.reads`; both browser-qa arms read gstack's install). Replayed on all 288
+          Phase 9 traces: exactly the 15 diagram-archify no-skill cells are flagged, no false positives. C3-1:
+          `taste_runner.measure` reads `<shots>/report.json`. C3-7: the report lists original cells that never invoked
+          their skill (only for suites whose original uses the Skill tool). C1-9: suite tasks with `acts: true`
+          (eng-pocock tdd, diagnosing-bugs, to-tickets#2) count "asked instead of acting". 11 new tests.
+          **Open (owner decision):** the archify leaks were all through Bash, which Read deny rules cannot stop, so a
+          re-run of its no-skill arm will be flagged again. A temporary HOME per session stops it, but Claude Code is
+          logged out there (`claude auth status` checked); it needs a long-lived token (`claude setup-token`, owner,
+          once) passed as `CLAUDE_CODE_OAUTH_TOKEN`. Alternative: change the archify prompt for the no-skill arm.
+          **New C3-9 (minor):** AgyLite's youtube skills read `~/.agylite/youtube/voice.md`, not `$AGYLITE_HOME`, so a
+          run's arm would see the owner's real voice file (none exists today, so Phase 9 is unaffected); fix in part 6.
         **Resume with the report's fix order, step 1 = measurement: C3-2 (isolate arms from home-folder skill
         sources), C1-1, C3-1, C3-7, C1-9 count**; then hook ≤ 9,000 chars (C1-2), routing (C1-5/C3-5), Ponytail
         exemption test (C2-1/C3-3), overhead (C1-3/C1-4), robustness. Ask the owner before starting.
@@ -1034,3 +1054,4 @@ gap: Open Design's files are already measured.
 | 2026-11-02 | Owner plan Step 6 | Backend and AI-systems coverage check; the gaps (system design, microservices, load balancing, scaling, queues, background jobs, WebSockets, RAG, vector DB, RLM; "file tooling" to be clarified) added as Step 6, after the new-upstream steps and the category view. |
 | 2026-11-10 | Step 4b audit | Astryx, Caldo and EGM staged, pinned, scanned and audited (D-052, `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`); nothing bundled. Step 4b added after Step 4; Step 6's audit doc renumbered to 25. |
 | 2026-11-10 | Step 4b plan | Detailed Step 4b section written (owner: everything explained so later sessions can use and learn from it): agents and subagents (9 EGM reviewers, synthesizer merge, resolve gate, re-check loop with decision log, drift check, host subagent flag), capabilities, the four-upstream design split, files, tests, paid-suite plan, risks. Order: Step 3 → Step 4 + 4b in one rebuild → Step 5. |
+| 2026-11-10 | Step 3 part 1 | Measurement fixes C1-1, C3-2, C3-1, C3-7, C1-9 done (launcher pin + engine check, skill-source deny rules + trace scan, inspector report.json, skill-not-used and asked-instead-of-acting counts); replay on 288 Phase 9 traces flags exactly the 15 known archify leaks. Open: temporary HOME needs an owner token. Next: part 2, the hook size. |

@@ -291,5 +291,173 @@ class TestDesignExtractSuite(unittest.TestCase):
                          {"color": None, "font": True})
 
 
+def _tool(name, **inp):
+    return json.dumps({"type": "assistant", "message": {"content": [{"type": "tool_use", "name": name, "input": inp}]}})
+
+
+class TestMeasurementFixes(unittest.TestCase):
+    """Step 3 part 1 (PARITY_REPORT fix order 1): numbers a later run can trust — C1-1, C3-2, C3-1, C3-7, C1-9."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.base = Path(self.tmp.name).resolve()
+        self.home = self.base / "home"
+        self.sources = [self.home / "Developer" / "os", self.home / ".claude" / "plugins", self.home / ".claude" / "skills",
+                        self.home / ".agylite"]
+        for s in self.sources:
+            s.mkdir(parents=True)
+        self.ws = self.base / "ws"
+        self.ws.mkdir()
+        patcher = mock.patch.object(harness, "skill_sources", return_value=self.sources)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        self.addCleanup(self.tmp.cleanup)
+
+    # C1-1: the AgyLite arm runs the snapshot under test, never an installed engine
+    def test_launcher_skips_central_install_and_path_when_pinned_to_the_plugin_source(self):
+        fake = self.base / "fake"
+        (fake / "core" / "bin").mkdir(parents=True)
+        (fake / "path").mkdir()
+        for exe, word in ((fake / "core" / "bin" / "agylite", "CORE"), (fake / "path" / "agylite", "ONPATH")):
+            exe.write_text(f"#!/bin/sh\necho {word}\n", encoding="utf-8")
+            exe.chmod(0o755)
+        env = {**os.environ, "AGYLITE_HOME": str(fake), "PATH": f"{fake / 'path'}{os.pathsep}{os.environ['PATH']}"}
+        launcher = os.path.join(ROOT_DIR, "bin", "agylite")
+        import subprocess
+        plain = subprocess.run([launcher, "--help"], env=env, capture_output=True, text=True)
+        self.assertIn("CORE", plain.stdout)
+        pinned = subprocess.run([launcher, "--help"], env={**env, "AGYLITE_PLUGIN_SOURCE": "1"}, capture_output=True,
+                                text=True)
+        self.assertNotIn("CORE", pinned.stdout + pinned.stderr)
+        self.assertNotIn("ONPATH", pinned.stdout + pinned.stderr)
+
+    def test_agylite_arm_pins_the_launcher(self):
+        with mock.patch.object(harness, "plugin_snapshot", return_value=self.base / "snap"):
+            arm = harness.agylite_arm(self.base / "run")
+        self.assertEqual(arm.env["AGYLITE_PLUGIN_SOURCE"], "1")
+
+    def test_engine_check_fails_a_session_run_by_another_engine(self):
+        snap = self.base / "run" / "agylite-plugin"
+        snap.mkdir(parents=True)
+        log = self.base / "agyhome" / "projects" / "p" / "events" / "2026-11-10.jsonl"
+        log.parent.mkdir(parents=True)
+
+        def usage(engine):
+            details = {"root": str(self.ws)} | ({"engine": engine} if engine else {})
+            log.write_text(json.dumps({"event": "SESSION_STARTED", "details": details}) + "\n", encoding="utf-8")
+            return harness.agylite_usage(self.base / "agyhome", self.ws)
+
+        self.assertIsNone(harness.engine_error(usage(str(snap)), snap))
+        self.assertIn("not the snapshot", harness.engine_error(usage("/Users/x/.agylite/core/src"), snap))
+        self.assertIn("not the snapshot", harness.engine_error(usage(None), snap))   # old engines write no engine
+        log.write_text("", encoding="utf-8")
+        self.assertIn("never started", harness.engine_error(harness.agylite_usage(self.base / "agyhome", self.ws), snap))
+
+    # C3-2: no arm reads skill sources it does not use
+    def test_flags_reads_and_home_searches_of_skill_sources(self):
+        base = harness.ArmSetup("baseline")
+        leaks = harness.skill_source_reads([
+            _tool("Read", file_path=str(self.ws / "app.py")),
+            _tool("Read", file_path=str(self.home / ".agylite" / "bundles" / "b" / "files" / "archify" / "SKILL.md")),
+            _tool("Bash", command=f"cat {self.home}/.claude/plugins/cache/x/SKILL.md | head"),
+            _tool("Bash", command=f"find {self.home} -name '*archify*' 2>/dev/null"),
+            _tool("Glob", pattern="**/SKILL.md", path=str(self.home / "Developer")),
+            _tool("Bash", command="ls -la && cat app.py"),
+        ], base, self.ws)
+        self.assertEqual(len(leaks), 4, leaks)
+        self.assertFalse(any("app.py" in x for x in leaks))
+
+    def test_an_arm_may_read_its_own_sources(self):
+        plugin = self.sources[0] / "archify"
+        plugin.mkdir()
+        up = harness.ArmSetup("upstream", args=["--plugin-dir", str(plugin)])
+        self.assertEqual(harness.skill_source_reads([_tool("Read", file_path=str(plugin / "SKILL.md"))], up, self.ws), [])
+        qa = harness.ArmSetup("upstream", reads=(str(self.sources[2] / "gstack"),))
+        self.assertEqual(harness.skill_source_reads(
+            [_tool("Bash", command=f"{self.sources[2]}/gstack/browse/dist/browse goto x")], qa, self.ws), [])
+        self.assertEqual(len(harness.skill_source_reads(
+            [_tool("Read", file_path=str(self.sources[2] / "other" / "SKILL.md"))], qa, self.ws)), 1)
+
+    def test_deny_rules_hide_unused_sources_and_keep_the_arms_own(self):
+        plugin = self.sources[0] / "archify"
+        (self.sources[0] / "taste").mkdir(parents=True)
+        plugin.mkdir()
+        rules = harness.skill_source_denies(harness.ArmSetup("upstream", args=["--plugin-dir", str(plugin)]), self.ws)
+        self.assertIn(f"Read(/{self.sources[0] / 'taste'}/**)", rules)
+        self.assertIn(f"Read(/{self.sources[1]}/**)", rules)
+        self.assertFalse(any("archify" in r for r in rules))
+        self.assertNotIn(f"Read(/{self.sources[0]}/**)", rules)
+
+    def test_run_session_passes_the_deny_rules_and_records_a_leak(self):
+        trace = "\n".join([_init([]), _tool("Read", file_path=str(self.home / ".claude" / "skills" / "x" / "SKILL.md")),
+                           json.dumps({"type": "result", "result": "done", "total_cost_usd": 0.1, "num_turns": 2})])
+        with mock.patch("subprocess.run", return_value=mock.Mock(stdout=trace, returncode=0)) as run:
+            rec = harness.run_session("p", self.ws, harness.ArmSetup("baseline"))
+        cmd = run.call_args.args[0]
+        self.assertIn("--disallowedTools", cmd)
+        self.assertIn(f"Read(/{self.sources[2]}/**)", cmd[cmd.index("--disallowedTools") + 1])
+        self.assertIn("skill source", rec["isolation_error"])
+        self.assertFalse(tier1._valid({**rec, "metrics": {"score": 1}}))
+
+    def test_browser_qa_arms_may_read_gstacks_own_install(self):
+        from agylite.benchmark.quality.suites import browser_qa_runner as bq
+        self.assertEqual(bq._upstream_arm().reads, bq.GSTACK_READS)
+        with mock.patch.object(harness, "run_session", return_value={"result": ""}) as run, \
+                mock.patch.object(harness, "plugin_snapshot", return_value=self.base / "snap"), \
+                mock.patch.object(bq, "remaining", return_value=[]):
+            bq.run_cell({"task": "t"}, {"arm": "agylite", "run_dir": self.base / "run", "model": "m", "label": "l"})
+        self.assertEqual(run.call_args.args[2].reads, bq.GSTACK_READS)
+
+    # C3-1: the inspector's FAIL count comes from its saved report, not a possibly cut stdout
+    def test_taste_measure_reads_report_json(self):
+        from agylite.benchmark.quality.suites import taste_runner
+        page = self.base / "site" / "index.html"
+        page.parent.mkdir()
+        page.write_text("<html></html>", encoding="utf-8")
+        out = self.base / "out"
+
+        def node(script, *args, cwd, tmp):
+            if script == "inspect.mjs":
+                shots = Path(args[args.index("--out") + 1])
+                shots.mkdir(parents=True, exist_ok=True)
+                (shots / "report.json").write_text(json.dumps({"findings": [
+                    {"level": "FAIL", "id": "a"}, {"level": "FAIL", "id": "b"}, {"level": "WARN", "id": "c"}]}))
+                return mock.Mock(stdout='{"findings": [{"level": "FAIL"', stderr="")   # cut off mid-JSON
+            return mock.Mock(stdout='{"findings": []}', stderr="")
+
+        with mock.patch.object(taste_runner, "_node", side_effect=node):
+            m = taste_runner.measure(page, out, False, self.base / "t")
+        self.assertEqual((m["inspector_fail"], m["lint_fail"]), (2, 0))
+
+    # C3-7 + C1-9: the report counts cells that did not really run their skill or asked instead of acting
+    def test_report_counts_skill_not_used_and_asked_instead_of_acting(self):
+        ask = json.dumps({"type": "result", "result": "Before I write a test: which seam should I use?",
+                          "total_cost_usd": 0.1, "num_turns": 1})
+        acted = "\n".join([_tool("Edit", file_path="a.py"), json.dumps({"type": "result", "result": "Fixed. Want more?"})])
+        self.assertTrue(harness.summarize_trace([ask])["asked"])
+        self.assertFalse(harness.summarize_trace(acted.splitlines())["asked"])
+
+        class Mod:
+            METRICS = {"score": False}
+        recs = [{"label": "t__upstream__0", "arm": "upstream", "task": "t", "metrics": {"score": 1}, "skill_loads": ["x"]},
+                {"label": "t__upstream__1", "arm": "upstream", "task": "t", "metrics": {"score": 0}, "skill_loads": []},
+                {"label": "t__agylite__0", "arm": "agylite", "task": "t", "metrics": {"score": 0}, "skill_loads": [],
+                 "asked_instead_of_acting": True},
+                {"label": "t__baseline__0", "arm": "baseline", "task": "t", "metrics": {"score": 0}, "skill_loads": []}]
+        rep = tier1.score("s", {}, Mod, recs)
+        self.assertEqual(rep["skill_not_used"], ["t__upstream__1"])
+        self.assertEqual(rep["asked_instead_of_acting"], ["t__agylite__0"])
+        self.assertIn("asked instead of acting", tier1.render({**rep, "runs": 1, "model": "m"}))
+        # a suite whose original never uses the Skill tool (Addy/Pocock: system prompt) reports nothing
+        self.assertEqual(tier1.score("s", {}, Mod, [r | {"skill_loads": []} for r in recs])["skill_not_used"], [])
+
+    def test_action_tasks_flag_questions_only_where_the_suite_expects_action(self):
+        rec = {"label": "l", "arm": "upstream", "metrics": {"score": 0}, "asked": True}
+        self.assertTrue(tier1.mark_asked(dict(rec), {"acts": True})["asked_instead_of_acting"])
+        self.assertNotIn("asked_instead_of_acting", tier1.mark_asked(dict(rec), {"task": "grilling#1"}))
+        acts = {t["skill"] + "#" + str(t["eval"]) for t in suites.load_suite("eng-pocock")["tasks"] if t.get("acts")}
+        self.assertEqual(acts, {"tdd#1", "tdd#2", "diagnosing-bugs#1", "diagnosing-bugs#2", "to-tickets#2"})
+
+
 if __name__ == "__main__":
     unittest.main()

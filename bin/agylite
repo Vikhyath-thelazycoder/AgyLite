@@ -25,7 +25,10 @@ if [ "${1:-}" = "bootstrap" ] && [ -z "${AGYLITE_NO_AUTO_UPDATE:-}" ] && [ -x "$
   fi
 fi
 
-if [ -x "$HOME_DIR/core/bin/agylite" ]; then
+# AGYLITE_PLUGIN_SOURCE=1: run only this plugin's own source (the quality harness pins the snapshot under test, C1-1).
+if [ -n "${AGYLITE_PLUGIN_SOURCE:-}" ]; then
+  :
+elif [ -x "$HOME_DIR/core/bin/agylite" ]; then
   exec "$HOME_DIR/core/bin/agylite" "$@"
 elif command -v agylite >/dev/null 2>&1 && [ "$(command -v agylite)" != "${BASH_SOURCE[0]}" ] \
     && ! grep -q "Agylite launcher for host plugins" "$(command -v agylite)" 2>/dev/null; then

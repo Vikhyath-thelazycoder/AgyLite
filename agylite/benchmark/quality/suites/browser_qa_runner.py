@@ -2,6 +2,7 @@
 import re
 import shutil
 import tempfile
+from dataclasses import replace
 from pathlib import Path
 
 from ....paths import agylite_home, repo_root
@@ -47,10 +48,14 @@ def _workspace(label: str) -> Path:
     return ws
 
 
+GSTACK_SKILLS = Path.home() / ".claude" / "skills"
+GSTACK_READS = (str(GSTACK_SKILLS / "gstack"), str(GSTACK_SKILLS / "qa"))   # C3-2: both arms run gstack's install
+
+
 def _upstream_arm() -> harness.ArmSetup:
     """gstack the way its users run it: the generated `qa` skill from gstack's own install (its browse daemon and
     paths point back into that install), invoked as /qa."""
-    return harness.ArmSetup("upstream", project_skills=(str(Path.home() / ".claude" / "skills" / "qa"),))
+    return harness.ArmSetup("upstream", project_skills=(str(GSTACK_SKILLS / "qa"),), reads=GSTACK_READS)
 
 
 def remaining(ws: Path, home) -> list:
@@ -73,7 +78,8 @@ def run_cell(cell, ctx):
     elif ctx["arm"] == "baseline":
         arm, prompt = harness.ArmSetup("baseline"), PROMPT
     else:
-        arm, prompt = harness.agylite_arm(ctx["run_dir"], ctx.get("python")), PROMPT
+        # AgyLite's own browser-qa runs gstack from its documented install (agylite/runtimes/gstack.py)
+        arm, prompt = replace(harness.agylite_arm(ctx["run_dir"], ctx.get("python")), reads=GSTACK_READS), PROMPT
     rec = harness.run_session(prompt, ws, arm, model=ctx["model"], allowed_tools=TOOLS, timeout=1500,
                               out_dir=ctx["run_dir"] / "traces", label=ctx["label"])
     rec.pop("_trace", None)

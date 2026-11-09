@@ -84,8 +84,12 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
             rec = {"label": label, "arm": m["arm"], "error": f"{type(exc).__name__}: {exc}"[:400], "metrics": {}}
         rec.pop("_trace", None)
         rec.update(task=m["task"], run=m["run"])
-        if m["arm"] == "agylite" and rec.get("workspace"):
+        if m["arm"] == "agylite" and rec.get("workspace") and not rec.get("error"):
             rec["agylite_usage"] = harness.agylite_usage(run_dir / "agylite-home", Path(rec["workspace"]))
+            wrong = harness.engine_error(rec["agylite_usage"], run_dir / "agylite-plugin")
+            if wrong and not rec.get("isolation_error"):
+                rec["isolation_error"] = wrong
+        mark_asked(rec, m)
         log(f"    metrics {rec.get('metrics')} cost {rec.get('cost')} {rec.get('isolation_error') or rec.get('error') or ''}")
         records.append(rec)
         (run_dir / "records.json").write_text(json.dumps(records, indent=1, default=str), encoding="utf-8")
@@ -118,6 +122,22 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
     return report
 
 
+def mark_asked(rec: dict, cell: dict) -> dict:
+    """C1-9: on a task that must act (suite.yaml `acts: true`), an answer that only asks is counted, not hidden."""
+    if cell.get("acts") and rec.get("asked"):
+        rec["asked_instead_of_acting"] = True
+    return rec
+
+
+def _skill_not_used(records) -> list:
+    """C3-7: original cells that never invoked their skill. Only for suites whose original arm uses the Skill tool
+    at all (Addy/Pocock pass the skill as a system prompt, so empty skill_loads means nothing there)."""
+    up = [r for r in records if r["arm"] == "upstream"]
+    if not any(r.get("skill_loads") for r in up):
+        return []
+    return [r["label"] for r in up if not r.get("skill_loads")]
+
+
 def _label(m) -> str:
     return f"{m['task'].replace('/', '_').replace('#', '-')}__{m['arm']}__{m['run']}"
 
@@ -140,6 +160,8 @@ def score(suite, cfg, mod, records) -> dict:
     return {"suite": suite, "target": cfg.get("target"), "metrics": overall, "per_task": per_task,
             "verdict": scoring.suite_verdict(overall), "cost_usd": cost, "agent_seconds": secs,
             "sessions": len(records), "errors": [r["label"] for r in records if r.get("error") or r.get("isolation_error")],
+            "skill_not_used": _skill_not_used(records),
+            "asked_instead_of_acting": [r["label"] for r in records if r.get("asked_instead_of_acting")],
             "agylite_usage": [r.get("agylite_usage") for r in records if r["arm"] == "agylite"]}
 
 
@@ -157,4 +179,9 @@ def render(rep: dict) -> str:
     lines += ["", f"Cost (USD) per arm: {rep['cost_usd']} · agent time (s): {rep['agent_seconds']}"]
     if rep["errors"]:
         lines.append(f"Errors/isolation problems: {', '.join(rep['errors'])}")
+    if rep.get("skill_not_used"):
+        lines.append(f"Original cells that never used their skill (owner decides on a re-run): "
+                     f"{', '.join(rep['skill_not_used'])}")
+    if rep.get("asked_instead_of_acting"):
+        lines.append(f"Cells that asked instead of acting: {', '.join(rep['asked_instead_of_acting'])}")
     return "\n".join(lines) + "\n"

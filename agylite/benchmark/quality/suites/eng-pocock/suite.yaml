@@ -1,7 +1,8 @@
 # IMPLEMENTATION_PLAN §5 eng-pocock: Pocock's skills have no upstream evals, so 2 cases each in Addy's evals.json shape
 # (cases-<skill>.json, fixtures/), graded by Addy's grader prompt. Original arm: the Pocock skill alone via Addy's
 # method (--append-system-prompt): to-spec and to-tickets set disable-model-invocation, so a plain project-skill
-# install would never run them.
+# install would never run them. `acts: true`: the task must change code, so an answer that only asks is counted
+# as "asked instead of acting" (C1-9).
 name: eng-pocock
 runner: pocock_runner
 tasks:
@@ -10,11 +11,11 @@ tasks:
   - {skill: to-spec, path: engineering/to-spec, eval: 1}
   - {skill: to-spec, path: engineering/to-spec, eval: 2}
   - {skill: to-tickets, path: engineering/to-tickets, eval: 1}
-  - {skill: to-tickets, path: engineering/to-tickets, eval: 2}
-  - {skill: tdd, path: engineering/tdd, eval: 1}
-  - {skill: tdd, path: engineering/tdd, eval: 2}
-  - {skill: diagnosing-bugs, path: engineering/diagnosing-bugs, eval: 1}
-  - {skill: diagnosing-bugs, path: engineering/diagnosing-bugs, eval: 2}
+  - {skill: to-tickets, path: engineering/to-tickets, eval: 2, acts: true}
+  - {skill: tdd, path: engineering/tdd, eval: 1, acts: true}
+  - {skill: tdd, path: engineering/tdd, eval: 2, acts: true}
+  - {skill: diagnosing-bugs, path: engineering/diagnosing-bugs, eval: 1, acts: true}
+  - {skill: diagnosing-bugs, path: engineering/diagnosing-bugs, eval: 2, acts: true}
 metrics: {expectations_passed: higher}
 target: "same vs the Pocock skill alone"
 credits:

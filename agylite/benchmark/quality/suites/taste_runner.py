@@ -54,8 +54,9 @@ def measure(page: Path, out: Path, app: bool, tmp: Path) -> dict:
     flags = ["--app"] if app else []
     shots = out / "inspect"
     p = _node("inspect.mjs", page.name, "--out", str(shots), "--json", *flags, cwd=clean, tmp=tmp)
-    try:
-        ins = json.loads(p.stdout)
+    try:   # C3-1: the saved report is complete; large reports were cut off on stdout
+        saved = shots / "report.json"
+        ins = json.loads(saved.read_text(encoding="utf-8") if saved.is_file() else p.stdout)
         ins_fail = sum(1 for f in ins.get("findings") or [] if f.get("level") == "FAIL")
     except ValueError:
         ins, ins_fail = None, None
