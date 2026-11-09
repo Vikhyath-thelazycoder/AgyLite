@@ -485,7 +485,10 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - [x] **Part 1 — measurement (2026-11-10).** C1-1: `bin/agylite` honours `AGYLITE_PLUGIN_SOURCE=1` (skips
+        - **▶ RESUME HERE (Step 3): Part 2 — hook ≤ 9,000–10,000 chars with the lead skill inline (C1-2 / C1-10 /
+          C2-2).** Parts 3–6 follow in order; report and stop after each part. Before the paid re-measurement: the
+          temporary-HOME harness change below (owner token first).
+        - [x] **Part 1 — measurement (2026-11-10, commit `e2e3446`).** C1-1: `bin/agylite` honours `AGYLITE_PLUGIN_SOURCE=1` (skips
           `$AGYLITE_HOME/core` and PATH), the AgyLite arm sets it, `SESSION_STARTED` records `details.engine`, and
           `harness.engine_error` makes a cell invalid when the engine is not the run's snapshot (or never started).
           C3-2: `harness.skill_sources` (upstream clones, `~/.claude/plugins|skills`, the checkout's `.staging`/`new`,
@@ -497,10 +500,14 @@ Still to do:
           `taste_runner.measure` reads `<shots>/report.json`. C3-7: the report lists original cells that never invoked
           their skill (only for suites whose original uses the Skill tool). C1-9: suite tasks with `acts: true`
           (eng-pocock tdd, diagnosing-bugs, to-tickets#2) count "asked instead of acting". 11 new tests.
-          **Open (owner decision):** the archify leaks were all through Bash, which Read deny rules cannot stop, so a
-          re-run of its no-skill arm will be flagged again. A temporary HOME per session stops it, but Claude Code is
-          logged out there (`claude auth status` checked); it needs a long-lived token (`claude setup-token`, owner,
-          once) passed as `CLAUDE_CODE_OAUTH_TOKEN`. Alternative: change the archify prompt for the no-skill arm.
+          **Decided (owner 2026-11-10): option 1, a temporary HOME per session.** The archify leaks were all through
+          Bash, which Read deny rules cannot stop. Claude Code is logged out in a temporary HOME (`claude auth status`
+          checked), so: (1) the owner runs `claude setup-token` once and keeps the token in their shell
+          (`export CLAUDE_CODE_OAUTH_TOKEN=…`, never in the repo or a log); (2) `harness.run_session` gives every
+          session `HOME=<run_dir>/home/<label>` and passes the token through; without the token a paid run refuses to
+          start (dry runs still work); (3) one test that the session env has the temp HOME and the token, none that
+          the token is written anywhere. Do (2)+(3) before the Step 3 re-measurement, not before part 2. Rejected:
+          changing archify's no-skill prompt (the arms would no longer get the same prompt).
           **New C3-9 (minor):** AgyLite's youtube skills read `~/.agylite/youtube/voice.md`, not `$AGYLITE_HOME`, so a
           run's arm would see the owner's real voice file (none exists today, so Phase 9 is unaffected); fix in part 6.
         **Resume with the report's fix order, step 1 = measurement: C3-2 (isolate arms from home-folder skill
@@ -1055,3 +1062,4 @@ gap: Open Design's files are already measured.
 | 2026-11-10 | Step 4b audit | Astryx, Caldo and EGM staged, pinned, scanned and audited (D-052, `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`); nothing bundled. Step 4b added after Step 4; Step 6's audit doc renumbered to 25. |
 | 2026-11-10 | Step 4b plan | Detailed Step 4b section written (owner: everything explained so later sessions can use and learn from it): agents and subagents (9 EGM reviewers, synthesizer merge, resolve gate, re-check loop with decision log, drift check, host subagent flag), capabilities, the four-upstream design split, files, tests, paid-suite plan, risks. Order: Step 3 → Step 4 + 4b in one rebuild → Step 5. |
 | 2026-11-10 | Step 3 part 1 | Measurement fixes C1-1, C3-2, C3-1, C3-7, C1-9 done (launcher pin + engine check, skill-source deny rules + trace scan, inspector report.json, skill-not-used and asked-instead-of-acting counts); replay on 288 Phase 9 traces flags exactly the 15 known archify leaks. Open: temporary HOME needs an owner token. Next: part 2, the hook size. |
+| 2026-11-10 | Step 3 part 1 decision | Owner chose a temporary HOME per session for full isolation (owner runs `claude setup-token` once; harness change before the re-measurement). Part 1 closed; resume at part 2 (hook size). |
