@@ -485,9 +485,14 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3): code parts 1–6 and the new suites done; waiting on the owner's token for the paid
-          re-measurement.** 2026-11-12: `CLAUDE_CODE_OAUTH_TOKEN` is not set and `claude setup-token` is the owner's
-          browser sign-in (an agent cannot do it). Dry runs done: AgyLite arm 30 + 18 + 21 + 12 + 9 + 3 + 9 + 9 = 111
+        - **▶ RESUME HERE (Step 3): paid re-measurement RUNNING (started 2026-11-12 15:17 IST, detached).** The owner's
+          token pastes failed (401, then a 17-char placeholder; `security` Keychain reads are blocked for the agent), so
+          the 8 AgyLite-only suites run with `AGYLITE_BENCH_HOME=real` (logged-in HOME as in Phase 9; Read deny rules +
+          leak check still on), 111 sessions, ≈ $40. Log: `~/.agylite/benchmarks/remeasure.log` (first cell OK:
+          eng-pocock grilling#1 0.75, $0.11). When it ends: review each suite vs its Phase 9 row, update the ledger and
+          PARITY_REPORT, close Step 3. **Still to run: diagram-archify (45, all arms) with the per-session HOME** —
+          needs a valid `CLAUDE_CODE_OAUTH_TOKEN` (`echo ${#CLAUDE_CODE_OAUTH_TOKEN}` ≈ 100). If the run stops on a
+          usage limit, the log prints the `--resume` command (keep `AGYLITE_BENCH_HOME=real`).
           sessions (eng-pocock, eng-addy, eng-ponytail, research, youtube, browser-qa, design-extract, design-taste;
           other arms reused) + diagram-archify 45 (all arms) = **156 sessions, ≈ $61** from the ledger's last AgyLite
           costs (design-taste $22, archify $21, pocock $6, …) plus graders/judges; no runtime missing. The new suites
