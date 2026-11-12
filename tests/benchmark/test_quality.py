@@ -128,6 +128,17 @@ class TestUsageLimit(unittest.TestCase):
         self.assertTrue(harness.is_usage_limit("Failed to authenticate. API Error: 401 OAuth access token is invalid."))
         self.assertFalse(harness.is_usage_limit("The endpoint now returns 401 for a missing token; tests pass."))
 
+    def test_real_home_mode_needs_no_token_and_keeps_home(self):
+        trace = json.dumps({"type": "result", "result": "done", "total_cost_usd": 0, "num_turns": 1})
+        env = {k: v for k, v in os.environ.items() if k != "CLAUDE_CODE_OAUTH_TOKEN"}
+        env["AGYLITE_BENCH_HOME"] = "real"
+        with mock.patch.dict(os.environ, env, clear=True), tempfile.TemporaryDirectory() as tmp, \
+                mock.patch("subprocess.run", return_value=mock.Mock(stdout=trace, returncode=0)) as run:
+            harness.require_token()
+            harness.run_session("p", Path(tmp), harness.ArmSetup("baseline"), out_dir=Path(tmp) / "traces", label="c")
+            self.assertEqual(run.call_args.kwargs["env"]["HOME"], os.environ["HOME"])
+            self.assertIn("--disallowedTools", run.call_args.args[0])   # deny rules still on
+
     def test_a_placeholder_token_is_refused_before_any_session(self):
         for bad in ("sk-ant-oat01-…xyz", "short", "sk-ant-oat01-" + "a" * 40 + " b"):
             with mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": bad}):

@@ -273,8 +273,9 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
         cmd += ["--allowedTools", allowed_tools]
     if append_system:
         cmd += ["--append-system-prompt", append_system]
-    env = {**os.environ, "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1", **arm.env,
-           "HOME": str(session_home(arm, label, out_dir))}   # the token passes through os.environ, never a file
+    env = {**os.environ, "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1", **arm.env}
+    if not real_home():   # the token passes through os.environ, never a file
+        env["HOME"] = str(session_home(arm, label, out_dir))
     t0 = time.time()
     try:
         proc = subprocess.run(cmd, input=prompt, text=True, capture_output=True, cwd=workspace, env=env, timeout=timeout)
@@ -321,8 +322,17 @@ def session_home(arm: ArmSetup, label: str, out_dir: Path | None) -> Path:
 TOKEN = "CLAUDE_CODE_OAUTH_TOKEN"
 
 
+def real_home() -> bool:
+    """AGYLITE_BENCH_HOME=real: sessions run in the owner's logged-in HOME (no token needed), as Phase 9 did; the Read
+    deny rules and the skill-source leak check (C3-2) still apply, so a leaking cell is invalid, not hidden. For suites
+    whose no-skill arm leaked through Bash (diagram-archify), keep the per-session HOME."""
+    return os.environ.get("AGYLITE_BENCH_HOME", "").lower() == "real"
+
+
 def require_token():
     """Claude Code is logged out in a session's own HOME, so paid sessions need the owner's token in the shell."""
+    if real_home():
+        return
     token = os.environ.get(TOKEN, "")
     if token and (len(token) < 40 or not token.isascii() or any(c.isspace() for c in token)):
         # 2026-11-12: a pasted placeholder (17 chars with "…") failed every cell; say so before any session starts
