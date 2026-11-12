@@ -49,7 +49,10 @@ def _workspace(label: str) -> Path:
 
 
 GSTACK_SKILLS = Path.home() / ".claude" / "skills"
-GSTACK_READS = (str(GSTACK_SKILLS / "gstack"), str(GSTACK_SKILLS / "qa"))   # C3-2: both arms run gstack's install
+GSTACK_READS = (str(GSTACK_SKILLS / "gstack"), str(GSTACK_SKILLS / "qa"),   # C3-2: both arms run gstack's install
+                # and, in a session's own HOME, still need gstack's state and Playwright's browsers (linked in)
+                str(Path.home() / ".gstack"), str(Path.home() / "Library" / "Caches" / "ms-playwright"),
+                str(Path.home() / ".cache" / "ms-playwright"))
 
 
 def _upstream_arm() -> harness.ArmSetup:

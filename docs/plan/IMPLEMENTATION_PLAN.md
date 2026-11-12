@@ -485,9 +485,34 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3): Part 6 — robustness and bookkeeping:** C1-6, C1-7, C1-8, C1-12, C2-3, C2-4, C2-5,
-          C3-8, C3-9. Report and stop after it. Then the temporary-HOME harness change (owner token first) and the paid
-          re-measurement (archify all three arms; every other suite `--arms agylite --reuse-from <run>`).
+        - **▶ RESUME HERE (Step 3): parts 1–6 done; next = the paid re-measurement (owner approval + token first).**
+          Owner, once: `claude setup-token`, then `export CLAUDE_CODE_OAUTH_TOKEN=…` in the shell that starts the run
+          (never in a file; a paid run refuses without it). Dry-run every suite first (drop `--yes-spend`, add
+          `--dry-run`; it also names missing runtimes). Run detached, awake, without `|| exit` chains (C2-4, C2-5, C3-8):
+          ```bash
+          cd <checkout> && command -v agylite >/dev/null && echo "installed agylite on PATH: AGYLITE_PLUGIN_SOURCE pins the arm anyway"
+          nohup caffeinate -ims sh -c 'for s in eng-pocock eng-addy eng-ponytail research youtube browser-qa design-extract design-taste; do
+            env PYTHONPATH=. python -u -m agylite.cli benchmark --quality --tier 1 --suite $s --runs 3 --arms agylite \
+              --reuse-from "$(ls -d ~/.agylite/benchmarks/quality/*-$s | tail -1)" --yes-spend; done
+            env PYTHONPATH=. python -u -m agylite.cli benchmark --quality --tier 1 --suite diagram-archify --runs 3 --yes-spend' \
+            > ~/.agylite/benchmarks/remeasure.log 2>&1 &
+          ```
+          A non-pass verdict exits non-zero; `;`/`for` keeps going (never `&&`/`|| exit` between suites). Watch with
+          `tail -f ~/.agylite/benchmarks/remeasure.log`; closing Claude Code no longer kills it (`nohup`). Then the
+          dry-run-only suites for the untested upstreams (Step 3 item below).
+        - [x] **Part 6 — robustness and bookkeeping (2026-11-12).** C1-6: `agylite_home_for` copies a candidate bundle
+          into the run (no link into a scratchpad). C1-7: `doctor` reports staging off its pins, and `bundle fetch` now
+          resets the staging `bundle build` reads (the checkout's `.staging` when present; it used to reset
+          `~/.agylite/staging` only); ran it: the 8 drifted repos are back on their pins, a build reproduces
+          6c8821eb00b7. C1-8: `capabilities_selected` counts PROMPT_ROUTED capabilities. C1-12: a run writes
+          `start.json` (commit at start, or the frozen snapshot's on an old resumed run) and the ledger row uses it.
+          C2-3: suites declare `runtimes:` (browser-qa: browser); the dry run names a missing one and a paid run refuses;
+          the stale "missing" browser-qa ledger row is marked superseded. C2-4/C2-5/C3-8: the resume block above.
+          **Temporary HOME per session (owner 2026-11-10, option 1) built:** every `run_session` gets
+          `HOME=<run_dir>/home/<label>`, with only the arm's declared home `reads` linked in (browser-qa: gstack's
+          install, `~/.gstack`, Playwright's browsers); the token passes through the environment and is never written.
+          This also closes C3-9 for runs (`~/.agylite/youtube/voice.md` is the session's own, empty). Not covered: the
+          eng-ponytail suite runs Ponytail's own upstream runner, not `run_session`. 6 tests; 492 OK, validate 23/23.
           **Part 5 follow-up done (owner 2026-11-12: "whichever is best", option b):** 13 entry skills carry
           `disable-model-invocation: true`, so Claude Code (the prompt hook routes every prompt) no longer loads their
           descriptions (~3 KB) on every turn; they stay user-invocable (`/agylite:…`). `agylite-routing` keeps its

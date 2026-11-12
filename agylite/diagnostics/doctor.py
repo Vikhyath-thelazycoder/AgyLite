@@ -233,6 +233,16 @@ def host_and_supply_checks(r, root: Path, user_home: Path, bundle_dir):
     dates = fresh_dates(pin_dates(root), agylite_home())
     for level, message in pin_age_lines(dates, load_policy(root), date.today()):
         (r.warn if level == "warn" else r.ok)(message)
+    from ..bundle.build import default_staging
+    from ..bundle.fetch import drift
+    staging = default_staging(agylite_home())
+    if staging.is_dir():
+        off = drift(staging)
+        if off:
+            r.warn(f"Staging {staging} is off its pins on {len(off)} upstream(s) ({', '.join(n for n, _ in off[:8])}"
+                   f"{' …' if len(off) > 8 else ''}); a build from it fails the hash check: run `agylite bundle fetch`")
+        else:
+            r.ok(f"Staging {staging} matches every pin")
     last = last_update_run(agylite_home())
     r.ok(f"Last `agylite update --check`/`--latest` run on this machine: {last or 'never'}")
     if bundle_dir is not None and (bundle_dir / "index.json").is_file():

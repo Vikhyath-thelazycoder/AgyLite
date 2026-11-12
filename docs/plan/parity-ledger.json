@@ -1842,7 +1842,7 @@
    ],
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T141003Z-browser-qa",
    "fix_applied": "",
-   "next_step": ""
+   "next_step": "superseded: the browser runtime was missing (C2-3); the same run, resumed, is the browser-qa row below"
   },
   {
    "date": "20261104T141924Z",

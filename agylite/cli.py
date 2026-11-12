@@ -90,7 +90,8 @@ def _bundle(args):
     home = agylite_home()
     if args.bundle_cmd == "fetch":
         from .bundle.fetch import fetch
-        fetch(Path(args.staging) if args.staging else home / "staging" / "upstream")
+        # C1-7: the staging `bundle build` reads (the checkout's .staging when present), so a fetch fixes its drift
+        fetch(Path(args.staging) if args.staging else bundle_build.default_staging(home))
         return 0
     if args.bundle_cmd == "build":
         try:

@@ -35,6 +35,21 @@ def needed_paths(evidence: Path):
     return needed
 
 
+def drift(staging: Path, evidence: Path | None = None) -> list:
+    """C1-7: [(name, checked-out sha or None)] for pinned upstreams whose staging checkout is not at the pin; a build
+    from such staging fails the audited-hash check. `agylite bundle fetch` checks every pin out again."""
+    pins = load_yaml((evidence or evidence_dir()) / "upstream-staging-snapshot.yaml")["snapshots"]
+    out = []
+    for name, meta in sorted(pins.items()):
+        if not (staging / name / ".git").is_dir():
+            out.append((name, None))
+            continue
+        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=staging / name, capture_output=True, text=True).stdout.strip()
+        if head != meta["head"]:
+            out.append((name, head or None))
+    return out
+
+
 def fetch(staging: Path, evidence: Path | None = None, log=print):
     """Clone (blobless, sparse) or update each pinned upstream and check out its exact commit."""
     evidence = evidence or evidence_dir()

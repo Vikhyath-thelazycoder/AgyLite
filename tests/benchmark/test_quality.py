@@ -107,6 +107,7 @@ class _FakeSuite:
         return {"label": ctx["label"], "arm": ctx["arm"], "cost": 0.1, "metrics": {"score": 1.0}}
 
 
+@mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "test-token"})   # paid runs need it
 class TestUsageLimit(unittest.TestCase):
     """MP2 spending rule: on a usage-limit or rate-limit reply the run stops and says where to resume; a limit
     message is never graded as an answer."""
@@ -173,6 +174,7 @@ class TestUsageLimit(unittest.TestCase):
         self.assertTrue(tier1._valid({"label": "x", "metrics": {"score": 0.0, "other": None}}))
 
 
+@mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "test-token"})   # paid runs need it
 class TestReuseArms(unittest.TestCase):
     def test_reuse_keeps_unchanged_arms_and_reruns_the_named_ones(self):
         """IMPLEMENTATION_PLAN §2.4 "never re-run an unchanged configuration": a new AgyLite build re-runs only the
@@ -458,6 +460,81 @@ class TestMeasurementFixes(unittest.TestCase):
         self.assertNotIn("asked_instead_of_acting", tier1.mark_asked(dict(rec), {"task": "grilling#1"}))
         acts = {t["skill"] + "#" + str(t["eval"]) for t in suites.load_suite("eng-pocock")["tasks"] if t.get("acts")}
         self.assertEqual(acts, {"tdd#1", "tdd#2", "diagnosing-bugs#1", "diagnosing-bugs#2", "to-tickets#2"})
+
+
+class TestPart6(unittest.TestCase):
+    """Step 3 part 6: per-session HOME + token gate (C3-2 option 1, C3-9), C1-6, C1-8, C1-12, C2-3."""
+
+    def test_session_runs_in_its_own_home_with_only_declared_links_and_the_token_from_the_shell(self):
+        trace = json.dumps({"type": "result", "result": "done", "total_cost_usd": 0, "num_turns": 1})
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "secret-token-123"}), \
+                mock.patch("subprocess.run", return_value=mock.Mock(stdout=trace, returncode=0)) as run:
+            run_dir, ws = Path(tmp) / "run", Path(tmp) / "ws"
+            ws.mkdir()
+            declared = Path.home() / ".agylite-test-declared-read"
+            arm = harness.ArmSetup("baseline", reads=(str(declared),))
+            with mock.patch.object(Path, "exists", lambda self: True if self == declared else os.path.exists(self)):
+                harness.run_session("p", ws, arm, out_dir=run_dir / "traces", label="cell-1")
+            env = run.call_args.kwargs["env"]
+            home = run_dir / "home" / "cell-1"
+            self.assertEqual(env["HOME"], str(home))
+            self.assertEqual(env["CLAUDE_CODE_OAUTH_TOKEN"], "secret-token-123")
+            self.assertTrue((home / ".agylite-test-declared-read").is_symlink())
+            self.assertEqual(sorted(p.name for p in home.iterdir()), [".agylite-test-declared-read"])
+            for f in Path(tmp).rglob("*"):   # the token is never written anywhere
+                if f.is_file():
+                    self.assertNotIn("secret-token-123", f.read_text(encoding="utf-8", errors="replace"))
+
+    def test_paid_run_refuses_without_the_token_and_dry_run_does_not_need_it(self):
+        env = {k: v for k, v in os.environ.items() if k != "CLAUDE_CODE_OAUTH_TOKEN"}
+        with mock.patch.dict(os.environ, env, clear=True), tempfile.TemporaryDirectory() as tmp:
+            with self.assertRaises(harness.SpendRefused) as err:
+                tier1.run("eng-addy", yes_spend=True, out_root=Path(tmp), ledger=False, log=lambda *_: None)
+            self.assertIn("claude setup-token", str(err.exception))
+            self.assertGreater(tier1.run("eng-addy", dry_run=True, log=lambda *_: None)["planned"], 0)
+
+    def test_browser_qa_dry_run_names_a_missing_runtime_and_the_paid_run_refuses(self):
+        lines = []
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ, {"AGYLITE_HOME": tmp}):
+            tier1.run("browser-qa", dry_run=True, log=lines.append)
+            with self.assertRaises(harness.SpendRefused):
+                tier1.run("browser-qa", yes_spend=True, out_root=Path(tmp), ledger=False, log=lambda *_: None)
+        self.assertTrue(any("MISSING runtime browser" in x for x in lines), lines)
+
+    def test_candidate_bundle_is_copied_into_the_run_not_linked(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.dict(os.environ, {"AGYLITE_HOME": str(Path(tmp) / "h")}):
+            cand = Path(tmp) / "scratch" / "abc123"
+            cand.mkdir(parents=True)
+            (cand / "index.json").write_text("{}")
+            run_dir = Path(tmp) / "run"
+            run_dir.mkdir()
+            (run_dir / "bundle.txt").write_text(str(cand))
+            home = harness.agylite_home_for(run_dir)
+            shutil.rmtree(cand.parent)   # the scratchpad is cleared (a reboot)
+            self.assertTrue((home / "bundles" / "current" / "index.json").is_file())
+            self.assertFalse((home / "bundles" / "abc123").is_symlink())
+
+    def test_capabilities_selected_counts_routed_capabilities(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            ws = Path(tmp) / "ws"
+            ws.mkdir()
+            log = Path(tmp) / "home" / "projects" / "p" / "events" / "d.jsonl"
+            log.parent.mkdir(parents=True)
+            log.write_text("\n".join(json.dumps(e) for e in [
+                {"event": "SESSION_STARTED", "details": {"root": str(ws), "engine": "x"}},
+                {"event": "PROMPT_ROUTED", "capabilities": ["a/b", "c/d"], "details": {}}]))
+            usage = harness.agylite_usage(Path(tmp) / "home", ws)
+        self.assertEqual((usage["prompt_routed"], usage["capabilities_selected"]), (1, 2))
+
+    def test_ledger_row_records_the_run_start_commit(self):
+        from agylite.benchmark.quality import ledger
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "docs" / "plan").mkdir(parents=True)
+            rep = {"suite": "eng-addy", "date": "d", "runs": 1, "bundle": "b", "model": "m", "verdict": "same",
+                   "commit": "a" * 40, "metrics": {}, "cost_usd": {}}
+            self.assertEqual(ledger.append(rep, root=root)["agylite_commit"], "a" * 40)
 
 
 if __name__ == "__main__":

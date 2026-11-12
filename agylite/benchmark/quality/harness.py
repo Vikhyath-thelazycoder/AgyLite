@@ -75,8 +75,12 @@ def agylite_home_for(run_dir: Path) -> Path:
     real = agylite_home()
     pinned = run_dir / "bundle.txt"   # MP6: a candidate bundle under test becomes this home's `current`
     if pinned.is_file() and not (home / "bundles").exists():
+        # C1-6: a copy, not a link: a candidate built in a session scratchpad was gone after a reboot, and with it the
+        # run's bundle (the content-addressed id makes the copy the same bundle).
+        src = Path(pinned.read_text(encoding="utf-8").strip())
         (home / "bundles").mkdir()
-        (home / "bundles" / "current").symlink_to(pinned.read_text(encoding="utf-8").strip())
+        shutil.copytree(src, home / "bundles" / src.name, symlinks=True)
+        (home / "bundles" / "current").symlink_to(src.name)
     for name in ("bundles", "runtimes", "staging"):
         link = home / name
         if (real / name).exists() and not link.exists():
@@ -266,7 +270,8 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
         cmd += ["--allowedTools", allowed_tools]
     if append_system:
         cmd += ["--append-system-prompt", append_system]
-    env = {**os.environ, "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1", **arm.env}
+    env = {**os.environ, "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1", **arm.env,
+           "HOME": str(session_home(arm, label, out_dir))}   # the token passes through os.environ, never a file
     t0 = time.time()
     try:
         proc = subprocess.run(cmd, input=prompt, text=True, capture_output=True, cwd=workspace, env=env, timeout=timeout)
@@ -292,6 +297,32 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
         raise UsageLimit(rec["result"][:200])
     rec["_trace"] = stdout
     return rec
+
+
+def session_home(arm: ArmSetup, label: str, out_dir: Path | None) -> Path:
+    """C3-2 option 1 (owner 2026-11-10): every session runs in its own HOME (`<run_dir>/home/<label>`), so `~` reaches
+    no skill source, plugin or user file (the archify leaks were Bash reads Read deny rules cannot stop; C3-9: the
+    owner's ~/.agylite/youtube/voice.md). Only the home paths the arm declares in `reads` are linked in."""
+    home = (Path(out_dir).parent / "home" / label) if out_dir else Path(tempfile.mkdtemp(prefix="agy-home-"))
+    home.mkdir(parents=True, exist_ok=True)
+    real = Path.home()
+    for p in map(Path, arm.reads):
+        if _under(p, real) and p.exists():
+            dest = home / p.relative_to(real)
+            if not dest.exists() and not dest.is_symlink():
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                dest.symlink_to(p)
+    return home
+
+
+TOKEN = "CLAUDE_CODE_OAUTH_TOKEN"
+
+
+def require_token():
+    """Claude Code is logged out in a session's own HOME, so paid sessions need the owner's token in the shell."""
+    if not os.environ.get(TOKEN):
+        raise SpendRefused(f"every paid session runs in its own HOME, where Claude Code is logged out: run "
+                           f"`claude setup-token` once and `export {TOKEN}=…` in this shell (never in a file)")
 
 
 def ask(prompt: str, *, model=None, timeout=600) -> str:
@@ -328,6 +359,8 @@ def agylite_usage(home: Path, workspace: Path) -> dict:
             key = e["event"].lower()
             if key in counts and key not in ("sessions", "engines"):
                 counts[key] += 1
+            if e["event"] == "PROMPT_ROUTED":   # C1-8: the engine has no CAPABILITIES_SELECTED event; routes carry them
+                counts["capabilities_selected"] += len(e.get("capabilities") or [])
             if e["event"] == "SESSION_STARTED":
                 counts["sessions"] += 1
                 counts["engines"].append(e.get("details", {}).get("engine"))

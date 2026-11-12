@@ -28,8 +28,9 @@ def append(report: dict, *, fix: str = "", next_step: str = "", root: Path | Non
     root = root or repo_root()
     data = load(root)
     shas = {d: _sha(upstreams_dir() / d) for d in UPSTREAM_DIRS.get(report["suite"], []) if (upstreams_dir() / d).is_dir()}
+    # C1-12: agylite_commit is the commit the run started on (report "commit"); HEAD only for older reports.
     row = {"date": report.get("date"), "suite": report["suite"], "n": report.get("runs"), "bundle": report.get("bundle"),
-           "agylite_commit": _sha(root), "upstream_shas": shas, "model": report.get("model"),
+           "agylite_commit": report.get("commit") or _sha(root), "upstream_shas": shas, "model": report.get("model"),
            "metrics": {m: {k: v.get(k) for k in ("baseline", "upstream", "agylite", "retained", "verdict")}
                        for m, v in report["metrics"].items()},
            "verdict": report["verdict"], "cost_usd": report.get("cost_usd"), "agent_seconds": report.get("agent_seconds"),

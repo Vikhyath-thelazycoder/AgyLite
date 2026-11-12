@@ -42,7 +42,10 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
         model=None, judge_model=None, python=None, out_root: Path | None = None, log=print, ledger=True,
         resume: Path | None = None, reuse_from: Path | None = None, bundle: Path | None = None) -> dict:
     cfg, mod, matrix = plan(suite, ARMS if reuse_from else arms, runs, tasks)
+    missing = missing_runtimes(cfg)
     if dry_run:
+        for name in missing:   # C2-3: 9 browser-qa cells failed at $0 because the runtime was not installed
+            log(f"[dry-run] MISSING runtime {name}: run `agylite runtime install {name}` before the paid run")
         kept = {}
         if resume or reuse_from:
             src = json.loads((Path(resume or reuse_from) / "records.json").read_text(encoding="utf-8"))
@@ -64,8 +67,18 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
             kept = {r["label"]: r for r in json.loads((Path(reuse_from) / "records.json").read_text(encoding="utf-8"))
                     if _valid(r) and r["arm"] not in arms}
     todo = [m for m in matrix if _label(m) not in kept]
+    if missing:
+        raise harness.SpendRefused(f"suite {suite} needs runtime(s) {', '.join(missing)}: "
+                                   + " && ".join(f"agylite runtime install {n}" for n in missing))
     harness.require_spend(yes_spend, len(todo), max_sessions)
+    if todo:
+        harness.require_token()
     run_dir.mkdir(parents=True, exist_ok=True)
+    start = run_dir / "start.json"   # C1-12: the ledger records the commit the run started on, not HEAD at the end
+    if not start.is_file():   # a run resumed from before this file existed: its frozen snapshot's commit
+        snap = run_dir / "agylite-plugin.json"
+        commit = json.loads(snap.read_text(encoding="utf-8")).get("commit") if snap.is_file() else _head()
+        start.write_text(json.dumps({"commit": commit}), encoding="utf-8")
     if bundle is not None:   # MP6 §1.4: the AgyLite arm runs a reviewed candidate, not the active bundle
         (run_dir / "bundle.txt").write_text(str(Path(bundle).resolve()), encoding="utf-8")
     records, stopped = [kept[_label(m)] for m in matrix if _label(m) in kept], None
@@ -113,13 +126,27 @@ def run(suite: str, *, arms=ARMS, runs=1, tasks=None, dry_run=False, yes_spend=F
     report.update(run_dir=str(run_dir), model=model or harness.DEFAULT_MODEL, judge_model=judge_model,
                   reused_from=str(reuse_from) if reuse_from else None,
                   bundle=(Path(bundle).name if bundle else current_bundle().name if current_bundle() else None),
-                  date=stamp, runs=runs,
+                  date=stamp, runs=runs, commit=json.loads(start.read_text(encoding="utf-8")).get("commit"),
                   isolation="real (--setting-sources project,local --strict-mcp-config; init event checked)")
     (run_dir / "report.json").write_text(json.dumps(report, indent=1, default=str), encoding="utf-8")
     if ledger:
         from . import ledger as parity_ledger
         parity_ledger.append(report)   # IMPLEMENTATION_PLAN §6: every run is recorded
     return report
+
+
+def missing_runtimes(cfg) -> list:
+    """The suite's `runtimes:` that are not installed in the engine home (only `browser` has a health check today)."""
+    from ...runtimes import browser
+    checks = {"browser": lambda: browser.health(agylite_home())["status"] == "ready"}
+    return [n for n in cfg.get("runtimes") or [] if n in checks and not checks[n]()]
+
+
+def _head():
+    import subprocess
+
+    from ...paths import repo_root
+    return subprocess.run(["git", "rev-parse", "HEAD"], cwd=repo_root(), capture_output=True, text=True).stdout.strip() or None
 
 
 def mark_asked(rec: dict, cell: dict) -> dict:

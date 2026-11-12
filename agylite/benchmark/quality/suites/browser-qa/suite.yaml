@@ -7,6 +7,7 @@
 name: browser-qa
 runner: browser_qa_runner
 tasks: [broken-site]
+runtimes: [browser]      # C2-3: checked by the dry run and before any paid session
 metrics: {defects_reported: higher, defects_fixed: higher}
 target: same
 credits:
