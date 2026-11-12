@@ -1,0 +1,19 @@
+diff --git a/checkout-branch/src/config.js b/checkout-branch/src/config.js
+index 0d7d37e..67e523d 100644
+--- a/checkout-branch/src/config.js
++++ b/checkout-branch/src/config.js
+@@ -1 +1 @@
+-export const config = { currency: "EUR" };
++export const config = { currency: "EUR", paymentsKey: "prod-pay-7d1e2c9b5a44f0e1" };
+diff --git a/checkout-branch/src/total.js b/checkout-branch/src/total.js
+index 4ca5676..441b7aa 100644
+--- a/checkout-branch/src/total.js
++++ b/checkout-branch/src/total.js
+@@ -1,4 +1,5 @@
+-export function total(items, discount = 0) {
++export function total(items, discount = 0, shipping = 0) {
+   const sum = items.reduce((s, i) => s + i.price * i.qty, 0);
+-  return Math.max(0, Math.round((sum - discount) * 100) / 100);
++  console.log("total debug", items, discount, shipping);
++  return Math.max(0, Math.round((sum - discount + shipping) * 100) / 100);
+ }

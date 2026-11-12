@@ -1,0 +1,19 @@
+{
+ "skill_name": "backend-patterns",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "markets-api"
+   ],
+   "prompt": "GET /markets gets slower as the number of markets grows. Fix listMarkets.",
+   "expectations": [
+    "The agent identifies the N+1 pattern: one getUser query per market inside the loop",
+    "The fix fetches all creators in one batch query (db.getUsers with the creator ids) and attaches them by id, e.g. through a Map",
+    "The agent shows the query count no longer grows with the number of markets (a test or measurement using db.queries)",
+    "The existing test still passes and each market still carries its creator"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

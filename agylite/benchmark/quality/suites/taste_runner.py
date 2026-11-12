@@ -70,14 +70,15 @@ def measure(page: Path, out: Path, app: bool, tmp: Path) -> dict:
             "inspector_findings": [f"{f.get('level')} {f.get('id')}" for f in (ins or {}).get("findings") or []][:40]}
 
 
-def run_cell(cell, ctx):
-    cfg = load_suite("design-taste")
+def run_cell(cell, ctx, suite="design-taste", upstream_skills=None):
+    """`suite`/`upstream_skills`: the combined `design` suite reuses this pipeline with other originals."""
+    cfg = load_suite(suite)
     ev = _evals()[cell["eval"]]
     ws = harness.fresh_workspace(ctx["label"])
     if ctx["arm"] == "baseline":
         arm = harness.ArmSetup("baseline")
     elif ctx["arm"] == "upstream":
-        arm = harness.ArmSetup("upstream", project_skills=(str(_skill_dir()),))
+        arm = harness.ArmSetup("upstream", project_skills=tuple(map(str, upstream_skills or (_skill_dir(),))))
     else:
         arm = harness.agylite_arm(ctx["run_dir"], ctx.get("python"))
     rec = harness.run_session(ev["prompt"], ws, arm, model=ctx["model"], allowed_tools=TOOLS,

@@ -1,0 +1,19 @@
+{
+ "skill_name": "agentic-engineering",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "ticket-triage"
+   ],
+   "prompt": "Our support agent's triage step sends refund requests to the general queue. Make it route them to a new billing queue.",
+   "expectations": [
+    "Before changing code, the agent adds capability eval cases for refund tickets (expecting billing) and keeps the existing cases as the regression eval",
+    "The agent runs the evals before the change and shows the refund cases failing (the baseline failure)",
+    "The agent changes the routing (a billing route for refund/charge wording) without breaking the security, shipping and general cases",
+    "The agent re-runs the evals after the change and reports the before/after difference (e.g. passed counts)"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

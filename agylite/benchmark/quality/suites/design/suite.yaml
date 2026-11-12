@@ -1,0 +1,28 @@
+# Step 3 (owner 2026-11-04): one combined suite for Open Design + UI UX Pro Max. Neither ships a page-quality eval
+# (Open Design's evals test its plugin registry, UI UX Pro Max's its search relevance), so this reuses design-taste's
+# pipeline: Taste evals the design-taste suite does not use (5 a page, 8 and 10 app screens), inspect.mjs + lint.mjs,
+# and the blind critique.md judge. Original arm: the 7 skills of the two upstreams that AgyLite routes to (the
+# primaries of design/brand, design-system, frontend, motion and the design-direction partner), copied into the
+# workspace as project skills. Elaya's tasks join after Step 4 bundles Elaya; Astryx's React tasks after Step 4b.
+# Dry-run only until the owner approves (Step 5).
+name: design
+runner: design_runner
+upstream_method: "the 7 skills below, exported from their pinned commits (staging clones), copied into the workspace as project skills"
+upstream_skills:
+  - uiuxpromax:.claude/skills/ui-ux-pro-max
+  - uiuxpromax:.claude/skills/ui-styling
+  - uiuxpromax:.claude/skills/design-system
+  - uiuxpromax:.claude/skills/brand
+  - opendesign:skills/creative-director
+  - opendesign:skills/design-md
+  - opendesign:skills/emilkowalski-motion
+tasks: [5, 8, 10]
+app_evals: [8, 10]
+timeout_s: 1500
+metrics: {inspector_fail: lower, lint_fail: lower, judge_overall: higher}
+target: "judge same as both originals together; inspector and lint no worse"
+credits:
+  - {repository: nexu-io/open-design, license: Apache-2.0, commit: e03d5c23f308c39f4de7c057568df66c29a84385, used: "3 skills as the original arm"}
+  - {repository: nextlevelbuilder/ui-ux-pro-max-skill, license: MIT, commit: 28327f2f214d31bbd7555ed0c012a5df6484ed96, used: "4 skills as the original arm"}
+  - {repository: Leonxlnx/taste-skill, license: MIT, commit: 6010f91a9935f1c167dfc500fb1a475681892e6b,
+     used: "evals 5, 8, 10, scripts/inspect.mjs, scripts/lint.mjs, references/critique.md (the instrument)"}

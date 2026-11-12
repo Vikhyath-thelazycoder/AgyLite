@@ -9,7 +9,7 @@ from ...paths import repo_root
 JSON_PATH = Path("docs/plan/parity-ledger.json")
 MD_PATH = Path("docs/plan/PARITY_LEDGER.md")
 UPSTREAM_DIRS = {"eng-addy": ["agent-skills"], "eng-pocock": ["skills", "agent-skills"], "eng-ponytail": ["ponytail"],
-                 "design-taste": ["taste-skill"], "diagram-archify": ["archify"], "design-extract": ["design-extract"],
+                 "design-taste": ["taste-skill"], "eng-ecc": ["ECC"], "diagram-archify": ["archify"], "design-extract": ["design-extract"],
                  "youtube": ["youtube-agent-skill"], "browser-qa": ["gstack"], "research": ["Agent-Reach"]}
 
 

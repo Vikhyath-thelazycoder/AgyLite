@@ -1,0 +1,19 @@
+{
+ "skill_name": "click-path-audit",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "mail-ui"
+   ],
+   "prompt": "Users click 'New Email' and the compose window never opens. Audit the inbox buttons and fix what is broken.",
+   "expectations": [
+    "The agent maps the store's actions with what each sets and what it resets as a side effect, finding that selectThread resets composeMode",
+    "The agent traces each inbox button handler (New Email, Archive, Open), not only the reported one",
+    "The agent names the New Email defect as a sequential undo: setComposeMode(true) is cancelled by the following selectThread(null)",
+    "The fix makes New Email leave composeMode true, and a test proves it"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

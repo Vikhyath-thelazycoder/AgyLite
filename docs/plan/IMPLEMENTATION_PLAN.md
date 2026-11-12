@@ -485,7 +485,29 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3): parts 1–6 done; next = the paid re-measurement (owner approval + token first).**
+        - **▶ RESUME HERE (Step 3): code parts 1–6 and the new suites done; waiting on the owner's token for the paid
+          re-measurement.** 2026-11-12: `CLAUDE_CODE_OAUTH_TOKEN` is not set and `claude setup-token` is the owner's
+          browser sign-in (an agent cannot do it). Dry runs done: AgyLite arm 30 + 18 + 21 + 12 + 9 + 3 + 9 + 9 = 111
+          sessions (eng-pocock, eng-addy, eng-ponytail, research, youtube, browser-qa, design-extract, design-taste;
+          other arms reused) + diagram-archify 45 (all arms) = **156 sessions, ≈ $61** from the ledger's last AgyLite
+          costs (design-taste $22, archify $21, pocock $6, …) plus graders/judges; no runtime missing. The new suites
+          (eng-ecc 54, design 27) are NOT in this run (Step 5 batch). Command: the block below.
+        - [x] **New suites, dry-run only (2026-11-12).** `eng-ecc`: ECC owns 7 capabilities' primaries; 6 cases (one
+          per skill, Addy's shape and grader, Node fixtures with planted defects, expectations from each skill's own
+          steps; the original arm reads the SKILL.md at the pinned commit from staging). Left out: benchmark-methodology.
+          `design`: Open Design + UI UX Pro Max against both originals together (the 7 skills AgyLite routes to,
+          exported whole from their pinned commits by `git archive`), on Taste evals 5, 8, 10 with design-taste's
+          inspector, lint and blind judge; Elaya joins after Step 4, Astryx after 4b. BeyondSEO: no paid suite (owner
+          default); a free test runs the real runtime through `agylite.runtimes.seo` on a local site with planted
+          defects (`tests/fixtures/seo/planted-site`): crawl finds all 5, repeats identically, offline audit works.
+          Tests: 2 suite tests, 3 SEO runtime tests; 497 OK, validate 23/23.
+          **Findings for Step 4 (not fixed; out of this task's scope):** S3-1: ECC's `benchmark-methodology` (primary
+          of `testing/performance`) benchmarks a design studio's brand positioning, not software performance — wrong
+          owner. S3-2: AgyLite leads with an ECC skill on 0 of the 6 eng-ecc prompts; "GET /markets gets slower … Fix
+          listMarkets" routes to `youtube/analytics`; onboarding → addy documentation, bug check → gstack/ship,
+          verify branch → ponytail-review. S3-3: the local upstream clones in ~/Developer/os are off their pins for
+          open-design (3b0df90 vs e03d5c2) and ui-ux-pro-max-skill (56ea9cf vs 28327f2) and lack the pinned commits;
+          the new runners export from staging instead, but older runners still read those clones.
           Owner, once: `claude setup-token`, then `export CLAUDE_CODE_OAUTH_TOKEN=…` in the shell that starts the run
           (never in a file; a paid run refuses without it). Dry-run every suite first (drop `--yes-spend`, add
           `--dry-run`; it also names missing runtimes). Run detached, awake, without `|| exit` chains (C2-4, C2-5, C3-8):

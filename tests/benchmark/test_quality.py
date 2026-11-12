@@ -3,6 +3,7 @@ import json
 import os
 import re
 import shutil
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -535,6 +536,35 @@ class TestPart6(unittest.TestCase):
             rep = {"suite": "eng-addy", "date": "d", "runs": 1, "bundle": "b", "model": "m", "verdict": "same",
                    "commit": "a" * 40, "metrics": {}, "cost_usd": {}}
             self.assertEqual(ledger.append(rep, root=root)["agylite_commit"], "a" * 40)
+
+
+class TestNewSuites(unittest.TestCase):
+    """Step 3 item: eng-ecc and design are written and dry-run only (no paid session until the owner approves)."""
+
+    def test_ecc_cases_are_well_formed_and_their_fixtures_build(self):
+        from agylite.benchmark.quality.suites import addy_style, ecc_runner
+        cfg = suites.load_suite("eng-ecc")
+        self.assertEqual(sorted(t["skill"] for t in cfg["tasks"]),
+                         ["agentic-engineering", "ai-regression-testing", "backend-patterns", "click-path-audit",
+                          "codebase-onboarding", "verification-loop"])   # benchmark-methodology left out on purpose
+        for t in cfg["tasks"]:
+            case = json.loads((ecc_runner.HERE / f"cases-{t['skill']}.json").read_text(encoding="utf-8"))
+            ev = case["evals"][0]
+            self.assertTrue(ev["prompt"] and len(ev["expectations"]) >= 4, t)
+            ws = addy_style.materialize(ecc_runner.HERE / "fixtures", ev["files"], "ecc-test")
+            self.assertTrue((ws / ev["files"][0] / "package.json").is_file())
+            shutil.rmtree(ws)
+        ws = addy_style.materialize(ecc_runner.HERE / "fixtures", ["checkout-branch"], "ecc-test")
+        changed = subprocess.run(["git", "status", "--short"], cwd=ws, capture_output=True, text=True).stdout
+        self.assertIn("checkout-branch/src/config.js", changed)   # the branch's uncommitted change is applied
+        shutil.rmtree(ws)
+
+    def test_new_suites_dry_run(self):
+        self.assertEqual(tier1.run("eng-ecc", runs=3, dry_run=True, log=lambda *_: None)["planned"], 54)
+        self.assertEqual(tier1.run("design", runs=3, dry_run=True, log=lambda *_: None)["planned"], 27)
+        cfg = suites.load_suite("design")
+        self.assertEqual(len(cfg["upstream_skills"]), 7)
+        self.assertTrue(all(e.split(":", 1)[0] in ("uiuxpromax", "opendesign") for e in cfg["upstream_skills"]))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,19 @@
+{
+ "skill_name": "verification-loop",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "checkout-branch"
+   ],
+   "prompt": "Verify this branch is ready for a PR.",
+   "expectations": [
+    "The agent runs the build, lint and test commands (npm run build, npm run lint, npm test) and reads their results",
+    "The agent scans the changes for secrets and debug output and finds the hard-coded paymentsKey in src/config.js and the console.log in src/total.js",
+    "The agent reviews the diff of the uncommitted change (git diff or git status)",
+    "The agent reports per check (build, lint, tests, security, diff) with a PASS/FAIL and an overall verdict of not ready, listing the issues to fix"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

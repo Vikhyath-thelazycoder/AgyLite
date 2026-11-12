@@ -1,0 +1,20 @@
+{
+ "skill_name": "codebase-onboarding",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "orders-service"
+   ],
+   "prompt": "I just joined this project. Get me oriented and write an onboarding guide to docs/ONBOARDING.md.",
+   "expectations": [
+    "Before writing, the agent gathers signals from the manifest, config, CI, Dockerfile and test folder (package.json, .github/workflows, Dockerfile, test/) rather than only reading source files one by one",
+    "The guide names the stack correctly (Node.js ES modules, the built-in http module, no framework or database, node --test) and the entry point src/server.js",
+    "The guide has a directory map and traces a request from src/server.js through src/routes/orders.js to src/db.js",
+    "The guide's common tasks use the real scripts (npm start, npm test) and mention the CI workflow and Docker image",
+    "No source or test file is changed; only docs/ONBOARDING.md is written"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

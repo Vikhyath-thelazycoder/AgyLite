@@ -1,0 +1,18 @@
+[
+ {
+  "ticket": "I forgot my password",
+  "queue": "security"
+ },
+ {
+  "ticket": "Where is my parcel? Tracking shows nothing",
+  "queue": "shipping"
+ },
+ {
+  "ticket": "My account was hacked",
+  "queue": "security"
+ },
+ {
+  "ticket": "How do I change my display name?",
+  "queue": "general"
+ }
+]

@@ -1,0 +1,19 @@
+{
+ "skill_name": "ai-regression-testing",
+ "evals": [
+  {
+   "id": 1,
+   "files": [
+    "profile-api"
+   ],
+   "prompt": "Run a bug check on the profile API before we release.",
+   "expectations": [
+    "The agent runs the automated tests first, before reviewing the code",
+    "The agent checks that the sandbox and production paths return the same shape and finds that the production SELECT omits avatar_url",
+    "The agent fixes the production query to return avatar_url",
+    "The agent adds a regression test that asserts the production path (with a stubbed query) returns every field the sandbox path returns, and the suite passes"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

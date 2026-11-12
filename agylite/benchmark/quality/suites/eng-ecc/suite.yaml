@@ -1,0 +1,21 @@
+# Step 3 (owner 2026-11-04): ECC owns 7 capabilities' primary skills; ECC ships no evals, so, as eng-pocock, one
+# Agylite-written case per skill in Addy's evals.json shape (cases-<skill>.json, fixtures/), expectations taken from
+# the skill's own steps, graded by Addy's grader prompt. Original arm: the ECC skill alone via --append-system-prompt.
+# Left out: benchmark-methodology (testing/performance's primary) benchmarks a studio's brand positioning, not software
+# performance; that ownership is a Step 4 finding, not something to measure. Dry-run only until the owner approves.
+name: eng-ecc
+runner: ecc_runner
+tasks:
+  - {skill: codebase-onboarding, eval: 1, acts: true}
+  - {skill: agentic-engineering, eval: 1, acts: true}
+  - {skill: backend-patterns, eval: 1, acts: true}
+  - {skill: click-path-audit, eval: 1, acts: true}
+  - {skill: ai-regression-testing, eval: 1, acts: true}
+  - {skill: verification-loop, eval: 1}
+metrics: {expectations_passed: higher}
+target: "same vs the ECC skill alone"
+credits:
+  - {repository: affaan-m/ECC, license: MIT, commit: 90606c8315ee09cafc303515c5f33024db6b9882,
+     used: "the six skills' SKILL.md as the original arm; expectations derived from their text"}
+  - {repository: addyosmani/agent-skills, license: MIT, commit: aeac41d4d005999432bb7312f7ff06383a91d59d,
+     used: "evals.json case shape and the run-evals.js grader prompt"}
