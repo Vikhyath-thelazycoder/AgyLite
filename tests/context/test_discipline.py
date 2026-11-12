@@ -43,6 +43,17 @@ class TestDiscipline(unittest.TestCase):
         return levels.bootstrap(project=self.project, session_id="s", host="cli", bundle_dir=self.bundle,
                                 budgets=self.budgets, **kw)
 
+    def test_hosts_with_the_prompt_hook_get_a_one_line_capability_index(self):
+        """C1-3 / C1-4 (Step 3 part 5): the hook routes every prompt on Claude Code, so L0 says so in one line instead
+        of listing every capability (and inviting `agylite route` / `context` calls that repeat the hook)."""
+        hooked = levels.bootstrap(project=self.project, session_id="s", host="claude-code", bundle_dir=self.bundle,
+                                  budgets=self.budgets)["text"]
+        plain = self.l0()["text"]
+        self.assertIn("each prompt arrives routed", hooked)
+        self.assertNotIn("  engineering: ", hooked)
+        self.assertIn("  engineering: ", plain)
+        self.assertLess(len(hooked), len(plain) - 500)
+
     def test_ruleset_is_in_l0_whole_with_a_principles_pointer(self):
         l0 = self.l0()
         self.assertIn("discipline (always on):", l0["text"])

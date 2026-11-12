@@ -125,9 +125,7 @@ class TestPromptHook(unittest.TestCase):
 
     def test_a_partner_that_would_break_the_cap_is_left_out(self):
         pairs = [("files/alpha/skills/hardening/SKILL.md", "files/beta/skills/test-security/SKILL.md")]
-        full = self.overlap(pairs)
-        cards = full.index("### files/") - full.index("# engineering/")
-        cap = len(full) - cards - 1   # the pair alone is one char over: cards go first, then the partner
+        cap = len(self.overlap(pairs)) - 1   # the pair is one char over the cap
         self.tmp.cleanup(); self.setUp()   # a fresh home: nothing cached yet
         out = self.overlap(pairs, max_chars=cap)
         self.assertLessEqual(len(out), cap)
@@ -162,6 +160,14 @@ class TestPromptHook(unittest.TestCase):
             self.assertEqual(out.splitlines()[1], PONYTAIL_OFF, (prompt, out[:300]))
         _, out = self.hook({"prompt": PROMPT})
         self.assertNotIn(PONYTAIL_OFF, out)
+
+    def test_with_a_skill_no_cards_and_verify_only_for_code_changes(self):
+        """C1-3 / C1-4 (Step 3 part 5): cards are overhead next to the skill; a diagram has nothing to verify."""
+        out = self.with_cap(None)
+        self.assertNotIn("# engineering/security — Security", out)
+        self.assertIn("Done means: agylite verify passes", out)
+        _, diagram = self.hook({"prompt": "Sequence diagram of the login flow"})
+        self.assertNotIn("Done means: agylite verify", diagram)
 
     def test_compose_is_the_hook_text_without_side_effects(self):
         """The token report measures the hook with compose(): same text, no events, no fired marker."""

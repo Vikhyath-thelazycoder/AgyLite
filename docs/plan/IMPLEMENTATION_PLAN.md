@@ -485,9 +485,20 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3): Part 5 — fixed overhead (C1-3, C1-4 / C3-6):** smaller L0 and fewer plugin
-          descriptions; no needless verify/route/context calls. Part 6 follows; report and stop after each part.
-          Before the paid re-measurement: the temporary-HOME harness change below (owner token first).
+        - **▶ RESUME HERE (Step 3): Part 6 — robustness and bookkeeping:** C1-6, C1-7, C1-8, C1-12, C2-3, C2-4, C2-5,
+          C3-8, C3-9. Report and stop after it. Then the temporary-HOME harness change (owner token first) and the paid
+          re-measurement (archify all three arms; every other suite `--arms agylite --reuse-from <run>`).
+          **Owner decision open (part 5):** the 14 plugin skill + 3 agent descriptions (~3.9 KB) stay, because Codex,
+          Cursor and Antigravity share `skills/agylite-*` and route by those descriptions; options: shorten them, or
+          give Claude Code its own smaller set.
+        - [x] **Part 5 — fixed overhead (2026-11-12, C1-3 / C1-4 / C3-6).** (1) On hosts whose plugin routes every prompt
+          (`levels.PROMPT_HOOK_HOSTS` = claude-code, hook on), L0's capability list becomes one line that says each
+          prompt arrives routed and not to run `agylite route` / `context` again: L0 4,706 → 3,687 bytes on every turn.
+          (2) The hook sends no route cards when a skill rides along (cards stay as the fallback when there is none).
+          (3) "Done means: agylite verify passes" only on code-change types (`change_type_adds.types`), not on diagram,
+          youtube, research, design or docs routes. Hook bytes on the real bundle: TDD 4,769 → 4,286, diagram 1,181 →
+          458, youtube 4,243 → 3,656, research 4,235 → 3,020, bug fix 9,375 (cards were already squeezed out by the
+          cap). Tests: 1 L0 test, 1 hook test; 485 tests OK, validate 23/23.
         - [x] **Part 4 — Ponytail exemption (2026-11-12, C2-1 / C3-3, owner: option A).** L0 loads before the prompt,
           so the prompt hook lifts Ponytail for one task: when the route's lead capability matches
           `config/discipline.yaml` `ponytail_exempt` (`youtube/*`, `media/*`, `engineering/diagrams`), the line after

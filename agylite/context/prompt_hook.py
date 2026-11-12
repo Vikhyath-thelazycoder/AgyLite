@@ -68,7 +68,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     from ..routing import Router
     from .loader import ContextLoader
     from ..cli import _facts   # the same project facts `agylite route` uses
-    route = Router(root).route(prompt, project=_facts(project))
+    router = Router(root)
+    route = router.route(prompt, project=_facts(project))
     if route["unmatched"]:
         return None
     ids = [c["id"] for c in route["capabilities"]]
@@ -77,6 +78,7 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     # C1-2 (Step 3 part 2): Claude Code saves hook output over ≈ 10,000 chars to a file the agent may never open, so
     # the whole hook stays within `prompt_hook.max_chars`: lead skill first, its partner if it still fits, cards last.
     cap = budgets["prompt_hook"]["max_chars"]
+    code_change = route["change_type"] in ((router.cfg.get("change_type_adds") or {}).get("types") or [])
     lead_cid = ((route.get("whole_skills") or ids)[:1] or [None])[0]
     exempt = lead_cid and any(fnmatch.fnmatchcase(lead_cid, g)
                               for g in load_discipline(root).get("ponytail_exempt") or [])
@@ -105,7 +107,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
         else:
             out.append("Before the first edit, load the whole skill and follow it: "
                        f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
-        out.append("Done means: agylite verify passes (tests, types, lint, build).")
+        if code_change:   # C1-4: a diagram, script or static page has no tests, types or build to verify
+            out.append("Done means: agylite verify passes (tests, types, lint, build).")
         return out
 
     def size(lines, texts=()):
@@ -125,7 +128,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     left = cap - size(lines, texts)   # cards fit both their token budget and what the skills leave of the cap
     cards, cached = [], []
     caps_dir = (root or repo_root()) / "capabilities"
-    for cid in ids:
+    # C1-3: cards describe capabilities (use when, loads, related); with the skill itself in hand they are overhead.
+    for cid in ([] if lead else ids):
         path = caps_dir / cid / "CARD.md"
         display = f"capabilities/{cid}/CARD.md"
         if not path.is_file():

@@ -42,10 +42,16 @@ def bootstrap(*, project, session_id, host, bundle_dir, budgets, root=None, stag
         f"phase: {phase or '—'}",
         f"plan: {plan_pointer or '—'}",
     ]
-    domains = registry.load_domains(root)
-    index = ["capabilities (route: `agylite route \"<request>\"` · load: `agylite skill load <upstream>/<skill>` or "
-             "`agylite context <id>…` · rare needs: `agylite skills search \"<words>\"`):"]
-    index += [f"  {d}: " + ", ".join(c.split("/", 1)[1] for c in m["capabilities"]) for d, m in domains.items()]
+    if host in PROMPT_HOOK_HOSTS and str(load_discipline(root).get("prompt_hook", "on")).lower() not in ("off", "false"):
+        # C1-3 / C1-4 (Step 3 part 5): the hook routes every prompt and brings its skill, so the capability list (~1 KB
+        # on every turn) only invited `agylite route` / `context` calls that repeat what the hook already did.
+        index = ["capabilities: each prompt arrives routed (an `Agylite route:` line and its skill); do not run "
+                 "`agylite route` or `agylite context` for it again. Rare needs: `agylite skills search \"<words>\"`."]
+    else:
+        domains = registry.load_domains(root)
+        index = ["capabilities (route: `agylite route \"<request>\"` · load: `agylite skill load <upstream>/<skill>` or "
+                 "`agylite context <id>…` · rare needs: `agylite skills search \"<words>\"`):"]
+        index += [f"  {d}: " + ", ".join(c.split("/", 1)[1] for c in m["capabilities"]) for d, m in domains.items()]
 
     discipline = discipline_lines(bundle_dir)
 
@@ -61,6 +67,7 @@ def bootstrap(*, project, session_id, host, bundle_dir, budgets, root=None, stag
 
 
 RULESET = "files/ponytail/RULESET-lite.md"
+PROMPT_HOOK_HOSTS = ("claude-code",)   # hosts whose plugin routes every prompt (hooks/hooks.json UserPromptSubmit)
 
 
 def load_discipline(root=None):
