@@ -34,12 +34,15 @@ class IsolationError(RuntimeError):
 
 
 class UsageLimit(RuntimeError):
-    """The host refused the session (5-hour session limit, weekly cap, rate limit): stop the run, never grade it."""
+    """The host refused the session (5-hour session limit, weekly cap, rate limit, rejected token): stop the run,
+    never grade it."""
 
 
 # The host's refusal is one short line; an agent's answer about rate limiting (HTTP 429, "rate limit") is not one.
 LIMIT_REPLY = re.compile(r"^\s*(?:You've hit your (?:session|weekly|usage|daily) limit|Claude (?:AI )?usage limit reached|"
-                         r"API Error: 429\b.*rate_limit_error)", re.I)
+                         r"API Error: 429\b.*rate_limit_error|"
+                         # a rejected token (e.g. a bad CLAUDE_CODE_OAUTH_TOKEN paste): every later cell would fail too
+                         r"Failed to authenticate\. API Error: 401\b)", re.I)
 LIMIT_REPLY_MAX = 300
 
 

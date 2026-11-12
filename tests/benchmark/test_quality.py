@@ -123,6 +123,11 @@ class TestUsageLimit(unittest.TestCase):
                      "You've hit your session limit · resets 10:40pm. " + "x" * 400):
             self.assertFalse(harness.is_usage_limit(text), text)
 
+    def test_a_rejected_token_stops_the_run_like_a_limit(self):
+        """2026-11-12: a bad CLAUDE_CODE_OAUTH_TOKEN made every cell answer 401 at $0 instead of stopping the run."""
+        self.assertTrue(harness.is_usage_limit("Failed to authenticate. API Error: 401 OAuth access token is invalid."))
+        self.assertFalse(harness.is_usage_limit("The endpoint now returns 401 for a missing token; tests pass."))
+
     def test_run_session_raises_on_a_limit_reply(self):
         trace = "\n".join([json.dumps({"type": "system", "subtype": "init", "plugins": [], "skills": [],
                                         "mcp_servers": []}),
