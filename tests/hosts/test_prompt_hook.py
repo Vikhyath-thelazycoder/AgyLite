@@ -135,6 +135,24 @@ class TestPromptHook(unittest.TestCase):
         self.assertIn("## Cookies", out)
         self.assertNotIn("## Authz tests", out)
 
+    def test_a_second_whole_skill_never_joins_the_hook(self):
+        """C1-5 / C1-11: at most the lead and its overlap partner; a route's second whole skill (another domain) made
+        the largest payloads as a 3rd skill."""
+        from agylite.context import prompt_hook
+        from agylite.routing import Router
+        route = Router.route
+
+        def two(self, *a, **k):
+            r = route(self, *a, **k)
+            r["whole_skills"] = [c["id"] for c in r["capabilities"]][:2]
+            return r
+        with mock.patch.object(Router, "route", two), \
+                mock.patch.object(prompt_hook, "primary_skill_ids", wraps=prompt_hook.primary_skill_ids) as ids:
+            out = self.with_cap(None)
+        self.assertEqual(len(ids.call_args.args[1]), 1, ids.call_args)
+        self.assertNotIn("Also load", out)
+        self.assertNotIn("agylite skill load", out)
+
     def test_compose_is_the_hook_text_without_side_effects(self):
         """The token report measures the hook with compose(): same text, no events, no fired marker."""
         from agylite.context import prompt_hook

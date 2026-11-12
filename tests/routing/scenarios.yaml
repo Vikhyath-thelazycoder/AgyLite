@@ -319,7 +319,32 @@ scenarios:
   - id: mp5-architecture-diagram
     request: Draw an architecture diagram of this codebase
     stage: existing
-    expect: [engineering/diagrams, engineering/architecture, codebase/repository-understanding]
+    expect: [engineering/diagrams, codebase/repository-understanding]
+    forbid: [engineering/architecture]   # C3-5: a diagram routes the diagram skill only
+    change_type: DOCUMENTATION_CHANGE
+
+  # C3-5 (Step 3 part 3): the Phase 9 archify prompts routed SECURITY/MEDIA with engineering cards ("validates the
+  # JWT", "showcase quality profile").
+  - id: c35-diagram-is-the-whole-job
+    request: Create a sequence diagram for a dashboard request. The API validates the JWT, then reads Redis, and emits a trace. Target the showcase quality profile.
+    stage: new
+    expect: [engineering/diagrams]
+    forbid: [engineering/security, engineering/architecture, engineering/implementation, testing/security, media/]
+    change_type: DOCUMENTATION_CHANGE
+
+  # C3-5: a static page is design work; the new-product rule added planning, architecture and test strategy.
+  - id: c35-static-page-is-design
+    request: Make a one-page website for a 38-seat Italian restaurant in Lisbon with the menu, hours and how to book. Static HTML/CSS/JS.
+    stage: new
+    expect: [design/design-direction]
+    forbid: [engineering/, testing/]
+
+  # C1-5: a code change naming `mailer.send` was routed to slides by BM25 on "message" and "per".
+  - id: c15-code-identifier-is-engineering
+    request: Our mail provider bills per message. Make `mailer.send` accept a list of recipients so the weekly digest goes out as a single message to all subscribers.
+    stage: new
+    expect: [engineering/implementation]
+    forbid: [media/]
 
   - id: mp5-sequence-diagram
     request: Sequence diagram of the login flow

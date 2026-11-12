@@ -36,6 +36,7 @@ class ProjectFacts:
 
 
 LIFECYCLE_DOMAINS = {"engineering", "codebase", "testing"}
+GENERIC_TYPES = ("NEW_FEATURE", "FEATURE_CHANGE")
 UNMATCHED_GUIDANCE = ("engineering/principles",)   # MP1 F4: always safe when no capability fits
 
 
@@ -98,6 +99,12 @@ class Router:
                     method = ("bm25" if method in ("none", "bm25") else
                               method if method.endswith("+bm25") else f"{method}+bm25")
 
+        # C3-5: an `only` rule (a diagram) is the whole job; strong rules on what the diagram shows (JWT → security,
+        # "showcase" → media) would otherwise add engineering cards and their skills.
+        # shortcut: a mixed request ("fix the login bug and draw its diagram") routes the diagram only; split if needed.
+        only = {cid for h in hits if h.only for cid in h.select}
+        if only:
+            selected = [c for c in selected if c.cid in only]
         if not urls:   # MP4 §2.5: url_only capabilities need a URL to work on
             only = set(self.cfg.get("url_only") or [])
             selected = [c for c in selected if c.cid not in only]
@@ -106,6 +113,15 @@ class Router:
             domain_score[domain_of(c.cid)] = domain_score.get(domain_of(c.cid), 0) + max(c.score, 1)
         domains = sorted(domain_score, key=lambda d: (-domain_score[d], d))
         change_type, decided_by = classify_change(text, self.cfg.get("change_types") or {}, domains[0] if domains else None)
+        # C3-5: "make"/"build" decide nothing about the kind of work; a route wholly in one non-engineering domain (a
+        # static page → design) takes that domain's type, so it does not get the code-change completion gate.
+        by_domain = (self.cfg.get("change_types") or {}).get("default_by_domain") or {}
+        if (change_type in GENERIC_TYPES and len(domains) == 1 and domains[0] not in LIFECYCLE_DOMAINS
+                and domains[0] in by_domain):
+            change_type, decided_by = by_domain[domains[0]], f"domain {domains[0]}"
+        forced = next((h for h in hits if h.only and h.change_type), None)
+        if forced:
+            change_type, decided_by = forced.change_type, f"rule {forced.rule}"
 
         # Impact check (spec §15, §19.4): existing-project change work starts from codebase understanding.
         ids = [c.cid for c in selected]

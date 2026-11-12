@@ -107,7 +107,9 @@ rules:
     any: &new_product [saas, new app, new application, from scratch, new project, mvp, greenfield, build me, build a, build an]
     # A request that is just the product description ("a small Python CLI todo app …", "create an API for …").
     regex: &new_product_rx ['^(?:task:\s*)?(?:(?:please\s+)?(?:build|create|make|write|develop|implement|scaffold|start)\s+)?(?:me\s+)?(?:a|an)\s+(?:[\w-]+\s+){0,6}?(?:app|application|cli|tool|program|script|service|api|bot|game|library|website|web app|dashboard)\b']
-    unless: &new_product_unless [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit, youtube, shorts, my channel, diagram, mind map]
+    unless: &new_product_unless [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit, youtube, shorts, my channel, diagram, mind map,
+                                 # C3-5: a static page is design work, not a product to plan, architect and test-plan
+                                 static html, static site, static page, static website, plain html, html/css/js, html/css]
     project: [new, unknown]
     select: [engineering/planning, engineering/architecture, engineering/implementation, testing/strategy]
     weight: 3
@@ -117,7 +119,7 @@ rules:
     any: *new_product
     regex: *new_product_rx
     require_any: [saas, web, website, web app, webapp, frontend, front-end, ui, ux, dashboard, landing page, mobile, ios, android, page, pages, screen, screens, interface, portal, storefront, marketplace]
-    unless: *new_product_unless
+    unless: [build a test, build a component, build fails, build failing, build error, video, launch video, promo video, deck, slides, presentation, seo, audit, youtube, shorts, my channel, diagram, mind map]   # a static page keeps its design direction
     project: [new, unknown]
     select: [design/design-direction]
     weight: 3
@@ -139,6 +141,14 @@ rules:
     any: [add, extend, integrate, support, introduce]
     project: [existing]
     select: [engineering/implementation, codebase/impact-analysis, testing/strategy]
+    weight: 2
+
+  - id: code-identifier
+    description: A request that names code in backticks (`mailer.send`) is engineering work; without a rule, BM25 sent
+      one to slides on the words "message" and "per" (C1-5)
+    regex: ['`[a-z_][\w.]*(?:\(\))?`']
+    unless: [deck, slides, presentation, video, youtube, diagram, mind map, seo]
+    select: [engineering/implementation]
     weight: 2
 
   - id: third-party-integration
@@ -498,6 +508,8 @@ rules:
     any: [diagram, architecture diagram, sequence diagram, flowchart, flow chart, erd, entity relationship, class diagram, data flow diagram, dataflow diagram, state diagram, lifecycle diagram, visualize the architecture, visualise the architecture, map the architecture, mind map, mermaid]
     select: [engineering/diagrams]
     suppress: [design, media, seo]
+    only: true                     # C3-5: the diagram is the whole job (no security/media/engineering extras)
+    change_type: DOCUMENTATION_CHANGE
     weight: 4
 
   - id: diagram-kinds
@@ -506,6 +518,8 @@ rules:
     require_any: [draw, diagram, chart, visualize, visualise, map, sketch, picture of]
     select: [engineering/diagrams]
     suppress: [design, media, seo]
+    only: true                     # C3-5: the diagram is the whole job (no security/media/engineering extras)
+    change_type: DOCUMENTATION_CHANGE
     weight: 4
 
   - id: diagram-repo
@@ -514,6 +528,8 @@ rules:
     require_any: [this repo, this codebase, the codebase, our codebase, the repo, our repo, this project, the code]
     project: [existing, unknown]
     select: [codebase/repository-understanding]
+    only: true                     # C3-5: the diagram is the whole job (no security/media/engineering extras)
+    change_type: DOCUMENTATION_CHANGE
     weight: 3
 
   # ── MP6 §3: upstream updates (review → benchmark → the owner approves) ──────────────────────────────────────────

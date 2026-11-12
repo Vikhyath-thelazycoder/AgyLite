@@ -485,10 +485,25 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3): Part 3 — routing (C1-5 / C1-11 / C3-5):** at most lead + partner skill; diagram and
-          page prompts route one skill, the right change type and no engineering cards. Parts 4–6 follow in order;
-          report and stop after each part. Before the paid re-measurement: the temporary-HOME harness change below
-          (owner token first).
+        - **▶ RESUME HERE (Step 3): Part 4 — Ponytail exemption (C2-1 / C3-3):** test exempting creative, youtube
+          and diagram routes from Ponytail lite (or add an explicit iterate rule to those skills). Parts 5–6 follow in
+          order; report and stop after each part. Before the paid re-measurement: the temporary-HOME harness change
+          below (owner token first).
+        - [x] **Part 3 — routing (2026-11-12, C1-5 / C1-11 / C3-5).** (1) The hook carries at most the lead skill and
+          its overlap partner: the route's second whole skill (another domain) no longer rides as a 3rd skill or an
+          "Also load" command (`agylite context --route` still loads two). (2) Rules may be `only: true` (the route keeps
+          only what `only` rules select) and set `change_type`; the three diagram rules use both, so every Phase 9
+          archify prompt routes `DOCUMENTATION_CHANGE · engineering/diagrams` (was SECURITY/MEDIA with 3–7 engineering
+          capabilities: "validates the JWT", "showcase quality profile"). Shortcut: a mixed "fix X and draw its diagram"
+          routes the diagram only. (3) Static pages (static html, html/css/js, …) no longer fire `new-product`
+          (planning, architecture, test strategy); `new-product-ui` keeps its own list, so they keep design direction.
+          (4) A route wholly in one non-engineering domain turns a generic NEW_FEATURE/FEATURE_CHANGE ("make", "build")
+          into that domain's type: taste tasks 1/2/7/10 route `DESIGN_CHANGE` with design capabilities only (no
+          completion gate, no engineering cards). (5) New rule `code-identifier`: code in backticks (`mailer.send`) is
+          engineering/implementation; Ponytail scope-recipients went to slides by BM25 on "message"/"per". Hook now:
+          bug fix 9,369 chars (diagnosing-bugs only), TDD 4,749, diagram 970, static page 1,721. Tests: 3 new routing
+          scenarios, `mp5-architecture-diagram` now forbids engineering/architecture, 1 hook test (no 2nd whole skill).
+          481 tests OK, validate 23/23.
         - [x] **Part 2 — hook ≤ 9,600 chars (2026-11-12, C1-2 / C1-10 / C2-2).** `prompt_hook.max_chars: 9600` replaces
           `primary_skill_max_tokens` / `overlap_skill_max_tokens`; the whole hook (route lines, skills, cards) stays
           under it. Order: lead skill whole → its overlap partner only if it still fits → cards in what is left. A

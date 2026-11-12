@@ -75,29 +75,25 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     # the whole hook stays within `prompt_hook.max_chars`: lead skill first, its partner if it still fits, cards last.
     cap = budgets["prompt_hook"]["max_chars"]
     loader = ContextLoader(project, session_id, current_bundle())
-    skills = primary_skill_ids(loader, route.get("whole_skills") or ids[:1], prompt, route.get("skill_hints"))
+    # C1-5 / C1-11: one skill leads; only its overlap partner joins it (a 3rd skill made the largest payloads).
+    skills = primary_skill_ids(loader, (route.get("whole_skills") or ids)[:1], prompt, route.get("skill_hints"))
     # MP3/MP4 Tier 1: agents rarely ran the load command (0 of 37 sessions, then 2 of 3), so the first skill's text
     # arrives with the prompt, whole; the session cache turns it into a one-line marker on later prompts.
     lead = _inline_skill(loader, skills[0]) if skills else None
     # Option 2 (D-050): when another upstream has a skill for the same job, it rides along whole and one side leads.
     pair = _overlap_partner(loader, skills[0], root) if lead else None
-    if pair:
-        skills = [skills[0], pair["partner"]] + [s for s in skills[1:] if s != pair["partner"]]
 
     def head(inline, pair):
-        rest = skills[(2 if pair else 1):] if inline else skills[1:]
-        also = (" Also load and follow: " + " && ".join(f"agylite skill load {s}" for s in rest)) if rest else ""
         out = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
         if pair:
             out.append(f"The whole skills {pair['lead']} and {pair['other']} follow (one job, two upstreams); follow "
-                       f"both before the first edit, and where they disagree follow {pair['lead']}." + also)
+                       f"both before the first edit, and where they disagree follow {pair['lead']}.")
         elif inline:
-            out.append(f"The whole skill {skills[0]} follows; follow it before the first edit." + also)
+            out.append(f"The whole skill {skills[0]} follows; follow it before the first edit.")
         elif lead:   # too big to ride along: one Read of the file, not a CLI call agents skip
-            out.append(f"Before the first edit, read the whole skill {skills[0]} and follow it: {lead['path']}" + also)
+            out.append(f"Before the first edit, read the whole skill {skills[0]} and follow it: {lead['path']}")
         elif skills:
-            out.append(f"Before the first edit, load the whole skill and follow it: agylite skill load {skills[0]}"
-                       + also)
+            out.append(f"Before the first edit, load the whole skill and follow it: agylite skill load {skills[0]}")
         else:
             out.append("Before the first edit, load the whole skill and follow it: "
                        f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
@@ -110,7 +106,6 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     if pair and size(head(lead, pair), [lead["text"], pair["text"]]) > cap:
         loader.forget(pair["path"])
         pair = None
-        skills = [skills[0]] + skills[2:] if len(skills) > 1 else skills
     inline = lead if lead and size(head(lead, None), [lead["text"]]) <= cap else None
     if lead and not inline:
         loader.forget(lead["key"])
@@ -146,7 +141,7 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     if loader.cache:
         loader.cache.save()
     return {"text": "\n".join(lines) + "\n", "ids": ids, "change_type": route["change_type"], "cards": cards,
-            "cached": cached, "skills": skills}
+            "cached": cached, "skills": skills + ([pair["partner"]] if pair else [])}
 
 
 def primary_skill_ids(loader, cids, query, hints=None) -> list:

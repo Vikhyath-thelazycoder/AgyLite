@@ -11,7 +11,7 @@ from .classify import CHANGE_TYPES, find_phrases
 
 PROJECT_STAGES = ("new", "existing", "unknown")
 RULE_KEYS = {"id", "description", "any", "regex", "require_any", "unless", "project", "select", "suppress",
-             "pipeline", "explicit", "weight", "requires_urls", "url_hosts", "skill"}
+             "pipeline", "explicit", "weight", "requires_urls", "url_hosts", "skill", "only", "change_type"}
 
 
 @dataclass
@@ -24,6 +24,8 @@ class RuleHit:
     pipeline: list = field(default_factory=list)
     explicit: bool = False
     skill: str | None = None   # D-050: the bundle path of the skill this rule means, for its first `select`
+    only: bool = False          # C3-5: when it matches, the route keeps only what `only` rules select
+    change_type: str | None = None   # C3-5: the change type the rule decides (beats the keyword order)
 
 
 def load_routing(root: Path | None = None):
@@ -105,6 +107,8 @@ def validate_routing(cfg, cards, hierarchy):
         if "skill" in rule and not (isinstance(rule["skill"], str) and rule["skill"].startswith("files/")
                                     and rule["skill"].endswith("/SKILL.md")):
             p.append(f"rule {rid}: skill must be a bundle path files/…/SKILL.md")
+        if "change_type" in rule and rule["change_type"] not in CHANGE_TYPES:
+            p.append(f"rule {rid}: change_type must be a spec §54 type")
         for cid in rule.get("select") or []:
             card = cards.get(cid)
             if card is None:
@@ -173,7 +177,8 @@ def match_rules(text: str, cfg, stage: str, has_urls=False, urls=()):
         hits.append(RuleHit(rule=rule["id"], select=list(rule["select"]), weight=rule.get("weight", 1),
                             matched=matched, suppress=list(rule.get("suppress") or []),
                             pipeline=list(rule.get("pipeline") or []), explicit=bool(rule.get("explicit")),
-                            skill=rule.get("skill")))
+                            skill=rule.get("skill"), only=bool(rule.get("only")),
+                            change_type=rule.get("change_type")))
     return hits
 
 
