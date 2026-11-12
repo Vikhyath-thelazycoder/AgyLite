@@ -492,7 +492,10 @@ Still to do:
           (ledger row 24, PARITY_REPORT "Step 3 re-measurement"). **Also done (notes in ledger + report):** eng-addy
           0.954 vs original 1.00 (gap = C1-2 severity labels), eng-ponytail same quality but +22% cost, research 1 =
           original, youtube hook 70.7 vs 71.4 (regression fixed), browser-qa 5/5, design-extract = original. Step 3 below
-          also done (asked counter + grader-parse fix, tests). **Running:** design-taste (9 cells), the last suite.
+          also done (asked counter + grader-parse fix, tests). **design-taste stopped by the owner 2026-11-12 19:45 IST** after 5/9
+          cells (run 20261112T130841Z, $11.80): inspector 0 and lint 0 in all 5, no judge (it runs after the last cell),
+          no report.json (ledger note only). Nothing is running. To finish: re-run design-taste with the loop below for
+          that suite alone (≈ $22) or accept the partial result.
           **Next session, in order:**
           1. `tail -30 ~/.agylite/benchmarks/remeasure.log` and `pgrep -fl "agylite.cli benchmark"`. Still running →
              wait. Stopped on a usage limit → run the `--resume` line it printed, prefixed with

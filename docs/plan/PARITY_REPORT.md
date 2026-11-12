@@ -98,6 +98,7 @@ commit 7d0d9fb, bundle 6c8821eb00b7, other arms reused from Phase 9.
 | youtube | 20261112T125040Z | hook 34.1 / 71.4 / **70.7** (retained 0.98), beats 0.33 / 1 / **1** | 51.6 (regressed) | $4.03 ($3.69; Phase 9 $3.03) |
 | browser-qa | 20261112T130526Z | 5 / 5 / **5** reported and fixed | 5 | $0.67 ($1.40; Phase 9 $0.69) |
 | design-extract | 20261112T130745Z | colour 0 / 0.67 / **0.67**, font 0 / 1 / **1**, sections 0 / 8 / **8** | same | $0 |
+| design-taste | 20261112T130841Z (stopped by the owner, 5/9 cells) | inspector 6.8 / 0 / **0**, lint 11.8 / 0.11 / **0**; judge not run | 0 / 0, judge 6.97 | $11.80 for 5 cells (Phase 9 $22.07 for 9) |
 
 eng-pocock per task: diagnosing-bugs 0.75 / 0.75 (was 0.46 in Phase 9: C1-10 fixed by the hook cap), grilling, to-spec,
 to-tickets 0.83–1.00 (= or > original), tdd#2 1.00 vs original 0.00 (the original asks; the "regressed" label is the

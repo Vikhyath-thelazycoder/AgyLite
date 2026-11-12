@@ -3812,6 +3812,7 @@
   "2026-10-21: the owner withdrew permission for paid Tier 1 sessions. eng-pocock (9/30), design-taste and diagram-archify baselines are not run; eng-addy keeps one ungraded cell (debugging#1, original arm). These suites are reported as not measured, never as Same.",
   "design-extract, youtube, browser-qa, research and routing (Tier 1) wait for their instruments and AgyLite capabilities (Phases 5-7), and for paid sessions to be allowed again.",
   "20261104T182103Z design-taste: stopped by a usage limit after 10/27 cells; resume: `agylite benchmark --quality --tier 1 --suite design-taste --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T182103Z-design-taste`",
-  "20261104T182103Z design-taste: resumed 2026-11-05 and finished 27/27 (stopped once more at 13/27 when the Claude Code session that launched it closed)."
+  "20261104T182103Z design-taste: resumed 2026-11-05 and finished 27/27 (stopped once more at 13/27 when the Claude Code session that launched it closed).",
+  "2026-11-12 design-taste re-measure (run 20261112T130841Z, AgyLite arm only) stopped by the owner after 5 of 9 cells ($11.80): inspector_fail 0 and lint_fail 0 in all 5 (original 0 / 0.11, no skill 6.8 / 11.8); no judge score (the blind judge runs after the last cell); no report.json, so no ledger row. Finish with --resume or re-run the suite."
  ]
 }
