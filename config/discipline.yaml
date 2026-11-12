@@ -6,6 +6,11 @@ version: 1
 # are always on. `off` removes them. `full`/`ultra` are not offered until MP2 measures them.
 ponytail_ruleset: lite
 
+# Step 3 part 4 (C2-1 / C3-3, owner 2026-11-12, option A): creative work iterates; Ponytail lite made it stop early
+# (youtube re-scored hooks 4-18x vs the original's 21-30x; archify dropped the auth participant). L0 loads before the
+# prompt is known, so the prompt hook lifts Ponytail for one task when the route's lead capability matches a glob here.
+ponytail_exempt: ["youtube/*", "media/*", engineering/diagrams]
+
 # UserPromptSubmit hook (D-048): route every prompt and inject the route with it. `off` disables injection.
 prompt_hook: on
 

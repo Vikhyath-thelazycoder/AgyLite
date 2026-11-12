@@ -5,6 +5,7 @@ case), so the SessionStart suggestion alone left it equal to no skill. The hook 
 call, no network) and prints the route, the load command and the routed L1 cards within `prompt_hook.max_tokens`.
 It never blocks a prompt: any error prints nothing.
 """
+import fnmatch
 import hashlib
 import json
 from pathlib import Path
@@ -15,6 +16,8 @@ from ..paths import agylite_home, current_bundle, repo_root
 from .sections import est_tokens, nbytes
 
 LOAD_REQUEST_CHARS = 200
+PONYTAIL_OFF = ("Ponytail lite is off for this task (creative work): its least-code rules and closing lines do not "
+                "apply; do every iteration and quality step the skill asks for, and keep refining until it says stop.")
 
 
 def load_discipline(root: Path | None = None) -> dict:
@@ -74,6 +77,9 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     # C1-2 (Step 3 part 2): Claude Code saves hook output over ≈ 10,000 chars to a file the agent may never open, so
     # the whole hook stays within `prompt_hook.max_chars`: lead skill first, its partner if it still fits, cards last.
     cap = budgets["prompt_hook"]["max_chars"]
+    lead_cid = ((route.get("whole_skills") or ids)[:1] or [None])[0]
+    exempt = lead_cid and any(fnmatch.fnmatchcase(lead_cid, g)
+                              for g in load_discipline(root).get("ponytail_exempt") or [])
     loader = ContextLoader(project, session_id, current_bundle())
     # C1-5 / C1-11: one skill leads; only its overlap partner joins it (a 3rd skill made the largest payloads).
     skills = primary_skill_ids(loader, (route.get("whole_skills") or ids)[:1], prompt, route.get("skill_hints"))
@@ -85,6 +91,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
 
     def head(inline, pair):
         out = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
+        if exempt:
+            out.append(PONYTAIL_OFF)
         if pair:
             out.append(f"The whole skills {pair['lead']} and {pair['other']} follow (one job, two upstreams); follow "
                        f"both before the first edit, and where they disagree follow {pair['lead']}.")

@@ -485,10 +485,16 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3): Part 4 — Ponytail exemption (C2-1 / C3-3):** test exempting creative, youtube
-          and diagram routes from Ponytail lite (or add an explicit iterate rule to those skills). Parts 5–6 follow in
-          order; report and stop after each part. Before the paid re-measurement: the temporary-HOME harness change
-          below (owner token first).
+        - **▶ RESUME HERE (Step 3): Part 5 — fixed overhead (C1-3, C1-4 / C3-6):** smaller L0 and fewer plugin
+          descriptions; no needless verify/route/context calls. Part 6 follows; report and stop after each part.
+          Before the paid re-measurement: the temporary-HOME harness change below (owner token first).
+        - [x] **Part 4 — Ponytail exemption (2026-11-12, C2-1 / C3-3, owner: option A).** L0 loads before the prompt,
+          so the prompt hook lifts Ponytail for one task: when the route's lead capability matches
+          `config/discipline.yaml` `ponytail_exempt` (`youtube/*`, `media/*`, `engineering/diagrams`), the line after
+          the route says Ponytail lite is off for this task and to do every iteration the skill asks for. All three
+          youtube and all five archify benchmark prompts get it; code routes do not. 1 hook test; 483 tests OK,
+          validate 23/23. Whether youtube hookscore iterations and archify's auth participant recover is for the paid
+          re-measurement (option B, an iterate rule in the skills, stays the fallback).
         - [x] **Part 3 — routing (2026-11-12, C1-5 / C1-11 / C3-5).** (1) The hook carries at most the lead skill and
           its overlap partner: the route's second whole skill (another domain) no longer rides as a 3rd skill or an
           "Also load" command (`agylite context --route` still loads two). (2) Rules may be `only: true` (the route keeps

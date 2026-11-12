@@ -153,6 +153,16 @@ class TestPromptHook(unittest.TestCase):
         self.assertNotIn("Also load", out)
         self.assertNotIn("agylite skill load", out)
 
+    def test_creative_routes_lift_ponytail_for_the_task(self):
+        """C2-1 / C3-3 (Step 3 part 4, option A): youtube, media and diagram leads iterate; code work keeps Ponytail."""
+        from agylite.context.prompt_hook import PONYTAIL_OFF
+        for prompt in ("Write a YouTube script for my video about desk lamps", "Sequence diagram of the login flow",
+                       "Make a 60 second launch video for our app"):
+            _, out = self.hook({"prompt": prompt})
+            self.assertEqual(out.splitlines()[1], PONYTAIL_OFF, (prompt, out[:300]))
+        _, out = self.hook({"prompt": PROMPT})
+        self.assertNotIn(PONYTAIL_OFF, out)
+
     def test_compose_is_the_hook_text_without_side_effects(self):
         """The token report measures the hook with compose(): same text, no events, no fired marker."""
         from agylite.context import prompt_hook
