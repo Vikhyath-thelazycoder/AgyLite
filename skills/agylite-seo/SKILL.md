@@ -1,6 +1,7 @@
 ---
 name: agylite-seo
 description: SEO audits, AI-search readiness, keyword/competitor/backlink research and reporting through the routed SEO capabilities and the isolated BeyondSEO runtime, with every claim labelled by evidence.
+disable-model-invocation: true
 ---
 
 # Agylite SEO

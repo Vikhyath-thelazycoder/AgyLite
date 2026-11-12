@@ -488,9 +488,12 @@ Still to do:
         - **▶ RESUME HERE (Step 3): Part 6 — robustness and bookkeeping:** C1-6, C1-7, C1-8, C1-12, C2-3, C2-4, C2-5,
           C3-8, C3-9. Report and stop after it. Then the temporary-HOME harness change (owner token first) and the paid
           re-measurement (archify all three arms; every other suite `--arms agylite --reuse-from <run>`).
-          **Owner decision open (part 5):** the 14 plugin skill + 3 agent descriptions (~3.9 KB) stay, because Codex,
-          Cursor and Antigravity share `skills/agylite-*` and route by those descriptions; options: shorten them, or
-          give Claude Code its own smaller set.
+          **Part 5 follow-up done (owner 2026-11-12: "whichever is best", option b):** 13 entry skills carry
+          `disable-model-invocation: true`, so Claude Code (the prompt hook routes every prompt) no longer loads their
+          descriptions (~3 KB) on every turn; they stay user-invocable (`/agylite:…`). `agylite-routing` keeps its
+          description as the fallback for unrouted prompts. Cursor's installed copies drop the flag (Cursor honours
+          it and has no hook); Codex reads `skills/` directly and is expected to ignore the field (its own
+          implicit-invocation setting is separate); not verified on a live Codex install. 1 test; 486 OK.
         - [x] **Part 5 — fixed overhead (2026-11-12, C1-3 / C1-4 / C3-6).** (1) On hosts whose plugin routes every prompt
           (`levels.PROMPT_HOOK_HOSTS` = claude-code, hook on), L0's capability list becomes one line that says each
           prompt arrives routed and not to run `agylite route` / `context` again: L0 4,706 → 3,687 bytes on every turn.

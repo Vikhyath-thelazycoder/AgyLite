@@ -1,6 +1,7 @@
 ---
 name: agylite-update-review
 description: Review new upstream commits with the owner — what each changes, whether it is useful to Agylite, how to adopt it without breaking anything or lowering the benchmarks — and switch only what the owner approves.
+disable-model-invocation: true
 ---
 
 # Agylite Update Review

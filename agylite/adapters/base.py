@@ -15,6 +15,7 @@ from ..paths import repo_root, agylite_home
 
 HOSTS = ("claude-code", "codex", "cursor", "antigravity")
 MANAGED = ".agylite-managed"
+NO_MODEL = "disable-model-invocation: true"
 LEGACY = (".vikhyath-managed",)   # pre-rename installs (D-044)
 DESCRIPTION = ("Agylite: one deterministic router, budgeted context, project state and local "
                "test-first verification over a curated bundle of engineering, codebase, design, testing, SEO and media "
@@ -92,6 +93,9 @@ class Adapter:
             if d.exists() and not _managed(d):
                 raise FileExistsError(f"{d} exists and is not managed by Agylite; not overwriting")
             d.mkdir(parents=True, exist_ok=True)
+            # Step 3 part 5 (option b): the flag keeps these descriptions out of Claude Code's context, where the prompt
+            # hook routes every prompt; a host without the hook (Cursor honours the flag) needs them to pick a skill.
+            text = text.replace(f"\n{NO_MODEL}\n", "\n")
             (d / "SKILL.md").write_text(text, encoding="utf-8")
             (d / MANAGED).write_text(f"agylite {__version__}\n", encoding="utf-8")
             written.append(str(d))

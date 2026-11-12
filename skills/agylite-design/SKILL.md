@@ -1,6 +1,7 @@
 ---
 name: agylite-design
 description: UI/UX and visual design work — inspiration sites to an approved DESIGN.md, Taste v2.1 directions, design systems, typography, motion, native mobile — built in code and verified with Taste lint/inspect and the design-token check.
+disable-model-invocation: true
 ---
 
 # Agylite Design

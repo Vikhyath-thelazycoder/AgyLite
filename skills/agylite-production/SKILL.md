@@ -1,6 +1,7 @@
 ---
 name: agylite-production
 description: Release readiness — plan completion, verification evidence, changelog and rollback — through engineering/release and testing/release-verification.
+disable-model-invocation: true
 ---
 
 # Agylite Production

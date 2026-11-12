@@ -1,6 +1,7 @@
 ---
 name: agylite-codebase
 description: Understand an existing codebase before changing it — affected files and the tests that cover a change, from the project's code graph (Graphify) via `agylite codebase`.
+disable-model-invocation: true
 ---
 
 # Agylite Codebase

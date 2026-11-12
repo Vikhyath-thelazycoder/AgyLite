@@ -1,6 +1,7 @@
 ---
 name: agylite-review
 description: Pre-merge code review of the current change — scope drift, correctness, security, tests — using the routed engineering/review capability and local evidence.
+disable-model-invocation: true
 ---
 
 # Agylite Review

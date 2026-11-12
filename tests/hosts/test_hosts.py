@@ -47,6 +47,18 @@ class TestPolicy(unittest.TestCase):
                     self.assertNotIn(word, text, f"{a.host} {rel}")
         self.assertIn("config/verification.yaml", get("antigravity").repo_files()[".agents/skills/agylite/SKILL.md"])
 
+    def test_claude_code_loads_only_the_routing_description_and_other_hosts_get_all(self):
+        """Step 3 part 5, option b: on Claude Code the prompt hook routes every prompt, so 13 entry-skill descriptions
+        (~3 KB on every turn) stay out of context; agylite-routing stays as the fallback. Cursor's copies drop the flag."""
+        from agylite.adapters.base import NO_MODEL
+        skills = entry_skills()
+        self.assertEqual(sorted(n for n, t in skills.items() if NO_MODEL not in t), ["agylite-routing"])
+        with tempfile.TemporaryDirectory() as tmp:
+            cursor = get("cursor")
+            cursor.user_home = Path(tmp)
+            for d in cursor.install():
+                self.assertNotIn(NO_MODEL, (Path(d) / "SKILL.md").read_text(encoding="utf-8"))
+
     def test_claude_hooks_session_bootstrap_and_prompt_route(self):
         hooks = json.loads(Path(ROOT_DIR, "hooks", "hooks.json").read_text(encoding="utf-8"))["hooks"]
         self.assertEqual(list(hooks), ["SessionStart", "UserPromptSubmit"])   # D-042 amended by D-048 (MP1 F15)

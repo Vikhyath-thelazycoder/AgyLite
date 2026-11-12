@@ -1,6 +1,7 @@
 ---
 name: agylite-testing
 description: Verify a change locally and test-first — impacted tests, types, lint, build — with machine-readable evidence via `agylite verify`; never by browser or screenshot.
+disable-model-invocation: true
 ---
 
 # Agylite Testing

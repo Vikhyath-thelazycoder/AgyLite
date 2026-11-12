@@ -1,6 +1,7 @@
 ---
 name: agylite-diagrams
 description: Architecture, sequence, workflow, data-flow, lifecycle, ERD, class, tree, timeline and waterfall diagrams of a system or this codebase as checked standalone HTML with Archify (`agylite diagram`). Explainer pages only when asked.
+disable-model-invocation: true
 ---
 
 # Agylite Diagrams

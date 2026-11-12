@@ -1,6 +1,7 @@
 ---
 name: agylite-media
 description: Launch videos, demos and showcase material from a project or website with the bundled Brag workflow — brag-slim by default, no backend or SEO capabilities involved.
+disable-model-invocation: true
 ---
 
 # Agylite Media

@@ -1,6 +1,7 @@
 ---
 name: agylite-security
 description: Security-sensitive changes (auth, secrets, payments/webhooks, input handling, OWASP) — route to engineering/security and testing/security and prove fixes with negative tests run locally.
+disable-model-invocation: true
 ---
 
 # Agylite Security

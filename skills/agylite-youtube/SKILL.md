@@ -1,6 +1,7 @@
 ---
 name: agylite-youtube
 description: YouTube creator work — scripts and hooks, titles and thumbnails, Shorts picks, edit decision lists, chapters, SEO, retention and outlier analysis, plans and comment replies — in the creator's voice. Writes only; never renders, cuts or uploads video.
+disable-model-invocation: true
 ---
 
 # Agylite YouTube

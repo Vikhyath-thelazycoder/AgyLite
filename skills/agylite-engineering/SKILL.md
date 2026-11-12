@@ -1,6 +1,7 @@
 ---
 name: agylite-engineering
 description: Engineering work (features, fixes, refactors, migrations) through the Agylite lifecycle — route, understand, plan, implement, test, verify, reconcile — with only the routed engineering capabilities loaded.
+disable-model-invocation: true
 ---
 
 # Agylite Engineering

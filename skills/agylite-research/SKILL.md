@@ -1,6 +1,7 @@
 ---
 name: agylite-research
 description: Research a question from the web, YouTube, GitHub and (opt-in) X and Reddit — the host's web search finds pages, `agylite research` reads them, and the findings become one sourced report in docs/research/. Read-only.
+disable-model-invocation: true
 ---
 
 # Agylite Research
