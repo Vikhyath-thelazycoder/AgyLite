@@ -69,29 +69,43 @@ class TestPromptHook(unittest.TestCase):
         self.assertIn("[cached] files/alpha/skills/hardening/SKILL.md", again)
         self.assertNotIn("## Cookies", again)
 
-    def test_a_skill_over_the_hook_budget_stays_a_load_command(self):
+    def with_cap(self, max_chars, pairs=None, prompt=PROMPT):
+        """The hook output under `prompt_hook.max_chars` (and `skill_overlaps` replaced by `pairs` when given)."""
         from agylite.context.budget import load_budgets
         from tests.context.fixtures import make_bundle
         make_bundle(self.home)
         budgets = load_budgets()
-        budgets["prompt_hook"]["primary_skill_max_tokens"] = 100
-        with mock.patch("agylite.context.budget.load_budgets", return_value=budgets):
-            _, out = self.hook({"prompt": PROMPT})
-        self.assertIn("Before the first edit, load the whole skill and follow it: agylite skill load alpha/hardening",
-                      out)
-        self.assertNotIn("## Cookies", out)
+        if max_chars is not None:
+            budgets["prompt_hook"]["max_chars"] = max_chars
+        with contextlib.ExitStack() as stack:
+            if pairs is not None:
+                stack.enter_context(mock.patch("agylite.context.levels.skill_overlaps", return_value=pairs))
+            stack.enter_context(mock.patch("agylite.context.budget.load_budgets", return_value=budgets))
+            return self.hook({"prompt": prompt})[1]
 
-    def overlap(self, pairs, partner_limit=None):
-        """The hook output with `skill_overlaps` replaced by `pairs` (fixture skills are ~1.5k tokens)."""
+    def test_the_whole_hook_stays_under_the_char_cap(self):
+        """C1-2 (Step 3 part 2): Claude Code saves hook output over ~10k chars to a file the agent may never open."""
         from agylite.context.budget import load_budgets
-        from tests.context.fixtures import make_bundle
-        make_bundle(self.home)
-        budgets = load_budgets()
-        if partner_limit is not None:
-            budgets["prompt_hook"]["overlap_skill_max_tokens"] = partner_limit
-        with mock.patch("agylite.context.levels.skill_overlaps", return_value=pairs), \
-                mock.patch("agylite.context.budget.load_budgets", return_value=budgets):
-            return self.hook({"prompt": PROMPT})[1]
+        cap = load_budgets()["prompt_hook"]["max_chars"]
+        self.assertTrue(9000 <= cap <= 10000, cap)
+        out = self.with_cap(None)
+        self.assertIn("## Cookies", out)
+        self.assertLessEqual(len(out), cap)
+
+    def test_a_lead_skill_over_the_cap_becomes_one_read_of_its_file(self):
+        out = self.with_cap(600)
+        self.assertLessEqual(len(out), 600)
+        self.assertRegex(out, r"Before the first edit, read the whole skill alpha/hardening and follow it: \S*"
+                              r"files/alpha/skills/hardening/SKILL\.md")
+        self.assertNotIn("## Cookies", out)
+        again = self.with_cap(600)   # not sent, so not marked as already in context
+        self.assertNotIn("[cached]", again)
+        self.assertIn("read the whole skill alpha/hardening", again)
+
+    def overlap(self, pairs, max_chars=20000):
+        """The hook output with `skill_overlaps` replaced by `pairs`; fixture skills are ~6k chars each, so the pairing
+        tests lift the cap."""
+        return self.with_cap(max_chars, pairs)
 
     def test_overlapping_skill_of_another_upstream_loads_whole_with_a_lead(self):
         """Option 2 (owner 2026-10-22, D-050): one job, two upstreams → both skills whole, the lead named and first."""
@@ -109,10 +123,16 @@ class TestPromptHook(unittest.TestCase):
         self.assertIn("where they disagree follow beta/test-security.", out)
         self.assertLess(out.index("(skill beta/test-security, whole)"), out.index("(skill alpha/hardening, whole)"))
 
-    def test_partner_over_its_budget_is_left_out(self):
-        out = self.overlap([("files/alpha/skills/hardening/SKILL.md", "files/beta/skills/test-security/SKILL.md")],
-                           partner_limit=10)
+    def test_a_partner_that_would_break_the_cap_is_left_out(self):
+        pairs = [("files/alpha/skills/hardening/SKILL.md", "files/beta/skills/test-security/SKILL.md")]
+        full = self.overlap(pairs)
+        cards = full.index("### files/") - full.index("# engineering/")
+        cap = len(full) - cards - 1   # the pair alone is one char over: cards go first, then the partner
+        self.tmp.cleanup(); self.setUp()   # a fresh home: nothing cached yet
+        out = self.overlap(pairs, max_chars=cap)
+        self.assertLessEqual(len(out), cap)
         self.assertIn("The whole skill alpha/hardening follows;", out)
+        self.assertIn("## Cookies", out)
         self.assertNotIn("## Authz tests", out)
 
     def test_compose_is_the_hook_text_without_side_effects(self):

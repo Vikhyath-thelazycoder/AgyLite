@@ -322,6 +322,7 @@ class TestMeasurementFixes(unittest.TestCase):
             exe.write_text(f"#!/bin/sh\necho {word}\n", encoding="utf-8")
             exe.chmod(0o755)
         env = {**os.environ, "AGYLITE_HOME": str(fake), "PATH": f"{fake / 'path'}{os.pathsep}{os.environ['PATH']}"}
+        env.pop("AGYLITE_PLUGIN_SOURCE", None)   # the caller's own pin (e.g. `agylite validate` under it) must not leak in
         launcher = os.path.join(ROOT_DIR, "bin", "agylite")
         import subprocess
         plain = subprocess.run([launcher, "--help"], env=env, capture_output=True, text=True)

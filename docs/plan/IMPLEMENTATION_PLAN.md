@@ -485,9 +485,22 @@ Still to do:
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3): Part 2 — hook ≤ 9,000–10,000 chars with the lead skill inline (C1-2 / C1-10 /
-          C2-2).** Parts 3–6 follow in order; report and stop after each part. Before the paid re-measurement: the
-          temporary-HOME harness change below (owner token first).
+        - **▶ RESUME HERE (Step 3): Part 3 — routing (C1-5 / C1-11 / C3-5):** at most lead + partner skill; diagram and
+          page prompts route one skill, the right change type and no engineering cards. Parts 4–6 follow in order;
+          report and stop after each part. Before the paid re-measurement: the temporary-HOME harness change below
+          (owner token first).
+        - [x] **Part 2 — hook ≤ 9,600 chars (2026-11-12, C1-2 / C1-10 / C2-2).** `prompt_hook.max_chars: 9600` replaces
+          `primary_skill_max_tokens` / `overlap_skill_max_tokens`; the whole hook (route lines, skills, cards) stays
+          under it. Order: lead skill whole → its overlap partner only if it still fits → cards in what is left. A
+          lead over the cap becomes one line, "read the whole skill <id> and follow it: <absolute SKILL.md path>"
+          (archify ≈ 20k, Taste ≈ 43k chars). A skill read but not sent is dropped from the session cache
+          (`ContextLoader.forget`), so a later prompt does not call it "already in context". Measured on the bundle
+          6c8821eb00b7 with the checkout engine: bug fix 22,449 → 9,462 chars (diagnosing-bugs inline, Addy partner
+          left out), TDD 22,643 → 7,115 (tdd inline), diagram 21,394 → 1,804 (Read path), landing 44,260 → 3,149 (Read
+          path), research 4,211 and youtube 4,033 unchanged. Tests: cap in range and respected, over-cap lead → Read
+          line and not cached, partner left out before the lead, cards dropped before the partner. Also: two launcher
+          tests no longer inherit the caller's `AGYLITE_PLUGIN_SOURCE` (they failed under `agylite validate` run with
+          it). 481 tests OK, validate 23/23. Open for part 3: BUG_FIX/TDD still add a 3rd skill as a load command (C1-11).
         - [x] **Part 1 — measurement (2026-11-10, commit `e2e3446`).** C1-1: `bin/agylite` honours `AGYLITE_PLUGIN_SOURCE=1` (skips
           `$AGYLITE_HOME/core` and PATH), the AgyLite arm sets it, `SESSION_STARTED` records `details.engine`, and
           `harness.engine_error` makes a cell invalid when the engine is not the run's snapshot (or never started).

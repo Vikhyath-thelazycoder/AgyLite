@@ -195,6 +195,11 @@ class ContextLoader:
         if self.cache:
             self.cache.record(key, level=level, sha256=sha256, stat=stat, sections=sections)
 
+    def forget(self, key: str):
+        """Undo `record` for a file that was read but in the end not sent (the prompt hook's size cap)."""
+        if self.cache:
+            self.cache.data["entries"].pop(key, None)
+
     def finish(self, active_capabilities=None):
         if self.project is not None and self.log:
             from ..events.log import emit

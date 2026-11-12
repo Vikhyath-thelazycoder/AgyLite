@@ -139,6 +139,7 @@ class TestStatusAndInstall(unittest.TestCase):
             f.chmod(f.stat().st_mode | stat.S_IEXEC)
         env = {**os.environ, "AGYLITE_HOME": str(self.home), "HOME": str(self.user)}
         env.pop("AGYLITE_NO_AUTO_UPDATE", None)
+        env.pop("AGYLITE_PLUGIN_SOURCE", None)   # the plugin-source pin skips the central engine this test needs
 
         def start(plugin_version, engine_version, **extra):
             (plugin / "VERSION").write_text(plugin_version, encoding="utf-8")

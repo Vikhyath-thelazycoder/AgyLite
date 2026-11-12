@@ -71,30 +71,55 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     ids = [c["id"] for c in route["capabilities"]]
     deps = [d["id"] for d in route["dependencies"]]
     limit = budgets["prompt_hook"]["max_tokens"]
+    # C1-2 (Step 3 part 2): Claude Code saves hook output over ≈ 10,000 chars to a file the agent may never open, so
+    # the whole hook stays within `prompt_hook.max_chars`: lead skill first, its partner if it still fits, cards last.
+    cap = budgets["prompt_hook"]["max_chars"]
     loader = ContextLoader(project, session_id, current_bundle())
     skills = primary_skill_ids(loader, route.get("whole_skills") or ids[:1], prompt, route.get("skill_hints"))
     # MP3/MP4 Tier 1: agents rarely ran the load command (0 of 37 sessions, then 2 of 3), so the first skill's text
-    # arrives with the prompt, whole, when it fits `prompt_hook.primary_skill_max_tokens`; any second skill stays a
-    # command. The session cache turns it into a one-line marker on later prompts.
-    inline = _inline_skill(loader, skills[0], budgets) if skills else None
+    # arrives with the prompt, whole; the session cache turns it into a one-line marker on later prompts.
+    lead = _inline_skill(loader, skills[0]) if skills else None
     # Option 2 (D-050): when another upstream has a skill for the same job, it rides along whole and one side leads.
-    pair = _overlap_partner(loader, skills[0], budgets, root) if inline else None
+    pair = _overlap_partner(loader, skills[0], root) if lead else None
     if pair:
         skills = [skills[0], pair["partner"]] + [s for s in skills[1:] if s != pair["partner"]]
-    rest = skills[(2 if pair else 1):] if inline else skills
-    load = (" && ".join(f"agylite skill load {s}" for s in rest) if rest else
-            f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
-    lines = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
-    also = f" Also load and follow: {load}" if rest else ""
-    if pair:
-        lines.append(f"The whole skills {pair['lead']} and {pair['other']} follow (one job, two upstreams); follow "
-                     f"both before the first edit, and where they disagree follow {pair['lead']}." + also)
-    elif inline:
-        lines.append(f"The whole skill {skills[0]} follows; follow it before the first edit." + also)
-    else:
-        lines.append(f"Before the first edit, load the whole skill and follow it: {load}")
-    lines.append("Done means: agylite verify passes (tests, types, lint, build).")
+
+    def head(inline, pair):
+        rest = skills[(2 if pair else 1):] if inline else skills[1:]
+        also = (" Also load and follow: " + " && ".join(f"agylite skill load {s}" for s in rest)) if rest else ""
+        out = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
+        if pair:
+            out.append(f"The whole skills {pair['lead']} and {pair['other']} follow (one job, two upstreams); follow "
+                       f"both before the first edit, and where they disagree follow {pair['lead']}." + also)
+        elif inline:
+            out.append(f"The whole skill {skills[0]} follows; follow it before the first edit." + also)
+        elif lead:   # too big to ride along: one Read of the file, not a CLI call agents skip
+            out.append(f"Before the first edit, read the whole skill {skills[0]} and follow it: {lead['path']}" + also)
+        elif skills:
+            out.append(f"Before the first edit, load the whole skill and follow it: agylite skill load {skills[0]}"
+                       + also)
+        else:
+            out.append("Before the first edit, load the whole skill and follow it: "
+                       f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
+        out.append("Done means: agylite verify passes (tests, types, lint, build).")
+        return out
+
+    def size(lines, texts=()):
+        return len("\n".join(list(lines) + [t.rstrip() for t in texts]) + "\n")
+
+    if pair and size(head(lead, pair), [lead["text"], pair["text"]]) > cap:
+        loader.forget(pair["path"])
+        pair = None
+        skills = [skills[0]] + skills[2:] if len(skills) > 1 else skills
+    inline = lead if lead and size(head(lead, None), [lead["text"]]) <= cap else None
+    if lead and not inline:
+        loader.forget(lead["key"])
+    lines = head(inline, pair)
+    texts = ([] if not inline else [inline["text"], pair["text"]] if pair else [inline["text"]])
+    if pair and pair["lead"] != skills[0]:
+        texts.reverse()   # the leading skill comes first
     used = est_tokens(nbytes("\n".join(lines)))
+    left = cap - size(lines, texts)   # cards fit both their token budget and what the skills leave of the cap
     cards, cached = [], []
     caps_dir = (root or repo_root()) / "capabilities"
     for cid in ids:
@@ -104,26 +129,20 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
             continue
         stat = path.stat()
         if loader.cached(display, stat=stat, sections=["all"]):
-            marker = f"(card {cid} already in context)"
-            if used + est_tokens(nbytes(marker)) > limit:
+            text = f"(card {cid} already in context)"
+            if used + est_tokens(nbytes(text)) > limit or len(text) + 1 > left:
                 break
             cached.append(cid)
-            lines.append(marker)
-            used += est_tokens(nbytes(marker))
-            continue
-        text = path.read_text(encoding="utf-8").rstrip()
-        cost = est_tokens(nbytes(text))
-        if used + cost > limit:
-            break
-        loader.record(display, level="L1", stat=stat, sections=["all"], sent_bytes=nbytes(text))
-        cards.append(cid)
+        else:
+            text = path.read_text(encoding="utf-8").rstrip()
+            if used + est_tokens(nbytes(text)) > limit or len(text) + 1 > left:
+                break
+            loader.record(display, level="L1", stat=stat, sections=["all"], sent_bytes=nbytes(text))
+            cards.append(cid)
         lines.append(text)
-        used += cost
-    if inline:   # outside the card budget: the skills have their own
-        texts = [inline, pair["text"]] if pair else [inline]
-        if pair and pair["lead"] != skills[0]:
-            texts.reverse()   # the leading skill comes first
-        lines += [t.rstrip() for t in texts]
+        used += est_tokens(nbytes(text))
+        left -= len(text) + 1
+    lines += [t.rstrip() for t in texts]
     if loader.cache:
         loader.cache.save()
     return {"text": "\n".join(lines) + "\n", "ids": ids, "change_type": route["change_type"], "cards": cards,
@@ -148,24 +167,23 @@ def primary_skill_ids(loader, cids, query, hints=None) -> list:
         return []
 
 
-def _inline_skill(loader, sid: str, budgets: dict):
-    """One skill's whole text (or its cached marker) for the hook; None when it is over the budget or not bundled."""
+def _inline_skill(loader, sid: str):
+    """{key, path, text}: one skill's whole text (or its cached marker) for the hook; None when it is not bundled."""
     from . import levels
-    limit = budgets["prompt_hook"].get("primary_skill_max_tokens", 0)
     try:
         entry = levels.find_skill(loader, sid)
-        if entry is None or entry["tokens"] > limit:
+        if entry is None:
             return None
-        return levels.whole_skill(loader, entry, level="L2")[0]
+        return {"key": entry["path"], "path": str(loader.source(entry)),
+                "text": levels.whole_skill(loader, entry, level="L2")[0]}
     except Exception:   # no bundle or an unreadable file: fall back to the load command
         return None
 
 
-def _overlap_partner(loader, sid: str, budgets: dict, root=None):
-    """Option 2 (D-050): {lead, other, partner, text} when skill `sid` is one side of a `skill_overlaps` pair and the
-    other side fits `prompt_hook.overlap_skill_max_tokens` (`other` is the skill shown after `lead`'s name); else None."""
+def _overlap_partner(loader, sid: str, root=None):
+    """Option 2 (D-050): {lead, other, partner, path, text} when skill `sid` is one side of a `skill_overlaps` pair
+    (`other` is the skill shown after `lead`'s name, `path` the partner's bundle path); else None."""
     from . import levels
-    limit = budgets["prompt_hook"].get("overlap_skill_max_tokens", 0)
     try:
         entry = levels.find_skill(loader, sid)
         pair = levels.overlap_pair(loader, entry, levels.skill_overlaps(root)) if entry else None
@@ -173,10 +191,8 @@ def _overlap_partner(loader, sid: str, budgets: dict, root=None):
             return None
         lead, also = pair
         partner = also if lead["path"] == entry["path"] else lead
-        if partner["tokens"] > limit:
-            return None
         return {"lead": levels.skill_id(lead), "other": levels.skill_id(also), "partner": levels.skill_id(partner),
-                "text": levels.whole_skill(loader, partner, level="L2")[0]}
+                "path": partner["path"], "text": levels.whole_skill(loader, partner, level="L2")[0]}
     except Exception:   # no bundle or an unreadable file: the first skill alone
         return None
 

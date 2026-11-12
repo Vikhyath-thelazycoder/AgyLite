@@ -53,15 +53,14 @@ semantic_results:
 # MP1 F15 (D-048): the UserPromptSubmit hook injects the route, the load command and the routed L1 cards.
 prompt_hook:
   max_tokens: 800
-  primary_skill_max_tokens: 12000
-  overlap_skill_max_tokens: 6000
+  max_chars: 9600
   why: >-
     Pilot 2026-10-21 (AUDIT_REPORT §9): the agent made 0 agylite calls on small, clear tasks, so the SessionStart
     suggestion alone left AgyLite equal to no skill. The owner decided to auto-route every prompt; 800 fits the route
     line, the load command and two or three cards, and cards already sent this session become one-line markers.
-    primary_skill_max_tokens (MP3/MP4 Tier 1, owner 2026-10-22): the agent still ran `agylite skill load` in 0 of 37
-    MP3 sessions and 2 of 3 design sessions, so the first whole skill now rides in the hook, never truncated, once per
-    session (later prompts get a marker). 12,000 fits the design and engineering primaries (Taste ≈ 9,700); larger
-    skills (gstack ship, investigate) stay a load command. overlap_skill_max_tokens (option 2, owner 2026-10-22, D-050):
-    when the first skill has a config/priorities.yaml `skill_overlaps` partner from another upstream, the partner rides
-    along whole too; 6,000 fits every listed partner (Addy code-review-and-quality ≈ 5,250 is the largest).
+    The first whole skill rides in the hook (MP3/MP4 Tier 1, owner 2026-10-22: the agent ran `agylite skill load` in 0
+    of 37 MP3 sessions), once per session (later prompts get a marker), and its config/priorities.yaml `skill_overlaps`
+    partner too (option 2, D-050). max_chars (Step 3 part 2, C1-2, owner 2026-11-10: 9,000-10,000): Claude Code saves
+    hook output over about 10,000 chars to a file the agent may never open (eng-pocock diagnosing-bugs 0.46 vs 0.79), so
+    the whole hook stays under it: lead skill first, its partner only if it still fits, cards in what is left; a lead
+    over the cap (archify, Taste) becomes one Read of its file. 9,600 fits Pocock diagnosing-bugs with the route lines.
