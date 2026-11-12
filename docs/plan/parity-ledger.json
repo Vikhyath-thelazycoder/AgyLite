@@ -2548,7 +2548,345 @@
    "errors": [],
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T092659Z-eng-pocock",
    "fix_applied": "",
-   "next_step": ""
+   "next_step": "superseded: every cell failed at $0 on a bad OAuth token (17-char placeholder); the next eng-pocock row is the valid re-measurement"
+  },
+  {
+   "date": "20261112T094703Z",
+   "suite": "eng-pocock",
+   "n": 3,
+   "bundle": "6c8821eb00b7",
+   "agylite_commit": "7d0d9fb45cddb71b35b1577f3acc2cbc681ba3e1",
+   "upstream_shas": {
+    "skills": "5beb35b040e3de97e54fa9e386d7e42d15c295c2",
+    "agent-skills": "aeac41d4d005999432bb7312f7ff06383a91d59d"
+   },
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "expectations_passed": {
+     "baseline": 0.5316666666666666,
+     "upstream": 0.7533333333333334,
+     "agylite": 0.86,
+     "retained": 1.481,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 3.6184,
+    "upstream": 5.4419,
+    "agylite": 4.9505
+   },
+   "agent_seconds": {
+    "baseline": 814.8,
+    "upstream": 1484.9,
+    "agylite": 817.2
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock/agylite-plugin"
+     ]
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261112T094703Z-eng-pocock",
+   "fix_applied": "Step 3 parts 1-6 (hook <= 9,600 chars, lead + partner only, routing, Ponytail exemption, smaller L0)",
+   "next_step": "AgyLite 0.86 > original 0.75 (Phase 9 0.77); diagnosing-bugs 0.46 -> 0.75 (C1-10 fixed); tdd#2 'regressed' is the retention formula flipping on the original's negative gain (original asks, 0.00; AgyLite acts, 1.00)"
   }
  ],
  "notes": [

@@ -83,3 +83,18 @@ overhead (C1-2, C1-3). It is cheaper on youtube (because it iterates less, C2-1)
 
 Then re-measure: diagram-archify in all three arms (its no-skill arm is invalid), and every other suite in the
 AgyLite arm only (`--arms agylite --reuse-from <run>`).
+
+## Step 3 re-measurement (AgyLite arm, started 2026-11-12)
+
+Run with `AGYLITE_BENCH_HOME=real` (the owner's OAuth token could not be set; Read deny rules + leak check on), engine
+commit 7d0d9fb, bundle 6c8821eb00b7, other arms reused from Phase 9.
+
+| suite | run | expectations / metric: no skill / original / AgyLite | Phase 9 AgyLite | cost AgyLite (original) |
+|---|---|---|---|---|
+| eng-pocock | 20261112T094703Z | 0.53 / 0.75 / **0.86** (retained 1.48) | 0.77 | $4.95 ($5.44; Phase 9 $6.02) |
+
+eng-pocock per task: diagnosing-bugs 0.75 / 0.75 (was 0.46 in Phase 9: C1-10 fixed by the hook cap), grilling, to-spec,
+to-tickets 0.83–1.00 (= or > original), tdd#2 1.00 vs original 0.00 (the original asks; the "regressed" label is the
+retention formula on a negative original gain), tdd#1 0.27 = original (both ask: the fixture already strips emoji).
+Measurement note (fix after the run): the C1-9 "asked" counter misses AgyLite's questions because Ponytail's closing
+lines end the answer, so the last paragraph has no "?".
