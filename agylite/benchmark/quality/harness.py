@@ -42,7 +42,7 @@ class UsageLimit(RuntimeError):
 LIMIT_REPLY = re.compile(r"^\s*(?:You've hit your (?:session|weekly|usage|daily) limit|Claude (?:AI )?usage limit reached|"
                          r"API Error: 429\b.*rate_limit_error|"
                          # a rejected token (e.g. a bad CLAUDE_CODE_OAUTH_TOKEN paste): every later cell would fail too
-                         r"Failed to authenticate\. API Error: 401\b)", re.I)
+                         r"Failed to authenticate\. API Error: 401\b|Invalid auth token\b)", re.I)
 LIMIT_REPLY_MAX = 300
 
 
@@ -323,7 +323,13 @@ TOKEN = "CLAUDE_CODE_OAUTH_TOKEN"
 
 def require_token():
     """Claude Code is logged out in a session's own HOME, so paid sessions need the owner's token in the shell."""
-    if not os.environ.get(TOKEN):
+    token = os.environ.get(TOKEN, "")
+    if token and (len(token) < 40 or not token.isascii() or any(c.isspace() for c in token)):
+        # 2026-11-12: a pasted placeholder (17 chars with "…") failed every cell; say so before any session starts
+        raise SpendRefused(f"{TOKEN} does not look like a token ({len(token)} characters"
+                           f"{', not plain ASCII' if not token.isascii() else ''}): paste the whole line "
+                           "`claude setup-token` printed, without quotes, brackets or `…`")
+    if not token:
         raise SpendRefused(f"every paid session runs in its own HOME, where Claude Code is logged out: run "
                            f"`claude setup-token` once and `export {TOKEN}=…` in this shell (never in a file)")
 

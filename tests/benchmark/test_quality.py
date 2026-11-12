@@ -108,7 +108,7 @@ class _FakeSuite:
         return {"label": ctx["label"], "arm": ctx["arm"], "cost": 0.1, "metrics": {"score": 1.0}}
 
 
-@mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "test-token"})   # paid runs need it
+@mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "sk-ant-oat01-" + "t" * 90})   # paid runs need it
 class TestUsageLimit(unittest.TestCase):
     """MP2 spending rule: on a usage-limit or rate-limit reply the run stops and says where to resume; a limit
     message is never graded as an answer."""
@@ -127,6 +127,16 @@ class TestUsageLimit(unittest.TestCase):
         """2026-11-12: a bad CLAUDE_CODE_OAUTH_TOKEN made every cell answer 401 at $0 instead of stopping the run."""
         self.assertTrue(harness.is_usage_limit("Failed to authenticate. API Error: 401 OAuth access token is invalid."))
         self.assertFalse(harness.is_usage_limit("The endpoint now returns 401 for a missing token; tests pass."))
+
+    def test_a_placeholder_token_is_refused_before_any_session(self):
+        for bad in ("sk-ant-oat01-…xyz", "short", "sk-ant-oat01-" + "a" * 40 + " b"):
+            with mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": bad}):
+                with self.assertRaises(harness.SpendRefused):
+                    harness.require_token()
+        with mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "sk-ant-oat01-" + "a" * 90}):
+            harness.require_token()
+        self.assertTrue(harness.is_usage_limit("Invalid auth token · Fix external auth token · Invalid Authorization "
+                                               "header value from CLAUDE_CODE_OAUTH_TOKEN"))
 
     def test_run_session_raises_on_a_limit_reply(self):
         trace = "\n".join([json.dumps({"type": "system", "subtype": "init", "plugins": [], "skills": [],
@@ -180,7 +190,7 @@ class TestUsageLimit(unittest.TestCase):
         self.assertTrue(tier1._valid({"label": "x", "metrics": {"score": 0.0, "other": None}}))
 
 
-@mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "test-token"})   # paid runs need it
+@mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "sk-ant-oat01-" + "t" * 90})   # paid runs need it
 class TestReuseArms(unittest.TestCase):
     def test_reuse_keeps_unchanged_arms_and_reruns_the_named_ones(self):
         """IMPLEMENTATION_PLAN §2.4 "never re-run an unchanged configuration": a new AgyLite build re-runs only the
@@ -474,7 +484,7 @@ class TestPart6(unittest.TestCase):
     def test_session_runs_in_its_own_home_with_only_declared_links_and_the_token_from_the_shell(self):
         trace = json.dumps({"type": "result", "result": "done", "total_cost_usd": 0, "num_turns": 1})
         with tempfile.TemporaryDirectory() as tmp, \
-                mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "secret-token-123"}), \
+                mock.patch.dict(os.environ, {"CLAUDE_CODE_OAUTH_TOKEN": "sk-ant-oat01-secret-token-123-" + "s" * 60}), \
                 mock.patch("subprocess.run", return_value=mock.Mock(stdout=trace, returncode=0)) as run:
             run_dir, ws = Path(tmp) / "run", Path(tmp) / "ws"
             ws.mkdir()
@@ -485,7 +495,7 @@ class TestPart6(unittest.TestCase):
             env = run.call_args.kwargs["env"]
             home = run_dir / "home" / "cell-1"
             self.assertEqual(env["HOME"], str(home))
-            self.assertEqual(env["CLAUDE_CODE_OAUTH_TOKEN"], "secret-token-123")
+            self.assertEqual(env["CLAUDE_CODE_OAUTH_TOKEN"], "sk-ant-oat01-secret-token-123-" + "s" * 60)
             self.assertTrue((home / ".agylite-test-declared-read").is_symlink())
             self.assertEqual(sorted(p.name for p in home.iterdir()), [".agylite-test-declared-read"])
             for f in Path(tmp).rglob("*"):   # the token is never written anywhere
