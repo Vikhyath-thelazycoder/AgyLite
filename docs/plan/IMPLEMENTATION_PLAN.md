@@ -479,7 +479,7 @@ Still to do:
         ceiling 8,000 → 10,000 bytes (owner: quality first; it failed at 8,005 on clean main)
   - [x] Step 2 — finish the Phase 9 paid run on the frozen bundle. **DONE 2026-11-05:** chunks 1–3, 9 suites,
         378 sessions, $119.29; every chunk reviewed (C1-1…C1-12, C2-1…C2-5, C3-1…C3-8)
-  - [ ] Step 3 — **PAUSED by the owner 2026-11-05, before any fix.** Done: `docs/plan/PARITY_REPORT.md` (results,
+  - [ ] Step 3 — **IN PROGRESS: code parts 1–6 + new suites done 2026-11-12; paid re-measurement running (see ▶ RESUME).** History: paused by the owner 2026-11-05, before any fix. Done: `docs/plan/PARITY_REPORT.md` (results,
         findings, fix order). Not started: every code fix. Already handled outside code: C1-6 (run recovered by
         hand), C1-9 (grader scores question-only answers 0), C2-3 (browser runtime installed), C2-4 (resume
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
@@ -680,7 +680,7 @@ Still to do:
 - [x] gstack 5cb5e1c → b04cc35 approved by the owner (2026-10-23), promoted, evidence regenerated; bundle 6c8821eb00b7
       (= the approved candidate, byte for byte); gate green
 - [ ] Owner approval waiting: addy@aeac41d after its Tier 1 run
-- [ ] **Phase 9 full paid run (owner go-ahead 2026-10-23; every suite, all three arms, n = 3, ≈ 378 sessions,
+- [x] **Phase 9 full paid run (done 2026-11-05; owner go-ahead 2026-10-23; every suite, all three arms, n = 3, ≈ 378 sessions,
       ≈ $130; in chunks, the owner says when).** AgyLite arm on the addy candidate 3509e18d39d9 (= bundle 6c8821eb00b7
       + addy aeac41d; option 2 + gstack b04cc35 + new addy). **Stopped 2026-10-23 16:4xZ on the owner's request (usage
       running out) after 76 sessions, $11.50.** Resume in a new session with "continue the paid test":
