@@ -251,9 +251,10 @@ def summarize_trace(trace_lines) -> dict:
                     out["edits"] += 1
         elif e.get("type") == "result":
             text = e.get("result") or ""
-            last = next((x for x in reversed(text.strip().split("\n\n")) if x.strip()), "")
+            # last 3 paragraphs: Ponytail's closing skipped/risk lines follow the question (C1-9)
+            tail = [x for x in text.strip().split("\n\n") if x.strip().strip("-*_ ")][-3:]
             out.update(cost=e.get("total_cost_usd"), duration_ms=e.get("duration_ms"), turns=e.get("num_turns"),
-                       result=text[:4000], asked="?" in last)
+                       result=text[:4000], asked=any("?" in x for x in tail))
     out["asked"] = out["asked"] and out["edits"] == 0
     return out
 

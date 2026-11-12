@@ -92,9 +92,21 @@ commit 7d0d9fb, bundle 6c8821eb00b7, other arms reused from Phase 9.
 | suite | run | expectations / metric: no skill / original / AgyLite | Phase 9 AgyLite | cost AgyLite (original) |
 |---|---|---|---|---|
 | eng-pocock | 20261112T094703Z | 0.53 / 0.75 / **0.86** (retained 1.48) | 0.77 | $4.95 ($5.44; Phase 9 $6.02) |
+| eng-addy | 20261112T100647Z | 0.93 / 1.00 / **0.95** (0.954 with the re-parsed cell) | 0.986 (12/18 on the old engine) | $3.54 ($2.95; Phase 9 $3.12) |
+| eng-ponytail | 20261112T123734Z | correct 0.90 / 1 / **1**, safe 0.86 / 1 / **1**, src_loc 55 / 21.5 / **22.9** | same | $4.17 ($2.71; Phase 9 $3.42) |
+| research | 20261112T124734Z | 0.92 / 1 / **1** | 1 | $1.42 ($1.49; Phase 9 $1.82) |
+| youtube | 20261112T125040Z | hook 34.1 / 71.4 / **70.7** (retained 0.98), beats 0.33 / 1 / **1** | 51.6 (regressed) | $4.03 ($3.69; Phase 9 $3.03) |
+| browser-qa | 20261112T130526Z | 5 / 5 / **5** reported and fixed | 5 | $0.67 ($1.40; Phase 9 $0.69) |
+| design-extract | 20261112T130745Z | colour 0 / 0.67 / **0.67**, font 0 / 1 / **1**, sections 0 / 8 / **8** | same | $0 |
 
 eng-pocock per task: diagnosing-bugs 0.75 / 0.75 (was 0.46 in Phase 9: C1-10 fixed by the hook cap), grilling, to-spec,
 to-tickets 0.83–1.00 (= or > original), tdd#2 1.00 vs original 0.00 (the original asks; the "regressed" label is the
 retention formula on a negative original gain), tdd#1 0.27 = original (both ask: the fixture already strips emoji).
-Measurement note (fix after the run): the C1-9 "asked" counter misses AgyLite's questions because Ponytail's closing
-lines end the answer, so the last paragraph has no "?".
+Measurement fixes (2026-11-12, after the run): the C1-9 "asked" counter now checks the last three paragraphs, since
+Ponytail's closing lines follow the question; Addy's grader parser takes the last valid JSON object (one eng-addy cell,
+tdd#2 run 1, was ungraded because the grader wrote a draft and then a corrected reply: 3/3 on re-parse).
+
+Findings from the re-measurement: youtube's hook regression is fixed (70.7 vs 71.4). eng-addy's only gap is C1-2:
+code-review#1 misses Addy's per-finding severity labels in 2 of 3 cells (AgyLite groups findings under Must/Should
+fix). eng-ponytail quality is unchanged but costs 22% more than Phase 9 (0.199 vs 0.163 per cell; original 0.129):
+the router now picks 2-5 capabilities per prompt, where Phase 9 picked none.

@@ -266,6 +266,10 @@ class TestAddyGrading(unittest.TestCase):
         bad["expectations"][1]["evidence"] = " "
         self.assertIsNone(parse_grading(json.dumps(bad), 2))
         self.assertIsNone(parse_grading(json.dumps(good), 3))
+        # the grader's draft-then-corrected reply (re-measure eng-addy tdd#2): the last valid object wins
+        draft = {"expectations": [{"id": 1, "passed": True, "evidence": "x"}], "id_placeholder": None}
+        two = json.dumps(draft) + "\n\nThat draft has extra keys. Corrected:\n\n" + json.dumps(good)
+        self.assertEqual(parse_grading(two, 2)["passed"], 1)
 
 
 class TestLedger(unittest.TestCase):
@@ -466,6 +470,9 @@ class TestMeasurementFixes(unittest.TestCase):
         acted = "\n".join([_tool("Edit", file_path="a.py"), json.dumps({"type": "result", "result": "Fixed. Want more?"})])
         self.assertTrue(harness.summarize_trace([ask])["asked"])
         self.assertFalse(harness.summarize_trace(acted.splitlines())["asked"])
+        closing = json.dumps({"type": "result", "result": "Plan A or B. Which one?\n\n---\n\n"
+                              "I haven't run the tests. Risk: none yet."})   # Ponytail's closing lines after the question
+        self.assertTrue(harness.summarize_trace([closing])["asked"])
 
         class Mod:
             METRICS = {"score": False}

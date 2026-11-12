@@ -55,13 +55,18 @@ def grader_prompt(trace: str, expectations, kind="execution") -> str:
 
 def parse_grading(raw: str, n: int):
     """run-evals.js parseGrading: one verdict per numbered expectation with non-blank evidence; counts recomputed."""
-    m = re.search(r"\{[\s\S]*\}", raw or "")
-    if not m:
-        return None
-    try:
-        g = json.loads(m.group(0))
-    except ValueError:
-        return None
+    # the grader sometimes writes a draft object, then a corrected one: the last valid object wins
+    for m in reversed(list(re.finditer(r"\{", raw or ""))):
+        try:
+            g, _ = json.JSONDecoder().raw_decode(raw, m.start())
+        except ValueError:
+            continue
+        if isinstance(g, dict) and "expectations" in g and (ok := _check_grading(g, n)):
+            return ok
+    return None
+
+
+def _check_grading(g: dict, n: int):
     res = g.get("expectations")
     if not isinstance(res, list) or len(res) != n:
         return None

@@ -489,8 +489,10 @@ Still to do:
           detached (`nohup caffeinate`), `AGYLITE_BENCH_HOME=real` (token pastes failed; Keychain reads blocked for the
           agent), 8 suites, AgyLite arm only, 111 sessions, ≈ $40. Log: `~/.agylite/benchmarks/remeasure.log`.
           **Done:** eng-pocock 30/30 → AgyLite 0.86 vs original 0.75 vs no skill 0.53 (Phase 9: 0.77), $4.95 vs $5.44
-          (ledger row 24, PARITY_REPORT "Step 3 re-measurement"). **Running at hand-over:** eng-addy (18), then
-          eng-ponytail (21), research (12), youtube (9), browser-qa (3), design-extract (9), design-taste (9).
+          (ledger row 24, PARITY_REPORT "Step 3 re-measurement"). **Also done (notes in ledger + report):** eng-addy
+          0.954 vs original 1.00 (gap = C1-2 severity labels), eng-ponytail same quality but +22% cost, research 1 =
+          original, youtube hook 70.7 vs 71.4 (regression fixed), browser-qa 5/5, design-extract = original. Step 3 below
+          also done (asked counter + grader-parse fix, tests). **Running:** design-taste (9 cells), the last suite.
           **Next session, in order:**
           1. `tail -30 ~/.agylite/benchmarks/remeasure.log` and `pgrep -fl "agylite.cli benchmark"`. Still running →
              wait. Stopped on a usage limit → run the `--resume` line it printed, prefixed with
