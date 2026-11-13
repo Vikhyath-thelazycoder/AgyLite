@@ -540,6 +540,51 @@ repos:
       - {paths: ["plugins/static-analysis/skills/**"], decision: COPY, capability: testing/security, reason: "Semgrep/CodeQL/SARIF runbooks; only tools already installed (doc 23 §3)"}
       - {paths: ["plugins/semgrep-rule-creator/skills/**"], decision: COPY, capability: testing/security, reason: "Writing custom Semgrep rules (doc 23 §3)"}
 
+  # ------------------------------------------------------------------ STEP 4b (doc 24, D-052): ASTRYX, CALDO, EGM
+  # Astryx: only 9 framework-neutral design records (frontmatter stripped); the React layer runs through the user's own
+  # project-local npm CLI (design/react-design-system guide), never from the bundle. Duplicate records and reduced-motion
+  # / bidirectionality (side-by-side 2026-11-13: Open Design animation-discipline, accessibility-baseline and rtl-and-bidi
+  # already cover them) stay REFERENCE.
+  astryx:
+    default: {decision: EXCLUDE, reason: PRODUCT_RUNTIME}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: design/react-design-system, reason: LICENSE}
+      - {paths: ["docs/design/spatial-hierarchy.md", "docs/design/control-rhythm.md", "docs/design/shape-relationships.md", "docs/design/elevation-hierarchy.md", "docs/design/iconography.md"], decision: ADAPT, capability: design/visual-quality, reason: "Layout rules nothing else covers (doc 24 §2.3); internal frontmatter stripped"}
+      - {paths: ["docs/design/template-composition.md"], decision: ADAPT, capability: design/frontend, reason: "Page and block hierarchy (doc 24 §2.3)"}
+      - {paths: ["docs/design/user-states.md", "docs/design/system-states.md"], decision: ADAPT, capability: design/ux, reason: "How each state looks; Open Design state-coverage keeps which states exist (doc 24 §2.3)"}
+      - {paths: ["docs/design/mobile-typography.md"], decision: ADAPT, capability: design/typography, reason: "Mobile type rules Open Design lacks (doc 24 §2.3)"}
+      - {paths: ["docs/design/**", "internal/vibe-tests/**"], decision: REFERENCE, reason: "Duplicate records, niche/seed records; vibe-tests = Step 5 scorer ideas only (calls the Gemini API)"}
+      - {paths: [".github/**", ".changeset/**", "scripts/**", "*.json", "*.yaml", "*.ts", "*.js", "*.mjs", ".*"], decision: EXCLUDE, reason: REPO_META}
+      - {paths: [".claude/**", "AGENTS.md", "CLAUDE.md"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["docs/**", "*.md"], decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+
+  caldo:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/architecture, reason: LICENSE}
+      - {paths: ["skills/untangle-codebase/SKILL.md"], decision: ADAPT, capability: engineering/architecture, reason: "Whole-codebase restructuring entry point (rule skill hint); its loop runs under Agylite's verify + decision log (doc 24 §3)"}
+      - {paths: [".claude-plugin/**"], decision: EXCLUDE, reason: HOST_PORT}
+
+  # EGM keeps its plugin layout under files/egm/ so `agents/`, `resources/` and `docs/` resolve from the EGM root (two
+  # folders above a skill). Reviewer subagent types in Claude Code are the repo's agents/egm-*.md (agylite:egm-<name>),
+  # rendered from the Claude adapters + canonical personas by tools/audit/egm_agents.py.
+  egm:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/spec-review, reason: LICENSE}
+      - {paths: ["skills/*/agents/**", "skills/*/assets/**"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["skills/*/TEST.md", "skills/*/test_scenarios.yaml"], decision: REFERENCE, reason: "Step 5 spec-review suite seed set"}
+      - {paths: ["skills/egm-review/**", "skills/egm-resolve/**", "skills/egm-review-loop/**"], decision: ADAPT, capability: engineering/spec-review, reason: "Goldfish review + resolve (doc 24 §4); paths → EGM root, Claude subagent types → agylite:egm-*"}
+      - {paths: ["skills/egm-drift-report/**"], decision: ADAPT, capability: engineering/documentation, reason: "Docs vs code drift entry point (doc 24 §4)"}
+      - {paths: ["skills/egm-brainstorm/**", "skills/egm-draft/**", "skills/egm-bootstrap/**"], decision: ADAPT, capability: engineering/spec-review, reason: "Loadable by name only (route_excluded): Pocock grilling/to-spec and ECC onboarding own these jobs"}
+      - {paths: ["agents/*.md", "resources/**"], decision: COPY, capability: engineering/spec-review, reason: "Canonical reviewer personas and the document standards they check"}
+      - {paths: ["docs/claude.md"], decision: ADAPT, capability: engineering/spec-review, reason: "Claude Code notes the skills read first; plugin install and egm: names → Agylite"}
+      - {paths: ["docs/codex.md", "docs/harnesses.md"], decision: COPY, capability: engineering/spec-review, reason: "Host notes the skills link to (closure)"}
+      - {paths: [".claude-plugin/agents/**"], decision: REFERENCE, reason: "Claude adapters: rendered into the repo's agents/egm-*.md"}
+      - {paths: [".claude-plugin/**", ".codex-plugin/**", ".cursor-plugin/**", ".agents/**", ".plugin/**", "com.github.copilot/**", "distributions/**", "adapters/**", ".gemini/**", "plugin.json", "AGENTS.md"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["site/**", "docs/**", "assets/**", "README.md"], decision: EXCLUDE, reason: DOC_ASSET}
+      - {paths: ["tests/**", "scripts/**", "pyproject.toml", "TESTING.md"], decision: EXCLUDE, reason: UPSTREAM_DEV}
+
 accepted_gaps:
   - {repo: ponytail, target: hooks/ponytail-config.js, reason: "Generator input (ponytail-lite reads it at build time with inputs:); neither file ships, RULESET-lite.md does"}
   - {repo: archify, target: archify/references/update-awareness.md, reason: "Update awareness section replaced by SKILL.md ADAPT (Agylite owns updates, MP5 §3.2)"}
@@ -584,3 +629,6 @@ accepted_gaps:
   - {repo: appllama, target: skills/appllama-app-design-skill/references/performance.md, reason: "Link removed by SKILL.md ADAPT (RN performance: ECC rules canonical, D-034)"}
   - {repo: appllama, target: skills/appllama-app-design-skill/references/simulator-loop.md, reason: "Link removed by SKILL.md ADAPT (simulator screenshot/recording loop excluded, D-035)"}
   - {repo: ecc, target: skills/e2e-testing/SKILL.md, reason: "See-also link from React testing docs; browser E2E skill excluded by the local test-first policy (D-035); running a project's own E2E suite stays an ordinary test command"}
+  - {repo: astryx, target: scripts/check-knowledge.mjs, reason: "Astryx's own record-validation tooling mentioned in a record; not needed to apply the rules"}
+  - {repo: egm, target: scripts/pack_plugin.py, reason: "Upstream packaging tooling mentioned in the Codex host notes"}
+  - {repo: egm, target: docs/index.md, reason: "Link to EGM's website index from resources/README.md; the skills never read it"}

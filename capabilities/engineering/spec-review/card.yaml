@@ -1,0 +1,24 @@
+# engineering/spec-review — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# Step 4b (doc 24 §4): EGM's fresh-context (Goldfish) review of a spec, plan or design doc before code, then the
+# Elephant's resolve pass. About 9 subagents per full review: suggested, never run unasked; never on bug fixes.
+name: Spec review
+description: Fresh-context review of a spec, plan, RFC or design doc before code, then keep-or-fix resolve of each finding
+intent_tags: [spec review, design doc review, rfc review, fresh eyes review, goldfish review, review the plan before]
+origin: bundled
+runtime_type: none
+requires_network: false
+requires_browser: none
+requires_codebase_analysis: true
+context_level: L2
+security_class: read-only
+cache_strategy: static
+activation_conditions:
+  when: [request matches intent_tags or a routing rule selects this capability]
+verification_requirements: [every reviewer ran as a fresh subagent (no same-context review), 'each finding resolved as kept (with reason), fixed or asked', report written to the working directory]
+dependencies: []
+related_capabilities: [engineering/planning, engineering/review]
+conflicts: []
+fallback_capability: null
+enabled: true
+sources_priority: [files/egm/skills/egm-review/SKILL.md, files/egm/skills/egm-resolve/SKILL.md, files/egm/skills/egm-review-loop/SKILL.md]

@@ -1,20 +1,8 @@
-# Candidate upstreams — staged and audited, NOT pinned into any bundle (D-051).
-# AUDIT INPUT ONLY. Snapshots live in .staging/upstream/<key> (gitignored), cloned with --filter=blob:none.
-# These move into upstream-staging-snapshot.yaml, extraction-rules.yaml, upstreams.yaml and licenses.json only in
-# step 4 of the 2026-11-02 plan (after the Phase 9 paid run ends), so the bundle under test stays frozen.
-# Evidence: candidates/upstream-file-hashes/<key>.tsv and candidates/upstream-scan/<key>.json (tools/audit/scan_upstream.py).
-# Overlap audit and per-file decisions: docs/audit/23_NEW_UPSTREAMS_OVERLAP_AUDIT.md (elaya, cfsecurity, tob) and
-# docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md (astryx, caldo, egm; Step 4b).
-# Captured: 2026-11-02
-# elaya, cfsecurity and tob moved to upstream-staging-snapshot.yaml and config/upstreams.yaml on 2026-11-13 (Step 4).
+# Candidate upstreams — staged and audited, NOT pinned into any bundle (D-051, D-052).
+# AUDIT INPUT ONLY. Snapshots live in .staging/upstream/<key> (gitignored).
+# History: elaya, cfsecurity, tob moved to upstream-staging-snapshot.yaml on 2026-11-13 (Step 4, doc 23); astryx, caldo,
+# egm on 2026-11-13 (Step 4b, doc 24). New candidates go here first, with hashes and scans under candidates/.
 
-candidates:
-  # Captured 2026-11-10 (doc 24, D-052). astryx cloned --depth 1 (648M checkout), so its commit count is not recorded.
-  astryx:     {repo: meta/astryx,                       branch: main, head: da3dbdc8bd8649827f23adce5ac415f9cdda2858, head_date: 2026-11-09, tracked_files: 10377, size: 648M, license: MIT,        license_files: [LICENSE], runtime: "npm @astryxdesign/cli 0.7.12 (bin astryx)"}
-  caldo:      {repo: caldoai/skills,                    branch: main, head: f3cf47774975a7d9fca45730babf4ff7ad765ada, head_date: 2026-11-05, tracked_files: 4,    commits: 3,   size: 0.2M, license: MIT,          license_files: [LICENSE]}
-  egm:        {repo: google/elephant-goldfish-model,    branch: main, head: b7d9e2706fb96314a0a3123684f53cedd97e7d79, head_date: 2026-11-09, tracked_files: 301,  commits: 176, size: 6.4M, license: Apache-2.0,   license_files: [LICENSE]}
+candidates: {}
 
-proposed_tracking:   # goes into config/upstreams.yaml in step 4
-  astryx:     {track: releases, branch: main}   # beta, very active; the runtime is the npm CLI (like designlang)
-  caldo:      {track: monthly, branch: main}    # 3 commits, one skill: young repo
-  egm:        {track: weekly,  branch: main}
+proposed_tracking: {}

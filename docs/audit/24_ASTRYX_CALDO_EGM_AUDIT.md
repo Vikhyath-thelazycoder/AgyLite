@@ -1,8 +1,13 @@
 # 24 — New upstreams: Astryx, Caldo, Elephant-Goldfish Model (staging audit and owner plan)
 
-Date: 2026-11-10 · Decision: D-052 · Status: **staged and audited; nothing bundled yet.** Bundled in **Step 4b**, after
-the Step 3 fixes and together with doc 23's Step 4, so the paid-run bundle stays frozen and the parity fixes measure
-what they were written against. Owner 2026-11-10: "audit it and clarify what it should be in the core things or the
+Date: 2026-11-10 · Decision: D-052 · Status: **bundled 2026-11-13 (Step 4b)**, bundle 983bee4b2e54 (on top of doc 23's
+Step 4). As built: EGM keeps its plugin layout under `files/egm/` (paths resolve from the EGM root, two folders above a
+skill); the 9 reviewers are `agents/egm-*.md` rendered from EGM's Claude adapters + canonical personas by
+`agylite/bundle/egm_agents.py` (a test keeps them equal to the pin); "REFERENCE" for EGM brainstorm/draft/bootstrap,
+the bootstrap orchestrator and gstack's Review Army pointer is `route_excluded` (bundled, loadable by name, never routed;
+Astryx's duplicate records are not bundled at all). React gating uses new project stack tags `react19` / `ui-kit` and
+rule keys `stack` / `stack_unless`. The merged review is the route's `review_merge` (schema 8) and one hook line; the
+host flag is each adapter's `subagent_tool`. Owner 2026-11-10: "audit it and clarify what it should be in the core things or the
 subparts … we'll do it at that time, step by step."
 
 The rule from D-051 still applies: **one owner per job.** Every job has exactly one skill that loads for it.
@@ -80,8 +85,8 @@ The records are framework-neutral, testable rules (`DR1 … MUST/SHOULD`), not R
 | typography-hierarchy | draft | DUPLICATE, REFERENCE | — | Open Design has three typography files |
 | color-emphasis | draft | DUPLICATE, REFERENCE | — | Open Design `color.md` + UI UX Pro Max `colors.csv` |
 | motion | draft | DUPLICATE, REFERENCE | — | Open Design animation-discipline + Emil Kowalski motion own motion |
-| reduced-motion (12.7 KB) | current | **compare in Step 4b**, default REFERENCE | design/accessibility | Open Design's baseline covers reduced motion briefly; keep this one only if the side-by-side shows a real gap |
-| bidirectionality (15.3 KB) | current | **compare in Step 4b**, default REFERENCE | — | same job as Open Design `rtl-and-bidi` (12.2 KB, bundled and measured); a swap needs a reason |
+| reduced-motion (12.7 KB) | current | **REFERENCE (side-by-side 2026-11-13: no gap)** — Open Design animation-discipline has a reduced-motion section (prefers-reduced-motion, transform triggers, static affordance) and accessibility-baseline covers flashing; Astryx adds iOS-specific component choices only | design/accessibility | Open Design's baseline covers reduced motion briefly; keep this one only if the side-by-side shows a real gap |
+| bidirectionality (15.3 KB) | current | **REFERENCE (side-by-side 2026-11-13: no gap)** — Open Design rtl-and-bidi covers base direction, logical properties, bidi text, mirroring, forms and native mobile | — | same job as Open Design `rtl-and-bidi` (12.2 KB, bundled and measured); a swap needs a reason |
 | ordered-collection-reordering | current | REFERENCE | — | niche (drag to reorder); searchable, not routed |
 | agentic-states | draft (seed) | REFERENCE | — | the record says it "intentionally does not approve visual treatments" yet; revisit when it does |
 

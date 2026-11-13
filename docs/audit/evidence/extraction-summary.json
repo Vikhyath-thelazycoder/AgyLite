@@ -90,6 +90,24 @@
     "bytes": 621308
    }
   },
+  "astryx": {
+   "EXCLUDE": {
+    "files": 10059,
+    "bytes": 350375734
+   },
+   "COPY": {
+    "files": 1,
+    "bytes": 1077
+   },
+   "REFERENCE": {
+    "files": 308,
+    "bytes": 14817991
+   },
+   "ADAPT": {
+    "files": 9,
+    "bytes": 63967
+   }
+  },
   "beacon": {
    "EXCLUDE": {
     "files": 1905,
@@ -148,6 +166,20 @@
     "bytes": 16591696
    }
   },
+  "caldo": {
+   "EXCLUDE": {
+    "files": 2,
+    "bytes": 1434
+   },
+   "COPY": {
+    "files": 1,
+    "bytes": 1061
+   },
+   "ADAPT": {
+    "files": 1,
+    "bytes": 8881
+   }
+  },
   "cfsecurity": {
    "COPY": {
     "files": 19,
@@ -196,6 +228,24 @@
    "PRESERVE": {
     "files": 18,
     "bytes": 147392
+   }
+  },
+  "egm": {
+   "EXCLUDE": {
+    "files": 246,
+    "bytes": 3028674
+   },
+   "REFERENCE": {
+    "files": 24,
+    "bytes": 54838
+   },
+   "COPY": {
+    "files": 20,
+    "bytes": 88937
+   },
+   "ADAPT": {
+    "files": 11,
+    "bytes": 121418
    }
   },
   "elaya": {
@@ -485,11 +535,12 @@
    ]
   },
   "design/frontend": {
-   "files": 152,
-   "bytes": 6191514,
-   "est_tokens": 1547878,
+   "files": 153,
+   "bytes": 6198713,
+   "est_tokens": 1549678,
    "sources": [
     "appllama",
+    "astryx",
     "opendesign",
     "taste",
     "uiuxpromax"
@@ -521,27 +572,38 @@
     "opendesign"
    ]
   },
-  "design/typography": {
-   "files": 5,
-   "bytes": 25384,
-   "est_tokens": 6346,
+  "design/react-design-system": {
+   "files": 1,
+   "bytes": 1077,
+   "est_tokens": 269,
    "sources": [
+    "astryx"
+   ]
+  },
+  "design/typography": {
+   "files": 6,
+   "bytes": 29775,
+   "est_tokens": 7443,
+   "sources": [
+    "astryx",
     "opendesign"
    ]
   },
   "design/ux": {
-   "files": 2,
-   "bytes": 34525,
-   "est_tokens": 8631,
+   "files": 4,
+   "bytes": 50145,
+   "est_tokens": 12536,
    "sources": [
+    "astryx",
     "opendesign"
    ]
   },
   "design/visual-quality": {
-   "files": 30,
-   "bytes": 726776,
-   "est_tokens": 181694,
+   "files": 35,
+   "bytes": 763533,
+   "est_tokens": 190883,
    "sources": [
+    "astryx",
     "ecc",
     "gstack",
     "opendesign",
@@ -558,12 +620,13 @@
    ]
   },
   "engineering/architecture": {
-   "files": 21,
-   "bytes": 145954,
-   "est_tokens": 36488,
+   "files": 23,
+   "bytes": 155896,
+   "est_tokens": 38974,
    "sources": [
     "addy",
     "agency",
+    "caldo",
     "ecc",
     "pocock"
    ]
@@ -606,13 +669,14 @@
    ]
   },
   "engineering/documentation": {
-   "files": 10,
-   "bytes": 117372,
-   "est_tokens": 29343,
+   "files": 11,
+   "bytes": 120541,
+   "est_tokens": 30135,
    "sources": [
     "addy",
     "agency",
     "ecc",
+    "egm",
     "gstack",
     "pocock"
    ]
@@ -732,6 +796,14 @@
     "ecc",
     "gstack",
     "ponytail"
+   ]
+  },
+  "engineering/spec-review": {
+   "files": 30,
+   "bytes": 207186,
+   "est_tokens": 51796,
+   "sources": [
+    "egm"
    ]
   },
   "engineering/stack-packs": {

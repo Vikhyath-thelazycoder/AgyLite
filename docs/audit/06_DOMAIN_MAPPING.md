@@ -12,7 +12,7 @@ Plan, build, review and ship software with completion discipline.
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
 | `engineering/principles` | Think-before-coding, simplicity-first, surgical changes, goal-driven execution | ecc, karpathy | 4 | 37.5 | 9,608 | L1 | none | False | none | bundled | — |
 | `engineering/planning` | Requirements intake, specs, task breakdown, plan reviews, living implementation plan | addy, agency, ecc, gstack, pocock | 52 | 483.4 | 123,741 | L2 | none | False | none | mixed | — |
-| `engineering/architecture` | System/interface design, boundaries, ADRs, TRD/ARCHITECTURE docs | addy, agency, ecc, pocock | 21 | 142.5 | 36,488 | L2 | none | False | none | bundled | — |
+| `engineering/architecture` | System/interface design, boundaries, ADRs, TRD/ARCHITECTURE docs | addy, agency, caldo, ecc, pocock | 23 | 152.2 | 38,974 | L2 | none | False | none | bundled | — |
 | `engineering/implementation` | Incremental, source-grounded, constraint-respecting implementation | addy, agency, pocock | 8 | 85.2 | 21,802 | L2 | none | False | none | bundled | — |
 | `engineering/backend` | Backend patterns, data layer, error handling, payments/realtime specialists | agency, ecc | 9 | 111.0 | 28,412 | L2 | none | False | none | bundled | — |
 | `engineering/frontend` | Frontend engineering: components, state, accessibility in code, responsiveness | addy, agency, ecc | 5 | 66.3 | 16,983 | L2 | none | False | none | bundled | design/frontend |
@@ -20,12 +20,13 @@ Plan, build, review and ship software with completion discipline.
 | `engineering/secure-coding` | Build features securely — input validation, authn/authz, secrets, headers, rate limits, dependency hygiene | addy | 3 | 43.9 | 11,238 | L2 | none | False | none | bundled | — |
 | `engineering/performance` | Measured performance optimization | addy, ecc | 4 | 51.7 | 13,240 | L2 | none | False | none | bundled | — |
 | `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack, pocock, ponytail | 33 | 202.4 | 51,810 | L2 | none | False | none | bundled | — |
+| `engineering/spec-review` | Fresh-context review of a spec, plan, RFC or design doc before code, then keep-or-fix resolve of each finding | egm | 30 | 202.3 | 51,796 | L2 | none | False | none | bundled | — |
 | `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack, pocock | 13 | 59.7 | 15,281 | L2 | none | False | none | bundled | — |
 | `engineering/simplicity` | YAGNI and minimality review (explicit or plan-review time; never always-on) | addy, agency, ecc, gstack, ponytail | 23 | 94.4 | 24,166 | L2 | none | False | none | bundled | — |
 | `engineering/completion` | Acceptance gates, evidence-backed completion states, no-placeholder output | addy, unlazy | 32 | 413.9 | 105,966 | L2 | node | False | none | bundled | — |
 | `engineering/release` | CI/CD, git workflow, shipping, canary, observability-in-app, retros | addy, agency, ecc, gstack, pocock | 43 | 381.1 | 97,571 | L2 | none | False | none | bundled | — |
 | `engineering/migration` | Deprecations, schema/data migrations | addy, ecc | 2 | 24.1 | 6,169 | L2 | none | False | none | bundled | — |
-| `engineering/documentation` | Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs | addy, agency, ecc, gstack, pocock | 10 | 114.6 | 29,343 | L2 | none | False | none | mixed | — |
+| `engineering/documentation` | Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs | addy, agency, ecc, egm, gstack, pocock | 11 | 117.7 | 30,135 | L2 | none | False | none | mixed | — |
 | `engineering/diagrams` | Architecture, sequence, flow, ERD, class, tree, timeline and waterfall diagrams as checked HTML (Archify) | archify | 189 | 5206.6 | 1,332,878 | L2 | node | False | fallback | bundled | — |
 | `engineering/ai-systems` | LLM/RAG/agent system design, cost-aware pipelines, prompt and AI security | agency, ecc | 12 | 140.2 | 35,882 | L2 | none | False | none | bundled | — |
 | `engineering/stack-packs` | Language/framework rules, patterns, reviewers; selected by detected stack | ecc | 253 | 1451.7 | 371,625 | L3 | none | False | none | bundled | — |
@@ -48,16 +49,17 @@ Product-appropriate, non-generic, accessible interfaces with justified decisions
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
 | `design/design-direction` | Design read, dials, aesthetic direction, redesign (preserve/overhaul) | ecc, opendesign, taste | 18 | 1686.5 | 431,749 | L2 | none | False | none | bundled | — |
 | `design/inspiration-extract` | Read 1-3 inspiration sites with designlang into one DESIGN.md (systems, never identity) for owner approval | designlang | 7 | 11.8 | 3,030 | L2 | node | True | required-for-output | mixed | design/design-system |
-| `design/visual-quality` | Inspectable anti-slop criteria and polish | ecc, gstack, opendesign, taste | 30 | 709.7 | 181,694 | L2 | none | False | none | bundled | — |
+| `design/visual-quality` | Inspectable anti-slop criteria and polish | astryx, ecc, gstack, opendesign, taste | 35 | 745.6 | 190,883 | L2 | none | False | none | bundled | — |
 | `design/design-system` | Tokens, components, reference systems, design-system recommendation engine | ecc, opendesign, uiuxpromax | 572 | 9296.3 | 2,379,840 | L2 | python-stdlib | False | none | bundled | — |
-| `design/typography` | Type scale, hierarchy, color systems | opendesign | 5 | 24.8 | 6,346 | L2 | none | False | none | bundled | — |
-| `design/ux` | UX laws, flows, forms, state coverage | opendesign | 2 | 33.7 | 8,631 | L2 | none | False | none | bundled | — |
+| `design/typography` | Type scale, hierarchy, color systems | astryx, opendesign | 6 | 29.1 | 7,443 | L2 | none | False | none | bundled | — |
+| `design/ux` | UX laws, flows, forms, state coverage | astryx, opendesign | 4 | 49.0 | 12,536 | L2 | none | False | none | bundled | — |
 | `design/accessibility` | Accessible design baseline and checklist | addy, ecc, opendesign | 6 | 55.7 | 14,251 | L2 | none | False | none | bundled | — |
 | `design/motion` | Purposeful motion, animation discipline, reduced motion (web and React Native gesture/spring motion) | appllama, ecc, opendesign | 32 | 194.7 | 49,831 | L2 | none | False | none | bundled | — |
-| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics) | appllama, opendesign, taste, uiuxpromax | 152 | 6046.4 | 1,547,878 | L2 | none | False | none | bundled | — |
+| `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics) | appllama, astryx, opendesign, taste, uiuxpromax | 153 | 6053.4 | 1,549,678 | L2 | none | False | none | bundled | — |
 | `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 229.5 | 58,757 | L2 | none | False | none | bundled | design/visual-quality |
 | `design/brand` | Brand identity, voice, kits | ecc, opendesign, uiuxpromax | 35 | 213.3 | 54,616 | L2 | none | False | none | bundled | — |
 | `design/landing-conversion` | Landing and marketing page conversion strategy (offer, audience, one action, page type, copy, objections) | elaya | 2 | 22.6 | 5,794 | L2 | none | False | none | bundled | — |
+| `design/react-design-system` | React 19 apps without a design system — Astryx components and theme through its project-local CLI | astryx | 1 | 1.1 | 269 | L2 | node | True | none | mixed | — |
 
 ## testing
 

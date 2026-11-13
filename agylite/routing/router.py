@@ -23,7 +23,7 @@ from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, se
 #    whole_skills (Plan B) — the capabilities whose primary skill loads whole (one, or two across domains).
 # 7: skill_hints (D-050) — {capability: bundle path} of the skill a matched rule names; it leads that capability's
 #    sources_priority (e.g. "into tickets" → Pocock to-tickets, not the planning capability's first skill).
-ROUTE_SCHEMA_VERSION = 7
+ROUTE_SCHEMA_VERSION = 8   # 8: review_merge, suggest (Step 4b)
 
 
 @dataclass
@@ -79,7 +79,8 @@ class Router:
         text = normalize(masked)  # rules, tags, BM25 and the change type see `urlref`, never a domain name (F1)
         limits = self.cfg.get("limits") or {}
         confident = limits.get("confident_score", 2)
-        hits = match_rules(text, self.cfg, project.stage, has_urls=bool(urls), urls=urls) + match_paths(paths, self.cfg)
+        hits = match_rules(text, self.cfg, project.stage, has_urls=bool(urls), urls=urls,
+                                      stack=project.stack) + match_paths(paths, self.cfg)
         selected, suppressed, extra = select_capabilities(text, self.cards, self.cfg, self.hierarchy, hits,
                                                           project.stage, requested, project.stack)
 
@@ -200,8 +201,21 @@ class Router:
             "skill_hints": {h.select[0]: h.skill for h in sorted(hits, key=lambda h: h.weight)
                             if h.skill and h.select[0] in ids},
             "fallback_guidance": list(UNMATCHED_GUIDANCE) if unmatched else [],
+            "review_merge": self._review_merge(ids),
+            "suggest": [s for s in self.cfg.get("suggest") or [] if s["capability"] not in ids
+                        and set(s.get("after_rules") or ()) & {h.rule for h in hits}
+                        and change_type in (s.get("change_types") or [change_type])],
             "duration_ms": round((time.perf_counter() - start) * 1000, 3),
         }
+
+
+    def _review_merge(self, ids):
+        """Step 4b: {reviewers, merge, resolve} when engineering/review runs with at least one partner reviewer."""
+        cfg = self.cfg.get("review_merge") or {}
+        partners = [cfg["partners"][c] for c in ids if c in (cfg.get("partners") or {})]
+        if "engineering/review" not in ids or not partners:
+            return None
+        return {"reviewers": [cfg["lead"]] + partners, "merge": cfg["merge"], "resolve": cfg["resolve"]}
 
 
 def context_order(result):

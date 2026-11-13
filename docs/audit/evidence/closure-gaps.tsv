@@ -13,6 +13,7 @@ archify	archify/package.json	../scripts/build-readme-showcase.mjs	scripts/build-
 archify	archify/package.json	../scripts/build-start.mjs	scripts/build-start.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
 archify	archify/package.json	../scripts/check-release-identity.mjs	scripts/check-release-identity.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
 archify	archify/package.json	../scripts/generate-viewer.mjs	scripts/generate-viewer.mjs	EXCLUDE	ACCEPTED: Upstream dev npm script in package.json; never run
+astryx	docs/design/mobile-typography.md	scripts/check-knowledge.mjs	scripts/check-knowledge.mjs	EXCLUDE	ACCEPTED: Astryx's own record-validation tooling mentioned in a record; not needed to apply the rules
 beacon	rules/sensitive-edit/agent-instruction-surface-modified.rule.yaml	docs/README.md	docs/README.md	EXCLUDE	ACCEPTED: String inside a detection rule (instruction-surface example)
 beyondseo	SKILL.md	docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
 beyondseo	SKILL.md	docs/lovable.md	docs/lovable.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
@@ -26,6 +27,8 @@ beyondseo	references/capabilities.md	../docs/agent-installation.md	docs/agent-in
 beyondseo	scripts/run.py	docs/agent-installation.md	docs/agent-installation.md	REFERENCE	ACCEPTED: Host-installation text removed by SKILL.md ADAPT
 ecc	rules/README.md	./install.sh	install.sh	EXCLUDE	ACCEPTED: rules/README install instructions replaced by OS stack-pack activation in ADAPT
 ecc	skills/angular-developer/SKILL.md	references/mcp.md	skills/angular-developer/references/mcp.md	EXCLUDE	ACCEPTED: Angular MCP-server how-to excluded (§2.1); link removed when the stack pack is adapted
+egm	docs/codex.md	scripts/pack_plugin.py	scripts/pack_plugin.py	EXCLUDE	ACCEPTED: Upstream packaging tooling mentioned in the Codex host notes
+egm	resources/README.md	../docs/index.md	docs/index.md	EXCLUDE	ACCEPTED: Link to EGM's website index from resources/README.md; the skills never read it
 gstack	NOTICE.md	scripts/resolvers/design.ts	scripts/resolvers/design.ts	REFERENCE	ACCEPTED: TS import/notice mention; catalogue converted to data at bundle build
 gstack	careful/bin/hook-extract.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh
 gstack	freeze/bin/freeze-state.sh	docs/state-root.md	docs/state-root.md	EXCLUDE	ACCEPTED: Comment mention in hook-extract.sh

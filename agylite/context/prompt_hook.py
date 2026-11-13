@@ -50,7 +50,7 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
         return ""
     project = detect(Path(cwd) if cwd else None)
     meta = {"prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest()[:16], "length": len(prompt)}
-    hook = compose(prompt, project, budgets, root=root, session_id=session_id)
+    hook = compose(prompt, project, budgets, root=root, session_id=session_id, host=host)
     if hook is None:
         emit(project, "ROUTE_UNMATCHED", session_id=session_id, host=host, details=meta)
         return ""
@@ -62,7 +62,32 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
     return hook["text"]
 
 
-def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
+def review_lines(route, host=None) -> list:
+    """Step 4b (plan 4b.2 B, C, F, cost rule): the merged-review, spec-review and suggestion lines for a route."""
+    from ..adapters.hosts import subagent_tool
+    tool = subagent_tool(host) if host else None
+    known = host is not None
+    out = []
+    merge = route.get("review_merge")
+    if merge:
+        if tool or not known:
+            via = f" (`{tool}`)" if tool else ""
+            out.append(f"Reviewers: {', '.join(merge['reviewers'])} (the first leads). Run them in parallel as fresh "
+                       f"subagents{via}, merge their reports with {merge['merge']} into one ranked list, then resolve "
+                       f"every finding with `agylite skill load {merge['resolve']}`: kept (with the reason), fixed, or "
+                       "asked. A host without a subagent tool runs the lead review only and says so.")
+        else:
+            out.append(f"This host has no subagent tool: do the {merge['reviewers'][0]} review only and tell the user "
+                       "the other reviewers need a fresh context (a review in the same context is not independent).")
+    lead = ((route.get("whole_skills") or [c["id"] for c in route["capabilities"]])[:1] or [None])[0]
+    if lead == "engineering/spec-review" and known and not tool:
+        out.append("Stop: this host has no subagent tool, and a spec review in the same context is not a Goldfish "
+                   "review. Tell the user instead of reviewing.")
+    out += [s["note"] for s in route.get("suggest") or []]
+    return out
+
+
+def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None, host=None):
     """The hook's text for one routed prompt, with no events and no fired marker (the token report measures it);
     None when the route is unmatched. With a session, the cards sent are recorded in its context cache."""
     from ..routing import Router
@@ -111,6 +136,7 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
         else:
             out.append("Before the first edit, load the whole skill and follow it: "
                        f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
+        out += review_lines(route, host)
         if code_change:   # C1-4: a diagram, script or static page has no tests, types or build to verify
             out.append("Done means: agylite verify passes (tests, types, lint, build).")
         return out

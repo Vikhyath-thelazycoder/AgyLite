@@ -34,6 +34,9 @@ STACK_MARKERS = {   # dependency name → stack tag
     "django": "django", "flask": "flask", "fastapi": "fastapi", "sqlalchemy": "sqlalchemy", "psycopg2": "postgres",
     "psycopg": "postgres", "pg": "postgres", "mongoose": "mongodb", "stripe": "stripe", "tailwindcss": "tailwind",
 }
+# Step 4b (doc 24 §2.2): an existing design system means design/react-design-system (Astryx) never routes.
+UI_KITS = ("@radix-ui/", "@mui/material", "@chakra-ui/react", "@mantine/core", "antd", "@headlessui/react",
+           "react-bootstrap", "@shadcn/ui")
 PYTHON_MARKERS = ("django", "flask", "fastapi", "sqlalchemy", "psycopg2", "psycopg", "stripe")
 
 
@@ -89,6 +92,12 @@ def detect_stack(root: Path):
             data = {}
         deps = {**(data.get("dependencies") or {}), **(data.get("devDependencies") or {})}
         tags += [STACK_MARKERS[d] for d in deps if d in STACK_MARKERS]
+        major = re.search(r"\d+", str(deps.get("react", "")))
+        if major and int(major.group()) >= 19:
+            tags.append("react19")
+        if any(d.startswith(k) if k.endswith("/") else d == k for d in deps for k in UI_KITS) \
+                or (root / "components.json").is_file():   # components.json = shadcn
+            tags.append("ui-kit")
         if "typescript" in deps:
             tags.append("typescript")
     py_text = ""

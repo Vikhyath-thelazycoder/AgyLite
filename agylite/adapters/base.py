@@ -57,6 +57,9 @@ class Adapter:
     # MP1 F15 (D-048): whether the host runs `agylite hook prompt` on every prompt. Hosts without a verified
     # prompt-submit hook carry the "route first" rule in their always-loaded text instead.
     prompt_hook = "unsupported"
+    # Step 4b (plan 4b.2 F): the host's fresh-context subagent tool. Without one, spec review and merged review stop
+    # and say so: a review in the same context is not an independent (Goldfish) review.
+    subagent_tool = None
 
     def __init__(self, root: Path | None = None, home: Path | None = None, user_home: Path | None = None):
         self.root = root or repo_root()

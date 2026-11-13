@@ -16,6 +16,7 @@ def _json(data) -> str:
 class ClaudeCode(Adapter):
     """Plugin from this repo via the Claude marketplace; skills/ agents/ hooks/ are auto-discovered."""
     host = "claude-code"
+    subagent_tool = "Agent"
     prompt_hook = "supported (hooks/hooks.json UserPromptSubmit)"
 
     def repo_files(self):
@@ -50,6 +51,7 @@ class ClaudeCode(Adapter):
 class Codex(Adapter):
     """`.codex-plugin/plugin.json` (skills dir) + `.agents/plugins/marketplace.json` (H-4: `codex plugin add`)."""
     host = "codex"
+    subagent_tool = "spawn_agent"
 
     def repo_files(self):
         return {
@@ -107,6 +109,7 @@ Verification policy: local test-first (`config/verification.yaml`) — no browse
 class Antigravity(Adapter):
     """Project-skill file in this repo (when the repo is the plugin) + user-level skills in ~/.gemini/config/skills/."""
     host = "antigravity"
+    subagent_tool = "invoke_subagent"
 
     def repo_files(self):
         names = ", ".join(f"`{n}`" for n in entry_skills(self.root))
@@ -117,6 +120,11 @@ class Antigravity(Adapter):
 
 
 ADAPTERS = {"claude-code": ClaudeCode, "codex": Codex, "cursor": Cursor, "antigravity": Antigravity}
+
+
+def subagent_tool(host: str | None):
+    """The host's subagent tool name, or None (unknown host or none)."""
+    return getattr(ADAPTERS.get(host or ""), "subagent_tool", None)
 
 
 def get(host: str, **kw) -> Adapter:

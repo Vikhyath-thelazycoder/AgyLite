@@ -1,0 +1,302 @@
+decision	reason	capability	bytes	path
+EXCLUDE	HOST_PORT		298	.agents/plugins/marketplace.json
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		921	.claude-plugin/agents/bootstrap_orchestrator.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		666	.claude-plugin/agents/codebase_details.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		657	.claude-plugin/agents/comprehension.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		641	.claude-plugin/agents/design_critic.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		673	.claude-plugin/agents/implementation_readiness.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		687	.claude-plugin/agents/inventive_catalyst.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		639	.claude-plugin/agents/structural.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		628	.claude-plugin/agents/style.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		1214	.claude-plugin/agents/synthesizer.md
+REFERENCE	Claude adapters: rendered into the repo's agents/egm-*.md		637	.claude-plugin/agents/zoom_out.md
+EXCLUDE	HOST_PORT		13264	.claude-plugin/icon.png
+EXCLUDE	HOST_PORT		242	.claude-plugin/marketplace.json
+EXCLUDE	HOST_PORT		1298	.claude-plugin/plugin.json
+EXCLUDE	HOST_PORT		1778	.codex-plugin/plugin.json
+EXCLUDE	HOST_PORT		736	.cursor-plugin/agents/codebase_details.md
+EXCLUDE	HOST_PORT		739	.cursor-plugin/agents/comprehension.md
+EXCLUDE	HOST_PORT		722	.cursor-plugin/agents/design_critic.md
+EXCLUDE	HOST_PORT		760	.cursor-plugin/agents/implementation_readiness.md
+EXCLUDE	HOST_PORT		774	.cursor-plugin/agents/inventive_catalyst.md
+EXCLUDE	HOST_PORT		726	.cursor-plugin/agents/structural.md
+EXCLUDE	HOST_PORT		713	.cursor-plugin/agents/style.md
+EXCLUDE	HOST_PORT		724	.cursor-plugin/agents/zoom_out.md
+EXCLUDE	HOST_PORT		1003	.cursor-plugin/assets/icon.svg
+EXCLUDE	HOST_PORT		435	.cursor-plugin/plugin.json
+EXCLUDE	HOST_PORT		1993	.cursor-plugin/rules/egm.mdc
+EXCLUDE	HOST_PORT		338	.gemini/config.yaml
+EXCLUDE	HOST_PORT		3072	.gemini/styleguide.md
+EXCLUDE	REPO_META		17	.gitattributes
+EXCLUDE	REPO_META		314	.github/CODEOWNERS
+EXCLUDE	REPO_META		533	.github/ISSUE_TEMPLATE/bug_report.md
+EXCLUDE	REPO_META		274	.github/ISSUE_TEMPLATE/config.yml
+EXCLUDE	REPO_META		997	.github/ISSUE_TEMPLATE/feature_proposal.md
+EXCLUDE	REPO_META		508	.github/ISSUE_TEMPLATE/task.md
+EXCLUDE	REPO_META		1754	.github/PULL_REQUEST_TEMPLATE.md
+EXCLUDE	REPO_META		1143	.github/dependabot.yml
+EXCLUDE	REPO_META		1891	.github/workflows/copilot-native.yml
+EXCLUDE	REPO_META		1670	.github/workflows/cursor-native.yml
+EXCLUDE	REPO_META		2392	.github/workflows/deploy-site.yml
+EXCLUDE	REPO_META		1743	.github/workflows/opencode-native.yml
+EXCLUDE	REPO_META		8389	.github/workflows/pr-scope-advisory.yml
+EXCLUDE	REPO_META		3265	.github/workflows/release.yml
+EXCLUDE	REPO_META		3132	.github/workflows/tests.yml
+EXCLUDE	REPO_META		86	.gitignore
+EXCLUDE	HOST_PORT		371	.plugin/plugin.json
+EXCLUDE	REPO_META		3319	ACCESSIBILITY.md
+EXCLUDE	HOST_PORT		1864	AGENTS.md
+EXCLUDE	REPO_META		1707	AI_POLICY.md
+EXCLUDE	REPO_META		6352	CONTRIBUTING.md
+COPY	LICENSE	engineering/spec-review	11358	LICENSE
+EXCLUDE	DOC_ASSET		8506	README.md
+EXCLUDE	UPSTREAM_DEV		12183	TESTING.md
+EXCLUDE	HOST_PORT		6808	adapters/opencode/install.py
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	1706	agents/bootstrap_orchestrator.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	4683	agents/codebase_details.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	4748	agents/comprehension.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	3843	agents/design_critic.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	3929	agents/implementation_readiness.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	7355	agents/inventive_catalyst.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	3954	agents/structural.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	4879	agents/style.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	4860	agents/synthesizer.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	4903	agents/zoom_out.md
+EXCLUDE	DOC_ASSET		1003	assets/icon.svg
+EXCLUDE	HOST_PORT		1295	com.github.copilot/agents/egm-codebase-details.agent.md
+EXCLUDE	HOST_PORT		1280	com.github.copilot/agents/egm-comprehension.agent.md
+EXCLUDE	HOST_PORT		1274	com.github.copilot/agents/egm-design.agent.md
+EXCLUDE	HOST_PORT		1304	com.github.copilot/agents/egm-implementation-readiness.agent.md
+EXCLUDE	HOST_PORT		1293	com.github.copilot/agents/egm-inventive-catalyst.agent.md
+EXCLUDE	HOST_PORT		1270	com.github.copilot/agents/egm-structural.agent.md
+EXCLUDE	HOST_PORT		1259	com.github.copilot/agents/egm-style.agent.md
+EXCLUDE	HOST_PORT		1269	com.github.copilot/agents/egm-zoom-out.agent.md
+EXCLUDE	HOST_PORT		1053	com.github.copilot/agents/egm.agent.md
+EXCLUDE	HOST_PORT		921	distributions/claude/.claude-plugin/agents/bootstrap_orchestrator.md
+EXCLUDE	HOST_PORT		666	distributions/claude/.claude-plugin/agents/codebase_details.md
+EXCLUDE	HOST_PORT		657	distributions/claude/.claude-plugin/agents/comprehension.md
+EXCLUDE	HOST_PORT		641	distributions/claude/.claude-plugin/agents/design_critic.md
+EXCLUDE	HOST_PORT		673	distributions/claude/.claude-plugin/agents/implementation_readiness.md
+EXCLUDE	HOST_PORT		687	distributions/claude/.claude-plugin/agents/inventive_catalyst.md
+EXCLUDE	HOST_PORT		639	distributions/claude/.claude-plugin/agents/structural.md
+EXCLUDE	HOST_PORT		628	distributions/claude/.claude-plugin/agents/style.md
+EXCLUDE	HOST_PORT		1214	distributions/claude/.claude-plugin/agents/synthesizer.md
+EXCLUDE	HOST_PORT		637	distributions/claude/.claude-plugin/agents/zoom_out.md
+EXCLUDE	HOST_PORT		13264	distributions/claude/.claude-plugin/icon.png
+EXCLUDE	HOST_PORT		1298	distributions/claude/.claude-plugin/plugin.json
+EXCLUDE	HOST_PORT		11358	distributions/claude/LICENSE
+EXCLUDE	HOST_PORT		8506	distributions/claude/README.md
+EXCLUDE	HOST_PORT		1706	distributions/claude/agents/bootstrap_orchestrator.md
+EXCLUDE	HOST_PORT		4683	distributions/claude/agents/codebase_details.md
+EXCLUDE	HOST_PORT		4748	distributions/claude/agents/comprehension.md
+EXCLUDE	HOST_PORT		3843	distributions/claude/agents/design_critic.md
+EXCLUDE	HOST_PORT		3929	distributions/claude/agents/implementation_readiness.md
+EXCLUDE	HOST_PORT		7355	distributions/claude/agents/inventive_catalyst.md
+EXCLUDE	HOST_PORT		3954	distributions/claude/agents/structural.md
+EXCLUDE	HOST_PORT		4879	distributions/claude/agents/style.md
+EXCLUDE	HOST_PORT		4860	distributions/claude/agents/synthesizer.md
+EXCLUDE	HOST_PORT		4903	distributions/claude/agents/zoom_out.md
+EXCLUDE	HOST_PORT		1003	distributions/claude/assets/icon.svg
+EXCLUDE	HOST_PORT		1456	distributions/claude/docs/assets/readme-header.svg
+EXCLUDE	HOST_PORT		10489	distributions/claude/docs/claude.md
+EXCLUDE	HOST_PORT		7230	distributions/claude/docs/codex.md
+EXCLUDE	HOST_PORT		2755	distributions/claude/docs/faq.md
+EXCLUDE	HOST_PORT		6853	distributions/claude/docs/getting_started.md
+EXCLUDE	HOST_PORT		13161	distributions/claude/docs/harnesses.md
+EXCLUDE	HOST_PORT		5259	distributions/claude/docs/index.md
+EXCLUDE	HOST_PORT		2188	distributions/claude/docs/privacy.md
+EXCLUDE	HOST_PORT		3726	distributions/claude/docs/releases.md
+EXCLUDE	HOST_PORT		1958	distributions/claude/plugin.json
+EXCLUDE	HOST_PORT		887	distributions/claude/resources/README.md
+EXCLUDE	HOST_PORT		1659	distributions/claude/resources/document_standards/feature-spec-standard.md
+EXCLUDE	HOST_PORT		1155	distributions/claude/resources/document_standards/heilmeier-standard.md
+EXCLUDE	HOST_PORT		1654	distributions/claude/resources/document_standards/implementation-readiness-standard.md
+EXCLUDE	HOST_PORT		1535	distributions/claude/resources/document_standards/re-implementation-standard.md
+EXCLUDE	HOST_PORT		2884	distributions/claude/resources/document_standards/zoom-out-standard.md
+EXCLUDE	HOST_PORT		2554	distributions/claude/resources/execution_instructions.md
+EXCLUDE	HOST_PORT		23889	distributions/claude/skills/egm-bootstrap/SKILL.md
+EXCLUDE	HOST_PORT		198	distributions/claude/skills/egm-bootstrap/agents/openai.yaml
+EXCLUDE	HOST_PORT		601	distributions/claude/skills/egm-bootstrap/assets/icon.svg
+EXCLUDE	HOST_PORT		2064	distributions/claude/skills/egm-bootstrap/references/templates.md
+EXCLUDE	HOST_PORT		568	distributions/claude/skills/egm-bootstrap/references/worker-return.schema.json
+EXCLUDE	HOST_PORT		15205	distributions/claude/skills/egm-brainstorm/SKILL.md
+EXCLUDE	HOST_PORT		199	distributions/claude/skills/egm-brainstorm/agents/openai.yaml
+EXCLUDE	HOST_PORT		496	distributions/claude/skills/egm-brainstorm/assets/icon.svg
+EXCLUDE	HOST_PORT		17479	distributions/claude/skills/egm-draft/SKILL.md
+EXCLUDE	HOST_PORT		198	distributions/claude/skills/egm-draft/agents/openai.yaml
+EXCLUDE	HOST_PORT		545	distributions/claude/skills/egm-draft/assets/icon.svg
+EXCLUDE	HOST_PORT		5432	distributions/claude/skills/egm-draft/references/design_doc.md
+EXCLUDE	HOST_PORT		3169	distributions/claude/skills/egm-drift-report/SKILL.md
+EXCLUDE	HOST_PORT		204	distributions/claude/skills/egm-drift-report/agents/openai.yaml
+EXCLUDE	HOST_PORT		281	distributions/claude/skills/egm-drift-report/assets/icon.svg
+EXCLUDE	HOST_PORT		8541	distributions/claude/skills/egm-resolve/SKILL.md
+EXCLUDE	HOST_PORT		193	distributions/claude/skills/egm-resolve/agents/openai.yaml
+EXCLUDE	HOST_PORT		506	distributions/claude/skills/egm-resolve/assets/icon.svg
+EXCLUDE	HOST_PORT		10325	distributions/claude/skills/egm-review-loop/SKILL.md
+EXCLUDE	HOST_PORT		204	distributions/claude/skills/egm-review-loop/agents/openai.yaml
+EXCLUDE	HOST_PORT		544	distributions/claude/skills/egm-review-loop/assets/icon.svg
+EXCLUDE	HOST_PORT		24257	distributions/claude/skills/egm-review/SKILL.md
+EXCLUDE	HOST_PORT		198	distributions/claude/skills/egm-review/agents/openai.yaml
+EXCLUDE	HOST_PORT		530	distributions/claude/skills/egm-review/assets/icon.svg
+EXCLUDE	DOC_ASSET		1456	docs/assets/readme-header.svg
+ADAPT	Claude Code notes the skills read first; plugin install and egm: names → Agylite	engineering/spec-review	10489	docs/claude.md
+COPY	Host notes the skills link to (closure)	engineering/spec-review	7230	docs/codex.md
+EXCLUDE	DOC_ASSET		10496	docs/copilot.md
+EXCLUDE	DOC_ASSET		11004	docs/cursor.md
+EXCLUDE	DOC_ASSET		4553	docs/designs/README.md
+EXCLUDE	DOC_ASSET		15543	docs/designs/additional-harnesses.md
+EXCLUDE	DOC_ASSET		10049	docs/designs/architecture.md
+EXCLUDE	DOC_ASSET		18299	docs/designs/ask.md
+EXCLUDE	DOC_ASSET		40409	docs/designs/bootstrap.md
+EXCLUDE	DOC_ASSET		7387	docs/designs/brainstorm.md
+EXCLUDE	DOC_ASSET		32775	docs/designs/claude_release_branch_distribution.md
+EXCLUDE	DOC_ASSET		10172	docs/designs/draft.md
+EXCLUDE	DOC_ASSET		6257	docs/designs/drift_report.md
+EXCLUDE	DOC_ASSET		8921	docs/designs/multi_harness_support.md
+EXCLUDE	DOC_ASSET		18978	docs/designs/plugin_listing_presentation.md
+EXCLUDE	DOC_ASSET		5210	docs/designs/releases.md
+EXCLUDE	DOC_ASSET		12492	docs/designs/review.md
+EXCLUDE	DOC_ASSET		5348	docs/designs/runtime_packaging.md
+EXCLUDE	DOC_ASSET		25082	docs/designs/site_documentation.md
+EXCLUDE	DOC_ASSET		2511	docs/designs/skill_icons.md
+EXCLUDE	DOC_ASSET		5834	docs/designs/synthesizer.md
+EXCLUDE	DOC_ASSET		32385	docs/designs/triz_integration.md
+EXCLUDE	DOC_ASSET		1710	docs/directory.md
+EXCLUDE	DOC_ASSET		2755	docs/faq.md
+EXCLUDE	DOC_ASSET		6853	docs/getting_started.md
+COPY	Host notes the skills link to (closure)	engineering/spec-review	13161	docs/harnesses.md
+EXCLUDE	DOC_ASSET		5259	docs/index.md
+EXCLUDE	DOC_ASSET		5923	docs/muse.md
+EXCLUDE	DOC_ASSET		11547	docs/opencode.md
+EXCLUDE	DOC_ASSET		2188	docs/privacy.md
+EXCLUDE	DOC_ASSET		3726	docs/releases.md
+EXCLUDE	DOC_ASSET		1824	docs/verification/skill-discovery-316.md
+EXCLUDE	HOST_PORT		1958	plugin.json
+EXCLUDE	UPSTREAM_DEV		824	pyproject.toml
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	887	resources/README.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	1659	resources/document_standards/feature-spec-standard.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	1155	resources/document_standards/heilmeier-standard.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	1654	resources/document_standards/implementation-readiness-standard.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	1535	resources/document_standards/re-implementation-standard.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	2884	resources/document_standards/zoom-out-standard.md
+COPY	Canonical reviewer personas and the document standards they check	engineering/spec-review	2554	resources/execution_instructions.md
+EXCLUDE	UPSTREAM_DEV		6235	scripts/pack_plugin.py
+EXCLUDE	UPSTREAM_DEV		4658	scripts/prepare_release.py
+EXCLUDE	DOC_ASSET		28	site/.gitignore
+EXCLUDE	DOC_ASSET		5376	site/README.md
+EXCLUDE	DOC_ASSET		1628	site/astro.config.mjs
+EXCLUDE	DOC_ASSET		299640	site/package-lock.json
+EXCLUDE	DOC_ASSET		934	site/package.json
+EXCLUDE	DOC_ASSET		8	site/public/CNAME
+EXCLUDE	DOC_ASSET		1677	site/public/favicon.png
+EXCLUDE	DOC_ASSET		1029	site/public/favicon.svg
+EXCLUDE	DOC_ASSET		81293	site/public/og.png
+EXCLUDE	DOC_ASSET		61	site/public/robots.txt
+EXCLUDE	DOC_ASSET		151	site/public/sitemap.xml
+EXCLUDE	DOC_ASSET		365288	site/screenshots/full-dark.png
+EXCLUDE	DOC_ASSET		363461	site/screenshots/full-light.png
+EXCLUDE	DOC_ASSET		59966	site/screenshots/hero-dark.png
+EXCLUDE	DOC_ASSET		57617	site/screenshots/hero-light.png
+EXCLUDE	DOC_ASSET		328526	site/screenshots/mobile-dark.png
+EXCLUDE	DOC_ASSET		325966	site/screenshots/mobile.png
+EXCLUDE	DOC_ASSET		3608	site/scripts/capture.mjs
+EXCLUDE	DOC_ASSET		4378	site/scripts/og.html
+EXCLUDE	DOC_ASSET		10250	site/scripts/verify-analytics.mjs
+EXCLUDE	DOC_ASSET		34948	site/src/assets/fonts/google-sans-code.woff2
+EXCLUDE	DOC_ASSET		119908	site/src/assets/fonts/google-sans-flex.woff2
+EXCLUDE	DOC_ASSET		294	site/src/assets/symbols/README.md
+EXCLUDE	DOC_ASSET		328	site/src/assets/symbols/arrow_back.svg
+EXCLUDE	DOC_ASSET		330	site/src/assets/symbols/arrow_forward.svg
+EXCLUDE	DOC_ASSET		254	site/src/assets/symbols/check.svg
+EXCLUDE	DOC_ASSET		331	site/src/assets/symbols/close.svg
+EXCLUDE	DOC_ASSET		406	site/src/assets/symbols/content_copy.svg
+EXCLUDE	DOC_ASSET		474	site/src/assets/symbols/dark_mode.svg
+EXCLUDE	DOC_ASSET		551	site/src/assets/symbols/description.svg
+EXCLUDE	DOC_ASSET		432	site/src/assets/symbols/menu.svg
+EXCLUDE	DOC_ASSET		387	site/src/assets/symbols/search.svg
+EXCLUDE	DOC_ASSET		3471	site/src/components/Footer.astro
+EXCLUDE	DOC_ASSET		2446	site/src/components/Hero.astro
+EXCLUDE	DOC_ASSET		7844	site/src/components/Install.astro
+EXCLUDE	DOC_ASSET		3596	site/src/components/Loop.astro
+EXCLUDE	DOC_ASSET		1862	site/src/components/Mark.astro
+EXCLUDE	DOC_ASSET		2573	site/src/components/Model.astro
+EXCLUDE	DOC_ASSET		2125	site/src/components/Nav.astro
+EXCLUDE	DOC_ASSET		1195	site/src/components/SkillIcon.astro
+EXCLUDE	DOC_ASSET		3657	site/src/components/Skills.astro
+EXCLUDE	DOC_ASSET		1329	site/src/components/gb/Button.astro
+EXCLUDE	DOC_ASSET		1183	site/src/components/gb/IconButton.astro
+EXCLUDE	DOC_ASSET		620	site/src/components/gb/Symbol.astro
+EXCLUDE	DOC_ASSET		7566	site/src/layouts/Base.astro
+EXCLUDE	DOC_ASSET		1069	site/src/pages/index.astro
+EXCLUDE	DOC_ASSET		3837	site/src/styles/global.css
+EXCLUDE	DOC_ASSET		3482	site/src/styles/tokens.css
+EXCLUDE	DOC_ASSET		6137	site/tests/analytics.test.mjs
+EXCLUDE	DOC_ASSET		1809	site/tests/copy-accessibility.test.mjs
+EXCLUDE	DOC_ASSET		109	site/tsconfig.json
+ADAPT	Loadable by name only (route_excluded): Pocock grilling/to-spec and ECC onboarding own these jobs	engineering/spec-review	23889	skills/egm-bootstrap/SKILL.md
+REFERENCE	Step 5 spec-review suite seed set		1021	skills/egm-bootstrap/TEST.md
+EXCLUDE	HOST_PORT		198	skills/egm-bootstrap/agents/openai.yaml
+EXCLUDE	HOST_PORT		601	skills/egm-bootstrap/assets/icon.svg
+ADAPT	Loadable by name only (route_excluded): Pocock grilling/to-spec and ECC onboarding own these jobs	engineering/spec-review	2064	skills/egm-bootstrap/references/templates.md
+ADAPT	Loadable by name only (route_excluded): Pocock grilling/to-spec and ECC onboarding own these jobs	engineering/spec-review	568	skills/egm-bootstrap/references/worker-return.schema.json
+REFERENCE	Step 5 spec-review suite seed set		3835	skills/egm-bootstrap/test_scenarios.yaml
+ADAPT	Loadable by name only (route_excluded): Pocock grilling/to-spec and ECC onboarding own these jobs	engineering/spec-review	15205	skills/egm-brainstorm/SKILL.md
+REFERENCE	Step 5 spec-review suite seed set		970	skills/egm-brainstorm/TEST.md
+EXCLUDE	HOST_PORT		199	skills/egm-brainstorm/agents/openai.yaml
+EXCLUDE	HOST_PORT		496	skills/egm-brainstorm/assets/icon.svg
+REFERENCE	Step 5 spec-review suite seed set		9102	skills/egm-brainstorm/test_scenarios.yaml
+ADAPT	Loadable by name only (route_excluded): Pocock grilling/to-spec and ECC onboarding own these jobs	engineering/spec-review	17479	skills/egm-draft/SKILL.md
+REFERENCE	Step 5 spec-review suite seed set		595	skills/egm-draft/TEST.md
+EXCLUDE	HOST_PORT		198	skills/egm-draft/agents/openai.yaml
+EXCLUDE	HOST_PORT		545	skills/egm-draft/assets/icon.svg
+ADAPT	Loadable by name only (route_excluded): Pocock grilling/to-spec and ECC onboarding own these jobs	engineering/spec-review	5432	skills/egm-draft/references/design_doc.md
+REFERENCE	Step 5 spec-review suite seed set		8592	skills/egm-draft/test_scenarios.yaml
+ADAPT	Docs vs code drift entry point (doc 24 §4)	engineering/documentation	3169	skills/egm-drift-report/SKILL.md
+REFERENCE	Step 5 spec-review suite seed set		130	skills/egm-drift-report/TEST.md
+EXCLUDE	HOST_PORT		204	skills/egm-drift-report/agents/openai.yaml
+EXCLUDE	HOST_PORT		281	skills/egm-drift-report/assets/icon.svg
+REFERENCE	Step 5 spec-review suite seed set		1327	skills/egm-drift-report/test_scenarios.yaml
+ADAPT	Goldfish review + resolve (doc 24 §4); paths → EGM root, Claude subagent types → agylite:egm-*	engineering/spec-review	8541	skills/egm-resolve/SKILL.md
+REFERENCE	Step 5 spec-review suite seed set		871	skills/egm-resolve/TEST.md
+EXCLUDE	HOST_PORT		193	skills/egm-resolve/agents/openai.yaml
+EXCLUDE	HOST_PORT		506	skills/egm-resolve/assets/icon.svg
+REFERENCE	Step 5 spec-review suite seed set		1941	skills/egm-resolve/test_scenarios.yaml
+ADAPT	Goldfish review + resolve (doc 24 §4); paths → EGM root, Claude subagent types → agylite:egm-*	engineering/spec-review	10325	skills/egm-review-loop/SKILL.md
+REFERENCE	Step 5 spec-review suite seed set		1180	skills/egm-review-loop/TEST.md
+EXCLUDE	HOST_PORT		204	skills/egm-review-loop/agents/openai.yaml
+EXCLUDE	HOST_PORT		544	skills/egm-review-loop/assets/icon.svg
+REFERENCE	Step 5 spec-review suite seed set		5179	skills/egm-review-loop/test_scenarios.yaml
+ADAPT	Goldfish review + resolve (doc 24 §4); paths → EGM root, Claude subagent types → agylite:egm-*	engineering/spec-review	24257	skills/egm-review/SKILL.md
+REFERENCE	Step 5 spec-review suite seed set		1196	skills/egm-review/TEST.md
+EXCLUDE	HOST_PORT		198	skills/egm-review/agents/openai.yaml
+EXCLUDE	HOST_PORT		530	skills/egm-review/assets/icon.svg
+REFERENCE	Step 5 spec-review suite seed set		11536	skills/egm-review/test_scenarios.yaml
+EXCLUDE	UPSTREAM_DEV		1259	tests/conftest.py
+EXCLUDE	UPSTREAM_DEV		8038	tests/integration/copilot_controlled_probe.py
+EXCLUDE	UPSTREAM_DEV		4823	tests/integration/cursor_child_reads.py
+EXCLUDE	UPSTREAM_DEV		14	tests/integration/opencode-ci/.gitignore
+EXCLUDE	UPSTREAM_DEV		560	tests/integration/opencode-ci/package-lock.json
+EXCLUDE	UPSTREAM_DEV		64	tests/integration/opencode-ci/package.json
+EXCLUDE	UPSTREAM_DEV		10731	tests/integration/opencode_native_probe.py
+EXCLUDE	UPSTREAM_DEV		9915	tests/integration/opencode_trace_verifier.py
+EXCLUDE	UPSTREAM_DEV		7883	tests/integration/test_claude.py
+EXCLUDE	UPSTREAM_DEV		14682	tests/integration/test_codex.py
+EXCLUDE	UPSTREAM_DEV		8407	tests/scope_advisory.cjs
+EXCLUDE	UPSTREAM_DEV		2553	tests/unit/test_ci_workflow.py
+EXCLUDE	UPSTREAM_DEV		12901	tests/unit/test_claude_traces.py
+EXCLUDE	UPSTREAM_DEV		4850	tests/unit/test_codex_traces.py
+EXCLUDE	UPSTREAM_DEV		9748	tests/unit/test_copilot_adapter.py
+EXCLUDE	UPSTREAM_DEV		7915	tests/unit/test_cursor.py
+EXCLUDE	UPSTREAM_DEV		5273	tests/unit/test_cursor_child_reads.py
+EXCLUDE	UPSTREAM_DEV		3965	tests/unit/test_frontmatter.py
+EXCLUDE	UPSTREAM_DEV		11878	tests/unit/test_harnesses.py
+EXCLUDE	UPSTREAM_DEV		4111	tests/unit/test_link_integrity.py
+EXCLUDE	UPSTREAM_DEV		2082	tests/unit/test_markdown_tables.py
+EXCLUDE	UPSTREAM_DEV		8223	tests/unit/test_opencode_adapter.py
+EXCLUDE	UPSTREAM_DEV		8080	tests/unit/test_opencode_trace_verifier.py
+EXCLUDE	UPSTREAM_DEV		18039	tests/unit/test_packaging.py
+EXCLUDE	UPSTREAM_DEV		4574	tests/unit/test_releases.py
+EXCLUDE	UPSTREAM_DEV		1924	tests/unit/test_scenario_coverage.py
+EXCLUDE	UPSTREAM_DEV		787	tests/unit/test_scope_advisory.py
+EXCLUDE	UPSTREAM_DEV		720	tests/unit/test_skill_load_limits.py
+EXCLUDE	UPSTREAM_DEV		1705	tests/unit/test_style_and_boundaries.py

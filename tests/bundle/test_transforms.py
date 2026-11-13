@@ -150,7 +150,7 @@ class TestTransformVersion(unittest.TestCase):
     """The bundle id hashes rules, pins, licenses and TRANSFORM_VERSION, not transform code: an edited transform with
     the same version reuses the old bundle and its old text (Phase 9: the gstack review rewrite did not reach the
     bundle). Editing a transform therefore needs a version bump; record the new sources hash here."""
-    SOURCES = {"8": "810cd13134fb8f50", "9": "7f654346b1b1d600"}
+    SOURCES = {"8": "810cd13134fb8f50", "9": "7f654346b1b1d600", "10": "483186e14277807a"}
 
     def test_transform_edits_bump_the_version(self):
         import hashlib
@@ -167,11 +167,18 @@ class TestTransformVersion(unittest.TestCase):
 class TestRewrites(unittest.TestCase):
     def test_gstack_review_qa_points_at_gstacks_install_in_both_upstream_wordings(self):
         """Phase 9: the D-035 pattern drifted (upstream numbered the step); the D-049 rewrite anchors one line."""
+        army = ("> **Section: Review Army — specialist dispatch and findings merge.** Read `sections/review-army.md` "
+                "when dispatching the Review Army specialists.\n")
+        merged = ("> **Agylite (one owner per job):** skip the Review Army dispatch here. When the route lists several "
+                  "reviewers, they run as fresh subagents and `agylite:egm-synthesizer` merges them; use `specialists: {}` "
+                  "without claiming specialist coverage.\n")
         tail = "- If the caller directory is `review`, Read `../qa/sections/exploratory.md` in full.\n"
         for head in ("From the installed /review SKILL.md's directory, choose one path:\n",      # 5cb5e1c
                      "1. From the installed /review SKILL.md's directory, choose one path:\n"):  # 514fbfd and later
             with self.subTest(head):
-                out = rewrites.apply("gstack", "review/SKILL.md", head + tail)
+                out = rewrites.apply("gstack", "review/SKILL.md", head + tail + army)
+                self.assertTrue(out.endswith(merged))   # Step 4b: the merge owns multi-reviewer dispatch
+                out = out[: -len(merged)]
                 self.assertEqual(out, ("1. " if head.startswith("1. ") else "") + "From the directory of gstack's own installed /review skill (set up by "
                                  "`agylite runtime install gstack`; this bundled copy has no QA sections), choose one "
                                  "path:\n" + tail)
@@ -194,7 +201,9 @@ class TestRewrites(unittest.TestCase):
             ("gstack", "review/SKILL.md"): ("From the installed /review SKILL.md's directory, choose one path:\n"
                                             "- If the caller directory is `review`, Read `../qa/sections/exploratory.md` in full.\n"
                                             "Resolve QA's `sections/...` and `templates/...` paths from that installed QA "
-                                            "SKILL.md directory, not the caller or product directory.\n"),
+                                            "SKILL.md directory, not the caller or product directory.\n"
+                                            "> **Section: Review Army — specialist dispatch and findings merge.** Read "
+                                            "`sections/review-army.md` when dispatching the Review Army specialists.\n"),
         }
         staged = os.path.join(ROOT_DIR, ".staging", "upstream")
         for key in (("addy", "agents/web-performance-auditor.md"),
@@ -205,7 +214,7 @@ class TestRewrites(unittest.TestCase):
                     samples[key] = f.read()
         if not os.path.isdir(staged):
             self.skipTest("staged upstreams needed for the P13 rewrite samples")
-        mp5 = [k for k in rewrites.REWRITES if k[0] in ("ytagent", "archify", "elaya")]   # MP5 §2.2, §3.2, Step 4: real text
+        mp5 = [k for k in rewrites.REWRITES if k[0] in ("ytagent", "archify", "elaya", "egm", "caldo", "astryx")]   # MP5 §2.2, §3.2, Steps 4/4b: real text
         for key in POCOCK_ADAPT + [("ponytail", "skills/ponytail-review/SKILL.md")] + mp5:   # MP3 §1.3, §2.3: real text
             with open(os.path.join(staged, key[0], key[1]), encoding="utf-8") as f:
                 samples[key] = f.read()

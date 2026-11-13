@@ -8,7 +8,7 @@ from pathlib import Path
 
 from . import domain, gstack, ponytail, rewrites
 
-TRANSFORM_VERSION = "9"  # 9: Elaya Part A rewrite (Step 4). 2: strong-anchor gstack rendering. 3: domain adaptation (D-038). 4: + design domain (D-039). 5: + 3 gstack placeholders (P28). 6: GENERATED outputs + pocock rewrites (MP3). 7: gstack review QA → gstack's install (D-049, Phase 9). 8: only bundled gstack templates teach expansions
+TRANSFORM_VERSION = "10"  # 10: EGM, Caldo, Astryx rewrites + gstack Review Army pointer (Step 4b). 9: Elaya Part A rewrite (Step 4). 2: strong-anchor gstack rendering. 3: domain adaptation (D-038). 4: + design domain (D-039). 5: + 3 gstack placeholders (P28). 6: GENERATED outputs + pocock rewrites (MP3). 7: gstack review QA → gstack's install (D-049, Phase 9). 8: only bundled gstack templates teach expansions
 
 
 class Transformer:

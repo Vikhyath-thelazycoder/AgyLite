@@ -11,7 +11,8 @@ from .classify import CHANGE_TYPES, find_phrases
 
 PROJECT_STAGES = ("new", "existing", "unknown")
 RULE_KEYS = {"id", "description", "any", "regex", "require_any", "unless", "project", "select", "suppress",
-             "pipeline", "explicit", "weight", "requires_urls", "url_hosts", "skill", "only", "change_type"}
+             "pipeline", "explicit", "weight", "requires_urls", "url_hosts", "skill", "only", "change_type",
+             "stack", "stack_unless"}   # Step 4b: project stack tags every one of `stack` / none of `stack_unless`
 
 
 @dataclass
@@ -73,6 +74,9 @@ def validate_routing(cfg, cards, hierarchy):
     if ct.get("fallback") not in CHANGE_TYPES:
         p.append("change_types.fallback must be a spec §54 type")
     p += [f"url_only: unknown capability {c}" for c in cfg.get("url_only") or [] if c not in cards]
+    merge = cfg.get("review_merge") or {}
+    p += [f"review_merge.partners: unknown capability {c}" for c in merge.get("partners") or {} if c not in cards]
+    p += [f"suggest: unknown capability {s.get('capability')}" for s in cfg.get("suggest") or [] if s.get("capability") not in cards]
     adds = cfg.get("change_type_adds") or {}
     p += [f"change_type_adds: unknown change type {t}" for t in adds.get("types") or [] if t not in CHANGE_TYPES]
     p += [f"change_type_adds: unknown capability {c}" for c in adds.get("add") or [] if c not in cards]
@@ -154,7 +158,7 @@ def host_matches(host: str, wanted) -> bool:
     return any(host == h or host.endswith("." + h) for h in wanted)
 
 
-def match_rules(text: str, cfg, stage: str, has_urls=False, urls=()):
+def match_rules(text: str, cfg, stage: str, has_urls=False, urls=(), stack=()):
     """Every rule whose conditions hold for normalized `text`, the project stage and (MP4 §2.5 `requires_urls`) whether
     the request carries URLs. MP5 §1.5 `url_hosts`: a URL on one of these hosts (or a subdomain) matches the rule like
     a keyword does (URLs are masked out of `text`, so a host never matches as a word)."""
@@ -164,6 +168,8 @@ def match_rules(text: str, cfg, stage: str, has_urls=False, urls=()):
         if rule.get("project") and stage not in rule["project"]:
             continue
         if rule.get("requires_urls") and not has_urls:
+            continue
+        if not set(rule.get("stack") or ()) <= set(stack) or set(rule.get("stack_unless") or ()) & set(stack):
             continue
         matched = find_phrases(text, rule.get("any") or [])
         matched += [f"/{rx}/" for rx in rule.get("regex") or [] if re.search(rx, text)]

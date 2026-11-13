@@ -27,7 +27,7 @@ change_types:
     - {type: PERFORMANCE_CHANGE, keywords: [performance, slow, latency, faster, speed up, optimize, bundle size, memory leak]}
     - {type: BUG_FIX, keywords: [fix, bug, broken, crash, crashes, error, failing, fails, regression, not working, doesn't work]}
     - {type: TESTING_CHANGE, keywords: [test, tests, testing, coverage, tdd, e2e, check whether, verify, show me, screenshot]}
-    - {type: REFACTOR, keywords: [refactor, restructure, reorganize, clean up, cleanup, simplify, modernize, rename]}
+    - {type: REFACTOR, keywords: [refactor, untangle, restructure, reorganize, clean up, cleanup, simplify, modernize, rename]}
     - {type: DESIGN_CHANGE, keywords: [design, premium, look, looks, feel, redesign, layout, typography, font, color, spacing, visual, ui, ux, landing page, overlap, overlaps]}
     - {type: INFRA_CHANGE, keywords: [deploy, deployment, ci, docker, kubernetes, infrastructure, pipeline, hosting, terraform]}
     - {type: DOCUMENTATION_CHANGE, keywords: [document, docs, documentation, readme, adr, changelog, diagram, mind map, flowchart, flow chart, mermaid]}
@@ -94,6 +94,21 @@ project:
 # Capabilities that only work from URLs in the request (MP4 §2.5): without a URL they are never selected, whatever
 # their intent tags say ("make it look like our old one" has nothing to extract).
 url_only: [design/inspiration-extract]
+
+# Step 4b (plan 4b.2 B, C): a review that runs more than one reviewer merges them. The lead review stays as it is; each
+# routed capability below adds its Agylite reviewer agent; all run in parallel as fresh subagents, egm-synthesizer merges
+# their reports into one ranked list, and egm-resolve decides each finding (kept with reason / fixed / asked).
+review_merge:
+  lead: ponytail/ponytail-review
+  partners: {engineering/security: agylite:security-reviewer, engineering/architecture: agylite:engineering-architect, engineering/release: agylite:production-reviewer}
+  merge: agylite:egm-synthesizer
+  resolve: egm/egm-resolve
+
+# Step 4b (plan 4b.2 cost rule): capabilities the route suggests (never loads) after a rule matched. A full spec review
+# spawns about 9 subagents, so it is offered after a spec is written and runs only when the owner says yes.
+suggest:
+  - {capability: engineering/spec-review, after_rules: [to-spec], change_types: [NEW_FEATURE, FEATURE_CHANGE, PLAN_CHANGE],
+     note: "Offer a fresh-context review of the spec before code (engineering/spec-review, about 9 subagents); run it only if the owner says yes."}
 
 change_type_adds:
   types: [NEW_FEATURE, FEATURE_CHANGE, BUG_FIX, REFACTOR, SECURITY_CHANGE, PERFORMANCE_CHANGE]
@@ -253,6 +268,24 @@ rules:
     unless: *ui_build_unless
     select: [design/frontend]
     weight: 3
+
+  # Step 4b (doc 24 §2.1): hero and landing work also queries UI UX Pro Max's landing/hero patterns (landing.csv).
+  - id: hero-patterns
+    description: Hero sections and landing pages query UI UX Pro Max hero and landing patterns
+    any: [hero section, hero banner, hero area, hero image, landing page, launch page]
+    unless: *ui_build_unless
+    select: [design/design-system]
+    weight: 2
+
+  # Step 4b (doc 24 §2.2): React 19 UI without a design system → Astryx through its project-local CLI (Taste still leads).
+  - id: react-design-system
+    description: React 19 project without a design system builds UI → design/react-design-system (Astryx)
+    any: [component, components, page, screen, dashboard, form, modal, theme, design system, ui, button, layout, settings page]
+    stack: [react19]
+    stack_unless: [ui-kit]
+    unless: [api, backend, endpoint, database, migration, webhook, test, tests, diagram, seo, video, deck]
+    select: [design/react-design-system]
+    weight: 4
 
   # Step 4 (doc 23 §2): what a landing page says and why (Elaya Part A). It loads next to Taste through the rule-scoped
   # skill_overlaps pair (config/priorities.yaml); visual-only requests ("feel premium", "look like") leave it out.
@@ -596,6 +629,42 @@ rules:
     only: true                     # C3-5: the diagram is the whole job (no security/media/engineering extras)
     change_type: DOCUMENTATION_CHANGE
     weight: 3
+
+  # ── Step 4b (doc 24): spec review (EGM), docs-vs-code drift (EGM), whole-codebase untangling (Caldo) ───────────────
+  # "design doc / spec / RFC" is a document, never visual design work; "for agents" is not AI-systems work.
+  - id: spec-review
+    description: Fresh-context review of a spec, plan, RFC or design doc before code (EGM review + resolve)
+    any: [fresh eyes review, fresh-eyes review, goldfish review, spec review, design doc review, design review of the doc]
+    regex: ['\b(?:review|critique|check|audit|poke holes in|stress[- ]test)\b[^.]*\b(?:design docs?|design documents?|spec|specs|specification|rfc|rfcs|prd|trd|proposal)\b',
+            '\breview\b[^.]*\bplan\b[^.]*\bbefore\b']
+    unless: [code review, pr, pull request, diff, commit, branch, openapi spec, test spec, spec file, spec files, drift, drifted]
+    select: [engineering/spec-review]
+    suppress: [design, media, seo]
+    only: true
+    change_type: PLAN_CHANGE
+    weight: 8
+
+  - id: doc-drift
+    description: Compare design docs, plans or READMEs with the code and report only the differences (EGM drift report)
+    any: [drift, drifted, drifting, docs vs code, docs versus code, out of sync with the code, docs match the code, did we follow the plan, diverged from the design, diverged from the spec]
+    unless: [model drift, data drift, concept drift, configuration drift, config drift, terraform, clock drift, schema drift]
+    select: [engineering/documentation]
+    skill: files/egm/skills/egm-drift-report/SKILL.md
+    suppress: [design, media, seo]
+    only: true
+    change_type: DOCUMENTATION_CHANGE
+    weight: 8
+
+  - id: untangle-codebase
+    description: Restructure the whole codebase (Caldo untangle-codebase); Pocock stays primary for targeted architecture
+    any: [untangle, reduce coupling across the codebase, reduce coupling across the repo]
+    regex: ['\b(?:restructure|refactor|reorganize|reorganise|clean up|simplify|rework)\b[^.]*\b(?:whole|entire) (?:codebase|repo|repository|project)\b',
+            '\beasier for (?:ai |coding )?agents to (?:work|navigate|change)\b']
+    unless: [diagram, mind map, explain, summarize, summarise, walk me through, overview, onboarding, video, deck]
+    select: [engineering/architecture]
+    skill: files/caldo/skills/untangle-codebase/SKILL.md
+    suppress: [engineering/ai-systems, design, media, seo]
+    weight: 8
 
   # ── MP6 §3: upstream updates (review → benchmark → the owner approves) ──────────────────────────────────────────
   - id: upstream-updates

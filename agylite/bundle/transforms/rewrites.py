@@ -183,6 +183,36 @@ ELAYA = [
      "- [ ] No invented prices, stats, or testimonials; missing facts use marked placeholders\n"),
 ]
 
+# Step 4b (doc 24 §4): EGM keeps its plugin layout under files/egm/, so `agents/`, `resources/` and `docs/` resolve from
+# the EGM root, two folders above a skill (the `Skill folder` line Agylite prints with every whole skill). In Claude
+# Code the reviewer subagent types are Agylite's agents/egm-*.md, i.e. `agylite:egm-<name>`.
+EGM_ROOT_LINE = (re.compile(r"In Claude Code or Cowork, read `\$\{CLAUDE_PLUGIN_ROOT\}/docs/claude\.md` first\."),
+                 "In Agylite the EGM root is two folders above this skill's folder (the `Skill folder` line printed with "
+                 "this skill): `agents/`, `resources/` and `docs/` below resolve there. In Claude Code, read "
+                 "`docs/claude.md` there first; the reviewer subagent types are `agylite:egm-<name>` (for example "
+                 "`agylite:egm-zoom-out`).")
+EGM_SLASH = (re.compile(r"`/egm:egm-([\w-]+)"), r"`agylite skill load egm/egm-\1")
+EGM_CLAUDE_DOC = [
+    (re.compile(r"```sh\nclaude plugin marketplace add google/elephant-goldfish-model\nclaude plugin install egm@egm\n```"
+                r"\n\nEnable the installed plugin with `claude plugin enable egm@egm`\.\nStart messages with [^\n]*\n"),
+     "In Agylite, EGM ships inside the bundle (`files/egm/`): nothing to install or enable. Spec reviews route to\n"
+     "`egm-review`; any other EGM skill loads with `agylite skill load egm/<name>`.\n"),
+    (re.compile(r"`egm:egm-"), "`agylite:egm-"),
+    (re.compile(r"`\.claude-plugin/agents/`"), "Agylite's plugin `agents/` folder (`egm-*.md`)"),
+    (re.compile(r"\$\{CLAUDE_PLUGIN_ROOT\}"), "the EGM root"),
+]
+CALDO = [
+    (re.compile(r"\*\*Do not stop until there is nothing worth fixing left\.\*\*"),
+     "**In Agylite each round is one plan step: fix a batch, run `agylite verify`, have fresh subagents scan again, "
+     "and append the round (problem → fix → files) to the decision log in the project's plan. Repeat until they find "
+     "nothing worth fixing.**"),
+]
+# Step 4b (doc 24 §2.3): Astryx records carry internal workflow frontmatter (owners, review_triggers, specs).
+ASTRYX_RECORD = [(re.compile(r"\A---\n.*?\n---\n", re.S),
+                  "<!-- Astryx design record (meta/astryx, MIT); internal frontmatter removed by Agylite. -->\n")]
+ASTRYX_RECORDS = ("spatial-hierarchy", "control-rhythm", "shape-relationships", "elevation-hierarchy", "iconography",
+                  "template-composition", "user-states", "system-states", "mobile-typography")
+
 # D-049 (IMPLEMENTATION_PLAN §2.2): Addy's devtools skill drives Chrome through the `chrome-devtools` command line of the
 # pinned chrome-devtools-mcp package (no MCP server is ever configured) and AgyLite's own `agylite verify --browser`.
 # Usage statistics are switched off. The Security Boundaries section (untrusted page content) stays verbatim.
@@ -246,6 +276,13 @@ REWRITES = {
     ("ytagent", "skills/yt-seo/SKILL.md"): [YT_VOICE, YT_SLASH],
     ("archify", "archify/SKILL.md"): ARCHIFY,
     ("elaya", "skills/landing-page-design/SKILL.md"): ELAYA,
+    **{("egm", f"skills/{s}/SKILL.md"): [EGM_ROOT_LINE]
+       for s in ("egm-review", "egm-resolve", "egm-review-loop", "egm-drift-report", "egm-bootstrap")},
+    ("egm", "skills/egm-brainstorm/SKILL.md"): [EGM_ROOT_LINE, EGM_SLASH],
+    ("egm", "skills/egm-draft/SKILL.md"): [EGM_ROOT_LINE, EGM_SLASH],
+    ("egm", "docs/claude.md"): EGM_CLAUDE_DOC,
+    ("caldo", "skills/untangle-codebase/SKILL.md"): CALDO,
+    **{("astryx", f"docs/design/{r}.md"): ASTRYX_RECORD for r in ASTRYX_RECORDS},
     # P13 (D-027/D-035/D-038): no MCP and no browser automation as a data source; parse artifacts the user provides.
     ("addy", "agents/web-performance-auditor.md"): [
         (re.compile(r", `npx -p chrome-devtools-mcp chrome-devtools lighthouse_audit --output-format=json` "
@@ -285,6 +322,11 @@ REWRITES = {
         (re.compile(r"^(\d+\. )?From the installed /review SKILL\.md's directory, choose one path:$", re.M),
          r"\1From the directory of gstack's own installed /review skill (set up by `agylite runtime install gstack`; "
          r"this bundled copy has no QA sections), choose one path:"),
+        # Step 4b (plan 4b.2 B): one owner per job — the merge (egm-synthesizer) owns multi-reviewer dispatch.
+        (re.compile(r"^> \*\*Section: Review Army[^\n]*\n", re.M),
+         "> **Agylite (one owner per job):** skip the Review Army dispatch here. When the route lists several reviewers, "
+         "they run as fresh subagents and `agylite:egm-synthesizer` merges them; use `specialists: {}` without claiming "
+         "specialist coverage.\n"),
     ],
     # D-034: keep the native-mobile rules no other bundled source has; drop what needs the Appllama MCP/credits,
     # what Taste/ECC already own canonically, and the simulator screenshot/recording loop (D-035).

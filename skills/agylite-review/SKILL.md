@@ -19,6 +19,9 @@ disable-model-invocation: true
    scenario), the fix, and what happens if skipped. Then apply gstack's review checklists second
    (`agylite skill load gstack/review`). Never approve on "looks fine": a passing `agylite verify` run is the
    minimum.
+6. **Several reviewers** (the route's `review_merge`: security, architecture or release joined): run them in
+   parallel as fresh subagents, merge with `agylite:egm-synthesizer`, then resolve each finding with
+   `agylite skill load egm/egm-resolve` (kept with reason / fixed / asked). No subagent tool: lead review only, say so.
 
 The `engineering/simplicity` capability (Ponytail's audit/debt/gain skills) loads only when the user asks for
 simplification.

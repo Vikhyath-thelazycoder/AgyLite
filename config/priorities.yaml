@@ -82,3 +82,11 @@ route_excluded:
   - files/agency/security/security-penetration-tester.md
   - files/agency/security/security-ai-generated-code-auditor.md
   - files/ecc/skills/safety-guard/SKILL.md                      # guardrails → gstack careful / freeze / guard
+  # Step 4b (doc 24 §4, plan 4b.3): Pocock grilling / to-spec own brainstorm and drafting; ECC onboarding + Graphify own
+  # per-directory READMEs; the merge (egm-synthesizer) owns multi-reviewer dispatch.
+  - files/egm/skills/egm-brainstorm/SKILL.md
+  - files/egm/skills/egm-draft/SKILL.md
+  - files/egm/skills/egm-bootstrap/SKILL.md
+  - files/egm/agents/bootstrap_orchestrator.md
+  - files/gstack/review/sections/review-army.md
+

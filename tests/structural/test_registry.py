@@ -13,7 +13,7 @@ sys.path.insert(0, ROOT_DIR)
 from agylite.cli import main  # noqa: E402
 from agylite.registry import generate, loader, schema  # noqa: E402
 
-EXPECTED_CAPABILITIES = 80  # Step 4: + design/landing-conversion, engineering/secure-coding; D-035: + testing/evidence; MP4 §2.5: + design/inspiration-extract; MP5: + 5 research, 6 youtube, engineering/diagrams; MP6: + observability/updates; D-049: browser-exception → browser-verification + browser-qa
+EXPECTED_CAPABILITIES = 82  # Step 4b: + engineering/spec-review, design/react-design-system; Step 4: + design/landing-conversion, engineering/secure-coding; D-035: + testing/evidence; MP4 §2.5: + design/inspiration-extract; MP5: + 5 research, 6 youtube, engineering/diagrams; MP6: + observability/updates; D-049: browser-exception → browser-verification + browser-qa
 def _expected_bundled_files():
     """Bundled files per the generated extraction summary (COPY + ADAPT + PRESERVE + GENERATED, MP3 §2.1). Upstream updates (P28) change the
     number; these tests check that provenance, registry and licenses all agree with the audited extraction matrix."""

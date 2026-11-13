@@ -423,3 +423,42 @@ scenarios:
     stage: existing
     expect: [engineering/backend]
     forbid: [design/landing-conversion]
+
+  # ── Step 4b (doc 24): spec review, drift, untangle, hero patterns; the three old misroutes are regressions ─────────
+  - id: s4b-spec-review
+    request: Review this design doc before we implement it
+    stage: existing
+    expect: [engineering/spec-review]
+    forbid: [design/, engineering/implementation]
+    change_type: PLAN_CHANGE
+
+  - id: s4b-rfc-review
+    request: Poke holes in our RFC for the new billing service
+    stage: existing
+    expect: [engineering/spec-review]
+    forbid: [design/]
+
+  - id: s4b-doc-drift
+    request: Check whether our design docs drifted from the code
+    stage: existing
+    expect: [engineering/documentation]
+    forbid: [design/, testing/local-verification]
+    change_type: DOCUMENTATION_CHANGE
+
+  - id: s4b-untangle
+    request: Untangle this whole codebase so agents can work in it
+    stage: existing
+    expect: [engineering/architecture]
+    forbid: [engineering/ai-systems]
+    change_type: REFACTOR
+
+  - id: s4b-hero-section
+    request: Add a hero section to the landing page
+    stage: existing
+    expect: [design/design-direction, design/design-system]
+
+  - id: s4b-code-review-not-spec-review
+    request: Review this pull request
+    stage: existing
+    expect: [engineering/review]
+    forbid: [engineering/spec-review]

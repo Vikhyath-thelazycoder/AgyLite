@@ -55,6 +55,17 @@
   "note": null,
   "repository": "tt-a1i/archify"
  },
+ "astryx": {
+  "attribution": "Copyright (c) 2026 Meta Platforms, Inc.",
+  "bundled_files": 10,
+  "commit_sha": "da3dbdc8bd8649827f23adce5ac415f9cdda2858",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "meta/astryx"
+ },
  "beacon": {
   "attribution": "Copyright (c) 2026 Asymptote Labs",
   "bundled_files": 78,
@@ -89,6 +100,17 @@
   "note": null,
   "repository": "latent-spaces/brag"
  },
+ "caldo": {
+  "attribution": "Copyright (c) 2026 Maze",
+  "bundled_files": 2,
+  "commit_sha": "f3cf47774975a7d9fca45730babf4ff7ad765ada",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "caldoai/skills"
+ },
  "cfsecurity": {
   "attribution": "Copyright (c) 2025-2026 Cloudflare, Inc.",
   "bundled_files": 19,
@@ -121,6 +143,17 @@
   ],
   "note": null,
   "repository": "affaan-m/ECC"
+ },
+ "egm": {
+  "attribution": "google contributors",
+  "bundled_files": 31,
+  "commit_sha": "b7d9e2706fb96314a0a3123684f53cedd97e7d79",
+  "license": "Apache-2.0",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "google/elephant-goldfish-model"
  },
  "elaya": {
   "attribution": "Copyright (c) 2026 Elaya",

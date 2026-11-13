@@ -209,6 +209,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | appllama | design/frontend | `LICENSE` | 1 | 1.1 | COPY | none | MIT | `dd5caae` |
 | appllama | design/frontend | `skills/appllama-app-design-skill/` | 1 | 19.7 | ADAPT | none | MIT | `dd5caae` |
 | appllama | design/frontend | `skills/appllama-app-design-skill/` | 1 | 4.5 | COPY | none | MIT | `dd5caae` |
+| astryx | design/frontend | `docs/` | 1 | 7.0 | ADAPT | none | MIT | `da3dbdc` |
 | opendesign | design/frontend | `skills/apple-hig/` | 1 | 1.3 | ADAPT | none | Apache-2.0 | `e03d5c2` |
 | opendesign | design/frontend | `skills/frontend-design/` | 2 | 15.1 | ADAPT | none | Apache-2.0 | `e03d5c2` |
 | opendesign | design/frontend | `skills/frontend-skill/` | 1 | 1.1 | ADAPT | none | Apache-2.0 | `e03d5c2` |
@@ -237,9 +238,13 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | opendesign | design/motion | `skills/gsap-scrolltrigger/` | 3 | 20.4 | ADAPT | none | Apache-2.0 | `e03d5c2` |
 | opendesign | design/motion | `skills/gsap-timeline/` | 3 | 6.7 | ADAPT | none | Apache-2.0 | `e03d5c2` |
 | opendesign | design/motion | `skills/gsap-utils/` | 3 | 14.2 | ADAPT | none | Apache-2.0 | `e03d5c2` |
+| astryx | design/react-design-system | `LICENSE` | 1 | 1.1 | COPY | node | MIT | `da3dbdc` |
+| astryx | design/typography | `docs/` | 1 | 4.3 | ADAPT | none | MIT | `da3dbdc` |
 | opendesign | design/typography | `craft/` | 4 | 23.5 | COPY | none | Apache-2.0 | `e03d5c2` |
 | opendesign | design/typography | `skills/color-expert/` | 1 | 1.3 | ADAPT | none | Apache-2.0 | `e03d5c2` |
+| astryx | design/ux | `docs/` | 2 | 15.3 | ADAPT | none | MIT | `da3dbdc` |
 | opendesign | design/ux | `craft/` | 2 | 33.7 | COPY | none | Apache-2.0 | `e03d5c2` |
+| astryx | design/visual-quality | `docs/` | 5 | 35.9 | ADAPT | none | MIT | `da3dbdc` |
 | ecc | design/visual-quality | `skills/make-interfaces-feel-better/` | 1 | 4.7 | ADAPT | none | MIT | `90606c8` |
 | gstack | design/visual-quality | `lib/` | 1 | 42.1 | ADAPT | none | MIT (+Apache-2.0 notices) | `b04cc35` |
 | opendesign | design/visual-quality | `LICENSE` | 1 | 11.0 | COPY | none | Apache-2.0 | `e03d5c2` |
@@ -259,6 +264,8 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | addy | engineering/architecture | `skills/api-and-interface-design/` | 1 | 14.5 | ADAPT | none | MIT | `1be8e34` |
 | agency | engineering/architecture | `LICENSE` | 1 | 1.1 | COPY | none | MIT | `4e3ac3c` |
 | agency | engineering/architecture | `engineering/` | 4 | 42.9 | ADAPT | none | MIT | `4e3ac3c` |
+| caldo | engineering/architecture | `LICENSE` | 1 | 1.0 | COPY | none | MIT | `f3cf477` |
+| caldo | engineering/architecture | `skills/untangle-codebase/` | 1 | 8.7 | ADAPT | none | MIT | `f3cf477` |
 | ecc | engineering/architecture | `agents/` | 3 | 11.4 | ADAPT | none | MIT | `90606c8` |
 | ecc | engineering/architecture | `skills/api-design/` | 1 | 12.9 | ADAPT | none | MIT | `90606c8` |
 | ecc | engineering/architecture | `skills/architecture-decision-records/` | 1 | 7.0 | ADAPT | none | MIT | `90606c8` |
@@ -296,6 +303,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ecc | engineering/documentation | `agents/` | 1 | 4.3 | ADAPT | none | MIT | `90606c8` |
 | ecc | engineering/documentation | `scripts/` | 1 | 10.0 | PRESERVE | none | MIT | `90606c8` |
 | ecc | engineering/documentation | `skills/living-docs-governance/` | 1 | 8.3 | ADAPT | none | MIT | `90606c8` |
+| egm | engineering/documentation | `skills/egm-drift-report/` | 1 | 3.1 | ADAPT | none | Apache-2.0 | `b7d9e27` |
 | gstack | engineering/documentation | `document-generate/` | 1 | 15.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `b04cc35` |
 | pocock | engineering/documentation | `skills/productivity/` | 1 | 0.9 | ADAPT | none | MIT | `5beb35b` |
 | addy | engineering/frontend | `skills/frontend-ui-engineering/` | 1 | 11.4 | ADAPT | none | MIT | `1be8e34` |
@@ -393,6 +401,17 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ponytail | engineering/simplicity | `skills/ponytail-debt/` | 1 | 1.7 | ADAPT | none | MIT | `09c434a` |
 | ponytail | engineering/simplicity | `skills/ponytail-gain/` | 1 | 2.1 | ADAPT | none | MIT | `09c434a` |
 | ponytail | engineering/simplicity | `skills/ponytail/` | 1 | 3.4 | ADAPT | none | MIT | `09c434a` |
+| egm | engineering/spec-review | `LICENSE` | 1 | 11.1 | COPY | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `agents/` | 10 | 43.8 | COPY | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `docs/` | 1 | 10.2 | ADAPT | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `docs/` | 2 | 19.9 | COPY | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `resources/` | 7 | 12.0 | COPY | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `skills/egm-bootstrap/` | 3 | 25.9 | ADAPT | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `skills/egm-brainstorm/` | 1 | 14.8 | ADAPT | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `skills/egm-draft/` | 2 | 22.4 | ADAPT | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `skills/egm-resolve/` | 1 | 8.3 | ADAPT | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `skills/egm-review-loop/` | 1 | 10.1 | ADAPT | none | Apache-2.0 | `b7d9e27` |
+| egm | engineering/spec-review | `skills/egm-review/` | 1 | 23.7 | ADAPT | none | Apache-2.0 | `b7d9e27` |
 | ecc | engineering/stack-packs | `agents/` | 31 | 226.8 | ADAPT | none | MIT | `90606c8` |
 | ecc | engineering/stack-packs | `rules/` | 1 | 5.6 | ADAPT | none | MIT | `90606c8` |
 | ecc | engineering/stack-packs | `rules/angular/` | 5 | 19.5 | ADAPT | none | MIT | `90606c8` |
@@ -600,4 +619,4 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ytagent | youtube/script | `templates/` | 1 | 1.1 | ADAPT | python-stdlib | MIT | `a2feb21` |
 | ytagent | youtube/seo | `skills/yt-seo/` | 1 | 2.1 | ADAPT | none | MIT | `a2feb21` |
 
-**Total bundled: 3118 files, 60.6 MB** across 69 capabilities.
+**Total bundled: 3161 files, 60.9 MB** across 71 capabilities.

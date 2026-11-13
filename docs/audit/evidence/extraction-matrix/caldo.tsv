@@ -1,0 +1,5 @@
+decision	reason	capability	bytes	path
+EXCLUDE	HOST_PORT		453	.claude-plugin/marketplace.json
+COPY	LICENSE	engineering/architecture	1061	LICENSE
+EXCLUDE	REPO_META		981	README.md
+ADAPT	Whole-codebase restructuring entry point (rule skill hint); its loop runs under Agylite's verify + decision log (doc 24 §3)	engineering/architecture	8881	skills/untangle-codebase/SKILL.md

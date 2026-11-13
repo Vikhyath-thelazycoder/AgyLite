@@ -30,6 +30,10 @@ snapshots:
   elaya:      {repo: elayadesign/ai-design-skills,        branch: main, head: 456d9e0d3e2d84c748bb143c6ca3d90c45e16213, head_date: 2026-11-02, tracked_files: 9,     size: 0.5M, previous_pin: null, license_files: [LICENSE]}
   cfsecurity: {repo: cloudflare/security-audit-skill,     branch: main, head: c1c8a8c1471069fb0e188eeaff69b8e8db6564a8, head_date: 2026-09-14, tracked_files: 22,    size: 0.6M, previous_pin: null, license_files: [LICENSE]}
   tob:        {repo: trailofbits/skills,                  branch: main, head: 2be6433b39e009cd2b6fd3be1895f6b1faa5af9a, head_date: 2026-10-28, tracked_files: 1598,  size: 19M,  previous_pin: null, license_files: [LICENSE], license_note: "CC BY-SA 4.0 (share-alike; non-blocking per D-002, LICENSE and attribution carried)"}
+  # Added 2026-11-13 (Step 4b, D-052, doc 24): staged and audited 2026-11-10 in candidates/, bundled now.
+  astryx:     {repo: meta/astryx,                         branch: main, head: da3dbdc8bd8649827f23adce5ac415f9cdda2858, head_date: 2026-11-09, tracked_files: 10377, size: 648M, previous_pin: null, license_files: [LICENSE], package: "@astryxdesign/cli 0.7.12", clone_note: "--depth 1"}
+  caldo:      {repo: caldoai/skills,                      branch: main, head: f3cf47774975a7d9fca45730babf4ff7ad765ada, head_date: 2026-11-05, tracked_files: 4,     size: 0.2M, previous_pin: null, license_files: [LICENSE]}
+  egm:        {repo: google/elephant-goldfish-model,      branch: main, head: b7d9e2706fb96314a0a3123684f53cedd97e7d79, head_date: 2026-11-09, tracked_files: 301,   size: 6.4M, previous_pin: null, license_files: [LICENSE]}
 
 excluded:
   free-for-dev: {repo: ripienaar/free-for-dev, reason: "Explicitly excluded by master spec §3.7. Not fetched. Zero references in current repo (grep -ri 'free-for-dev' → exit 1)."}

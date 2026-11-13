@@ -36,3 +36,6 @@ upstreams:
   elaya:      {track: monthly, branch: main}   # Step 4 (doc 23): young repo (16 commits); watch before following weekly
   cfsecurity: {track: weekly, branch: main}    # Step 4 (doc 23)
   tob:        {track: weekly, branch: main}    # Step 4 (doc 23)
+  astryx:     {track: releases, branch: main}  # Step 4b (doc 24): beta, very active; the runtime is the npm CLI
+  caldo:      {track: monthly, branch: main}   # Step 4b (doc 24): 3 commits, one skill
+  egm:        {track: weekly, branch: main}    # Step 4b (doc 24)

@@ -647,10 +647,25 @@ Still to do:
         Tier 0 PASS. Details: doc 23 header, D-051.
         **Not done here, carried to Step 4b/5:** C1-2 (Addy severity labels), eng-ponytail +22% cost, S3-1 (ECC
         benchmark-methodology wrong owner of testing/performance), S3-2 (eng-ecc prompts never lead with ECC), S3-3
-        (~/Developer/os clones off pins); paid `design-elaya` and security suites (Step 5). **▶ RESUME HERE: Step 4b.**
+        (~/Developer/os clones off pins); paid `design-elaya` and security suites (Step 5).
         Original scope: bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
         Elaya Part A as `design/landing-conversion`, overlap test + validate check), normal tests green
-  - [ ] Step 4b (owner 2026-11-10, D-052) — bundle Astryx, Caldo and EGM per `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`
+  - [x] Step 4b — **DONE 2026-11-13**, candidate bundle 983bee4b2e54 (scratch AGYLITE_HOME; live ~/.agylite unchanged).
+        26 upstreams, 82 capabilities (+ engineering/spec-review, design/react-design-system). Built: EGM review /
+        resolve / review-loop (spec-review), drift-report (documentation entry, rule hint), 9 `agents/egm-*.md`, Caldo
+        untangle (architecture entry, rule hint), 9 Astryx records in visual-quality/frontend/ux/typography, React guide
+        gated on stack tags `react19` and not `ui-kit`, hero/landing also route design/design-system, the three misroutes
+        fixed with regression scenarios, merged review (`review_merge`, hook line, entry skill step 6, gstack Review Army
+        pointer rewritten), resolve gate, host `subagent_tool` flag (stop without one), spec review suggested after to-spec
+        only. Side-by-side: Astryx reduced-motion and bidirectionality stay REFERENCE (no gap). Gate: 516 tests OK,
+        validate 23/0, doctor 65/0, routing 68/68, Tier 0 PASS, verify PASSED.
+        **Not built (carry to Step 5/6):** per-review subagent/token logging in observability events (the hook cannot
+        see subagent spawns; needs a SubagentStop-style hook or `agylite used` input); the 4b.2 D re-check loop exists
+        only inside Caldo's skill (no generic multi-batch lifecycle step); 4b.2 E drift check runs on request only (no
+        automatic offer after a feature's last task). Note: the to-spec hook now carries the one-line spec-review offer
+        (+150 chars on eng-pocock to-spec prompts). **▶ RESUME HERE: Step 5 (dry run + one cost estimate for the owner
+        first).**
+        Original scope: bundle Astryx, Caldo and EGM per `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`
         §6, together with Step 4. **Audit done 2026-11-10** (pins `astryx@da3dbdc`, `caldo@f3cf477`, `egm@b7d9e27` in
         `docs/audit/evidence/candidates/`; nothing bundled). Design = one combined system: Taste (direction, polish),
         UI UX Pro Max (hero/landing patterns, palettes, fonts), Open Design (craft rules, motion), Astryx (new
@@ -943,7 +958,7 @@ MP5 skills) depends on the same skill loading. Details: IMPLEMENTATION_LOG.md �
 Earlier state (v2.x release, 2026-10-11): `main` released v2.0.0 → v2.1.x; central install in `~/.agylite`; Claude Code
 plugin `agylite@agylite-marketplace` installed and runtime-verified. Tests: `python -m unittest discover -s tests`.
 
-## Step 4b — Astryx, Caldo, EGM and the multi-agent review upgrade (detailed) · PLANNED (owner 2026-11-10, D-052)
+## Step 4b — Astryx, Caldo, EGM and the multi-agent review upgrade (detailed) · DONE 2026-11-13 (D-052; see the checklist entry for what was not built)
 
 **Read this whole section before starting Step 4b.** It is written so a future session can carry it out without this
 conversation. Audit and evidence: `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md` (per-file verdicts),

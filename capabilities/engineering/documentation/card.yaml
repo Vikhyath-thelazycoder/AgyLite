@@ -2,7 +2,7 @@
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Documentation
 description: "Project docs (PRD/TRD/ARCHITECTURE/\u2026), ADRs, living docs"
-intent_tags: [document, docs, readme, adr]
+intent_tags: [document, docs, readme, adr, doc drift, docs vs code]
 origin: mixed
 runtime_type: none
 requires_network: false
@@ -19,4 +19,4 @@ related_capabilities: []
 conflicts: []
 fallback_capability: null
 enabled: true
-sources_priority: [files/addy/skills/documentation-and-adrs/SKILL.md, files/gstack/document-release/SKILL.md]
+sources_priority: [files/addy/skills/documentation-and-adrs/SKILL.md, files/gstack/document-release/SKILL.md, files/egm/skills/egm-drift-report/SKILL.md]
