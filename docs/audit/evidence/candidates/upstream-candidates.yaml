@@ -6,20 +6,15 @@
 # Overlap audit and per-file decisions: docs/audit/23_NEW_UPSTREAMS_OVERLAP_AUDIT.md (elaya, cfsecurity, tob) and
 # docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md (astryx, caldo, egm; Step 4b).
 # Captured: 2026-11-02
+# elaya, cfsecurity and tob moved to upstream-staging-snapshot.yaml and config/upstreams.yaml on 2026-11-13 (Step 4).
 
 candidates:
-  elaya:      {repo: elayadesign/ai-design-skills,      branch: main, head: 456d9e0d3e2d84c748bb143c6ca3d90c45e16213, head_date: 2026-11-02, tracked_files: 9,    commits: 16,  size: 0.5M, license: MIT,          license_files: [LICENSE]}
-  cfsecurity: {repo: cloudflare/security-audit-skill,   branch: main, head: c1c8a8c1471069fb0e188eeaff69b8e8db6564a8, head_date: 2026-09-14, tracked_files: 22,   commits: 14,  size: 0.6M, license: MIT,          license_files: [LICENSE]}
-  tob:        {repo: trailofbits/skills,                branch: main, head: 2be6433b39e009cd2b6fd3be1895f6b1faa5af9a, head_date: 2026-10-28, tracked_files: 1598, commits: 232, size: 19M,  license: CC-BY-SA-4.0, license_files: [LICENSE], license_note: "share-alike; non-blocking per D-002, LICENSE and attribution copied with the files"}
   # Captured 2026-11-10 (doc 24, D-052). astryx cloned --depth 1 (648M checkout), so its commit count is not recorded.
   astryx:     {repo: meta/astryx,                       branch: main, head: da3dbdc8bd8649827f23adce5ac415f9cdda2858, head_date: 2026-11-09, tracked_files: 10377, size: 648M, license: MIT,        license_files: [LICENSE], runtime: "npm @astryxdesign/cli 0.7.12 (bin astryx)"}
   caldo:      {repo: caldoai/skills,                    branch: main, head: f3cf47774975a7d9fca45730babf4ff7ad765ada, head_date: 2026-11-05, tracked_files: 4,    commits: 3,   size: 0.2M, license: MIT,          license_files: [LICENSE]}
   egm:        {repo: google/elephant-goldfish-model,    branch: main, head: b7d9e2706fb96314a0a3123684f53cedd97e7d79, head_date: 2026-11-09, tracked_files: 301,  commits: 176, size: 6.4M, license: Apache-2.0,   license_files: [LICENSE]}
 
 proposed_tracking:   # goes into config/upstreams.yaml in step 4
-  elaya:      {track: monthly, branch: main}   # 16 commits, last one on 2026-11-02: young repo, watch before following weekly
-  cfsecurity: {track: weekly,  branch: main}
-  tob:        {track: weekly,  branch: main}
   astryx:     {track: releases, branch: main}   # beta, very active; the runtime is the npm CLI (like designlang)
   caldo:      {track: monthly, branch: main}    # 3 commits, one skill: young repo
   egm:        {track: weekly,  branch: main}

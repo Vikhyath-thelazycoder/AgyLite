@@ -64,3 +64,21 @@ skill_overlaps:
   - {lead: files/pocock/skills/engineering/to-tickets/SKILL.md, also: files/addy/skills/planning-and-task-breakdown/SKILL.md}
   - {lead: files/pocock/skills/productivity/grilling/SKILL.md, also: files/addy/skills/interview-me/SKILL.md}
   - {lead: files/ponytail/skills/ponytail/SKILL.md, also: files/addy/skills/code-simplification/SKILL.md}
+  # Step 4 (doc 23 §2): one job each, loaded together only on landing pages (the landing-conversion rule): Taste leads on
+  # look and structure, Elaya's Part A on what the page says. `rules:` limits a pair to routes where one of them matched.
+  - {lead: files/taste/skills/taste-skill/SKILL.md, also: files/elaya/skills/landing-page-design/SKILL.md, rules: [landing-conversion]}
+
+# Step 4 (doc 23 §3, one owner per job): bundled skills that duplicate an owner's job. They stay searchable
+# (`agylite skills search`) and loadable by name (`agylite skill load`), but no route leads with them: `agylite validate`
+# fails when one appears in a card's sources_priority, a routing rule's `skill` or a `skill_overlaps` pair.
+route_excluded:
+  - files/gstack/cso/SKILL.md                                   # security audit → Cloudflare security-audit
+  - files/gstack/cso/sections/audit-phases.md
+  - files/ecc/skills/security-review/SKILL.md                   # security review → Cloudflare security-audit
+  - files/ecc/skills/security-review/cloud-infrastructure-security.md
+  - files/ecc/agents/security-reviewer.md
+  - files/addy/agents/security-auditor.md
+  - files/agency/security/security-appsec-engineer.md
+  - files/agency/security/security-penetration-tester.md
+  - files/agency/security/security-ai-generated-code-auditor.md
+  - files/ecc/skills/safety-guard/SKILL.md                      # guardrails → gstack careful / freeze / guard

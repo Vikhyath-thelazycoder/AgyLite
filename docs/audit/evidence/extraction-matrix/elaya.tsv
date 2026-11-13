@@ -1,0 +1,10 @@
+decision	reason	capability	bytes	path
+EXCLUDE	REPO_META		529	.github/workflows/validate-skills.yml
+EXCLUDE	REPO_META		85	.gitignore
+COPY	LICENSE	design/landing-conversion	1062	LICENSE
+EXCLUDE	DOC_ASSET		3630	README.md
+EXCLUDE	DOC_ASSET		151448	assets/slopscan-banner.png
+EXCLUDE	REPO_META		4053	scripts/validate_skills.py
+EXCLUDE	MCP		22079	skills/figma-designer/SKILL.md
+ADAPT	Part A conversion strategy only; Taste owns structure and the visual system, BeyondSEO owns SEO (doc 23 §2)	design/landing-conversion	22115	skills/landing-page-design/SKILL.md
+EXCLUDE	REPO_META		4981	tests/test_validate_skills.py

@@ -150,7 +150,7 @@ class TestTransformVersion(unittest.TestCase):
     """The bundle id hashes rules, pins, licenses and TRANSFORM_VERSION, not transform code: an edited transform with
     the same version reuses the old bundle and its old text (Phase 9: the gstack review rewrite did not reach the
     bundle). Editing a transform therefore needs a version bump; record the new sources hash here."""
-    SOURCES = {"8": "810cd13134fb8f50"}
+    SOURCES = {"8": "810cd13134fb8f50", "9": "7f654346b1b1d600"}
 
     def test_transform_edits_bump_the_version(self):
         import hashlib
@@ -205,7 +205,7 @@ class TestRewrites(unittest.TestCase):
                     samples[key] = f.read()
         if not os.path.isdir(staged):
             self.skipTest("staged upstreams needed for the P13 rewrite samples")
-        mp5 = [k for k in rewrites.REWRITES if k[0] in ("ytagent", "archify")]   # MP5 §2.2, §3.2: real text
+        mp5 = [k for k in rewrites.REWRITES if k[0] in ("ytagent", "archify", "elaya")]   # MP5 §2.2, §3.2, Step 4: real text
         for key in POCOCK_ADAPT + [("ponytail", "skills/ponytail-review/SKILL.md")] + mp5:   # MP3 §1.3, §2.3: real text
             with open(os.path.join(staged, key[0], key[1]), encoding="utf-8") as f:
                 samples[key] = f.read()
@@ -228,6 +228,20 @@ class TestRewrites(unittest.TestCase):
         self.assertIn("## Navigation laws", out)
         self.assertIn("## Verification (Agylite local test-first, D-035)", out)
         self.assertIn("design/visual-quality", out)  # anti-slop canonical in Taste/OpenDesign
+
+    def test_elaya_keeps_part_a_only(self):
+        """Step 4 (doc 23 §2): an upstream update must not bring back Part B, A2, A6 or A7 silently."""
+        path = os.path.join(ROOT_DIR, ".staging", "upstream", "elaya", "skills", "landing-page-design", "SKILL.md")
+        if not os.path.isfile(path):
+            self.skipTest("staged Elaya needed")
+        with open(path, encoding="utf-8") as f:
+            out = rewrites.apply("elaya", "skills/landing-page-design/SKILL.md", f.read())
+        for kept in ("## A1. Intake", "## A3. Layout selection", "## A4. Conversion rules", "## A5. Copywriting",
+                     "## A8. Pitfalls", "**Strategy**", "## Credits"):
+            self.assertIn(kept, out)
+        for gone in ("PART B", "## B1", "B11", "Tagline reveal", "## A2.", "## A6.", "## A7.", "noindex", "this file wins",
+                     "**Visual**", "per A6"):
+            self.assertNotIn(gone, out)
 
     def test_drift_raises(self):
         with self.assertRaises(rewrites.RewriteDrift):

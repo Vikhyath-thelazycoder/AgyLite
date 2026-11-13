@@ -102,7 +102,7 @@ repos:
     default: {decision: EXCLUDE, reason: HOST_PORT}
     rules:
       - {paths: ["LICENSE"], decision: COPY, capability: engineering/planning, reason: LICENSE}
-      - {paths: ["references/security-checklist.md"], decision: COPY, capability: engineering/security, reason: "Shared reference linked from skills (closure)"}
+      - {paths: ["references/security-checklist.md"], decision: COPY, capability: engineering/secure-coding, reason: "Shared reference linked from skills (closure)"}
       - {paths: ["references/performance-checklist.md"], decision: COPY, capability: engineering/performance, reason: "Shared reference (closure)"}
       - {paths: ["references/accessibility-checklist.md"], decision: COPY, capability: design/accessibility, reason: "Shared reference (closure)"}
       - {paths: ["references/testing-patterns.md"], decision: COPY, capability: testing/strategy, reason: "Shared reference (closure)"}
@@ -114,7 +114,7 @@ repos:
       - {paths: ["skills/documentation-and-adrs/**"], decision: ADAPT, capability: engineering/documentation, reason: "MP3 §0: first source of engineering/documentation (docs and ADRs)"}
       - {paths: ["skills/incremental-implementation/**", "skills/source-driven-development/**", "skills/constraint-driven-development/**", "skills/doubt-driven-development/**"], decision: ADAPT, capability: engineering/implementation, reason: "Implementation discipline"}
       - {paths: ["skills/frontend-ui-engineering/**"], decision: ADAPT, capability: engineering/frontend, reason: "Frontend engineering"}
-      - {paths: ["skills/security-and-hardening/**"], decision: ADAPT, capability: engineering/security, reason: "Security hardening + hardening-patterns reference"}
+      - {paths: ["skills/security-and-hardening/**"], decision: ADAPT, capability: engineering/secure-coding, reason: "Step 4 (doc 23): owner of secure coding while building (+ hardening-patterns reference)"}
       - {paths: ["skills/performance-optimization/**"], decision: ADAPT, capability: engineering/performance, reason: "Performance + optimization-patterns reference"}
       - {paths: ["skills/code-review-and-quality/**"], decision: ADAPT, capability: engineering/review, reason: "Multi-axis review"}
       - {paths: ["skills/debugging-and-error-recovery/**"], decision: ADAPT, capability: engineering/debugging, reason: "Root-cause debugging"}
@@ -505,6 +505,41 @@ repos:
 
 # Gaps reviewed and accepted: the reference is a documentation mention, a self-reference to a generated file,
 # or is removed by the ADAPT rewrite. Matched on (repo, target); every entry carries its reason.
+  # ------------------------------------------------------------------ STEP 4 (doc 23, D-051): ELAYA, CLOUDFLARE, TRAIL OF BITS
+  # One owner per job. Elaya: Part A of landing-page-design only (rewrite in rewrites.py drops Part B, A2, A6, A7);
+  # figma-designer needs the Figma MCP. Cloudflare owns security review/audit. Trail of Bits: 4 of 44 plugins whose job
+  # nothing else does (variant hunting, footgun review, Semgrep/CodeQL/SARIF runbooks, Semgrep rule writing).
+  elaya:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: design/landing-conversion, reason: LICENSE}
+      - {paths: ["skills/landing-page-design/SKILL.md"], decision: ADAPT, capability: design/landing-conversion, reason: "Part A conversion strategy only; Taste owns structure and the visual system, BeyondSEO owns SEO (doc 23 §2)"}
+      - {paths: ["skills/figma-designer/**"], decision: EXCLUDE, reason: MCP}
+      - {paths: ["README.md", "assets/**"], decision: EXCLUDE, reason: DOC_ASSET}
+
+  cfsecurity:
+    default: {decision: EXCLUDE, reason: REPO_META}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/security, reason: LICENSE}
+      - {paths: ["skills/security-audit/*.test.cjs"], decision: EXCLUDE, reason: UPSTREAM_DEV}
+      - {paths: ["skills/security-audit/**"], decision: COPY, capability: engineering/security, reason: "Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)"}
+      - {paths: ["README.md"], decision: REFERENCE, reason: "Attribution and usage notes"}
+
+  tob:
+    default: {decision: EXCLUDE, reason: OUT_OF_DOMAIN}
+    rules:
+      - {paths: ["LICENSE"], decision: COPY, capability: engineering/security, reason: LICENSE}
+      - {paths: ["plugins/fp-check/**"], decision: EXCLUDE, reason: ALWAYS_ON}
+      - {paths: ["plugins/differential-review/**", "plugins/insecure-defaults/**", "plugins/supply-chain-risk-auditor/**"], decision: EXCLUDE, reason: SUPERSEDED}
+      - {paths: ["plugins/*/.claude-plugin/**", "plugins/*/commands/**", "plugins/*/workflows/**", "plugins/*/skills/*/agents/openai.yaml"], decision: EXCLUDE, reason: HOST_PORT}
+      - {paths: ["plugins/*/tests/**", "plugins/*/evals/**", "plugins/*/skills/*/scripts/test_*.py", "plugins/*/skills/*/scripts/pyproject.toml", "plugins/*/skills/*/resources/test_*.py", "plugins/*/skills/*/resources/fixtures/**"], decision: EXCLUDE, reason: UPSTREAM_DEV}
+      - {paths: ["plugins/*/skills/*/assets/**"], decision: EXCLUDE, reason: DOC_ASSET}
+      - {paths: ["plugins/variant-analysis/README.md", "plugins/sharp-edges/README.md", "plugins/static-analysis/README.md", "plugins/semgrep-rule-creator/README.md"], decision: REFERENCE, reason: "Plugin provenance"}
+      - {paths: ["plugins/variant-analysis/skills/**"], decision: COPY, capability: engineering/security, reason: "Find the siblings of a known bug (doc 23 §3)"}
+      - {paths: ["plugins/sharp-edges/skills/**", "plugins/sharp-edges/agents/sharp-edges-analyzer.md"], decision: COPY, capability: engineering/security, reason: "Misuse-resistance review of API, config and crypto designs (doc 23 §3)"}
+      - {paths: ["plugins/static-analysis/skills/**"], decision: COPY, capability: testing/security, reason: "Semgrep/CodeQL/SARIF runbooks; only tools already installed (doc 23 §3)"}
+      - {paths: ["plugins/semgrep-rule-creator/skills/**"], decision: COPY, capability: testing/security, reason: "Writing custom Semgrep rules (doc 23 §3)"}
+
 accepted_gaps:
   - {repo: ponytail, target: hooks/ponytail-config.js, reason: "Generator input (ponytail-lite reads it at build time with inputs:); neither file ships, RULESET-lite.md does"}
   - {repo: archify, target: archify/references/update-awareness.md, reason: "Update awareness section replaced by SKILL.md ADAPT (Agylite owns updates, MP5 §3.2)"}

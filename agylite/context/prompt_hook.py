@@ -89,9 +89,9 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     # arrives with the prompt, whole; the session cache turns it into a one-line marker on later prompts.
     lead = _inline_skill(loader, skills[0]) if skills else None
     # Option 2 (D-050): when another upstream has a skill for the same job, it rides along whole and one side leads.
-    pair = _overlap_partner(loader, skills[0], root) if lead else None
+    pair = _overlap_partner(loader, skills[0], root, route.get("rules")) if lead else None
 
-    def head(inline, pair):
+    def head(inline, pair, both=None):
         out = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
         if exempt:
             out.append(PONYTAIL_OFF)
@@ -100,6 +100,10 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
                        f"both before the first edit, and where they disagree follow {pair['lead']}.")
         elif inline:
             out.append(f"The whole skill {skills[0]} follows; follow it before the first edit.")
+        elif lead and both:   # Step 4: the lead is too big to ride along; its partner is named next to it
+            first, second = (lead["path"], both["source"]) if both["lead"] == skills[0] else (both["source"], lead["path"])
+            out.append(f"Before the first edit, read the whole skills {both['lead']} and {both['other']} (one task, two "
+                       f"jobs) and follow both; where they disagree follow {both['lead']}: {first} and {second}")
         elif lead:   # too big to ride along: one Read of the file, not a CLI call agents skip
             out.append(f"Before the first edit, read the whole skill {skills[0]} and follow it: {lead['path']}")
         elif skills:
@@ -114,13 +118,16 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     def size(lines, texts=()):
         return len("\n".join(list(lines) + [t.rstrip() for t in texts]) + "\n")
 
+    lead_pair = pair
     if pair and size(head(lead, pair), [lead["text"], pair["text"]]) > cap:
         loader.forget(pair["path"])
         pair = None
     inline = lead if lead and size(head(lead, None), [lead["text"]]) <= cap else None
+    both = None
     if lead and not inline:
         loader.forget(lead["key"])
-    lines = head(inline, pair)
+        both = _scoped_pair(lead_pair, root)
+    lines = head(inline, pair, both)
     texts = ([] if not inline else [inline["text"], pair["text"]] if pair else [inline["text"]])
     if pair and pair["lead"] != skills[0]:
         texts.reverse()   # the leading skill comes first
@@ -153,7 +160,7 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None):
     if loader.cache:
         loader.cache.save()
     return {"text": "\n".join(lines) + "\n", "ids": ids, "change_type": route["change_type"], "cards": cards,
-            "cached": cached, "skills": skills + ([pair["partner"]] if pair else [])}
+            "cached": cached, "skills": skills + ([pair["partner"]] if pair else [both["partner"]] if both else [])}
 
 
 def primary_skill_ids(loader, cids, query, hints=None) -> list:
@@ -187,19 +194,31 @@ def _inline_skill(loader, sid: str):
         return None
 
 
-def _overlap_partner(loader, sid: str, root=None):
+def _scoped_pair(pair, root=None):
+    """Step 4: a rule-scoped pair (Taste + Elaya) is named by path when its lead is too big to inline; the D-050 pairs
+    keep their old behaviour (the lead alone), so the measured engineering suites do not change."""
+    from . import levels
+    if not pair:
+        return None
+    scoped = {(o["lead"], o["also"]) for o in levels._priorities(root).get("skill_overlaps") or [] if o.get("rules")}
+    return pair if pair["pair_paths"] in scoped else None
+
+
+def _overlap_partner(loader, sid: str, root=None, rules=None):
     """Option 2 (D-050): {lead, other, partner, path, text} when skill `sid` is one side of a `skill_overlaps` pair
     (`other` is the skill shown after `lead`'s name, `path` the partner's bundle path); else None."""
     from . import levels
     try:
         entry = levels.find_skill(loader, sid)
-        pair = levels.overlap_pair(loader, entry, levels.skill_overlaps(root)) if entry else None
+        pair = levels.overlap_pair(loader, entry, levels.skill_overlaps(root, rules)) if entry else None
         if pair is None:
             return None
         lead, also = pair
         partner = also if lead["path"] == entry["path"] else lead
         return {"lead": levels.skill_id(lead), "other": levels.skill_id(also), "partner": levels.skill_id(partner),
-                "path": partner["path"], "text": levels.whole_skill(loader, partner, level="L2")[0]}
+                "path": partner["path"], "source": str(loader.source(partner)),
+                "pair_paths": (lead["path"], also["path"]),
+                "text": levels.whole_skill(loader, partner, level="L2")[0]}
     except Exception:   # no bundle or an unreadable file: the first skill alone
         return None
 

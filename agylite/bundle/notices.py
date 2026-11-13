@@ -28,6 +28,8 @@ def detect_license(text: str) -> str:
         return "MIT"
     if "Apache License" in head and "Version 2.0" in head:
         return "Apache-2.0"
+    if "Attribution-ShareAlike 4.0 International" in head:
+        return "CC-BY-SA-4.0"
     return "UNKNOWN"
 
 
@@ -72,6 +74,8 @@ def generate():
     data = {}
     for repo in sorted(pins):
         info = describe(repo, staging_dir() / repo)
+        if info["attribution"] == f"{repo} contributors":   # no copyright line (e.g. CC BY-SA): name the repo owner
+            info["attribution"] = f"{pins[repo]['repo'].split('/')[0]} contributors"
         info.update({"repository": pins[repo]["repo"], "commit_sha": pins[repo]["head"], "bundled_files": counts[repo]})
         data[repo] = info
     licenses_file().parent.mkdir(parents=True, exist_ok=True)

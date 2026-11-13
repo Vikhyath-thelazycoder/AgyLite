@@ -1,0 +1,23 @@
+decision	reason	capability	bytes	path
+COPY	LICENSE	engineering/security	1078	LICENSE
+REFERENCE	Attribution and usage notes		6950	README.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	10617	skills/security-audit/AI-AND-LLM.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	15695	skills/security-audit/ATTACK-CLASSES.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	8594	skills/security-audit/CLIENT-SIDE.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	8291	skills/security-audit/CLOUD-AND-DEPLOYMENT.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	7798	skills/security-audit/DATA-ISOLATION-AND-LIFECYCLE.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	8739	skills/security-audit/DESKTOP-MOBILE-AND-LOCAL-IPC.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	22446	skills/security-audit/HUNTING.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	10513	skills/security-audit/MEMORY-SAFETY-AND-BINARY.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	7483	skills/security-audit/PROTOCOLS-RPC-AND-MESSAGING.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	15902	skills/security-audit/RECONNAISSANCE.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	7476	skills/security-audit/RESOURCE-EXHAUSTION-AND-AVAILABILITY.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	22026	skills/security-audit/SKILL.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	7258	skills/security-audit/SUPPLY-CHAIN-AND-RELEASE.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	17843	skills/security-audit/VALIDATION-AND-REPORTING.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	12300	skills/security-audit/WEB-PROTOCOL-AND-AUTH.md
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	14494	skills/security-audit/report-schema.json
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	33522	skills/security-audit/validate-coverage-ledger.cjs
+EXCLUDE	UPSTREAM_DEV		28483	skills/security-audit/validate-coverage-ledger.test.cjs
+COPY	Owner of security review and audit: guidance and full-audit modes, 15 domain files, schema and local validators (doc 23 §3)	engineering/security	28806	skills/security-audit/validate-findings.cjs
+EXCLUDE	UPSTREAM_DEV		26384	skills/security-audit/validate-findings.test.cjs

@@ -173,6 +173,60 @@ rules:
     suppress: [design, media, seo, testing/local-verification]
     weight: 4
 
+  # Step 4 (doc 23 §3): one owner per job. Building something securely is Addy's hardening checklist; reviewing or
+  # auditing for vulnerabilities stays with engineering/security (Cloudflare security-audit).
+  - id: secure-coding
+    description: Build or harden a feature securely (Addy security-and-hardening leads; review and audit do not match)
+    regex: ['\b(?:add|build|implement|create|write|make|develop|set up|store)\b[^.]*\b(?:securely|safely)\b', '\bharden(?:ing|ed)?\b',
+            '\bsecure coding\b', '\b(?:input validation|validate (?:the |all |user )?inputs?|sanitiz\w+|rate[- ]limit\w*|security headers|password hashing|hash(?:ing)? passwords?)\b']
+    unless: [review, audit, pentest, pen test, penetration, vulnerability, vulnerabilities, vulnerable, exploit, bypass, variant, variants, footgun, semgrep, codeql, diagram]
+    select: [engineering/secure-coding]
+    suppress: [design, media, seo]
+    weight: 6
+
+  - id: variant-analysis
+    description: Find the siblings of a known bug across the codebase (Trail of Bits variant-analysis)
+    any: [variant analysis, variants of this bug, variants of this vulnerability, variants of the bug, similar bugs, similar vulnerabilities, same bug elsewhere, same pattern elsewhere, other instances of this bug, sibling bugs]
+    select: [engineering/security, codebase/code-search]
+    skill: files/tob/plugins/variant-analysis/skills/variant-analysis/SKILL.md
+    weight: 7
+
+  - id: sharp-edges
+    description: Misuse-resistance review of an API, config or crypto design (Trail of Bits sharp-edges)
+    any: [footgun, footguns, sharp edges, misuse resistant, misuse-resistant, easy to misuse, dangerous defaults, error-prone api, error prone api]
+    select: [engineering/security]
+    skill: files/tob/plugins/sharp-edges/skills/sharp-edges/SKILL.md
+    weight: 7
+
+  - id: static-analysis
+    description: Run Semgrep or another SAST scan with the tools already installed (Trail of Bits static-analysis)
+    any: [semgrep, sast, static analysis, static analyzer, static application security testing]
+    unless: [semgrep rule, semgrep rules, custom rule, custom rules]
+    select: [testing/security]
+    skill: files/tob/plugins/static-analysis/skills/semgrep/SKILL.md
+    weight: 5
+
+  - id: codeql
+    description: Build a CodeQL database and run queries (Trail of Bits static-analysis)
+    any: [codeql]
+    select: [testing/security]
+    skill: files/tob/plugins/static-analysis/skills/codeql/SKILL.md
+    weight: 6
+
+  - id: sarif
+    description: Read, filter or merge SARIF results (Trail of Bits sarif-parsing)
+    any: [sarif]
+    select: [testing/security]
+    skill: files/tob/plugins/static-analysis/skills/sarif-parsing/SKILL.md
+    weight: 6
+
+  - id: semgrep-rule
+    description: Write a custom Semgrep rule (Trail of Bits semgrep-rule-creator)
+    any: [semgrep rule, semgrep rules, custom semgrep, write a semgrep]
+    select: [testing/security]
+    skill: files/tob/plugins/semgrep-rule-creator/skills/semgrep-rule-creator/SKILL.md
+    weight: 7
+
   # ── Design (scenario D, spec §14) ─────────────────────────────────────────────────────────────────────────────
   - id: design-premium
     description: Make an interface feel premium / less generic
@@ -198,6 +252,17 @@ rules:
     regex: *ui_build_rx
     unless: *ui_build_unless
     select: [design/frontend]
+    weight: 3
+
+  # Step 4 (doc 23 §2): what a landing page says and why (Elaya Part A). It loads next to Taste through the rule-scoped
+  # skill_overlaps pair (config/priorities.yaml); visual-only requests ("feel premium", "look like") leave it out.
+  - id: landing-conversion
+    description: Landing, marketing, signup, waitlist or pricing page content and conversion (Elaya, next to Taste)
+    any: [landing page, launch page, marketing page, signup page, sign-up page, waitlist page, pricing page, sales page, call to action, cta, ctas, hero copy, landing copy]
+    regex: ['\bconversion (?:rate|rates|copy|strategy|focused|optimi[sz]ation)\b', '\bconverts? (?:better|more|visitors)\b', '\bhigh[- ]converting\b']
+    unless: [premium, generic, polished, ai slop, slop, bland, redesign, overlap, overlaps, responsive, look like, looks like, seo, audit, rank, ranking, video, deck, slides, presentation, youtube, diagram, mind map,
+             stripe, checkout, payment, payments, api, backend, endpoint, database, migration, webhook, bug, fix, crash, test, tests]
+    select: [design/landing-conversion]
     weight: 3
 
   - id: layout-check

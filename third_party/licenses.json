@@ -89,6 +89,17 @@
   "note": null,
   "repository": "latent-spaces/brag"
  },
+ "cfsecurity": {
+  "attribution": "Copyright (c) 2025-2026 Cloudflare, Inc.",
+  "bundled_files": 19,
+  "commit_sha": "c1c8a8c1471069fb0e188eeaff69b8e8db6564a8",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "cloudflare/security-audit-skill"
+ },
  "designlang": {
   "attribution": "Copyright (c) 2024 Manavarya Singh",
   "bundled_files": 7,
@@ -110,6 +121,17 @@
   ],
   "note": null,
   "repository": "affaan-m/ECC"
+ },
+ "elaya": {
+  "attribution": "Copyright (c) 2026 Elaya",
+  "bundled_files": 2,
+  "commit_sha": "456d9e0d3e2d84c748bb143c6ca3d90c45e16213",
+  "license": "MIT",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "elayadesign/ai-design-skills"
  },
  "graphify": {
   "attribution": "Copyright (c) 2026 Safi Shamsi",
@@ -189,6 +211,17 @@
   ],
   "note": null,
   "repository": "Leonxlnx/taste-skill"
+ },
+ "tob": {
+  "attribution": "trailofbits contributors",
+  "bundled_files": 68,
+  "commit_sha": "2be6433b39e009cd2b6fd3be1895f6b1faa5af9a",
+  "license": "CC-BY-SA-4.0",
+  "license_files": [
+   "LICENSE"
+  ],
+  "note": null,
+  "repository": "trailofbits/skills"
  },
  "uiuxpromax": {
   "attribution": "Copyright (c) 2024 Next Level Builder",

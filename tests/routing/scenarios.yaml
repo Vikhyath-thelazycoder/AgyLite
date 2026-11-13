@@ -364,3 +364,62 @@ scenarios:
     stage: existing
     expect: [observability/updates]
     forbid: [engineering/, seo/]
+
+  # ── Step 4 (doc 23): one owner per job — security (Cloudflare, Addy, Trail of Bits) and landing pages (Taste + Elaya) ─
+  - id: s4-security-review
+    request: Do a security review of our auth and session code
+    stage: existing
+    expect: [engineering/security, testing/security]
+    forbid: [engineering/secure-coding, design/]
+    change_type: SECURITY_CHANGE
+
+  - id: s4-secure-coding
+    request: Add a password reset endpoint and store the tokens securely
+    stage: existing
+    expect: [engineering/secure-coding]
+    forbid: [design/]
+
+  - id: s4-harden
+    request: Harden the file upload endpoint
+    stage: existing
+    expect: [engineering/secure-coding, testing/security]
+
+  - id: s4-variant-analysis
+    request: We found a SQL injection in orders.py; find variants of this bug elsewhere
+    stage: existing
+    expect: [engineering/security, codebase/code-search]
+    forbid: [engineering/secure-coding]
+
+  - id: s4-sharp-edges
+    request: Review this config API for footguns
+    stage: existing
+    expect: [engineering/security]
+
+  - id: s4-semgrep
+    request: Run semgrep on the repo and triage the results
+    stage: existing
+    expect: [testing/security]
+    forbid: [engineering/secure-coding, design/]
+
+  - id: s4-semgrep-rule
+    request: Write a semgrep rule that flags eval of request data
+    stage: existing
+    expect: [testing/security]
+
+  - id: s4-landing-build
+    request: Build a landing page for our AI note-taking app with a waitlist
+    stage: new
+    expect: [design/design-direction, design/landing-conversion]
+    forbid: [engineering/security, seo/]
+
+  - id: s4-landing-copy
+    request: Write high-converting hero copy and a call to action for our pricing page
+    stage: existing
+    expect: [design/landing-conversion]
+    forbid: [engineering/, seo/]
+
+  - id: s4-pricing-checkout-is-engineering
+    request: Add Stripe checkout to the pricing page
+    stage: existing
+    expect: [engineering/backend]
+    forbid: [design/landing-conversion]

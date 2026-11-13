@@ -1,0 +1,25 @@
+# engineering/secure-coding — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
+# by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
+# Step 4 (doc 23 §3): one owner per job. Building a feature securely (hardening checklist) is Addy's; reviewing or
+# auditing existing code for vulnerabilities is engineering/security (Cloudflare).
+name: Secure coding
+description: Build features securely — input validation, authn/authz, secrets, headers, rate limits, dependency hygiene
+intent_tags: [secure coding, securely, harden, hardening, input validation, sanitize, rate limit, security headers]
+origin: bundled
+runtime_type: none
+requires_network: false
+requires_browser: none
+requires_codebase_analysis: true
+context_level: L2
+priority: 85
+security_class: read-only
+cache_strategy: static
+activation_conditions:
+  when: [request matches intent_tags or a routing rule selects this capability]
+verification_requirements: [boundary inputs validated, 'no secrets in code, config or logs', testing/security checks pass]
+dependencies: []
+related_capabilities: [engineering/security, testing/security]
+conflicts: []
+fallback_capability: null
+enabled: true
+sources_priority: [files/addy/skills/security-and-hardening/SKILL.md]

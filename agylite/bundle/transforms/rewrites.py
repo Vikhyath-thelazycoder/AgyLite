@@ -158,6 +158,31 @@ ARCHIFY = [
                 r"end the reply with one optional line offering the proactive mode.*\Z", re.S), "\n"),
 ]
 
+# Step 4 (doc 23 §2): Elaya's landing-page-design keeps Part A's conversion strategy (A1, A3, A4, A5, A8 and the Strategy
+# checklist). Dropped: A2 (fixed section order Taste forbids), A6 (Taste's build flow), A7 (BeyondSEO owns SEO) and
+# all of Part B (Taste, UI UX Pro Max and Open Design own the visual system; B declared "this file wins").
+ELAYA = [
+    (re.compile(r'^description: ".*"$', re.M),
+     'description: "Conversion strategy for landing, marketing, signup, waitlist and pricing pages: intake (offer, '
+     'audience, objections, traffic source, proof), page type by traffic and intent, conversion rules, copywriting '
+     'formulas and pitfalls. Loads with Taste, which owns page structure, build order and the visual system."'),
+    (re.compile(r"^This skill has two halves\..*$", re.M),
+     "In Agylite this file is the conversion strategy only. Taste owns page structure, build order and the visual "
+     "system, and BeyondSEO owns indexing and SEO; where they disagree on look or layout, follow Taste."),
+    (re.compile(r"^## Scope\n.*?(?=^---\n)", re.M | re.S),
+     "## Scope\n\nApply to landing, marketing, signup, waitlist and pricing pages: what the page says, to whom, and the "
+     "one action it drives. When the user's explicit prompt conflicts with a rule, the user wins.\n\n"),
+    (re.compile(r"^## A2\. Page structure\n.*?(?=^## A3\.)", re.M | re.S), ""),
+    (re.compile(r"\nNote: the copy rules in B1 still apply\.[^\n]*\n"), "\n"),
+    (re.compile(r"^## A6\. Build order\n.*?(?=^## A8\.)", re.M | re.S), ""),
+    (re.compile(r"^# PART B — Visual system\n.*?(?=^# Output format)", re.M | re.S), ""),
+    (re.compile(r"^6\. \*\*SEO / AEO\*\*.*\n7\. \*\*Layout recommendation\*\*", re.M), "6. **Layout recommendation**"),
+    (re.compile(r"^Then build section by section per A6\.$", re.M),
+     "Then build with Taste, which owns structure, build order and the visual system."),
+    (re.compile(r"\n\*\*Visual\*\*\n.*?(?=\n---\n\n## Credits)", re.S),
+     "- [ ] No invented prices, stats, or testimonials; missing facts use marked placeholders\n"),
+]
+
 # D-049 (IMPLEMENTATION_PLAN §2.2): Addy's devtools skill drives Chrome through the `chrome-devtools` command line of the
 # pinned chrome-devtools-mcp package (no MCP server is ever configured) and AgyLite's own `agylite verify --browser`.
 # Usage statistics are switched off. The Security Boundaries section (untrusted page content) stays verbatim.
@@ -220,6 +245,7 @@ REWRITES = {
                                          "`agylite youtube voice init` copies this to `~/.agylite/youtube/voice.md`; fill it in")],
     ("ytagent", "skills/yt-seo/SKILL.md"): [YT_VOICE, YT_SLASH],
     ("archify", "archify/SKILL.md"): ARCHIFY,
+    ("elaya", "skills/landing-page-design/SKILL.md"): ELAYA,
     # P13 (D-027/D-035/D-038): no MCP and no browser automation as a data source; parse artifacts the user provides.
     ("addy", "agents/web-performance-auditor.md"): [
         (re.compile(r", `npx -p chrome-devtools-mcp chrome-devtools lighthouse_audit --output-format=json` "

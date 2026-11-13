@@ -163,7 +163,7 @@ COPY	Shared reference (closure)	engineering/completion	3798	references/definitio
 COPY	Shared reference (closure)	engineering/release	5129	references/observability-checklist.md
 COPY	Shared reference (closure)	engineering/planning	18201	references/orchestration-patterns.md
 COPY	Shared reference (closure)	engineering/performance	13139	references/performance-checklist.md
-COPY	Shared reference linked from skills (closure)	engineering/security	14360	references/security-checklist.md
+COPY	Shared reference linked from skills (closure)	engineering/secure-coding	14360	references/security-checklist.md
 COPY	Shared reference (closure)	testing/strategy	7460	references/testing-patterns.md
 EXCLUDE	REPO_META		11424	scripts/floor-guard-reference-test.js
 EXCLUDE	REPO_META		30180	scripts/lib/skill-lint-test.js
@@ -204,8 +204,8 @@ ADAPT	Release and production readiness	engineering/release	13948	skills/observab
 ADAPT	Performance + optimization-patterns reference	engineering/performance	16678	skills/performance-optimization/SKILL.md
 ADAPT	Performance + optimization-patterns reference	engineering/performance	9692	skills/performance-optimization/references/optimization-patterns.md
 ADAPT	Requirements and planning	engineering/planning	10564	skills/planning-and-task-breakdown/SKILL.md
-ADAPT	Security hardening + hardening-patterns reference	engineering/security	17559	skills/security-and-hardening/SKILL.md
-ADAPT	Security hardening + hardening-patterns reference	engineering/security	13036	skills/security-and-hardening/references/hardening-patterns.md
+ADAPT	Step 4 (doc 23): owner of secure coding while building (+ hardening-patterns reference)	engineering/secure-coding	17559	skills/security-and-hardening/SKILL.md
+ADAPT	Step 4 (doc 23): owner of secure coding while building (+ hardening-patterns reference)	engineering/secure-coding	13036	skills/security-and-hardening/references/hardening-patterns.md
 ADAPT	Release and production readiness	engineering/release	11515	skills/shipping-and-launch/SKILL.md
 ADAPT	Implementation discipline	engineering/implementation	10038	skills/source-driven-development/SKILL.md
 ADAPT	Requirements and planning	engineering/planning	13096	skills/spec-driven-development/SKILL.md

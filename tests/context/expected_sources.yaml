@@ -8,7 +8,10 @@ engineering/implementation: files/addy/skills/incremental-implementation/SKILL.m
 testing/strategy: files/pocock/skills/engineering/tdd/SKILL.md
 engineering/debugging: files/pocock/skills/engineering/diagnosing-bugs/SKILL.md
 engineering/review: files/ponytail/skills/ponytail-review/SKILL.md
-engineering/security: files/addy/skills/security-and-hardening/SKILL.md
+engineering/security: files/cfsecurity/skills/security-audit/SKILL.md   # Step 4 (doc 23): Cloudflare owns review/audit
+engineering/secure-coding: files/addy/skills/security-and-hardening/SKILL.md
+testing/security: files/tob/plugins/static-analysis/skills/semgrep/SKILL.md
+design/landing-conversion: files/elaya/skills/landing-page-design/SKILL.md
 engineering/simplicity: files/ponytail/skills/ponytail/SKILL.md
 engineering/completion: files/unlazy/SKILL.md
 engineering/release: files/gstack/ship/SKILL.md

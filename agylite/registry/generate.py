@@ -8,6 +8,7 @@ the repository can be checked without a built bundle (CI).
 CARD.md (L1 summary, ≤ CARD_MAX_BYTES ≈ 250 est. tokens) is rendered from the card, so the card stays the only
 authored source; `check` fails when a committed CARD.md is stale.
 """
+import fnmatch
 import hashlib
 import json
 from pathlib import Path
@@ -241,6 +242,7 @@ def check(root: Path | None = None, bundle_dir: Path | None = None):
     if problems:
         return problems
     problems += schema.validate_registry(plan_registry(root, entries), names)
+    problems += route_excluded_problems(cards, root)
     if bundle_dir is not None:
         reg = load_registry(bundle_dir)
         if reg is None:
@@ -268,6 +270,19 @@ def sources_priority_problems(cards, bundle_dir: Path):
     return [f"{cid}: sources_priority {g} matches no file of {cid} in bundle {bundle_dir.name}"
             for cid, card in cards.items() for g in card.get("sources_priority") or []
             if not any(fnmatch.fnmatchcase(p, g) for p in by_cap.get(cid, [])) and not (exact(g) and g in files)]
+
+
+def route_excluded_problems(cards, root=None):
+    """Step 4 (doc 23 §3): a `route_excluded` file (a duplicate of another skill's job) must never lead a route, so it may
+    not appear in a card's sources_priority, a routing rule's `skill` or a `skill_overlaps` pair."""
+    from ..context.levels import route_excluded, skill_overlaps
+    from ..routing.rules import load_routing
+    excluded = route_excluded(root)
+    named = [(f"{cid}: sources_priority", g) for cid, card in cards.items() for g in card.get("sources_priority") or []]
+    named += [("skill_overlaps", p) for pair in skill_overlaps(root) for p in pair]
+    named += [(f"rule {r['id']} skill", r["skill"]) for r in load_routing(root).get("rules") or [] if r.get("skill")]
+    return [f"{where}: {path} is route_excluded (config/priorities.yaml)" for where, path in named
+            if any(fnmatch.fnmatchcase(x, path) for x in excluded)]
 
 
 def skill_path_problems(bundle_dir: Path, root=None):

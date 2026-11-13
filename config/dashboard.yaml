@@ -20,7 +20,7 @@ seats:
   - {id: architect, name: Architect, room: engineering, x: 22, y: 56, caps: [engineering/architecture, engineering/migration, engineering/diagrams]}
   - {id: backend, name: Backend, room: engineering, x: 74, y: 56, caps: [engineering/backend, engineering/implementation, engineering/ai-systems, engineering/stack-packs]}
   - {id: frontend, name: Frontend, room: engineering, x: 126, y: 56, caps: [engineering/frontend, engineering/performance]}
-  - {id: security, name: Security, room: engineering, x: 178, y: 56, caps: [engineering/security]}
+  - {id: security, name: Security, room: engineering, x: 178, y: 56, caps: [engineering/security, engineering/secure-coding]}
   - {id: planner, name: Planner, room: engineering, x: 236, y: 56, caps: [engineering/planning, engineering/documentation]}
   - {id: reviewer, name: Reviewer, room: engineering, x: 22, y: 106, caps: [engineering/review]}
   - {id: release, name: Release, room: engineering, x: 74, y: 106, caps: [engineering/release, testing/release-verification]}
@@ -28,7 +28,7 @@ seats:
   - {id: mapper, name: Mapper, room: engineering, x: 178, y: 106, caps: [codebase/repository-understanding, codebase/impact-analysis, codebase/code-search]}
   - {id: gate, name: Gatekeeper, room: engineering, x: 236, y: 106, caps: [engineering/completion]}
   - {id: director, name: Director, room: design, x: 322, y: 56, caps: [design/design-direction, design/inspiration-extract, design/brand, design/visual-quality]}
-  - {id: ux, name: UX, room: design, x: 374, y: 56, caps: [design/ux, design/typography]}
+  - {id: ux, name: UX, room: design, x: 374, y: 56, caps: [design/ux, design/typography, design/landing-conversion]}
   - {id: mobile, name: Mobile, room: design, x: 426, y: 56, caps: [design/frontend]}
   - {id: systems, name: Systems, room: design, x: 322, y: 106, caps: [design/design-system, design/design-review]}
   - {id: motion, name: Motion, room: design, x: 374, y: 106, caps: [design/motion]}

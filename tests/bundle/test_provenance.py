@@ -60,7 +60,7 @@ class TestLicenses(unittest.TestCase):
         data = provenance.load_licenses()
         self.assertEqual(sorted(data), sorted(provenance.load_pins()))
         for repo, info in data.items():
-            self.assertIn(info["license"], {"MIT", "Apache-2.0"}, repo)
+            self.assertIn(info["license"], {"MIT", "Apache-2.0", "CC-BY-SA-4.0"}, repo)
             self.assertTrue(info["attribution"], repo)
             self.assertTrue(info["license_files"] or info["note"], repo)
         self.assertEqual(sum(v["bundled_files"] for v in data.values()), EXPECTED_BUNDLED_FILES)

@@ -16,7 +16,8 @@ Plan, build, review and ship software with completion discipline.
 | `engineering/implementation` | Incremental, source-grounded, constraint-respecting implementation | addy, agency, pocock | 8 | 85.2 | 21,802 | L2 | none | False | none | bundled | — |
 | `engineering/backend` | Backend patterns, data layer, error handling, payments/realtime specialists | agency, ecc | 9 | 111.0 | 28,412 | L2 | none | False | none | bundled | — |
 | `engineering/frontend` | Frontend engineering: components, state, accessibility in code, responsiveness | addy, agency, ecc | 5 | 66.3 | 16,983 | L2 | none | False | none | bundled | design/frontend |
-| `engineering/security` | Threat-aware hardening, security review, CSO audit, guardrails | addy, agency, ecc, gstack | 33 | 437.6 | 112,034 | L2 | none | False | none | bundled | — |
+| `engineering/security` | Security review and audit (guidance or full audit), variant hunting, footgun review, guardrails | addy, agency, cfsecurity, ecc, gstack, tob | 84 | 841.0 | 215,288 | L2 | none | False | none | bundled | — |
+| `engineering/secure-coding` | Build features securely — input validation, authn/authz, secrets, headers, rate limits, dependency hygiene | addy | 3 | 43.9 | 11,238 | L2 | none | False | none | bundled | — |
 | `engineering/performance` | Measured performance optimization | addy, ecc | 4 | 51.7 | 13,240 | L2 | none | False | none | bundled | — |
 | `engineering/review` | Multi-axis code review, pre-landing review, specialist reviewers | addy, agency, ecc, gstack, pocock, ponytail | 33 | 202.4 | 51,810 | L2 | none | False | none | bundled | — |
 | `engineering/debugging` | Reproduce, root-cause, fix, regression-test | addy, ecc, gstack, pocock | 13 | 59.7 | 15,281 | L2 | none | False | none | bundled | — |
@@ -56,6 +57,7 @@ Product-appropriate, non-generic, accessible interfaces with justified decisions
 | `design/frontend` | Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fidelity and navigation semantics) | appllama, opendesign, taste, uiuxpromax | 152 | 6046.4 | 1,547,878 | L2 | none | False | none | bundled | — |
 | `design/design-review` | Design review and consultation method, specialist design roles | agency, gstack, opendesign | 25 | 229.5 | 58,757 | L2 | none | False | none | bundled | design/visual-quality |
 | `design/brand` | Brand identity, voice, kits | ecc, opendesign, uiuxpromax | 35 | 213.3 | 54,616 | L2 | none | False | none | bundled | — |
+| `design/landing-conversion` | Landing and marketing page conversion strategy (offer, audience, one action, page type, copy, objections) | elaya | 2 | 22.6 | 5,794 | L2 | none | False | none | bundled | — |
 
 ## testing
 
@@ -65,7 +67,7 @@ Evidence that implementation meets acceptance criteria — local and scripted fi
 |---|---|---|---:|---:|---:|---|---|---|---|---|---|
 | `testing/strategy` | Test strategy, TDD, test value audit (QA: CORE) | addy, agency, ecc, gstack, pocock | 18 | 185.0 | 47,359 | L2 | none | False | none | bundled | — |
 | `testing/local-verification` | Local test-first verification: discover and select the smallest sufficient test set by change impact, run unit/integration/API/state tests, types, lint, build; diagnose failures; targeted reruns (QA: CORE) | agency, gstack | 9 | 33.5 | 8,564 | L2 | os-native | local-only | none | mixed | testing/evidence |
-| `testing/security` | Authn/authz, input validation, request and dependency checks (QA: CORE) | — | 0 | 0.0 | 0 | L2 | os-native | local-only | none | mixed | engineering/security |
+| `testing/security` | Authn/authz, input validation, request and dependency checks; Semgrep/CodeQL runs and SARIF triage (QA: CORE) | tob | 33 | 303.0 | 77,571 | L2 | os-native | local-only | none | mixed | engineering/security |
 | `testing/accessibility` | Automated a11y checks (evidence, not WCAG proof) (QA: CORE) | agency | 1 | 15.8 | 4,057 | L2 | os-native | False | none | mixed | design/accessibility |
 | `testing/performance` | Measured latency, sizes, timings, benchmarks (QA: CORE) | addy, agency, ecc | 4 | 37.1 | 9,508 | L2 | os-native | local-only | none | mixed | — |
 | `testing/regression` | Regression and AI/eval regression harnesses (QA: CORE) | ecc | 14 | 103.7 | 26,548 | L2 | none | False | none | bundled | — |

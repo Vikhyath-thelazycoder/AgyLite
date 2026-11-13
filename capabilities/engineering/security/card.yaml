@@ -1,8 +1,8 @@
 # engineering/security — capability card (spec §13). Provenance fields (sources, commit, license, size) are generated
 # by agylite/registry/generate.py; domain defaults come from config/priorities.yaml.
 name: Security
-description: Threat-aware hardening, security review, CSO audit, guardrails
-intent_tags: [security, auth, authentication, authorization, csrf, xss, injection, secret, webhook verification, vulnerability, owasp]
+description: Security review and audit (guidance or full audit), variant hunting, footgun review, guardrails
+intent_tags: [security, security review, security audit, pentest, auth, authentication, authorization, csrf, xss, injection, secret, webhook verification, vulnerability, owasp]
 origin: bundled
 runtime_type: none
 requires_network: false
@@ -20,4 +20,6 @@ related_capabilities: [testing/security, codebase/impact-analysis]
 conflicts: []
 fallback_capability: null
 enabled: true
-sources_priority: [files/addy/skills/security-and-hardening/SKILL.md, files/gstack/cso/SKILL.md]
+# Step 4 (doc 23 §3): Cloudflare owns review/audit. gstack cso, ECC security-review/safety-guard, Addy security-auditor and
+# three Agency roles stay bundled (`agylite skill load` by name) but never lead a route: config/priorities.yaml route_excluded.
+sources_priority: [files/cfsecurity/skills/security-audit/SKILL.md, files/tob/plugins/variant-analysis/skills/variant-analysis/SKILL.md, files/tob/plugins/sharp-edges/skills/sharp-edges/SKILL.md]

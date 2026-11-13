@@ -1,7 +1,12 @@
 # 23 — New upstreams: staging audit and overlap plan (Elaya, Cloudflare, Trail of Bits)
 
-Date: 2026-11-02 · Decision: D-051 · Status: **staged and audited; nothing bundled yet** (the bundle under the Phase 9
-paid run stays frozen; these land in step 4 of the owner's plan, after the paid run).
+Date: 2026-11-02 · Decision: D-051 · Status: **bundled 2026-11-13 (Step 4)**, bundle 752ed8ac07dd. Pins moved from
+`candidates/` into the live evidence. How the plan below was implemented: the "REFERENCE" demotions are
+`route_excluded` in `config/priorities.yaml` (the files stay bundled and load by name; `agylite validate` fails if one is
+named in a `sources_priority`, a rule `skill` or a `skill_overlaps` pair), because REFERENCE in the extraction rules
+means "not bundled". Elaya loads next to Taste through a `skill_overlaps` pair limited to the `landing-conversion` rule,
+so dashboards and settings pages do not get it. Guarantees 1-3 are `tests/routing/test_one_owner.py` and
+`tests/bundle/test_transforms.py::test_elaya_keeps_part_a_only`.
 
 Owner requirement (2026-11-02): **no overlap** with ECC, gstack, Addy, Agency or anything else that already covers
 security or design, and no ordinary errors. The rule applied here: **one owner per job.** Every job has exactly one

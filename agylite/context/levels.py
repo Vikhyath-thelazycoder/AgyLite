@@ -153,11 +153,21 @@ def source_priorities(root=None):
     return {cid: card.get("sources_priority") or [] for cid, card in registry.load_cards(root).items()}
 
 
-def skill_overlaps(root=None) -> list:
-    """[(lead path, also path)] from config/priorities.yaml `skill_overlaps` (option 2, D-050)."""
+def _priorities(root=None) -> dict:
     path = (root or repo_root()) / "config" / "priorities.yaml"
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {} if path.is_file() else {}
-    return [(o["lead"], o["also"]) for o in data.get("skill_overlaps") or []]
+    return yaml.safe_load(path.read_text(encoding="utf-8")) or {} if path.is_file() else {}
+
+
+def skill_overlaps(root=None, rules=None) -> list:
+    """[(lead path, also path)] from config/priorities.yaml `skill_overlaps` (option 2, D-050). With `rules` (the route's
+    matched rule ids), a pair that names `rules:` counts only when one of them matched (Step 4: Taste + Elaya)."""
+    return [(o["lead"], o["also"]) for o in _priorities(root).get("skill_overlaps") or []
+            if rules is None or not o.get("rules") or set(o["rules"]) & set(rules)]
+
+
+def route_excluded(root=None) -> list:
+    """Bundle paths no route may lead with (config/priorities.yaml `route_excluded`, Step 4: one owner per job)."""
+    return list(_priorities(root).get("route_excluded") or [])
 
 
 def overlap_pair(loader, entry, overlaps):

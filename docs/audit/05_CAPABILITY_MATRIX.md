@@ -220,6 +220,8 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | uiuxpromax | design/frontend | `.claude/skills/ui-styling/` | 98 | 5626.5 | ADAPT | none | MIT | `28327f2` |
 | designlang | design/inspiration-extract | `LICENSE` | 1 | 1.0 | COPY | node | MIT | `86bdbb5` |
 | designlang | design/inspiration-extract | `commands/` | 6 | 10.8 | COPY | node | MIT | `86bdbb5` |
+| elaya | design/landing-conversion | `LICENSE` | 1 | 1.0 | COPY | none | MIT | `456d9e0` |
+| elaya | design/landing-conversion | `skills/landing-page-design/` | 1 | 21.6 | ADAPT | none | MIT | `456d9e0` |
 | appllama | design/motion | `skills/appllama-app-design-skill/` | 1 | 4.4 | COPY | none | MIT | `dd5caae` |
 | ecc | design/motion | `skills/motion-advanced/` | 1 | 18.4 | ADAPT | none | MIT | `90606c8` |
 | ecc | design/motion | `skills/motion-foundations/` | 1 | 9.6 | ADAPT | none | MIT | `90606c8` |
@@ -363,11 +365,13 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | engineering/review | `review/` | 20 | 118.5 | ADAPT | none | MIT (+Apache-2.0 notices) | `b04cc35` |
 | pocock | engineering/review | `skills/engineering/` | 1 | 6.5 | ADAPT | none | MIT | `5beb35b` |
 | ponytail | engineering/review | `skills/ponytail-review/` | 1 | 5.0 | ADAPT | none | MIT | `09c434a` |
+| addy | engineering/secure-coding | `references/` | 1 | 14.0 | COPY | none | MIT | `1be8e34` |
+| addy | engineering/secure-coding | `skills/security-and-hardening/` | 2 | 29.9 | ADAPT | none | MIT | `1be8e34` |
 | addy | engineering/security | `agents/` | 1 | 4.9 | ADAPT | none | MIT | `1be8e34` |
-| addy | engineering/security | `references/` | 1 | 14.0 | COPY | none | MIT | `1be8e34` |
-| addy | engineering/security | `skills/security-and-hardening/` | 2 | 29.9 | ADAPT | none | MIT | `1be8e34` |
 | agency | engineering/security | `engineering/` | 2 | 29.7 | ADAPT | none | MIT | `4e3ac3c` |
 | agency | engineering/security | `security/` | 11 | 237.8 | ADAPT | none | MIT | `4e3ac3c` |
+| cfsecurity | engineering/security | `LICENSE` | 1 | 1.1 | COPY | none | MIT | `c1c8a8c` |
+| cfsecurity | engineering/security | `skills/security-audit/` | 18 | 253.7 | COPY | none | MIT | `c1c8a8c` |
 | ecc | engineering/security | `agents/` | 1 | 5.3 | ADAPT | none | MIT | `90606c8` |
 | ecc | engineering/security | `skills/safety-guard/` | 1 | 2.2 | ADAPT | none | MIT | `90606c8` |
 | ecc | engineering/security | `skills/security-review/` | 2 | 22.6 | ADAPT | none | MIT | `90606c8` |
@@ -376,6 +380,8 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | gstack | engineering/security | `freeze/` | 3 | 15.9 | ADAPT | none | MIT (+Apache-2.0 notices) | `b04cc35` |
 | gstack | engineering/security | `guard/` | 1 | 3.9 | ADAPT | none | MIT (+Apache-2.0 notices) | `b04cc35` |
 | gstack | engineering/security | `unfreeze/` | 1 | 1.6 | ADAPT | none | MIT (+Apache-2.0 notices) | `b04cc35` |
+| tob | engineering/security | `LICENSE` | 1 | 19.7 | COPY | none | CC-BY-SA-4.0 | `2be6433` |
+| tob | engineering/security | `plugins/` | 34 | 172.8 | COPY | none | CC-BY-SA-4.0 | `2be6433` |
 | addy | engineering/simplicity | `skills/code-simplification/` | 1 | 13.2 | ADAPT | none | MIT | `1be8e34` |
 | agency | engineering/simplicity | `engineering/` | 1 | 11.0 | ADAPT | none | MIT | `4e3ac3c` |
 | ecc | engineering/simplicity | `agents/` | 2 | 5.8 | ADAPT | none | MIT | `90606c8` |
@@ -562,6 +568,7 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | agency | testing/release-verification | `testing/` | 1 | 15.6 | ADAPT | node | MIT | `4e3ac3c` |
 | ecc | testing/release-verification | `skills/delivery-gate/` | 2 | 12.7 | ADAPT | node | MIT | `90606c8` |
 | ecc | testing/release-verification | `skills/verification-loop/` | 1 | 3.0 | ADAPT | node | MIT | `90606c8` |
+| tob | testing/security | `plugins/` | 33 | 303.0 | COPY | os-native | CC-BY-SA-4.0 | `2be6433` |
 | addy | testing/strategy | `agents/` | 1 | 3.2 | ADAPT | none | MIT | `1be8e34` |
 | addy | testing/strategy | `references/` | 1 | 7.3 | COPY | none | MIT | `1be8e34` |
 | addy | testing/strategy | `skills/test-driven-development/` | 1 | 16.1 | ADAPT | none | MIT | `1be8e34` |
@@ -593,4 +600,4 @@ Every bundled upstream component appears below, grouped by source path prefix. T
 | ytagent | youtube/script | `templates/` | 1 | 1.1 | ADAPT | python-stdlib | MIT | `a2feb21` |
 | ytagent | youtube/seo | `skills/yt-seo/` | 1 | 2.1 | ADAPT | none | MIT | `a2feb21` |
 
-**Total bundled: 3029 files, 59.8 MB** across 66 capabilities.
+**Total bundled: 3118 files, 60.6 MB** across 69 capabilities.

@@ -148,6 +148,20 @@
     "bytes": 16591696
    }
   },
+  "cfsecurity": {
+   "COPY": {
+    "files": 19,
+    "bytes": 260881
+   },
+   "REFERENCE": {
+    "files": 1,
+    "bytes": 6950
+   },
+   "EXCLUDE": {
+    "files": 2,
+    "bytes": 54867
+   }
+  },
   "designlang": {
    "EXCLUDE": {
     "files": 1745,
@@ -182,6 +196,20 @@
    "PRESERVE": {
     "files": 18,
     "bytes": 147392
+   }
+  },
+  "elaya": {
+   "EXCLUDE": {
+    "files": 7,
+    "bytes": 186805
+   },
+   "COPY": {
+    "files": 1,
+    "bytes": 1062
+   },
+   "ADAPT": {
+    "files": 1,
+    "bytes": 22115
    }
   },
   "graphify": {
@@ -316,6 +344,20 @@
    "PRESERVE": {
     "files": 27,
     "bytes": 2097369
+   }
+  },
+  "tob": {
+   "EXCLUDE": {
+    "files": 1526,
+    "bytes": 8880722
+   },
+   "COPY": {
+    "files": 68,
+    "bytes": 507380
+   },
+   "REFERENCE": {
+    "files": 4,
+    "bytes": 10907
    }
   },
   "uiuxpromax": {
@@ -459,6 +501,14 @@
    "est_tokens": 3030,
    "sources": [
     "designlang"
+   ]
+  },
+  "design/landing-conversion": {
+   "files": 2,
+   "bytes": 23177,
+   "est_tokens": 5794,
+   "sources": [
+    "elaya"
    ]
   },
   "design/motion": {
@@ -651,15 +701,25 @@
     "ponytail"
    ]
   },
+  "engineering/secure-coding": {
+   "files": 3,
+   "bytes": 44955,
+   "est_tokens": 11238,
+   "sources": [
+    "addy"
+   ]
+  },
   "engineering/security": {
-   "files": 33,
-   "bytes": 448136,
-   "est_tokens": 112034,
+   "files": 84,
+   "bytes": 861155,
+   "est_tokens": 215288,
    "sources": [
     "addy",
     "agency",
+    "cfsecurity",
     "ecc",
-    "gstack"
+    "gstack",
+    "tob"
    ]
   },
   "engineering/simplicity": {
@@ -922,6 +982,14 @@
    "sources": [
     "agency",
     "ecc"
+   ]
+  },
+  "testing/security": {
+   "files": 33,
+   "bytes": 310287,
+   "est_tokens": 77571,
+   "sources": [
+    "tob"
    ]
   },
   "testing/strategy": {

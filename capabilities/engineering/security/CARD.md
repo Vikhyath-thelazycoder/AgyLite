@@ -1,10 +1,10 @@
 # engineering/security — Security
 
-Threat-aware hardening, security review, CSO audit, guardrails.
+Security review and audit (guidance or full audit), variant hunting, footgun review, guardrails.
 
-- **Use when:** security, auth, authentication, authorization, csrf, xss, injection, secret …
+- **Use when:** security, security review, security audit, pentest, auth, authentication, authorization, csrf …
 - **Activation:** on-demand · priority 90 · context L2
 - **Needs:** runtime none; codebase analysis first
-- **Loads:** 33 bundled files; entry points: careful, cso, freeze, guard, safety-guard, security-and-hardening (+4 more)
+- **Loads:** 84 bundled files; entry points: careful, cso, freeze, guard, safety-guard, security-audit (+7 more)
 - **Done means:** threats addressed are listed with evidence · testing/security checks pass · no secrets in code, config or logs
 - **Related:** testing/security, codebase/impact-analysis · **Fallback:** —

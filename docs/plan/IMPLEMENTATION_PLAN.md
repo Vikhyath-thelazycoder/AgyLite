@@ -479,7 +479,7 @@ Still to do:
         ceiling 8,000 → 10,000 bytes (owner: quality first; it failed at 8,005 on clean main)
   - [x] Step 2 — finish the Phase 9 paid run on the frozen bundle. **DONE 2026-11-05:** chunks 1–3, 9 suites,
         378 sessions, $119.29; every chunk reviewed (C1-1…C1-12, C2-1…C2-5, C3-1…C3-8)
-  - [x] Step 3 — **CLOSED 2026-11-13** (verdicts: PARITY_REPORT "Step 3 verdicts"; owner accepted design-taste's partial 5/9 result, archify deferred to Step 5). **▶ RESUME HERE: Step 4 below.** Code parts 1–6 + new suites done 2026-11-12. History: paused by the owner 2026-11-05, before any fix. Done: `docs/plan/PARITY_REPORT.md` (results,
+  - [x] Step 3 — **CLOSED 2026-11-13** (verdicts: PARITY_REPORT "Step 3 verdicts"; owner accepted design-taste's partial 5/9 result, archify deferred to Step 5). Code parts 1–6 + new suites done 2026-11-12. History: paused by the owner 2026-11-05, before any fix. Done: `docs/plan/PARITY_REPORT.md` (results,
         findings, fix order). Not started: every code fix. Already handled outside code: C1-6 (run recovered by
         hand), C1-9 (grader scores question-only answers 0), C2-3 (browser runtime installed), C2-4 (resume
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
@@ -637,7 +637,18 @@ Still to do:
         ECC owns (list them first); beyondseo only if the owner uses SEO seriously, otherwise free tests for its
         deterministic runtime. No paid suite for graphify (deterministic: a free output test), karpathy, unlazy,
         beacon, agency, appllama, brag — covered by the eng-* suites or free tests
-  - [ ] Step 4 — **NEXT.** Also fold in: C1-2 (Addy severity labels), eng-ponytail +22% cost, S3-1, S3-2, S3-3. Bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
+  - [x] Step 4 — **DONE 2026-11-13**, candidate bundle 752ed8ac07dd (built in a scratch AGYLITE_HOME; the live
+        ~/.agylite bundle is unchanged until the owner installs/updates). elaya, cfsecurity, tob pinned (23 upstreams,
+        80 capabilities: + design/landing-conversion, engineering/secure-coding); Cloudflare leads engineering/security,
+        Addy hardening leads secure-coding, ToB variant-analysis / sharp-edges via rule skill hints, ToB static-analysis +
+        semgrep-rule-creator fill the empty testing/security; demotions = `route_excluded` (validate check); Taste + Elaya
+        pair scoped to the landing-conversion rule (hook names both files when Taste is too big to inline);
+        TRANSFORM_VERSION 9 (Elaya Part A rewrite). Gate: 507 tests OK, validate 23/0, doctor 65/0, routing 62/62,
+        Tier 0 PASS. Details: doc 23 header, D-051.
+        **Not done here, carried to Step 4b/5:** C1-2 (Addy severity labels), eng-ponytail +22% cost, S3-1 (ECC
+        benchmark-methodology wrong owner of testing/performance), S3-2 (eng-ecc prompts never lead with ECC), S3-3
+        (~/Developer/os clones off pins); paid `design-elaya` and security suites (Step 5). **▶ RESUME HERE: Step 4b.**
+        Original scope: bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
         Elaya Part A as `design/landing-conversion`, overlap test + validate check), normal tests green
   - [ ] Step 4b (owner 2026-11-10, D-052) — bundle Astryx, Caldo and EGM per `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`
         §6, together with Step 4. **Audit done 2026-11-10** (pins `astryx@da3dbdc`, `caldo@f3cf477`, `egm@b7d9e27` in
