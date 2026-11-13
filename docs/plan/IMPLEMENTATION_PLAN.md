@@ -479,13 +479,13 @@ Still to do:
         ceiling 8,000 → 10,000 bytes (owner: quality first; it failed at 8,005 on clean main)
   - [x] Step 2 — finish the Phase 9 paid run on the frozen bundle. **DONE 2026-11-05:** chunks 1–3, 9 suites,
         378 sessions, $119.29; every chunk reviewed (C1-1…C1-12, C2-1…C2-5, C3-1…C3-8)
-  - [ ] Step 3 — **IN PROGRESS: code parts 1–6 + new suites done 2026-11-12; paid re-measurement running (see ▶ RESUME).** History: paused by the owner 2026-11-05, before any fix. Done: `docs/plan/PARITY_REPORT.md` (results,
+  - [x] Step 3 — **CLOSED 2026-11-13** (verdicts: PARITY_REPORT "Step 3 verdicts"; owner accepted design-taste's partial 5/9 result, archify deferred to Step 5). **▶ RESUME HERE: Step 4 below.** Code parts 1–6 + new suites done 2026-11-12. History: paused by the owner 2026-11-05, before any fix. Done: `docs/plan/PARITY_REPORT.md` (results,
         findings, fix order). Not started: every code fix. Already handled outside code: C1-6 (run recovered by
         hand), C1-9 (grader scores question-only answers 0), C2-3 (browser runtime installed), C2-4 (resume
         commands), C2-5 (`caffeinate`). Open: C1-1…C1-5, C1-7, C1-8, C1-10…C1-12, C2-1, C2-2, C3-1…C3-8.
         **Owner 2026-11-10: go part by part, in the report's order: 1 measurement → 2 hook ≤ 9–10k chars → 3 routing →
         4 Ponytail exemption → 5 fixed overhead → 6 robustness and bookkeeping; report after each part.**
-        - **▶ RESUME HERE (Step 3, next session) — paid re-measurement in progress.** Started 2026-11-12 15:17 IST,
+        - **(Historical) Step 3 re-measurement block — done; kept for its commands.** Started 2026-11-12 15:17 IST,
           detached (`nohup caffeinate`), `AGYLITE_BENCH_HOME=real` (token pastes failed; Keychain reads blocked for the
           agent), 8 suites, AgyLite arm only, 111 sessions, ≈ $40. Log: `~/.agylite/benchmarks/remeasure.log`.
           **Done:** eng-pocock 30/30 → AgyLite 0.86 vs original 0.75 vs no skill 0.53 (Phase 9: 0.77), $4.95 vs $5.44
@@ -637,7 +637,7 @@ Still to do:
         ECC owns (list them first); beyondseo only if the owner uses SEO seriously, otherwise free tests for its
         deterministic runtime. No paid suite for graphify (deterministic: a free output test), karpathy, unlazy,
         beacon, agency, appllama, brag — covered by the eng-* suites or free tests
-  - [ ] Step 4 — bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
+  - [ ] Step 4 — **NEXT.** Also fold in: C1-2 (Addy severity labels), eng-ponytail +22% cost, S3-1, S3-2, S3-3. Bundle the three upstreams per doc 23 (security owners + REFERENCE demotions, ToB 4 plugins,
         Elaya Part A as `design/landing-conversion`, overlap test + validate check), normal tests green
   - [ ] Step 4b (owner 2026-11-10, D-052) — bundle Astryx, Caldo and EGM per `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`
         §6, together with Step 4. **Audit done 2026-11-10** (pins `astryx@da3dbdc`, `caldo@f3cf477`, `egm@b7d9e27` in
@@ -653,7 +653,7 @@ Still to do:
         **Full instructions: section "Step 4b — … (detailed)" below, before "Change history".**
   - [ ] Step 5 — paid suites, one batch and one cost estimate for the owner first: `design-elaya` (no skill / Elaya
         original / AgyLite), a new security suite (Cloudflare), `spec-review` (EGM, doc 24 §6; Astryx joins the
-        combined `design` suite as React-app tasks; owner 2026-11-10: dry run + cost estimate first), and the Step 3 suites (Open Design + UI UX Pro Max
+        combined `design` suite as React-app tasks; owner 2026-11-10: dry run + cost estimate first), diagram-archify (deferred from Step 3, 45 cells ≈ $21, needs the owner's token), and the Step 3 suites (Open Design + UI UX Pro Max
         `design`, ECC, beyondseo if approved). Not before the Step 3 fixes: they would measure the known bugs
   - [ ] Owner idea 2026-11-02, after step 4: a category/subcategory folder view of every skill (security,
         security-audit, design, engineering architecture, agents, YouTube, …) so agents can search and load by

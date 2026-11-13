@@ -111,3 +111,17 @@ Findings from the re-measurement: youtube's hook regression is fixed (70.7 vs 71
 code-review#1 misses Addy's per-finding severity labels in 2 of 3 cells (AgyLite groups findings under Must/Should
 fix). eng-ponytail quality is unchanged but costs 22% more than Phase 9 (0.199 vs 0.163 per cell; original 0.129):
 the router now picks 2-5 capabilities per prompt, where Phase 9 picked none.
+
+### Step 3 verdicts (closed 2026-11-13, owner decisions)
+
+| suite | verdict |
+|---|---|
+| eng-pocock | **beats original** (0.86 vs 0.75; Phase 9 0.77, C1-10 fixed) |
+| eng-addy | **near parity** (0.954 vs 1.00); the gap is C1-2 severity labels, carried to Step 4 |
+| eng-ponytail | **parity on quality**, cost +22% vs Phase 9 (router now picks 2-5 capabilities); carried to Step 4 |
+| research | **parity** (1 = 1) |
+| youtube | **parity** (hook 70.7 vs 71.4, regression fixed) |
+| browser-qa | **parity** (5/5) |
+| design-extract | **parity** (same as original) |
+| design-taste | **partial parity accepted by the owner**: 5/9 cells, inspector 0 and lint 0 (= Phase 9), no judge score; not re-run |
+| diagram-archify | **deferred to Step 5** by the owner (needs the OAuth token and the per-session HOME) |
