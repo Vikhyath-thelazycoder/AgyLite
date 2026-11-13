@@ -663,8 +663,7 @@ Still to do:
         see subagent spawns; needs a SubagentStop-style hook or `agylite used` input); the 4b.2 D re-check loop exists
         only inside Caldo's skill (no generic multi-batch lifecycle step); 4b.2 E drift check runs on request only (no
         automatic offer after a feature's last task). Note: the to-spec hook now carries the one-line spec-review offer
-        (+150 chars on eng-pocock to-spec prompts). **▶ RESUME HERE: Step 5 (dry run + one cost estimate for the owner
-        first).**
+        (+150 chars on eng-pocock to-spec prompts).
         Original scope: bundle Astryx, Caldo and EGM per `docs/audit/24_ASTRYX_CALDO_EGM_AUDIT.md`
         §6, together with Step 4. **Audit done 2026-11-10** (pins `astryx@da3dbdc`, `caldo@f3cf477`, `egm@b7d9e27` in
         `docs/audit/evidence/candidates/`; nothing bundled). Design = one combined system: Taste (direction, polish),
@@ -677,7 +676,17 @@ Still to do:
         agents, one synthesizer merge for every multi-reviewer review, a resolve gate for findings, a re-check loop with
         a decision log, a drift check after features, and no fake fresh review on hosts without subagents.
         **Full instructions: section "Step 4b — … (detailed)" below, before "Change history".**
-  - [ ] Step 5 — paid suites, one batch and one cost estimate for the owner first: `design-elaya` (no skill / Elaya
+  - [ ] Step 5 — **IN PROGRESS: suites written + dry-run 2026-11-13; waiting for the owner's approval of the estimate.
+        ▶ RESUME HERE.** New: `security` (Cloudflare; notes-api with 4 planted holes + a safe decoy, webhook with 4 flaws;
+        original = skills/security-audit whole as a project skill), `spec-review` (EGM; a spec and a plan with planted
+        gaps + a decoy; original = the whole EGM plugin via --plugin-dir, prompt `/egm:egm-review …`, 40-min timeout),
+        `design-elaya` (2 landing pages; Taste inspector + lint + a conversion grade; original = Elaya whole), shared
+        `case_runner` (pinned `git archive` exports). Dry runs, 3 runs each: security 18, spec-review 18, design-elaya 18,
+        design 27, eng-ecc 54, diagram-archify 45 = **180 sessions**. Estimate from the ledger's per-session costs (+ graders):
+        eng-ecc ≈ $11, security ≈ $6, spec-review ≈ $32 (9 subagents per cell; widest range, $20–45), design-elaya ≈ $28,
+        design ≈ $45, diagram-archify ≈ $21 (needs the OAuth token) → **≈ $143 (range $120–170)**. beyondseo: no paid
+        suite (owner default). Astryx React tasks for `design`: not written (needs a React 19 fixture; next batch).
+        Original scope: `design-elaya` (no skill / Elaya
         original / AgyLite), a new security suite (Cloudflare), `spec-review` (EGM, doc 24 §6; Astryx joins the
         combined `design` suite as React-app tasks; owner 2026-11-10: dry run + cost estimate first), diagram-archify (deferred from Step 3, 45 cells ≈ $21, needs the owner's token), and the Step 3 suites (Open Design + UI UX Pro Max
         `design`, ECC, beyondseo if approved). Not before the Step 3 fixes: they would measure the known bugs

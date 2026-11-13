@@ -1,0 +1,20 @@
+{
+ "skill_name": "egm-review",
+ "evals": [
+  {
+   "id": 1,
+   "files": ["config-migration"],
+   "prompt": "Review docs/config-migration-plan.md before anyone implements it, and check it against the code. Write your findings to a review file in the repo and resolve each one in the plan. Work uninterrupted: do not wait for my approval between stages, and do not change src/.",
+   "expectations": [
+    "Flags that 'the standard RTW rollout' (step 3) is undefined",
+    "Flags that step 1's claim is false against the code: readConfig in src/config.js reads only ~/.toolrc, not the new JSON file",
+    "Flags step 4 ('handle any edge cases as appropriate') as left to the implementer",
+    "Flags at least one concrete missing failure mode: a crash between writing the new file and renaming the old one, an unreadable or malformed ~/.toolrc, or an existing ~/.toolrc.bak",
+    "Flags that the token is a secret and the plan sets no file permissions for the new config file (or another concrete security gap in the migration)",
+    "Does not claim the telemetry conversion is unspecified: step 2 defines it",
+    "Writes the findings to a file, records an outcome per finding, and leaves src/ unchanged"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

@@ -600,5 +600,40 @@ class TestNewSuites(unittest.TestCase):
         self.assertTrue(all(e.split(":", 1)[0] in ("uiuxpromax", "opendesign") for e in cfg["upstream_skills"]))
 
 
+
+class TestStep5Suites(unittest.TestCase):
+    """Step 5: security, spec-review and design-elaya are written and dry-run only until the owner approves."""
+
+    def test_case_suites_are_well_formed_and_fixture_tests_pass(self):
+        from agylite.benchmark.quality.suites import HERE, addy_style
+        for name in ("security", "spec-review"):
+            cfg = suites.load_suite(name)
+            self.assertEqual(cfg["runner"], "case_runner")
+            for t in cfg["tasks"]:
+                ev = json.loads((HERE / name / f"cases-{t['case']}.json").read_text(encoding="utf-8"))["evals"][0]
+                self.assertTrue(ev["prompt"] and len(ev["expectations"]) >= 5, (name, t))
+                ws = addy_style.materialize(HERE / name / "fixtures", ev["files"], "step5-test")
+                root = ws / ev["files"][0]
+                if (root / "package.json").is_file() and shutil.which("node"):   # fixtures ship green
+                    self.assertEqual(subprocess.run(["node", "--test"], cwd=root, capture_output=True).returncode, 0, t)
+                shutil.rmtree(ws)
+
+    def test_step5_dry_runs_and_upstream_arms(self):
+        for name, n in (("security", 18), ("spec-review", 18), ("design-elaya", 18)):
+            self.assertEqual(tier1.run(name, runs=3, dry_run=True, log=lambda *_: None)["planned"], n, name)
+        self.assertEqual(suites.load_suite("spec-review")["upstream"]["prompt_prefix"], "/egm:egm-review ")
+        self.assertEqual(suites.load_suite("security")["upstream"]["export"], "cfsecurity:skills/security-audit")
+
+    @unittest.skipUnless(Path(ROOT_DIR, ".staging", "upstream", "egm").is_dir(), "staged upstreams needed")
+    def test_upstream_arms_export_the_pinned_originals(self):
+        from agylite.benchmark.quality.suites import case_runner
+        with tempfile.TemporaryDirectory() as d:
+            arm = case_runner.upstream_arm(suites.load_suite("spec-review")["upstream"], Path(d))
+            plugin = Path(arm.args[1])
+            self.assertTrue((plugin / ".claude-plugin" / "plugin.json").is_file())
+            self.assertEqual(arm.plugins, ("egm",))
+            arm = case_runner.upstream_arm(suites.load_suite("security")["upstream"], Path(d))
+            self.assertTrue((Path(arm.project_skills[0]) / "WEB-PROTOCOL-AND-AUTH.md").is_file())
+
 if __name__ == "__main__":
     unittest.main()

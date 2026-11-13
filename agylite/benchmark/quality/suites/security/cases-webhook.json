@@ -1,0 +1,18 @@
+{
+ "skill_name": "security-audit",
+ "evals": [
+  {
+   "id": 1,
+   "files": ["billing-webhook"],
+   "prompt": "Is our payment webhook handler in src/webhook.js safe? Find what's wrong, fix it, and keep the tests passing.",
+   "expectations": [
+    "Finds and fixes the bypass: a request without an x-signature header is processed instead of rejected",
+    "Replaces the plain string comparison of signatures with a constant-time comparison (crypto.timingSafeEqual or equivalent)",
+    "Verifies the signature over the raw request body, not over JSON.stringify of the parsed event",
+    "Adds replay protection: rejects a signature whose timestamp t is outside a tolerance window",
+    "Adds at least one negative test (missing, invalid or stale signature is rejected) and runs the tests, which pass"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

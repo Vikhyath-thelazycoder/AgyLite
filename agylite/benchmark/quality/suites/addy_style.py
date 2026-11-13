@@ -82,13 +82,13 @@ def _check_grading(g: dict, n: int):
 
 
 def run_eval(ev: dict, arm: harness.ArmSetup, *, fixtures: Path, model, out_dir: Path, label: str,
-             skill_text: str | None = None, grader_model=None) -> dict:
+             skill_text: str | None = None, grader_model=None, timeout=900) -> dict:
     """One cell: execute, grade, score. `skill_text` is the upstream arm's --append-system-prompt (Addy's method)."""
     kind = ev.get("kind", "execution")
     ws = harness.fresh_workspace(label) if kind == "dialogue" else materialize(fixtures, ev.get("files"), label)
     append = f"Follow this skill exactly:\n\n{skill_text}" if skill_text else None
     rec = harness.run_session(ev["prompt"], ws, arm, model=model, allowed_tools=EXECUTOR_TOOLS, append_system=append,
-                              out_dir=out_dir, label=label)
+                              out_dir=out_dir, label=label, timeout=timeout)
     trace = rec.pop("_trace")
     grading = None
     for _ in range(2):   # one retry on an invalid grader reply, as a slot without a verdict is not a score

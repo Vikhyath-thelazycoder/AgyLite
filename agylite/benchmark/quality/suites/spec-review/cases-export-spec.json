@@ -1,0 +1,20 @@
+{
+ "skill_name": "egm-review",
+ "evals": [
+  {
+   "id": 1,
+   "files": ["orders-export"],
+   "prompt": "Review the design doc docs/designs/export-spec.md before we implement it, and check it against the code. Write your findings to a review file in the repo and resolve each one in the doc. Work uninterrupted: do not wait for my approval between stages, and do not write the implementation.",
+   "expectations": [
+    "Flags that 'tenant tier' (step 2, sharding) is never defined: what the tiers are and how a tenant gets one",
+    "Flags that step 3's claim is false against the code: listOrders in src/orders.js returns one array and does not page 500 at a time",
+    "Flags step 6 ('choose an appropriate retry strategy') as a decision left to the implementer: retries, backoff and when to give up are not specified",
+    "Flags a missing failure mode: what happens when an upload or a tenant's export fails partway (a missing or partial file, rerun or alerting), not only that retries are vague",
+    "Does not claim the CSV columns are unspecified: step 4 defines every column, its format and its order",
+    "Writes the findings to a file and records an outcome for each finding (fixed in the doc, kept with a reason, or left as a question for the owner)",
+    "Does not implement the export (no new export code under src/)"
+   ],
+   "kind": "execution"
+  }
+ ]
+}

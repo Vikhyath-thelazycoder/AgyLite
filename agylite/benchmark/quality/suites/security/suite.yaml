@@ -1,0 +1,18 @@
+# Step 5 (doc 23 §3, D-051): Cloudflare security-audit owns security review/audit in AgyLite. Cloudflare ships no eval
+# AgyLite can run headless (its tests check its own validators), so, as eng-ecc, Agylite-written cases in Addy's shape:
+# Node fixtures with planted defects (and one safe decoy), expectations taken from the defects, Addy's grader prompt.
+# Original arm: skills/security-audit exported whole from the pinned commit (SKILL.md + 15 domain files + validators)
+# as a project skill. Dry-run only until the owner approves.
+name: security
+runner: case_runner
+upstream: {export: "cfsecurity:skills/security-audit", mode: project_skill}
+tasks:
+  - {case: api-review}
+  - {case: webhook}
+metrics: {expectations_passed: higher}
+target: "same vs Cloudflare security-audit alone"
+credits:
+  - {repository: cloudflare/security-audit-skill, license: MIT, commit: c1c8a8c1471069fb0e188eeaff69b8e8db6564a8,
+     used: "skills/security-audit as the original arm"}
+  - {repository: addyosmani/agent-skills, license: MIT, commit: aeac41d4d005999432bb7312f7ff06383a91d59d,
+     used: "evals.json case shape and the run-evals.js grader prompt"}

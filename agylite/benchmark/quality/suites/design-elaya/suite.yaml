@@ -1,0 +1,43 @@
+# Step 5 (doc 23 §2, owner 2026-11-02: "test only Elaya"): landing pages built in three arms and graded on conversion
+# structure (one primary action, message match, risk reversal, objections, specific benefits, no invented proof) plus
+# Taste's inspector and lint. Original arm: Elaya's landing-page-design exported whole from its pinned commit (Parts A
+# and B) as a project skill. Dry-run only until the owner approves.
+name: design-elaya
+runner: elaya_runner
+upstream: {export: "elaya:skills/landing-page-design", mode: project_skill}
+timeout_s: 1500
+tasks:
+  - id: ledgerly
+    prompt: >-
+      Build a landing page (static HTML/CSS/JS, one index.html in this folder) for Ledgerly, bookkeeping software for
+      freelance designers. Traffic comes from a Google Ads campaign whose headline is "Stop dreading tax season". The
+      offer is a 14-day free trial with no credit card. The biggest objections: moving off spreadsheets takes too long,
+      and worries about data security. We have three customer testimonials (use clearly marked placeholders) and no
+      customer logos.
+    expectations:
+      - "Exactly one primary call to action (start the free trial); no competing CTAs above the fold"
+      - "The hero headline mirrors the ad's promise 'Stop dreading tax season' (message match)"
+      - "Risk reversal (14-day free trial, no credit card) is stated next to the primary CTA"
+      - "Both objections are answered on the page: moving off spreadsheets (import or migration help) and data security"
+      - "Benefits are specific outcomes (numbers, time saved, concrete results), not vague verbs like 'streamline'"
+      - "No invented customer logos, stats or real-looking testimonials: the testimonials are clearly marked placeholders"
+  - id: tandem
+    prompt: >-
+      Build a waitlist page (static HTML/CSS/JS, one index.html in this folder) for Tandem, an app that pairs remote
+      engineers for daily 25-minute focus sessions. Traffic comes from a launch post on Hacker News. It is pre-launch:
+      no customers, no usage numbers and no testimonials yet.
+    expectations:
+      - "One primary action, joining the waitlist; no competing CTAs above the fold"
+      - "No invented social proof: no customer counts, testimonials, logos or usage stats presented as real"
+      - "The copy says concretely what Tandem does and what joining gets you (e.g. when access opens), in plain, specific terms that suit a technical audience"
+      - "Low-commitment reassurance next to the signup (free, no spam, easy to leave, or what happens to the email)"
+      - "Likely objections are answered (e.g. privacy of sessions, matching, time zones, cost) in an FAQ or near the form"
+metrics: {conversion_passed: higher, inspector_fail: lower, lint_fail: lower}
+target: "conversion same vs Elaya alone, better than no skill; inspector and lint no worse"
+credits:
+  - {repository: elayadesign/ai-design-skills, license: MIT, commit: 456d9e0d3e2d84c748bb143c6ca3d90c45e16213,
+     used: "skills/landing-page-design (whole) as the original arm; conversion expectations from its Part A checklist"}
+  - {repository: Leonxlnx/taste-skill, license: MIT, commit: 6010f91a9935f1c167dfc500fb1a475681892e6b,
+     used: "scripts/inspect.mjs, scripts/lint.mjs (the instrument)"}
+  - {repository: addyosmani/agent-skills, license: MIT, commit: aeac41d4d005999432bb7312f7ff06383a91d59d,
+     used: "the run-evals.js grader prompt"}

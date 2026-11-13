@@ -1,0 +1,21 @@
+# Step 5 (doc 24 §4, plan 4b.7): EGM review + resolve own spec review in AgyLite. Agylite-written cases in Addy's shape:
+# a spec and a plan with planted gaps (undefined term, a claim the code contradicts, a decision left to the implementer,
+# a missing failure mode) and one decoy that is fully specified; Addy's grader prompt. EGM's own skills/*/
+# test_scenarios.yaml check skill triggering, not review quality, so they seeded the gap kinds only.
+# Original arm: the whole EGM repository at the pinned commit as a plugin (`--plugin-dir`: skills, agents, standards,
+# ${CLAUDE_PLUGIN_ROOT}); EGM's skills cannot be model-invoked, so its prompt starts with /egm:egm-review as EGM documents.
+# A full review spawns about 9 subagents per cell: the costliest suite per session. Dry-run only until the owner approves.
+name: spec-review
+runner: case_runner
+upstream: {export: "egm:.", mode: plugin, plugin: egm, prompt_prefix: "/egm:egm-review "}
+tasks:
+  - {case: export-spec}
+  - {case: config-plan}
+timeout_s: 2400
+metrics: {expectations_passed: higher}
+target: "same vs EGM alone; better than no skill"
+credits:
+  - {repository: google/elephant-goldfish-model, license: Apache-2.0, commit: b7d9e2706fb96314a0a3123684f53cedd97e7d79,
+     used: "the whole plugin as the original arm"}
+  - {repository: addyosmani/agent-skills, license: MIT, commit: aeac41d4d005999432bb7312f7ff06383a91d59d,
+     used: "evals.json case shape and the run-evals.js grader prompt"}

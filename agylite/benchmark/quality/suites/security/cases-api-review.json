@@ -1,0 +1,20 @@
+{
+ "skill_name": "security-audit",
+ "evals": [
+  {
+   "id": 1,
+   "files": ["notes-api"],
+   "prompt": "Do a security review of this notes API before we ship it. Report each vulnerability with where it is, how an attacker would exploit it, and how to fix it. Do not change the code.",
+   "expectations": [
+    "Reports the broken object-level authorization in GET /notes/:id (src/server.js): any signed-in user can read another user's note because the owner is never checked, e.g. bob reading note 1",
+    "Reports the SQL injection in GET /search: the q parameter (and user.sub) is interpolated into the SQL string instead of passed as a bound parameter",
+    "Reports that verifyToken in src/auth.js accepts tokens whose header says alg 'none' without any signature, so anyone can forge a token for any user",
+    "Reports the path traversal in GET /attachments/:name: a decoded name such as ../src/auth.js escapes UPLOAD_DIR because the joined path is never checked to stay inside it",
+    "Does not report POST /notes (insertNote with bound ? parameters) as SQL-injectable: no false finding on the parameterized insert",
+    "Each reported issue names its file and line or function and gives a concrete fix",
+    "Leaves the code unchanged, as asked"
+   ],
+   "kind": "execution"
+  }
+ ]
+}
