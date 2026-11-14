@@ -117,6 +117,7 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None, 
     pair = _overlap_partner(loader, skills[0], root, route.get("rules")) if lead else None
 
     finish = list((router.cards.get(lead_cid) or {}).get("verification_requirements") or []) if lead else []
+    partner_finish = _scoped_finish(router, _scoped_pair(pair, root), ids, lead_cid, root)
 
     def head(inline, pair, both=None):
         out = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
@@ -141,7 +142,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None, 
         out += review_lines(route, host)
         # D-053 (owner 2026-11-14): with a skill in hand the cards are not sent (C1-3), so the lead capability's
         # finish line rides here; without a skill the cards below carry their own.
-        done = (["agylite verify passes (tests, types, lint, build)"] if code_change else []) + finish
+        done = ((["agylite verify passes (tests, types, lint, build)"] if code_change else []) + finish
+                + (partner_finish if pair or both else []))
         if done:   # C1-4: a diagram, script or static page has no tests, types or build to verify
             out.append("Done means: " + " · ".join(done) + ".")
         return out
@@ -233,6 +235,18 @@ def _scoped_pair(pair, root=None):
         return None
     scoped = {(o["lead"], o["also"]) for o in levels._priorities(root).get("skill_overlaps") or [] if o.get("rules")}
     return pair if pair["pair_paths"] in scoped else None
+
+
+def _scoped_finish(router, pair, ids, lead_cid, root=None) -> list:
+    """A rule-scoped partner (Elaya next to Taste) does another job than the lead, so the finish lines of the routed
+    capability its rule selects (design/landing-conversion) ride along too. D-050 pairs are one job: nothing added."""
+    from . import levels
+    if not pair:
+        return []
+    rules = {r for o in levels._priorities(root).get("skill_overlaps") or []
+             if (o["lead"], o["also"]) == pair["pair_paths"] for r in o.get("rules") or []}
+    cids = [c for r in router.cfg.get("rules") or [] if r["id"] in rules for c in r["select"] if c in ids and c != lead_cid]
+    return [line for c in dict.fromkeys(cids) for line in router.cards[c].get("verification_requirements") or []]
 
 
 def _overlap_partner(loader, sid: str, root=None, rules=None):

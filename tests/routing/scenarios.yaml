@@ -507,3 +507,31 @@ scenarios:
     stage: existing
     expect: [research/video]
 
+  # Step 5 prep: a static-page brief is design work; the product's words are content, not jobs.
+  - id: sq-static-page-brief-security-words
+    request: Build a landing page (static HTML/CSS/JS, one index.html in this folder) for Ledgerly, bookkeeping software. The biggest objection is worries about data security.
+    stage: new
+    expect: [design/design-direction, design/frontend, design/landing-conversion]
+    forbid: [engineering/, testing/security, research/, media/]
+    change_type: DESIGN_CHANGE
+
+  - id: sq-static-page-brief-launch-post
+    request: Build a waitlist page (static HTML/CSS/JS, one index.html in this folder) for Tandem. Traffic comes from a launch post on Hacker News.
+    stage: new
+    expect: [design/design-direction, design/landing-conversion]
+    forbid: [engineering/, research/, media/, testing/security]
+    change_type: DESIGN_CHANGE
+
+  - id: sq-static-page-brief-latency-words
+    request: Dashboard for Relay, an edge deployment platform, with requests and p95 latency over the last 24 hours and the error rate. Dark theme. Static HTML/CSS/JS.
+    stage: new
+    expect: [design/design-direction, design/frontend]
+    forbid: [engineering/, testing/regression]
+    change_type: DESIGN_CHANGE
+
+  - id: sq-static-page-bug-stays-engineering
+    request: Fix the bug in my static HTML page where the menu crashes on mobile
+    stage: existing
+    expect: [engineering/debugging]
+    change_type: BUG_FIX
+

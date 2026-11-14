@@ -284,6 +284,21 @@ rules:
     select: [design/design-direction]
     weight: 5
 
+  # Step 5 prep (2026-11-15): a brief for a static page describes a product, and its words picked the job: "worries
+  # about data security" → SECURITY_CHANGE with the security skill, "p95 latency" → PERFORMANCE_CHANGE, "a launch post
+  # on Hacker News" → MEDIA_CHANGE with research. The page is the whole job, so only the design route stays.
+  # shortcut: only briefs that say "static HTML/CSS/JS" or "one index.html"; a page brief without those words still
+  # routes by its content words. Widen when a measured case needs it.
+  - id: static-page-brief
+    description: A brief for a static page (HTML/CSS/JS, one file) is design work only; what the page is about is content
+    any: [static html, html/css/js, one index.html]
+    unless: [seo, audit, rank, ranking, sitemap, robots, schema markup, backlinks, api, backend, endpoint, database, migration, webhook, video, deck, slides, presentation,
+             fix, bug, broken, crash, crashes, not working, test, tests, refactor, review, diagram]
+    select: [design/design-direction]
+    only_domains: [design]
+    change_type: DESIGN_CHANGE
+    weight: 1
+
   - id: ui-build-support
     description: The same page, site or screen build also gets frontend craft (ranked below Taste; Taste lint and inspect
       run at verify for every design change, so visual-quality is not added here and the 8-capability limit holds)

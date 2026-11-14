@@ -104,8 +104,11 @@ class Router:
         # "showcase" → media) would otherwise add engineering cards and their skills.
         # shortcut: a mixed request ("fix the login bug and draw its diagram") routes the diagram only; split if needed.
         only = {cid for h in hits if h.only for cid in h.select}
-        if only:
-            selected = [c for c in selected if c.cid in only]
+        # A static-page brief is design work only: what the page is about ("data security", "p95 latency", "a launch
+        # post") is content, so `only_domains` keeps the whole design route and drops the rest.
+        only_domains = {d for h in hits for d in h.only_domains}
+        if only or only_domains:
+            selected = [c for c in selected if c.cid in only or domain_of(c.cid) in only_domains]
         if not urls:   # MP4 §2.5: url_only capabilities need a URL to work on
             only = set(self.cfg.get("url_only") or [])
             selected = [c for c in selected if c.cid not in only]
@@ -120,7 +123,7 @@ class Router:
         if (change_type in GENERIC_TYPES and len(domains) == 1 and domains[0] not in LIFECYCLE_DOMAINS
                 and domains[0] in by_domain):
             change_type, decided_by = by_domain[domains[0]], f"domain {domains[0]}"
-        forced = next((h for h in hits if h.only and h.change_type), None)
+        forced = next((h for h in hits if (h.only or h.only_domains) and h.change_type), None)
         if forced:
             change_type, decided_by = forced.change_type, f"rule {forced.rule}"
 

@@ -353,15 +353,29 @@ and stop.
       the limit (Taste, Archify, Cloudflare security-audit, EGM review and others). The line costs 64 to 285
       characters. Limit of the check: it used an empty project, not each suite's fixture workspace, so stack tags
       could change a route in the real run.
-    - **Seen in the same check, not changed (Step 5 will measure them as they are):**
-      - Words in a brief pick the change type. design-elaya `ledgerly` is `SECURITY_CHANGE`, `tandem` is
-        `MEDIA_CHANGE` (with `media/launch-video`, `research/web`, `research/social`), design `8` is
-        `PERFORMANCE_CHANGE`. On `ledgerly` and `8` the hook therefore says "Done means: agylite verify passes
-        (tests, types, lint, build)" for a static page. The right skills are still named (Taste, Elaya).
-      - On the two landing pages the finish line is `design/design-direction`'s, not `design/landing-conversion`'s
-        ("no invented prices, stats or testimonials"), which is the line that suite grades.
-      - eng-ecc: `backend-patterns` routes to `youtube/analytics`, and ECC leads 1 of 6 prompts
-        (`agentic-engineering`). This is S3-2, already known.
+    - **Seen in the same check; the two design ones were fixed the same day (owner: yes, fix before Step 5).**
+      - **Words in a brief picked the change type.** design-elaya `ledgerly` was `SECURITY_CHANGE` (security skill
+        as second whole skill), `tandem` was `MEDIA_CHANGE` (with `media/launch-video`, `research/web`,
+        `research/social`), design `8` was `PERFORMANCE_CHANGE`, design `10` `NEW_FEATURE`; `ledgerly`, `8` and `10`
+        got "agylite verify passes (tests, types, lint, build)" for a static page.
+        **Fix:** rule `static-page-brief` (`static html`, `html/css/js`, `one index.html`; not with fix, bug, test,
+        api, backend, seo and similar) with the new rule key `only_domains: [design]` and `change_type:
+        DESIGN_CHANGE`. `only_domains` keeps every routed capability of the named domains and drops the rest (the
+        existing `only` keeps single capabilities). All five design prompts of Step 5 now route `DESIGN_CHANGE`,
+        design capabilities only. 4 scenarios added (one guard: "Fix the bug in my static HTML page…" stays
+        `BUG_FIX`). Limit: a page brief without those words still routes by its content words.
+      - **The landing pages carried the wrong finish line** (`design/design-direction`'s only). **Fix:** when a
+        rule-scoped partner rides along (Taste + Elaya on the `landing-conversion` rule), the hook adds the finish
+        lines of the capability that rule selects. Both landing prompts now end with "one offer, one audience and
+        one primary action are stated · no competing CTAs above the fold · at least one risk reversal · no invented
+        prices, stats or testimonials". One-job pairs (the engineering ones) are unchanged. 1 test.
+      - After both fixes: hook 1,136 and 1,114 characters on the landing pages, 595 to 617 on the three design
+        tasks; delivery is by path as before. 529 tests pass, `validate` 24/24, `doctor` green, scratch bundle
+        still 983bee4b2e54.
+      - This also changes the routes of the `design-taste` suite's prompts (same Taste briefs), so its Step 3
+        re-measurement numbers describe the old routes.
+      - **Not fixed (S3-2, already known):** eng-ecc `backend-patterns` routes to `youtube/analytics`, and ECC
+        leads 1 of 6 prompts (`agentic-engineering`).
 
 ## 5. Risks
 

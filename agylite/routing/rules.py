@@ -11,7 +11,7 @@ from .classify import CHANGE_TYPES, find_phrases
 
 PROJECT_STAGES = ("new", "existing", "unknown")
 RULE_KEYS = {"id", "description", "any", "regex", "require_any", "unless", "project", "select", "suppress",
-             "pipeline", "explicit", "weight", "requires_urls", "url_hosts", "skill", "only", "change_type",
+             "pipeline", "explicit", "weight", "requires_urls", "url_hosts", "skill", "only", "only_domains", "change_type",
              "stack", "stack_unless"}   # Step 4b: project stack tags every one of `stack` / none of `stack_unless`
 
 
@@ -27,6 +27,7 @@ class RuleHit:
     skill: str | None = None   # D-050: the bundle path of the skill this rule means, for its first `select`
     only: bool = False          # C3-5: when it matches, the route keeps only what `only` rules select
     change_type: str | None = None   # C3-5: the change type the rule decides (beats the keyword order)
+    only_domains: list = field(default_factory=list)   # like `only`, but keeps every capability of these domains
 
 
 def load_routing(root: Path | None = None):
@@ -125,6 +126,9 @@ def validate_routing(cfg, cards, hierarchy):
                 p.append(f"rule {rid}: {cid} is internal and is reached through dependencies, never routed")
             if not card["enabled"] or card.get("runtime_status") == "DISABLED_BY_POLICY":
                 p.append(f"rule {rid}: {cid} is disabled by policy and can never be routed (D-035)")
+        for dom in rule.get("only_domains") or []:
+            if dom not in domains:
+                p.append(f"rule {rid}: only_domains names unknown domain {dom}")
         for target in rule.get("suppress") or []:
             if target not in cards and target not in domains:
                 p.append(f"rule {rid}: suppresses unknown domain/capability {target}")
@@ -184,7 +188,8 @@ def match_rules(text: str, cfg, stage: str, has_urls=False, urls=(), stack=()):
                             matched=matched, suppress=list(rule.get("suppress") or []),
                             pipeline=list(rule.get("pipeline") or []), explicit=bool(rule.get("explicit")),
                             skill=rule.get("skill"), only=bool(rule.get("only")),
-                            change_type=rule.get("change_type")))
+                            change_type=rule.get("change_type"),
+                            only_domains=list(rule.get("only_domains") or [])))
     return hits
 
 

@@ -181,6 +181,25 @@ class TestPromptHook(unittest.TestCase):
         for requirement in loader.load_cards()[lead]["verification_requirements"]:
             self.assertIn(requirement, done)
 
+    def test_a_rule_scoped_partners_capability_adds_its_finish_line(self):
+        """Step 5 prep: Elaya rides next to Taste only on the landing-conversion rule and does another job, so
+        design/landing-conversion's finish lines join the lead's; a one-job pair (no `rules`) adds nothing."""
+        from types import SimpleNamespace
+        from agylite.context import prompt_hook
+        taste, elaya = "files/taste/skills/taste-skill/SKILL.md", "files/elaya/skills/landing-page-design/SKILL.md"
+        router = SimpleNamespace(
+            cfg={"rules": [{"id": "landing-conversion", "select": ["design/landing-conversion"]},
+                           {"id": "ui-build", "select": ["design/design-direction"]}]},
+            cards={"design/landing-conversion": {"verification_requirements": ["no invented prices"]},
+                   "design/design-direction": {"verification_requirements": ["direction stated"]}})
+        ids = ["design/design-direction", "design/landing-conversion"]
+        for overlaps, want in (([{"lead": taste, "also": elaya, "rules": ["landing-conversion"]}], ["no invented prices"]),
+                               ([{"lead": taste, "also": elaya}], [])):
+            with mock.patch("agylite.context.levels._priorities", return_value={"skill_overlaps": overlaps}):
+                got = prompt_hook._scoped_finish(router, {"pair_paths": (taste, elaya)}, ids, "design/design-direction")
+            self.assertEqual(got, want)
+        self.assertEqual(prompt_hook._scoped_finish(router, None, ids, "design/design-direction"), [])
+
     def test_compose_is_the_hook_text_without_side_effects(self):
         """The token report measures the hook with compose(): same text, no events, no fired marker."""
         from agylite.context import prompt_hook

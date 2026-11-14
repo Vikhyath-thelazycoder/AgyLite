@@ -479,8 +479,9 @@ Still to do:
   finish line changes delivery for none). **▶ RESUME at Step 5 below: dry run repeated 2026-11-15, 180 sessions,
   ≈ $143 (range $120–170). The owner APPROVED the estimate on 2026-11-15 but said not to start the paid run in that
   session: start it only on the owner's word, with `CLAUDE_CODE_OAUTH_TOKEN` exported (it was not set), detached,
-  `--bundle` = a fresh scratch build of 983bee4b2e54. Before starting, show the owner the three routing notes in
-  `SKILL_QUALITY_PLAN.md` Phase 6 "Seen in the same check".**
+  `--bundle` = a fresh scratch build of 983bee4b2e54. The two design routing problems found in the hook check were fixed on
+  2026-11-15 (rule `static-page-brief` with `only_domains`; landing-conversion finish line in the hook); the eng-ecc
+  misroutes (S3-2) are still open and will be measured as they are.**
 - **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
   - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare
         (`cloudflare/security-audit-skill@c1c8a8c`) and Trail of Bits (`trailofbits/skills@2be6433`): pins, hashes,
@@ -1227,3 +1228,4 @@ gap: Open Design's files are already measured.
 | 2026-11-10 | Step 3 part 1 decision | Owner chose a temporary HOME per session for full isolation (owner runs `claude setup-token` once; harness change before the re-measurement). Part 1 closed; resume at part 2 (hook size). |
 | 2026-11-15 | Skill quality Phase 6 | Upgrade closed: every check green, scratch bundle 983bee4b2e54 reproduces (ID unchanged, live bundle untouched), CHANGELOG "Unreleased", Step 5 dry run repeated (180 sessions, estimate unchanged ≈ $143). Open: version bump, YouTube hook/title routing. Next: Step 5 on owner approval. |
 | 2026-11-15 | After Phase 6 | Owner: Step 5 estimate approved, run not started (owner's word needed); no version bump yet; YouTube own-video routing fixed (`research-video` unless, 2 scenarios); hook size checked on the 20 Step 5 prompts with the candidate bundle: the finish line changes delivery for 0, closest 9,522 / 9,600. |
+| 2026-11-15 | Step 5 prep | Static-page briefs route as design only (rule `static-page-brief`, new rule key `only_domains`); the hook carries the landing-conversion finish line next to a rule-scoped partner skill. 4 scenarios, 1 test; bundle ID unchanged. Step 5 still not started (owner's word needed). |

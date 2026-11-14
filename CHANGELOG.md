@@ -32,6 +32,11 @@ are unchanged and the bundle ID does not move.
 - "look into / for / up / through" no longer makes a request a design change.
 - A request about the creator's own video ("a hook and title for my youtube video") routes to the YouTube skills,
   not to video research.
+- A brief for a static page ("static HTML/CSS/JS", "one index.html") routes as design work only. Words about the
+  product ("worries about data security", "p95 latency", "a launch post") no longer add the security, performance,
+  research or media capabilities, or the code-change finish line.
+- On landing pages, where Elaya rides next to Taste, the hook's "Done means" line also carries the
+  landing-conversion finish line (one offer, no competing CTAs, a risk reversal, nothing invented).
 
 ## [2.1.6] - 2026-10-11
 
