@@ -701,6 +701,18 @@ Still to do:
         original / AgyLite), a new security suite (Cloudflare), `spec-review` (EGM, doc 24 §6; Astryx joins the
         combined `design` suite as React-app tasks; owner 2026-11-10: dry run + cost estimate first), diagram-archify (deferred from Step 3, 45 cells ≈ $21, needs the owner's token), and the Step 3 suites (Open Design + UI UX Pro Max
         `design`, ECC, beyondseo if approved). Not before the Step 3 fixes: they would measure the known bugs
+  - [ ] Step 5b (owner 2026-11-15, after Step 5) — **release what is built.** The installed plugin is 2.1.6 on bundle
+        6c8821eb00b7; the new upstreams and skills of Steps 3–4b and the skill quality upgrade exist only as candidate
+        bundle 983bee4b2e54. Do: read the Step 5 results and fix or record what they show; bump `VERSION` (one version
+        for the upstreams and the upgrade) and move "Unreleased" in `CHANGELOG.md` under it; install from a clean
+        checkout into a scratch home and run `doctor`, `validate` and a session start; write the rollback line
+        (`agylite bundle` previous); then publish. Ask the owner before publishing.
+  - [ ] Step 5c (owner 2026-11-15) — **questions and chat are not work.** The prompt hook routes every prompt longer
+        than three words. In the 2026-11-15 session "Okay, do all. Okay, like decision is all approved for you…" went
+        to `testing/accessibility`, and "Is there any other steps missed…" became `SECURITY_CHANGE` with a whole
+        security skill (20 KB). Do: a class for questions about the project, status checks, approvals and follow-ups
+        that carries no skill and no cards (or one short line); keep real tasks phrased as questions ("can you fix
+        the login bug?") routed. Scenario tests for both sides; measure the tokens saved on a real session log.
   - [ ] Owner idea 2026-11-02, after step 4: a category/subcategory folder view of every skill (security,
         security-audit, design, engineering architecture, agents, YouTube, …) so agents can search and load by
         category; new upstreams sorted into it automatically. Not started; to be designed with the owner
@@ -711,6 +723,27 @@ Still to do:
         mentions inside framework skills): system design, scaling, queues, background jobs, WebSockets, RAG, vector
         DB. Missing: load balancing, microservices, RLM (recursive language models). Unclear: "file tooling" (ask
         the owner what it means first). Do it the same way as D-051, one topic group at a time, and report after each:
+        **Widened 2026-11-15 (owner: yes) after a probe of 30 product requests** (router on main, `agylite skills
+        search` on the bundle index). Add these groups and fix these routes in the same step:
+        - Infrastructure and deploy (new capability, or under `engineering/release`): hosting/Vercel deploy, CI/CD,
+          Docker, Kubernetes. "Deploy this app to production" and "Set up CI/CD with GitHub Actions" route to
+          `engineering/release` only. Upstream skills exist; deploy-vercel-static and ci-cd-and-automation are not
+          bundled.
+        - Database design / data modelling (only ClickHouse and migrations today). "Design the database schema for
+          orders and customers" routes `DESIGN_CHANGE` with `design/design-direction` and `seo/technical`.
+        - Transactional email (ECC mailtrap skill, not bundled) and i18n (ECC i18n-sync, not bundled): "Send a
+          welcome email when a user signs up" and "Translate the app into Spanish and Hindi" are unmatched.
+        - Nothing suitable found: product analytics, privacy/GDPR and legal pages, cloud cost, offline/PWA, app store
+          release, incident runbooks. "Reduce our cloud bill", "Make the app work offline" and "Get the app into the
+          App Store" are unmatched. Ask the owner which of these are worth a skill.
+        - Misroutes to fix with scenarios: "Build a CLI tool that renames photos by date" → `REFACTOR` (word
+          "rename"); "Add a chatbot that answers from our help docs" and "Build a Discord bot that answers questions
+          from our docs" → `DOCUMENTATION_CHANGE`, no `engineering/ai-systems`; "Add error monitoring and alerts" →
+          `engineering/debugging`; "I have an idea for an app, help me figure out what to build" →
+          `engineering/implementation` only (should be planning and grilling).
+        - Paid runs (owner asked 2026-11-15 why there are three; not decided): option to fold this step's paid suite
+          into the Final run, and to limit the Final run to suites whose skills or routing changed after their last
+          paid run.
         1. Find upstream candidates for each gap (prefer an existing pinned upstream). Pin, hash, scan, license, and
            write the one-owner-per-job overlap plan → `docs/audit/25_BACKEND_AI_GAPS_AUDIT.md`. Write a house skill
            only where no upstream is good enough.
@@ -723,6 +756,20 @@ Still to do:
         3. Bundle, then add card entry points, routing rules (route a scenario test for each topic), the overlap test
            and a validate check. Normal tests stay green.
         4. Paid suite for the new skills only (no skill / original / AgyLite), with the owner's go-ahead first
+  - [ ] Step 7 (owner 2026-11-15, after Step 6; design with the owner first) — **a product pipeline for new
+        projects.** The owner's goal: say what to build and Agylite plans, asks, writes the documents and carries the
+        build through backend, frontend, security, SEO and release. Today "Build me a SaaS app for invoicing
+        freelancers" on a new project routes once (`engineering/planning`, `architecture`, `implementation`,
+        `testing/strategy`, `security`, design direction with a UI): the requirement questions and the plan happen,
+        but SEO, documentation and release are not in the route, the lifecycle is per change (UNDERSTAND … RECONCILE),
+        and no step moves the project to the next stage, so the user must know to ask for each. To design: the stages
+        of a product (for example requirements → documents from `templates/project-docs/` → design direction →
+        backend → frontend → security review → SEO → deploy → launch material), which are skipped for which product
+        (a CLI has no SEO or design), how the plan's phases are created from them, how the hook names the next stage
+        after RECONCILE, and where the owner approves. Not checked on 2026-11-15: what a real session does with
+        today's new-product route (only the route was read).
+        Also open from the same check: no paid suite runs Cursor, Codex or Antigravity, where the 14 entry skills
+        load; decide whether to measure one of them.
 - [x] Phase 9 code (2026-10-23, df4ed7c + e14ba43 + this commit): option 2 (D-050: overlapping skills load both
       primaries; rules name their skill; to-spec/to-tickets/code-review/tdd/release routing fixes from the traces);
       gstack review rewrite fixed for D-049 (NEEDS_RULES → SECURITY_FAST_TRACK, candidate c12a18c20c27, Tier 0 PASS);
@@ -1229,3 +1276,4 @@ gap: Open Design's files are already measured.
 | 2026-11-15 | Skill quality Phase 6 | Upgrade closed: every check green, scratch bundle 983bee4b2e54 reproduces (ID unchanged, live bundle untouched), CHANGELOG "Unreleased", Step 5 dry run repeated (180 sessions, estimate unchanged ≈ $143). Open: version bump, YouTube hook/title routing. Next: Step 5 on owner approval. |
 | 2026-11-15 | After Phase 6 | Owner: Step 5 estimate approved, run not started (owner's word needed); no version bump yet; YouTube own-video routing fixed (`research-video` unless, 2 scenarios); hook size checked on the 20 Step 5 prompts with the candidate bundle: the finish line changes delivery for 0, closest 9,522 / 9,600. |
 | 2026-11-15 | Step 5 prep | Static-page briefs route as design only (rule `static-page-brief`, new rule key `only_domains`); the hook carries the landing-conversion finish line next to a rule-scoped partner skill. 4 scenarios, 1 test; bundle ID unchanged. Step 5 still not started (owner's word needed). |
+| 2026-11-15 | Plan | Gap check (30 product requests routed, bundle searched): Steps 5b (release), 5c (questions and chat are not work) and 7 (product pipeline for new projects) added; Step 6 widened with infrastructure/deploy, database design, email, i18n and the misroutes found. |

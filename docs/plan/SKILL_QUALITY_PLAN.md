@@ -1,6 +1,6 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: DONE 2026-11-15. Phases 0 to 6 are complete. Work continues in `IMPLEMENTATION_PLAN.md` "Resume here": Step 5 (waiting for the owner's approval of the estimate), the category view, Step 6.**
+**Status: DONE 2026-11-15. Phases 0 to 6 are complete. Work continues in `IMPLEMENTATION_PLAN.md` "Resume here": Step 5 (estimate approved; starts on the owner's word), 5b release, 5c questions and chat, the category view, Step 6 (widened), Step 7 product pipeline.**
 
 ## ▶ RESUME HERE (next session)
 
