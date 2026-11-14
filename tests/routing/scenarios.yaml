@@ -462,3 +462,35 @@ scenarios:
     stage: existing
     expect: [engineering/review]
     forbid: [engineering/spec-review]
+
+  # ── Skill quality plan, Phase 5 (D-053): agent instructions and investigations ──────────────────────────────────
+  - id: sq-own-skills-and-workflows
+    request: Assess all the skills and workflows in this project and make the skills even better
+    stage: existing
+    expect: [engineering/ai-systems, engineering/documentation]
+    forbid: [design/, seo/, media/]
+
+  - id: sq-rewrite-entry-skill
+    request: Rewrite the agylite-review skill so agents give better findings
+    stage: existing
+    expect: [engineering/ai-systems, engineering/documentation]
+    forbid: [design/, seo/, media/]
+
+  - id: sq-skills-section-is-not-agent-work
+    request: Add a skills section to my portfolio page
+    stage: existing
+    expect: []
+    forbid: [engineering/ai-systems]
+
+  - id: sq-look-into-is-not-design
+    request: Look into why messages per user are high
+    stage: existing
+    expect: [engineering/debugging, codebase/repository-understanding]
+    forbid: [design/, seo/, media/]
+
+  - id: sq-look-of-a-page-stays-design
+    request: The landing page looks generic, make it look premium
+    stage: existing
+    expect: [design/design-direction]
+    forbid: [engineering/debugging]
+    change_type: DESIGN_CHANGE

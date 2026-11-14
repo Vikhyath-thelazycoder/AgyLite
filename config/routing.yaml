@@ -42,6 +42,8 @@ change_types:
            '\b(?:spending|pricing|price|payment|meal|budget|savings|subscription|billing|data|current|paid|free)\s+plans?\b',
            "\\bplan's\\b",
            '\bno\s+(?:\w+\s+){0,2}(?:screenshots?|photos?|photographs?|images?)\b',
+           # "look into / look for / look up" is not about how something looks (DESIGN_CHANGE keyword `look`).
+           '\blook(?:ing|ed)?\s+(?:into|for|up|through)\b',
            # MP5 §1.5: SEO research is SEO work, not the research domain.
            '\b(?:keyword|seo|serp|competitor|backlink)\s+research\b']
   default_by_domain:
@@ -164,6 +166,28 @@ rules:
     regex: ['`[a-z_][\w.]*(?:\(\))?`']
     unless: [deck, slides, presentation, video, youtube, diagram, mind map, seo]
     select: [engineering/implementation]
+    weight: 2
+
+  # ── Skill quality plan, Phase 5 (D-053) ─────────────────────────────────────────────────────────────────────────
+  - id: agent-instructions
+    description: Work on agent instructions (skills, SKILL.md files, agent prompts) is AI-systems and documentation
+      work. Without a rule such a request matched nothing, or one stray tag ("assess all the skills and workflows").
+    regex: ['\bskill\.md\b', '\b(?:entry|agent|agylite[-\w]*)\s+skills?\b',
+            '\bskills?\s+(?:and|or)\s+(?:the\s+)?(?:workflows?|agents?|prompts?)\b',
+            '\b(?:agent|system)\s+(?:prompts?|instructions)\b', '\bsub-?agent\s+(?:files?|definitions?|prompts?)\b']
+    unless: [youtube, video, seo, deck, slides, presentation, resume, portfolio]
+    select: [engineering/ai-systems, engineering/documentation]
+    suppress: [design, media, seo]
+    weight: 3
+
+  - id: investigate
+    description: '"Look into why …" asks for the cause of a behaviour or a number; "look" alone is a design tag and
+      sent such requests to design direction'
+    any: [look into, looking into, investigate, find out why, figure out why, dig into]
+    unless: [design, redesign, landing page, typography, seo, rank, ranking, traffic, youtube, video, channel, research]
+    project: [existing]
+    select: [engineering/debugging, codebase/repository-understanding]
+    suppress: [design]
     weight: 2
 
   - id: third-party-integration

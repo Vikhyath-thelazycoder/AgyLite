@@ -169,6 +169,18 @@ class TestPromptHook(unittest.TestCase):
         _, diagram = self.hook({"prompt": "Sequence diagram of the login flow"})
         self.assertNotIn("Done means: agylite verify", diagram)
 
+    def test_with_a_skill_the_lead_capabilitys_finish_line_rides_along(self):
+        """D-053: the cards are not sent next to a skill, so the lead capability's `verification_requirements` join
+        the Done-means line; without a skill the cards carry them and the line stays as it was."""
+        from agylite.registry import loader
+        _, plain = self.hook({"prompt": PROMPT})   # no bundle yet: no skill, the cards follow
+        self.assertIn("Done means: agylite verify passes (tests, types, lint, build).", plain.splitlines())
+        out = self.with_cap(None)
+        done = next(line for line in out.splitlines() if line.startswith("Done means: "))
+        lead = out.splitlines()[0].split(" · ", 1)[1].split(",")[0].split(" ")[0]
+        for requirement in loader.load_cards()[lead]["verification_requirements"]:
+            self.assertIn(requirement, done)
+
     def test_compose_is_the_hook_text_without_side_effects(self):
         """The token report measures the hook with compose(): same text, no events, no fired marker."""
         from agylite.context import prompt_hook

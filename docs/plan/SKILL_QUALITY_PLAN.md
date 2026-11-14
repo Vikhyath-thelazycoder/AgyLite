@@ -1,6 +1,6 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: APPROVED by the owner 2026-11-14. Phases 0 to 4 done (14 entry skills, 3 agents, 7 guides and the card finish lines). ▶ RESUME at Phase 5 (lifecycle wording, the routing rules, and the owner's decision on a finish line in the prompt hook).**
+**Status: APPROVED by the owner 2026-11-14. Phases 0 to 5 done. ▶ RESUME at Phase 6 (close: every check, a bundle build, CHANGELOG, a new Step 5 dry run and estimate; then back to `IMPLEMENTATION_PLAN.md` Step 5).**
 
 Owner request (2026-11-14): assess every skill and workflow in this project and make them better and more detailed,
 so that agents and people who use them do not produce thin or generic output ("AI slop"). Plan first, start after
@@ -270,14 +270,32 @@ and stop.
     6c8821eb00b7 (rules that name EGM, Caldo and other skills of the Step 4/4b candidate bundle, which is not
     activated). The count is 23 with and without this phase's changes.
 
-- [ ] **Phase 5 — workflow.**
-  - `config/lifecycle.yaml`: wording made current; each step's exit stays one checkable sentence.
-  - **Owner decision needed:** should the prompt hook keep one "Done means" line for the lead capability even
-    when a skill rides along (about 100 to 200 characters per prompt, inside the 9,600 limit)? This is what
-    carries the finish line to Claude Code's normal path.
-  - A routing rule so that work on Agylite's own skills, agents and workflows does not route to design
-    (section 2.4), with a routing test.
-  - Done means: hook size test passes; the new routing scenario passes.
+- [x] **Phase 5 — workflow. DONE 2026-11-14.**
+  - **Lifecycle:** `config/lifecycle.yaml` was read again step by step. The VERIFY purpose and exit were made
+    current in Phase 1; every other step's exit is already one checkable sentence, so nothing else changed.
+  - **Hook finish line (owner 2026-11-14: yes).** When a skill rides along, the prompt hook's "Done means" line
+    now carries the lead capability's `verification_requirements` (the cards are not sent next to a skill, so
+    the line was lost). Code changes: "Done means: agylite verify passes (tests, types, lint, build) · <the
+    capability's lines>."; other routes: "Done means: <the capability's lines>.". Without a skill nothing
+    changes (the cards carry their own). Cost: 87 characters in the middle case, 234 at most. Measured on the
+    active bundle: bug fix 9,520 characters (limit 9,600), research 3,953, YouTube 3,035, diagram 590. 1 test.
+    To watch in Step 5: a lead skill that is within about 230 characters of the limit now goes over it and is
+    named by path, not sent whole (the existing rule for skills over the limit).
+  - **Routing rule `agent-instructions`:** work on skills, `SKILL.md` files, agent or system prompts routes to
+    `engineering/ai-systems` and `engineering/documentation`, and suppresses design, media and SEO. "Assess all
+    the skills and workflows in this project…" matched nothing before (the installed plugin 2.1.6 sent it to five
+    design capabilities).
+  - **Routing rule `investigate`:** "look into", "investigate", "find out why" on an existing project routes to
+    `engineering/debugging` and `codebase/repository-understanding` and suppresses design. "Look into why messages
+    per user are high" was `DESIGN_CHANGE · design/design-direction` on the tag "look". "look into / for / up /
+    through" is also removed before the change type is chosen.
+  - 5 routing scenarios added (2 for agent instructions, 1 guard: "a skills section on my portfolio page" is not
+    agent work; 1 for the investigation; 1 guard: "the landing page looks generic" stays design). 65 routing tests
+    pass.
+  - **Seen, not changed (owner to decide):** "Write a hook and title for my youtube video about desks" routes
+    `research/video, youtube/packaging`, with `research/video` in the lead, so the hook sends the video-research
+    guide and not the packaging skill. Without the word "youtube" the same request routes `youtube/packaging`
+    alone. It was like this before this phase.
 
 - [ ] **Phase 6 — close.**
   - Every test, `validate`, `doctor`, a bundle build, `CHANGELOG.md`, and a version bump if the owner wants one.

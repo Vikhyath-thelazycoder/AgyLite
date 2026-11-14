@@ -473,8 +473,8 @@ Done (on `main`):
 Still to do:
 - **Owner request 2026-11-14 — skill and workflow quality upgrade.** Plan drafted in
   `docs/plan/SKILL_QUALITY_PLAN.md`; **approved 2026-11-14; Phases 0–4 done (standard, strict free check, contradictions
-  removed; 14 entry skills, 3 agents and 7 guides rewritten or extended; 14 card finish lines fixed). ▶ RESUME there at
-  Phase 5 (lifecycle wording, routing rules, the owner's decision on a hook finish line).** It runs first (Phases 0–6, report and stop after each), then the items
+  removed; 14 entry skills, 3 agents and 7 guides rewritten or extended; 14 card finish lines fixed). Phase 5 done too (hook finish line, two routing
+  rules). ▶ RESUME there at Phase 6 (close, new Step 5 estimate).** It runs first (Phases 0–6, report and stop after each), then the items
   below continue from Step 5.
 - **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
   - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare

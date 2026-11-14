@@ -116,6 +116,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None, 
     # Option 2 (D-050): when another upstream has a skill for the same job, it rides along whole and one side leads.
     pair = _overlap_partner(loader, skills[0], root, route.get("rules")) if lead else None
 
+    finish = list((router.cards.get(lead_cid) or {}).get("verification_requirements") or []) if lead else []
+
     def head(inline, pair, both=None):
         out = [f"Agylite route: {route['change_type']} · {', '.join(ids)}" + (" (+deps)" if deps else "")]
         if exempt:
@@ -137,8 +139,11 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None, 
             out.append("Before the first edit, load the whole skill and follow it: "
                        f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
         out += review_lines(route, host)
-        if code_change:   # C1-4: a diagram, script or static page has no tests, types or build to verify
-            out.append("Done means: agylite verify passes (tests, types, lint, build).")
+        # D-053 (owner 2026-11-14): with a skill in hand the cards are not sent (C1-3), so the lead capability's
+        # finish line rides here; without a skill the cards below carry their own.
+        done = (["agylite verify passes (tests, types, lint, build)"] if code_change else []) + finish
+        if done:   # C1-4: a diagram, script or static page has no tests, types or build to verify
+            out.append("Done means: " + " · ".join(done) + ".")
         return out
 
     def size(lines, texts=()):
