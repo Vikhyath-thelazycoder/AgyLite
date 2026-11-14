@@ -515,8 +515,11 @@ Still to do:
         - [ ] security 18 (≈ $6) — command given to the owner 2026-11-15; log `~/.agylite/benchmarks/step5-security.log`
         - [ ] spec-review 18 (≈ $32) · [ ] design-elaya 18 (≈ $28) · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
           · [ ] diagram-archify 45 (≈ $21)
-        The owner runs each from their own terminal (the token is exported there, never in a file; detached so a
-        closed Claude Code session does not stop it):
+        **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
+        with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
+        `export CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s agylite-bench -w)` in the same command,
+        never echoed, never in a plain file. Without the Keychain item the owner runs it from their own terminal
+        (detached, so a closed Claude Code session does not stop it):
         ```bash
         cd ~/Developer/vikhyath-ai-engineering-os
         export CLAUDE_CODE_OAUTH_TOKEN=…   # from `claude setup-token`
