@@ -768,6 +768,11 @@ Still to do:
         (a CLI has no SEO or design), how the plan's phases are created from them, how the hook names the next stage
         after RECONCILE, and where the owner approves. Not checked on 2026-11-15: what a real session does with
         today's new-product route (only the route was read).
+        **Research 2026-11-15, waiting for the owner's approval:** `docs/research/open-source-frameworks-vs-agylite.md`
+        compares Agylite with Superpowers, BMAD, Spec Kit, OpenSpec, Get Shit Done and Agent OS (15 gaps, proposals A–L:
+        `agylite next`, a small-change path, handoff and resume, announce line, session diagnosis, injection check,
+        project-local rules, conventions file, a second host, this pipeline, implementer subagents, Windows and
+        `npx skills`). Nothing from it is built; build only what the owner approves.
         Also open from the same check: no paid suite runs Cursor, Codex or Antigravity, where the 14 entry skills
         load; decide whether to measure one of them.
 - [x] Phase 9 code (2026-10-23, df4ed7c + e14ba43 + this commit): option 2 (D-050: overlapping skills load both
@@ -1277,3 +1282,4 @@ gap: Open Design's files are already measured.
 | 2026-11-15 | After Phase 6 | Owner: Step 5 estimate approved, run not started (owner's word needed); no version bump yet; YouTube own-video routing fixed (`research-video` unless, 2 scenarios); hook size checked on the 20 Step 5 prompts with the candidate bundle: the finish line changes delivery for 0, closest 9,522 / 9,600. |
 | 2026-11-15 | Step 5 prep | Static-page briefs route as design only (rule `static-page-brief`, new rule key `only_domains`); the hook carries the landing-conversion finish line next to a rule-scoped partner skill. 4 scenarios, 1 test; bundle ID unchanged. Step 5 still not started (owner's word needed). |
 | 2026-11-15 | Plan | Gap check (30 product requests routed, bundle searched): Steps 5b (release), 5c (questions and chat are not work) and 7 (product pipeline for new projects) added; Step 6 widened with infrastructure/deploy, database design, email, i18n and the misroutes found. |
+| 2026-11-15 | Research | Six open-source frameworks read and compared with Agylite (`docs/research/open-source-frameworks-vs-agylite.md`): 15 gaps, proposals A–L, waiting for the owner's approval. |
