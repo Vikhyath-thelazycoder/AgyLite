@@ -22,7 +22,8 @@ NO_BROWSER = re.compile(r"(?i)\b(?:no|never)\b[^.]{0,40}\bbrowser\b[^.]{0,30}(?:
                         r"|\bnever verify by[^.]{0,20}\bbrowser")
 CODE = re.compile(r"```.*?```|`[^`\n]+`", re.S)
 COMMAND = re.compile(r"\bagylite((?: +[a-z][a-z|-]*)+)")
-REFERENCE = re.compile(r"\breferences/[\w./-]+\.md\b")
+# A skill's own references/ folder; a longer path (files/<upstream>/…/references/x.md) is an upstream's file.
+REFERENCE = re.compile(r"(?<![\w/])references/[\w./-]+\.md\b")
 CONFIG = re.compile(r"\bconfig/[\w-]+\.yaml\b")
 
 
