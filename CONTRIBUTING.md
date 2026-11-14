@@ -69,6 +69,76 @@ chmod +x scripts/doctor scripts/validate scripts/benchmark
 | `./scripts/validate` | Tests routing rule integrity, capability registry format, 40-character commit SHAs, and security guardrails. |
 | `./scripts/validate --online` | Queries the GitHub API to confirm every pinned commit SHA exists in its remote repository. |
 | `./scripts/benchmark` | Generates capability coverage matrix and context efficiency estimates. |
+| `python -m agylite.diagnostics.skill_quality` | Lists every place where Agylite's own entry skills and agents break the standard below. `validate` runs the same check. |
+
+---
+
+## Writing entry skills and agents
+
+This applies to Agylite's own files: `skills/agylite-*/SKILL.md` and the three agents `engineering-architect`,
+`security-reviewer` and `production-reviewer`. Upstream skills and the rendered EGM agents are never edited by hand.
+
+A skill must tell the agent what a good result looks like, not only which commands to run. Every entry skill uses
+this format, in this order. A section that does not apply is left out, not filled with padding.
+
+```markdown
+---
+name: agylite-<domain>
+description: <what it produces> — use when <the situations and words that should trigger it>.
+disable-model-invocation: true
+---
+
+# Agylite <Domain>
+
+<Two or three sentences: what this skill produces, for whom, and what it never does.>
+
+## Use when · Not for
+- Use when: <concrete situations>
+- Not for: <situation> → use `<other skill>`
+
+## Before you start
+<Inputs the work needs. What to do when the prompt already carries an `Agylite route:` line (skip routing).
+What to ask the owner when an input is missing.>
+
+## Steps
+1. **<Name>.** <Action> — `<command>`. Expect: <what the result looks like>. Move on when: <exit check>.
+
+## Output
+<The exact shape of the final answer or deliverable: headings, required fields, where files go.>
+
+## Quality bar
+<A checklist the agent runs before it answers. Each line is checkable and names one typical weak output for
+this domain, for example "every finding has file:line and a failure scenario" or "no claim without its URL".>
+
+## Stop and ask
+<The points where only the owner decides: approvals, spend, live systems, irreversible steps.>
+
+## When something fails
+| What you see | What to do |
+
+## References (read only when needed)
+- `references/examples.md` — one good and one weak result, with notes on why
+- `references/<topic>.md` — long material for one step
+```
+
+Rules of the standard:
+
+1. `SKILL.md` stays at or under 6,500 bytes. Longer material goes to `references/`.
+2. Every step states what to expect and when to move on. A command without an expected result is not a step.
+3. Every command named must exist in the CLI. Every file named must exist.
+4. No internal references (plan section numbers, decision numbers, spec paragraphs). Say the rule itself.
+5. Verification wording comes from `config/verification.yaml` only, and only in skills where verification applies.
+6. Plain words, short sentences, no persuasion ("CRITICAL", "you MUST") unless a rule guards against data loss,
+   spend or a live system.
+7. The needles that existing tests assert stay in the text (`tests/context/test_entry_skills.py`).
+
+An agent file has, in this order: the role in one paragraph, a statement that it is read-only, `## Inputs`,
+`## Method`, a severity scale with definitions, `## Output` (the template of the report), `## Do not report`, and
+this rule: if a required file cannot be read, report an incomplete review, not a verdict.
+
+The check requires these headings in a skill: `## Use when`, `## Steps`, `## Output`, `## Quality bar`,
+`## When something fails`; and these in an agent: `## Method`, `## Output`, `## Do not report`. `references/` inside a
+skill always means that skill's own folder; name an upstream skill's file with the upstream's name in front.
 
 ---
 

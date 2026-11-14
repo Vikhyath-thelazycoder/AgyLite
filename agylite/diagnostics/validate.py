@@ -153,6 +153,21 @@ def run(root: Path, online=False, unittests=True) -> int:
             "Forbidden files in the bundle plan: " + ", ".join(_forbidden_bundled(root)[:3]))
     r.end_section()
 
+    r.section("✍️  Skill Quality (Agylite's own entry skills and agents)")
+    from . import skill_quality
+    try:
+        quality = skill_quality.problems(root)
+    except (OSError, TypeError, ValueError) as exc:
+        quality = [f"{type(exc).__name__}: {exc}"]
+    if not quality:
+        r.ok("Entry skills and agents follow the standard in CONTRIBUTING.md")
+    elif skill_quality.STRICT:
+        r.fail(f"{len(quality)} skill quality problems: " + "; ".join(quality[:3]))
+    else:
+        r.warn(f"{len(quality)} skill quality problems (report mode until the rewrite is done; "
+               "list: python -m agylite.diagnostics.skill_quality)")
+    r.end_section()
+
     pins = _pins(root)
     if online:
         r.section("🌐 Online GitHub SHA Verification")

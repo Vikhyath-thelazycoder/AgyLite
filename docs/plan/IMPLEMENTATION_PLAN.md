@@ -471,6 +471,10 @@ Done (on `main`):
       regenerated, bundle 1bcd9beb5094 (self-tests pass), every gate green, pushed
 
 Still to do:
+- **Owner request 2026-11-14 — skill and workflow quality upgrade.** Plan drafted in
+  `docs/plan/SKILL_QUALITY_PLAN.md`; **approved 2026-11-14; Phase 0 done (standard, free check, 126-problem
+  baseline). ▶ RESUME there at Phase 1.** It runs first (Phases 0–6, report and stop after each), then the items
+  below continue from Step 5.
 - **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
   - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare
         (`cloudflare/security-audit-skill@c1c8a8c`) and Trail of Bits (`trailofbits/skills@2be6433`): pins, hashes,

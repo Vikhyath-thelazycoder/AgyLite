@@ -100,6 +100,10 @@ class Adapter:
             # hook routes every prompt; a host without the hook (Cursor honours the flag) needs them to pick a skill.
             text = text.replace(f"\n{NO_MODEL}\n", "\n")
             (d / "SKILL.md").write_text(text, encoding="utf-8")
+            # The skill's on-demand detail travels with it; a reference removed from the repo is removed here too.
+            shutil.rmtree(d / "references", ignore_errors=True)
+            if (self.root / "skills" / name / "references").is_dir():
+                shutil.copytree(self.root / "skills" / name / "references", d / "references")
             (d / MANAGED).write_text(f"agylite {__version__}\n", encoding="utf-8")
             written.append(str(d))
         return written
