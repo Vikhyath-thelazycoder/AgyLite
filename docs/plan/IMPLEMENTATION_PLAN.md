@@ -471,11 +471,12 @@ Done (on `main`):
       regenerated, bundle 1bcd9beb5094 (self-tests pass), every gate green, pushed
 
 Still to do:
-- **Owner request 2026-11-14 — skill and workflow quality upgrade.** Plan drafted in
-  `docs/plan/SKILL_QUALITY_PLAN.md`; **approved 2026-11-14; Phases 0–4 done (standard, strict free check, contradictions
-  removed; 14 entry skills, 3 agents and 7 guides rewritten or extended; 14 card finish lines fixed). Phase 5 done too (hook finish line, two routing
-  rules). ▶ RESUME there at Phase 6 (close, new Step 5 estimate).** It runs first (Phases 0–6, report and stop after each), then the items
-  below continue from Step 5.
+- [x] **Owner request 2026-11-14 — skill and workflow quality upgrade. DONE 2026-11-15** (`docs/plan/SKILL_QUALITY_PLAN.md`,
+  Phases 0–6): standard and strict free check; 14 entry skills, 3 agents and 7 guides rewritten or extended; 14 card
+  finish lines fixed; hook finish line; two routing rules. Close: 528 tests, validate 24/24, doctor green, scratch
+  bundle 983bee4b2e54 reproduces (ID unchanged), CHANGELOG "Unreleased". Open for the owner: version bump, the
+  YouTube hook/title routing. **▶ RESUME at Step 5 below: the dry run was repeated on 2026-11-15, still 180 sessions,
+  ≈ $143 (range $120–170); it waits for the owner's approval.**
 - **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
   - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare
         (`cloudflare/security-audit-skill@c1c8a8c`) and Trail of Bits (`trailofbits/skills@2be6433`): pins, hashes,
@@ -1220,3 +1221,4 @@ gap: Open Design's files are already measured.
 | 2026-11-10 | Step 4b plan | Detailed Step 4b section written (owner: everything explained so later sessions can use and learn from it): agents and subagents (9 EGM reviewers, synthesizer merge, resolve gate, re-check loop with decision log, drift check, host subagent flag), capabilities, the four-upstream design split, files, tests, paid-suite plan, risks. Order: Step 3 → Step 4 + 4b in one rebuild → Step 5. |
 | 2026-11-10 | Step 3 part 1 | Measurement fixes C1-1, C3-2, C3-1, C3-7, C1-9 done (launcher pin + engine check, skill-source deny rules + trace scan, inspector report.json, skill-not-used and asked-instead-of-acting counts); replay on 288 Phase 9 traces flags exactly the 15 known archify leaks. Open: temporary HOME needs an owner token. Next: part 2, the hook size. |
 | 2026-11-10 | Step 3 part 1 decision | Owner chose a temporary HOME per session for full isolation (owner runs `claude setup-token` once; harness change before the re-measurement). Part 1 closed; resume at part 2 (hook size). |
+| 2026-11-15 | Skill quality Phase 6 | Upgrade closed: every check green, scratch bundle 983bee4b2e54 reproduces (ID unchanged, live bundle untouched), CHANGELOG "Unreleased", Step 5 dry run repeated (180 sessions, estimate unchanged ≈ $143). Open: version bump, YouTube hook/title routing. Next: Step 5 on owner approval. |

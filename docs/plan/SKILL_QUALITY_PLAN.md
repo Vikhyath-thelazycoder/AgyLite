@@ -1,29 +1,18 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: APPROVED by the owner 2026-11-14. Phases 0 to 5 done. ▶ RESUME at Phase 6 (close: every check, a bundle build, CHANGELOG, a new Step 5 dry run and estimate; then back to `IMPLEMENTATION_PLAN.md` Step 5).**
+**Status: DONE 2026-11-15. Phases 0 to 6 are complete. Work continues in `IMPLEMENTATION_PLAN.md` "Resume here": Step 5 (waiting for the owner's approval of the estimate), the category view, Step 6.**
 
 ## ▶ RESUME HERE (next session)
 
-**Done (all on `main`, pushed; last commit `f81d584`):** Phases 0 to 5. The standard and the strict free check;
-contradictions removed; 14 entry skills, 3 agents and 7 guides rewritten or extended; 14 card finish lines fixed;
-the hook finish line; two routing rules. 527 tests pass, `validate` 24/24, `doctor` green, checker 0 problems.
+**Done (all on `main`, pushed):** Phases 0 to 6. Nothing is left in this plan.
 
-**Left: Phase 6 only (the close). Nothing in it is started.** In this order:
+**Two owner decisions are open (neither blocks Step 5):**
 
-1. Run every check: `python -m unittest discover -s tests`, `python -m agylite.cli validate`,
-   `python -m agylite.cli doctor`, `python -m agylite.cli adapters render --check`,
-   `python -m agylite.diagnostics.skill_quality`.
-2. Build a bundle in a scratch `AGYLITE_HOME` and confirm it reproduces (the active `~/.agylite` stays untouched,
-   as in Steps 4 and 4b).
-3. Add the upgrade to `CHANGELOG.md`. Ask the owner whether to bump `VERSION` (it is 2.1.6).
-4. Dry-run the Step 5 suites again (`--dry-run`, never `--yes-spend`) and give the owner the updated session
-   count and cost estimate. Expect the same 180 sessions and about the same cost (≈ $143, range $120–170).
-5. Tick Phase 6, then go back to `IMPLEMENTATION_PLAN.md` "Resume here": Step 5 (waiting for the owner's
-   approval of the estimate), the category view, Step 6.
-
-**Open question for the owner:** "Write a hook and title for my youtube video about desks" routes
-`research/video, youtube/packaging` with `research/video` in the lead, so the hook sends the video-research guide
-and not the packaging skill. Fix it in Phase 6, or leave it to Step 5? (Details under Phase 5.)
+1. **Version.** `VERSION` is still 2.1.6 and the upgrade sits under "Unreleased" in `CHANGELOG.md`. Bump it now
+   (2.1.7), or with the Step 4/4b upstreams when the candidate bundle is released?
+2. **YouTube routing.** "Write a hook and title for my youtube video about desks" routes
+   `research/video, youtube/packaging` with `research/video` in the lead, so the hook sends the video-research
+   guide and not the packaging skill. Fix it before Step 5, or leave it? (Details under Phase 5.)
 
 **What this upgrade changes for the old plan** (answer given to the owner 2026-11-14):
 
@@ -336,11 +325,21 @@ and stop.
     guide and not the packaging skill. Without the word "youtube" the same request routes `youtube/packaging`
     alone. It was like this before this phase.
 
-- [ ] **Phase 6 — close.**
-  - Every test, `validate`, `doctor`, a bundle build, `CHANGELOG.md`, and a version bump if the owner wants one.
-  - Dry-run the Step 5 suites again and give the owner the updated estimate, because the skills changed.
-  - Then return to `IMPLEMENTATION_PLAN.md`: Step 5 (paid batch, measures this upgrade), the category view,
-    Step 6.
+- [x] **Phase 6 — close. DONE 2026-11-15.**
+  - **Checks:** 528 tests pass (3 skipped), `validate` 24/24, `doctor` 65 passed and 0 failed (5 warnings),
+    `adapters render --check` current, `skill_quality` no problems.
+  - **Bundle:** built twice in two scratch `AGYLITE_HOME` folders with `--self-test`: both give 983bee4b2e54, the
+    Step 4b candidate, 0 errors. So the upgrade does not move the bundle ID, as Phase 0 predicted. The live
+    `~/.agylite` stayed on 6c8821eb00b7.
+  - **`CHANGELOG.md`:** the upgrade is under "Unreleased". `VERSION` is not bumped (owner to decide).
+  - **Step 5 dry run** against the scratch candidate bundle, 3 runs each: security 18, spec-review 18,
+    design-elaya 18, design 27, eng-ecc 54, diagram-archify 45 = **180 sessions**, the same as on 2026-11-13. No
+    missing runtime was named. The estimate stays **≈ $143 (range $120–170)**: the dry run prints sessions, not
+    dollars, and the per-session costs come from the ledger, which has no new paid data. One thing can push the
+    AgyLite arm up a little: the hook finish line adds 87 to 234 characters to prompts that carry a skill.
+  - Not done: the hook size was not measured on the Step 5 prompts with the candidate bundle (Phase 5 measured
+    the active bundle only). A lead skill within about 230 characters of the 9,600 limit is now named by path
+    instead of sent whole; Step 5 will show it.
 
 ## 5. Risks
 

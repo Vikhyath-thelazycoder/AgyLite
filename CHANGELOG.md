@@ -2,6 +2,35 @@
 
 All notable changes to Agylite (formerly Vikhyath AI Engineering OS) are documented in this file.
 
+## [Unreleased]
+
+Skill and workflow quality upgrade (`docs/plan/SKILL_QUALITY_PLAN.md`). Agylite's own files only; upstream skills
+are unchanged and the bundle ID does not move.
+
+### Added
+- A written standard for entry skills and agents in `CONTRIBUTING.md`, and a free check for it
+  (`python -m agylite.diagnostics.skill_quality`, also part of `agylite validate`): required sections, size limit,
+  internal references, commands that exist in the CLI, no contradiction with the verification policy. It covers
+  entry skills, agents and guides, and it fails the build.
+- The prompt hook's "Done means" line carries the lead capability's finish line when a skill rides along (the card
+  is not sent next to a skill, so the line was lost before).
+- Routing rule `agent-instructions`: work on skills, `SKILL.md` files, agent or system prompts routes to
+  `engineering/ai-systems` and `engineering/documentation`, not to design.
+- Routing rule `investigate`: "look into", "investigate", "find out why" on an existing project routes to
+  `engineering/debugging` and `codebase/repository-understanding`.
+
+### Changed
+- The 14 entry skills and the 3 Agylite agents are rewritten to the standard: when to use and when not, steps,
+  output, quality bar, when to stop and ask, what to do on failure. Long material moved to `references/` files that
+  are read on demand.
+- 7 of Agylite's own guides are extended (a report section, concrete finish conditions).
+
+### Fixed
+- Entry skills no longer contradict the verification policy or name commands and flags that do not exist.
+- 14 capability finish lines: 5 were split in two by an unquoted comma (for example "no invented prices · stats or
+  testimonials"), 3 were stale, 6 could not be checked.
+- "look into / for / up / through" no longer makes a request a design change.
+
 ## [2.1.6] - 2026-10-11
 
 ### Added
