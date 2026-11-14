@@ -53,6 +53,9 @@ def bootstrap(*, project, session_id, host, bundle_dir, budgets, root=None, stag
                  "`agylite context <id>…` · rare needs: `agylite skills search \"<words>\"`):"]
         index += [f"  {d}: " + ", ".join(c.split("/", 1)[1] for c in m["capabilities"]) for d, m in domains.items()]
 
+    # G1 A, C, D: one line on every host (the prompt hook repeats the first half next to the skill on Claude Code).
+    index.append("habits: say which skill you are using and keep one todo per step · `agylite next` names the project's "
+                 "next step · before you pause or near a limit: `agylite handoff write --done \"…\" --left \"…\" --next \"…\"`")
     discipline = discipline_lines(bundle_dir)
 
     def assemble(state_part):

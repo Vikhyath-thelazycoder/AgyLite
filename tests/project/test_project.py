@@ -114,6 +114,50 @@ class TestPlanIndex(ProjectEnv):
             plan_index.parse_plan("## P1 · X\nStatus: PLANNED\n\n| ID | Task | Status |\n|---|---|---|\n| T-1.1 | a | DONE |\n")
 
 
+class TestNextAndHandoff(ProjectEnv):
+    """Gap programme G1: A `agylite next`, C `agylite handoff`."""
+
+    def test_next_step_order(self):
+        from agylite.project import resume
+        st, index = self.state_and_index()
+        step = resume.next_step(st, index)
+        self.assertTrue(step["step"].startswith("Finish T-3.1 Booking model and API (phase P3"), step)
+        blocked = {**st, "pending_questions": ["auth-method"], "answers": {}}
+        self.assertIn("auth-method", resume.next_step(blocked, index)["step"])     # a blocking question comes first
+        paused = resume.next_step(st, index, {"next": "wire the cancel endpoint", "written": "2026-11-15"})
+        self.assertEqual(paused["step"], "wire the cancel endpoint")               # then the handoff
+        self.assertEqual(resume.next_step(None, None)["command"], "agylite project init")
+        self.assertEqual(resume.next_step(st, None)["command"], "agylite project init --docs")
+        done = {"current_phase": None, "phases": [{"phase_id": "P1", "phase_name": "x", "status": "COMPLETED",
+                                                    "tasks": [{"id": "T-1.1", "title": "a", "status": "COMPLETED"}]}]}
+        self.assertEqual(resume.next_step(st, done)["step"], "Nothing is open")
+
+    def test_handoff_round_trip_and_session_start(self):
+        code, out, err = run_cli("handoff", "write", "--done", "booking model", "--left", "cancel endpoint",
+                                 "--next", "wire the cancel   endpoint", "--project", str(self.root))
+        self.assertEqual(code, 0, err)
+        code, out, _ = run_cli("handoff", "show", "--project", str(self.root))
+        self.assertIn("next: wire the cancel endpoint", out)                         # whitespace collapsed
+        code, out, _ = run_cli("next", "--project", str(self.root))
+        self.assertTrue(out.startswith("next: wire the cancel endpoint\nwhy: the last session paused here"), out)
+        code, out, err = run_cli("bootstrap", "--host", "claude-code", "--project", str(self.root))
+        self.assertEqual(code, 0, err)
+        self.assertIn("state: handoff from ", out)
+        self.assertIn("state:   left: cancel endpoint", out)
+        self.assertIn("`agylite handoff write", out)                                 # the habits line
+        self.assertEqual(run_cli("handoff", "clear", "--project", str(self.root))[1], "handoff cleared\n")
+        self.assertEqual(run_cli("handoff", "show", "--project", str(self.root))[1], "no handoff\n")
+        code, out, _ = run_cli("next", "--project", str(self.root))
+        self.assertTrue(out.startswith("next: Finish T-3.1"), out)
+
+    def test_handoff_needs_a_next_step_and_stays_short(self):
+        from agylite.project import resume
+        with self.assertRaises(ValueError):
+            resume.write_handoff(self.project, done="x", left="y", next="   ")
+        data = resume.write_handoff(self.project, done="d" * 5000, left="", next="go")
+        self.assertEqual(len(data["done"]), resume.MAX_CHARS)
+
+
 class TestReconcile(ProjectEnv):
     def test_google_maps_lands_in_booking_phase_without_new_files(self):
         before = sorted(p.relative_to(self.root).as_posix() for p in self.root.rglob("*") if p.is_file())

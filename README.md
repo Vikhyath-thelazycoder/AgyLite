@@ -143,6 +143,8 @@ agylite codebase affected                                    # files and tests t
 agylite verify                                               # run the impacted checks, record evidence
 agylite dashboard --open                                     # the Agent Office
 agylite used                                                 # what this session used: capabilities, upstreams, engines
+agylite next                                                 # the project's next step and why
+agylite handoff write --done "…" --left "…" --next "…"       # pause: the next session start shows it
 ```
 
 <details>

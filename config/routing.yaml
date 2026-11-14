@@ -112,6 +112,18 @@ suggest:
   - {capability: engineering/spec-review, after_rules: [to-spec], change_types: [NEW_FEATURE, FEATURE_CHANGE, PLAN_CHANGE],
      note: "Offer a fresh-context review of the spec before code (engineering/spec-review, about 9 subagents); run it only if the owner says yes."}
 
+# G1 B (owner 2026-11-15; BMAD and Get Shit Done size the process to the change): a typo, a comment or a version bump
+# gets UNDERSTAND → IMPLEMENT → VERIFY, no completion gate, and the prompt hook sends three lines instead of a skill.
+# shortcut: phrase list only; a small change described in other words takes the normal path. Add phrases from real misses.
+small_change:
+  any: [typo, typos, spelling, misspelled, misspelling, grammar, wording, change the wording, change the text, update the text, copy change,
+        code comment, code comments, fix the comment, update the comment, fix the formatting, formatting only, reformat, whitespace, indentation,
+        gitignore, ignore file, version bump, bump the version, one-line change, one line change, small change, tiny change, trivial change,
+        rename the label, change the label]
+  unless: [security, auth, authentication, password, secret, secrets, token, payment, payments, migration, database, schema, api, endpoint,
+           delete, remove, refactor, feature, and also, crash, crashes, failing, fails]
+  steps: [UNDERSTAND, IMPLEMENT, VERIFY]
+
 change_type_adds:
   types: [NEW_FEATURE, FEATURE_CHANGE, BUG_FIX, REFACTOR, SECURITY_CHANGE, PERFORMANCE_CHANGE]
   add: [engineering/completion]

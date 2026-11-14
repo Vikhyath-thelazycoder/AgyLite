@@ -219,6 +219,44 @@ class TestPromptHook(unittest.TestCase):
             with self.subTest(stdin):
                 self.assertEqual(self.hook(stdin), (0, ""))
 
+    def test_questions_and_approvals_are_not_work(self):
+        """Step 5c: a question about the plan, or a question / acknowledgement no rule matches, injects nothing; a task
+        phrased as a question and a new task after "okay" are still routed."""
+        for prompt in ("Still, how many steps are remaining after step 5?",
+                       "Is there any other steps missed? It should do backend, front end, security, SEO and everything",
+                       "See, everything is good. So according to the current plan, how can you just implement this?",
+                       "Okay, do all. Okay, like decision is all approved for you. And not checked also, please check it.",
+                       "What does this function return when the list is empty?"):
+            self.assertEqual(self.hook({"prompt": prompt}), (0, ""), prompt)
+        for prompt in ("Can you fix the login bug in the payment webhook?", "Why is the login page slow?",
+                       "Okay, now add a login page with Google auth", PROMPT):
+            self.assertTrue(self.hook({"prompt": prompt})[1].startswith("Agylite route: "), prompt)
+
+    def test_a_small_change_gets_three_lines_and_no_skill(self):
+        """G1 B: a typo is not sized like a feature: no skill, no cards, three lifecycle steps, no completion gate."""
+        from agylite.routing import ProjectFacts, Router
+        from tests.context.fixtures import make_bundle
+        make_bundle(self.home)
+        _, out = self.hook({"prompt": "Fix the typo in the login error message"})
+        lines = out.splitlines()
+        self.assertEqual(len(lines), 3, out)
+        self.assertTrue(lines[0].endswith("(small change)") and lines[1].startswith("Small change (typo): "), out)
+        self.assertEqual(lines[2], "Done means: agylite verify passes (tests, types, lint, build).")
+        route = Router().route("Fix the typo in the login error message", project=ProjectFacts(stage="existing"))
+        self.assertEqual([s["step"] for s in route["lifecycle"]], ["UNDERSTAND", "IMPLEMENT", "VERIFY"])
+        self.assertNotIn("engineering/completion", [d["id"] for d in route["dependencies"]])
+        for big in ("Fix the typo that crashes the checkout", "Fix the typo and also add a search feature",
+                    "Add a comments section to the blog"):
+            self.assertIsNone(Router().route(big, project=ProjectFacts(stage="existing"))["small_change"], big)
+
+    def test_with_a_skill_the_agent_is_told_to_announce_it(self):
+        """G1 D: one line after the skill line; nothing is added when no skill rides along."""
+        from agylite.context.prompt_hook import ANNOUNCE
+        self.assertNotIn(ANNOUNCE, self.hook({"prompt": PROMPT})[1])   # no bundle: the context command, no skill
+        out = self.with_cap(None)
+        self.assertEqual(out.splitlines()[2], ANNOUNCE, out[:400])
+        self.assertIn(ANNOUNCE, self.with_cap(600))                     # named by path: still announced
+
     def test_off_switch(self):
         with mock.patch("agylite.context.prompt_hook.load_discipline", return_value={"prompt_hook": "off"}):
             self.assertEqual(self.hook({"prompt": PROMPT}), (0, ""))

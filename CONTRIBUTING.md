@@ -131,6 +131,8 @@ Rules of the standard:
 6. Plain words, short sentences, no persuasion ("CRITICAL", "you MUST") unless a rule guards against data loss,
    spend or a live system.
 7. The needles that existing tests assert stay in the text (`tests/context/test_entry_skills.py`).
+8. A skill does not repeat the session habits: the agent says which skill it is using, keeps one todo per step, and
+   writes a handoff (`agylite handoff write`) before it pauses. The session start and the prompt hook already say so.
 
 An agent file has, in this order: the role in one paragraph, a statement that it is read-only, `## Inputs`,
 `## Method`, a severity scale with definitions, `## Output` (the template of the report), `## Do not report`, and

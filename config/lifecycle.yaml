@@ -47,8 +47,8 @@ steps:
   RECONCILE:
     purpose: Close the loop in the plan and state.
     commands:
-      any: ["agylite plan set-status <task> VERIFIED --evidence <evidence file>", "agylite used"]
-    exit: Task VERIFIED (or COMPLETED) with evidence; follow-ups added as PLANNED tasks, never silently dropped; the final answer ends with the `agylite used` report (capabilities, upstream projects, engines).
+      any: ["agylite plan set-status <task> VERIFIED --evidence <evidence file>", "agylite used", "agylite next"]
+    exit: Task VERIFIED (or COMPLETED) with evidence; follow-ups added as PLANNED tasks, never silently dropped; the final answer ends with the `agylite used` report (capabilities, upstream projects, engines) and names the project's next step (`agylite next`).
 
 # Per change type: the step order and the extra rule that step carries. Types not listed use `default`.
 change_types:

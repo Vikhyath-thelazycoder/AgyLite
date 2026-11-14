@@ -485,13 +485,30 @@ Still to do:
 - **Gap programme (owner 2026-11-15: all of A–L approved).** Source: `docs/research/open-source-frameworks-vs-agylite.md`
   (Superpowers, BMAD, Spec Kit, OpenSpec, Get Shit Done and Agent OS compared with Agylite). The proposals are merged
   into the steps below in this order; report and stop after each phase, every phase ends with all free checks green:
-  - [ ] **G1 — every-session basics, before the Step 5 paid run** (so the one paid run measures them): Step 5c
-        (questions and chat are not work), **A** `agylite next` (reads plan and state, prints the next step and why;
-        the hook adds it after RECONCILE), **B** a small-change path (one-file, low-risk edits: UNDERSTAND → IMPLEMENT
-        → VERIFY), **C** `agylite handoff` and resume (done / left / next block written at pause, shown at session
-        start), **D** announce line ("Using <skill> to <purpose>") and one todo per step in the prompt hook and the
-        entry-skill standard. After G1: rebuild the scratch bundle, repeat the Step 5 dry run and the hook-size check
-        (D adds characters; `click-path-audit` had 78 spare).
+  - [x] **G1 — every-session basics. DONE 2026-11-15** (before the Step 5 paid run, so the one paid run measures them).
+        - **5c, questions and chat are not work.** `prompt_hook.is_conversation` + `prompt_hook_conversation` in
+          `config/discipline.yaml`: nothing is injected for a question about the plan or its status, or for a question
+          or a reply opening with an acknowledgement that no routing rule matches. `task_patterns` ("can you…",
+          "please fix…") always route. Tried on 14 real prompts of the 2026-11-15 session: 14 as wanted.
+        - **A, `agylite next`.** `agylite/project/resume.py` `next_step`: open blocking question → handoff → task to
+          verify → task in progress → blocked task → first planned task → add tasks / nothing open. RECONCILE in
+          `config/lifecycle.yaml` now ends with `agylite next`.
+        - **B, small change.** `small_change` in `config/routing.yaml` (phrases, `unless`, steps UNDERSTAND →
+          IMPLEMENT → VERIFY): no completion gate, and the hook sends three lines, no skill, no cards. Route schema 9
+          (`small_change`). Limit: it applies only when the request routes to a capability; "Fix the typo in the
+          footer" matches nothing and gets no hook at all, as before.
+        - **C, handoff.** `agylite handoff write|show|clear` (`.agylite` state dir, `handoff.yaml`, 600 characters per
+          field); the session start shows it before the other state lines; `agylite next` returns its `next`.
+        - **D, announce.** One hook line after the skill line ("Say which skill you are using, and make a todo per
+          step."), one "habits" line in L0 on every host, rule 8 in the `CONTRIBUTING.md` standard. The 14 entry
+          skills were not edited: `agylite-design` is at 6,499 of 6,500 bytes.
+        - **Checks:** 535 tests, `validate` 24/24, `doctor` green, adapters current, skill check clean. Scratch bundle
+          rebuilt: still 983bee4b2e54, live bundle untouched. Step 5 dry run: still 180 sessions. Hook size on the
+          20 Step 5 prompts: +57 characters each, delivery unchanged for all 20; `click-path-audit` is at 9,579 of
+          9,600 (21 spare). None of the 20 Step 5 prompts is silenced by 5c or treated as a small change.
+        - **Not checked:** the task prompts of the older suites (eng-addy, eng-ponytail, eng-pocock, research,
+          youtube, design-taste, design-extract, browser-qa) against 5c and the small-change phrases; check before
+          the Final run. No real session has run with these changes yet.
   - [ ] Step 5 (paid batch, on the owner's word), then Step 5b (release).
   - [ ] **G2 — safety and learning:** **E** session diagnosis from the event log (`agylite diagnose`) and a project
         pitfalls file; **F** injection check on `agylite research read` output and on files written to the plan.
@@ -729,7 +746,7 @@ Still to do:
         for the upstreams and the upgrade) and move "Unreleased" in `CHANGELOG.md` under it; install from a clean
         checkout into a scratch home and run `doctor`, `validate` and a session start; write the rollback line
         (`agylite bundle` previous); then publish. Ask the owner before publishing.
-  - [ ] Step 5c (owner 2026-11-15) — **questions and chat are not work.** The prompt hook routes every prompt longer
+  - [x] Step 5c (owner 2026-11-15; DONE 2026-11-15 in G1) — **questions and chat are not work.** The prompt hook routes every prompt longer
         than three words. In the 2026-11-15 session "Okay, do all. Okay, like decision is all approved for you…" went
         to `testing/accessibility`, and "Is there any other steps missed…" became `SECURITY_CHANGE` with a whole
         security skill (20 KB). Do: a class for questions about the project, status checks, approvals and follow-ups
@@ -1303,3 +1320,4 @@ gap: Open Design's files are already measured.
 | 2026-11-15 | Plan | Gap check (30 product requests routed, bundle searched): Steps 5b (release), 5c (questions and chat are not work) and 7 (product pipeline for new projects) added; Step 6 widened with infrastructure/deploy, database design, email, i18n and the misroutes found. |
 | 2026-11-15 | Research | Six open-source frameworks read and compared with Agylite (`docs/research/open-source-frameworks-vs-agylite.md`): 15 gaps, proposals A–L, waiting for the owner's approval. |
 | 2026-11-15 | Plan | Owner approved all research proposals A–L. Gap programme added: G1 (5c + A–D) before the Step 5 paid run, G2 (E, F) after the release, G and H inside Step 6, J and K inside Step 7, G3 (I, L) before the second release. ▶ Next: G1. |
+| 2026-11-15 | G1 | Built: Step 5c (questions and chat are not work), `agylite next`, small-change path, `agylite handoff`, announce line. All checks green; bundle ID unchanged; Step 5 dry run still 180 sessions; hook +57 characters, closest prompt 9,579 / 9,600. ▶ Next: Step 5 on the owner's word. |

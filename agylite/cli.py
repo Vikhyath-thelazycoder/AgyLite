@@ -364,6 +364,8 @@ def _bootstrap(args):
     waiting = pending_line(agylite_home())
     if waiting:
         lines = [waiting] + lines
+    from .project import resume   # G1 C: the last session's handoff comes first; `agylite next` says what to do
+    lines = resume.handoff_lines(resume.read_handoff(project)) + lines
     pointer = (f"{index['plan_path']}#{index['current_phase']} · index .agylite/plan-index.yaml" if index else None)
     result = bootstrap(project=project, session_id=sid, host=args.host, bundle_dir=current_bundle(),
                        budgets=load_budgets(), stage=lifecycle.detect_stage(project.root, st), phase=phase,
@@ -554,6 +556,45 @@ def _state_cmd(args):
             "answers": st.get("answers"), "pending_questions": st.get("pending_questions") or [],
             "verification": st.get("verification"),
             "summary": pstate.summary_lines(st, index)}, args.json)
+    return 0
+
+
+def _next_cmd(args):
+    from .project import plan_index, resume, state as pstate
+    project = _project_ref(args)
+    st = pstate.load_state(project)
+    index = plan_index.load_index(project, st) if st else None
+    handoff = resume.read_handoff(project)
+    step = resume.next_step(st, index, handoff)
+    if args.json:
+        _print({**step, "handoff": handoff}, True)
+    else:
+        print(f"next: {step['step']}\nwhy: {step['why']}\ncommand: {step['command']}")
+        for line in resume.handoff_lines(handoff):
+            print(line)
+    return 0
+
+
+def _handoff_cmd(args):
+    from .project import resume
+    project = _project_ref(args)
+    if args.handoff_cmd == "write":
+        try:
+            data = resume.write_handoff(project, done=args.done, left=args.left, next=args.next,
+                                        session_id=_session_id(args))
+        except ValueError as exc:
+            print(f"agylite handoff: {exc}", file=sys.stderr)
+            return 1
+        _print(data, True) if args.json else print("handoff written; the next session start shows it")
+        return 0
+    if args.handoff_cmd == "clear":
+        print("handoff cleared" if resume.clear_handoff(project) else "no handoff to clear")
+        return 0
+    handoff = resume.read_handoff(project)
+    if args.json:
+        _print(handoff, True)
+    else:
+        print("\n".join(resume.handoff_lines(handoff)) or "no handoff")
     return 0
 
 
@@ -1523,6 +1564,24 @@ def build_parser():
     p = sub.add_parser("state", help="Compact project state (cheap read)")
     project_arg(p)
     p.set_defaults(func=_guarded(_state_cmd))
+
+    p = sub.add_parser("next", help="The project's next step and why (blocking question, handoff, active or planned task)")
+    project_arg(p)
+    p.set_defaults(func=_guarded(_next_cmd))
+
+    p = sub.add_parser("handoff", help="Pause and resume: write done / left / next for the next session, show or clear it")
+    hsub = p.add_subparsers(dest="handoff_cmd", required=True)
+    q = hsub.add_parser("write", help="Record where the work stops (shown at the next session start)")
+    q.add_argument("--done", default="", help="What is finished and verified")
+    q.add_argument("--left", default="", help="What is still open")
+    q.add_argument("--next", required=True, help="The first thing the next session does")
+    q.add_argument("--session", help="Session id (default: the host's current session)")
+    project_arg(q)
+    q = hsub.add_parser("show", help="Print the handoff, if there is one")
+    project_arg(q)
+    q = hsub.add_parser("clear", help="Remove the handoff once its next step is done")
+    project_arg(q)
+    p.set_defaults(func=_guarded(_handoff_cmd))
 
     p = sub.add_parser("plan", help="Implementation plan index, sections, reconciliation and statuses")
     psub = p.add_subparsers(dest="plan_cmd", required=True)

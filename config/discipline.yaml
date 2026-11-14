@@ -18,3 +18,25 @@ prompt_hook: on
 prompt_hook_followups:
   max_words: 3
   phrases: ["yes", "no", "ok", "okay", "continue", "go on", "do it", "thanks", "thank you"]
+
+# Step 5c (owner 2026-11-15): questions and chat are not work. In one session "Okay, do all. … the decision is approved"
+# was routed to testing/accessibility and "Is there any other step missed…" became SECURITY_CHANGE with a 20 KB skill.
+# Nothing is injected (the earlier route still applies) when the prompt is
+#   - a question about the plan or its status (`about_the_plan`), whatever else it mentions, or
+#   - a question, or a reply that opens with an acknowledgement, that no routing rule matches (tags only).
+# A prompt that matches `task_patterns` is always routed ("can you fix the login bug?").
+# shortcut: word lists, English only; a missed question costs one routed prompt, never a lost task. Add from real misses.
+prompt_hook_conversation:
+  question_words: [what, "what's", whats, why, how, is, are, am, does, did, which, when, where, who, should]
+  acknowledgements: [ok, okay, yes, yeah, yep, yup, sure, good, great, fine, nice, perfect, cool, thanks, approved, agreed, right, see]
+  about_the_plan:
+    - '\bsteps?\s+\d'
+    - '\bphase\s+\d'
+    - '\b(?:steps?|phases?|tasks?)\s+(?:are\s+|is\s+)?(?:remaining|left|missed|missing|pending)\b'
+    - '\b(?:how many|which|what)\s+(?:\w+\s+){0,2}(?:steps?|phases?|tasks?)\b'
+    - '\b(?:the|current|our|this)\s+plan\b'
+    - "\\bwhat(?:'s| is)\\s+(?:next|the status|the progress)\\b"
+    - '\bnext step\b'
+  task_patterns:
+    - '^(?:can|could|would|will)\s+you\b'
+    - '\bplease\s+(?:fix|add|build|create|implement|write|make|update|change|remove|run|deploy|refactor|review)\b'

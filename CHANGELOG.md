@@ -19,6 +19,16 @@ are unchanged and the bundle ID does not move.
 - Routing rule `investigate`: "look into", "investigate", "find out why" on an existing project routes to
   `engineering/debugging` and `codebase/repository-understanding`.
 
+- `agylite next`: the project's next step and why (an open blocking question, the last handoff, an active task, the
+  first planned task). The lifecycle's last step runs it, so an answer ends with what comes next.
+- `agylite handoff write --done … --left … --next …` (also `show`, `clear`): where the work stops. The next session
+  start shows it first.
+- A small-change path: a typo, a comment, a wording change or a version bump gets understand → implement → verify, no
+  completion gate, and three lines from the prompt hook instead of a skill.
+- The prompt hook stays silent for questions about the plan and for questions or approvals that no routing rule
+  matches. A task phrased as a question ("can you fix the login bug?") is still routed.
+- With a skill, the prompt hook asks the agent to say which skill it is using and to keep one todo per step.
+
 ### Changed
 - The 14 entry skills and the 3 Agylite agents are rewritten to the standard: when to use and when not, steps,
   output, quality bar, when to stop and ask, what to do on failure. Long material moved to `references/` files that

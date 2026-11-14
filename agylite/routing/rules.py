@@ -78,6 +78,9 @@ def validate_routing(cfg, cards, hierarchy):
     merge = cfg.get("review_merge") or {}
     p += [f"review_merge.partners: unknown capability {c}" for c in merge.get("partners") or {} if c not in cards]
     p += [f"suggest: unknown capability {s.get('capability')}" for s in cfg.get("suggest") or [] if s.get("capability") not in cards]
+    small = cfg.get("small_change")
+    if small is not None and not (small.get("any") and small.get("steps")):
+        p.append("small_change needs `any` (phrases) and `steps` (lifecycle step names)")
     adds = cfg.get("change_type_adds") or {}
     p += [f"change_type_adds: unknown change type {t}" for t in adds.get("types") or [] if t not in CHANGE_TYPES]
     p += [f"change_type_adds: unknown capability {c}" for c in adds.get("add") or [] if c not in cards]

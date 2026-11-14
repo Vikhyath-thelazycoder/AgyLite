@@ -8,6 +8,7 @@ It never blocks a prompt: any error prints nothing.
 import fnmatch
 import hashlib
 import json
+import re
 from pathlib import Path
 
 import yaml
@@ -34,6 +35,25 @@ def is_followup(prompt: str, cfg: dict) -> bool:
     return prompt.strip().lower().strip(".!? ") in {w.lower() for w in hook.get("phrases") or []}
 
 
+def is_conversation(prompt: str, cfg: dict, strong) -> bool:
+    """Step 5c: a question about the plan, or a question or acknowledgement no routing rule matches, is not a new
+    task, so nothing is injected. `strong()` says whether a routing rule matched (called only when needed)."""
+    conv = cfg.get("prompt_hook_conversation") or {}
+    text = " ".join(prompt.lower().split())
+    if not conv or any(re.search(rx, text) for rx in conv.get("task_patterns") or []):
+        return False
+    first = text.split(" ", 1)[0].strip(",.!:;")
+    question = text.endswith("?") or first in (conv.get("question_words") or [])
+    if question and any(re.search(rx, text) for rx in conv.get("about_the_plan") or []):
+        return True
+    return (question or first in (conv.get("acknowledgements") or [])) and not strong()
+
+
+ANNOUNCE = "Say which skill you are using, and make a todo per step."   # G1 D (Superpowers: announce, a todo per item)
+SMALL = ("Small change ({what}): read what it touches, make the edit, run `agylite verify`. No plan task, no new test "
+         "and no skill to load. If it touches more than one file or changes behaviour, stop and say so.")
+
+
 def _quote(text: str) -> str:
     return text[:LOAD_REQUEST_CHARS].replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ")
 
@@ -49,6 +69,13 @@ def build(prompt: str, session_id: str | None, cwd: str | None, host: str, *, bu
     if prompt.lstrip().startswith("/") or is_followup(prompt, cfg):
         return ""
     project = detect(Path(cwd) if cwd else None)
+
+    def strong():
+        from ..cli import _facts
+        from ..routing import Router
+        return Router(root).route(prompt, project=_facts(project))["method"].startswith("rules")
+    if is_conversation(prompt, cfg, strong):
+        return ""
     meta = {"prompt_sha256": hashlib.sha256(prompt.encode()).hexdigest()[:16], "length": len(prompt)}
     hook = compose(prompt, project, budgets, root=root, session_id=session_id, host=host)
     if hook is None:
@@ -99,6 +126,11 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None, 
         return None
     ids = [c["id"] for c in route["capabilities"]]
     deps = [d["id"] for d in route["dependencies"]]
+    if route.get("small_change"):   # G1 B: three lines, no skill and no cards
+        text = "\n".join([f"Agylite route: {route['change_type']} · {', '.join(ids)} (small change)",
+                          SMALL.format(what=route["small_change"]),
+                          "Done means: agylite verify passes (tests, types, lint, build)."]) + "\n"
+        return {"text": text, "ids": ids, "change_type": route["change_type"], "cards": [], "cached": [], "skills": []}
     limit = budgets["prompt_hook"]["max_tokens"]
     # C1-2 (Step 3 part 2): Claude Code saves hook output over ≈ 10,000 chars to a file the agent may never open, so
     # the whole hook stays within `prompt_hook.max_chars`: lead skill first, its partner if it still fits, cards last.
@@ -139,6 +171,8 @@ def compose(prompt: str, project, budgets: dict, *, root=None, session_id=None, 
         else:
             out.append("Before the first edit, load the whole skill and follow it: "
                        f'agylite context --request "{_quote(prompt)}" ' + " ".join(ids))
+        if skills:
+            out.append(ANNOUNCE)
         out += review_lines(route, host)
         # D-053 (owner 2026-11-14): with a skill in hand the cards are not sent (C1-3), so the lead capability's
         # finish line rides here; without a skill the cards below carry their own.

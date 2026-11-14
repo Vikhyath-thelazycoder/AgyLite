@@ -12,7 +12,7 @@ from ..context.budget import load_budgets
 from ..project.lifecycle import load_lifecycle, steps_for
 from ..registry import loader
 from ..verify import policy
-from .classify import classify_change, extract_urls, normalize
+from .classify import classify_change, extract_urls, find_phrases, normalize
 from .fallback_bm25 import BM25
 from .rules import load_hierarchy, load_routing, match_paths, match_rules, role_of
 from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, select_capabilities
@@ -23,7 +23,7 @@ from .select import ROUTABLE_MODES, Candidate, dependency_closure, domain_of, se
 #    whole_skills (Plan B) — the capabilities whose primary skill loads whole (one, or two across domains).
 # 7: skill_hints (D-050) — {capability: bundle path} of the skill a matched rule names; it leads that capability's
 #    sources_priority (e.g. "into tickets" → Pocock to-tickets, not the planning capability's first skill).
-ROUTE_SCHEMA_VERSION = 8   # 8: review_merge, suggest (Step 4b)
+ROUTE_SCHEMA_VERSION = 9   # 9: small_change (G1 B) · 8: review_merge, suggest (Step 4b)
 
 
 @dataclass
@@ -140,7 +140,12 @@ class Router:
 
         deps = dependency_closure(ids, self.cards, project.stack)
         adds = self.cfg.get("change_type_adds") or {}
-        if ids and change_type in (adds.get("types") or []):   # MP3 §3.1: completion gate on multi-step changes
+        # G1 B: a typo, a comment or a version bump is not sized like a feature: three steps, no completion gate.
+        small_cfg = self.cfg.get("small_change") or {}
+        small = None
+        if ids and not find_phrases(text, small_cfg.get("unless") or []):
+            small = (find_phrases(text, small_cfg.get("any") or []) or [None])[0]
+        if ids and not small and change_type in (adds.get("types") or []):   # MP3 §3.1: completion gate on multi-step changes
             have = set(ids) | {d["id"] for d in deps}
             deps += [{"id": cid, "required_by": f"change type {change_type} (completion gate, MP3 §3.1)"}
                      for cid in adds.get("add") or [] if cid not in have]
@@ -155,6 +160,9 @@ class Router:
         # P13: engineering work follows one lifecycle (config/lifecycle.yaml), ordered per change type.
         lifecycle = (steps_for(self.lifecycle, change_type, project.stage, capabilities=ids)
                      if set(domains) & LIFECYCLE_DOMAINS or "design/inspiration-extract" in ids else None)
+        if small and lifecycle:
+            lifecycle = steps_for({**self.lifecycle, "change_types": {"small": {"steps": small_cfg["steps"]}}},
+                                  "small", project.stage)
         pipeline = next((h.pipeline for h in hits if h.pipeline), None) or domains
         # D-049: UI work (design, browser verification or QA routed) is done only after the browser check passes.
         native = any(h.rule == "mobile-native" for h in hits)   # a native app has no web page to check
@@ -191,6 +199,7 @@ class Router:
             "fallbacks": fallbacks,
             "impact": impact,
             "lifecycle": lifecycle,
+            "small_change": small,
             "browser": browser,
             "verification_mode": self.verification_mode,
             "pipeline": pipeline,
