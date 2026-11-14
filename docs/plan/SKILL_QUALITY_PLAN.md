@@ -1,6 +1,6 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: APPROVED by the owner 2026-11-14. Phases 0, 1 and 2a done. ▶ RESUME: the owner reads the two pilot skills and approves the format (or asks for changes); then Phase 2b.**
+**Status: APPROVED by the owner 2026-11-14. Phases 0, 1 and 2 done (all 14 entry skills rewritten). ▶ RESUME at Phase 3 (the 3 Agylite agents; then set `STRICT = True`).**
 
 Owner request (2026-11-14): assess every skill and workflow in this project and make them better and more detailed,
 so that agents and people who use them do not produce thin or generic output ("AI slop"). Plan first, start after
@@ -194,7 +194,7 @@ and stop.
   - **Found for Phase 4:** the card `testing/local-verification` still says "no browser, Chrome DevTools or
     screenshot step (D-035)" in its "done means" line, and the route shows that line to agents.
 
-- [ ] **Phase 2 — rewrite the 14 entry skills to the standard, in four batches.**
+- [x] **Phase 2 — rewrite the 14 entry skills to the standard, in four batches. DONE 2026-11-14.**
   - **2a (pilot): `agylite-engineering`, `agylite-review`.** The owner reads these two and approves the format
     before the rest is written. Changes to the format are made here, once.
     **Written 2026-11-14, waiting for the owner's approval of the format.** Sizes: engineering 1,795 → 6,418
@@ -211,6 +211,25 @@ and stop.
     is run or checked against `--help` before it is written down.
   - Done means, per batch: the checker passes for the batch; the test needles are still present; each skill was
     read once from top to bottom as an agent with no other context, and every step could be carried out.
+
+  - **Result (2026-11-14).** The owner approved the pilot format ("Yeah, good. Continue it."); 2b, 2c and 2d
+    followed in the same format. All 14 skills pass the check; **checker 88 → 15**, and the 15 left are the three
+    agents (Phase 3). Sizes in bytes, before → after: codebase 2,125 → 4,844 · design 3,352 → 6,499 · diagrams
+    1,605 → 5,204 · engineering 1,795 → 6,418 · media 1,140 → 4,839 · production 1,280 → 5,047 · research 1,610 →
+    5,306 · review 2,078 → 5,712 · routing 3,239 → 5,335 · security 1,435 → 5,791 · seo 1,596 → 5,387 · testing
+    1,794 → 5,194 · update-review 2,240 → 5,303 · youtube 1,708 → 5,273. Total 27.0 KB → 76.2 KB, plus 14
+    `references/examples.md` files (read on demand).
+  - Design is 1 byte and engineering 82 bytes under the 6,500 limit: anything added to them goes to `references/`.
+  - Upstream reference files are now named by their bundle path (`files/taste/skills/taste-skill/references/…`,
+    `files/archify/archify/references/…`); the check treats `references/…` without a path in front as the skill's
+    own folder.
+  - Commands were checked against the CLI parser and `--help`. **Not checked against a live run:** the flags of
+    the tools that Agylite passes through to an upstream engine (`design taste draw|inspect|lint`,
+    `youtube hookscore|title|deadair|chapters|retention|swipe`, `seo run …`, `diagram finalize|guide`); they are
+    kept exactly as the old skills had them. The example files use made-up projects and say so where numbers or
+    URLs are invented.
+  - The routing examples use three real `agylite route --brief` results, among them "Look into why messages per
+    user are high" → `DESIGN_CHANGE · low (tags)`, a wrong route worth a rule in Phase 5.
 
 - [ ] **Phase 3 — the 3 Agylite agents.** Rewrite to the agent standard. EGM agents are not touched.
   - Done means: each agent has the severity scale, the output template and the incomplete-review rule; the
