@@ -509,7 +509,26 @@ Still to do:
         - **Not checked:** the task prompts of the older suites (eng-addy, eng-ponytail, eng-pocock, research,
           youtube, design-taste, design-extract, browser-qa) against 5c and the small-change phrases; check before
           the Final run. No real session has run with these changes yet.
-  - [ ] Step 5 (paid batch, on the owner's word), then Step 5b (release).
+  - [ ] Step 5 (paid batch) — **STARTED 2026-11-15, owner: one suite at a time; review each before the next.**
+        Candidate bundle (permanent copy, hashes verified): `~/.agylite/benchmarks/candidates/983bee4b2e54` (built from
+        main 3177e30 in a scratch home; the live `~/.agylite` stays on 6c8821eb00b7). Order and progress:
+        - [ ] security 18 (≈ $6) — command given to the owner 2026-11-15; log `~/.agylite/benchmarks/step5-security.log`
+        - [ ] spec-review 18 (≈ $32) · [ ] design-elaya 18 (≈ $28) · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
+          · [ ] diagram-archify 45 (≈ $21)
+        The owner runs each from their own terminal (the token is exported there, never in a file; detached so a
+        closed Claude Code session does not stop it):
+        ```bash
+        cd ~/Developer/vikhyath-ai-engineering-os
+        export CLAUDE_CODE_OAUTH_TOKEN=…   # from `claude setup-token`
+        export AGYLITE_HOME=~/.agylite AGYLITE_NO_AUTO_UPDATE=1
+        export PATH=$(echo "$PATH" | tr : '\n' | grep -v '.agylite/core/bin' | paste -sd: -)
+        S=security   # then spec-review, design-elaya, design, eng-ecc, diagram-archify
+        nohup caffeinate -ims env PYTHONPATH=. python -u -m agylite.cli benchmark --quality --tier 1 --suite $S --runs 3 \
+          --bundle ~/.agylite/benchmarks/candidates/983bee4b2e54 --yes-spend > ~/.agylite/benchmarks/step5-$S.log 2>&1 &
+        ```
+        A stopped suite prints its own `--resume` line in the log. No engine or code change between suites (the
+        earlier owner rule for paid chunks), so the suites measure the same thing.
+  - [ ] Then Step 5b (release).
   - [ ] **G2 — safety and learning:** **E** session diagnosis from the event log (`agylite diagnose`) and a project
         pitfalls file; **F** injection check on `agylite research read` output and on files written to the plan.
   - [ ] Category view, then Step 6 (widened). Step 6 also takes **G** project-local skills and routing rules (a
