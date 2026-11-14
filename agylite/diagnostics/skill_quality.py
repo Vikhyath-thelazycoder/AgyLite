@@ -6,8 +6,8 @@ The standard is in CONTRIBUTING.md ("Writing entry skills and agents"). `problem
 import re
 from pathlib import Path
 
-# Report mode until the rewrite is done: validate warns instead of failing. Set True at the end of Phase 3.
-STRICT = False
+# True since the rewrite finished (2026-11-14): any problem fails `agylite validate` and the tests.
+STRICT = True
 
 MAX_SKILL_BYTES = 6500
 SKILL_SECTIONS = ("## Use when", "## Steps", "## Output", "## Quality bar", "## When something fails")

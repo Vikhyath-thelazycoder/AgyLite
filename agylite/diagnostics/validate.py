@@ -164,8 +164,7 @@ def run(root: Path, online=False, unittests=True) -> int:
     elif skill_quality.STRICT:
         r.fail(f"{len(quality)} skill quality problems: " + "; ".join(quality[:3]))
     else:
-        r.warn(f"{len(quality)} skill quality problems (report mode until the rewrite is done; "
-               "list: python -m agylite.diagnostics.skill_quality)")
+        r.warn(f"{len(quality)} skill quality problems (report mode; list: python -m agylite.diagnostics.skill_quality)")
     r.end_section()
 
     pins = _pins(root)

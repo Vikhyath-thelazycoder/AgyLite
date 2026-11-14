@@ -1,6 +1,6 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: APPROVED by the owner 2026-11-14. Phases 0, 1 and 2 done (all 14 entry skills rewritten). ▶ RESUME at Phase 3 (the 3 Agylite agents; then set `STRICT = True`).**
+**Status: APPROVED by the owner 2026-11-14. Phases 0 to 3 done (14 entry skills and 3 agents rewritten; the check is a hard failure). ▶ RESUME at Phase 4 (the 7 own guides and the 82 cards' finish lines).**
 
 Owner request (2026-11-14): assess every skill and workflow in this project and make them better and more detailed,
 so that agents and people who use them do not produce thin or generic output ("AI slop"). Plan first, start after
@@ -231,9 +231,17 @@ and stop.
   - The routing examples use three real `agylite route --brief` results, among them "Look into why messages per
     user are high" → `DESIGN_CHANGE · low (tags)`, a wrong route worth a rule in Phase 5.
 
-- [ ] **Phase 3 — the 3 Agylite agents.** Rewrite to the agent standard. EGM agents are not touched.
-  - Done means: each agent has the severity scale, the output template and the incomplete-review rule; the
-    checker is switched to hard failure.
+- [x] **Phase 3 — the 3 Agylite agents. DONE 2026-11-14.** EGM agents not touched.
+  - `engineering-architect`, `security-reviewer` and `production-reviewer` now have: the role, a read-only
+    statement, `## Inputs`, `## Method`, a severity scale with definitions, `## Output` (the report template),
+    `## Do not report` and `## Incomplete review`. Sizes: about 1 KB → 3.8 to 4.0 KB each.
+  - Corrected while rewriting: the security reviewer's description said it "proves fixes with negative tests
+    run locally", but it has no tool to write files. It now names the negative test and what it must assert,
+    and runs the existing checks.
+  - The production reviewer uses the real task states (PARTIALLY_COMPLETE, READY_FOR_VERIFICATION, …) and
+    `agylite verify --all`, as `agylite-production` does.
+  - **Checker: 15 → 0.** `STRICT = True`: a problem now fails `agylite validate` (24 checks pass, was 23) and
+    `tests/unit/test_skill_quality.py`.
 
 - [ ] **Phase 4 — Agylite's own guides and the card finish lines.**
   - Read the 7 `GUIDE.md` files and bring them to the same standard where they fall short.
