@@ -85,6 +85,13 @@ class TestSkillQuality(unittest.TestCase):
         self.assertIn("section missing: ## Method", found)
         self.assertIn("incomplete review", found)
 
+    def test_guide_gets_shared_checks_but_no_section_rules(self):
+        found = "\n".join(self.check(BAD, kind="guide"))
+        self.assertIn("internal reference `MP3`", found)
+        self.assertIn("unknown command `agylite frobnicate`", found)
+        self.assertNotIn("section missing", found)
+        self.assertNotIn("description does not say", found)
+
     def test_repo_names_only_real_commands_and_files_resolve(self):
         """Holds today and must keep holding through the rewrite; the other kinds are the Phase 0 baseline."""
         found = sq.problems(Path(ROOT_DIR))

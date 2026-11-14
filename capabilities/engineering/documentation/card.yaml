@@ -13,7 +13,7 @@ security_class: read-only
 cache_strategy: static
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
-verification_requirements: [docs checked against actual behavior]
+verification_requirements: ['every command, path and option in the docs was run or opened and matches the code']
 dependencies: []
 related_capabilities: []
 conflicts: []

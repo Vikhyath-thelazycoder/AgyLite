@@ -14,7 +14,7 @@ cache_strategy: none
 activation_conditions:
   mode: internal
   when: [reached through dependencies of verification capabilities]
-verification_requirements: ['every record states command, exit code and counts; "looks correct" or a screenshot is never evidence (D-035)']
+verification_requirements: ['every record states command, exit code and counts', '"looks correct" or a screenshot alone is never evidence']
 dependencies: []
 related_capabilities: [testing/local-verification, testing/release-verification]
 conflicts: []

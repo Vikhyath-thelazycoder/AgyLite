@@ -21,3 +21,17 @@ design records (spatial hierarchy, control rhythm, shape, elevation, iconography
    source) only when an override cannot do it. Put style overrides in `className`, in whatever the project already
    uses (Tailwind, CSS modules).
 6. **Done** means `agylite verify` passes, including `--browser` for the screens you changed.
+
+## Report
+
+- What step 1 found: the React version and the design system already present, or "none".
+- What was installed (package names and versions), or why nothing was.
+- The tokens you overrode and where; each swizzled component and why an override could not do it.
+- The `agylite verify --browser` result with its evidence file.
+
+## Before you finish
+
+- No second design system was added next to an existing one.
+- Nothing was written outside the project (no global install).
+- Component props and names come from `npx astryx docs`, not from memory.
+- Every colour, spacing and radius is a theme token or an override of one; no one-off values.

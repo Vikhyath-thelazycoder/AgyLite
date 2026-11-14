@@ -3,7 +3,7 @@ name: observability-updates
 description: Review upstream updates with the owner — run agylite update --review, judge each change in plain words, ask one question per upstream, and approve or reject only what the owner chose.
 ---
 
-<!-- Agylite-authored (MP6 §3). The procedure is the agylite-update-review entry skill; this guide is what routing loads. -->
+<!-- Agylite-authored. The procedure is the agylite-update-review entry skill; this guide is what routing loads. -->
 
 # Upstream updates: review → benchmark → the owner approves
 
@@ -19,3 +19,12 @@ description: Review upstream updates with the owner — run agylite update --rev
    reject (with a reason) · hold.
 4. Run `agylite update --approve <repo>@<sha>` or `--reject <repo>@<sha> --reason "…"` only for what the owner chose.
    Never run Tier 1 without the owner's yes on the estimate; never approve on your own.
+
+## Before you finish
+
+- Every verdict rests on diff lines you read and can quote, not on the commit message.
+- "What changes for agents" says what an agent will do differently, not "updated documentation".
+- A change that removes a step, adds always-on text or names a tool Agylite excluded is called worse, even when the
+  commit calls it a cleanup.
+- A failing check is reported as failing. No upstream file is edited to make it pass.
+- After the owner's answers, say what was approved, rejected or held, and show `agylite update --pending`.

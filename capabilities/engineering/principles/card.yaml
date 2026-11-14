@@ -14,7 +14,7 @@ security_class: read-only
 cache_strategy: static
 activation_conditions:
   when: [reference check while planning or reviewing changes]
-verification_requirements: [plan and diff reviewed against the four principles]
+verification_requirements: ['each of the four principles has one line on how the plan and the diff meet it, or where they do not']
 dependencies: []
 related_capabilities: []
 conflicts: []

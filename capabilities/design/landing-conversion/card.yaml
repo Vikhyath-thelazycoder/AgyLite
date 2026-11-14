@@ -15,7 +15,7 @@ security_class: read-only
 cache_strategy: static
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
-verification_requirements: [one offer, one audience and one primary action are stated, 'no competing CTAs above the fold', at least one risk reversal, no invented prices, stats or testimonials]
+verification_requirements: ['one offer, one audience and one primary action are stated', 'no competing CTAs above the fold', 'at least one risk reversal', 'no invented prices, stats or testimonials']
 dependencies: []
 related_capabilities: [design/design-direction, design/frontend]
 conflicts: []

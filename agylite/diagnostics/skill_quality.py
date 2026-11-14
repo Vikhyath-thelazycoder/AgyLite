@@ -68,12 +68,15 @@ def _common(text, flat, root, mode):
 
 
 def file_problems(path: Path, root: Path, kind: str, parser=None, mode="tests-and-browser") -> list:
-    """kind: skill | agent | host. Host files get the contradiction check only."""
+    """kind: skill | agent | guide | host. Host files get the contradiction check only; guides (the capability
+    GUIDE.md files) get the shared checks and the command check, not the section rules."""
     text = path.read_text(encoding="utf-8")
     flat = " ".join(text.split())
     out = []
     if kind == "host":
         return [p for p in _common(text, flat, root, mode) if p.startswith("forbids")]
+    if kind == "guide":
+        return _common(text, flat, root, mode) + [f"unknown command `{c}`" for c in _unknown_commands(text, parser)]
     fm = _frontmatter(text)
     if "use when" not in fm.get("description", "").lower():
         out.append("description does not say when to use it (“use when …”)")
@@ -102,6 +105,7 @@ def problems(root: Path) -> list:
         mode = None
     targets = [(p, "skill") for p in sorted(root.glob("skills/agylite-*/SKILL.md"))]
     targets += [(root / "agents" / f"{a}.md", "agent") for a in OWN_AGENTS]
+    targets += [(p, "guide") for p in sorted(root.glob("capabilities/*/*/GUIDE.md"))]
     targets += [(root / h, "host") for h in HOST_FILES]
     return [f"{p.relative_to(root)}: {problem}" for p, kind in targets if p.is_file()
             for problem in file_problems(p, root, kind, parser, mode)]

@@ -3,7 +3,7 @@ name: research-video
 description: YouTube transcripts, metadata, comments, search and channel lists through yt-dlp in the research runtime (agylite research video / video-search / channel); never downloads the video.
 ---
 
-<!-- Agylite-authored (MP5 §1.4). Derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
+<!-- Agylite-authored. Derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
 skill/references/video.md, YouTube only, without Whisper/Groq transcription and the Chinese platforms. -->
 
 # Video research (YouTube)
@@ -35,3 +35,11 @@ Files land in `~/.agylite/tmp/research/`; the command prints what the agent need
 Quote with the video URL and the timestamp (`https://youtu.be/<id>?t=<seconds>`). Summaries say what the video says,
 not whether it is true; check facts against primary sources (`research/web`). Findings go to
 `docs/research/<slug>.md` with a source list.
+
+## Before you finish
+
+- Every quote comes from the `--subs` output and carries the video URL with its timestamp.
+- The summary says what the video says. A claim that matters is checked against a primary source or marked
+  unverified.
+- A video without a transcript is reported as such. Nothing is written from the title or the thumbnail.
+- Views, dates and durations come from `--meta`, with the date you read them.

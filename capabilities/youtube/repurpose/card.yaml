@@ -14,7 +14,7 @@ security_class: network
 cache_strategy: static
 activation_conditions:
   when: [the request asks to clip, shorten, chapter or repurpose a video]
-verification_requirements: [picks, cuts and chapters carry timecodes from the transcript, no media touched]
+verification_requirements: ['picks, cuts and chapters carry timecodes from the transcript', 'no media touched']
 dependencies: [research/video]
 related_capabilities: [youtube/script]
 conflicts: []

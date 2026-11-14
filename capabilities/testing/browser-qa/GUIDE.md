@@ -3,7 +3,7 @@ name: testing-browser-qa
 description: QA a site with gstack's own /qa skill and browse daemon (installed whole by agylite runtime install gstack); report every defect with evidence, fix, re-verify.
 ---
 
-<!-- Agylite-authored (D-049, IMPLEMENTATION_PLAN §2.2). gstack /qa runs from gstack's own install, as gstack ships it. -->
+<!-- Agylite-authored. gstack /qa runs from gstack's own install, as gstack ships it. -->
 
 # Browser QA (gstack /qa)
 
@@ -16,3 +16,18 @@ description: QA a site with gstack's own /qa skill and browse daemon (installed 
    No other logged-in session is used.
 4. Done means: every defect gstack found is fixed and re-verified, `agylite verify` (tests) passes, and
    `agylite verify --browser --url <url>` passes (screenshots at 1440/768/390, console, network, overflow, flows).
+
+## Report
+
+For each defect: the steps to reproduce it, what happened and what should have happened, the evidence (the
+screenshot path or the console or network line), the fix (`file:line`), and the result of the re-check. Then:
+defects found but not fixed, with the reason; pages and flows that were not covered; the evidence file of
+`agylite verify`.
+
+## Before you finish
+
+- Every defect has steps that someone else can follow to see it.
+- Every fix was re-checked in the browser after the change, not assumed.
+- "No defects found" names the pages and flows that were explored.
+- A defect you could not fix is listed, not dropped.
+- The browse daemon is stopped.

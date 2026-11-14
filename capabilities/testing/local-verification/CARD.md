@@ -6,6 +6,6 @@ Local test-first verification: discover and select the smallest sufficient test 
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime os-native; network local-only; codebase analysis first
 - **Loads:** 9 bundled files
-- **Done means:** selected checks (tests, types, lint, build) executed with machine-readable results recorded by testing/evidence · no browser, Chrome DevTools or screenshot step (D-035)
+- **Done means:** selected checks (tests, types, lint, build) executed with machine-readable results recorded by testing/evidence · UI changes also pass the browser check (testing/browser-verification)
 - **Web QA class:** CORE
 - **Related:** testing/strategy, codebase/impact-analysis · **Fallback:** —

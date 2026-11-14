@@ -13,7 +13,7 @@ security_class: read-only
 cache_strategy: static
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
-verification_requirements: [WCAG 2.2 AA checklist applied, automated check run via testing/accessibility]
+verification_requirements: ['each WCAG 2.2 AA checklist item is marked pass, fail or not applicable', 'automated check run via testing/accessibility']
 dependencies: []
 related_capabilities: [testing/accessibility]
 conflicts: []

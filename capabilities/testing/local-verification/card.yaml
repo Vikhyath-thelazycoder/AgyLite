@@ -14,7 +14,7 @@ security_class: local-exec
 cache_strategy: run
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
-verification_requirements: ['selected checks (tests, types, lint, build) executed with machine-readable results recorded by testing/evidence', 'no browser, Chrome DevTools or screenshot step (D-035)']
+verification_requirements: ['selected checks (tests, types, lint, build) executed with machine-readable results recorded by testing/evidence', 'UI changes also pass the browser check (testing/browser-verification)']
 dependencies: [testing/evidence]
 related_capabilities: [testing/strategy, codebase/impact-analysis]
 conflicts: []

@@ -15,7 +15,7 @@ cache_strategy: static
 activation_conditions:
   mode: stack-detected
   when: [project stack detection names a matching language/framework]
-verification_requirements: [applied rules match the detected stack]
+verification_requirements: ['the detected stack is stated, and each applied rule belongs to it']
 dependencies: []
 related_capabilities: []
 conflicts: []

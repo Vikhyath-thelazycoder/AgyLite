@@ -13,7 +13,7 @@ security_class: read-only
 cache_strategy: static
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
-verification_requirements: [anti-slop criteria checked item by item]
+verification_requirements: ['each anti-slop criterion is marked pass or fail with the screen and element it was checked on', 'every fail is fixed or listed as open']
 dependencies: []
 related_capabilities: [design/design-direction]
 conflicts: []

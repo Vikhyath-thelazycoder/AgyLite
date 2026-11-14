@@ -6,5 +6,5 @@ Design-intent implementation (styling, shadcn, platform HIGs, native-mobile fide
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime none
 - **Loads:** 153 bundled files; entry points: apple-hig, appllama-app-design-skill, design, frontend-design, frontend-skill, platform-design (+3 more)
-- **Done means:** implementation matches design intent (tokens, spacing, states)
+- **Done means:** every colour, spacing and type value is a design token · hover, focus, disabled, empty, loading and error states are built
 - **Related:** engineering/frontend · **Fallback:** —

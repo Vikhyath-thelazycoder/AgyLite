@@ -16,7 +16,7 @@ security_class: local-exec
 cache_strategy: project
 activation_conditions:
   when: [the request asks to draw, map or visualise a system, flow, schema or history]
-verification_requirements: [agylite diagram finalize --json exits 0 (validate, deliver, check, browser-check when Chrome is present), every node of a repo diagram cites files]
+verification_requirements: ['agylite diagram finalize --json exits 0 (validate, deliver, check, browser-check when Chrome is present)', 'every node of a repo diagram cites files']
 dependencies: []
 related_capabilities: [engineering/architecture, codebase/repository-understanding]
 conflicts: []

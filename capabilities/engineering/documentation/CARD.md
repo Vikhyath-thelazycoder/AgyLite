@@ -6,5 +6,5 @@ Project docs (PRD/TRD/ARCHITECTURE/…), ADRs, living docs.
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime none
 - **Loads:** 11 bundled files; entry points: doc-updater, document-generate, documentation-and-adrs, egm-drift-report, handoff, living-docs-governance
-- **Done means:** docs checked against actual behavior
+- **Done means:** every command, path and option in the docs was run or opened and matches the code
 - **Related:** — · **Fallback:** —

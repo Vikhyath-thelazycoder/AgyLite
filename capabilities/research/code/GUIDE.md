@@ -3,7 +3,7 @@ name: research-code
 description: GitHub repositories, code and issues through the gh CLI (agylite research github), read-only; compare libraries by their repos, not by blog posts.
 ---
 
-<!-- Agylite-authored (MP5 §1.4). Derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
+<!-- Agylite-authored. Derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
 skill/references/dev.md. -->
 
 # Code research (GitHub)
@@ -31,3 +31,10 @@ so: tell the user, and read repositories through the web instead (`agylite resea
 
 Cite each repo, file or issue by URL (with the commit or tag when it matters). Findings go to
 `docs/research/<slug>.md` with a source list.
+
+## Before you finish
+
+- Star counts, release dates and issue counts are quoted with the date you read them.
+- A claim about what the code does cites the file (and the commit or tag), not the README's promise.
+- Stars alone are not a reason to recommend a library: say what its last release, open issues and maintenance show.
+- If `gh` was missing, the report says so and says what was read through the web instead.

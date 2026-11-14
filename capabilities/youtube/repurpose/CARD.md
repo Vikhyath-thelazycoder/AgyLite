@@ -6,5 +6,5 @@ Shorts picks, an edit decision list and chapters from a transcript; never cuts o
 - **Activation:** on-demand · priority 50 · context L2
 - **Needs:** runtime python-stdlib; network optional
 - **Loads:** 5 bundled files; entry points: yt-chapters, yt-edit, yt-shorts
-- **Done means:** picks · cuts and chapters carry timecodes from the transcript · no media touched
+- **Done means:** picks, cuts and chapters carry timecodes from the transcript · no media touched
 - **Related:** youtube/script · **Fallback:** —

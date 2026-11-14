@@ -13,7 +13,7 @@ security_class: read-only
 cache_strategy: static
 activation_conditions:
   when: [request matches intent_tags or a routing rule selects this capability]
-verification_requirements: ['implementation matches design intent (tokens, spacing, states)']
+verification_requirements: ['every colour, spacing and type value is a design token', 'hover, focus, disabled, empty, loading and error states are built']
 dependencies: []
 related_capabilities: [engineering/frontend]
 conflicts: []

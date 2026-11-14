@@ -1,6 +1,6 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: APPROVED by the owner 2026-11-14. Phases 0 to 3 done (14 entry skills and 3 agents rewritten; the check is a hard failure). ▶ RESUME at Phase 4 (the 7 own guides and the 82 cards' finish lines).**
+**Status: APPROVED by the owner 2026-11-14. Phases 0 to 4 done (14 entry skills, 3 agents, 7 guides and the card finish lines). ▶ RESUME at Phase 5 (lifecycle wording, the routing rules, and the owner's decision on a finish line in the prompt hook).**
 
 Owner request (2026-11-14): assess every skill and workflow in this project and make them better and more detailed,
 so that agents and people who use them do not produce thin or generic output ("AI slop"). Plan first, start after
@@ -243,12 +243,32 @@ and stop.
   - **Checker: 15 → 0.** `STRICT = True`: a problem now fails `agylite validate` (24 checks pass, was 23) and
     `tests/unit/test_skill_quality.py`.
 
-- [ ] **Phase 4 — Agylite's own guides and the card finish lines.**
-  - Read the 7 `GUIDE.md` files and bring them to the same standard where they fall short.
-  - Review `description` and `verification_requirements` on all 82 cards; rewrite the ones that are not
-    checkable. `intent_tags` are **not** changed, because they drive routing.
-  - Done means: every card's finish line names something a person can check; the routing tests are unchanged
-    and pass.
+- [x] **Phase 4 — Agylite's own guides and the card finish lines. DONE 2026-11-14.**
+  - **Guides (7).** They were already short and correct (commands, retry chains, an output rule), so they were
+    extended, not rewritten. They matter more than the entry skills on Claude Code: a guide is the capability's
+    primary skill and travels in the prompt hook. Added to each: a "Before you finish" list of checkable lines;
+    `research/web` also got the report's five parts (the same shape as `agylite-research`), and
+    `react-design-system` and `browser-qa` got a "Report" section. Plan and decision numbers were removed from
+    the HTML comments (attribution and licence notes kept). Sizes: 13.1 KB → 16.9 KB in total; the largest is
+    `research/web` at 3,485 bytes.
+  - **The check now covers the guides** (kind `guide`): internal references, contradictions with the verification
+    policy, missing files and unknown commands; no section rules. 1 test added.
+  - **Cards (82 read, 14 changed).** `intent_tags` untouched; `agylite registry cards` regenerated the 14
+    `CARD.md` files.
+    - **5 were broken, not just vague:** an unquoted comma split one sentence into two list items, so agents saw
+      for example "no invented prices · stats or testimonials" (`design/landing-conversion`, the second half
+      reads as a requirement to have them), "picks · cuts and chapters carry timecodes" (`youtube/repurpose`),
+      and the same in `youtube/analytics`, `engineering/diagrams` and `testing/browser-qa`. Now quoted.
+    - **3 were stale:** `testing/local-verification` ("no browser, Chrome DevTools or screenshot step" → "UI
+      changes also pass the browser check"), `testing/evidence` and `design/design-direction` (decision and plan
+      numbers removed).
+    - **6 could not be checked** and now can: `design/visual-quality`, `engineering/principles`,
+      `design/frontend`, `design/accessibility`, `engineering/documentation`, `engineering/stack-packs`.
+    - The other 68 finish lines name something a person can check and were left as they are. Descriptions were
+      read and none was changed.
+  - Not caused by this phase: `agylite registry check` reports 23 problems against the active bundle
+    6c8821eb00b7 (rules that name EGM, Caldo and other skills of the Step 4/4b candidate bundle, which is not
+    activated). The count is 23 with and without this phase's changes.
 
 - [ ] **Phase 5 — workflow.**
   - `config/lifecycle.yaml`: wording made current; each step's exit stays one checkable sentence.

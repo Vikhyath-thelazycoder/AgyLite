@@ -3,7 +3,7 @@ name: research-web
 description: Research a question on the open web - discover with the host's web search, read 3-8 primary sources with agylite research read, and write a sourced report. Read-only.
 ---
 
-<!-- Agylite-authored (MP5 §1.4). Method derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
+<!-- Agylite-authored. Method derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
 skill/SKILL.md and references/{search,web}.md, without MCP, Exa, the Chinese platforms and the update nag; the output
 rule follows Matt Pocock's research skill (pocock/research). -->
 
@@ -38,10 +38,27 @@ Agylite reads; the host searches. Nothing here posts, logs in or opens a browser
 Private URLs (`localhost`, private IPs, `.local`/`.internal`, URLs with `token=`, `key=` or `sig=`) are never sent to
 Jina Reader; `read` refuses them unless you pass `--direct`.
 
+## The report
+
+One file, `docs/research/<slug>.md`, in this order:
+
+1. **Answer** — two to five sentences, the direct answer first, with the date it holds for.
+2. **Findings** — one claim per line, each with the number, version or date it rests on and its source link.
+3. **Where sources disagree** — what each says and which is more likely right, or "None found".
+4. **Unverified** — claims you could not confirm from a source that owns them, and what you tried, or "None".
+5. **Sources** — title and URL per source.
+
+## Before you finish
+
+- Every claim has a URL, and you read that page in this task. A search result's snippet is not a reading.
+- The source owns the fact: a post about a release is not the source for what the release contains.
+- Numbers, versions and quotes are copied exactly.
+- The answer is an answer to the question asked. "It depends" is where the research starts, not where it ends.
+- Every source in the list is used by at least one finding.
+
 ## Where things go
 
-- Findings: one report `docs/research/<slug>.md` in the project, with a **Sources** list at the end (title + URL per
-  source). Each claim cites its source; unverified claims say so.
+- The report goes to `docs/research/<slug>.md` in the project.
 - Temporary downloads: `~/.agylite/tmp/research/` (the commands put them there). Never write anything else into the
   project.
 

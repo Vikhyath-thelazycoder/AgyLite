@@ -17,7 +17,7 @@ cache_strategy: run
 activation_conditions:
   mode: on-demand
   when: ['the request says QA, test the site or click through']
-verification_requirements: [gstack /qa report with each defect found, fixed and re-verified, the project's tests pass too]
+verification_requirements: ['gstack /qa report with each defect found, fixed and re-verified', 'the project''s tests pass too']
 dependencies: [testing/browser-verification]
 related_capabilities: [testing/local-verification]
 conflicts: []

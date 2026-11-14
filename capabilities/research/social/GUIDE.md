@@ -3,7 +3,7 @@ name: research-social
 description: What people say on X/Twitter and Reddit, read-only and opt-in through agylite research x / reddit; falls back to web sources when a channel is not enabled.
 ---
 
-<!-- Agylite-authored (MP5 §1.4). Derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
+<!-- Agylite-authored. Derived from Agent-Reach (Panniantong/Agent-Reach, MIT, "Agent Eyes")
 skill/references/social.md, without OpenCLI browser sessions, browser cookie reading, MCP and the Chinese platforms. -->
 
 # Social research (X and Reddit)
@@ -48,3 +48,10 @@ Research reads as the owner's own account. Keep volume low: a few searches per t
 
 Quote posts with their URL and date. Opinions are opinions: report how many posts said what, never turn a thread
 into a fact. Findings go to `docs/research/<slug>.md` with a source list (see `research/web`).
+
+## Before you finish
+
+- Every quote has its post URL and date, and is copied exactly.
+- Counts are stated ("7 of 20 posts report …"); a few loud posts are not "people say".
+- An opinion is reported as an opinion, with who holds it, never as a fact about the product.
+- A disabled or unavailable channel is named in the report, and nothing is attributed to it.
