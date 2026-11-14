@@ -1,6 +1,6 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: APPROVED by the owner 2026-11-14. Phases 0 and 1 done. ▶ RESUME at Phase 2a (the pilot: `agylite-engineering`, `agylite-review`; the owner approves the format before 2b).**
+**Status: APPROVED by the owner 2026-11-14. Phases 0, 1 and 2a done. ▶ RESUME: the owner reads the two pilot skills and approves the format (or asks for changes); then Phase 2b.**
 
 Owner request (2026-11-14): assess every skill and workflow in this project and make them better and more detailed,
 so that agents and people who use them do not produce thin or generic output ("AI slop"). Plan first, start after
@@ -197,6 +197,13 @@ and stop.
 - [ ] **Phase 2 — rewrite the 14 entry skills to the standard, in four batches.**
   - **2a (pilot): `agylite-engineering`, `agylite-review`.** The owner reads these two and approves the format
     before the rest is written. Changes to the format are made here, once.
+    **Written 2026-11-14, waiting for the owner's approval of the format.** Sizes: engineering 1,795 → 6,418
+    bytes, review 2,078 → 5,712 (limit 6,500); each has `references/examples.md` (one weak and one good result
+    for the same task, with the reasons). Every command and flag in the new text was checked against `--help`;
+    the test needles are kept. Checker: 100 → 88. Engineering is 82 bytes under the limit, so anything added to
+    it later must go to `references/`. Not confirmed in the live bundle: `egm/egm-resolve` (it is in the Step 4b
+    candidate bundle, not in the active one); the review skill's failure table says what to do when a skill is
+    not known.
   - 2b: `agylite-testing`, `agylite-security`, `agylite-production`, `agylite-codebase`, `agylite-routing`.
   - 2c: `agylite-design`, `agylite-diagrams`, `agylite-media`.
   - 2d: `agylite-research`, `agylite-youtube`, `agylite-seo`, `agylite-update-review`.
