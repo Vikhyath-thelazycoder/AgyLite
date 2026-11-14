@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite SEO
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 1. **Route:** `agylite route "<request>"`; load only the selected `seo/*` capabilities with `agylite context --request "<the user's request>" <id>…`.
 2. **Runtime:** `agylite runtime status` → install once with `agylite runtime install seo` (core; add
    `--browser` only if the user agrees to the large Chromium download for rendered pages).
@@ -18,7 +21,5 @@ disable-model-invocation: true
    credentials in prompts, state or logs.
 
 SEO captures are SEO evidence only, never engineering verification. `watch` is blocked.
-
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

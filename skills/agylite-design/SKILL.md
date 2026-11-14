@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite Design
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 **Route first:** `agylite route "<request>" --paths <files…>`, then load what it selects with
 `agylite context --request "<the user's request>" <id>…` (Taste's skill loads whole: `agylite skill load
 taste/design-taste-frontend`). Keep to recorded design decisions: `agylite decide list --kind design`.
@@ -40,7 +43,7 @@ internal work overrides this, recorded with `agylite decide add`.
 `agylite design taste draw … --options 3` → the owner picks → steps A3–A5. With an existing design system, use
 `--keep palette,type` (precedence 2).
 
-Verification policy: `config/verification.yaml` (design work adds Taste lint and inspect, MP4). Screenshots count
+Verification policy: `config/verification.yaml` (design work adds Taste lint and inspect). Screenshots count
 together with passing tests and build, never instead of them. No MCP, no `--smart`, no API keys to
 designlang, no mockup tool. Design requests do not activate engineering or SEO capabilities unless the route selects
 them.

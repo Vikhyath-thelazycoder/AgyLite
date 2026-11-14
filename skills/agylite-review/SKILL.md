@@ -6,14 +6,19 @@ disable-model-invocation: true
 
 # Agylite Review
 
-1. **Route:** `agylite route "review this change" --paths $(git diff --name-only origin/<base>)`, then
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
+1. **Route:** `agylite route "review this change" --paths $(git diff --name-only <base>)`
+   (`<base>` is the branch this change merges into; `git symbolic-ref --short refs/remotes/origin/HEAD` prints it,
+   usually `origin/main`), then
    `agylite context --request "<the user's request>" engineering/review` (plus any security/testing capability it selects).
 2. **Scope:** compare the diff with its plan task (`agylite plan locate`); report scope creep and missing
    requirements first.
 3. **Impact:** `agylite codebase affected` — review the changed files and what they reach, not the whole repo.
 4. **Evidence:** `agylite verify --plan` shows the checks the change needs; findings about untested behaviour
    name the missing test.
-5. **Review** with `agylite skill load ponytail/ponytail-review` and follow its structure (MP3 §2.3): read the
+5. **Review** with `agylite skill load ponytail/ponytail-review` and follow its structure: read the
    code the change touches (callers, callees, tests), not just the diff; number the findings in Must fix / Should
    fix / Nice to have, each with `file:line` and four parts: what it is, what goes wrong (a concrete failure
    scenario), the fix, and what happens if skipped. Then apply gstack's review checklists second
@@ -26,6 +31,7 @@ disable-model-invocation: true
 The `engineering/simplicity` capability (Ponytail's audit/debt/gain skills) loads only when the user asks for
 simplification.
 
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
+Verification: tests, types, lint and build for every change; UI work also needs `agylite verify --browser`
+(policy: `config/verification.yaml`). No MCP.
 
 End your answer with the output of `agylite used` (what this work used).

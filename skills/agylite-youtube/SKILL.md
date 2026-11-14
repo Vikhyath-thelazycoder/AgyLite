@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite YouTube
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 1. **Route:** `agylite route "<request>"` → `youtube/*`; load the routed skill (`agylite skill load ytagent/yt-<name>`).
 2. **Voice:** `agylite youtube voice init` once; every skill reads `~/.agylite/youtube/voice.md`. While it is the
    unfilled template, ask for it (or three of the creator's videos), or proceed and mark the output **generic voice**.
@@ -18,7 +21,5 @@ This domain writes scripts, edit lists, Shorts picks, titles, chapters and plans
 video. If asked to edit or render, say that video editing is not part of Agylite yet, and offer the edit decision list
 (`yt-edit`) and Shorts picks (`yt-shorts`) to apply in the user's editor. Nothing publishes: the skills write, the
 creator uploads.
-
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

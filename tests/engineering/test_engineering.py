@@ -88,7 +88,8 @@ class TestEntrySurfaces(unittest.TestCase):
     def test_entry_skills_are_thin(self):
         for name in ("engineering", "security", "review", "production", "codebase"):
             text = Path(ROOT_DIR, "skills", f"agylite-{name}", "SKILL.md").read_text(encoding="utf-8")
-            self.assertLessEqual(len(text.encode()), 2200, name)
+            # D-053: detailed core files; the limit is the skill standard's (long material goes to references/).
+            self.assertLessEqual(len(text.encode()), 6500, name)
             self.assertIn("agylite ", text)
             self.assertNotIn("ECC", text)       # no repo-first routing (MR-01)
 

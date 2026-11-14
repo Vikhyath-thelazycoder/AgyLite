@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite Media
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 1. **Route:** `agylite route "<request>"` → `media/*` only.
 2. **Plan:** `agylite media plan` shows the workflow (brag-slim by default; full `/brag` only with `--full` and a
    locally installed Hyperframes), the tools found (ffmpeg, node, python) and the output dir (`brag-output/`).
@@ -14,7 +17,5 @@ disable-model-invocation: true
 4. **Music cues (optional):** `agylite runtime install brag` once, then `agylite media music-cues <audio>`.
 
 Media output is a deliverable, never verification evidence; showing a rendered video is not a test of the product.
-
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

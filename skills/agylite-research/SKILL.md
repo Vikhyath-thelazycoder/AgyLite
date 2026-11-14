@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite Research
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 1. **Route:** `agylite route "<request>"` → `research/*`; load the routed guide (`agylite skill load agylite/research-web`).
 2. **Discover** with the host's own web search tool (Claude Code `WebSearch`). No web search tool: say so and ask the
    user for URLs. Never scrape a search engine.
@@ -18,7 +21,5 @@ disable-model-invocation: true
    Temporary files stay in `~/.agylite/tmp/research/`.
 
 Read-only: nothing here posts, likes, comments or messages, and no browser or logged-in session is used.
-
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
 
 End your answer with the output of `agylite used` (what this work used).

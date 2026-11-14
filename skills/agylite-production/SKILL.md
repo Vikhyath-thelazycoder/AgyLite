@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite Production
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 1. **Route:** `agylite route "prepare the release" --paths <files…>` → `engineering/release`,
    `testing/release-verification`; load with `agylite context --request "<the user's request>" <id>…`.
 2. **Plan completion:** every task the release claims is VERIFIED with evidence (`agylite plan show <phase>`);
@@ -15,8 +18,9 @@ disable-model-invocation: true
    evidence file recorded.
 4. **Ship notes:** changelog from the commit list; migration and rollback steps written before deploying.
 
-No deploy step is taken without the user's explicit go-ahead. No browser or screenshot verification.
+No deploy step is taken without the user's explicit go-ahead.
 
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
+Verification: tests, types, lint and build for every change; UI work also needs `agylite verify --browser`
+(policy: `config/verification.yaml`). No MCP.
 
 End your answer with the output of `agylite used` (what this work used).

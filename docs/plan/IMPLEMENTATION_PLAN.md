@@ -472,8 +472,8 @@ Done (on `main`):
 
 Still to do:
 - **Owner request 2026-11-14 — skill and workflow quality upgrade.** Plan drafted in
-  `docs/plan/SKILL_QUALITY_PLAN.md`; **approved 2026-11-14; Phase 0 done (standard, free check, 126-problem
-  baseline). ▶ RESUME there at Phase 1.** It runs first (Phases 0–6, report and stop after each), then the items
+  `docs/plan/SKILL_QUALITY_PLAN.md`; **approved 2026-11-14; Phases 0–1 done (standard, free check, contradictions
+  removed; checker 126 → 100). ▶ RESUME there at Phase 2a.** It runs first (Phases 0–6, report and stop after each), then the items
   below continue from Step 5.
 - **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
   - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare

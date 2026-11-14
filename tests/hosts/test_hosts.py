@@ -40,7 +40,8 @@ class TestPolicy(unittest.TestCase):
         skills = entry_skills()
         self.assertGreaterEqual(len(skills), 10)
         for name, text in skills.items():
-            self.assertIn("config/verification.yaml", text, name)
+            if "agylite verify" in text:   # D-053: only skills that verify carry the policy line
+                self.assertIn("config/verification.yaml", text, name)
         for a in all_adapters():
             for rel, text in a.repo_files().items():
                 for word in FORBIDDEN:

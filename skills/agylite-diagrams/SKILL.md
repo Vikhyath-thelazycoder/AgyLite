@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite Diagrams
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 1. **Route:** `agylite route "<request>"` → `engineering/diagrams`; load Archify's skill (`agylite skill load archify/archify`).
 2. **This codebase:** first `agylite codebase update`, then `agylite codebase query|path|explain` for evidence, then
    follow Archify's `references/repository-authoring.md`. Every node must cite files.
@@ -18,7 +21,7 @@ disable-model-invocation: true
 
 Explainer pages are made only when the user asks for one. Agylite manages Archify updates.
 
-Verification policy: tests and browser (`config/verification.yaml`, D-049); for diagrams that is Archify's own
-browser-check of the rendered page (`diagram_verification`); no MCP.
+Verification: for diagrams the check is Archify's own browser-check of the rendered page (`diagram_verification`
+in `config/verification.yaml`). No MCP.
 
 End your answer with the output of `agylite used` (what this work used).

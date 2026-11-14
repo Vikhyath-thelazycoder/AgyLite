@@ -40,10 +40,10 @@ steps:
       any: ["agylite verify --plan"]
     exit: Every changed behaviour has a test; new tests fail before and pass after the change.
   VERIFY:
-    purpose: Run the local checks and record evidence (config/verification.yaml, local test-first).
+    purpose: Run the checks and record evidence (config/verification.yaml; tests for every change, the browser check for UI work).
     commands:
       any: ["agylite verify", "agylite plan set-status <task> READY_FOR_VERIFICATION"]
-    exit: All selected checks PASSED with command, exit code and counts recorded; nothing visual claimed as verified.
+    exit: All selected checks PASSED with command, exit code and counts recorded; UI work has a passing browser check; a screenshot alone is never evidence.
   RECONCILE:
     purpose: Close the loop in the plan and state.
     commands:

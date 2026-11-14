@@ -1,6 +1,6 @@
 # Skill and workflow quality upgrade — plan
 
-**Status: APPROVED by the owner 2026-11-14. Phase 0 done. ▶ RESUME at Phase 1.**
+**Status: APPROVED by the owner 2026-11-14. Phases 0 and 1 done. ▶ RESUME at Phase 2a (the pilot: `agylite-engineering`, `agylite-review`; the owner approves the format before 2b).**
 
 Owner request (2026-11-14): assess every skill and workflow in this project and make them better and more detailed,
 so that agents and people who use them do not produce thin or generic output ("AI slop"). Plan first, start after
@@ -171,12 +171,28 @@ and stop.
     keeps it current.
   - Found while doing this: `AGENTS.md` also forbids browser verification (not in finding F-1); added to Phase 1.
 
-- [ ] **Phase 1 — remove the contradictions (F-1 to F-6).** Small edits, no rewrite yet.
-  - One correct verification statement, only where it applies; the wrong "no browser" lines removed from the
-    skills, `security-reviewer`, `CLAUDE.md`, `AGENTS.md`, the Antigravity template and the lifecycle file.
-  - Internal references replaced by the rule they point to. The base-branch step fixed.
-  - Record the decision as D-053 in `docs/audit/21_AUDIT_DECISIONS.md`.
-  - Done means: the checker reports no contradiction and no internal reference.
+- [x] **Phase 1 — remove the contradictions (F-1 to F-6). DONE 2026-11-14.** Small edits, no rewrite.
+  - F-1: the sentences that forbade browser verification are gone from `agylite-engineering`, `agylite-testing`
+    (description and body), `agylite-production`, `agylite-security`, `agents/security-reviewer.md`, `CLAUDE.md`,
+    `AGENTS.md`, the Antigravity template (`agylite/adapters/hosts.py`, copy re-rendered) and the lifecycle's VERIFY
+    step. Where a rule is still needed it now reads "a screenshot alone is never evidence".
+  - F-2: the verification line stays, reworded, in engineering, testing, security, production and review; diagrams
+    and design keep their own; it is removed from codebase, media, research, seo, update-review and youtube.
+  - F-3: the 10 skills with a route step say, under the title, to skip it when the prompt carries an
+    `Agylite route:` line.
+  - F-4: no plan, spec or decision numbers remain in the skills. F-5: `agylite-review` says how to find the base
+    branch. F-6: lifecycle VERIFY purpose and exit reworded (YAML comments left; agents do not read them).
+  - Decision D-053 recorded.
+  - Two old tests encoded the rules this plan replaces and were changed with it: `test_entry_skills_are_thin`
+    (2,200 bytes → 6,500, the standard's limit) and the host policy test (the `config/verification.yaml` line is
+    required only in skills that name `agylite verify`, not in all 14).
+  - **Checker: 126 → 100.** 0 contradictions, 0 internal references. Left: 77 missing sections, 17 descriptions,
+    3 agents without the incomplete-review rule (Phases 2 and 3), and the 3 upstream reference names in
+    `agylite-design` and `agylite-diagrams` (Phase 2c, where the real bundle paths are checked).
+  - Left as it is: the product tagline "local test-first verification" in the plugin manifests and
+    `agylite/adapters/base.py` (a description of the product, not an instruction; changing it touches four manifests).
+  - **Found for Phase 4:** the card `testing/local-verification` still says "no browser, Chrome DevTools or
+    screenshot step (D-035)" in its "done means" line, and the route shows that line to agents.
 
 - [ ] **Phase 2 — rewrite the 14 entry skills to the standard, in four batches.**
   - **2a (pilot): `agylite-engineering`, `agylite-review`.** The owner reads these two and approves the format

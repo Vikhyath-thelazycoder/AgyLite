@@ -39,7 +39,7 @@ hosts, or the hook is off), route yourself with step 1.
    - `fallbacks` apply only when the primary capability cannot decide.
    - `impact` (existing projects): run its `command` first and work from the files and tests it returns
      (`agylite-codebase` skill); never read the whole repository.
-   - `verification_mode` is `tests-and-browser` (`config/verification.yaml`, D-049): verify with tests, types, lint,
+   - `verification_mode` is `tests-and-browser` (`config/verification.yaml`): verify with tests, types, lint,
      build and recorded evidence, and for UI work also with the browser check.
    - `browser`: `required` → UI work: done only when `agylite verify --browser` passes too (screenshots at
      1440/768/390, console, network, overflow, flows; you may read the screenshots); `not-needed` → tests only.
@@ -51,7 +51,7 @@ hosts, or the hook is off), route yourself with step 1.
 ## Rules
 
 - Simplicity review (Ponytail-derived) runs only when the user asks for it.
-- New projects start with requirements; existing projects start with codebase understanding (spec §19.2).
+- New projects start with requirements; existing projects start with codebase understanding.
 - Never activate SEO, media or design capabilities the route did not select.
 
 End your answer with the output of `agylite used` (what this work used).

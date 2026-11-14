@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite Security
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 1. **Route:** `agylite route "<request>" --paths <files…>`; security work selects `engineering/security` (project
    security outranks every methodology) and `testing/security`. Load them with `agylite context --request "<the user's request>" <id>…`.
 2. **Understand the surface:** `agylite codebase affected --paths <files…>`; check recorded security decisions
@@ -15,8 +18,9 @@ disable-model-invocation: true
 4. **Verify locally:** `agylite verify` (tests + dependency audit + secret scan where available); record the
    evidence. Record new security rules as decisions: `agylite decide add --kind security …`.
 
-Never paste real secrets into prompts, logs or evidence. No browser or screenshot verification.
+Never paste real secrets into prompts, logs or evidence.
 
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
+Verification: tests, types, lint and build for every change; UI work also needs `agylite verify --browser`
+(policy: `config/verification.yaml`). No MCP.
 
 End your answer with the output of `agylite used` (what this work used).

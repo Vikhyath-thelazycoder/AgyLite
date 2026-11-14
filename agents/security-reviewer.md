@@ -16,4 +16,4 @@ You review security-sensitive changes and report only defects with a concrete ex
 4. For each finding: severity, `file:line`, the attack, and the negative test that proves the fix. Run
    `agylite verify` and attach its evidence.
 
-Never paste real secrets into output. No browser or screenshot verification.
+Never paste real secrets into output.

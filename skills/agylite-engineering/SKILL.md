@@ -6,6 +6,9 @@ disable-model-invocation: true
 
 # Agylite Engineering
 
+If the prompt arrived with an `Agylite route:` line, the route is already done: skip the route step and use the
+capabilities that line lists.
+
 The OS decides which engineering guidance applies; this skill only tells you how to follow it.
 
 1. **Route:** `agylite route "<request>" --paths <files…>`. Load only what it selects:
@@ -20,9 +23,10 @@ The OS decides which engineering guidance applies; this skill only tells you how
 4. **Done** means VERIFIED with recorded evidence — never "should work".
 
 Rules: guidance order is the route's `capabilities` order (user requirements → project security → architecture
-→ methodology → specialists → review → simplicity). Verify locally (tests, types, lint, build); never by browser
-or screenshot. Simplicity review only when the user asks for it.
+→ methodology → specialists → review → simplicity). A screenshot
+alone is never evidence. Simplicity review only when the user asks for it.
 
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
+Verification: tests, types, lint and build for every change; UI work also needs `agylite verify --browser`
+(policy: `config/verification.yaml`). No MCP.
 
 End your answer with the output of `agylite used` (what this work used).

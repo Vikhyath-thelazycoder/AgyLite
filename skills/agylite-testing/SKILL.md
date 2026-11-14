@@ -1,6 +1,6 @@
 ---
 name: agylite-testing
-description: Verify a change locally and test-first — impacted tests, types, lint, build — with machine-readable evidence via `agylite verify`; never by browser or screenshot.
+description: Verify a change locally and test-first — impacted tests, types, lint, build — with machine-readable evidence via `agylite verify`, plus the browser check for UI work.
 disable-model-invocation: true
 ---
 
@@ -17,11 +17,12 @@ disable-model-invocation: true
    (`.agylite/evidence/<time>.json`) and the plan status (`agylite plan set-status <T-id> VERIFIED --evidence <file>`)
    record the result.
 
-Never verify by opening a browser, using Chrome DevTools or taking or reading screenshots. The project's own
+A screenshot or a look at the page alone is never evidence; the browser check is a command with recorded results. The project's own
 headless E2E script runs only with `--include-e2e`. UI work also runs the browser check: `agylite verify --browser [--url …]
 [--flows .agylite/flows.yaml]` (automatic for style/markup changes; write the task's flows as plain steps). QA requests
 go to gstack `/qa`. If only a human can judge something (look and feel), report it as NOT_TESTED.
 
-Verification policy: tests and browser (`config/verification.yaml`, D-049) — UI work also needs `agylite verify --browser`; no MCP.
+Verification: tests, types, lint and build for every change; UI work also needs `agylite verify --browser`
+(policy: `config/verification.yaml`). No MCP.
 
 End your answer with the output of `agylite used` (what this work used).

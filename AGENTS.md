@@ -9,8 +9,8 @@ themselves with step 2:
 2. `agylite route "<request>" [--paths <files…>]` — the minimum capabilities, their lifecycle and impact step.
 3. `agylite context --request "<request>" <capability-id>…` (or `agylite context --route "<request>"`) — load only what the route selected (L1 cards, L2 sections; L3 only on purpose).
 4. Follow the route's `lifecycle`; start existing-project changes with `agylite codebase affected`.
-5. Verify with `agylite verify` (local tests, types, lint, build) and record the evidence. Never verify with a browser,
-   Chrome DevTools or screenshots (`config/verification.yaml`).
+5. Verify with `agylite verify` (tests, types, lint, build) and record the evidence. UI work also needs
+   `agylite verify --browser`; a screenshot alone is never evidence (`config/verification.yaml`).
 6. Record decisions with `agylite decide add` and progress with `agylite plan set-status`.
 
 Rules: no MCP servers; guidance order is the route's capability order (`config/priorities.yaml`); Simplicity review
