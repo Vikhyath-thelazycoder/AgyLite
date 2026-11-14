@@ -474,9 +474,13 @@ Still to do:
 - [x] **Owner request 2026-11-14 — skill and workflow quality upgrade. DONE 2026-11-15** (`docs/plan/SKILL_QUALITY_PLAN.md`,
   Phases 0–6): standard and strict free check; 14 entry skills, 3 agents and 7 guides rewritten or extended; 14 card
   finish lines fixed; hook finish line; two routing rules. Close: 528 tests, validate 24/24, doctor green, scratch
-  bundle 983bee4b2e54 reproduces (ID unchanged), CHANGELOG "Unreleased". Open for the owner: version bump, the
-  YouTube hook/title routing. **▶ RESUME at Step 5 below: the dry run was repeated on 2026-11-15, still 180 sessions,
-  ≈ $143 (range $120–170); it waits for the owner's approval.**
+  bundle 983bee4b2e54 reproduces (ID unchanged), CHANGELOG "Unreleased". Owner 2026-11-15: no version bump until the
+  candidate bundle is released; YouTube hook/title routing fixed; hook size checked on all 20 Step 5 prompts (the
+  finish line changes delivery for none). **▶ RESUME at Step 5 below: dry run repeated 2026-11-15, 180 sessions,
+  ≈ $143 (range $120–170). The owner APPROVED the estimate on 2026-11-15 but said not to start the paid run in that
+  session: start it only on the owner's word, with `CLAUDE_CODE_OAUTH_TOKEN` exported (it was not set), detached,
+  `--bundle` = a fresh scratch build of 983bee4b2e54. Before starting, show the owner the three routing notes in
+  `SKILL_QUALITY_PLAN.md` Phase 6 "Seen in the same check".**
 - **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
   - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare
         (`cloudflare/security-audit-skill@c1c8a8c`) and Trail of Bits (`trailofbits/skills@2be6433`): pins, hashes,
@@ -1222,3 +1226,4 @@ gap: Open Design's files are already measured.
 | 2026-11-10 | Step 3 part 1 | Measurement fixes C1-1, C3-2, C3-1, C3-7, C1-9 done (launcher pin + engine check, skill-source deny rules + trace scan, inspector report.json, skill-not-used and asked-instead-of-acting counts); replay on 288 Phase 9 traces flags exactly the 15 known archify leaks. Open: temporary HOME needs an owner token. Next: part 2, the hook size. |
 | 2026-11-10 | Step 3 part 1 decision | Owner chose a temporary HOME per session for full isolation (owner runs `claude setup-token` once; harness change before the re-measurement). Part 1 closed; resume at part 2 (hook size). |
 | 2026-11-15 | Skill quality Phase 6 | Upgrade closed: every check green, scratch bundle 983bee4b2e54 reproduces (ID unchanged, live bundle untouched), CHANGELOG "Unreleased", Step 5 dry run repeated (180 sessions, estimate unchanged ≈ $143). Open: version bump, YouTube hook/title routing. Next: Step 5 on owner approval. |
+| 2026-11-15 | After Phase 6 | Owner: Step 5 estimate approved, run not started (owner's word needed); no version bump yet; YouTube own-video routing fixed (`research-video` unless, 2 scenarios); hook size checked on the 20 Step 5 prompts with the candidate bundle: the finish line changes delivery for 0, closest 9,522 / 9,600. |

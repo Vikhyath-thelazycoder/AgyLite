@@ -551,6 +551,7 @@ rules:
     description: A video, its transcript or captions, or a YouTube link
     any: [youtube video, this video, this youtube video, transcript, subtitles, captions of, summarise this video, summarize this video, summarise this youtube video, summarize this youtube video]
     url_hosts: [youtube.com, youtu.be]
+    unless: [my youtube video, my next youtube video, our youtube video]   # the creator's own video is creator work (yt-* rules), not research
     select: [research/video]
     weight: 4
 

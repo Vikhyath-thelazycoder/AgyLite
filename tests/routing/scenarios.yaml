@@ -494,3 +494,16 @@ scenarios:
     expect: [design/design-direction]
     forbid: [engineering/debugging]
     change_type: DESIGN_CHANGE
+
+  - id: sq-own-youtube-video-is-creator-work
+    request: Write a hook and title for my youtube video about desks
+    stage: existing
+    expect: [youtube/packaging]
+    forbid: [research/]
+    change_type: YOUTUBE_CHANGE
+
+  - id: sq-someone-elses-youtube-video-stays-research
+    request: Summarise the youtube video about standing desks
+    stage: existing
+    expect: [research/video]
+

@@ -30,6 +30,8 @@ are unchanged and the bundle ID does not move.
 - 14 capability finish lines: 5 were split in two by an unquoted comma (for example "no invented prices · stats or
   testimonials"), 3 were stale, 6 could not be checked.
 - "look into / for / up / through" no longer makes a request a design change.
+- A request about the creator's own video ("a hook and title for my youtube video") routes to the YouTube skills,
+  not to video research.
 
 ## [2.1.6] - 2026-10-11
 

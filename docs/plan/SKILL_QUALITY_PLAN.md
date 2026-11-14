@@ -6,13 +6,13 @@
 
 **Done (all on `main`, pushed):** Phases 0 to 6. Nothing is left in this plan.
 
-**Two owner decisions are open (neither blocks Step 5):**
+**Owner decisions 2026-11-15 (all closed):**
 
-1. **Version.** `VERSION` is still 2.1.6 and the upgrade sits under "Unreleased" in `CHANGELOG.md`. Bump it now
-   (2.1.7), or with the Step 4/4b upstreams when the candidate bundle is released?
-2. **YouTube routing.** "Write a hook and title for my youtube video about desks" routes
-   `research/video, youtube/packaging` with `research/video` in the lead, so the hook sends the video-research
-   guide and not the packaging skill. Fix it before Step 5, or leave it? (Details under Phase 5.)
+1. **Version:** not bumped. `VERSION` stays 2.1.6 and the upgrade stays under "Unreleased" until the candidate
+   bundle with the new upstreams is released; one version then covers both.
+2. **YouTube routing:** fixed (see "After the close" under Phase 6).
+3. **Step 5 estimate:** approved, but the owner said not to start the paid run in that session. It starts on the
+   owner's word.
 
 **What this upgrade changes for the old plan** (answer given to the owner 2026-11-14):
 
@@ -340,6 +340,28 @@ and stop.
   - Not done: the hook size was not measured on the Step 5 prompts with the candidate bundle (Phase 5 measured
     the active bundle only). A lead skill within about 230 characters of the 9,600 limit is now named by path
     instead of sent whole; Step 5 will show it.
+
+  - **After the close (owner 2026-11-15: fix the routing, check the hook size, do not start the paid run).**
+    - **YouTube routing fixed.** Rule `research-video` got `unless: [my youtube video, my next youtube video, our
+      youtube video]`: the creator's own video is creator work. "Write a hook and title for my youtube video about
+      desks" now routes `youtube/packaging` alone. "Summarise the youtube video about standing desks" and "Get the
+      transcript of my youtube video" still route `research/video`. 2 scenarios added; routing tests pass.
+    - **Hook size on the Step 5 prompts, candidate bundle 983bee4b2e54.** All 20 task prompts of the six suites
+      were composed with and without the finish line. The line changes how the skill is delivered for **0 of 20**.
+      4 prompts carry the skill whole both ways; the closest is eng-ecc `click-path-audit` at 9,522 of 9,600
+      characters (9,438 without the line). 16 name the skill by path both ways, because the skill alone is over
+      the limit (Taste, Archify, Cloudflare security-audit, EGM review and others). The line costs 64 to 285
+      characters. Limit of the check: it used an empty project, not each suite's fixture workspace, so stack tags
+      could change a route in the real run.
+    - **Seen in the same check, not changed (Step 5 will measure them as they are):**
+      - Words in a brief pick the change type. design-elaya `ledgerly` is `SECURITY_CHANGE`, `tandem` is
+        `MEDIA_CHANGE` (with `media/launch-video`, `research/web`, `research/social`), design `8` is
+        `PERFORMANCE_CHANGE`. On `ledgerly` and `8` the hook therefore says "Done means: agylite verify passes
+        (tests, types, lint, build)" for a static page. The right skills are still named (Taste, Elaya).
+      - On the two landing pages the finish line is `design/design-direction`'s, not `design/landing-conversion`'s
+        ("no invented prices, stats or testimonials"), which is the line that suite grades.
+      - eng-ecc: `backend-patterns` routes to `youtube/analytics`, and ECC leads 1 of 6 prompts
+        (`agentic-engineering`). This is S3-2, already known.
 
 ## 5. Risks
 
