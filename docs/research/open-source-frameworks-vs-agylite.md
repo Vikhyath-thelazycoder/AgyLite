@@ -12,7 +12,8 @@ single task: none of the six stops after one routed change. They carry a project
 comes next, size the process to the change, survive a session ending, and let users add their own rules. Fifteen gaps
 are listed below, ranked; the first six matter most for the owner's goal ("say what to build and it does everything").
 
-Nothing was changed in Agylite. Every proposal waits for the owner's approval.
+Nothing was changed in Agylite by this research. The owner approved all proposals (A–L) on 2026-11-15; the build order
+is the "Gap programme" in `docs/plan/IMPLEMENTATION_PLAN.md`.
 
 ## What was read
 

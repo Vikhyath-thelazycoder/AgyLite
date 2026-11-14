@@ -482,6 +482,28 @@ Still to do:
   `--bundle` = a fresh scratch build of 983bee4b2e54. The two design routing problems found in the hook check were fixed on
   2026-11-15 (rule `static-page-brief` with `only_domains`; landing-conversion finish line in the hook); the eng-ecc
   misroutes (S3-2) are still open and will be measured as they are.**
+- **Gap programme (owner 2026-11-15: all of A–L approved).** Source: `docs/research/open-source-frameworks-vs-agylite.md`
+  (Superpowers, BMAD, Spec Kit, OpenSpec, Get Shit Done and Agent OS compared with Agylite). The proposals are merged
+  into the steps below in this order; report and stop after each phase, every phase ends with all free checks green:
+  - [ ] **G1 — every-session basics, before the Step 5 paid run** (so the one paid run measures them): Step 5c
+        (questions and chat are not work), **A** `agylite next` (reads plan and state, prints the next step and why;
+        the hook adds it after RECONCILE), **B** a small-change path (one-file, low-risk edits: UNDERSTAND → IMPLEMENT
+        → VERIFY), **C** `agylite handoff` and resume (done / left / next block written at pause, shown at session
+        start), **D** announce line ("Using <skill> to <purpose>") and one todo per step in the prompt hook and the
+        entry-skill standard. After G1: rebuild the scratch bundle, repeat the Step 5 dry run and the hook-size check
+        (D adds characters; `click-path-audit` had 78 spare).
+  - [ ] Step 5 (paid batch, on the owner's word), then Step 5b (release).
+  - [ ] **G2 — safety and learning:** **E** session diagnosis from the event log (`agylite diagnose`) and a project
+        pitfalls file; **F** injection check on `agylite research read` output and on files written to the plan.
+  - [ ] Category view, then Step 6 (widened). Step 6 also takes **G** project-local skills and routing rules (a
+        folder in the project, checked by `validate`) and **H** a conventions file learned from the codebase and
+        injected with the route, because both change how skills are found and loaded.
+  - [ ] Step 7 — **J** the product pipeline (built on A, B and C) with an unattended mode and stop conditions, and
+        **K** implementer subagents per task with a review and fix loop. Design with the owner first.
+  - [ ] **G3 — reach, before the second release:** **I** a free skill-trigger check on Codex or Cursor; **L** a
+        Windows launcher and an `npx skills` package of the entry skills.
+  - [ ] Final (paid) and the results website, as planned.
+  Each of A–L gets tests; anything Agylite writes (a skill, guide or card) follows the standard in `CONTRIBUTING.md`.
 - **Owner plan 2026-11-02 (new upstreams, D-051), in this order; report and stop after each step:**
   - [x] Step 1 — stage and audit Elaya (`elayadesign/ai-design-skills@456d9e0`), Cloudflare
         (`cloudflare/security-audit-skill@c1c8a8c`) and Trail of Bits (`trailofbits/skills@2be6433`): pins, hashes,
@@ -768,11 +790,8 @@ Still to do:
         (a CLI has no SEO or design), how the plan's phases are created from them, how the hook names the next stage
         after RECONCILE, and where the owner approves. Not checked on 2026-11-15: what a real session does with
         today's new-product route (only the route was read).
-        **Research 2026-11-15, waiting for the owner's approval:** `docs/research/open-source-frameworks-vs-agylite.md`
-        compares Agylite with Superpowers, BMAD, Spec Kit, OpenSpec, Get Shit Done and Agent OS (15 gaps, proposals A–L:
-        `agylite next`, a small-change path, handoff and resume, announce line, session diagnosis, injection check,
-        project-local rules, conventions file, a second host, this pipeline, implementer subagents, Windows and
-        `npx skills`). Nothing from it is built; build only what the owner approves.
+        Proposals J and K of the 2026-11-15 research belong here (see "Gap programme" below): J is this pipeline with
+        an unattended mode and stop conditions, K is implementer subagents per task with a review and fix loop.
         Also open from the same check: no paid suite runs Cursor, Codex or Antigravity, where the 14 entry skills
         load; decide whether to measure one of them.
 - [x] Phase 9 code (2026-10-23, df4ed7c + e14ba43 + this commit): option 2 (D-050: overlapping skills load both
@@ -1283,3 +1302,4 @@ gap: Open Design's files are already measured.
 | 2026-11-15 | Step 5 prep | Static-page briefs route as design only (rule `static-page-brief`, new rule key `only_domains`); the hook carries the landing-conversion finish line next to a rule-scoped partner skill. 4 scenarios, 1 test; bundle ID unchanged. Step 5 still not started (owner's word needed). |
 | 2026-11-15 | Plan | Gap check (30 product requests routed, bundle searched): Steps 5b (release), 5c (questions and chat are not work) and 7 (product pipeline for new projects) added; Step 6 widened with infrastructure/deploy, database design, email, i18n and the misroutes found. |
 | 2026-11-15 | Research | Six open-source frameworks read and compared with Agylite (`docs/research/open-source-frameworks-vs-agylite.md`): 15 gaps, proposals A–L, waiting for the owner's approval. |
+| 2026-11-15 | Plan | Owner approved all research proposals A–L. Gap programme added: G1 (5c + A–D) before the Step 5 paid run, G2 (E, F) after the release, G and H inside Step 6, J and K inside Step 7, G3 (I, L) before the second release. ▶ Next: G1. |
