@@ -512,9 +512,13 @@ Still to do:
   - [ ] Step 5 (paid batch) — **STARTED 2026-11-15, owner: one suite at a time; review each before the next.**
         Candidate bundle (permanent copy, hashes verified): `~/.agylite/benchmarks/candidates/983bee4b2e54` (built from
         main 3177e30 in a scratch home; the live `~/.agylite` stays on 6c8821eb00b7). Order and progress:
-        - [ ] security 18 (≈ $6) — **RUNNING since 2026-11-19** (agent-started, token from the Keychain item, which
-          is now stored); log `~/.agylite/benchmarks/step5-security.log`. Next: review the result, then spec-review.
-        - [ ] spec-review 18 (≈ $32) · [ ] design-elaya 18 (≈ $28) · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
+        - [x] security 18 — **DONE 2026-11-19, $4.48, verdict SAME**: expectations 1.0 on every arm; cost no skill
+          $1.36 / original $1.35 / AgyLite $1.77, time 278 / 305 / 335 s. The tasks are at ceiling (no skill already
+          1.0); the 3 original webhook cells never used their skill (no re-run, owner accepted). Follow-up: harder
+          security tasks (forged/replayed webhook, spoofable IP header in rate limits, report-only CSP). Report
+          `~/.agylite/benchmarks/quality/20261119T171128Z-security/report.json`.
+        - [ ] spec-review 18 (≈ $32) — **RUNNING since 2026-11-19**; log `~/.agylite/benchmarks/step5-spec-review.log`
+        - [ ] design-elaya 18 (≈ $28) · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
           · [ ] diagram-archify 45 (≈ $21)
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
