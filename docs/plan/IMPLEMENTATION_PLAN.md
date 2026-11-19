@@ -533,6 +533,26 @@ Still to do:
         A stopped suite prints its own `--resume` line in the log. No engine or code change between suites (the
         earlier owner rule for paid chunks), so the suites measure the same thing.
   - [ ] Then Step 5b (release).
+  - [ ] **Security profiles (owner 2026-11-19, right after Step 5b).** Today `templates/project-docs/SECURITY.md` is
+        33 lines of empty prompts. Build security profiles picked by product type and written into the project docs
+        automatically: **core** (every web project: HTTPS/HSTS, security headers, CSP *enforced* not report-only,
+        secrets server-side only and never in `NEXT_PUBLIC_*`/client bundles, `.env` ignored, secret scan and
+        dependency audit in CI, input validation), **+auth** (limits per email and per IP in a shared store, bot
+        check after failures, cookie flags, CSRF/Origin check, staff MFA), **+e-commerce** (webhook signatures and
+        replay refusal, server-side prices, order saved before payment, atomic finalize, idempotency keys, hosted
+        checkout), **+admin/CMS**, **+AI app** (prompt injection, spend caps, kill switch, accuracy checks),
+        **+public API** (every route limited and a test that fails when one is not, real client IP from the
+        edge header only, 429 tests, counters off the database hot path), plus infra (DDoS, hidden origins,
+        least-privilege DB role, RLS, statement timeouts) and monitoring (owner alerts). `agylite project init --docs`
+        (and Step 7 later) detects the type from the request and fills SECURITY.md, the TRD/PRD non-functional rows,
+        the testing doc and a "security pass before launch" phase. Source: the owner's two shipped projects' security
+        docs and plans (read 2026-11-19), distilled **generically**, no client or project names. Tests for the
+        detector and the generated docs. Report before Step 7 uses it.
+  - [ ] **Hallmark audit (owner 2026-11-19, after Step 5; audit, then decide).** `Nutlope/hallmark` (MIT, anti-AI-slop
+        frontend design skill: build/audit/redesign/study, 22 themes, 65 pre-ship gates) is not bundled. Through the
+        update-review process: pin, hash, scan, license; overlap audit against taste, uiuxpromax, opendesign and
+        designlang; adopt only what is new (likely the pre-ship gates and audit mode); prove it in the design paid
+        suite before routing to it.
   - [ ] **G2 — safety and learning:** **E** session diagnosis from the event log (`agylite diagnose`) and a project
         pitfalls file; **F** injection check on `agylite research read` output and on files written to the plan.
   - [ ] Category view, then Step 6 (widened). Step 6 also takes **G** project-local skills and routing rules (a
