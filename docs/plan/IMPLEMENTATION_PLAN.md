@@ -517,7 +517,13 @@ Still to do:
           1.0); the 3 original webhook cells never used their skill (no re-run, owner accepted). Follow-up: harder
           security tasks (forged/replayed webhook, spoofable IP header in rate limits, report-only CSP). Report
           `~/.agylite/benchmarks/quality/20261119T171128Z-security/report.json`.
-        - [ ] spec-review 18 (≈ $32) — **RUNNING since 2026-11-19**; log `~/.agylite/benchmarks/step5-spec-review.log`
+        - [ ] spec-review 18 (≈ $32) — **STOPPED by the owner 2026-11-19 after 4 of 18 cells, ≈ $7.89 + one killed
+          cell** (log `~/.agylite/benchmarks/step5-spec-review.log`, run `quality/20261119T174250Z-spec-review`). All 4
+          scored 1.0. export-spec: no skill $0.24 (5 turns, no subagents) · original $2.48 (8 EGM subagents, Stages
+          5–8) · AgyLite $4.88 (13 EGM subagents: it treated the doc as spec + plan and ran Stage 9 plus one re-audit
+          round; every subagent inherits Opus). Cause: the EGM skill's own multi-agent flow, not Agylite routing; the
+          expectations are at ceiling, so the extra reviewers buy nothing measurable. Decide with the owner before
+          resuming: reviewer model, stage choice for small docs, harder expectations, or drop/shrink the suite.
         - [ ] design-elaya 18 (≈ $28) · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
           · [ ] diagram-archify 45 (≈ $21)
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
