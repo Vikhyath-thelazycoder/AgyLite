@@ -512,7 +512,8 @@ Still to do:
   - [ ] Step 5 (paid batch) — **STARTED 2026-11-15, owner: one suite at a time; review each before the next.**
         Candidate bundle (permanent copy, hashes verified): `~/.agylite/benchmarks/candidates/983bee4b2e54` (built from
         main 3177e30 in a scratch home; the live `~/.agylite` stays on 6c8821eb00b7). Order and progress:
-        - [ ] security 18 (≈ $6) — command given to the owner 2026-11-15; log `~/.agylite/benchmarks/step5-security.log`
+        - [ ] security 18 (≈ $6) — **RUNNING since 2026-11-19** (agent-started, token from the Keychain item, which
+          is now stored); log `~/.agylite/benchmarks/step5-security.log`. Next: review the result, then spec-review.
         - [ ] spec-review 18 (≈ $32) · [ ] design-elaya 18 (≈ $28) · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
           · [ ] diagram-archify 45 (≈ $21)
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
