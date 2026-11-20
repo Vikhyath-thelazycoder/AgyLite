@@ -528,7 +528,7 @@ Still to do:
           (EGM's eight lenses + keep/fix/ask resolve, no subagents) is now the primary skill; the full EGM flow only
           when the user asks for it by name; the "Stop" line for hosts without subagents removed. Re-run this suite
           with a candidate bundle built after this change (after the other suites; they do not touch spec review).
-        - [ ] design-elaya 18 (≈ $28) — next; waits for the owner's go · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
+        - [ ] design-elaya 18 (≈ $28) — **RUNNING since 2026-11-20** (owner go); log `~/.agylite/benchmarks/step5-design-elaya.log` · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
           · [ ] diagram-archify 45 (≈ $21)
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
