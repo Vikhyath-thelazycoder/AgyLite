@@ -64,8 +64,15 @@ class TestMergedReview(unittest.TestCase):
         self.assertIn("`Agent`", " ".join(review_lines(route, "claude-code")))
         self.assertIn("no subagent tool", " ".join(review_lines(route, "cursor")))
         spec = self.route("Review this design doc before we implement it")
-        self.assertIn("Stop:", " ".join(review_lines(spec, "cursor")))
-        self.assertNotIn("Stop:", " ".join(review_lines(spec, "claude-code")))
+        self.assertNotIn("Stop:", " ".join(review_lines(spec, "cursor")))   # one pass works on every host
+
+    def test_spec_review_is_one_pass_without_subagents(self):
+        # Owner 2026-11-20: EGM's full flow cost $4.88 vs $0.24 with no skill for the same score.
+        spec = self.route("Review this design doc before we implement it")
+        self.assertEqual(spec["whole_skills"], ["engineering/spec-review"])
+        text = Path(ROOT_DIR, "capabilities", "engineering", "spec-review", "GUIDE.md").read_text(encoding="utf-8")
+        self.assertIn("Do not start subagents", text)
+        self.assertIn("agylite skill load egm/egm-review", text)   # full EGM only when asked by name
 
     def test_spec_review_is_suggested_after_a_spec_never_on_a_bug_fix(self):
         self.assertEqual([s["capability"] for s in self.route("Turn this into a spec")["suggest"]],

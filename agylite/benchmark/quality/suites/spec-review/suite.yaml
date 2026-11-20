@@ -4,7 +4,8 @@
 # test_scenarios.yaml check skill triggering, not review quality, so they seeded the gap kinds only.
 # Original arm: the whole EGM repository at the pinned commit as a plugin (`--plugin-dir`: skills, agents, standards,
 # ${CLAUDE_PLUGIN_ROOT}); EGM's skills cannot be model-invoked, so its prompt starts with /egm:egm-review as EGM documents.
-# A full review spawns about 9 subagents per cell: the costliest suite per session. Dry-run only until the owner approves.
+# The original arm (full EGM) spawns about 9 subagents per cell; the AgyLite arm is one pass with no subagents since
+# 2026-11-20 (owner: EGM cost $4.88 vs $0.24 with no skill). Re-run with a candidate bundle built after that change.
 name: spec-review
 runner: case_runner
 upstream: {export: "egm:.", mode: plugin, plugin: egm, prompt_prefix: "/egm:egm-review "}

@@ -524,7 +524,11 @@ Still to do:
           round; every subagent inherits Opus). Cause: the EGM skill's own multi-agent flow, not Agylite routing; the
           expectations are at ceiling, so the extra reviewers buy nothing measurable. Decide with the owner before
           resuming: reviewer model, stage choice for small docs, harder expectations, or drop/shrink the suite.
-        - [ ] design-elaya 18 (≈ $28) · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
+          **Owner 2026-11-20: one pass instead of EGM's subagents.** `capabilities/engineering/spec-review/GUIDE.md`
+          (EGM's eight lenses + keep/fix/ask resolve, no subagents) is now the primary skill; the full EGM flow only
+          when the user asks for it by name; the "Stop" line for hosts without subagents removed. Re-run this suite
+          with a candidate bundle built after this change (after the other suites; they do not touch spec review).
+        - [ ] design-elaya 18 (≈ $28) — **RUNNING since 2026-11-20** · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
           · [ ] diagram-archify 45 (≈ $21)
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:

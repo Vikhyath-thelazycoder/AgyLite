@@ -106,11 +106,11 @@ review_merge:
   merge: agylite:egm-synthesizer
   resolve: egm/egm-resolve
 
-# Step 4b (plan 4b.2 cost rule): capabilities the route suggests (never loads) after a rule matched. A full spec review
-# spawns about 9 subagents, so it is offered after a spec is written and runs only when the owner says yes.
+# Step 4b (plan 4b.2 cost rule): capabilities the route suggests (never loads) after a rule matched. The spec review is
+# offered after a spec is written and runs only when the owner says yes (one pass since 2026-11-20).
 suggest:
   - {capability: engineering/spec-review, after_rules: [to-spec], change_types: [NEW_FEATURE, FEATURE_CHANGE, PLAN_CHANGE],
-     note: "Offer a fresh-context review of the spec before code (engineering/spec-review, about 9 subagents); run it only if the owner says yes."}
+     note: "Offer a one-pass review of the spec before code (engineering/spec-review, no subagents); run it only if the owner says yes."}
 
 # G1 B (owner 2026-11-15; BMAD and Get Shit Done size the process to the change): a typo, a comment or a version bump
 # gets UNDERSTAND → IMPLEMENT → VERIFY, no completion gate, and the prompt hook sends three lines instead of a skill.

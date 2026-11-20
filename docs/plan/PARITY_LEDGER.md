@@ -37,6 +37,7 @@ near 0.70–0.90 · regressed < 0.70 or worse than no skill · inconclusive with
 | 20261112T125040Z | youtube | 3 | 6c8821eb00b7 | c140a8a9 | claude-opus-5-5 | hook_verdict: 34.1 / 71.4 / 70.7 (0.979, same)<br>on_screen_beats: 0.333 / 1 / 1 (1, same) | **same** | $1.60 / $3.69 / $4.03 | Step 3 parts 1-6 (hook <= 9,600 chars, lead + partner only, routing, Ponytail exemption, smaller L0) | hook_verdict 70.7 vs original 71.4 (retained 0.98; Phase 9 51.6, regressed): fixed; on_screen_beats 1 = original; cost $4.03 vs original $3.69 |
 | 20261112T130526Z | browser-qa | 3 | 6c8821eb00b7 | c140a8a9 | claude-opus-5-5 | defects_reported: 5 / 5 / 5 (—, same)<br>defects_fixed: 5 / 5 / 5 (—, same) | **same** | $0.63 / $1.40 / $0.67 | Step 3 parts 1-6 (hook <= 9,600 chars, lead + partner only, routing, Ponytail exemption, smaller L0) | 5/5 defects reported and fixed = original; cost $0.67 vs original $1.40 (Phase 9 $0.69) |
 | 20261112T130745Z | design-extract | 3 | 6c8821eb00b7 | c140a8a9 | claude-opus-5-5 | color_hit: 0 / 0.667 / 0.667 (1, inconclusive)<br>font_hit: 0 / 1 / 1 (1, same)<br>design_md_sections: 0 / 8 / 8 (1, same) | **inconclusive** | $0.00 / $0.00 / $0.00 | Step 3 parts 1-6 (hook <= 9,600 chars, lead + partner only, routing, Ponytail exemption, smaller L0) | identical to Phase 9 and the original (deterministic extractor, $0; linear.app colour missed by both skill arms) |
+| 20261119T171128Z | security | 3 | 983bee4b2e54 | 1bf3ec10 | claude-opus-5-5 | expectations_passed: 1 / 1 / 1 (—, same) | **same** | $1.36 / $1.35 / $1.77 | — | — |
 
 ## Notes
 

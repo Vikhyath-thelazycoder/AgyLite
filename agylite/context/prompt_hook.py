@@ -106,10 +106,6 @@ def review_lines(route, host=None) -> list:
         else:
             out.append(f"This host has no subagent tool: do the {merge['reviewers'][0]} review only and tell the user "
                        "the other reviewers need a fresh context (a review in the same context is not independent).")
-    lead = ((route.get("whole_skills") or [c["id"] for c in route["capabilities"]])[:1] or [None])[0]
-    if lead == "engineering/spec-review" and known and not tool:
-        out.append("Stop: this host has no subagent tool, and a spec review in the same context is not a Goldfish "
-                   "review. Tell the user instead of reviewing.")
     out += [s["note"] for s in route.get("suggest") or []]
     return out
 
