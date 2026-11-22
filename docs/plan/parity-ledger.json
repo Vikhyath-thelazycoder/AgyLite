@@ -4019,6 +4019,7 @@
   "20261104T182103Z design-taste: resumed 2026-11-05 and finished 27/27 (stopped once more at 13/27 when the Claude Code session that launched it closed).",
   "2026-11-12 design-taste re-measure (run 20261112T130841Z, AgyLite arm only) stopped by the owner after 5 of 9 cells ($11.80): inspector_fail 0 and lint_fail 0 in all 5 (original 0 / 0.11, no skill 6.8 / 11.8); no judge score (the blind judge runs after the last cell); no report.json, so no ledger row. Finish with --resume or re-run the suite.",
   "20261120T151644Z design-elaya: stopped by a usage limit after 17/18 cells; resume: `agylite benchmark --quality --tier 1 --suite design-elaya --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya`",
-  "20261120T151644Z design-elaya: resumed 2026-11-22 and finished 18/18 (resume re-ran ledgerly run 1, missing from records.json, and tandem run 2)."
+  "20261120T151644Z design-elaya: resumed 2026-11-22 and finished 18/18 (resume re-ran ledgerly run 1, missing from records.json, and tandem run 2).",
+  "20261122T065009Z design (Sonnet 5.5): stopped by the owner 2026-11-22 after 20/27 cells, $9.74 recorded. Valid cells, mean inspector_fail / lint_fail: no skill 4.71 / 3.29 (n 7), original 5.83 / 3.83 (n 6), AgyLite 0.2 / 0 (n 5). Missing: 10__upstream__0 (wrote its page outside the workspace and tried to publish to claude.ai), 10__agylite__0 (cut off at the 1,500 s timeout, S5-1 caught it). No judge score, no report.json, so no ledger row. Resume: agylite benchmark --quality --tier 1 --suite design --model claude-sonnet-5-5 --judge-model claude-sonnet-5-5 --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design"
  ]
 }

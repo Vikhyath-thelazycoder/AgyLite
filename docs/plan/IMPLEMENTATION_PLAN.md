@@ -548,7 +548,7 @@ Still to do:
           `--model` / `--judge-model`. All three arms of a suite run on the same model, so a suite's verdict holds;
           rows on Sonnet/Haiku are not comparable with the Opus rows above (security, design-elaya).
         - [ ] design 27 (≈ $45 on Opus) · [ ] eng-ecc 54 (≈ $11) · [ ] diagram-archify 45 (≈ $21) · [ ] spec-review
-          re-run — **`design` RUNNING since 2026-11-22 on Sonnet 5.5 (owner choice; actor and judge); log `~/.agylite/benchmarks/step5-design.log`.**
+          re-run — **`design` STOPPED by the owner 2026-11-22 at 20/27 cells ($9.74, Sonnet 5.5); see the ledger note for the numbers and the resume line. AgyLite on Sonnet: inspector 0.2 / lint 0 vs no skill 4.7 / 3.3 and original 5.8 / 3.8; AgyLite timed out once on the app-screen task (10). Follow-up: the prompt hook routes system notifications (task-notification events) as work and injected a 41 KB design skill; extend 5c to skip them.**
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
         `export CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s agylite-bench -w)` in the same command,
