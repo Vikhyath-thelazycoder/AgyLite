@@ -300,6 +300,8 @@ def run_session(prompt: str, workspace: Path, arm: ArmSetup, *, model=None, allo
             f.write(stdout)
     if is_usage_limit(rec.get("result")):
         raise UsageLimit(rec["result"][:200])
+    if killed or "result" not in rec:   # S5-1: a cut-off session left a half-built workspace; never score it
+        rec["error"] = f"session cut off ({'timeout' if killed else 'no result event'}) after {rec['wall_s']} s"
     rec["_trace"] = stdout
     return rec
 

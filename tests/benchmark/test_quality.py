@@ -194,6 +194,20 @@ class TestUsageLimit(unittest.TestCase):
             self.assertNotIn("t-1__baseline__0", fake.calls)
             self.assertIn("t-1__upstream__0", fake.calls)
 
+    def test_a_cut_off_session_is_an_error_not_scored_and_redone_on_resume(self):
+        """S5-1 (design-elaya 2026-11-20): a session killed mid-turn has no result event; it was graded and kept."""
+        trace = json.dumps({"type": "system", "subtype": "init", "plugins": [], "skills": [], "mcp_servers": []})
+        with tempfile.TemporaryDirectory() as tmp, \
+                mock.patch("subprocess.run", return_value=mock.Mock(stdout=trace, returncode=0)):
+            rec = harness.run_session("p", Path(tmp), harness.ArmSetup("baseline"))
+        self.assertIn("no result event", rec["error"])
+        rec["metrics"] = {"score": 5.0}
+        self.assertFalse(tier1._valid(rec))
+        ok = [{"task": "t", "arm": a, "metrics": {"score": 1.0}} for a in tier1.ARMS]
+        fake = mock.Mock(METRICS={"score": False})
+        rep = tier1.score("s", {}, fake, ok + [{**rec, "task": "t", "arm": "agylite"}])
+        self.assertEqual(rep["metrics"]["score"]["agylite"], 1.0)
+
     def test_resume_redoes_a_cell_without_any_measured_metric(self):
         """An invalid grader reply leaves no score (Addy's run-evals.js records a failure); resume reruns the cell."""
         self.assertFalse(tier1._valid({"label": "x", "metrics": {"score": None}}))

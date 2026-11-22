@@ -177,7 +177,7 @@ def score(suite, cfg, mod, records) -> dict:
         per_task[t] = {}
         for metric, lower in mod.METRICS.items():
             vals = {a: [r["metrics"].get(metric) for r in records if r["task"] == t and r["arm"] == a
-                        and r.get("metrics", {}).get(metric) is not None] for a in ARMS}
+                        and not r.get("error") and r.get("metrics", {}).get(metric) is not None] for a in ARMS}
             for a in ARMS:
                 pooled[metric][a] += vals[a]
             per_task[t][metric] = scoring.verdict(vals["baseline"], vals["upstream"], vals["agylite"], lower)

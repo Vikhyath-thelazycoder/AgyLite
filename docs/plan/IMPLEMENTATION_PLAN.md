@@ -538,8 +538,17 @@ Still to do:
           event as an error, and `--resume` must re-run it. **(S5-2)** AgyLite design cost and time: look at what
           the design route loads (4 capabilities in a cell) before the `design` suite. Report
           `~/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/report.json`.
-        - [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11) · [ ] diagram-archify 45 (≈ $21) — **next: `design`, on
-          the owner's go after the design-elaya review.**
+          **S5-1 FIXED 2026-11-22:** `harness.run_session` marks a killed session or one without a result event as
+          `error` ("session cut off …"); `tier1.score` leaves error cells out and `_valid` already makes `--resume`
+          redo them (test `test_a_cut_off_session_is_an_error_not_scored_and_redone_on_resume`; 537 tests,
+          validate 24/24). **S5-2 checked 2026-11-22, no change:** AgyLite cells make 41–70 tool calls (Elaya 8–14,
+          no skill 1–7); they are the Taste draw → lint → inspect → fix loop that brings both counts to 0, not extra
+          routed skills.
+        - **Owner 2026-11-22: from now on paid runs use a cheaper model than Opus (Sonnet 5.5 or Haiku 5.5),** via
+          `--model` / `--judge-model`. All three arms of a suite run on the same model, so a suite's verdict holds;
+          rows on Sonnet/Haiku are not comparable with the Opus rows above (security, design-elaya).
+        - [ ] design 27 (≈ $45 on Opus) · [ ] eng-ecc 54 (≈ $11) · [ ] diagram-archify 45 (≈ $21) · [ ] spec-review
+          re-run — **next: `design`, on the owner's go.**
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
         `export CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s agylite-bench -w)` in the same command,
