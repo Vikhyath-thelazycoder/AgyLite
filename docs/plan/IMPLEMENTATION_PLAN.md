@@ -548,7 +548,7 @@ Still to do:
           `--model` / `--judge-model`. All three arms of a suite run on the same model, so a suite's verdict holds;
           rows on Sonnet/Haiku are not comparable with the Opus rows above (security, design-elaya).
         - [ ] design 27 (≈ $45 on Opus) · [ ] eng-ecc 54 (≈ $11) · [ ] diagram-archify 45 (≈ $21) · [ ] spec-review
-          re-run — **next: `design`, on the owner's go.**
+          re-run — **`design` RUNNING since 2026-11-22 on Sonnet 5.5 (owner choice; actor and judge); log `~/.agylite/benchmarks/step5-design.log`.**
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
         `export CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s agylite-bench -w)` in the same command,
