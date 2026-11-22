@@ -528,8 +528,18 @@ Still to do:
           (EGM's eight lenses + keep/fix/ask resolve, no subagents) is now the primary skill; the full EGM flow only
           when the user asks for it by name; the "Stop" line for hosts without subagents removed. Re-run this suite
           with a candidate bundle built after this change (after the other suites; they do not touch spec review).
-        - [ ] design-elaya 18 (≈ $28) — **RUNNING since 2026-11-20** (owner go); log `~/.agylite/benchmarks/step5-design-elaya.log` · [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11)
-          · [ ] diagram-archify 45 (≈ $21)
+        - [x] design-elaya 18 — **DONE 2026-11-22, $22.66 recorded (+ one uncosted cell), verdict INCONCLUSIVE by
+          formula, AgyLite best in practice.** Stopped by a usage limit at 17/18 on 2026-11-20, resumed 2026-11-22.
+          No skill / Elaya / AgyLite: conversion 1 / 1 / 1 (ceiling); inspector_fail 10.3 / 12.2 / 0.83; lint_fail
+          14 / 14.7 / 0. "Inconclusive" = the retention formula: Elaya is worse than no skill, so there is no upstream
+          gain to retain. Cost $2.77 / $6.15 / $13.74 (AgyLite ≈ $2.75 per cell, 2.2× Elaya); agent time 817 / 2,147 /
+          4,494 s. Findings: **(S5-1)** ledgerly agylite run 2 was cut off mid-session (trace ends without a result
+          event, cost None) yet was graded and kept (inspector 5): the runner must mark a cell without a result
+          event as an error, and `--resume` must re-run it. **(S5-2)** AgyLite design cost and time: look at what
+          the design route loads (4 capabilities in a cell) before the `design` suite. Report
+          `~/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/report.json`.
+        - [ ] design 27 (≈ $45) · [ ] eng-ecc 54 (≈ $11) · [ ] diagram-archify 45 (≈ $21) — **next: `design`, on
+          the owner's go after the design-elaya review.**
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
         `export CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s agylite-bench -w)` in the same command,

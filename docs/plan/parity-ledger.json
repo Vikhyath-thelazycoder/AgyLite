@@ -3899,6 +3899,115 @@
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261119T171128Z-security",
    "fix_applied": "",
    "next_step": ""
+  },
+  {
+   "date": "20261120T151644Z",
+   "suite": "design-elaya",
+   "n": 3,
+   "bundle": "983bee4b2e54",
+   "agylite_commit": "3d7d06073037ab431e875bfbfdb7466dfca4b421",
+   "upstream_shas": {},
+   "model": "claude-opus-5-5",
+   "metrics": {
+    "conversion_passed": {
+     "baseline": 1.0,
+     "upstream": 1.0,
+     "agylite": 1.0,
+     "retained": null,
+     "verdict": "same"
+    },
+    "inspector_fail": {
+     "baseline": 10.333333333333334,
+     "upstream": 12.166666666666666,
+     "agylite": 0.8333333333333334,
+     "retained": -5.182,
+     "verdict": "inconclusive"
+    },
+    "lint_fail": {
+     "baseline": 14.0,
+     "upstream": 14.666666666666666,
+     "agylite": 0.0,
+     "retained": -21.0,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 2.7715,
+    "upstream": 6.1469,
+    "agylite": 13.7357
+   },
+   "agent_seconds": {
+    "baseline": 817.0,
+    "upstream": 2147.3,
+    "agylite": 4493.6
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 4,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya/agylite-plugin"
+     ]
+    }
+   ],
+   "errors": [],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya",
+   "fix_applied": "",
+   "next_step": "AgyLite lint 0 in 6/6 and inspector 0 in 5/6 (no skill 10.3/14, Elaya 12.2/14.7); conversion 1 on every arm (at ceiling). 'inconclusive' is the retention formula: Elaya is worse than no skill, so there is no upstream gain to retain. The 6th AgyLite cell (ledgerly run 2, inspector 5, no cost) was cut off mid-session with no result event and still scored: runner bug, count it as missing. Cost AgyLite $13.74 for 5 costed cells (~$2.75/cell, 2.2x Elaya, 5x no skill); time 4,494 s vs 2,147 / 817"
   }
  ],
  "notes": [
@@ -3908,6 +4017,8 @@
   "design-extract, youtube, browser-qa, research and routing (Tier 1) wait for their instruments and AgyLite capabilities (Phases 5-7), and for paid sessions to be allowed again.",
   "20261104T182103Z design-taste: stopped by a usage limit after 10/27 cells; resume: `agylite benchmark --quality --tier 1 --suite design-taste --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261104T182103Z-design-taste`",
   "20261104T182103Z design-taste: resumed 2026-11-05 and finished 27/27 (stopped once more at 13/27 when the Claude Code session that launched it closed).",
-  "2026-11-12 design-taste re-measure (run 20261112T130841Z, AgyLite arm only) stopped by the owner after 5 of 9 cells ($11.80): inspector_fail 0 and lint_fail 0 in all 5 (original 0 / 0.11, no skill 6.8 / 11.8); no judge score (the blind judge runs after the last cell); no report.json, so no ledger row. Finish with --resume or re-run the suite."
+  "2026-11-12 design-taste re-measure (run 20261112T130841Z, AgyLite arm only) stopped by the owner after 5 of 9 cells ($11.80): inspector_fail 0 and lint_fail 0 in all 5 (original 0 / 0.11, no skill 6.8 / 11.8); no judge score (the blind judge runs after the last cell); no report.json, so no ledger row. Finish with --resume or re-run the suite.",
+  "20261120T151644Z design-elaya: stopped by a usage limit after 17/18 cells; resume: `agylite benchmark --quality --tier 1 --suite design-elaya --yes-spend --resume /Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya`",
+  "20261120T151644Z design-elaya: resumed 2026-11-22 and finished 18/18 (resume re-ran ledgerly run 1, missing from records.json, and tandem run 2)."
  ]
 }
