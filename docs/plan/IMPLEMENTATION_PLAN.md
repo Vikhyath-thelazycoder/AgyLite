@@ -575,21 +575,20 @@ Still to do:
         A stopped suite prints its own `--resume` line in the log. No engine or code change between suites (the
         earlier owner rule for paid chunks), so the suites measure the same thing.
   - [ ] Then Step 5b (release).
-  - [ ] **Security profiles (owner 2026-11-19, right after Step 5b).** Today `templates/project-docs/SECURITY.md` is
-        33 lines of empty prompts. Build security profiles picked by product type and written into the project docs
-        automatically: **core** (every web project: HTTPS/HSTS, security headers, CSP *enforced* not report-only,
-        secrets server-side only and never in `NEXT_PUBLIC_*`/client bundles, `.env` ignored, secret scan and
-        dependency audit in CI, input validation), **+auth** (limits per email and per IP in a shared store, bot
-        check after failures, cookie flags, CSRF/Origin check, staff MFA), **+e-commerce** (webhook signatures and
-        replay refusal, server-side prices, order saved before payment, atomic finalize, idempotency keys, hosted
-        checkout), **+admin/CMS**, **+AI app** (prompt injection, spend caps, kill switch, accuracy checks),
-        **+public API** (every route limited and a test that fails when one is not, real client IP from the
-        edge header only, 429 tests, counters off the database hot path), plus infra (DDoS, hidden origins,
-        least-privilege DB role, RLS, statement timeouts) and monitoring (owner alerts). `agylite project init --docs`
-        (and Step 7 later) detects the type from the request and fills SECURITY.md, the TRD/PRD non-functional rows,
-        the testing doc and a "security pass before launch" phase. Source: the owner's two shipped projects' security
-        docs and plans (read 2026-11-19), distilled **generically**, no client or project names. Tests for the
-        detector and the generated docs. Report before Step 7 uses it.
+  - [ ] **Production profiles (PP) — widened from "Security profiles" (owner 2026-11-19; widened by the owner
+        2026-11-27, D-054), right after Step 5b.** Goal: the user describes a product idea, says "make the plan", and
+        Agylite works out the product type (static site, content site, web app, e-commerce, marketplace, Android/iOS
+        app, API, CLI), its facets (accounts, payments, subscriptions, admin, uploads, AI, user content, children…) and
+        markets (India, EU, UK, US), then writes every security, privacy, reliability, cost and launch rule that type
+        needs into the project's plan and documents, each in its phase with a test, and asks only what it cannot tell.
+        Sources: the owner's playbook (`docs/research/production/security-privacy-playbook.md`), a 103-item pre-launch
+        checklist and web research → gaps and the module matrix in
+        `docs/research/production/production-readiness-gaps.md`. Steps PP0–PP6 in the detailed section
+        "Production profiles (PP) — detailed" below. **PP0 done 2026-11-27.** PP1–PP3 change no routing, skill or
+        bundle, so they could start before Step 5b if the owner wants; PP4 (routing and the new capability) waits for
+        Step 5b. The 2026-11-19 items (core, +auth, +e-commerce, +admin/CMS, +AI, +public API, infra, monitoring, the
+        owner's two shipped projects distilled generically, no client or project names) are all inside the catalogue.
+        Report after each PP step; report before Step 7 uses it.
   - [ ] **Hallmark audit (owner 2026-11-19, after Step 5; audit, then decide).** `Nutlope/hallmark` (MIT, anti-AI-slop
         frontend design skill: build/audit/redesign/study, 22 themes, 65 pre-ship gates) is not bundled. Through the
         update-review process: pin, hash, scan, license; overlap audit against taste, uiuxpromax, opendesign and
@@ -859,7 +858,10 @@ Still to do:
           welcome email when a user signs up" and "Translate the app into Spanish and Hindi" are unmatched.
         - Nothing suitable found: product analytics, privacy/GDPR and legal pages, cloud cost, offline/PWA, app store
           release, incident runbooks. "Reduce our cloud bill", "Make the app work offline" and "Get the app into the
-          App Store" are unmatched. Ask the owner which of these are worth a skill.
+          App Store" are unmatched. **2026-11-27: the rules for all six are now catalogue modules of Production
+          profiles (PRIV, LEGAL, COST, OFFLINE, MOB-STORE, OPS; analytics rows in PRIV and LAUNCH) and route to
+          `engineering/production-readiness` after PP4.** What stays here: look for maintained upstream skills that
+          help *build* them (one owner per job), and fix the three unmatched prompts with scenarios.
         - Misroutes to fix with scenarios: "Build a CLI tool that renames photos by date" → `REFACTOR` (word
           "rename"); "Add a chatbot that answers from our help docs" and "Build a Discord bot that answers questions
           from our docs" → `DOCUMENTATION_CHANGE`, no `engineering/ai-systems`; "Add error monitoring and alerts" →
@@ -892,6 +894,11 @@ Still to do:
         (a CLI has no SEO or design), how the plan's phases are created from them, how the hook names the next stage
         after RECONCILE, and where the owner approves. Not checked on 2026-11-15: what a real session does with
         today's new-product route (only the route was read).
+        **Input from Production profiles (2026-11-27):** the stored product type, facets and markets decide which
+        stages run and which are skipped (a static site has no accounts or payments stage, a CLI no SEO or design, a
+        mobile app adds a Store release stage, e-commerce adds a Payments gate); the production phases and gates that
+        PP3 writes into the plan are the pipeline's security, legal and launch stages, so Step 7 does not define them
+        again (PP5).
         Proposals J and K of the 2026-11-15 research belong here (see "Gap programme" below): J is this pipeline with
         an unattended mode and stop conditions, K is implementer subagents per task with a review and fix loop.
         Also open from the same check: no paid suite runs Cursor, Codex or Antigravity, where the 14 entry skills
@@ -1349,6 +1356,137 @@ gap: Open Design's files are already measured.
   designlang). The bundle stays small, and the knowledge matches the user's installed version.
 - **Young repos** (Caldo: 3 commits; Astryx: beta) track monthly or by releases until they settle.
 
+## Production profiles (PP) — detailed (owner 2026-11-27, D-054)
+
+**Where it sits:** right after Step 5b (owner 2026-11-19), before the Hallmark audit, G2, Step 6 and Step 7. PP1–PP3
+touch no routing, skill or bundle and may start earlier on the owner's word; PP4 waits for Step 5b. Report and stop
+after each PP step; every step ends with all free checks green (`python -m unittest discover -s tests`,
+`agylite validate`, `agylite doctor`), committed and pushed.
+
+**What the user gets:** *"Build an online store for my handmade candles, India only, COD and UPI"* → Agylite stores
+`type: ecommerce, facets: [accounts, payments-one-time, admin, email-sending], markets: [IN]`, asks only what is
+missing (return window, shipping partner, GST registration…), and writes the plan's phases with every applicable rule
+(PCI-safe hosted checkout, server-side prices, stock reservation, order state machine, webhook replay refusal, COD
+limits, E-Commerce Rules disclosures, DPDP notice and consent, GST invoices, WCAG, monitoring, backups and restore drill,
+launch checklist…) as rows with a test, a phase and a gate, plus a filled `SECURITY.md`, `PRODUCTION_READINESS.md` (gap
+register) and `LEGAL_AND_POLICIES.md`. A static portfolio gets about a tenth of the rows; an Android + iOS
+subscription app gets the mobile, store and subscription modules instead of the shop ones.
+
+**Inputs:** `docs/research/production/security-privacy-playbook.md` (A), `docs/research/production/production-readiness-gaps.md`
+(B items 1–103 mapped, web research C, module matrix §4, intake §5, defaults §6).
+
+### PP0 — Sources and gap research · DONE 2026-11-27
+- [x] Owner's playbook stored unchanged as source A.
+- [x] 103-item checklist read; the 31 items A lacks listed with their new rule and module (gaps doc §3.1); B's text is
+      cited by number and title only, never copied.
+- [x] Web research (PCI DSS 4.0.1, OWASP ASVS 5.0 and MASVS 2.1, Google Play and Apple 2026 rules, age-signal laws,
+      DPDP Rules timeline, RBI card and authentication rules, E-Commerce Rules and the 2026 amendment, EU AI Act
+      Article 50, EU Cyber Resilience Act, European Accessibility Act); dated facts and the rows not re-checked are
+      marked *confirm* (gaps doc §3.2–3.3).
+- [x] Product types, facets, markets, the module matrix, intake questions and defaults (gaps doc §2, §4–6).
+
+### PP1 — Requirement catalogue (one source of truth)
+- [ ] `config/production/profiles.yaml`: types (`static-site, content-site, web-app, ecommerce, marketplace,
+      mobile-app, api-service, cli-or-library, browser-extension`), facets (gaps doc §2.2), markets (`IN, EU, UK, US,
+      global`), the phase list (A §1 + `Store release` + the `Payments` gate), the module matrix (gaps doc §4: ● always,
+      ○ by facet, – with a reason and a recheck trigger), detection signals (words and repository markers, used by PP2).
+- [ ] `config/production/requirements.yaml`: one entry per rule. Fields: `id` (`<MODULE>-<nn>`), `module`, `title`,
+      `rule` (one or two plain sentences), `test` (how it is proved: a test, a scan, a manual check with evidence),
+      `phase`, `blocker` (bool), `types`, `facets`, `markets`, `refs` (ASVS / MASVS / OWASP Top 10, API, LLM IDs),
+      `sources` (A §, B #, C link key), optional `decision` + `question` (A's *decision* items), `confirm` (bool) and
+      `checked` (date) for legal or dated rows, `example` (stack names only here).
+      Content: every rule of A §3–6 and §11 (the 20 attacks and the 3.15 quick list as rows; 3.16 as `refs`), the 31
+      rows from B, every row of gaps doc §3.2, the dated facts of §3.3. Expect 350–450 rules.
+- [ ] Agent-facing pages generated from the YAML, one per module: `capabilities/engineering/production-readiness/
+      references/<module>.md` (rule, test, phase, sources; generated header "do not edit"). The generator runs with
+      the existing card-docs generation and `validate` fails when a page is stale.
+- [ ] `agylite/production/catalogue.py`: load, validate, select (`select(product) → rules + not-applicable modules`).
+- [ ] `agylite validate` check `production-catalogue`: unique IDs; every rule has `test`, `phase` and `sources`;
+      phases, types, facets and markets are known; every ● or ○ cell of the matrix has at least one rule; `confirm`
+      rows have `checked`; **warning** when `checked` is older than 183 days (laws move); stack names only in `example`.
+- [ ] Tests `tests/test_production_catalogue.py`: the checks above on the real file and on broken fixtures; coverage
+      test that every A section heading of §3–6 and §11 and every B item number 1–103 is referenced by at least one rule
+      or listed in an explicit "covered by" map.
+
+### PP2 — Product detector and intake
+- [ ] `agylite/production/detect.py` `classify(request, root) → {type, also, facets, markets, confidence, evidence,
+      unknown}`: deterministic, offline, no model call. Signals from `profiles.yaml`: request words, and repository
+      markers (`package.json` dependencies such as payment SDKs, Expo, React Native, Next static export; `pubspec.yaml`;
+      `android/`, `ios/`, `*.xcodeproj`; `manifest.json` with `manifest_version`; OpenAPI files; AI SDKs; currency and
+      gateway hints for markets). Unknown or low confidence → the missing fields go in `unknown`.
+- [ ] Project state: `state.yaml` gains `product: {type, also, facets, markets, source: detected|user, decided}`;
+      `agylite product detect "<request>"`, `agylite product set --type … --facet … --market …`, `agylite product
+      show`; a change emits `STATE_UPDATED`. The session start shows one line (`product: ecommerce · IN · …`).
+- [ ] Intake through the existing question bank (`config/questions.yaml`, `agylite/project/questions.py`): add the
+      product question (gaps doc §2.4, best guess first) as BLOCKING when `unknown` is not empty, and the per-type
+      questions of gaps doc §5 and A §8 as IMPORTANT with `ask_when` on type or facet. A question already answered in
+      state is never asked again; A's *decision* items become questions, answers go to `agylite decide add`.
+- [ ] Tests `tests/test_production_detect.py`: at least 40 pitches (every type, facet and market; mixes such as "web
+      app with Android and iOS apps"; traps: "store my notes" is not e-commerce, "a shop-window portfolio" is a static
+      site, "an app for my gym" asks web or mobile); repository-marker tests on small fixture folders; the question
+      appears only when needed and only once.
+
+### PP3 — Plan and documents from the profile
+- [ ] `agylite production plan [--write] [--refresh]`, also run by `agylite project init --docs` when a product is
+      stored: selects the rules (PP1) for the product (PP2) and writes, each inside
+      `<!-- agylite:production:start -->` / `end` markers so text outside them is never touched:
+      - `docs/PRODUCTION_READINESS.md` (new template): the gap register in A §9 form (`ID | Requirement | Status |
+        Where | Phase | Blocker`, status `MISSING`), the not-applicable modules with reason and recheck trigger, the gate
+        table per phase, the open decisions, and the risk-acceptance form (A §3.14).
+      - `docs/SECURITY.md`: threats for this type, and the rules per section (auth, secrets, data, third parties,
+        security tests) in place of today's empty prompts.
+      - `docs/PRD.md` and `docs/TRD.md`: non-functional rows (markets and laws, privacy, accessibility level,
+        performance budgets, availability and recovery targets, cost caps).
+      - `docs/IMPLEMENTATION_PLAN.md`: the phases this product needs (static sites skip accounts and payments; mobile
+        adds Store release), each with a task row listing its rule IDs and the gate rows; existing user phases are
+        kept and the rows join the matching phase by name.
+      - `docs/LEGAL_AND_POLICIES.md` (new template): pages to publish per type and market (privacy, terms, refund and
+        cancellation, cookies, grievance officer, imprint, store listing and privacy forms) with their must-contain
+        lines and the "not legal advice, confirm" header.
+- [ ] `--refresh` adds rules that became applicable (new facet, new catalogue rows) and never resets a row's status
+      or deletes a user's note; a removed facet marks its rows "not applicable (facet removed on <date>)" instead of
+      deleting them.
+- [ ] Tests `tests/test_production_plan.py`, golden files for four products: static portfolio (IN), Indian D2C store
+      with COD and UPI, EU B2B SaaS with an AI feature, Android + iOS subscription app (IN + US). Checks: expected
+      modules present or absent, every row has phase and test, second run changes nothing, text outside the markers
+      survives, a row marked done stays done after `--refresh`.
+
+### PP4 — Capability, routing and the release gate (after Step 5b)
+- [ ] New capability `engineering/production-readiness` (house guide in the `CONTRIBUTING.md` standard, core
+      `SKILL.md`/`GUIDE.md` at most 6,500 bytes; the module pages from PP1 load on demand with
+      `agylite production rules --module SHOP` or `--product`). It tells the agent to read the stored product, run
+      `agylite production plan`, fill the register as work lands, and never mark a row done without its test.
+- [ ] Routing: new-product and plan requests ("build me…", "make the plan", "plan my store/app/site"), readiness and
+      launch requests ("is it production ready", "pre-launch checklist", "go live", "launch"), and the Step 6 prompts
+      now covered here ("privacy policy", "cookie banner", "reduce our cloud bill", "get the app into the App Store",
+      "incident runbook") add this capability; a scenario test for each. The hook sends one product line and the
+      command, never the catalogue; hook size checked against the 9,600-character limit on the Step 5 prompts.
+- [ ] Gate: `agylite production status` lists open blocker rows per phase from the register. The `agylite-production`
+      entry skill and the `engineering/release` finish line refuse "ready to launch" while a blocker row is open and
+      not accepted in writing (reason, compensating control, owner, expiry: A §3.14). `agylite verify` is unchanged:
+      Agylite runs no scanners itself; the rows name the project's own tools (Gitleaks, Semgrep, Trivy, ZAP, MobSF…).
+- [ ] `testing/security` card: link the pentest coverage map (A §3.16 as `refs`) so security tests are chosen by row.
+- [ ] Tests: routing scenarios, the gate (open blocker → refused; accepted risk → allowed), skill check, adapters
+      re-rendered for the new capability.
+
+### PP5 — Step 7 hookup (done inside Step 7)
+- [ ] The product pipeline reads `product` from state to pick stages and skips (Step 7 note). The production phases
+      and gates from PP3 are its security, legal and launch stages; mobile adds Store release; the YouTube and launch
+      media domains are optional stages for products that publish video.
+
+### PP6 — Close
+- [ ] `docs/architecture/PRODUCTION_PROFILES.md` (types, facets, markets, catalogue, generation, gate) and links from
+      `docs/architecture/TARGET_ARCHITECTURE.md`; README and `TRY_AGYLITE.md` one paragraph each; CHANGELOG
+      "Unreleased".
+- [ ] Free checks green; scratch bundle rebuilt if PP4 changed the bundle; report to the owner.
+- [ ] Paid check: none planned. If the owner wants one, a small "plan quality" suite (four pitches × three arms, on
+      Sonnet 5.5 per the 2026-11-22 rule) with a dry run and cost estimate first; the remaining Step 5 suites are on
+      hold until the owner says so.
+
+**Risks:** legal rows go stale (mitigated by `checked` dates and the validate warning); a long register can bury the
+few rows that matter (mitigated by blocker flags, phase gates and modules switched off by type); detection mistakes
+(mitigated by one intake question and `agylite product set`); hook size (the catalogue never rides in the hook).
+
 ## Change history
 
 | Date | Phase | Change |
@@ -1406,3 +1544,4 @@ gap: Open Design's files are already measured.
 | 2026-11-15 | Research | Six open-source frameworks read and compared with Agylite (`docs/research/open-source-frameworks-vs-agylite.md`): 15 gaps, proposals A–L, waiting for the owner's approval. |
 | 2026-11-15 | Plan | Owner approved all research proposals A–L. Gap programme added: G1 (5c + A–D) before the Step 5 paid run, G2 (E, F) after the release, G and H inside Step 6, J and K inside Step 7, G3 (I, L) before the second release. ▶ Next: G1. |
 | 2026-11-15 | G1 | Built: Step 5c (questions and chat are not work), `agylite next`, small-change path, `agylite handoff`, announce line. All checks green; bundle ID unchanged; Step 5 dry run still 180 sessions; hook +57 characters, closest prompt 9,579 / 9,600. ▶ Next: Step 5 on the owner's word. |
+| 2026-11-27 | Plan | Owner request: plans for new products must carry the security, privacy, reliability, cost and launch rules of their product type. "Security profiles" widened into **Production profiles (PP0–PP6)**, D-054. PP0 done: owner's playbook stored (`docs/research/production/security-privacy-playbook.md`); 103-item checklist and web research compared (`docs/research/production/production-readiness-gaps.md`: 31 items the playbook lacked, type-specific gaps for e-commerce, marketplaces, mobile, static sites, APIs and AI, dated legal facts). Step 6 legal/cost/app-store/runbook gaps moved into the catalogue; Step 7 takes stages and skips from the stored product type. ▶ Next: PP1 after Step 5b, or earlier on the owner's word. |
