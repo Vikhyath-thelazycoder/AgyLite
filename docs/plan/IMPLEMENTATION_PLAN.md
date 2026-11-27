@@ -557,7 +557,7 @@ Still to do:
           still routes task-notification events as work (17–41 KB per event this session); extend 5c to skip them.
           Report `~/.agylite/benchmarks/quality/20261122T065009Z-design/report.json`.
         - [ ] eng-ecc 54 (≈ $11 on Opus) · [ ] diagram-archify 45 (≈ $21) · [ ] spec-review re-run — all on Sonnet 5.5
-          (`--model claude-sonnet-5-5 --judge-model claude-sonnet-5-5`). **▶ NEXT: eng-ecc, on the owner's word.**
+          (`--model claude-sonnet-5-5 --judge-model claude-sonnet-5-5`). **ON HOLD (owner 2026-11-27): do not start eng-ecc or the other remaining suites until the owner picks them up again; ask first.**
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
         `export CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s agylite-bench -w)` in the same command,
