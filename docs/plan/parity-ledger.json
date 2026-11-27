@@ -4008,6 +4008,138 @@
    "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261120T151644Z-design-elaya",
    "fix_applied": "",
    "next_step": "AgyLite lint 0 in 6/6 and inspector 0 in 5/6 (no skill 10.3/14, Elaya 12.2/14.7); conversion 1 on every arm (at ceiling). 'inconclusive' is the retention formula: Elaya is worse than no skill, so there is no upstream gain to retain. The 6th AgyLite cell (ledgerly run 2, inspector 5, no cost) was cut off mid-session with no result event and still scored: runner bug, count it as missing. Cost AgyLite $13.74 for 5 costed cells (~$2.75/cell, 2.2x Elaya, 5x no skill); time 4,494 s vs 2,147 / 817"
+  },
+  {
+   "date": "20261122T065009Z",
+   "suite": "design",
+   "n": 3,
+   "bundle": "983bee4b2e54",
+   "agylite_commit": "b1dd8e643b74057620ba5a274f9992905dda0a0d",
+   "upstream_shas": {},
+   "model": "claude-sonnet-5-5",
+   "metrics": {
+    "inspector_fail": {
+     "baseline": 4.444444444444445,
+     "upstream": 5.0,
+     "agylite": 0.5,
+     "retained": -7.1,
+     "verdict": "inconclusive"
+    },
+    "lint_fail": {
+     "baseline": 2.6666666666666665,
+     "upstream": 3.3333333333333335,
+     "agylite": 0.0,
+     "retained": -4.0,
+     "verdict": "inconclusive"
+    },
+    "judge_overall": {
+     "baseline": 6.611111111111111,
+     "upstream": 6.522222222222222,
+     "agylite": 7.65625,
+     "retained": -11.758,
+     "verdict": "inconclusive"
+    }
+   },
+   "verdict": "inconclusive",
+   "cost_usd": {
+    "baseline": 2.7965,
+    "upstream": 3.0131,
+    "agylite": 9.2083
+   },
+   "agent_seconds": {
+    "baseline": 1030.1,
+    "upstream": 1256.1,
+    "agylite": 4956.1
+   },
+   "agylite_usage": [
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    },
+    null,
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 3,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    },
+    {
+     "prompt_routed": 1,
+     "context_loaded": 0,
+     "route_unmatched": 0,
+     "capabilities_selected": 2,
+     "sessions": 1,
+     "engines": [
+      "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design/agylite-plugin"
+     ]
+    }
+   ],
+   "errors": [
+    "10__agylite__0"
+   ],
+   "run_dir": "/Users/vikhyathmgowda007/.agylite/benchmarks/quality/20261122T065009Z-design",
+   "fix_applied": "",
+   "next_step": ""
   }
  ],
  "notes": [

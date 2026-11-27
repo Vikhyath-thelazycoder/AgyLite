@@ -547,8 +547,17 @@ Still to do:
         - **Owner 2026-11-22: from now on paid runs use a cheaper model than Opus (Sonnet 5.5 or Haiku 5.5),** via
           `--model` / `--judge-model`. All three arms of a suite run on the same model, so a suite's verdict holds;
           rows on Sonnet/Haiku are not comparable with the Opus rows above (security, design-elaya).
-        - [ ] design 27 (≈ $45 on Opus) · [ ] eng-ecc 54 (≈ $11) · [ ] diagram-archify 45 (≈ $21) · [ ] spec-review
-          re-run — **`design` STOPPED by the owner 2026-11-22 at 20/27 cells ($9.74, Sonnet 5.5); see the ledger note for the numbers and the resume line. AgyLite on Sonnet: inspector 0.2 / lint 0 vs no skill 4.7 / 3.3 and original 5.8 / 3.8; AgyLite timed out once on the app-screen task (10). Follow-up: the prompt hook routes system notifications (task-notification events) as work and injected a 41 KB design skill; extend 5c to skip them.** **▶ RESUMED 2026-11-27 on Sonnet 5.5 (9 cells left; log `~/.agylite/benchmarks/step5-design-resume.log`). If it stops, re-run the ledger's resume line with `--model claude-sonnet-5-5 --judge-model claude-sonnet-5-5`. Next: eng-ecc, diagram-archify, spec-review re-run — all on Sonnet.**
+        - [x] design 27 — **DONE 2026-11-27 (Sonnet 5.5, judge Sonnet), $15.02, verdict INCONCLUSIVE by formula,
+          AgyLite best on every metric.** Stopped by the owner at 20/27 on 2026-11-22, resumed 2026-11-27 (9 cells).
+          No skill / original / AgyLite: inspector_fail 4.44 / 5 / 0.5; lint_fail 2.67 / 3.33 / 0; judge 6.61 / 6.52 /
+          7.66. Inconclusive = the original is no better than no skill, so there is no upstream gain to retain. Cost
+          $2.80 / $3.01 / $9.21 (3.1×), agent time 1,030 / 1,256 / 4,956 s. Findings: **(S5-3)** `10__agylite__0` timed
+          out at 1,500 s twice (the other two AgyLite runs of task 10 finished, 0 / 0): look at its trace; AgyLite n = 2
+          there. **(S5-4)** 6 of 9 original cells (tasks 5 and 10) never used their skill. **(S5-5)** the prompt hook
+          still routes task-notification events as work (17–41 KB per event this session); extend 5c to skip them.
+          Report `~/.agylite/benchmarks/quality/20261122T065009Z-design/report.json`.
+        - [ ] eng-ecc 54 (≈ $11 on Opus) · [ ] diagram-archify 45 (≈ $21) · [ ] spec-review re-run — all on Sonnet 5.5
+          (`--model claude-sonnet-5-5 --judge-model claude-sonnet-5-5`). **▶ NEXT: eng-ecc, on the owner's word.**
         **Owner 2026-11-15: the token may live in the macOS Keychain** (item `agylite-bench`, stored once by the owner
         with `security add-generic-password -a "$USER" -s agylite-bench -w`), so the agent can start each suite:
         `export CLAUDE_CODE_OAUTH_TOKEN=$(security find-generic-password -s agylite-bench -w)` in the same command,
